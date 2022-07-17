@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bank Pembiayaan Rakyat Syariah Bogor Tegar Beriman</title>
-    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="apple-touch-icon" href="../../../faviconBTB.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../faviconBTB.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
@@ -68,4 +68,4 @@
                 </div>
         </div>
     </nav>
-    
+

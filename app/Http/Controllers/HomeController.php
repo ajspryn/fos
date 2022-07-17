@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $role=Role::select()->where('user_id',Auth::user()->id)->get()->first();
+        $url='/';
+        if ($role->role_id==1) {
+            $url='/admin';
+        }
+        return Redirect($url);
     }
 }

@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="bs-stepper-content">
-                        <form >
+                        <form action="/skpd/pembiayaan" enctype="multipart/form-data">
                             <div id="form1" class="content" role="tabpanel" aria-labelledby="account-details-trigger">
                                 <div class="content-header">
                                     {{-- <h5 class="mb-0">Account Details</h5> --}}

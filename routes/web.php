@@ -24,5 +24,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth:sanctum', 'verified'])->resource('/cek', DashboardController::class);
+Route::middleware(['auth:sanctum', 'verified'])->resource('/dashboard', DashboardController::class);
 

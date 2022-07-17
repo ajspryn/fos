@@ -14,7 +14,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin::index');
+        return view('admin::index',[
+            'title'=>"Dashboard Admin",
+        ]);
     }
 
     /**
@@ -33,7 +35,17 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $query=pengajuan::select()->orderby('id','desc')->get()->fisrt();
+        $id=$query->id;
+        return $id;
+
+        pengajuan::create([
+            'id'=>$id,
+            'nasabah_id'=>$id
+        ]);
+        nasabah::create([
+            'id'=>$id,
+        ]);
     }
 
     /**

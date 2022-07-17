@@ -13,4 +13,5 @@
 
 Route::prefix('skpd')->group(function() {
     Route::get('/', 'SkpdController@index');
+    Route::get('/pembiayaan', 'SkpdController@index');
 });
