@@ -57,38 +57,38 @@
 .ql-toolbar .ql-formats .ql-picker-label:focus,
 .ql-toolbar .ql-formats button:hover,
 .ql-toolbar .ql-formats button:focus {
-    color: #c41713 !important;
+    color: #bd120d !important;
 }
 
 .ql-toolbar .ql-formats .ql-picker-label:hover .ql-stroke,
 .ql-toolbar .ql-formats .ql-picker-label:focus .ql-stroke,
 .ql-toolbar .ql-formats button:hover .ql-stroke,
 .ql-toolbar .ql-formats button:focus .ql-stroke {
-    stroke: #c41713 !important;
+    stroke: #bd120d !important;
 }
 
 .ql-toolbar .ql-formats .ql-picker-label:hover .ql-fill,
 .ql-toolbar .ql-formats .ql-picker-label:focus .ql-fill,
 .ql-toolbar .ql-formats button:hover .ql-fill,
 .ql-toolbar .ql-formats button:focus .ql-fill {
-    fill: #c41713 !important;
+    fill: #bd120d !important;
 }
 
 .ql-toolbar .ql-formats .ql-picker-label.ql-active,
 .ql-toolbar .ql-formats button.ql-active {
-    color: #c41713 !important;
+    color: #bd120d !important;
 }
 
 .ql-toolbar .ql-formats .ql-picker-item.ql-selected {
-    color: #c41713 !important;
+    color: #bd120d !important;
 }
 
 .ql-toolbar .ql-formats .ql-picker-options .ql-picker-item:hover {
-    color: #c41713 !important;
+    color: #bd120d !important;
 }
 
 .ql-toolbar .ql-formats .ql-picker-options .ql-active {
-    color: #c41713 !important;
+    color: #bd120d !important;
 }
 
 .ql-bubble .ql-picker {
@@ -109,7 +109,7 @@
 }
 
 .ql-editor a {
-    color: #c41713;
+    color: #bd120d;
 }
 
 .ql-picker {
@@ -121,11 +121,11 @@
 }
 
 .ql-active .ql-stroke {
-    stroke: #c41713 !important;
+    stroke: #bd120d !important;
 }
 
 .ql-active .ql-fill {
-    fill: #c41713 !important;
+    fill: #bd120d !important;
 }
 
 .ql-fill {
@@ -178,15 +178,15 @@
 .dark-layout .quill-toolbar .ql-picker-label .ql-active,
 .dark-layout .ql-toolbar .ql-picker-options .ql-active,
 .dark-layout .ql-toolbar .ql-picker-label .ql-active {
-    color: #c41713 !important;
+    color: #bd120d !important;
 }
 
 .dark-layout .ql-active .ql-stroke {
-    stroke: #c41713 !important;
+    stroke: #bd120d !important;
 }
 
 .dark-layout .ql-active .ql-fill {
-    fill: #c41713 !important;
+    fill: #bd120d !important;
 }
 
 .dark-layout .ql-bubble .ql-toolbar {

@@ -13,7 +13,7 @@
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-          <li class=" nav-item active"><a class="d-flex align-items-center" href="/admin"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="home">Dashboard</span></a>
+          <li class="{{ Request::is('admin')? "active":"" }} "><a class="d-flex align-items-center" href="/admin"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="home">Dashboard</span></a>
           </li>
           <li class=" navigation-header"><span data-i18n="Forms &amp; Tables">Forms &amp; Tables</span><i data-feather="more-horizontal"></i>
           </li>
@@ -41,15 +41,23 @@
             <ul class="menu-content">
               <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Account Settings">SKPD</span></a>
                 <ul class="menu-content">
-                  <li><a class="d-flex align-items-center" href="page-account-settings-account.html"><span class="menu-item text-truncate" data-i18n="Account">Parameter Bobot</span></a>
+                  <li class="{{ Request::is('/admin/skpd/parameterbobot*')? "active":"" }}" ><a class="d-flex align-items-center" href="/admin/parameterbobot"><span class="menu-item text-truncate" data-i18n="Account">Parameter Bobot</span></a>
                   </li>
-                  <li><a class="d-flex align-items-center" href="page-account-settings-security.html"><span class="menu-item text-truncate" data-i18n="Security">Instansi</span></a>
+                  <li class="{{ Request::is('admin/skpd/akad')? "active":"" }}" ><a class="d-flex align-items-center" href="/admin/skpd/akad"><span class="menu-item text-truncate" data-i18n="Account">Akad</span></a>
                   </li>
-                  <li><a class="d-flex align-items-center" href="page-account-settings-billing.html"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Jaminan</span></a>
+                  <li class="{{ Request::is('admin/skpd/instansi')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/intansi"><span class="menu-item text-truncate" data-i18n="Security">Instansi</span></a>
                   </li>
-                  <li><a class="d-flex align-items-center" href="page-account-settings-notifications.html"><span class="menu-item text-truncate" data-i18n="Notifications">Tanggungan</span></a>
+                  <li class="{{ Request::is('admin/skpd/golongan')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/golongan"><span class="menu-item text-truncate" data-i18n="Security">Golongan</span></a>
                   </li>
-                  <li><a class="d-flex align-items-center" href="page-account-settings-connections.html"><span class="menu-item text-truncate" data-i18n="Connections">Connections</span></a>
+                  <li class="{{ Request::is('admin/skpd/jaminan')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/jaminan"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Jaminan</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/skpd/penggunaan')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/penggunaan"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Penggunaan</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/skpd/sektorekonomi')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/sektorekonomi"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Sektor Ekonomi</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/skpd/tanggungan')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/tanggungan"><span class="menu-item text-truncate" data-i18n="Notifications">Tanggungan</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/skpd/statusperkawinan')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/statusperkawinan"><span class="menu-item text-truncate" data-i18n="Notifications">Status Perkawinan</span></a>
                   </li>
                 </ul>
               </li>

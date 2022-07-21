@@ -45,7 +45,7 @@
                             <mask id="mask-3" fill="white">
                                 <use xlink:href="#path-2"></use>
                             </mask>
-                            <use id="Rectangle" fill="#c41713" xlink:href="#path-2"></use>
+                            <use id="Rectangle" fill="#bd120d" xlink:href="#path-2"></use>
                             <path d="M-3.31578947,-0.938053097 L6.55858074,-0.938053097 C0.439592516,21.5752212 18.8599747,30.9557522 6.55858074,53.4690265 L-3.31578947,53.4690265 L-3.31578947,-0.938053097 Z" id="Rectangle" fill="#8B81EB" mask="url(#mask-3)"></path>
                         </g>
                     </g>

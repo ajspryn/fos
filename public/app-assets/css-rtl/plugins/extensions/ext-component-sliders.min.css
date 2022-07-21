@@ -39,14 +39,14 @@
 .noUi-handle {
     border-radius: 50%;
     background: #fff;
-    border: 2px solid #c41713;
+    border: 2px solid #bd120d;
 }
 .noUi-handle:after,
 .noUi-handle:before {
     display: none;
 }
 .noUi-connect {
-    background: #c41713;
+    background: #bd120d;
 }
 .noUi-tooltip {
     -webkit-transform: translate(10%, -50%);

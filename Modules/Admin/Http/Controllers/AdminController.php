@@ -2,9 +2,11 @@
 
 namespace Modules\Admin\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Support\Renderable;
 
 class AdminController extends Controller
 {
@@ -14,8 +16,11 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $role=Role::select()->where('user_id',Auth::user()->id)->get()->first();
+        // dd($role->role_id);
         return view('admin::index',[
             'title'=>"Dashboard Admin",
+            'role'=>$role->role_id,
         ]);
     }
 
@@ -35,17 +40,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $query=pengajuan::select()->orderby('id','desc')->get()->fisrt();
-        $id=$query->id;
-        return $id;
 
-        pengajuan::create([
-            'id'=>$id,
-            'nasabah_id'=>$id
-        ]);
-        nasabah::create([
-            'id'=>$id,
-        ]);
     }
 
     /**

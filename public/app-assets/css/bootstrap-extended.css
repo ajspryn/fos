@@ -189,7 +189,7 @@ textarea.form-control-lg {
 
 .input-group:not(.bootstrap-touchspin):focus-within .form-control,
 .input-group:not(.bootstrap-touchspin):focus-within .input-group-text {
-  border-color: #c41713;
+  border-color: #bd120d;
   box-shadow: none; }
 
 .input-group:not(.bootstrap-touchspin):focus-within .form-control.is-valid,
@@ -351,14 +351,14 @@ textarea.form-control-lg {
   opacity: 1; }
 
 .form-floating > .form-control:focus ~ label {
-  color: #c41713; }
+  color: #bd120d; }
 
 .form-floating > label {
   opacity: 0.65; }
 
 /* Textarea with Counter */
 .textarea-counter-value {
-  background-color: #c41713;
+  background-color: #bd120d;
   color: #fff;
   padding: 1px 6px;
   font-size: 0.6rem;
@@ -747,8 +747,8 @@ select:-webkit-autofill {
   left: inherit; }
 
 .header-navbar .navbar-container ul.navbar-nav li.dropdown-cart .dropdown-menu.dropdown-menu-end::before, .header-navbar .navbar-container ul.navbar-nav li.dropdown-notification .dropdown-menu.dropdown-menu-end::before {
-  background: #c41713;
-  border-color: #c41713; }
+  background: #bd120d;
+  border-color: #bd120d; }
 
 .header-navbar .navbar-container ul.navbar-nav li.dropdown-cart .dropdown-menu-header, .header-navbar .navbar-container ul.navbar-nav li.dropdown-notification .dropdown-menu-header {
   border-top-left-radius: 0.357rem;
@@ -876,7 +876,7 @@ select:-webkit-autofill {
 
 .header-navbar .navbar-container ul.navbar-nav li i.ficon:hover,
 .header-navbar .navbar-container ul.navbar-nav li svg.ficon:hover {
-  color: #c41713; }
+  color: #bd120d; }
 
 .header-navbar .navbar-container ul.navbar-nav li .media-list {
   max-height: 25rem; }
@@ -1173,8 +1173,8 @@ select:-webkit-autofill {
   .card-content {
     min-height: 1px; } }
 
-.card-congratulations {#c41713
-  background: linear-gradient(118deg, #c41713, #c55957);
+.card-congratulations {#bd120d
+  background: linear-gradient(118deg, #7367f0, #fa6662);
   color: #fff; }
 
 .card-congratulations .congratulations-img-left {
@@ -1576,8 +1576,8 @@ select:-webkit-autofill {
   border: 1px solid transparent;
   color: #5e5873; }
 
-.nav-pills .nav-#c41713tive {
-  border-color: #c41713;
+.nav-pills .nav-#bd120dtive {
+  border-color: #7367f0;
   box-shadow: 0 4px 18px -4px rgba(115, 103, 240, 0.65); }
 
 .nav-pills .nav-link.disabled {
@@ -1590,8 +1590,8 @@ select:-webkit-autofill {
 .nav-pills.dropdown.show .nav-link {
   color: #fff; }
 
-.nav-pill#c41713own.show .dropdown-item.active:hover {
-  color: #c41713; }
+.nav-pill#bd120down.show .dropdown-item.active:hover {
+  color: #7367f0; }
 
 .nav-pills.nav-justified {
   width: 100%; }
@@ -1656,14 +1656,14 @@ select:-webkit-autofill {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 3px;#c41713
-  background: linear-gradient(30deg, #c41713, rgba(115, 103, 240, 0.5)) !important;
+  height: 3px;#bd120d
+  background: linear-gradient(30deg, #7367f0, rgba(115, 103, 240, 0.5)) !important;
   transition: transform 0.3s;
   transform: translate3d(0, 150%, 0); }
 
 .nav-tabs .nav-link.active {
-  positio#c41713tive;
-  color: #c41713; }
+  positio#bd120dtive;
+  color: #7367f0; }
 
 .nav-tabs .nav-link.active:after {
   transform: translate3d(0, 0, 0); }
@@ -1957,11 +1957,11 @@ ul.list-inline.list-inline-pipe > li + li:before {
   content: ''; }
 
 .page-item.prev-item .page-link:hover {
-  backgro#c417133f2f7;
-  color: #c41713; }
+  backgro#bd120d3f2f7;
+  color: #7367f0; }
 
-.page-item.prev-item#c41713link:active, .page-item.prev-item .page-link:hover {
-  background-color: #c41713 !important; }
+.page-item.prev-item#bd120dlink:active, .page-item.prev-item .page-link:hover {
+  background-color: #7367f0 !important; }
 
 .page-item.prev-item .page-link:active:before, .page-item.prev-item .page-link:hover:before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-left'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E") !important; }
@@ -2001,11 +2001,11 @@ ul.list-inline.list-inline-pipe > li + li:before {
   content: ''; }
 
 .page-item.next-item .page-link:hover {
-  backgro#c417133f2f7;
-  color: #c41713; }
+  backgro#bd120d3f2f7;
+  color: #7367f0; }
 
-.page-item.next-item#c41713link:active, .page-item.next-item .page-link:hover {
-  background-color: #c41713 !important; }
+.page-item.next-item#bd120dlink:active, .page-item.next-item .page-link:hover {
+  background-color: #7367f0 !important; }
 
 .page-item.next-item .page-link:active:after, .page-item.next-item .page-link:hover:after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-right'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E") !important; }
@@ -2057,8 +2057,8 @@ ul.list-inline.list-inline-pipe > li + li:before {
 .page-item .page-link:focus {
   box-shadow: none; }
 
-.page-ite#c41713-link:hover {
-  color: #c41713; }
+.page-ite#bd120d-link:hover {
+  color: #7367f0; }
 
 .page-item.active {
   background-color: #f3f2f7;
@@ -2066,8 +2066,8 @@ ul.list-inline.list-inline-pipe > li + li:before {
 
 .page-item.active .page-link {
   z-index: 3;
-  border-radius: 5re#c41713
-  background-color: #c41713;
+  border-radius: 5re#bd120d
+  background-color: #7367f0;
   color: #fff !important;
   font-weight: 600; }
 
@@ -2248,8 +2248,8 @@ ul.list-inline.list-inline-pipe > li + li:before {
   box-shadow: 0 0 10px 0 rgba(34, 41, 47, 0.1); }
 
 .popover .popover-header {
-  font-size: 1.07rem#c41713
-  border: 1px solid #c41713; }
+  font-size: 1.07rem#bd120d
+  border: 1px solid #7367f0; }
 
 .popover .popover-body {
   border: 1px solid #ebe9f1;
@@ -2257,8 +2257,8 @@ ul.list-inline.list-inline-pipe > li + li:before {
   border-bottom-left-radius: 0.358rem;
   border-bottom-right-radius: 0.358rem; }
 
-.popover.bs-popover-bot#c41713pover-arrow:after {
-  border-bottom-color: #c41713; }
+.popover.bs-popover-bot#bd120dpover-arrow:after {
+  border-bottom-color: #7367f0; }
 
 .bs-popover-top > .popover-arrow::after {
   bottom: 1px; }

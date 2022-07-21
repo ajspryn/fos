@@ -3,7 +3,7 @@
 }
 .picker__button--today:before,
 .picker__day--today:before {
-    border-top: 6px solid #c41713;
+    border-top: 6px solid #bd120d;
 }
 .picker__button--clear:before {
     border-top: 2px solid #ea5455;
@@ -14,7 +14,7 @@
 .picker__day--highlighted:hover,
 .picker__list-item--selected,
 .picker__list-item--selected:hover {
-    background-color: #c41713;
+    background-color: #bd120d;
 }
 .picker__button--close:before,
 .picker__nav--next:before,

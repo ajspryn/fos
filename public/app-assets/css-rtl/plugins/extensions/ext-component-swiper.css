@@ -18,12 +18,12 @@
 }
 
 .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    background-color: #c41713;
+    background-color: #bd120d;
 }
 
 .swiper-pagination.swiper-pagination-progressbar
     .swiper-pagination-progressbar-fill {
-    background-color: #c41713;
+    background-color: #bd120d;
 }
 
 .swiper-centered-slides.swiper-container .swiper-slide {
@@ -37,12 +37,12 @@
 }
 
 .swiper-centered-slides.swiper-container .swiper-slide.swiper-slide-active {
-    border: 2px solid #c41713;
+    border: 2px solid #bd120d;
 }
 
 .swiper-centered-slides.swiper-container .swiper-slide.swiper-slide-active i,
 .swiper-centered-slides.swiper-container .swiper-slide.swiper-slide-active svg {
-    color: #c41713;
+    color: #bd120d;
 }
 
 .swiper-centered-slides .swiper-button-next:after {
@@ -62,7 +62,7 @@
 .swiper-centered-slides .swiper-button-next:after,
 .swiper-centered-slides .swiper-button-prev:after {
     border-radius: 50%;
-    background-color: #c41713;
+    background-color: #bd120d;
     box-shadow: 0 2px 4px 0 rgba(34, 41, 47, 0.5) !important;
     background-size: 24px !important;
     height: 40px !important;
@@ -87,7 +87,7 @@
 
 .swiper-centered-slides-2.swiper-container .swiper-slide.swiper-slide-active {
     color: #ffffff;
-    background-color: #c41713 !important;
+    background-color: #bd120d !important;
     box-shadow: 0 3px 6px 0 rgba(115, 103, 240, 0.5) !important;
 }
 

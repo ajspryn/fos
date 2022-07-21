@@ -2,9 +2,10 @@
 
 namespace Modules\Skpd\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Skpd\Entities\SkpdPembiayaan;
+use Illuminate\Contracts\Support\Renderable;
 
 class SkpdController extends Controller
 {
@@ -14,6 +15,7 @@ class SkpdController extends Controller
      */
     public function index()
     {
+
         return view('skpd::index');
     }
 

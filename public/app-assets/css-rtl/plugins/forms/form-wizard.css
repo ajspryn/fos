@@ -98,7 +98,7 @@
 }
 
 .bs-stepper .bs-stepper-header .step.active .step-trigger .bs-stepper-box {
-    background-color: #c41713;
+    background-color: #bd120d;
     color: #ffffff;
     box-shadow: 0 3px 6px 0 rgba(115, 103, 240, 0.4);
 }
@@ -109,12 +109,12 @@
     .step-trigger
     .bs-stepper-label
     .bs-stepper-title {
-    color: #c41713;
+    color: #bd120d;
 }
 
 .bs-stepper .bs-stepper-header .step.crossed .step-trigger .bs-stepper-box {
     background-color: rgba(115, 103, 240, 0.12);
-    color: #c41713 !important;
+    color: #bd120d !important;
 }
 
 .bs-stepper
@@ -127,7 +127,7 @@
 }
 
 .bs-stepper .bs-stepper-header .step.crossed + .line {
-    color: #c41713;
+    color: #bd120d;
 }
 
 .bs-stepper .bs-stepper-content {
@@ -238,7 +238,7 @@
     .step.active
     .step-trigger
     .bs-stepper-box {
-    background-color: #c41713;
+    background-color: #bd120d;
     color: #ffffff;
     box-shadow: 0 3px 6px 0 rgba(115, 103, 240, 0.4);
 }
@@ -250,7 +250,7 @@
     .step-trigger
     .bs-stepper-label
     .bs-stepper-title {
-    color: #c41713;
+    color: #bd120d;
 }
 
 .dark-layout

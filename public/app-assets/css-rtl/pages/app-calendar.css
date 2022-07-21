@@ -72,8 +72,8 @@
     .fc-button-group
     .fc-button-primary:not(.fc-prev-button):not(.fc-next-button) {
     background-color: transparent;
-    border-color: #c41713;
-    color: #c41713;
+    border-color: #bd120d;
+    color: #bd120d;
 }
 
 .fc
@@ -85,8 +85,8 @@
     .fc-button-group
     .fc-button-primary:not(.fc-prev-button):not(.fc-next-button):hover {
     background-color: rgba(115, 103, 240, 0.2) !important;
-    border-color: #c41713 !important;
-    color: #c41713;
+    border-color: #bd120d !important;
+    color: #bd120d;
 }
 
 .fc .fc-toolbar .fc-button-group .fc-button-primary.fc-sidebarToggle-button {

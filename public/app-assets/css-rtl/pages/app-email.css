@@ -77,7 +77,7 @@
     .list-group
     .list-group-item.active {
     background: transparent;
-    color: #c41713;
+    color: #bd120d;
 }
 
 .email-application
@@ -85,7 +85,7 @@
     .sidebar
     .list-group
     .list-group-item.active {
-    border-color: #c41713;
+    border-color: #bd120d;
 }
 
 .email-application .content-area-wrapper .content-right {

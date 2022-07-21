@@ -41,7 +41,7 @@
 .btn-gradient-primary {
     color: #fff;
     transition: all 0.2s ease;
-    background-image: linear-gradient(47deg, #c41713, #c03e3c);
+    background-image: linear-gradient(47deg, #bd120d, #9e95f5);
     background-repeat: repeat;
 }
 
@@ -66,7 +66,7 @@
 .bg-gradient-primary:focus,
 .btn-gradient-primary:active,
 .btn-gradient-primary:focus {
-    background-image: linear-gradient(47deg, #b83330, #b65e5d);
+    background-image: linear-gradient(47deg, #4839eb, #bd120d);
     background-repeat: repeat;
 }
 

@@ -17,13 +17,13 @@
 .context-menu-list .context-menu-item:focus,
 .context-menu-list .context-menu-item:hover {
     background-color: rgba(115, 103, 240, 0.12) !important;
-    color: #c41713;
+    color: #bd120d;
 }
 .context-menu-list
     .context-menu-item.context-menu-hover.context-menu-submenu:after,
 .context-menu-list .context-menu-item:focus.context-menu-submenu:after,
 .context-menu-list .context-menu-item:hover.context-menu-submenu:after {
-    border-color: transparent #c41713 transparent transparent !important;
+    border-color: transparent #bd120d transparent transparent !important;
 }
 .context-menu-list .context-menu-item:focus {
     outline: 0;
@@ -39,7 +39,7 @@
     color: #b4b7bd;
 }
 .dark-layout .context-menu-list .context-menu-item.context-menu-hover > span {
-    color: #c41713;
+    color: #bd120d;
 }
 .dark-layout .context-menu-list .context-menu-item.context-menu-submenu:after {
     border-color: transparent #b4b7bd transparent transparent;
@@ -61,7 +61,7 @@
 [data-textdirection="rtl"]
     .context-menu-list
     .context-menu-item.context-menu-hover.context-menu-submenu:after {
-    border-color: transparent transparent transparent #c41713 !important;
+    border-color: transparent transparent transparent #bd120d !important;
 }
 [data-textdirection="rtl"]
     .context-menu-list

@@ -9,7 +9,7 @@
     margin-top: 1rem !important;
 }
 .shepherd-element[data-popper-placement="bottom"] .shepherd-arrow:before {
-    background-color: #c41713 !important;
+    background-color: #bd120d !important;
 }
 .shepherd-element[data-popper-placement="top"] {
     margin-bottom: 1rem !important;
@@ -21,7 +21,7 @@
     margin-left: 1rem !important;
 }
 .shepherd-element .shepherd-content .shepherd-header {
-    background-color: #c41713;
+    background-color: #bd120d;
     padding: 0.38rem 1.2rem;
     border-radius: 0.357rem 0.357rem 0 0;
 }

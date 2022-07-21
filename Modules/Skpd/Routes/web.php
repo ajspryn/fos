@@ -1,5 +1,8 @@
 <?php
 
+use Modules\Skpd\Http\Controllers\SkpdController;
+use Modules\Skpd\Http\Controllers\JaminanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +14,8 @@
 |
 */
 
-Route::prefix('skpd')->group(function() {
+Route::prefix('skpd')->middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/', 'SkpdController@index');
-    Route::get('/pembiayaan', 'SkpdController@index');
+    Route::resource('/pembiayaan', SkpdController::class);
+    Route::resource('/jaminan', JaminanController::class);
 });

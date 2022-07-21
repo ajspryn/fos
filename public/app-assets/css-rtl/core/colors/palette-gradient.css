@@ -50,8 +50,8 @@
     color: #ffffff;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    background-image: -webkit-linear-gradient(137deg, #c41713, #c55957);
-    background-image: linear-gradient(-47deg, #c41713, #c55957);
+    background-image: -webkit-linear-gradient(137deg, #bd120d, #9e95f5);
+    background-image: linear-gradient(-47deg, #bd120d, #9e95f5);
     background-repeat: repeat;
 }
 
@@ -80,8 +80,8 @@
 .bg-gradient-primary:focus,
 .btn-gradient-primary:active,
 .btn-gradient-primary:focus {
-    background-image: -webkit-linear-gradient(137deg, #4839eb, #c41713);
-    background-image: linear-gradient(-47deg, #4839eb, #c41713);
+    background-image: -webkit-linear-gradient(137deg, #4839eb, #bd120d);
+    background-image: linear-gradient(-47deg, #4839eb, #bd120d);
     background-repeat: repeat;
 }
 

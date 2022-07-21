@@ -102,7 +102,7 @@
     .navbar-header
     .navbar-brand
     .brand-text {
-    color: #c41713;
+    color: #bd120d;
     padding-left: 1rem;
     margin-bottom: 0;
     font-weight: 600;
@@ -260,7 +260,7 @@
     .active
     > a {
     background: #f8f8f8;
-    color: #c41713;
+    color: #bd120d;
     font-weight: 500;
 }
 
@@ -315,7 +315,7 @@
     ul#main-menu-navigation
     > li.active
     > a {
-    background: linear-gradient(118deg, #c41713, #c55957);
+    background: linear-gradient(118deg, #bd120d, #fa6662);
     box-shadow: 0px 0px 6px 1px rgba(115, 103, 240, 0.6);
     color: #fff;
     border-radius: 4px;
@@ -330,7 +330,7 @@
 }
 
 .horizontal-menu .navbar-dark .nav-item.active > a {
-    border-bottom: 2px solid #c41713;
+    border-bottom: 2px solid #bd120d;
     background-color: #313c50;
 }
 

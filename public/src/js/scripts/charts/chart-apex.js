@@ -655,7 +655,7 @@ $(function () {
                                 from: 51,
                                 to: 60,
                                 name: "50-60",
-                                color: "#c41713",
+                                color: "#bd120d",
                             },
                         ],
                     },
