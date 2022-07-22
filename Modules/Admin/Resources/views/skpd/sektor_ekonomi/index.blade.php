@@ -35,7 +35,7 @@
                                     <h4 class="card-title">Form Sektor Ekonomi</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form class="form" method="" action="">
+                                    <form class="form" method="post" action="/admin/skpd/sektorekonomi">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6 col-12">
@@ -70,18 +70,20 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode</th>
-                                            <th>Penggunaan</th>
+                                            <th>Kode Sektor Ekonomi</th>
+                                            <th>Sektor ekonomi</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($sektors as $sektor)
                                         <tr>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $sektor->kode_sektor_ekonomi }}</td>
+                                            <td>{{ $sektor->nama_sektor_ekonomi }}</td>
                                             <td>4</td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

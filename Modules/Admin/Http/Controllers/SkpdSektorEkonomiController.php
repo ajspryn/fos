@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\SkpdSektorEkonomi;
 
 class SkpdSektorEkonomiController extends Controller
 {
@@ -16,6 +17,7 @@ class SkpdSektorEkonomiController extends Controller
     {
         return view('admin::skpd.sektor_ekonomi.index',[
             'title'=>'Pengaturan Sektor Ekonomi',
+            'sektors'=>SkpdSektorEkonomi::all(),
         ]);
     }
 
@@ -35,7 +37,15 @@ class SkpdSektorEkonomiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'kode_sektor_ekonomi'=> 'required',
+            'nama_sektor_ekonomi'=> 'required',
+        ]);
+
+        $input=$request->all();
+
+        SkpdSektorEkonomi::create($input);
+        return redirect()->back()->with('success', 'Data Sektor Ekonomi Berhasil Ditambahkan');
     }
 
     /**

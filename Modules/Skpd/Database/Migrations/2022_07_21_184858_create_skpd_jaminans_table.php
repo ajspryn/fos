@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jaminans', function (Blueprint $table) {
+        Schema::create('skpd_jaminans', function (Blueprint $table) {
             $table->id();
-
+            $table->integer('skpd_pembiayaan_id');
+            $table->integer('skpd_jenis_jaminan_id');
+            $table->string('dokumen_jaminan');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jaminans');
+        Schema::dropIfExists('skpd_jaminans');
     }
 };

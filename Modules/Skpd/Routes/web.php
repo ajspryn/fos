@@ -14,8 +14,10 @@ use Modules\Skpd\Http\Controllers\JaminanController;
 |
 */
 
+Route::prefix('skpd')->group(function() {
+    Route::resource('/pembiayaan', SkpdController::class);
+});
 Route::prefix('skpd')->middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/', 'SkpdController@index');
-    Route::resource('/pembiayaan', SkpdController::class);
     Route::resource('/jaminan', JaminanController::class);
 });

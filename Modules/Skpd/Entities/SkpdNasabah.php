@@ -1,20 +1,20 @@
 <?php
 
-namespace Modules\Admin\Entities;
+namespace Modules\Skpd\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class SkpdInstansi extends Model
+class SkpdNasabah extends Model
 {
     use HasFactory;
 
     protected $guarded = [
-        'id'
+        'created_at'
     ];
 
     protected static function newFactory()
     {
-        return \Modules\Admin\Database\factories\SkpdInstansiFactory::new();
+        return \Modules\Skpd\Database\factories\SkpdNasabahFactory::new();
     }
 }

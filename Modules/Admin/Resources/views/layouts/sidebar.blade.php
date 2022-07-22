@@ -45,7 +45,7 @@
                   </li>
                   <li class="{{ Request::is('admin/skpd/akad')? "active":"" }}" ><a class="d-flex align-items-center" href="/admin/skpd/akad"><span class="menu-item text-truncate" data-i18n="Account">Akad</span></a>
                   </li>
-                  <li class="{{ Request::is('admin/skpd/instansi')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/intansi"><span class="menu-item text-truncate" data-i18n="Security">Instansi</span></a>
+                  <li class="{{ Request::is('admin/skpd/instansi')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/instansi"><span class="menu-item text-truncate" data-i18n="Security">Instansi</span></a>
                   </li>
                   <li class="{{ Request::is('admin/skpd/golongan')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/golongan"><span class="menu-item text-truncate" data-i18n="Security">Golongan</span></a>
                   </li>

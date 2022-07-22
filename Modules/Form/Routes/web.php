@@ -1,7 +1,7 @@
 <?php
 
-use Modules\Form\Http\Controllers\SkpdController;
 use Modules\Form\Http\Controllers\UmkmController;
+use Modules\Skpd\Http\Controllers\SkpdController;
 
 
 /*
@@ -17,6 +17,7 @@ use Modules\Form\Http\Controllers\UmkmController;
 
 Route::prefix('form')->group(function() {
     // Route::get('/', 'FormController@index');
-    Route::resource('/skpd', SkpdController::class);
+    Route::resource('/skpd', FormSkpdController::class);
     Route::resource('/umkm', UmkmController::class);
+    Route::resource('/pembiayaanskpd', SkpdController::class);
 });

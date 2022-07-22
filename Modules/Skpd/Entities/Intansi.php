@@ -9,8 +9,10 @@ class intansi extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
-    
+    protected $guarded = [
+        'created_at'
+    ];
+
     protected static function newFactory()
     {
         return \Modules\Skpd\Database\factories\IntansiFactory::new();

@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\SkpdInstansi;
 
 class SkpdInstansiController extends Controller
 {
@@ -16,6 +17,7 @@ class SkpdInstansiController extends Controller
     {
         return view('admin::skpd.instansi.index',[
             'title'=>'Pengaturan Instansi',
+            'instansis'=>SkpdInstansi::all(),
         ]);
     }
 
@@ -35,7 +37,18 @@ class SkpdInstansiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'kode_instansi'=> 'required',
+            'nama_instansi'=> 'required',
+            'alamat_instansi'=> 'required',
+            'rating'=> 'required',
+            'bobot'=> 'required',
+        ]);
+
+        $input=$request->all();
+
+        SkpdInstansi::create($input);
+        return redirect()->back()->with('success', 'Data Instansi Berhasil Ditambahkan');
     }
 
     /**

@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parameters', function (Blueprint $table) {
+        Schema::create('skpd_orang_terdekats', function (Blueprint $table) {
             $table->id();
-
+            $table->integer('skpd_nasabah_id');
+            $table->string('nama_orang_terdekat');
+            $table->string('alamat_orang_terdekat');
+            $table->string('no_telp_orang_terdekat');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parameters');
+        Schema::dropIfExists('skpd_orang_terdekats');
     }
 };

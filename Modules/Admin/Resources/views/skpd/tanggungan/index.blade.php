@@ -35,7 +35,7 @@
                                     <h4 class="card-title">Form Tanggungan</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form class="form" method="" action="">
+                                    <form class="form" method="post" action="/admin/skpd/tanggungan">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6 col-12">
@@ -76,18 +76,22 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode</th>
-                                            <th>Penggunaan</th>
+                                            <th>Kode Tanggungan</th>
+                                            <th>Banyak Tanggungan</th>
+                                            <th>Biaya</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($tanggungans as $tanggungan )
                                         <tr>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $tanggungan->kode_tanggungan }}</td>
+                                            <td>{{ $tanggungan->banyak_tanggungan }}</td>
+                                            <td>{{ $tanggungan->biaya }}</td>
                                             <td>4</td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

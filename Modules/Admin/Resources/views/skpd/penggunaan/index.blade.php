@@ -35,7 +35,7 @@
                                 <h4 class="card-title">Form Penggunaan</h4>
                             </div>
                             <div class="card-body">
-                                <form class="form" method="" action="">
+                                <form class="form" method="post" action="/admin/skpd/penggunaan">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6 col-12">
@@ -76,12 +76,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($penggunaans as $penggunaan)
                                     <tr>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>3</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $penggunaan->kode_penggunaan }}</td>
+                                        <td>{{ $penggunaan->jenis_penggunaan }}</td>
                                         <td>4</td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

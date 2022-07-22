@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\SkpdStatusPerkawinan;
 
 class SkpdStatusPerkawinanController extends Controller
 {
@@ -16,6 +17,7 @@ class SkpdStatusPerkawinanController extends Controller
     {
         return view('admin::skpd.status_perkawinan.index',[
             'title'=>'Status Perkawinan',
+            'statusperkawinans'=>SkpdStatusPerkawinan::all(),
         ]);
     }
 
@@ -35,7 +37,16 @@ class SkpdStatusPerkawinanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'kode_status_perkawinan'=> 'required',
+            'nama_status_perkawinan'=> 'required',
+            'biaya'=> 'required',
+        ]);
+
+        $input=$request->all();
+
+        SkpdStatusPerkawinan::create($input);
+        return redirect()->back()->with('success', 'Data Status Perkawinan Berhasil Ditambahkan');
     }
 
     /**

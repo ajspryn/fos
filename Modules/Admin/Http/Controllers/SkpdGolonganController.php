@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\SkpdGolongan;
 
 class SkpdGolonganController extends Controller
 {
@@ -16,6 +17,7 @@ class SkpdGolonganController extends Controller
     {
         return view('admin::skpd.golongan.index',[
             'title'=>'Pengaturan Golongan',
+            'golongans'=>SkpdGolongan::all(),
         ]);
     }
 
@@ -35,7 +37,15 @@ class SkpdGolonganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'kode_golongan'=> 'required',
+            'nama_golongan'=> 'required',
+        ]);
+
+        $input=$request->all();
+
+        SkpdGolongan::create($input);
+        return redirect()->back()->with('success', 'Data Golongan Berhasil Ditambahkan');
     }
 
     /**

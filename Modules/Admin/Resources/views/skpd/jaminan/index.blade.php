@@ -35,7 +35,7 @@
                                     <h4 class="card-title">Form Jaminan</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form class="form" method="" action="">
+                                    <form class="form" method="post" action="/admin/skpd/jaminan">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6 col-12">
@@ -90,14 +90,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($jaminans as $jaminan)
                                         <tr>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                            <td>4</td>
-                                            <td>4</td>
-                                            <td>4</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $jaminan->kode_jaminan }}</td>
+                                            <td>{{ $jaminan->nama_jaminan }}</td>
+                                            <td>{{ $jaminan->rating }}</td>
+                                            <td>{{ $jaminan->bobot }}</td>
+                                            <td></td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

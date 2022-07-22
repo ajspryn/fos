@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\SkpdJenisJaminan;
 
 class SkpdJenisJaminanController extends Controller
 {
@@ -16,6 +17,7 @@ class SkpdJenisJaminanController extends Controller
     {
         return view('admin::skpd.jaminan.index',[
             'title'=>'Pengaturan Jaminan',
+            'jaminans'=>SkpdJenisJaminan::all(),
         ]);
     }
 
@@ -35,7 +37,17 @@ class SkpdJenisJaminanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'kode_jaminan'=> 'required',
+            'kode_jaminan'=> 'required',
+            'rating'=> 'required',
+            'bobot'=> 'required',
+        ]);
+
+        $input=$request->all();
+
+        SkpdJenisJaminan::create($input);
+        return redirect()->back()->with('success', 'Data Jaminan Berhasil Ditambahkan');
     }
 
     /**

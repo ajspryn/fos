@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\SkpdJenisPenggunaan;
 
 class SkpdJenisPenggunaanController extends Controller
 {
@@ -16,6 +17,7 @@ class SkpdJenisPenggunaanController extends Controller
     {
         return view('admin::skpd.penggunaan.index',[
             'title'=>'Pengaturan Penggunaan',
+            'penggunaans'=>SkpdJenisPenggunaan::all(),
         ]);
     }
 
@@ -35,7 +37,16 @@ class SkpdJenisPenggunaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $request -> validate([
+            'kode_penggunaan'=> 'required',
+            'jenis_penggunaan'=> 'required',
+        ]);
+
+        $input=$request->all();
+
+        SkpdJenisPenggunaan::create($input);
+        return redirect()->back()->with('success', 'Data Pengunaan Berhasil Ditambahkan');
     }
 
     /**

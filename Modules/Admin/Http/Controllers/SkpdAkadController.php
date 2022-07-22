@@ -37,6 +37,7 @@ class SkpdAkadController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $request -> validate([
             'kode_akad'=> 'required',
             'nama_akad'=> 'required',

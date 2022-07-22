@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('connections', function (Blueprint $table) {
+        Schema::create('skpd_jaminan_lainnyas', function (Blueprint $table) {
             $table->id();
-
+            $table->integer('skpd_pembiayaan_id');
+            $table->integer('nama_jaminan_lainnya');
+            $table->string('dokumen_jaminan_lainnya');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('connections');
+        Schema::dropIfExists('skpd_jaminan_lainnyas');
     }
 };

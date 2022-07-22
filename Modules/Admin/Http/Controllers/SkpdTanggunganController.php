@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\SkpdTanggungan;
 
 class SkpdTanggunganController extends Controller
 {
@@ -16,6 +17,7 @@ class SkpdTanggunganController extends Controller
     {
         return view('admin::skpd.tanggungan.index',[
             'title'=>'Pengaturan Tanggungan',
+            "tanggungans"=>SkpdTanggungan::all(),
         ]);
     }
 
@@ -35,7 +37,16 @@ class SkpdTanggunganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'kode_tanggungan'=> 'required',
+            'banyak_tanggungan'=> 'required',
+            'biaya'=> 'required',
+        ]);
+
+        $input=$request->all();
+
+        SkpdTanggungan::create($input);
+        return redirect()->back()->with('success', 'Data Tanggungan Berhasil Ditambahkan');
     }
 
     /**

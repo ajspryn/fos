@@ -5,7 +5,7 @@ namespace Modules\Form\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class PembiayaanSkpd extends Model
+class SkpdPembiayaan extends Model
 {
     use HasFactory;
 
@@ -13,6 +13,6 @@ class PembiayaanSkpd extends Model
     
     protected static function newFactory()
     {
-        return \Modules\Form\Database\factories\PembiayaanSkpdFactory::new();
+        return \Modules\Form\Database\factories\SkpdPembiayaanFactory::new();
     }
 }

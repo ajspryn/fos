@@ -35,7 +35,7 @@
                                     <h4 class="card-title">Form Jaminan</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form class="form" method="" action="">
+                                    <form class="form" method="post" action="/admin/skpd/instansi">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6 col-12">
@@ -89,21 +89,23 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Kode</th>
-                                            <th>Jaminan</th>
+                                            <th>Nama</th>
                                             <th>Rating</th>
                                             <th>Bobot</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($instansis as $instansi)
                                         <tr>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                            <td>4</td>
-                                            <td>4</td>
-                                            <td>4</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $instansi->kode_instansi }}</td>
+                                            <td>{{ $instansi->nama_instansi }}</td>
+                                            <td>{{ $instansi->rating }}</td>
+                                            <td>{{ $instansi->bobot }}</td>
+                                            <td></td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

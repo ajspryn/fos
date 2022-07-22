@@ -35,7 +35,7 @@
                                     <h4 class="card-title">Form Akad</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form class="form" method="post" action="admin/skpd/akad">
+                                    <form class="form" method="post" action="/admin/skpd/akad">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6 col-12">

@@ -9,8 +9,10 @@ class SkpdStatusPerkawinan extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
-    
+    protected $guarded = [
+        'id'
+    ];
+
     protected static function newFactory()
     {
         return \Modules\Admin\Database\factories\SkpdStatusPerkawinanFactory::new();

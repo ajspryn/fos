@@ -28,7 +28,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function
     Route::resource('/skpd/akad', SkpdAkadController::class);
     Route::resource('/skpd/penggunaan', SkpdJenisPenggunaanController::class);
     Route::resource('/skpd/jaminan', SkpdJenisJaminanController::class);
-    Route::resource('/skpd/intansi', SkpdInstansiController::class);
+    Route::resource('/skpd/instansi', SkpdInstansiController::class);
     Route::resource('/skpd/golongan', SkpdGolonganController::class);
     Route::resource('/skpd/sektorekonomi', SkpdSektorEkonomiController::class);
     Route::resource('/skpd/statusperkawinan', SkpdStatusPerkawinanController::class);
