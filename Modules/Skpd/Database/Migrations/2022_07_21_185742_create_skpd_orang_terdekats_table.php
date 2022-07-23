@@ -18,6 +18,12 @@ return new class extends Migration
             $table->integer('skpd_nasabah_id');
             $table->string('nama_orang_terdekat');
             $table->string('alamat_orang_terdekat');
+            $table->string('rt_orang_terdekat');
+            $table->string('rw_orang_terdekat');
+            $table->string('desa_kelurahan_orang_terdekat');
+            $table->string('kecamatan_orang_terdekat');
+            $table->string('kabkota_orang_terdekat');
+            $table->string('provinsi_orang_terdekat');
             $table->string('no_telp_orang_terdekat');
             $table->timestamps();
         });

@@ -27,9 +27,16 @@ class HomeController extends Controller
     {
         $role=Role::select()->where('user_id',Auth::user()->id)->get()->first();
         $url='/';
-        if ($role->role_id==1) {
-            $url='/admin';
+
+        if ($role){
+            if ($role->divisi_id==1) {
+                $url='/admin';
+            }
+            if ($role->divisi_id==2) {
+                $url='/skpd';
+            }
         }
+
         return Redirect($url);
     }
 }

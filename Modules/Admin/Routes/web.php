@@ -23,7 +23,7 @@ use Modules\Admin\Http\Controllers\SkpdStatusPerkawinanController;
 |
 */
 
-Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function() {
+Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:1'])->group(function() {
     Route::get('/', 'AdminController@index');
     Route::resource('/skpd/akad', SkpdAkadController::class);
     Route::resource('/skpd/penggunaan', SkpdJenisPenggunaanController::class);

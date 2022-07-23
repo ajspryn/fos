@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('skpd_sektor_ekonomis', function (Blueprint $table) {
             $table->id();
-            $table->integer('kode_sektor_ekonomi')->nullable();
+            $table->string('kode_sektor_ekonomi')->nullable();
             $table->string('nama_sektor_ekonomi');
             $table->timestamps();
         });

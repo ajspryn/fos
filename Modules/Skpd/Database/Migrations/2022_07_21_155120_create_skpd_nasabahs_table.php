@@ -20,6 +20,13 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->string('tgl_lahir');
             $table->string('alamat');
+            $table->string('rt');
+            $table->string('rw');
+            $table->string('desa_kelurahan');
+            $table->string('kecamatan');
+            $table->string('kabkota');
+            $table->string('provinsi');
+            $table->string('alamat_domisili')->nullable();
             $table->string('skpd_status_perkawinan_id');
             $table->string('skpd_tanggungan_id');
             $table->string('no_npwp')->nullable();

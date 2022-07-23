@@ -25,6 +25,8 @@
     <script src="../../../app-assets/vendors/js/pickers/pickadate/legacy.js"></script>
     <script src="../../../app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <script src="../../../app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
+     <script src="../../../app-assets/vendors/js/forms/cleave/cleave.min.js"></script>
+    <script src="../../../app-assets/vendors/js/forms/cleave/addons/cleave-phone.us.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -38,6 +40,7 @@
     <script src="../../../app-assets/js/scripts/pages/dashboard-ecommerce.min.js"></script>
     <script src="../../../app-assets/js/scripts/forms/pickers/form-pickers.min.js"></script>
     <script src="../../../app-assets/js/scripts/forms/form-repeater.min.js"></script>
+    <script src="../../../app-assets/js/scripts/forms/form-input-mask.min.js"></script>
     <!-- END: Page JS-->
 
     <script>

@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('skpd_pembiayaans', function (Blueprint $table) {
             $table->id();
+            $table->integer("user_id");
             $table->date("tanggal_pengajuan");
-            $table->string("harga_beli");
+            $table->string("nominal_pembiayaan");
             $table->string("tenor");
             $table->string("skpd_jenis_penggunaan_id")->nullable();
             $table->string("skpd_sektor_ekonomi_id")->nullable();
@@ -24,11 +25,12 @@ return new class extends Migration
             $table->integer("skpd_nasabah_id");
             $table->integer("skpd_instansi_id");
             $table->integer("skpd_golongan_id");
-            $table->integer("sk_pengangkatan");
+            $table->string("sk_pengangkatan");
             $table->string("gaji_pokok");
             $table->string("pendapatan_lainnya");
-            $table->string("gaji_tpp");
+            $table->string("gaji_tpp")->nullable();
             $table->string("pengeluaran_lainnya")->nullable();
+            $table->string("keterangan_pengeluaran_lainnya")->nullable();
             $table->timestamps();
         });
     }

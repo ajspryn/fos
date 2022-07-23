@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('skpd_sliks', function (Blueprint $table) {
             $table->id();
             $table->integer('skpd_pembiayaan_id');
-            $table->integer('bank_id');
+            $table->string('nama_bank');
             $table->String('plafond');
             $table->String('outstanding');
             $table->String('tenor');
-            $table->String('bunga_mingguan');
+            $table->String('margin');
             $table->String('angsuran');
+            $table->String('agunan');
             $table->String('kol_tertinggi');
             $table->timestamps();
         });

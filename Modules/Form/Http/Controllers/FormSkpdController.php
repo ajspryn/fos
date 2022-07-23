@@ -2,23 +2,24 @@
 
 namespace Modules\Form\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Admin\Entities\SkpdAkad;
-use Modules\Admin\Entities\SkpdGolongan;
-use Modules\Admin\Entities\SkpdInstansi;
-use Modules\Admin\Entities\SkpdJenisJaminan;
-use Modules\Admin\Entities\SkpdJenisPenggunaan;
-use Modules\Admin\Entities\SkpdSektorEkonomi;
-use Modules\Admin\Entities\SkpdStatusPerkawinan;
-use Modules\Admin\Entities\SkpdTanggungan;
-use Modules\Admin\Http\Controllers\SkpdAkadController;
-use Modules\Admin\Http\Controllers\SkpdGolonganController;
 use Modules\Form\Entities\FormSkpd;
+use Modules\Admin\Entities\SkpdAkad;
 use Modules\Skpd\Entities\SkpdJaminan;
 use Modules\Skpd\Entities\SkpdNasabah;
+use Modules\Admin\Entities\SkpdGolongan;
+use Modules\Admin\Entities\SkpdInstansi;
 use Modules\Skpd\Entities\SkpdPembiayaan;
+use Modules\Admin\Entities\SkpdTanggungan;
+use Illuminate\Contracts\Support\Renderable;
+use Modules\Admin\Entities\SkpdJenisJaminan;
+use Modules\Admin\Entities\SkpdSektorEkonomi;
+use Modules\Admin\Entities\SkpdJenisPenggunaan;
+use Modules\Admin\Entities\SkpdStatusPerkawinan;
+use Modules\Admin\Http\Controllers\SkpdAkadController;
+use Modules\Admin\Http\Controllers\SkpdGolonganController;
 
 class FormSkpdController extends Controller
 {
@@ -30,6 +31,7 @@ class FormSkpdController extends Controller
     {
         return view('form::skpd.index',[
             'title' => 'Form SKPD',
+            'aos'=>Role::select()->where('jabatan_id',2)->get(),
             //'formskpds'=>FormSkpd::all(),
             'akads'=>SkpdAkad::all(), //udah
             'golongans'=>SkpdGolongan::all(), //udah

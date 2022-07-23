@@ -9,6 +9,7 @@ use Modules\Skpd\Entities\SkpdNasabah;
 use Modules\Skpd\Entities\SkpdPembiayaan;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Skpd\Entities\SkpdFoto;
+use Modules\Skpd\Entities\SkpdJaminanLainnya;
 
 class SkpdController extends Controller
 {
@@ -19,7 +20,9 @@ class SkpdController extends Controller
     public function index()
     {
 
-        return view('skpd::index');
+        return view('skpd::index',[
+            'title'=>'Dashboard SKPD',
+        ]);
     }
 
     /**
@@ -38,98 +41,100 @@ class SkpdController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        return $request;
+        // return $request;
+        // dd($tes);
         $hitung=SkpdPembiayaan::select()->get()->count();
         $id=$hitung+1;
 
-        // $rules_pembiayaan= [
-        //     'id'=>$id,
-        //     'tanggal_pengajuan'=> 'required',
-        //     'harga_beli'=> 'required',
-        //     'tenor'=> 'required',
-        //     'skpd_jenis_penggunaan_id'=> 'nullable',
-        //     'skpd_sektor_ekonomi_id'=> 'nullable',
-        //     'skpd_akad_id'=> 'nullable',
-        //     'skpd_nasabah_id'=> $id,
-        //     'skpd_instansi_id'=> 'required',
-        //     'skpd_golongan_id'=> 'required',
-        //     'sk_pengangkatan'=> 'required',
-        //     'gaji_pokok'=> 'required',
-        //     'pendapatan_lainnya'=> 'required',
-        //     'gaji_tpp'=> 'required',
-        //     'pengeluaran_lainnya'=> 'nullable',
-        // ];
-
-        // $rules_nasabah= [
-        //     'id'=>$id,
-        //     'nama_nasabah'=> 'required',
-        //     'no_ktp'=> 'required',
-        //     'tempat_lahir'=> 'required',
-        //     'tgl_lahir'=> 'required',
-        //     'alamat'=> 'required',
-        //     'skpd_status_perkawinan'=> 'required',
-        //     'skpd_tanggungan_id'=> 'required',
-        //     'no_npwp'=> 'nullable',
-        //     'no_telp'=> 'required',
-        // ];
-
-        // $rules_jaminan= [
-        //     'skpd_pembiayaan_id'=> $id,
-        //     'skpd_jenis_jaminan_id'=> 'required',
-        //     'dokumen_jaminan'=> 'required',
-        // ];
-
-        // $request -> validate([
-        //     'foto.*.skpd_pembiayaan_id'=>$id,
-        //     'foto.*.foto'=> 'required',
-        //     'foto.*.kategori'=> 'required',
-        // ]);
-
-        // foreach ($request->foto as $key => $value) {
-        //     $input=SkpdFoto::create($value);
-        // }
-
-        // $input_jaminan = $request->validate($rules_jaminan);
-        // $input_pembiayaan = $request->validate($rules_pembiayaan);
-        // $input_nasabah = $request->validate($rules_nasabah);
-
-        SkpdJaminan::create([
-           'skpd_pembiayaan_id'=> $id,
-            'skpd_jenis_jaminan_id'=> $request->skpd_jenis_jaminan_id,
-            'dokumen_jaminan'=> $request->dokumen_jaminan,
+        $request -> validate([
+            // 'foto.*.skpd_pembiayaan_id'=> $id,
+            'foto.*.kategori'=> 'required',
+            'foto.*.foto'=> 'required',
         ]);
 
-        SkpdNasabah::create([
-              'id'=>$id,
-            'nama_nasabah'=> $request->nama_nasabah,
-            'no_ktp'=> $request->no_ktp,
-            'tempat_lahir'=> $request->tempat_lahir,
-            'tgl_lahir'=> $request->tgl_lahir,
-            'alamat'=> $request->alamat,
-            'skpd_status_perkawinan_id'=> $request->skpd_status_perkawinan_id,
-            'skpd_tanggungan_id'=> $request->skpd_tanggungan_id,
-            'no_npwp'=> $request->no_npwp,
-            'no_telp'=> $request->no_telp,
-        ]);
+        $sk_pengangkatan=$request->file('sk_pengangkatan')->store('skpd-sk_pengangkatan');
+        $dokumen_jaminan=$request->file('dokumen_jaminan')->store('skpd-dokumen_jaminan');
+
         SkpdPembiayaan::create([
-              'id'=>$id,
+            'id'=>$id,
+            'user_id'=> $request->user_id,
             'tanggal_pengajuan'=> $request->tanggal_pengajuan,
-            'harga_beli'=> $request-> harga_beli,
-            'tenor'=> $request-> tenor,
+            'nominal_pembiayaan'=> str_replace(",","",$request->nominal_pembiayaan),
+            'tenor'=> $request->tenor,
             'skpd_jenis_penggunaan_id'=> $request->skpd_jenis_penggunaan_id,
             'skpd_sektor_ekonomi_id'=> $request->skpd_sektor_ekonomi_id,
             'skpd_akad_id'=> $request->skpd_akad_id,
             'skpd_nasabah_id'=> $id,
             'skpd_instansi_id'=> $request->skpd_instansi_id,
             'skpd_golongan_id'=> $request->skpd_golongan_id,
-            'sk_pengangkatan'=> $request->sk_pengangkatan,
-            'gaji_pokok'=> $request->gaji_pokok,
-            'pendapatan_lainnya'=> $request->pendapatan_lainnya,
-            'gaji_tpp'=> $request->gaji_tpp,
-            'pengeluaran_lainnya'=> $request->pengeluaran_lainnya,
+            'sk_pengangkatan'=> $sk_pengangkatan,
+            'gaji_pokok'=> str_replace(",","",$request->gaji_pokok),
+            'pendapatan_lainnya'=> str_replace(",","",$request->pendapatan_lainnya),
+            'gaji_tpp'=> str_replace(",","",$request->gaji_tpp),
+            'pengeluaran_lainnya'=> str_replace(",","",$request->pengeluaran_lainnya),
+            'keterangan_pengeluaran_lainnya'=> $request->keterangan_pengeluaran_lainnya,
         ]);
-        return redirect()->back()->with('success', 'Data SKPD Berhasil Ditambahkan');
+
+        SkpdNasabah::create([
+            'id'=>$id,
+            'nama_nasabah'=> $request->nama_nasabah,
+            'no_ktp'=> $request->no_ktp,
+            'tempat_lahir'=> $request->tempat_lahir,
+            'tgl_lahir'=> $request->tgl_lahir,
+            'alamat'=> $request->alamat,
+            'rt'=> $request->rt,
+            'rw'=> $request->rw,
+            'desa_kelurahan'=> $request->desa_kelurahan,
+            'kecamatan'=> $request->kecamatan,
+            'kabkota'=> $request->kabkota,
+            'provinsi'=> $request->provinsi,
+            'alamat_domisili'=> $request->alamat_domisili,
+            'skpd_status_perkawinan_id'=> $request->skpd_status_perkawinan_id,
+            'skpd_tanggungan_id'=> $request->skpd_tanggungan_id,
+            'no_npwp'=> $request->no_npwp,
+            'no_telp'=> str_replace("+62 0","",$request->no_telp),
+        ]);
+
+        SkpdNasabah::create([
+            'skpd_nasabah_id'=> $id,
+            'nama_orang_terdekat'=> $request->nama_nasabah,
+            'alamat_orang_terdekat'=> $request->alamat,
+            'rt_orang_terdekat'=> $request->rt,
+            'rw_orang_terdekat'=> $request->rw,
+            'desa_kelurahan_orang_terdekat'=> $request->desa_kelurahan,
+            'kecamatan_orang_terdekat'=> $request->kecamatan,
+            'kabkota_orang_terdekat'=> $request->kabkota,
+            'provinsi_orang_terdekat'=> $request->provinsi,
+            'no_telp_orang_terdekat'=> str_replace("+62 0","",$request->no_telp),
+        ]);
+
+        SkpdJaminan::create([
+            'skpd_pembiayaan_id'=> $id,
+            'skpd_jenis_jaminan_id'=> $request->skpd_jenis_jaminan_id,
+            'dokumen_jaminan'=> $dokumen_jaminan,
+        ]);
+
+        if($request->file('dokumen_jaminan_lainnya')){
+            $dokumen_jaminan_lainnya=$request->file('dokumen_jaminan_lainnya')->store('skpd-dokumen_jaminan_lainnya');
+            SkpdJaminanLainnya::create([
+                'skpd_pembiayaan_id'=> $id,
+                'nama_jaminan_lainnya'=> $request->skpd_jenis_jaminan_id,
+                'dokumen_jaminan_lainnya'=> $dokumen_jaminan_lainnya,
+            ]);
+        }
+
+        foreach ($request->foto as $value) {
+            if ($value['foto']){
+                $foto= $value['foto']->store('foto-skpd-pembiayaan');
+            }
+            SkpdFoto::create([
+                'skpd_pembiayaan_id'=>$id,
+                'kategori'=> $value['kategori'],
+                'foto'=> $foto,
+            ]);
+        }
+
+        return redirect('/')->with('success', 'Data SKPD Berhasil Ditambahkan');
     }
 
     /**

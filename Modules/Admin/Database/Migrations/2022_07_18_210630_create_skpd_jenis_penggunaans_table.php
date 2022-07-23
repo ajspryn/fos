@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('skpd_jenis_penggunaans', function (Blueprint $table) {
             $table->id();
-            $table->integer('kode_penggunaan')->nullable();
+            $table->string('kode_penggunaan')->nullable();
             $table->string('jenis_penggunaan');
             $table->timestamps();
         });
