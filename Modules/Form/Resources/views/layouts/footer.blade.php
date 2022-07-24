@@ -27,6 +27,9 @@
     <script src="../../../app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
      <script src="../../../app-assets/vendors/js/forms/cleave/cleave.min.js"></script>
     <script src="../../../app-assets/vendors/js/forms/cleave/addons/cleave-phone.us.js"></script>
+     <script src="../../../app-assets/vendors/js/forms/wizard/bs-stepper.min.js"></script>
+    <script src="../../../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
+    <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -41,6 +44,7 @@
     <script src="../../../app-assets/js/scripts/forms/pickers/form-pickers.min.js"></script>
     <script src="../../../app-assets/js/scripts/forms/form-repeater.min.js"></script>
     <script src="../../../app-assets/js/scripts/forms/form-input-mask.min.js"></script>
+    <script src="../../../app-assets/js/scripts/forms/form-wizard.min.js"></script>
     <!-- END: Page JS-->
 
     <script>

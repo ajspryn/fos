@@ -1,7 +1,8 @@
 <?php
 
 use Modules\Skpd\Http\Controllers\SkpdController;
-use Modules\Skpd\Http\Controllers\JaminanController;
+use Modules\Skpd\Http\Controllers\SkpdKomiteController;
+use Modules\Skpd\Http\Controllers\SkpdNasabahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,7 @@ Route::prefix('skpd')->group(function() {
 });
 Route::prefix('skpd')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:1'])->group(function() {
     Route::get('/', 'SkpdController@index');
-    Route::resource('/jaminan', JaminanController::class);
+    Route::resource('/nasabah', SkpdNasabahController::class);
+    Route::resource('/komite', SkpdKomiteController::class);
+    Route::resource('/proposal', SkpdProposalController::class);
 });

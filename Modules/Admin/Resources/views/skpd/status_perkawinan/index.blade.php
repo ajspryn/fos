@@ -75,21 +75,37 @@
                                 <table class="datatables-basic table">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Kode Status Perkawinan</th>
-                                            <th>Status Perkawinan</th>
-                                            <th>Biaya</th>
-                                            <th>Action</th>
+                                            <th style="text-align: center">No</th>
+                                            <th style="text-align: center">Kode Status Perkawinan</th>
+                                            <th style="text-align: center">Status Perkawinan</th>
+                                            <th style="text-align: center">Biaya</th>
+                                            <th style="text-align: center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($statusperkawinans as $statusperkawinan )
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $statusperkawinan->kode_status_perkawinan }}</td>
+                                            <td style="text-align: center">{{ $loop->iteration }}</td>
+                                            <td style="text-align: center">{{ $statusperkawinan->kode_status_perkawinan }}</td>
                                             <td>{{ $statusperkawinan->nama_status_perkawinan }}</td>
                                             <td>{{ $statusperkawinan->biaya }}</td>
-                                            <td>4</td>
+                                            <td style="text-align: center">
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
+                                                        <i data-feather="more-vertical"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#">
+                                                        <i data-feather="edit-2" class="me-50"></i>
+                                                        <span>Edit</span>
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                        <i data-feather="trash" class="me-50"></i>
+                                                        <span>Delete</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

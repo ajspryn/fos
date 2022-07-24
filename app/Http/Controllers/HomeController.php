@@ -29,10 +29,10 @@ class HomeController extends Controller
         $url='/';
 
         if ($role){
-            if ($role->divisi_id==1) {
+            if ($role->divisi_id==0) {
                 $url='/admin';
             }
-            if ($role->divisi_id==2) {
+            if ($role->divisi_id==1) {
                 $url='/skpd';
             }
         }

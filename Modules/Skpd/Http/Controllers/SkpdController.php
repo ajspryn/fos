@@ -10,6 +10,8 @@ use Modules\Skpd\Entities\SkpdPembiayaan;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Skpd\Entities\SkpdFoto;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
+use Modules\Skpd\Entities\SkpdOrangTerdekat;
+use Modules\Skpd\Entities\SkpdPembiayaanHistory;
 
 class SkpdController extends Controller
 {
@@ -46,11 +48,6 @@ class SkpdController extends Controller
         $hitung=SkpdPembiayaan::select()->get()->count();
         $id=$hitung+1;
 
-        $request -> validate([
-            // 'foto.*.skpd_pembiayaan_id'=> $id,
-            'foto.*.kategori'=> 'required',
-            'foto.*.foto'=> 'required',
-        ]);
 
         $sk_pengangkatan=$request->file('sk_pengangkatan')->store('skpd-sk_pengangkatan');
         $dokumen_jaminan=$request->file('dokumen_jaminan')->store('skpd-dokumen_jaminan');
@@ -95,23 +92,29 @@ class SkpdController extends Controller
             'no_telp'=> str_replace("+62 0","",$request->no_telp),
         ]);
 
-        SkpdNasabah::create([
+        SkpdOrangTerdekat::create([
             'skpd_nasabah_id'=> $id,
-            'nama_orang_terdekat'=> $request->nama_nasabah,
-            'alamat_orang_terdekat'=> $request->alamat,
-            'rt_orang_terdekat'=> $request->rt,
-            'rw_orang_terdekat'=> $request->rw,
-            'desa_kelurahan_orang_terdekat'=> $request->desa_kelurahan,
-            'kecamatan_orang_terdekat'=> $request->kecamatan,
-            'kabkota_orang_terdekat'=> $request->kabkota,
-            'provinsi_orang_terdekat'=> $request->provinsi,
-            'no_telp_orang_terdekat'=> str_replace("+62 0","",$request->no_telp),
+            'nama_orang_terdekat'=> $request->nama_orang_terdekat,
+            'alamat_orang_terdekat'=> $request->alamat_orang_terdekat,
+            'rt_orang_terdekat'=> $request->rt_orang_terdekat,
+            'rw_orang_terdekat'=> $request->rw_orang_terdekat,
+            'desa_kelurahan_orang_terdekat'=> $request->desa_kelurahan_orang_terdekat,
+            'kecamatan_orang_terdekat'=> $request->kecamatan_orang_terdekat,
+            'kabkota_orang_terdekat'=> $request->kabkota_orang_terdekat,
+            'provinsi_orang_terdekat'=> $request->provinsi_orang_terdekat,
+            'no_telp_orang_terdekat'=> str_replace("+62 0","",$request->no_telp_orang_terdekat),
         ]);
 
         SkpdJaminan::create([
             'skpd_pembiayaan_id'=> $id,
             'skpd_jenis_jaminan_id'=> $request->skpd_jenis_jaminan_id,
             'dokumen_jaminan'=> $dokumen_jaminan,
+        ]);
+
+        SkpdPembiayaanHistory::create([
+            'skpd_pembiayaan_id'=> $id,
+            'status'=> 'Calon Debitur Menginput Permohonan',
+            'user_id'=> null,
         ]);
 
         if($request->file('dokumen_jaminan_lainnya')){
@@ -123,7 +126,12 @@ class SkpdController extends Controller
             ]);
         }
 
-        foreach ($request->foto as $value) {
+        $request -> validate([
+            'foto.*.kategori'=> 'required',
+            'foto.*.foto'=> 'required',
+        ]);
+
+        foreach ($request->foto as $key => $value) {
             if ($value['foto']){
                 $foto= $value['foto']->store('foto-skpd-pembiayaan');
             }
@@ -134,7 +142,7 @@ class SkpdController extends Controller
             ]);
         }
 
-        return redirect('/')->with('success', 'Data SKPD Berhasil Ditambahkan');
+        return redirect('/')->with('success', 'Pengajuan Anda Sedang Di Proses Silahkan Hubungi AO');
     }
 
     /**

@@ -4,9 +4,8 @@ namespace Modules\Skpd\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Modules\Admin\Entities\SkpdJenisJaminan;
 
-class SkpdJaminan extends Model
+class SkpdPembiayaanHistory extends Model
 {
     use HasFactory;
 
@@ -14,13 +13,13 @@ class SkpdJaminan extends Model
         'created_at'
     ];
 
-    public function jenis_jaminan()
+    public function nasabah()
     {
-        return $this->belongsTo(SkpdJenisJaminan::class, 'skpd_jenis_jaminan_id', 'id');
+        return $this->belongsTo(SkpdNasabah::class);
     }
 
     protected static function newFactory()
     {
-        return \Modules\Skpd\Database\factories\SkpdJaminanFactory::new();
+        return \Modules\Skpd\Database\factories\SkpdPembiayaanHistoryFactory::new();
     }
 }

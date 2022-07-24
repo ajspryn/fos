@@ -69,19 +69,35 @@
                                 <table class="datatables-basic table">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Kode Sektor Ekonomi</th>
-                                            <th>Sektor ekonomi</th>
-                                            <th>Action</th>
+                                            <th style="text-align: center">No</th>
+                                            <th style="text-align: center">Kode Sektor Ekonomi</th>
+                                            <th style="text-align: center">Sektor ekonomi</th>
+                                            <th style="text-align: center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($sektors as $sektor)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $sektor->kode_sektor_ekonomi }}</td>
+                                            <td style="text-align: center">{{ $loop->iteration }}</td>
+                                            <td style="text-align: center">{{ $sektor->kode_sektor_ekonomi }}</td>
                                             <td>{{ $sektor->nama_sektor_ekonomi }}</td>
-                                            <td>4</td>
+                                            <td style="text-align: center">
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
+                                                        <i data-feather="more-vertical"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#">
+                                                        <i data-feather="edit-2" class="me-50"></i>
+                                                        <span>Edit</span>
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                        <i data-feather="trash" class="me-50"></i>
+                                                        <span>Delete</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

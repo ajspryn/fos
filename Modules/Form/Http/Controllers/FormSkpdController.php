@@ -31,7 +31,7 @@ class FormSkpdController extends Controller
     {
         return view('form::skpd.index',[
             'title' => 'Form SKPD',
-            'aos'=>Role::select()->where('jabatan_id',2)->get(),
+            'aos'=>Role::select()->where('jabatan_id',1)->get(),
             //'formskpds'=>FormSkpd::all(),
             'akads'=>SkpdAkad::all(), //udah
             'golongans'=>SkpdGolongan::all(), //udah

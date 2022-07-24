@@ -81,23 +81,39 @@
                                 <table class="datatables-basic table">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Kode</th>
-                                            <th>Jaminan</th>
-                                            <th>Rating</th>
-                                            <th>Bobot</th>
-                                            <th>Action</th>
+                                            <th style="text-align: center">No</th>
+                                            <th style="text-align: center">Kode</th>
+                                            <th style="text-align: center">Jaminan</th>
+                                            <th style="text-align: center">Rating</th>
+                                            <th style="text-align: center">Bobot</th>
+                                            <th style="text-align: center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($jaminans as $jaminan)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $jaminan->kode_jaminan }}</td>
+                                            <td style="text-align: center">{{ $loop->iteration }}</td>
+                                            <td style="text-align: center">{{ $jaminan->kode_jaminan }}</td>
                                             <td>{{ $jaminan->nama_jaminan }}</td>
-                                            <td>{{ $jaminan->rating }}</td>
-                                            <td>{{ $jaminan->bobot }}</td>
-                                            <td></td>
+                                            <td style="text-align: center">{{ $jaminan->rating }}</td>
+                                            <td style="text-align: center">{{ $jaminan->bobot }}</td>
+                                            <td style="text-align: center">
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
+                                                        <i data-feather="more-vertical"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#">
+                                                        <i data-feather="edit-2" class="me-50"></i>
+                                                        <span>Edit</span>
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                        <i data-feather="trash" class="me-50"></i>
+                                                        <span>Delete</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
