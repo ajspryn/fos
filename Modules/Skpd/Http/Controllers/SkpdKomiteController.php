@@ -15,6 +15,7 @@ use Modules\Skpd\Entities\SkpdPembiayaan;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Admin\Entities\SkpdInstansi;
 use Modules\Admin\Entities\SkpdJenisJaminan;
+use Modules\Skpd\Entities\SkpdPembiayaanHistory;
 
 class SkpdKomiteController extends Controller
 {
@@ -61,9 +62,10 @@ class SkpdKomiteController extends Controller
         $jaminan=SkpdJaminan::select()->where('skpd_pembiayaan_id',$id)->get()->first();
         $nominal_pembiayaan=$data->nominal_pembiayaan;
         $tenor=$data->tenor;
+        $rate=number_format($data->rate/100);
 
         //angsuran
-        $harga_jual=$nominal_pembiayaan*0.016*$tenor+$nominal_pembiayaan;
+        $harga_jual=($nominal_pembiayaan*$rate*$tenor)+$nominal_pembiayaan;
         $angsuran=$harga_jual/$tenor;
 
         //pengeluaran
@@ -83,32 +85,78 @@ class SkpdKomiteController extends Controller
         $pendapatan_bersih=$total_pemasukan-$total_pengeluaran;
 
         //DSR(rasio total angsuran terhadap pendapatan bersih)
-        $dsr=$angsuran/$pendapatan_bersih;
+        $dsr=number_format($angsuran/$pendapatan_bersih*100);
+        if($data->skpd_golongan_id==18){
+            $dsr=number_format($angsuran/$total_pemasukan*100);
+        }
 
         //mencari slik dengan kol tertinggi
         $data_slik=SkpdSlik::select()->where('skpd_pembiayaan_id',$id)->orderBy('kol_tertinggi', 'desc')->get()->first();
-        $slik=$data_slik->kol_tertinggi;
+        if($data_slik){
+            $slik=$data_slik->kol_tertinggi;
+        }
 
         //proses menentukan rating
         $proses_bendahara=SkpdBendahara::select()->where('skpd_instansi_id',$data->skpd_instansi_id)->get()->first();
-        $proses_dsr=SkpdScoreDsr::select()->where('score_terendah','<=',$dsr)->where('score_tertinggi','>=',$dsr)->get()->first();
-        $proses_slik=SkpdScoreSlik::select()->where('kol',$slik)->get()->first();
+        if($dsr>=30){
+            $proses_dsr=SkpdScoreDsr::select()->where('rating',1)->get()->first();
+        }
+        if($dsr<=29 || $dsr>=20){
+            $proses_dsr=SkpdScoreDsr::select()->where('rating',2)->get()->first();
+        }
+        if($dsr<=19 || $dsr>=11){
+            $proses_dsr=SkpdScoreDsr::select()->where('rating',3)->get()->first();
+        }
+        if($dsr<11){
+            $proses_dsr=SkpdScoreDsr::select()->where('rating',4)->get()->first();
+        }
+
+        $proses_slik=0;
+        if($data_slik){
+            $proses_slik=SkpdScoreSlik::select()->where('kol',$slik)->get()->first();
+        }
+        // $proses_slik=SkpdScoreSlik::select()->where('kol',$slik)->get()->first();
         $proses_jaminan=SkpdJenisJaminan::select()->where('id',$jaminan->skpd_jenis_jaminan_id)->get()->first();
         $proses_nasabah='Nasabah Baru';
         $proses_instansi=SkpdInstansi::select()->where('id',$data->skpd_instansi_id)->get()->first();
 
+        // return $dsr;
         //mengambil rating
         $rating_dsr=$proses_dsr->rating;
-        $rating_slik=$proses_slik->rating;
+        $rating_slik=0;
+        if($data_slik){
+            $rating_slik=$proses_slik->rating;
+        }
+        // $rating_slik=$proses_slik->rating;
         $rating_bendahara=$proses_bendahara->rating;
         $rating_jaminan=$proses_jaminan->rating;
-        $rating_nasabah=1;
+        $rating_nasabah=2;
         $rating_instansi=$proses_instansi->rating;
 
+        // $angsuran1=$angsuran;
+        // $dsr1=$angsuran1/$total_pemasukan*100;
+        // $dsr1=$angsuran1/$pendapatan_bersih*100;
 
-        // return $rating_bendahara;
+        $nilai_slik=0;
+        if($rating_slik){
+                $nilai_slik = $rating_slik*$proses_slik->bobot;
+        }
+        // return $proses_dsr;
         return view('skpd::komite.lihat',[
             'title'=>'Detail Proposal',
+            'pembiayaan'=>SkpdPembiayaan::select()->where('id',$id)->get()->first(),
+            'timelines'=>SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->get(),
+            'cicilan'=>$cicilan,
+            'biayakeluarga'=>$biaya_anak+$biaya_istri,
+            'pendapatan_bersih'=>$pendapatan_bersih,
+            'ideps'=>SkpdSlik::select()->where('skpd_pembiayaan_id',$id)->get(),
+            'harga_jual'=>$harga_jual,
+            'tenor'=>$tenor,
+            'angsuran1'=>$angsuran,
+            'nilai_dsr'=>$dsr,
+            'nilai_dsr1'=>$dsr,
+            'total_pendapatan'=>$data->pendapatan_lainnya + $data->gaji_pokok + $data->pendapatan_lainnya,
+
             'bendahara'=>$proses_bendahara,
             'dsr'=>$proses_dsr,
             'slik'=>$proses_slik,
@@ -123,9 +171,9 @@ class SkpdKomiteController extends Controller
             'rating_instansi'=>$rating_instansi,
             'nilai_bendahara'=>$rating_bendahara*$proses_bendahara->bobot,
             'nilai_dsr'=>$rating_dsr*$proses_dsr->bobot,
-            'nilai_slik'=>$rating_slik*$proses_slik->bobot,
+            'nilai_slik'=>$nilai_slik,
             'nilai_jaminan'=>$rating_jaminan*$proses_jaminan->bobot,
-            'nilai_nasabah'=>$rating_jaminan*0.10,
+            'nilai_nasabah'=>$rating_nasabah*0.10,
             'nilai_instansi'=>$rating_instansi*$proses_instansi->bobot,
         ]);
     }

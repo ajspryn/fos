@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Admin\Entities\SkpdGolongan;
 use Modules\Admin\Entities\SkpdInstansi;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Admin\Entities\SkpdAkad;
 use Modules\Admin\Entities\SkpdJenisPenggunaan;
+use Modules\Admin\Entities\SkpdSektorEkonomi;
 use Modules\Admin\Entities\SkpdStatusPerkawinan;
 
 class SkpdPembiayaan extends Model
@@ -42,6 +44,16 @@ class SkpdPembiayaan extends Model
     public function status_perkawinan()
     {
         return $this->belongsTo(SkpdStatusPerkawinan::class,'skpd_status_perkawinan_id', 'id');
+    }
+
+    public function sektor()
+    {
+        return $this->belongsTo(SkpdSektorEkonomi::class,'skpd_sektor_ekonomi_id', 'id');
+    }
+
+    public function akad()
+    {
+        return $this->belongsTo(SkpdAkad::class,'skpd_akad_id', 'id');
     }
 
     public function jaminan()

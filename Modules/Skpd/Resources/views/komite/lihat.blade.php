@@ -1,426 +1,554 @@
 @extends('skpd::layouts.main')
 
 @section('content')
-
-<!-- BEGIN: Content-->
+    <!-- BEGIN: Content-->
     <div class="app-content content ">
-      <div class="content-overlay"></div>
-      <div class="header-navbar-shadow"></div>
-      <div class="content-wrapper container-xxl p-0">
-        <div class="content-header row">
-        </div>
-        <div class="content-body"><section class="invoice-preview-wrapper">
-  <div class="row invoice-preview">
-    <!-- Invoice -->
-    <div class="col-xl-9 col-md-8 col-12">
-      <div class="card invoice-preview-card">
-        <div class="card-body invoice-padding pb-0">
-          <!-- Header starts -->
-          <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
-            <div>
-                <h1>Score Terbobot</h1>
-                <hr>
-                <div class="table-responsive mt-1">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="text-align: center">No</th>
-                                <th style="text-align: center">Parameter</th>
-                                <th style="text-align: center">Kategori</th>
-                                <th style="text-align: center">Bobot</th>
-                                <th style="text-align: center">Rating</th>
-                                <th style="text-align: center">Nilai</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: center">1</td>
-                                <td>Konfirmasi Bendahara</td>
-                                <td style="text-align: center"></td>
-                                <td style="text-align: center">{{ $bendahara->bobot*100 }}%</td>
-                                <td style="text-align: center">{{ $rating_bendahara }}</td>
-                                <td style="text-align: center">{{ $nilai_bendahara }}</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center">2</td>
-                                <td>DSR</td>
-                                <td style="text-align: center">{{ $dsr->score_terendah }}% - {{ $dsr->score_tertinggi }}%</td>
-                                <td style="text-align: center">{{ $dsr->bobot*100 }}%</td>
-                                <td style="text-align: center">{{ $rating_dsr }}</td>
-                                <td style="text-align: center">{{ $nilai_dsr }}</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center">3</td>
-                                <td>Slik</td>
-                                <td style="text-align: center">Kol Tertinggi {{ $slik->kol }}</td>
-                                <td style="text-align: center">{{ $slik->bobot*100 }}%</td>
-                                <td style="text-align: center">{{ $rating_slik }}</td>
-                                <td style="text-align: center">{{ $nilai_slik }}</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center">4</td>
-                                <td>Jaminan</td>
-                                <td style="text-align: center">{{ $jaminan->nama_jaminan }}</td>
-                                <td style="text-align: center">{{ $jaminan->bobot*100 }}%</td>
-                                <td style="text-align: center">{{ $rating_jaminan }}</td>
-                                <td style="text-align: center">{{ $nilai_jaminan }}</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center">5</td>
-                                <td>Jenis Nasabah</td>
-                                <td style="text-align: center">{{ $nasabah }}</td>
-                                <td style="text-align: center">{{ 0.10*100 }}%</td>
-                                <td style="text-align: center">{{ $rating_nasabah }}</td>
-                                <td style="text-align: center">{{ $nilai_nasabah }}</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center">4</td>
-                                <td>Instansi</td>
-                                <td style="text-align: center">{{ $instansi->nama_instansi }}</td>
-                                <td style="text-align: center">{{ $instansi->bobot*100 }}%</td>
-                                <td style="text-align: center">{{ $rating_instansi }}</td>
-                                <td style="text-align: center">{{ $nilai_instansi }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                @php
-                    $total_score=$rating_bendahara+$rating_dsr+$rating_slik+$rating_jaminan+$rating_nasabah+$rating_instansi;
-                @endphp
-              <p class="card-text mb-25 mt-2"></p>
-              <p class="card-text mb-25">Total Nilai : {{ $total_score }}</p>
-              <p class="card-text mb-0">Status : </p>
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper container-xxl p-0">
+            <div class="content-header row">
             </div>
-            {{-- <div class="mt-md-0 mt-2">
-              <h4 class="invoice-title">
-                Invoice
-                <span class="invoice-number">#3492</span>
-              </h4>
-              <div class="invoice-date-wrapper">
-                <p class="invoice-date-title">Date Issued:</p>
-                <p class="invoice-date">25/08/2020</p>
-              </div>
-              <div class="invoice-date-wrapper">
-                <p class="invoice-date-title">Due Date:</p>
-                <p class="invoice-date">29/08/2020</p>
-              </div>
-            </div> --}}
-          </div>
-          <!-- Header ends -->
-        </div>
+            <div class="content-body">
+                <section class="invoice-preview-wrapper">
+                    <div class="row invoice-preview">
+                        <!-- Invoice -->
+                        <div class="col-xl-12 col-md-8 col-12">
+                            <div class="card invoice-preview-card">
+                                <div class="card-body invoice-padding pb-0">
+                                    <!-- Header starts -->
+                                    <div class="d-flex justify-content-center flex-md-row flex-column invoice-spacing mt-0">
+                                        <div>
+                                            <h4>Summary</h4>
+                                            <hr>
+                                            <div class="table-responsive mt-1">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="text-align: center">No</th>
+                                                            <th style="text-align: center">Parameter</th>
+                                                            <th style="text-align: center">Kategori</th>
+                                                            <th style="text-align: center">Bobot</th>
+                                                            <th style="text-align: center">Rating</th>
+                                                            <th style="text-align: center">Nilai</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="text-align: center">1</td>
+                                                            <td>Konfirmasi Bendahara</td>
+                                                            <td></td>
+                                                            <td style="text-align: center">{{ $bendahara->bobot * 100 }}%
+                                                            </td>
+                                                            <td style="text-align: center">{{ $rating_bendahara }}</td>
+                                                            <td style="text-align: center">{{ $nilai_bendahara }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: center">2</td>
+                                                            <td>DSR</td>
+                                                            <td>{{ $dsr->score_terendah }}% -
+                                                                {{ $dsr->score_tertinggi }}%</td>
+                                                            <td style="text-align: center">{{ $dsr->bobot * 100 }}%</td>
+                                                            <td style="text-align: center">{{ $rating_dsr }}</td>
+                                                            <td style="text-align: center">{{ $nilai_dsr }}</td>
+                                                        </tr>
+                                                        @if ($ideps->count() > 0)
+                                                            <tr>
+                                                                <td style="text-align: center">3</td>
+                                                                <td>Slik</td>
+                                                                <td>Kol Tertinggi {{ $slik->kol }}
+                                                                </td>
+                                                                <td style="text-align: center">{{ $slik->bobot * 100 }}%
+                                                                </td>
+                                                                <td style="text-align: center">{{ $rating_slik }}</td>
+                                                                <td style="text-align: center">{{ $nilai_slik }}</td>
+                                                            </tr>
+                                                        @else
+                                                            @php
+                                                                $bobot_ta_slik = 0.2;
+                                                                $rating_ta_slik = 4;
+                                                                $nilai_slik = $bobot_ta_slik * $rating_ta_slik;
+                                                            @endphp
+                                                            <tr>
+                                                                <td style="text-align: center">3</td>
+                                                                <td>Slik</td>
+                                                                <td>Tidak Ada Slik
+                                                                </td>
+                                                                <td style="text-align: center">{{ $bobot_ta_slik * 100 }}%
+                                                                </td>
+                                                                <td style="text-align: center">{{ $rating_ta_slik }}</td>
+                                                                <td style="text-align: center">{{ $nilai_slik }}</td>
+                                                            </tr>
+                                                        @endif
+                                                        <tr>
+                                                            <td style="text-align: center">4</td>
+                                                            <td>Jaminan</td>
+                                                            <td>{{ $jaminan->nama_jaminan }}
+                                                            </td>
+                                                            <td style="text-align: center">{{ $jaminan->bobot * 100 }}%
+                                                            </td>
+                                                            <td style="text-align: center">{{ $rating_jaminan }}</td>
+                                                            <td style="text-align: center">{{ $nilai_jaminan }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: center">5</td>
+                                                            <td>Jenis Nasabah</td>
+                                                            <td>{{ $nasabah }}</td>
+                                                            <td style="text-align: center">{{ 0.1 * 100 }}%</td>
+                                                            <td style="text-align: center">{{ $rating_nasabah }}</td>
+                                                            <td style="text-align: center">{{ $nilai_nasabah }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: center">6</td>
+                                                            <td>Instansi</td>
+                                                            <td>{{ $instansi->nama_instansi }}
+                                                            </td>
+                                                            <td style="text-align: center">{{ $instansi->bobot * 100 }}%
+                                                            </td>
+                                                            <td style="text-align: center">{{ $rating_instansi }}</td>
+                                                            <td style="text-align: center">{{ $nilai_instansi }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
-        <hr class="invoice-spacing" />
+                                            @php
+                                                $total_score = $nilai_bendahara + $nilai_dsr + $nilai_slik + $nilai_jaminan + $nilai_nasabah + $nilai_instansi;
+                                            @endphp
+                                            <div class="card-body invoice-padding pt-0">
+                                                <div class="row invoice-spacing">
+                                                    <div class="col-xl-7 p-0">
+                                                        <table>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="pe-1">Total Nilai</td>
+                                                                    <td>: {{ $total_score }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="pe-1">Status</td>
+                                                                    <td>:
+                                                                        @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
+                                                                            @if ($nilai_dsr1 >= 40)
+                                                                                <span
+                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                <small class="text-danger">*DSR >
+                                                                                    40%</small>
+                                                                            @elseif ($nilai_dsr1 < 0)
+                                                                                <span
+                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                <small class="text-danger">*Pengeluaran >
+                                                                                    Pendapatan</small>
+                                                                            @endif
+                                                                        @else
+                                                                            @if ($total_score > 3)
+                                                                                <span
+                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                            @elseif ($total_score > 2 || $total_score > 3)
+                                                                                <span
+                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                    Ulang</span>
+                                                                            @else
+                                                                                <span
+                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                            @endif
+                                                                        @endif
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-xl-5 p-0 mt-xl-0 mt-2">
+                                                        <p class="mb-1 fw-bold">Note :</p>
+                                                        <table>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="pe-1 mb-2">Nilai < 2 </td>
+                                                                    <td>: <span class="fw-bold"><span
+                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="pe-1 mb-2">Nilai > 2 - 3 </td>
+                                                                    <td>: <span class="fw-bold"><span
+                                                                                class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                Ulang</span></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="pe-1 mb-2">Nilai > 3 </td>
+                                                                    <td>: <span class="fw-bold"><span
+                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- <p class="card-text mb-25 mt-2"></p> --}}
+                                            {{-- <h5 class="card-text mb-1">Total Nilai : {{ $total_score }}</h5>
+                                            <h5 class="card-text mb-0">Status :
+                                                @if ($nilai_dsr1 >= 40)
+                                                    <span class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                    <p>*Nilai DSR Diatas 40%</p>
+                                                @else
+                                                    @if ($total_score > 3)
+                                                        <span
+                                                            class="badge rounded-pill badge-glow bg-success">Approve</span>
+                                                    @elseif ($total_score > 2 || $total_score > 3)
+                                                        <span class="badge rounded-pill badge-glow bg-warning">Review
+                                                            Ulang</span>
+                                                    @else
+                                                        <span class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                    @endif
+                                                @endif
+                                            </h5> --}}
+                                            <!-- Invoice Note starts -->
+                                            {{-- <div class="card-body invoice-padding pt-0">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <span class="fw-bold">Note:</span>
+                                                        <p class="card-text mb-0 mt-1">Nilai Kurang Dari 2 = <span
+                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                        </p>
+                                                        <p class="card-text mb-0 mt-1">Nilai > 2 Sampai Dengan 3 = <span
+                                                                class="badge rounded-pill badge-glow bg-warning">Review
+                                                                Ulang</span>
+                                                        </p>
+                                                        <p class="card-text mb-0 mt-1">Nilai Lebih Besar Dari 3 = <span
+                                                                class="badge rounded-pill badge-glow bg-warning">Approve</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+                                            <!-- Invoice Note ends -->
+                                        </div>
+                                    </div>
+                                    <!-- Header ends -->
+                                </div>
 
-        <!-- Address and Contact starts -->
-        <div class="card-body invoice-padding pt-0">
-          <div class="row invoice-spacing">
-            <div class="col-xl-8 p-0">
-               <table>
-                <tbody>
-                  <tr>
-                    <td class="pe-1">Nama Nasabah</td>
-                    <td><span class="fw-bold">$12,110.55</span></td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">Bank name</td>
-                    <td>American Bank</td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">Country:</td>
-                    <td>United States</td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">IBAN:</td>
-                    <td>ETD95476213874685</td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">SWIFT code:</td>
-                    <td>BR91905</td>
-                  </tr>
-                </tbody>
-              </table>
+                                <hr class="invoice-spacing" />
+
+                                <!-- Address and Contact starts -->
+                                <div class="card-body invoice-padding pt-0">
+                                    <div class="row invoice-spacing">
+                                        <div class="col-xl-8 p-0">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="pe-1">Tanggal Pengajuan</td>
+                                                        <td>: {{ $pembiayaan->tanggal_pengajuan }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Penggunaan</td>
+                                                        <td>: {{ $pembiayaan->jenis_penggunaan->jenis_penggunaan }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Sektor</td>
+                                                        <td>: {{ $pembiayaan->sektor->nama_sektor_ekonomi }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Akad</td>
+                                                        <td>: {{ $pembiayaan->akad->nama_akad }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Nama Nasabah</td>
+                                                        <td><span class="fw-bold">:
+                                                                {{ $pembiayaan->nasabah->nama_nasabah }}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">No Tlp</td>
+                                                        <td>: {{ $pembiayaan->nasabah->no_telp }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Alamat</td>
+                                                        <td>: {{ $pembiayaan->nasabah->alamat }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">No KTP</td>
+                                                        <td>: {{ $pembiayaan->nasabah->no_ktp }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Tempat/Tgl Lahir</td>
+                                                        <td>:
+                                                            {{ $pembiayaan->nasabah->tempat_lahir }}/{{ $pembiayaan->nasabah->tgl_lahir }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Kantor/Dinas</td>
+                                                        <td>: {{ $pembiayaan->instansi->nama_instansi }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-xl-4 p-0 mt-xl-0 mt-2">
+                                            <h6 class="mb-1">Pendapatan :</h6>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="pe-1">Gaji Pokok</td>
+                                                        <td><span class="fw-bold">: Rp.
+                                                                {{ number_format($pembiayaan->gaji_pokok) }}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Pendapatan Lainnya</td>
+                                                        <td>: Rp. {{ number_format($pembiayaan->pendapatan_lainnya) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Gaji TPP</td>
+                                                        <td>: Rp. {{ number_format($pembiayaan->gaji_tpp) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1 mt-2">Total Pendapatan</td>
+                                                        <td><span class="fw-bold">: Rp.
+                                                                {{ number_format($pembiayaan->pendapatan_lainnya + $pembiayaan->gaji_pokok + $pembiayaan->gaji_tpp) }}</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <hr>
+                                            <h6 class="mb-1 mt-2">Pengeluaran :</h6>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="pe-1">Cicilan Bank</td>
+                                                        <td><span class="fw-bold">: Rp.
+                                                                {{ number_format($cicilan) }}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Potongan Lainnya</td>
+                                                        <td>: Rp. {{ number_format($pembiayaan->potongan_lainnya) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Kebutuhan Keluarga</td>
+                                                        <td>: Rp. {{ number_format($biayakeluarga) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1 mt-1">Total Pengeluaran</td>
+                                                        <td><span class="fw-bold">: Rp.
+                                                                {{ number_format($cicilan + $pembiayaan->potongan_lainnya + $biayakeluarga) }}</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <hr>
+                                            <h6>Sisa Pendapatan Bersih : Rp. {{ number_format($pendapatan_bersih) }}</h6>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Address and Contact ends -->
+
+                                <!-- Invoice Description starts -->
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center; width: 5%;" class="py-1">No</th>
+                                                <th style="text-align: center" class="py-1">Nama Bank</th>
+                                                <th style="text-align: center" class="py-1">Plafond</th>
+                                                <th style="text-align: center" class="py-1">Outstanding</th>
+                                                <th style="text-align: center" class="py-1">Tenor</th>
+                                                <th style="text-align: center" class="py-1">Margin</th>
+                                                <th style="text-align: center" class="py-1">Angsuran</th>
+                                                <th style="text-align: center" class="py-1">Agunan</th>
+                                                <th style="text-align: center" class="py-1">Kol Tertinggi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($ideps as $idep)
+                                                @php
+                                                    if ($idep) {
+                                                        $margin = $idep->margin / 12 / 100;
+                                                        $plafond = $idep->plafond * $margin * $idep->tenor + $idep->plafond;
+                                                        $angsuran = $plafond / $idep->tenor;
+                                                    }
+                                                @endphp
+                                                <tr>
+                                                    <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                    <td>{{ $idep->nama_bank }}</td>
+                                                    <td>Rp. {{ number_format($idep->plafond) }}</td>
+                                                    <td>Rp. {{ number_format($idep->outstanding) }}</td>
+                                                    <td style="text-align: center">{{ $idep->tenor }}</td>
+                                                    <td style="text-align: center">{{ number_format($idep->margin) }}%
+                                                    </td>
+                                                    <td>Rp. {{ number_format($idep->angsuran) }}</td>
+                                                    <td style="text-align: center">{{ $idep->agunan }}</td>
+                                                    <td style="text-align: center">{{ $idep->kol_tertinggi }}</td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="card-body invoice-padding pb-0">
+                                    <div class="row invoice-sales-total-wrapper">
+                                        <div class="col-md-8 order-md-1 order-2 mt-md-0 mt-3">
+                                            <p class="card-text mb-0">
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 d-flex order-md-2 order-1">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="pe-1">Harga Beli</td>
+                                                        <td><span class="fw-bold">: Rp.
+                                                                {{ number_format($pembiayaan->nominal_pembiayaan) }}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Harga Jual</td>
+                                                        <td>: Rp. {{ number_format($harga_jual) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Jangka Waktu</td>
+                                                        <td>: {{ $tenor }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Equivalen Rate</td>
+                                                        <td>: {{ $pembiayaan->rate }} %</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Angsuran</td>
+                                                        <td>: Rp. {{ number_format($angsuran1) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1 mt-1">DSR</td>
+                                                        <td><span class="fw-bold">: {{ $nilai_dsr1 }}
+                                                                %</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Invoice Description ends -->
+
+                                <hr class="invoice-spacing" />
+
+                                <!-- Invoice Note starts -->
+                                <div class="card-body invoice-padding pt-0">
+                                    <div class="row invoice-spacing">
+                                        <div class="col-xl-7 p-0">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="pe-1">Total Nilai</td>
+                                                        <td>: {{ $total_score }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1">Status</td>
+                                                        <td>:
+                                                            @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
+                                                                @if ($nilai_dsr1 >= 40)
+                                                                    <span
+                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                    <small class="text-danger">*DSR > 40%</small>
+                                                                @elseif ($nilai_dsr1 < 0)
+                                                                    <span
+                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                    <small class="text-danger">*Pengeluaran >
+                                                                        Pendapatan</small>
+                                                                @endif
+                                                            @else
+                                                                @if ($total_score > 3)
+                                                                    <span
+                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                @elseif ($total_score > 2 || $total_score > 3)
+                                                                    <span
+                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                        Ulang</span>
+                                                                @else
+                                                                    <span
+                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                @endif
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-xl-5 p-0 mt-xl-0 mt-2">
+                                            <p class="mb-1 fw-bold">Note :</p>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="pe-1 mb-1">Nilai < 2 </td>
+                                                        <td>: <span class="fw-bold"><span
+                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1 mb-1">Nilai > 2 - 3 </td>
+                                                        <td>: <span class="fw-bold"><span
+                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                    Ulang</span></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pe-1 mb-1">Nilai > 3 </td>
+                                                        <td>: <span class="fw-bold"><span
+                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Invoice Note ends -->
+                            </div>
+                        </div>
+                        <!-- /Invoice -->
+
+                        <!-- Invoice Actions -->
+                        <div class="col-xl-12 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
+                            <div class="card">
+                                @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
+                                @else
+                                    <div class="card-body">
+                                        <button class="btn btn-primary w-100 mb-75" data-bs-toggle="modal"
+                                            data-bs-target="#send-invoice-sidebar">
+                                            Lanjut Komite
+                                        </button>
+                                    </div>
+                                @endif
+                                <!-- Timeline Starts -->
+                                <div class="card-header">
+                                    <h4 class="card-title">Timeline</h4>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="timeline">
+                                        @foreach ($timelines as $timeline)
+                                            <li class="timeline-item">
+                                                <span
+                                                    class="timeline-point timeline-point-success timeline-point-indicator"></span>
+                                                <div class="timeline-event">
+                                                    <div
+                                                        class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-0">
+                                                        <h6>{{ $timeline->status }}</h6>
+                                                    </div>
+                                                    <span
+                                                        class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
+                                                    {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
+                                                    <div class="d-flex flex-row align-items-center">
+
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <!-- Timeline Ends -->
+
+                            </div>
+                        </div>
+                        <!-- /Invoice Actions -->
+                    </div>
+                </section>
+
             </div>
-            <div class="col-xl-4 p-0 mt-xl-0 mt-2">
-              <h6 class="mb-2">Payment Details:</h6>
-              <table>
-                <tbody>
-                  <tr>
-                    <td class="pe-1">Total Due:</td>
-                    <td><span class="fw-bold">$12,110.55</span></td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">Bank name:</td>
-                    <td>American Bank</td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">Country:</td>
-                    <td>United States</td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">IBAN:</td>
-                    <td>ETD95476213874685</td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">SWIFT code:</td>
-                    <td>BR91905</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
         </div>
-        <!-- Address and Contact ends -->
-
-        <!-- Invoice Description starts -->
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="py-1">Task description</th>
-                <th class="py-1">Rate</th>
-                <th class="py-1">Hours</th>
-                <th class="py-1">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="py-1">
-                  <p class="card-text fw-bold mb-25">Native App Development</p>
-                  <p class="card-text text-nowrap">
-                    Developed a full stack native app using React Native, Bootstrap & Python
-                  </p>
-                </td>
-                <td class="py-1">
-                  <span class="fw-bold">$60.00</span>
-                </td>
-                <td class="py-1">
-                  <span class="fw-bold">30</span>
-                </td>
-                <td class="py-1">
-                  <span class="fw-bold">$1,800.00</span>
-                </td>
-              </tr>
-              <tr class="border-bottom">
-                <td class="py-1">
-                  <p class="card-text fw-bold mb-25">Ui Kit Design</p>
-                  <p class="card-text text-nowrap">Designed a UI kit for native app using Sketch, Figma & Adobe XD</p>
-                </td>
-                <td class="py-1">
-                  <span class="fw-bold">$60.00</span>
-                </td>
-                <td class="py-1">
-                  <span class="fw-bold">20</span>
-                </td>
-                <td class="py-1">
-                  <span class="fw-bold">$1200.00</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="card-body invoice-padding pb-0">
-          <div class="row invoice-sales-total-wrapper">
-            <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
-              <p class="card-text mb-0">
-                <span class="fw-bold">Salesperson:</span> <span class="ms-75">Alfie Solomons</span>
-              </p>
-            </div>
-            <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
-              <div class="invoice-total-wrapper">
-                <div class="invoice-total-item">
-                  <p class="invoice-total-title">Subtotal:</p>
-                  <p class="invoice-total-amount">$1800</p>
-                </div>
-                <div class="invoice-total-item">
-                  <p class="invoice-total-title">Discount:</p>
-                  <p class="invoice-total-amount">$28</p>
-                </div>
-                <div class="invoice-total-item">
-                  <p class="invoice-total-title">Tax:</p>
-                  <p class="invoice-total-amount">21%</p>
-                </div>
-                <hr class="my-50" />
-                <div class="invoice-total-item">
-                  <p class="invoice-total-title">Total:</p>
-                  <p class="invoice-total-amount">$1690</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Invoice Description ends -->
-
-        <hr class="invoice-spacing" />
-
-        <!-- Invoice Note starts -->
-        <div class="card-body invoice-padding pt-0">
-          <div class="row">
-            <div class="col-12">
-              <span class="fw-bold">Note:</span>
-              <span
-                >It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance
-                projects. Thank You!</span
-              >
-            </div>
-          </div>
-        </div>
-        <!-- Invoice Note ends -->
-      </div>
-    </div>
-    <!-- /Invoice -->
-
-    <!-- Invoice Actions -->
-    <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
-      <div class="card">
-        <div class="card-body">
-          <button class="btn btn-primary w-100 mb-75" data-bs-toggle="modal" data-bs-target="#send-invoice-sidebar">
-            Send Invoice
-          </button>
-          <button class="btn btn-outline-secondary w-100 btn-download-invoice mb-75">Download</button>
-          <a class="btn btn-outline-secondary w-100 mb-75" href="./app-invoice-print.html" target="_blank"> Print </a>
-          <a class="btn btn-outline-secondary w-100 mb-75" href="./app-invoice-edit.html"> Edit </a>
-          <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#add-payment-sidebar">
-            Add Payment
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- /Invoice Actions -->
-  </div>
-</section>
-
-<!-- Send Invoice Sidebar -->
-<div class="modal modal-slide-in fade" id="send-invoice-sidebar" aria-hidden="true">
-  <div class="modal-dialog sidebar-lg">
-    <div class="modal-content p-0">
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
-      <div class="modal-header mb-1">
-        <h5 class="modal-title">
-          <span class="align-middle">Send Invoice</span>
-        </h5>
-      </div>
-      <div class="modal-body flex-grow-1">
-        <form>
-          <div class="mb-1">
-            <label for="invoice-from" class="form-label">From</label>
-            <input
-              type="text"
-              class="form-control"
-              id="invoice-from"
-              value="shelbyComapny@email.com"
-              placeholder="company@email.com"
-            />
-          </div>
-          <div class="mb-1">
-            <label for="invoice-to" class="form-label">To</label>
-            <input
-              type="text"
-              class="form-control"
-              id="invoice-to"
-              value="qConsolidated@email.com"
-              placeholder="company@email.com"
-            />
-          </div>
-          <div class="mb-1">
-            <label for="invoice-subject" class="form-label">Subject</label>
-            <input
-              type="text"
-              class="form-control"
-              id="invoice-subject"
-              value="Invoice of purchased Admin Templates"
-              placeholder="Invoice regarding goods"
-            />
-          </div>
-          <div class="mb-1">
-            <label for="invoice-message" class="form-label">Message</label>
-            <textarea
-              class="form-control"
-              name="invoice-message"
-              id="invoice-message"
-              cols="3"
-              rows="11"
-              placeholder="Message..."
-            >
-Dear Queen Consolidated,
-
-Thank you for your business, always a pleasure to work with you!
-
-We have generated a new invoice in the amount of $95.59
-
-We would appreciate payment of this invoice by 05/11/2019</textarea
-            >
-          </div>
-          <div class="mb-1">
-            <span class="badge badge-light-primary">
-              <i data-feather="link" class="me-25"></i>
-              <span class="align-middle">Invoice Attached</span>
-            </span>
-          </div>
-          <div class="mb-1 d-flex flex-wrap mt-2">
-            <button type="button" class="btn btn-primary me-1" data-bs-dismiss="modal">Send</button>
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- /Send Invoice Sidebar -->
-
-<!-- Add Payment Sidebar -->
-<div class="modal modal-slide-in fade" id="add-payment-sidebar" aria-hidden="true">
-  <div class="modal-dialog sidebar-lg">
-    <div class="modal-content p-0">
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
-      <div class="modal-header mb-1">
-        <h5 class="modal-title">
-          <span class="align-middle">Add Payment</span>
-        </h5>
-      </div>
-      <div class="modal-body flex-grow-1">
-        <form>
-          <div class="mb-1">
-            <input id="balance" class="form-control" type="text" value="Invoice Balance: 5000.00" disabled />
-          </div>
-          <div class="mb-1">
-            <label class="form-label" for="amount">Payment Amount</label>
-            <input id="amount" class="form-control" type="number" placeholder="$1000" />
-          </div>
-          <div class="mb-1">
-            <label class="form-label" for="payment-date">Payment Date</label>
-            <input id="payment-date" class="form-control date-picker" type="text" />
-          </div>
-          <div class="mb-1">
-            <label class="form-label" for="payment-method">Payment Method</label>
-            <select class="form-select" id="payment-method">
-              <option value="" selected disabled>Select payment method</option>
-              <option value="Cash">Cash</option>
-              <option value="Bank Transfer">Bank Transfer</option>
-              <option value="Debit">Debit</option>
-              <option value="Credit">Credit</option>
-              <option value="Paypal">Paypal</option>
-            </select>
-          </div>
-          <div class="mb-1">
-            <label class="form-label" for="payment-note">Internal Payment Note</label>
-            <textarea class="form-control" id="payment-note" rows="5" placeholder="Internal Payment Note"></textarea>
-          </div>
-          <div class="d-flex flex-wrap mb-0">
-            <button type="button" class="btn btn-primary me-1" data-bs-dismiss="modal">Send</button>
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- /Add Payment Sidebar -->
-
-        </div>
-      </div>
     </div>
     <!-- END: Content-->
-
 @endsection

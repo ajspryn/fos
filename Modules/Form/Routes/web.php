@@ -1,6 +1,9 @@
 <?php
 
-use Modules\Form\Http\Controllers\UmkmController;
+// use Modules\Form\Http\Controllers\UmkmController;
+
+use Modules\Form\Http\Controllers\FormulirPasarController;
+use Modules\Form\Http\Controllers\KprController;
 use Modules\Skpd\Http\Controllers\SkpdController;
 
 
@@ -18,6 +21,8 @@ use Modules\Skpd\Http\Controllers\SkpdController;
 Route::prefix('form')->group(function() {
     // Route::get('/', 'FormController@index');
     Route::resource('/skpd', FormSkpdController::class);
-    Route::resource('/umkm', UmkmController::class);
+    Route::resource('/umkm', FormulirPasarController::class);
+    Route::resource('/kpr', KprController::class);
+    Route::resource('/pasar', FormulirPasarController::class);
     Route::resource('/pembiayaanskpd', SkpdController::class);
 });

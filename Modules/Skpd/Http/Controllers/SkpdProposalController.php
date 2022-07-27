@@ -120,10 +120,11 @@ class SkpdProposalController extends Controller
         ]);
         foreach ($request->slik as $key => $value) {
 
-            $plafond=$value['plafond'];
-            $margin=$value['margin']/100;
-            $tenor=$value['tenor'];
-            $angsuran=$plafond*$margin/$tenor;
+            // $plafond=$value['plafond'];
+            // $margin=$value['margin']/100;
+            // $tenor=$value['tenor'];
+            // $angsuran=$plafond*$margin*$tenor/$plafond;
+
             // return $value;
             SkpdSlik::create([
                 'skpd_pembiayaan_id'=>$id,
@@ -132,7 +133,7 @@ class SkpdProposalController extends Controller
                 'outstanding'=> $value['outstanding'],
                 'tenor'=> $value['tenor'],
                 'margin'=> $value['margin'],
-                'angsuran'=> $angsuran,
+                'angsuran'=> $value['angsuran'],
                 'agunan'=> $value['agunan'],
                 'kol_tertinggi'=> $value['kol_tertinggi'],
             ]);
