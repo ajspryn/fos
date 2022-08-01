@@ -70,6 +70,8 @@ class SkpdProposalController extends Controller
             'fotodiri'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'foto diri')->get()->first(),
             'fotoktp'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'foto ktp')->get()->first(),
             'fotodiribersamaktp'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'foto diri bersama ktp')->get()->first(),
+            'fotokk'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'fotostatus'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'Akta Status Perkawinan')->get()->first(),
             'aos'=>Role::select()->where('jabatan_id',1)->get(),
             'akads'=>SkpdAkad::all(), //udah
             'golongans'=>SkpdGolongan::all(), //udah
@@ -104,6 +106,7 @@ class SkpdProposalController extends Controller
 
         SkpdPembiayaan::where('id',$id)
                         ->update([
+                            'rate'=>$request->rate,
                             'skpd_sektor_ekonomi_id'=>$request->skpd_sektor_ekonomi_id,
                             'skpd_akad_id'=>$request->skpd_akad_id,
                         ]);
@@ -113,30 +116,46 @@ class SkpdProposalController extends Controller
                         'no_npwp'=>$request->no_npwp,
                     ]);
 
+        $dokumen_keuangan= $request->foto->store('ideb-skpd-pembiayaan');
         SkpdPembiayaanHistory::create([
             'skpd_pembiayaan_id'=> $id,
-            'status'=> 'AO Telah Melengkapi Dan Mengajukan Ke Komite',
+            'status'=> 'AO Telah Melengkapi Proposal',
             'user_id'=> Auth::user()->id,
         ]);
-        foreach ($request->slik as $key => $value) {
 
-            // $plafond=$value['plafond'];
-            // $margin=$value['margin']/100;
-            // $tenor=$value['tenor'];
-            // $angsuran=$plafond*$margin*$tenor/$plafond;
-
-            // return $value;
-            SkpdSlik::create([
+            if ($request->foto){
+                $foto= $request->file('foto')->store('ideb-skpd-pembiayaan');
+            }
+            // return $foto;
+            SkpdFoto::create([
                 'skpd_pembiayaan_id'=>$id,
-                'nama_bank'=> $value['nama_bank'],
-                'plafond'=> $value['plafond'],
-                'outstanding'=> $value['outstanding'],
-                'tenor'=> $value['tenor'],
-                'margin'=> $value['margin'],
-                'angsuran'=> $value['angsuran'],
-                'agunan'=> $value['agunan'],
-                'kol_tertinggi'=> $value['kol_tertinggi'],
+                'kategori'=> $request->kategori,
+                'foto'=> $foto,
             ]);
+
+            if ($request->slik[0]['nama_bank']){
+
+                // return $request->slik[0]['nama_bank'];
+                foreach ($request->slik as $key => $value) {
+
+                    // $plafond=$value['plafond'];
+                    // $margin=$value['margin']/100;
+                    // $tenor=$value['tenor'];
+                    // $angsuran=$plafond*$margin*$tenor/$plafond;
+
+                    // return $value;
+                    SkpdSlik::create([
+                        'skpd_pembiayaan_id'=>$id,
+                        'nama_bank'=> $value['nama_bank'],
+                        'plafond'=> $value['plafond'],
+                        'outstanding'=> $value['outstanding'],
+                        'tenor'=> $value['tenor'],
+                        'margin'=> $value['margin'],
+                        'angsuran'=> $value['angsuran'],
+                        'agunan'=> $value['agunan'],
+                        'kol_tertinggi'=> $value['kol_tertinggi'],
+                    ]);
+            }
         }
 
         return redirect('/skpd/komite/'.$id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');

@@ -2,19 +2,22 @@
 
 namespace Modules\Skpd\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Skpd\Entities\SkpdFoto;
 use Modules\Skpd\Entities\SkpdSlik;
 use Illuminate\Support\Facades\Auth;
 use Modules\Skpd\Entities\SkpdJaminan;
 use Modules\Skpd\Entities\SkpdNasabah;
+use Modules\Admin\Entities\SkpdInstansi;
 use Modules\Admin\Entities\SkpdScoreDsr;
 use Modules\Admin\Entities\SkpdBendahara;
 use Modules\Admin\Entities\SkpdScoreSlik;
 use Modules\Skpd\Entities\SkpdPembiayaan;
 use Illuminate\Contracts\Support\Renderable;
-use Modules\Admin\Entities\SkpdInstansi;
 use Modules\Admin\Entities\SkpdJenisJaminan;
+use Modules\Skpd\Entities\SkpdJaminanLainnya;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
 
 class SkpdKomiteController extends Controller
@@ -25,10 +28,19 @@ class SkpdKomiteController extends Controller
      */
     public function index()
     {
+        // $history=SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $proposal->id)->orderby('created_at', 'desc')->get();
+        $jabatan=Role::select()->where('user_id',Auth::user()->id)->get()->first();
+        $proposal=SkpdPembiayaan::select()->where('user_id',Auth::user()->id)->whereNotNull('skpd_sektor_ekonomi_id')->get();
+        if ($jabatan->jabatan_id==2){
+            $proposal=SkpdPembiayaanHistory::select()->where('status', 'Proposal Diteruskan Ke Komite Oleh AO')->get();
+        }
         return view('skpd::komite.index',[
             'title'=>'Komite',
-            'proposals'=>SkpdPembiayaan::select()->where('user_id',Auth::user()->id)->whereNotNull('skpd_sektor_ekonomi_id')->get(),
+            'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
+            'proposals'=>$proposal,
         ]);
+
+        return redirect('/skpd/komite/')->with('success', 'Pengajuan Anda Di Teruskan Ke Komite');
     }
 
     /**
@@ -47,7 +59,14 @@ class SkpdKomiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        SkpdPembiayaanHistory::create([
+            'skpd_pembiayaan_id'=>$request->skpd_pembiayaan_id,
+            'catatan'=>$request->catatan,
+            'status'=>$request->status,
+            'user_id'=> $request->user_id,
+
+        ]);
     }
 
     /**
@@ -62,10 +81,10 @@ class SkpdKomiteController extends Controller
         $jaminan=SkpdJaminan::select()->where('skpd_pembiayaan_id',$id)->get()->first();
         $nominal_pembiayaan=$data->nominal_pembiayaan;
         $tenor=$data->tenor;
-        $rate=number_format($data->rate/100);
+        $rate=$data->rate/100;
 
         //angsuran
-        $harga_jual=($nominal_pembiayaan*$rate*$tenor)+$nominal_pembiayaan;
+        $harga_jual=$nominal_pembiayaan*$rate*$tenor+$nominal_pembiayaan;
         $angsuran=$harga_jual/$tenor;
 
         //pengeluaran
@@ -98,19 +117,20 @@ class SkpdKomiteController extends Controller
 
         //proses menentukan rating
         $proses_bendahara=SkpdBendahara::select()->where('skpd_instansi_id',$data->skpd_instansi_id)->get()->first();
-        if($dsr>=30){
+        if($dsr>29){
             $proses_dsr=SkpdScoreDsr::select()->where('rating',1)->get()->first();
         }
-        if($dsr<=29 || $dsr>=20){
+        if($dsr<=29 && $dsr>=20){
             $proses_dsr=SkpdScoreDsr::select()->where('rating',2)->get()->first();
         }
-        if($dsr<=19 || $dsr>=11){
+        if($dsr<=19 && $dsr>=11){
             $proses_dsr=SkpdScoreDsr::select()->where('rating',3)->get()->first();
         }
         if($dsr<11){
             $proses_dsr=SkpdScoreDsr::select()->where('rating',4)->get()->first();
         }
 
+        // return $proses_dsr;
         $proses_slik=0;
         if($data_slik){
             $proses_slik=SkpdScoreSlik::select()->where('kol',$slik)->get()->first();
@@ -144,6 +164,7 @@ class SkpdKomiteController extends Controller
         // return $proses_dsr;
         return view('skpd::komite.lihat',[
             'title'=>'Detail Proposal',
+            'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
             'pembiayaan'=>SkpdPembiayaan::select()->where('id',$id)->get()->first(),
             'timelines'=>SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->get(),
             'cicilan'=>$cicilan,
@@ -175,6 +196,16 @@ class SkpdKomiteController extends Controller
             'nilai_jaminan'=>$rating_jaminan*$proses_jaminan->bobot,
             'nilai_nasabah'=>$rating_nasabah*0.10,
             'nilai_instansi'=>$rating_instansi*$proses_instansi->bobot,
+
+            //identitas pribadi
+            'fotos'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->get(),
+            'jaminans'=>SkpdJaminan::select()->where('skpd_pembiayaan_id',$id)->get(),
+            'jaminanlainnyas'=>SkpdJaminanLainnya::select()->where('skpd_pembiayaan_id',$id)->get(),
+            'skpengangkatans'=>SkpdPembiayaan::select()->where('id',$id)->get(),
+            'ideb'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori','IDEB')->get()->first(),
+
+            //history
+            'history'=>SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
         ]);
     }
 

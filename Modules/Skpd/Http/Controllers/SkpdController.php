@@ -51,6 +51,8 @@ class SkpdController extends Controller
 
         $sk_pengangkatan=$request->file('sk_pengangkatan')->store('skpd-sk_pengangkatan');
         $dokumen_jaminan=$request->file('dokumen_jaminan')->store('skpd-dokumen_jaminan');
+        $dokumen_keuangan=$request->file('dokumen_keuangan')->store('skpd-dokumen_keuangan');
+        $dokumen_slip_gaji=$request->file('dokumen_slip_gaji')->store('skpd-dokumen_slip_gaji');
 
         SkpdPembiayaan::create([
             'id'=>$id,
@@ -58,6 +60,7 @@ class SkpdController extends Controller
             'tanggal_pengajuan'=> $request->tanggal_pengajuan,
             'nominal_pembiayaan'=> str_replace(",","",$request->nominal_pembiayaan),
             'tenor'=> $request->tenor,
+            'rate'=> $request->rate,
             'skpd_jenis_penggunaan_id'=> $request->skpd_jenis_penggunaan_id,
             'skpd_sektor_ekonomi_id'=> $request->skpd_sektor_ekonomi_id,
             'skpd_akad_id'=> $request->skpd_akad_id,
@@ -65,6 +68,8 @@ class SkpdController extends Controller
             'skpd_instansi_id'=> $request->skpd_instansi_id,
             'skpd_golongan_id'=> $request->skpd_golongan_id,
             'sk_pengangkatan'=> $sk_pengangkatan,
+            'dokumen_keuangan'=> $dokumen_keuangan,
+            'dokumen_slip_gaji'=> $dokumen_slip_gaji,
             'gaji_pokok'=> str_replace(",","",$request->gaji_pokok),
             'pendapatan_lainnya'=> str_replace(",","",$request->pendapatan_lainnya),
             'gaji_tpp'=> str_replace(",","",$request->gaji_tpp),

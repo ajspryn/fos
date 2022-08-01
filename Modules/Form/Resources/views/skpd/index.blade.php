@@ -98,7 +98,7 @@
                                         <input type="text" name="nominal_pembiayaan" class="form-control numeral-mask4"
                                             placeholder="Rp." id="nominal_pembiayaan" required />
                                     </div>
-                                    <div class="mb-1 col-md-6">
+                                    <div class="mb-1 col-md-4">
                                         <label class="form-label" for="tenor"><small class="text-danger">*
                                             </small>Tenor</label>
                                         <select class="select2 w-100" name="tenor" id="tenor" required>
@@ -118,6 +118,12 @@
                                             <option value="48">48 Bulan</option>
                                             <option value="60">60 Bulan</option>
                                         </select>
+                                    </div>
+                                    <div class="mb-1 col-md-2">
+                                        <label class="form-label" for="rate"><small class="text-danger">*
+                                            </small>Rate</label>
+                                        <input type="text" name="rate" class="form-control numeral-mask4"
+                                            placeholder="%" id="rate" disabled />
                                     </div>
                                 </div>
                                 <div class="content-header">
@@ -254,6 +260,22 @@
                                         <input type="file" name="foto[3][foto]" id="fotodiriktp" rows="3"
                                             class="form-control" required />
                                         <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
+                                            rows="3" class="form-control" />
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotokk"><small class="text-danger">*
+                                            </small>Upload Foto Kartu Keluarga</label>
+                                        <input type="file" name="foto[4][foto]" id="fotokk" rows="3"
+                                            class="form-control" required />
+                                        <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga"
+                                            rows="3" class="form-control" />
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotokk"><small class="text-danger">*
+                                            </small>Upload Akta Nikah/Cerai</label>
+                                        <input type="file" name="foto[5][foto]" id="fotokk" rows="3"
+                                            class="form-control" required />
+                                        <input type="hidden" name="foto[5][kategori]" value="Akta Status Pekawinan"
                                             rows="3" class="form-control" />
                                     </div>
                                 </div>
@@ -421,12 +443,22 @@
                                         <input type="text" name="gaji_tpp" class="form-control numeral-mask3"
                                             placeholder="Rp." id="pendapatan_tpp" required />
                                     </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="lampiran_keuangan">Upload Lampiran Keuangan</label>
+                                        <input type="file" name="dokumen_keuangan" id="lampiran_keuangan"
+                                            rows="3" class="form-control" />
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="slip_gaji">Upload Slip Gaji</label>
+                                        <input type="file" name="dokumen_slip_gaji" id="slip_gaji" rows="3"
+                                            class="form-control" />
+                                    </div>
                                 </div>
                                 <div class="content-header">
                                     <h5 class="mb-0">Data Pengeluaran Anda</h5>
                                     <small>Data Pengeluaran Nasabah Anda</small>
                                 </div>
-                                <section id="form-repeater">
+                                {{-- <section id="form-repeater">
                                     <div class="row">
                                         <div class="mb-1 col-md-12">
                                             <div class="repeater-default">
@@ -490,12 +522,12 @@
                                                                 </div>
                                                             </div>
 
-                                                            {{-- <div class="col-md-1 col-12">
+                                                            <div class="col-md-1 col-12">
                                                                 <div class="mb-1">
                                                                     <label class="form-label" for="itemquantity">Angsuran</label>
                                                                     <input type="number" class="form-control" name="angsuran" id="angsuran" aria-describedby="itemquantity" placeholder="1"/>
                                                                 </div>
-                                                            </div> --}}
+                                                            </div>
 
                                                             <div class="col-md-1 col-12">
                                                                 <div class="mb-1">
@@ -528,7 +560,7 @@
                                                                     <button class="btn btn-outline-danger text-nowrap px-1"
                                                                         data-repeater-delete type="button">
                                                                         <i data-feather="x" class="me-25"></i>
-                                                                        {{-- <span>Delete</span> --}}
+                                                                        <span>Delete</span>
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -545,7 +577,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                </section>
+                                </section> --}}
+
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting">Pengeluaran Lainnya (Per
                                         Bulan)</label>
@@ -555,7 +588,7 @@
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting">Keterangan Pengeluaran Lainnya (Per
                                         Bulan)</label>
-                                    <input type="text" name="pengeluaran_lainnya" class="form-control"
+                                    <input type="text" name="keterangan_pengeluaran_lainnya" class="form-control"
                                         id="Pendapatan TPP" placeholder="Isikan Keterangan Pengeluaran Lainnya" />
                                 </div>
                                 <div class="d-flex justify-content-between">

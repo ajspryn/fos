@@ -123,13 +123,19 @@
                                                 value="Rp.{{ number_format($pembiayaan->nominal_pembiayaan) }}"
                                                 disabled />
                                         </div>
-                                        <div class="mb-1 col-md-6">
+                                        <div class="mb-1 col-md-4">
                                             <label class="form-label" for="tenorr"><small class="text-danger">*
                                                 </small>Tenor</label>
                                             <select class="select2 w-100" name="tenor" id="tenorr" disabled>
                                                 <option value="{{ $pembiayaan->tenor }}">{{ $pembiayaan->tenor }} Bulan
                                                 </option>
                                             </select>
+                                        </div>
+                                        <div class="mb-1 col-md-2">
+                                            <label class="form-label" for="rate"><small class="text-danger">*
+                                                </small>Rate</label>
+                                            <input type="text" name="rate" class="form-control numeral-mask4"
+                                                placeholder="%" id="rate" required />
                                         </div>
                                     </div>
                                     <div class="content-header">
@@ -265,6 +271,18 @@
                                             <button type="butt  on" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#fotodiribersamaktp">
                                                 Foto Diri Bersama KTP
+                                            </button>
+                                        </div>
+                                        <div class="mb-0 mt-2 col-md-2">
+                                            <button type="butt  on" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#fotokk">
+                                                Foto Kartu Keluarga
+                                            </button>
+                                        </div>
+                                        <div class="mb-0 mt-2 col-md-2">
+                                            <button type="butt  on" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#fotostatus">
+                                                foto Status Perkawinan
                                             </button>
                                         </div>
                                         {{-- <div class="mb-1 col-md-6">
@@ -470,17 +488,12 @@
                                                             <div class="row d-flex align-items-end">
                                                                 <div class="col-md-2 col-12">
                                                                     <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="multiSelectSizing">Nama Bank</label>
-                                                                        <select class="form-select" size="3"
-                                                                            name="nama_bank" aria-label="size 3 select"
-                                                                            id="multiSelectSizing">
-                                                                            <option value="BRI">BRI</option>
-                                                                            <option value="BNI">BNI</option>
-                                                                            <option value="BCA">BCA</option>
-                                                                            <option value="BSI">BSI</option>
-                                                                            <option value="Permata">Permata</option>
-                                                                        </select>
+                                                                        <label class="form-label" for="nama_bank">Nama
+                                                                            Bank</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="nama_bank" id="nama_bank"
+                                                                            aria-describedby="nama_bank"
+                                                                            placeholder="Nama Bank" />
                                                                     </div>
                                                                 </div>
 
@@ -540,7 +553,7 @@
                                                                             for="itemquantity">Agunan</label>
                                                                         <input type="text" class="form-control"
                                                                             name="agunan" id="agunan"
-                                                                            aria-describedby="itemquantity" required />
+                                                                            aria-describedby="itemquantity" />
                                                                     </div>
                                                                 </div>
 
@@ -550,8 +563,8 @@
                                                                             for="angsuran">Angsuran</label>
                                                                         <input type="number" class="form-control"
                                                                             name="angsuran" id="angsuran"
-                                                                            aria-describedby="angsuran" placeholder="Rp."
-                                                                            required />
+                                                                            aria-describedby="angsuran"
+                                                                            placeholder="Rp." />
                                                                     </div>
                                                                 </div>
 
@@ -562,7 +575,7 @@
                                                                         <select class="form-select" size="3"
                                                                             name="kol_tertinggi"
                                                                             aria-label="size 3 select"
-                                                                            id="multiSelectSizing" required>
+                                                                            id="multiSelectSizing">
                                                                             <option value="1">1</option>
                                                                             <option value="2">2</option>
                                                                             <option value="3">3</option>
@@ -596,6 +609,14 @@
                                                 </div>
                                             </div>
                                     </section>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="ideb"><small class="text-danger">*
+                                            </small>Upload PDF IDEB</label>
+                                        <input type="file" name="foto" id="ideb" rows="3"
+                                            class="form-control" required />
+                                        <input type="hidden" name="kategori" value="IDEB" rows="3"
+                                            class="form-control" />
+                                    </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting">Pengeluaran Lainnya (Per
                                             Bulan)</label>
@@ -687,6 +708,52 @@
                     </div>
                 </div>
                 <!--/ foto diribersama  -->
+                @if ($fotokk)
+                    <!-- foto diri bersama ktp  -->
+                    <div class="modal fade" id="fotokk" tabindex="-1" aria-labelledby="addNewCardTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-transparent">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                    <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fotokk->kategori }}
+                                    </h1>
+                                    <p class="text-center">Lampiran Foto Nasabah</p>
+                                    <div class="card-body">
+                                        <img src="{{ asset('storage/' . $fotokk->foto) }}" class="d-block w-100" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ foto diribersama  -->
+                @endif
+                @if ($fotostatus)
+                    <!-- foto diri bersama ktp  -->
+                    <div class="modal fade" id="fotokk" tabindex="-1" aria-labelledby="addNewCardTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-transparent">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                    <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fotostatus->kategori }}
+                                    </h1>
+                                    <p class="text-center">Lampiran Foto Nasabah</p>
+                                    <div class="card-body">
+                                        <img src="{{ asset('storage/' . $fotostatus->foto) }}" class="d-block w-100" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ foto diribersama  -->
+                @endif
 
             </div>
         </div>
