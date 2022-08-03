@@ -45,7 +45,7 @@
                   </li>
                   <li class="{{ Request::is('admin/skpd/akad')? "active":"" }}" ><a class="d-flex align-items-center" href="/admin/skpd/akad"><span class="menu-item text-truncate" data-i18n="Account">Akad</span></a>
                   </li>
-                  <li class="{{ Request::is('admin/skpd/instansi')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/instansi"><span class="menu-item text-truncate" data-i18n="Security">Instansi</span></a>
+                  <li class="{{ Request::is('admin/skpd/instansi')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/intansi"><span class="menu-item text-truncate" data-i18n="Security">Instansi</span></a>
                   </li>
                   <li class="{{ Request::is('admin/skpd/golongan')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/skpd/golongan"><span class="menu-item text-truncate" data-i18n="Security">Golongan</span></a>
                   </li>
@@ -63,15 +63,33 @@
               </li>
               <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Account Settings">Pasar / UMKM</span></a>
                 <ul class="menu-content">
-                  <li><a class="d-flex align-items-center" href="page-account-settings-account.html"><span class="menu-item text-truncate" data-i18n="Account">Account</span></a>
+                  <li class="{{ Request::is('/admin/pasar/parameterbobot*')? "active":"" }}" ><a class="d-flex align-items-center" href="/admin/parameterbobot"><span class="menu-item text-truncate" data-i18n="Account">Parameter Bobot</span></a>
                   </li>
-                  <li><a class="d-flex align-items-center" href="page-account-settings-security.html"><span class="menu-item text-truncate" data-i18n="Security">Security</span></a>
+                  <li class="{{ Request::is('admin/pasar/akad')? "active":"" }}" ><a class="d-flex align-items-center" href="/admin/pasar/akad"><span class="menu-item text-truncate" data-i18n="Account">Akad</span></a>
                   </li>
-                  <li><a class="d-flex align-items-center" href="page-account-settings-billing.html"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Billings &amp; Plans</span></a>
+                  <li class="{{ Request::is('admin/pasar/penggunaan')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/penggunaan"><span class="menu-item text-truncate" data-i18n="Security">Penggunaan</span></a>
                   </li>
-                  <li><a class="d-flex align-items-center" href="page-account-settings-notifications.html"><span class="menu-item text-truncate" data-i18n="Notifications">Notifications</span></a>
+                  <li class="{{ Request::is('admin/pasar/sektorekonomi')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/sektorekonomi"><span class="menu-item text-truncate" data-i18n="Security">Sektor Ekonomi</span></a>
                   </li>
-                  <li><a class="d-flex align-items-center" href="page-account-settings-connections.html"><span class="menu-item text-truncate" data-i18n="Connections">Connections</span></a>
+                  <li class="{{ Request::is('admin/pasar/jenisdagang')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/jenisdagang"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Jenis Dagang</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/pasar/jaminanrumah')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/jaminanrumah"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Jaminan Rumah</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/pasar/jaminanusaha')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/jaminanusaha"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Jaminan Usaha</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/pasar/jenispasar')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/jenispasar"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Jenis Pasar</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/pasar/lamadagang')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/lamadagang"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Lama Usaha / Dagang</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/pasar/sukubangsa')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/sukubangsa"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Suku Bangsa</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/pasar/tanggungan')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/tanggungan"><span class="menu-item text-truncate" data-i18n="Notifications">Tanggungan</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/pasar/statusperkawinan')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/statusperkawinan"><span class="menu-item text-truncate" data-i18n="Notifications">Status Perkawinan</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/pasar/cashpickup')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/cashpickup"><span class="menu-item text-truncate" data-i18n="Notifications">Cash Pick Up</span></a>
+                  </li>
+                  <li class="{{ Request::is('admin/pasar/nasabah')? "active":"" }}"><a class="d-flex align-items-center" href="/admin/pasar/nasabah"><span class="menu-item text-truncate" data-i18n="Notifications">Jenis Nasabah</span></a>
                   </li>
                 </ul>
               </li>

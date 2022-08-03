@@ -25,6 +25,6 @@ class Divisi
             return $next($request);
         }
         return redirect('/');
-        return $next($request);
+        // return $next($request);
     }
 }

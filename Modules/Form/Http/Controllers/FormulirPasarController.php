@@ -6,6 +6,26 @@ use App\Models\Role;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\PasarAkad;
+use Modules\Admin\Entities\PasarLamaBerdagang;
+use Modules\Admin\Entities\PasarJaminanRumahh;
+use Modules\Admin\Entities\PasarJenisDagang;
+use Modules\Admin\Entities\PasarJenisJaminan;
+use Modules\Admin\Entities\PasarJenisPasar;
+use Modules\Admin\Entities\PasarPenggunaan;
+use Modules\Admin\Entities\PasarSektorEkonomi;
+use Modules\Admin\Entities\PasarStatusPerkawinan;
+use Modules\Admin\Entities\PasarTanggungan;
+use Modules\Pasar\Entities\PasarDokumen;
+use Modules\Pasar\Entities\PasarFoto;
+use Modules\Pasar\Entities\PasarJaminan;
+use Modules\Pasar\Entities\PasarJaminanLain;
+use Modules\Pasar\Entities\PasarKeteranganUsaha;
+use Modules\Pasar\Entities\PasarLegalitasRumah;
+use Modules\Pasar\Entities\PasarNasabahh;
+use Modules\Pasar\Entities\PasarPembiayaan;
+use Modules\Pasar\Entities\PasarPembiayaanHistory;
+use Modules\Pasar\Entities\PasarSlik;
 
 
 class FormulirPasarController extends Controller
@@ -15,8 +35,22 @@ class FormulirPasarController extends Controller
      * @return Renderable
      */
     public function index()
-    {
-        return view('form::umkm.index');
+    {  
+        return view('form::pasar.index',[
+            
+            'akads'=>PasarAkad::all(),
+            'penggunaans'=>PasarPenggunaan::all(),
+            'sektors'=>PasarSektorEkonomi::all(),
+            'pasars'=>PasarJenisPasar::all(),
+            'lamas'=>PasarLamaBerdagang::all(),
+            'rumahs'=>PasarJaminanRumahh::all(),
+            'dagangs'=>PasarJenisDagang::all(),
+            'aos'=>Role::select()->where('jabatan_id',1)->get(),
+            'tanggungans'=>PasarTanggungan::all(),
+            'statuss'=>PasarStatusPerkawinan::all(),
+            'jaminans'=>PasarJenisJaminan::all(),
+
+        ]);
     }
 
     /**
@@ -35,18 +69,15 @@ class FormulirPasarController extends Controller
      */
     public function store(Request $request)
     {
-
+        // return dd($request);
         $hitung=PasarPembiayaan::select()->get()->count();
         $id=$hitung+1;
-
-         PasarPembiayaan::create([
+        PasarPembiayaan::create([
             'id'=>$id,
             'tgl_pembiayaan'=> $request ->tgl_pembiayaan,
             'nasabah_id'=> $id,
             'AO_id'=>$request->AO_id,
             'penggunaan_id'=> $request ->penggunaan_id,
-            'sektor_id'=> $request ->sektor_id,
-            'akad_id'=> $request ->akad_id,
             'pesanan_blok'=> $request ->pesanan_blok,
             'tenor'=> $request ->tenor,
             'nominal_pembiayaan'=> $request ->nominal_pembiayaan,
@@ -56,8 +87,9 @@ class FormulirPasarController extends Controller
             'administrasi'=> $request ->administrasi,
             'jumlah'=> $request ->jumlah,
             'jaminan_id'=> $id,
+            'jaminanlain_id'=> $id,
             'pasar_legalitas_rumah_id'=> $id,
-            'pasar_usaha_id'=> $id,
+            'pasar_keterangan_usaha_id'=> $id,
             'jaminanlain_id'=> $request ->jaminanlain_id,
             'omset'=>str_replace(",","",$request->omset),
             'hpp'=>str_replace(",","",$request->hpp),
@@ -66,7 +98,6 @@ class FormulirPasarController extends Controller
             'karyawan'=>str_replace(",","",$request->karyawan),
             'telpon'=>str_replace(",","",$request->telpon),
             'sewa'=>str_replace(",","",$request->sewa),
-            'cicilan_btb'=>str_replace(",","",$request->cicilan_btb),
             'slik_id'=>$id,
             'keb_keluarga'=>str_replace(",","",$request->keb_keluarga),
             'kesanggupan_angsuran'=>str_replace(",","",$request->kesanggupan_angsuran),
@@ -93,22 +124,35 @@ class FormulirPasarController extends Controller
             'nama_ibu'=> $request ->nama_ibu,
             'agama_id'=> $request ->agama_id,
             'status_id'=> $request ->status_id,
+            'jenis_kelamin'=>$request ->jenis_kelamin,
             'pendidikan'=> $request ->pendidikan,
             'jumlah_anak'=> $request ->jumlah_anak,
             'npwp'=> $request ->npwp,
-            'no_tlp'=> $request ->no_tlp,
+            'no_tlp'=>str_replace("+62 0","",$request->no_tlp),
             'namaot'=> $request ->namaot,
             'alamat_ot'=> $request ->alamat_ot,
-            'telp_ot'=> $request ->telp_ot,
+            'telp_ot'=> str_replace("+62 0","",$request ->telp_ot),
             'foto_id'=> $id,
         ]);
 
-        // PasarJaminan::create([
-        //     'id'=>$id,
-        //     'pasar_pembiayaan_id'=> $id,
-        //     'no_ktb'=> $request ->no_ktb,
-        //     'dokumen_jaminan_kbr'=> $request ->dokumen_jaminan_kbr,
-        // ]);
+        
+        $dokumenktb=$request->file('dokumenktb')->store('pasar-dokumen-ktb');
+        
+
+        PasarJaminan::create([
+            'id'=>$id,
+            'pasar_pembiayaan_id'=> $id,
+            'no_ktb'=> $request ->no_ktb,
+            'dokumenktb'=> $dokumenktb,
+        ]);
+
+
+        PasarJaminanLain::create([
+            'id'=>$id,
+            'pasar_pembiayaan_id'=> $id,
+            'jaminanlain'=> $request ->jaminanlain,
+            'dokumen_jaminan'=>$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminanlain'),
+        ]);
 
         PasarLegalitasRumah::create([
             'id'=>$id,
@@ -118,12 +162,16 @@ class FormulirPasarController extends Controller
             'dokumen_legalitas_kepemilikan_rumah'=> $request ->dokumen_legalitas_kepemilikan_rumah,
         ]);
 
+        PasarPembiayaanHistory::create([
+            'pasar_pembiayaan_id'=> $id,
+            'status'=> 'Calon Debitur Menginput Permohonan',
+            'user_id'=> null,
+        ]);
+        
         PasarKeteranganUsaha::create([
             'id'=>$id,
             'pasar_pembiayaan_id'=> $id,
-            'jenis_pasar_id'=>$request->jenis_pasar_id,
-            'suku_bangsa_id'=>$request->jenis_pasar_id,
-            'kepala_pasar_id'=>$request->jenis_pasar_id,
+            'jenispasar_id'=>$request->jenispasar_id,
             'nama_usaha'=>$request->nama_usaha,
             'lama_usaha'=>$request->lama_usaha,
             'kep_toko_id'=>$request->kep_toko_id,
@@ -137,7 +185,7 @@ class FormulirPasarController extends Controller
             'foto.*.kategori'=>'required',
             'foto.*.foto'=>'required',
         ]);
-
+        
         foreach($request->foto as $key => $value){
             if($value['foto']){
                 $foto=$value['foto']->store('foto-pasar-pembiayaan');
@@ -147,12 +195,14 @@ class FormulirPasarController extends Controller
                 'kategori'=>$value['kategori'],
                 'foto'=>$foto,
             ]);
-
         }
+
+        
+        
         return redirect()->back()->with('success', 'Data Pasar Berhasil Ditambahkan');
     }
-
-
+    
+    
 
     /**
      * Show the specified resource.
@@ -182,7 +232,7 @@ class FormulirPasarController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        
     }
 
     /**

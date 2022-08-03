@@ -33,7 +33,21 @@ class HomeController extends Controller
                 $url='/admin';
             }
             if ($role->divisi_id==1) {
-                $url='/skpd';
+                if ($role->jabatan_id==1){
+                    $url='/skpd';
+                }
+                elseif ($role->jabatan_id==2){
+                    $url='/kabag';
+                }
+                elseif ($role->jabatan_id==3){
+                    $url='/analis';
+                }
+                elseif ($role->jabatan_id==4){
+                    $url='/direksi';
+                }
+                else{
+                    $url='/';
+                }
             }
         }
 

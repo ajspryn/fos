@@ -18,7 +18,7 @@ use Modules\Skpd\Http\Controllers\SkpdNasabahController;
 Route::prefix('skpd')->group(function() {
     Route::resource('/pembiayaan', SkpdController::class);
 });
-Route::prefix('skpd')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:1'])->group(function() {
+Route::prefix('skpd')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:1', 'jabatan:1'])->group(function() {
     Route::get('/', 'SkpdController@index');
     Route::resource('/nasabah', SkpdNasabahController::class);
     Route::resource('/komite', SkpdKomiteController::class);

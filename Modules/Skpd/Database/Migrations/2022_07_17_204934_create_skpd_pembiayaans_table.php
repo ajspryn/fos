@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer("user_id");
             $table->date("tanggal_pengajuan");
             $table->string("nominal_pembiayaan");
+            $table->string("rate")->nullable();
             $table->string("tenor");
             $table->string("skpd_jenis_penggunaan_id")->nullable();
             $table->string("skpd_sektor_ekonomi_id")->nullable();
@@ -29,6 +30,8 @@ return new class extends Migration
             $table->string("gaji_pokok");
             $table->string("pendapatan_lainnya");
             $table->string("gaji_tpp")->nullable();
+            $table->string("dokumen_keuangan");
+            $table->string("dokumen_slip_gaji");
             $table->string("pengeluaran_lainnya")->nullable();
             $table->string("keterangan_pengeluaran_lainnya")->nullable();
             $table->timestamps();
