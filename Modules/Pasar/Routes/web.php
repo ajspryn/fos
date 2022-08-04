@@ -19,7 +19,7 @@ use Modules\Pasar\Http\Controllers\PasarProposalController;
 // Route::prefix('pasar')->middleware(['auth:sanctum', 'verified'])->group(function() {
 //     Route::get('/', 'PasarController@index');
 // });
-Route::prefix('pasar')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:2','jabatan:1'])->group(function() {
+Route::prefix('pasar')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:2',])->group(function() {
     Route::get('/', 'PasarController@index');
     Route::resource('/nasabah', PasarNasabahController::class);
     Route::resource('/komite', PasarKomiteController::class);

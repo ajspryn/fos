@@ -2,7 +2,7 @@
 
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route;
 use Modules\Admin\Http\Controllers\AdminController;
 use Modules\Admin\Http\Controllers\SkpdAkadController;
 use Modules\Admin\Http\Controllers\PasarAkadController;
@@ -37,7 +37,7 @@ use Modules\Admin\Http\Controllers\PasarAtatusPerkawinanController;
 |
 */
 
-Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:1'])->group(function() {
+Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:1' , 'divisi:0' , 'jabatan:0'])->group(function() {
     Route::get('/', 'AdminController@index');
     Route::resource('/skpd/akad', SkpdAkadController::class);
     Route::resource('/skpd/penggunaan', SkpdJenisPenggunaanController::class);

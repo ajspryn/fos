@@ -36,10 +36,10 @@ class PasarKomiteController extends Controller
      * @return Renderable
      */
     public function index()
-    {  
+    {
         // $komite=PasarPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->get();
         $komite=PasarPembiayaanHistory::select()->where('status', 'Proposal Disetujui Oleh Analis')->get();
-        return view('analis::pasar.proposal.index',[
+        return view('analis::pasar.komite.index',[
             'title'=>'Data Nasabah',
             'komites'=>$komite,
         ]);
@@ -93,7 +93,7 @@ class PasarKomiteController extends Controller
         $harga_jual=$harga1+$harga;
 
         $angsuran1=(int)($harga_jual/$tenor);
-        
+
 
         //pemasukan
 
@@ -130,14 +130,14 @@ class PasarKomiteController extends Controller
 
 
         $proses_jaminanlain=PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first();
-        
+
         // if(!isset($proses_jaminanlain)){
         //     $prosesjaminanlain=PasarJenisJaminan::select()->where('kol',null)->get()->first();
         // }
         // else{
         //     $prosesslik=PasarScoreSlik::select()->where('kol',$data_slik->kol)->get()->first();
         // }
-        //score 
+        //score
 
         $score_kepalapasar=$proses_kepalapasar->rating;
         $score_jenispasar=$proses_jenispasar->rating;
@@ -158,7 +158,7 @@ class PasarKomiteController extends Controller
         if($idir>=50 && $idir<=60){
             $proses_idir=PasarScoreIdir::select()->where('rating',3)->get()->first();
         }
-    
+
         if($idir>=60 && $idir<=69){
             $proses_idir=PasarScoreIdir::select()->where('rating',2)->get()->first();
         }
@@ -166,13 +166,13 @@ class PasarKomiteController extends Controller
         if( $idir>=70){
             $proses_idir=PasarScoreIdir::select()->where('rating',1)->get()->first();
         }
-       
+
 
 
         $score_idir=$proses_idir->rating;
-        //slik 
+        //slik
 
-        $data_slik=PasarSlik::select()->where('pasar_pembiayaan_id',$id)->orderBy('kol', 'desc')->get()->first(); 
+        $data_slik=PasarSlik::select()->where('pasar_pembiayaan_id',$id)->orderBy('kol', 'desc')->get()->first();
 
         if(!isset($data_slik)){
             $prosesslik=PasarScoreSlik::select()->where('kol',null)->get()->first();
@@ -182,9 +182,9 @@ class PasarKomiteController extends Controller
         }
         $score_slik = $prosesslik->rating;
 
-      
-      
-      
+
+
+
     //    return $harga1;
         return view('analis::pasar.komite.lihat',[
             'title'=>'Detail Calon Nasabah',
@@ -220,7 +220,7 @@ class PasarKomiteController extends Controller
             'angsuran'=>$angsuran1,
             'nilai_idir'=>$idir,
             'harga_jual'=>$harga_jual,
-        
+
             //rating
             'rating_kepalapasar'=>$score_kepalapasar,
             'rating_jenispasar'=>$score_jenispasar,
@@ -245,8 +245,8 @@ class PasarKomiteController extends Controller
             'score_slik'=>$score_slik * $prosesslik->bobot,
             'score_idir'=>$score_idir *$proses_idir->bobot,
             'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
-             
-            
+
+
         ]);
     }
 

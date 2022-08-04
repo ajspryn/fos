@@ -30,44 +30,40 @@ class HomeController extends Controller
 
         if ($role){
             if ($role->divisi_id==0) {
-                $url='/admin';
+                if ($role->jabatan_id==0){
+                    $url='/admin';
+                }
+                elseif ($role->jabatan_id==2){
+                    $url='/kabag';
+                }
+                elseif ($role->jabatan_id==3){
+                    $url='/analis';
+                }
+                elseif ($role->jabatan_id==4){
+                    $url='/direksi';
+                }
+                else{
+                    $url='/';
+                }
             }
-
-            if ($role->divisi_id==1) {
-                if ($role->jabatan_id==1){
+            elseif ($role->divisi_id==1) {
                     $url='/skpd';
-                }
-                elseif ($role->jabatan_id==2){
-                    $url='/kabag';
-                }
-                elseif ($role->jabatan_id==3){
-                    $url='/analis';
-                }
-                elseif ($role->jabatan_id==4){
-                    $url='/direksi';
-                }
-                else{
+            }
+            elseif ($role->divisi_id==2) {
+                    $url='/pasar';
+            }
+            elseif ($role->divisi_id==3) {
+                    $url='/umkm';
+            }
+            elseif ($role->divisi_id==4) {
+                    $url='/ppr';
+            }
+            else{
                     $url='/';
-                }
+
             }
 
-            if ($role->divisi_id==2) {
-                if ($role->jabatan_id==1){
-                    $url='/pasar';
-                }
-                elseif ($role->jabatan_id==2){
-                    $url='/kabag';
-                }
-                elseif ($role->jabatan_id==3){
-                    $url='/analis';
-                }
-                elseif ($role->jabatan_id==4){
-                    $url='/direksi';
-                }
-                else{
-                    $url='/';
-                }
-            }
+
         }
 
 

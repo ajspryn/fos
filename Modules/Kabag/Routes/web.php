@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Modules\Kabag\Http\Controllers\KabagKomiteController;
 use Modules\Kabag\Http\Controllers\KabagProposalController;
 
@@ -14,7 +15,7 @@ use Modules\Kabag\Http\Controllers\KabagProposalController;
 |
 */
 
-Route::prefix('kabag')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:1', 'jabatan:2'])->group(function() {
+Route::prefix('kabag')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:0', 'jabatan:2'])->group(function() {
     Route::get('/', 'KabagController@index');
     Route::resource('/komite', KabagKomiteController::class);
     Route::resource('/proposal', KabagProposalController::class);
