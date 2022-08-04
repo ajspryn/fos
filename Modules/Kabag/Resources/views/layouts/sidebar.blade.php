@@ -34,8 +34,8 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span
                         class="menu-title text-truncate" data-i18n="User">SKPD</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="app-user-list.html"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Data
+                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="List">Data
                                 Nasabah</span></a>
                     </li>
                     <li><a class="d-flex align-items-center" href="app-user-list.html"><i

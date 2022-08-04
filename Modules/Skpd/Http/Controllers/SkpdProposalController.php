@@ -116,10 +116,14 @@ class SkpdProposalController extends Controller
                         'no_npwp'=>$request->no_npwp,
                     ]);
 
+
+        $role=role::select()->where('user_id', Auth::user()->id)->get()->first();
         $dokumen_keuangan= $request->foto->store('ideb-skpd-pembiayaan');
         SkpdPembiayaanHistory::create([
             'skpd_pembiayaan_id'=> $id,
-            'status'=> 'AO Telah Melengkapi Proposal',
+            'status_id'=> 1,
+            'jabatan_id'=>$role->jabatan_id,
+            'divisi_id'=>$role->divisi_id,
             'user_id'=> Auth::user()->id,
         ]);
 

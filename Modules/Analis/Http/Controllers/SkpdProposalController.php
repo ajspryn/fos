@@ -5,6 +5,7 @@ namespace Modules\Analis\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Skpd\Entities\SkpdPembiayaanHistory;
 
 class SkpdProposalController extends Controller
 {
@@ -14,7 +15,11 @@ class SkpdProposalController extends Controller
      */
     public function index()
     {
-        return view('analis::index');
+        $proposal=SkpdPembiayaanHistory::select()->where('status', 'Proposal Disetujui Oleh Kabag')->get();
+        return view('analis::skpd.proposal.index',[
+            'title'=>'Data Nasabah',
+            'proposals'=>$proposal,
+        ]);
     }
 
     /**

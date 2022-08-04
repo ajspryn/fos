@@ -15,6 +15,7 @@ class PasarNasabahh extends Model
     protected $guarded = [
         'created_at'
     ];
+
     public function pembiayaan()
     {
         return $this->hasMany(PasarPembiayaan::class);
@@ -29,5 +30,5 @@ class PasarNasabahh extends Model
     {
         return $this->belongsTo(PasarTanggungan::class,'jumlah_anak', 'id');
     }
-   
+
 }

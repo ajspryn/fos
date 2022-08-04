@@ -58,9 +58,9 @@ class PasarProposalController extends Controller
      */
     public function store(Request $request)
     {
-        
 
-   
+
+
     }
 
     /**
@@ -70,7 +70,7 @@ class PasarProposalController extends Controller
      */
     public function show($id)
     {
-       
+
         $datafoto=PasarFoto::select()->where('pasar_pembiayaan_id',$id)->get();
         $foto=$datafoto;
         return view('pasar::proposal.lihat',[
@@ -118,7 +118,7 @@ class PasarProposalController extends Controller
     {
         {
             // return $request;
-            
+
             $dokumen_keuangan=$request->file('dokumen_keuangan')->store('pasar-dokumen-keuangan');
 
             PasarPembiayaan::where('id',$id)
@@ -139,25 +139,29 @@ class PasarProposalController extends Controller
                             'alamat_domisili'=>$request->alamat_domisili,
                             'npwp'=>$request->npwp,
                         ]);
-            
+
             PasarKeteranganUsaha::where('id',$id)
             ->update([
                 'jenispasar_id'=>$request->jenispasar_id,
                 'suku_bangsa_id'=>$request->suku_bangsa_id,
                 'kepala_pasar_id'=>$request->kepala_pasar_id,
-        
+
             ]);
-    
+
+            $role=role::select()->where('user_id', Auth::user()->id)->get()->first();
+
             PasarPembiayaanHistory::create([
                 'pasar_pembiayaan_id'=> $id,
-                'status'=> 'AO Telah Melengkapi Proposal',
+                'status_id'=> 1,
+                'jabatan_id'=>$role->jabatan_id,
+                'divisi_id'=>$role->divisi_id,
                 'user_id'=> Auth::user()->id,
             ]);
 
             foreach ($request->slik as $key => $value) {
-    
-           
-    
+
+
+
                 // return $value;
                 PasarSlik::create([
                     'pasar_pembiayaan_id'=>$id,
@@ -171,9 +175,9 @@ class PasarProposalController extends Controller
                     'kol'=> $value['kol'],
                 ]);
             }
-    
+
             return redirect('/pasar/komite/')->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
-    
+
     }
     }
 
