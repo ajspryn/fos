@@ -73,9 +73,11 @@
                                                 <td style="text-align: center">{{ $komite->harga }}</td>
                                                 <td style="text-align: center">{{ $komite->tgl_pembiayaan }}</td>
                                                 <td style="text-align: center"><span
-                                                        class="badge rounded-pill badge-light-info">{{ $history->status }}</span>
-                                                </td>
-                                                <td style="text-align: center">
+                                                        value="{{ $history->statushistory->id }}, {{ $history->jabatan->jabatan_id }}">
+                                                        <span
+                                                            class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    <td style="text-align: center">
                                                     <a href="/pasar/komite/{{ $komite->id }}"
                                                         class="btn btn-outline-info round">Detail</a>
                                                 </td>
@@ -179,8 +181,8 @@
                                                 </td> --}}
                                                 {{-- <td style="text-align: center">{{ $proposal_pasar->user->name }}</td> --}}
                                                 <td>
-                                                <a href="/pasar/komite/{{ $proposal_pasar->id }}"
-                                                    class="btn btn-outline-info round">Detail</a>
+                                                    <a href="/pasar/komite/{{ $proposal_pasar->id }}"
+                                                        class="btn btn-outline-info round">Detail</a>
                                                 </td>
                                             </tr>
                                         @endforeach

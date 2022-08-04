@@ -5,6 +5,7 @@ namespace Modules\Kabag\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Pasar\Entities\PasarPembiayaan;
 
 class PasarProposalController extends Controller
 {
@@ -12,11 +13,13 @@ class PasarProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
-    {
-        return view('kabag::index');
+    public function index(){
+        $proposal=PasarPembiayaan::select()->get();
+        return view('kabag::pasar.proposal.index',[
+            'title'=>'Data Nasabah',
+            'proposals'=>$proposal,
+        ]);
     }
-
     /**
      * Show the form for creating a new resource.
      * @return Renderable

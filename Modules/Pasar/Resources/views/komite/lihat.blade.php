@@ -802,8 +802,8 @@
                                                                 </div>
                                                                 <input type="hidden" name="pasar_pembiayaan_id"
                                                                     value="{{ $pembiayaan->id }}">
-                                                                <input type="hidden" name="status"
-                                                                    value="Proposal Diteruskan Ke Komite Oleh AO">
+                                                                <input type="hidden" name="status_id" value=3>
+                                                                <input type="hidden" name="jabatan_id" value=1>
                                                                 <input type="hidden" name="user_id"
                                                                     value="{{ Auth::user()->id }}">
 

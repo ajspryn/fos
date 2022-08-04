@@ -39,12 +39,11 @@ class PasarProposalController extends Controller
      */
     public function index()
     {
-        // $komite=PasarPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->get();
-        // $role=Role::select()->where('user_id',Auth::user()->id)->get()->first();
-        $komite=PasarPembiayaanHistory::select()->where('jabatan_id', 2 )->orderby('created_at','desc')->get();
+
+        $proposal=PasarPembiayaan::select()->get();
         return view('analis::pasar.proposal.index',[
             'title'=>'Data Nasabah',
-            'komites'=>$komite,
+            'proposals'=>$proposal,
         ]);
     }
 

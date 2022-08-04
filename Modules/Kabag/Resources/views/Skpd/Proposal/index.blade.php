@@ -1,7 +1,6 @@
-@extends('kabag::layouts.main')
+@extends('analis::layouts.main')
 
 @section('content')
-    <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -10,14 +9,14 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Data Proposal Nasabah</h2>
+                            <h2 class="content-header-title float-start mb-0">Data Proposal</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/skpd">Skpd</a>
+                                    <li class="breadcrumb-item"><a href="/skpd">SKPD</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Proposal</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Data Proposal
+                                    <li class="breadcrumb-item active">Data Pengajuan
                                     </li>
                                 </ol>
                             </div>
@@ -35,26 +34,23 @@
                                     <tr>
                                         <th style="text-align: center"></th>
                                         <th style="text-align: center">No</th>
-                                        <th style="text-align: center">Nama nasabahh</th>
+                                        <th style="text-align: center">Nama Nasabah</th>
                                         <th style="text-align: center">Alamat</th>
-                                        <th style="text-align: center">Nama Kios / Los</th>
-                                        <th style="text-align: center">Alamat Pasar</th>
+                                        <th style="text-align: center">Instansi</th>
+                                        <th style="text-align: center">Golongan</th>
                                         <th style="text-align: center">Nominal Pembiayaan</th>
-                                        <th style="text-align: center">Tanggal Pengajuan</th>
-                                        {{-- <th style="text-align: center">AO Yang Menangani</th> --}}
-                                        <th style="text-align: center">Status</th>
                                         <th style="text-align: center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($komites as $komite)
+                                    @foreach ($proposals as $proposal)
                                         @php
-                                            $proposal_skpd = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                ->where('id', $komite->pasar_pembiayaan_id)
+                                            $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                                ->where('id', $proposal->skpd_pembiayaan_id)
                                                 ->get()
                                                 ->first();
 
-                                            $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+                                            $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
                                                 ->where('skpd_pembiayaan_id', $proposal_skpd->id)
                                                 ->orderby('created_at', 'desc')
                                                 ->get()
@@ -68,27 +64,17 @@
                                                 </button>
                                             </td>
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
-                                            <td>{{ $proposal_skpd->nasabahh->nama_nasabah }}</td>
-                                            <td>{{ $proposal_skpd->nasabahh->alamat }},
-                                                {{ $proposal_skpd->nasabahh->rt }},
-                                                {{ $proposal_skpd->nasabahh->rw }},
-                                                {{ $proposal_skpd->nasabahh->desa_kelurahan }},
-                                                {{ $proposal_skpd->nasabahh->kecamatan }},
-                                                {{ $proposal_skpd->nasabahh->kabkota }},
-                                                {{ $proposal_skpd->nasabahh->provinsi }}</td>
+                                            <td>{{ $proposal_skpd->nasabah->nama_nasabah }}</td>
+                                            <td>{{ $proposal_skpd->nasabah->alamat }}, {{ $proposal_skpd->nasabah->rt }},
+                                                {{ $proposal_skpd->nasabah->rw }}, {{ $proposal_skpd->nasabah->desa_kelurahan }},
+                                                {{ $proposal_skpd->nasabah->kecamatan }}, {{ $proposal_skpd->nasabah->kabkota }},
+                                                {{ $proposal_skpd->nasabah->provinsi }}</td>
+                                            <td style="text-align: center">{{ $proposal_skpd->instansi->nama_instansi }}</td>
+                                            <td style="text-align: center">{{ $proposal_skpd->golongan->nama_golongan }}</td>
+                                            <td style="text-align: center">Rp.
+                                                {{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
                                             <td style="text-align: center">
-                                                {{ $proposal_skpd->keteranganusaha->nama_usaha }}</td>
-                                            <td style="text-align: center"
-                                                value="{{ $proposal_skpd->keteranganusaha->jenispasar->nama_pasar }}">
-                                                {{ $proposal_skpd->keteranganusaha->jenispasar->nama_pasar }}</td>
-                                            <td style="text-align: center">{{ $proposal_skpd->harga }}</td>
-                                            <td style="text-align: center">{{ $proposal_skpd->tgl_pembiayaan }}</td>
-                                            <td style="text-align: center"><span
-                                                    class="badge rounded-pill badge-light-info">{{ $history->status }}</span>
-                                            </td>
-                                            {{-- <td style="text-align: center">{{ $proposal_skpd->user->name }}</td> --}}
-                                            <td>
-                                                <a href="/analis/pasar/komite/{{ $proposal_skpd->id }}"
+                                                <a href="/analis/skpd/komite/{{ $proposal_skpd->id }}"
                                                     class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
@@ -103,4 +89,3 @@
         </div>
     </div>
 @endsection
-<

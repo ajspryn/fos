@@ -1,7 +1,7 @@
 <?php
 
 namespace Modules\Analis\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -38,7 +38,7 @@ class PasarKomiteController extends Controller
     public function index()
     {
         // $komite=PasarPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->get();
-        $komite=PasarPembiayaanHistory::select()->where('status', 'Proposal Disetujui Oleh Analis')->get();
+        $komite=PasarPembiayaanHistory::select()->where('status_id', 5 )->get();
         return view('analis::pasar.komite.index',[
             'title'=>'Data Nasabah',
             'komites'=>$komite,
@@ -64,8 +64,8 @@ class PasarKomiteController extends Controller
         PasarPembiayaanHistory::create([
             'pasar_pembiayaan_id'=>$request->pasar_pembiayaan_id,
             'catatan'=>$request->catatan,
-            'status_id'=>4,
-            'user_id'=>auth::user()->id;
+            'status_id'=>5,
+            'user_id'=>Auth::user()->id,
             'jabatan_id'=>3,
             'divisi_id'=>null,
         ]);
@@ -78,6 +78,14 @@ class PasarKomiteController extends Controller
      */
     public function show($id)
     {
+        PasarPembiayaanHistory::create([
+            'pasar_pembiayaan_id'=>$id,
+            'status_id'=>4,
+            'jabatan_id'=>3,
+            'divisi_id'=>0,
+            'user_id'=>Auth::user()->$id,
+        ]);
+
         $data=PasarPembiayaan::select()->where('id',$id)->get()->first();
         $nasabah=PasarNasabahh::select()->where('id',$id)->get()->first();
         $usaha=PasarKeteranganUsaha::select()->where('pasar_pembiayaan_id',$id)->get()->first();
@@ -187,7 +195,7 @@ class PasarKomiteController extends Controller
 
 
 
-    //    return $harga1;
+        //    return $harga1;
         return view('analis::pasar.komite.lihat',[
             'title'=>'Detail Calon Nasabah',
             // 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
@@ -250,7 +258,7 @@ class PasarKomiteController extends Controller
 
 
         ]);
-    }
+}
 
     /**
      * Show the form for editing the specified resource.

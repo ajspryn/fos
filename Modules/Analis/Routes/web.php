@@ -1,7 +1,12 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Modules\Analis\Http\Controllers\PasarKomiteController;
 use Modules\Analis\Http\Controllers\PasarNasabahController;
 use Modules\Analis\Http\Controllers\PasarProposalController;
+use Modules\Analis\Http\Controllers\SkpdKomiteController;
+use Modules\Analis\Http\Controllers\SkpdNasabahController;
+use Modules\Analis\Http\Controllers\SkpdProposalController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +23,8 @@ Route::prefix('analis')->middleware(['auth:sanctum', 'role:2', 'divisi:0', 'jaba
     Route::resource('/pasar/proposal', PasarProposalController::class);
     Route::resource('/pasar/komite', PasarKomiteController::class);
     Route::resource('/pasar/nasabah', PasarNasabahController::class);
+    Route::resource('/skpd/proposal', SkpdProposalController::class);
+    Route::resource('/skpd/komite', SkpdKomiteController::class);
+    Route::resource('/skpd/nasabah', SkpdNasabahController::class);
 
 });

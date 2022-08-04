@@ -18,8 +18,13 @@ class SkpdPembiayaanHistory extends Model
         return $this->belongsTo(SkpdNasabah::class);
     }
 
-    protected static function newFactory()
+       public function statushistory()
     {
-        return \Modules\Skpd\Database\factories\SkpdPembiayaanHistoryFactory::new();
+        return $this->belongsTo(Status::class,'status_id', 'id');
+    }
+
+      public function jabatan()
+    {
+        return $this->belongsTo(keterangan_jabatan::class,'jabatan_id','jabatan_id');
     }
 }

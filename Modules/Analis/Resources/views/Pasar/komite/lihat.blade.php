@@ -37,7 +37,7 @@
                                             <a class="nav-link" id="settings-tab-justified" data-bs-toggle="tab"
                                                 href="#legalitas-pekerjaan" role="tab" aria-controls="settings-just"
                                                 aria-selected="false">Legalitas
-                                                Pekerjaan</a>
+                                                Usaha</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="settings-tab-justified" data-bs-toggle="tab"
@@ -57,7 +57,7 @@
                                     </ul>
                                     <!-- Tab panes -->
                                     <div class="tab-content pt-1">
-                                        <div class="tab-pane " id="proposal"
+                                        <div class="tab-pane active " id="proposal"
                                             role="tabpanel"aria-labelledby="home-tab-justified">
                                             <!-- Invoice -->
                                             <div class="col-xl-12 col-md-8 col-12">
@@ -67,7 +67,7 @@
                                                         <div
                                                             class="d-flex justify-content-center flex-xl-row flex-column invoice-spacing mt-0">
                                                             <div>
-                                                                <h4>Summary Kabag</h4>
+                                                                <h4>Summary Analis</h4>
                                                                 <hr>
                                                                 <div class="table-responsive mt-1">
                                                                     <table class="table">
@@ -713,7 +713,7 @@
                                                         </table>
                                                     </div>
                                                     <div class="col-xl-5 p-0 mt-xl-0 mt-2">
-                                                        @if ($history->status == 'Proposal Diteruskan Ke Komite Oleh Kabag')
+                                                        @if ($history->status_id == 4)
                                                             <div class="card-body">
                                                                 <button class="btn btn-primary w-100"
                                                                     data-bs-toggle="modal"
@@ -774,7 +774,7 @@
 
                                                             <!-- form -->
                                                             <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"
-                                                                method="POST" action="/analis/pasar/proposal">
+                                                                method="POST" action="/analis/pasar/komite">
                                                                 @csrf
 
                                                                 <div class="col-md-12">
@@ -784,8 +784,7 @@
                                                                 </div>
                                                                 <input type="hidden" name="pasar_pembiayaan_id"
                                                                     value="{{ $pembiayaan->id }}">
-                                                                <input type="hidden" name="status"
-                                                                    value="Proposal Disetujui Oleh Analis">
+                                                                <input type="hidden" name="status" value=5>
                                                                 <input type="hidden" name="user_id"
                                                                     value="{{ Auth::user()->id }}">
 

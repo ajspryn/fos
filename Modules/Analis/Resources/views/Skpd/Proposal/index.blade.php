@@ -44,6 +44,18 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($proposals as $proposal)
+                                        @php
+                                            $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                                ->where('id', $proposal->skpd_pembiayaan_id)
+                                                ->get()
+                                                ->first();
+
+                                            $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                                                ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+                                                ->orderby('created_at', 'desc')
+                                                ->get()
+                                                ->first();
+                                        @endphp
                                         <tr>
                                             <td style="text-align: center">
                                                 <button type="button"
@@ -52,18 +64,18 @@
                                                 </button>
                                             </td>
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
-                                            <td>{{ $proposal->nasabah->nama_nasabah }}</td>
-                                            <td>{{ $proposal->nasabah->alamat }}, {{ $proposal->nasabah->rt }},
-                                                {{ $proposal->nasabah->rw }}, {{ $proposal->nasabah->desa_kelurahan }},
-                                                {{ $proposal->nasabah->kecamatan }}, {{ $proposal->nasabah->kabkota }},
-                                                {{ $proposal->nasabah->provinsi }}</td>
-                                            <td style="text-align: center">{{ $proposal->instansi->nama_instansi }}</td>
-                                            <td style="text-align: center">{{ $proposal->golongan->nama_golongan }}</td>
+                                            <td>{{ $proposal_skpd->nasabah->nama_nasabah }}</td>
+                                            <td>{{ $proposal_skpd->nasabah->alamat }}, {{ $proposal_skpd->nasabah->rt }},
+                                                {{ $proposal_skpd->nasabah->rw }}, {{ $proposal_skpd->nasabah->desa_kelurahan }},
+                                                {{ $proposal_skpd->nasabah->kecamatan }}, {{ $proposal_skpd->nasabah->kabkota }},
+                                                {{ $proposal_skpd->nasabah->provinsi }}</td>
+                                            <td style="text-align: center">{{ $proposal_skpd->instansi->nama_instansi }}</td>
+                                            <td style="text-align: center">{{ $proposal_skpd->golongan->nama_golongan }}</td>
                                             <td style="text-align: center">Rp.
-                                                {{ number_format($proposal->nominal_pembiayaan) }}</td>
+                                                {{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
                                             <td style="text-align: center">
-                                                <a href="/skpd/proposal/{{ $proposal->id }}"
-                                                    class="btn btn-outline-info round">Lengkapi</a>
+                                                <a href="/analis/skpd/komite/{{ $proposal_skpd->id }}"
+                                                    class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
                                     @endforeach

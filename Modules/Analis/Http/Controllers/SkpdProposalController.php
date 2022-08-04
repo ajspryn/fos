@@ -15,7 +15,7 @@ class SkpdProposalController extends Controller
      */
     public function index()
     {
-        $proposal=SkpdPembiayaanHistory::select()->where('status', 'Proposal Disetujui Oleh Kabag')->get();
+        $proposal=SkpdPembiayaanHistory::select()->where('jabatan_id', 2 )->orderby('created_at','desc')->get();
         return view('analis::skpd.proposal.index',[
             'title'=>'Data Nasabah',
             'proposals'=>$proposal,

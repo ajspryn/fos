@@ -62,7 +62,7 @@
                                                 ->first();
                                         @endphp
 
-                                        @if ($history->status_id == 5 && $history->jabatan_id == 2)
+                                        @if ($history->status_id == 3 && $history->jabatan_id == 1)
                                             <tr>
                                                 <td style="text-align: center">
                                                     <button type="button"
@@ -94,7 +94,7 @@
                                                 </td>
                                                 {{-- <td style="text-align: center">{{ $proposal_pasar->user->name }}</td> --}}
                                                 <td>
-                                                    <a href="/analis/pasar/komite/{{ $proposal_pasar->id }}"
+                                                    <a href="/kabag/pasar/komite/{{ $proposal_pasar->id }}"
                                                         class="btn btn-outline-info round">Detail</a>
                                                 </td>
                                             </tr>

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Kabag\Http\Controllers\KabagKomiteController;
 use Modules\Kabag\Http\Controllers\KabagProposalController;
+use Modules\Kabag\Http\Controllers\PasarKomiteController;
+use Modules\Kabag\Http\Controllers\PasarProposalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,11 @@ Route::prefix('kabag')->middleware(['auth:sanctum', 'verified', 'role:2', 'divis
     Route::prefix('skpd')->group(function() {
         Route::resource('/komite', SkpdKomiteController::class);
         Route::resource('/proposal', SkpdProposalController::class);
+    });
+
+    Route::prefix('pasar')->group(function() {
+        Route::resource('/komite', PasarKomiteController::class);
+        Route::resource('/proposal', PasarProposalController::class);
     });
 
 });

@@ -72,8 +72,9 @@ class PasarKomiteController extends Controller
         PasarPembiayaanHistory::create([
             'pasar_pembiayaan_id'=>$request->pasar_pembiayaan_id,
             'catatan'=>$request->catatan,
-            'status'=>$request->status,
+            'status_id'=>$request->status_id,
             'user_id'=> $request->user_id,
+            'jabatan_id'=> $request->jabatan_id,
         ]);
     }
 

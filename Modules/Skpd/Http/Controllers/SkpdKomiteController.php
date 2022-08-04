@@ -29,14 +29,9 @@ class SkpdKomiteController extends Controller
     public function index()
     {
         // $history=SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $proposal->id)->orderby('created_at', 'desc')->get();
-        $jabatan=Role::select()->where('user_id',Auth::user()->id)->get()->first();
         $proposal=SkpdPembiayaan::select()->where('user_id',Auth::user()->id)->whereNotNull('skpd_sektor_ekonomi_id')->get();
-        if ($jabatan->jabatan_id==2){
-            $proposal=SkpdPembiayaanHistory::select()->where('status', 'Proposal Diteruskan Ke Komite Oleh AO')->get();
-        }
         return view('skpd::komite.index',[
             'title'=>'Komite',
-            'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
             'proposals'=>$proposal,
         ]);
 

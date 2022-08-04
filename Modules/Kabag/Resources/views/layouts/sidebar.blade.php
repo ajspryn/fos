@@ -24,42 +24,44 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="{{ Request::is('admin') ? 'active' : '' }} "><a class="d-flex align-items-center"
-                    href="/admin"><i data-feather="home"></i><span class="menu-title text-truncate"
+            <li class="{{ Request::is('kabag') ? 'active' : '' }} "><a class="d-flex align-items-center"
+                    href="/kabag"><i data-feather="home"></i><span class="menu-title text-truncate"
                         data-i18n="home">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span data-i18n="Forms &amp; Tables">Pembiayaan</span><i
                     data-feather="more-horizontal"></i>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span
-                        class="menu-title text-truncate" data-i18n="User">SKPD</span></a>
+            <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                        class="menu-item text-truncate" data-i18n="Account Settings">SKPD</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate" data-i18n="List">Data
-                                Nasabah</span></a>
+                    <li class="{{ Request::is('kabag/skpd/nasabah') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/skpd/nasabah"><span
+                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate" data-i18n="List">Komite</span></a>
+                    <li class="{{ Request::is('kabag/skpd/komite') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/skpd/komite"><span
+                                class="menu-item text-truncate" data-i18n="Security">Komite</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="/kabag/skpd/proposal"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="List">Proposal</span></a>
+                    <li class="{{ Request::is('kabag/skpd/proposal') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/skpd/proposal"><span
+                                class="menu-item text-truncate" data-i18n="Security">Proposal</span><span
+                                class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
                     </li>
                 </ul>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">PASAR</span></a>
                 <ul class="menu-content">
-                    <li class="{{ Request::is('analis/pasar/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/pasar/nasabah"><span
+                    <li class="{{ Request::is('kabag/pasar/nasabah') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/pasar/nasabah"><span
                                 class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
                     </li>
-                    <li class="{{ Request::is('analis/pasar/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/pasar/komite"><span
+                    <li class="{{ Request::is('kabag/pasar/komite') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/pasar/komite"><span
                                 class="menu-item text-truncate" data-i18n="Security">Komite</span></a>
                     </li>
-                    <li class="{{ Request::is('analis/pasar/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/pasar/proposal"><span
+                    <li class="{{ Request::is('kabag/pasar/proposal') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/pasar/proposal"><span
                                 class="menu-item text-truncate" data-i18n="Security">Proposal</span><span
                                 class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
                     </li>
