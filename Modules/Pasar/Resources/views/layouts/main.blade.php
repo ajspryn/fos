@@ -1,0 +1,5 @@
+@include('pasar::layouts.head')
+@include('pasar::layouts.navbar')
+@include('pasar::layouts.sidebar')
+@yield('content')
+@include('pasar::layouts.footer')

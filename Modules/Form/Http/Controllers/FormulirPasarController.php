@@ -35,9 +35,9 @@ class FormulirPasarController extends Controller
      * @return Renderable
      */
     public function index()
-    {  
+    {
         return view('form::pasar.index',[
-            
+            'title' => 'Form Pasar',
             'akads'=>PasarAkad::all(),
             'penggunaans'=>PasarPenggunaan::all(),
             'sektors'=>PasarSektorEkonomi::all(),
@@ -135,9 +135,9 @@ class FormulirPasarController extends Controller
             'foto_id'=> $id,
         ]);
 
-        
+
         $dokumenktb=$request->file('dokumenktb')->store('pasar-dokumen-ktb');
-        
+
 
         PasarJaminan::create([
             'id'=>$id,
@@ -167,7 +167,7 @@ class FormulirPasarController extends Controller
             'status'=> 'Calon Debitur Menginput Permohonan',
             'user_id'=> null,
         ]);
-        
+
         PasarKeteranganUsaha::create([
             'id'=>$id,
             'pasar_pembiayaan_id'=> $id,
@@ -185,7 +185,7 @@ class FormulirPasarController extends Controller
             'foto.*.kategori'=>'required',
             'foto.*.foto'=>'required',
         ]);
-        
+
         foreach($request->foto as $key => $value){
             if($value['foto']){
                 $foto=$value['foto']->store('foto-pasar-pembiayaan');
@@ -197,12 +197,12 @@ class FormulirPasarController extends Controller
             ]);
         }
 
-        
-        
+
+
         return redirect()->back()->with('success', 'Data Pasar Berhasil Ditambahkan');
     }
-    
-    
+
+
 
     /**
      * Show the specified resource.
@@ -232,7 +232,7 @@ class FormulirPasarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
     }
 
     /**

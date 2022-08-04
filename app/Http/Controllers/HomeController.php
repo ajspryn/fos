@@ -32,6 +32,7 @@ class HomeController extends Controller
             if ($role->divisi_id==0) {
                 $url='/admin';
             }
+
             if ($role->divisi_id==1) {
                 if ($role->jabatan_id==1){
                     $url='/skpd';
@@ -49,7 +50,26 @@ class HomeController extends Controller
                     $url='/';
                 }
             }
+
+            if ($role->divisi_id==2) {
+                if ($role->jabatan_id==1){
+                    $url='/pasar';
+                }
+                elseif ($role->jabatan_id==2){
+                    $url='/kabag';
+                }
+                elseif ($role->jabatan_id==3){
+                    $url='/analis';
+                }
+                elseif ($role->jabatan_id==4){
+                    $url='/direksi';
+                }
+                else{
+                    $url='/';
+                }
+            }
         }
+
 
         return Redirect($url);
     }

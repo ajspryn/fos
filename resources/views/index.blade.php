@@ -49,6 +49,25 @@
                         <!-- Pasar dan UMKM -->
                         <div class="col-md-3 col-sm-6 col-12 kb-search-content">
                             <div class="card">
+                                <a href="form/pasar">
+
+                                    <img src="../../../Pasar_Tohaga.jpeg"
+                                        style="width: 77%; display: block; margin: 0 auto; padding-bottom: 15px"
+                                        class="card-img-top" alt="pasar-image" />
+
+                                    <div class="card-body text-center">
+                                        <h4>Pembiayaan Pasar</h4>
+                                        <p class="text-body mt-1 mb-0">
+
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Pasar dan UMKM -->
+                        <div class="col-md-3 col-sm-6 col-12 kb-search-content">
+                            <div class="card">
                                 <a href="form/umkm">
 
                                     <img src="../../../Pasar_Tohaga.jpeg"
