@@ -17,7 +17,10 @@ use Modules\Kabag\Http\Controllers\KabagProposalController;
 
 Route::prefix('kabag')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:0', 'jabatan:2'])->group(function() {
     Route::get('/', 'KabagController@index');
-    Route::resource('/komite', KabagKomiteController::class);
-    Route::resource('/proposal', KabagProposalController::class);
+
+    Route::prefix('skpd')->group(function() {
+        Route::resource('/komite', SkpdKomiteController::class);
+        Route::resource('/proposal', SkpdProposalController::class);
+    });
 
 });

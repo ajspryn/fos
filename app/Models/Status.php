@@ -9,8 +9,12 @@ class Status extends Model
 {
     use HasFactory;
 
-    public function st()
+    public function statushistory()
     {
         return $this->hasMany(PasarPembiayaan::class);
     }
+
+   
+
+
 }

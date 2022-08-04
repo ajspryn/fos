@@ -152,7 +152,7 @@ class PasarProposalController extends Controller
 
             PasarPembiayaanHistory::create([
                 'pasar_pembiayaan_id'=> $id,
-                'status_id'=> 1,
+                'status_id'=> 2,
                 'jabatan_id'=>$role->jabatan_id,
                 'divisi_id'=>$role->divisi_id,
                 'user_id'=> Auth::user()->id,

@@ -1,6 +1,6 @@
 <!-- BEGIN: Main Menu-->
 @php
-$notif_proposal = Modules\Skpd\Entities\PasarPembiayaan::select()
+$notif_proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
     ->where('AO_id', Auth::user()->id)
     ->where('sektor_id', null)
     ->get()
@@ -30,17 +30,17 @@ $notif_proposal = Modules\Skpd\Entities\PasarPembiayaan::select()
             <li class=" navigation-header"><span data-i18n="Forms &amp; Tables">Menu Anda</span><i
                     data-feather="more-horizontal"></i>
             </li>
-            <li class="{{ Request::is('pasar/nasabah*') ? 'active' : 'nav-item' }} "><a class="d-flex align-items-center"
-                    href="/pasar/nasabah"><i data-feather="users"></i><span class="menu-title text-truncate"
-                        data-i18n="home">Data Nasabah</span></a>
+            <li class="{{ Request::is('pasar/nasabah*') ? 'active' : 'nav-item' }} "><a
+                    class="d-flex align-items-center" href="/pasar/nasabah"><i data-feather="users"></i><span
+                        class="menu-title text-truncate" data-i18n="home">Data Nasabah</span></a>
             </li>
             <li class="{{ Request::is('pasar/komite*') ? 'active' : 'nav-item' }} "><a class="d-flex align-items-center"
                     href="/pasar/komite"><i data-feather="file-text"></i><span class="menu-title text-truncate"
                         data-i18n="home">Komite</span></a>
             </li>
-            <li class="{{ Request::is('pasar/proposal*') ? 'active' : 'nav-item' }} "><a class="d-flex align-items-center"
-                    href="/pasar/proposal"><i data-feather="clipboard"></i><span class="menu-title text-truncate"
-                        data-i18n="home">Proposal</span><span
+            <li class="{{ Request::is('pasar/proposal*') ? 'active' : 'nav-item' }} "><a
+                    class="d-flex align-items-center" href="/pasar/proposal"><i data-feather="clipboard"></i><span
+                        class="menu-title text-truncate" data-i18n="home">Proposal</span><span
                         class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal }}</span></a>
             </li>
         </ul>

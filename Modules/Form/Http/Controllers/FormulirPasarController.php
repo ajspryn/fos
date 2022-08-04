@@ -164,8 +164,10 @@ class FormulirPasarController extends Controller
 
         PasarPembiayaanHistory::create([
             'pasar_pembiayaan_id'=> $id,
-            'status'=> 'Calon Debitur Menginput Permohonan',
+            'status_id'=> 1,
             'user_id'=> null,
+            'jabatan_id'=>1,
+            'divisi_id'=>null
         ]);
 
         PasarKeteranganUsaha::create([

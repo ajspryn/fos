@@ -1,7 +1,7 @@
 <!-- BEGIN: Main Menu-->
 @php
 $notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('status', 'Proposal Disetujui Oleh Kabag')
+    ->where('jabatan_id', 2)
     ->count();
 @endphp
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">

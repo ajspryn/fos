@@ -88,8 +88,11 @@
                                             </td>
                                             {{-- <td style="text-align: center">{{ $proposal_pasar->user->name }}</td> --}}
                                             <td>
-                                                <a href="/analis/pasar/komite/{{ $proposal_pasar->id }}"
-                                                    class="btn btn-outline-info round">Detail</a>
+                                                <form method="post" action="/analis/pasar/komite/">
+                                                    @csrf
+                                                    <a href="/analis/pasar/komite/{{ $proposal_pasar->id }}"
+                                                        class="btn btn-outline-info round">Detail</a>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

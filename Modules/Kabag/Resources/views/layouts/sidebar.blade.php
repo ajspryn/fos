@@ -38,11 +38,10 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                                 class="menu-item text-truncate" data-i18n="List">Data
                                 Nasabah</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="app-user-list.html"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="List">Komite</span></a>
+                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="List">Komite</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="app-user-list.html"><i
+                    <li><a class="d-flex align-items-center" href="/kabag/skpd/proposal"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                 data-i18n="List">Proposal</span></a>
                     </li>
