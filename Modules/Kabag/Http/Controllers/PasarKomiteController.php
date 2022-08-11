@@ -60,14 +60,18 @@ class PasarKomiteController extends Controller
      */
     public function store(Request $request)
     {
+
         PasarPembiayaanHistory::create([
             'pasar_pembiayaan_id'=>$request->pasar_pembiayaan_id,
             'catatan'=>$request->catatan,
-            'status_id'=>5,
+            'status_id'=> $request->status_id,
             'user_id'=>Auth::user()->id,
             'jabatan_id'=>2,
             'divisi_id'=>null,
+
         ]);
+
+        return redirect('/kabag/pasar/komite');
     }
 
     /**
@@ -77,13 +81,22 @@ class PasarKomiteController extends Controller
      */
     public function show($id)
         {
-        PasarPembiayaanHistory::create([
-            'pasar_pembiayaan_id'=>$id,
-            'status_id'=>4,
-            'jabatan_id'=>2,
-            'divisi_id'=>0,
-            'user_id'=>Auth::user()->$id,
-        ]);
+
+        $cek=PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $id)
+        ->where('user_id',Auth::user()->id)
+        ->get()
+        ->count();
+
+        if ($cek==0){
+            PasarPembiayaanHistory::create([
+                'pasar_pembiayaan_id'=>$id,
+                'status_id'=>4,
+                'jabatan_id'=>2,
+                'divisi_id'=>0,
+                'user_id'=>Auth::user()->$id,
+            ]);
+        }
 
         $data=PasarPembiayaan::select()->where('id',$id)->get()->first();
         $nasabah=PasarNasabahh::select()->where('id',$id)->get()->first();
@@ -193,13 +206,14 @@ class PasarKomiteController extends Controller
 
 
 
-
         //    return $harga1;
         return view('kabag::pasar.komite.lihat',[
             'title'=>'Detail Calon Nasabah',
             // 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
             'timelines'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->get(),
             'history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
+            'waktuawal'=>PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->last(),
+            'waktuakhir'=>PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
             'pembiayaan'=>PasarPembiayaan::select()->where('id',$id)->get()->first(),
             'nasabah'=>PasarNasabahh::select()->where('id',$id)->get()->first(),
             'fotos'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->get(),

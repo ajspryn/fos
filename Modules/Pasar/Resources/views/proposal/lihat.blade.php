@@ -71,7 +71,8 @@
                                         <label class="form-label" for="ao"><small class="text-danger">* </small>Kode
                                             Account Officer</label>
                                         <select class="select2 w-100" name="AO_id" id="ao"disabled>
-                                            <option value="{{ $pembiayaan->user->id }}">{{ $pembiayaan->user->name }}</option>
+                                            <option value="{{ $pembiayaan->user->id }}">{{ $pembiayaan->user->name }}
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="row">
@@ -86,7 +87,8 @@
                                             <label class="form-label" for="jenispenggunaan"><small class="text-danger">*
                                                 </small>Jenis Penggunaan</label>
                                             <select class="select2 w-100" name="penggunaan_id" id="jenispenggunaan">
-                                                <option value="{{ $pembiayaan->id }}">{{ $pembiayaan->penggunaan_id}}</option>
+                                                <option value="{{ $pembiayaan->id }}">{{ $pembiayaan->penggunaan_id }}
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -145,7 +147,7 @@
                                         <div class="mb-1 col-md-2">
                                             <label class="form-label" for="harga"><small class="text-danger">*
                                                 </small>Equivalen Rate</label>
-                                                <input type="text" name="rate" class="form-control numeral-mask4"
+                                            <input type="text" name="rate" class="form-control numeral-mask4"
                                                 placeholder="%" id="rate" required />
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -161,7 +163,7 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="nasabah"><small class="text-danger">*
                                                 </small>Nasabah</label>
-                                            <select class="select2 w-100" name="nasabah" id="nasabah" >
+                                            <select class="select2 w-100" name="nasabah" id="nasabah">
                                                 <option label="akad">Pilih Jenis Nasabah</option>
                                                 @foreach ($nasabahs as $nasabah)
                                                     <option value="{{ $nasabah->kode_jenisnasabah }}">
@@ -287,7 +289,7 @@
                                                     {{ $pembiayaan->rumah->kepemilikan_rumah }}</option>
                                             </select>
                                         </div>
-                                        <div class="mb-1 col-md-6">
+                                        {{-- <div class="mb-1 col-md-6">
                                             <label class="form-label" for="leg_rumah"><small class="text-danger">*
                                                 </small>Legalitas Kepemilikan Rumah</label>
                                             <select class="select2 w-100" name="legalitas_kepemilikan_rumah"
@@ -295,7 +297,7 @@
                                                 <option value="{{ $pembiayaan->rumah->legalitas->id }}">
                                                     {{ $pembiayaan->rumah->legalitas->nama_jaminan }}</option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="Pendidikan_id"><small class="text-danger">*
                                                 </small>Pendidikan Terakhir</label>
@@ -413,22 +415,22 @@
                                         <small class="text-muted">Lengkapi Data Usaha Anda.</small>
                                     </div>
                                     <div class="row">
-                                        <div class="mb-1 col-md-6">
+                                        {{-- <div class="mb-1 col-md-6">
                                             <label class="form-label" for="nama_usaha"><small class="text-danger">*
                                                 </small>Nama Kios / Los</label>
                                             <input type="text" name="nama_usaha" id="nama_usaha" class="form-control"
                                                 placeholder="Masukan Nama Toko Atau Usaha"value="{{ $pembiayaan->keteranganusaha->nama_usaha }}"
                                                 disabled>
-                                        </div>
-                                        <div class="mb-1 col-md-6">
+                                        </div> --}}
+                                        {{-- <div class="mb-1 col-md-6">
                                             <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
                                                 </small>Jenis Pasar</label>
                                             <select class="select2 w-100" name="jenispasar_id" id="jenispasar_id">
                                                 <option value="{{ $pembiayaan->keteranganusaha->jenispasar->id }}">
                                                     {{ $pembiayaan->keteranganusaha->jenispasar->nama_pasar }}</option>
                                             </select>
-                                        </div>
-                                        <div class="mb-1 col-md-6">
+                                        </div> --}}
+                                        {{-- <div class="mb-1 col-md-6">
                                             <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
                                                 </small>Jenis Dagang</label>
                                             <select class="select2 w-100" name="jenisdagang_id" id="jenisdagang_id"
@@ -436,37 +438,38 @@
                                                 <option value="{{ $pembiayaan->keteranganusaha->dagang->id }}">
                                                     {{ $pembiayaan->keteranganusaha->dagang->nama_jenisdagang }}</option>
                                             </select>
-                                        </div>
-                                        <div class="mb-1 col-md-6">
+                                        </div> --}}
+                                        {{-- <div class="mb-1 col-md-6">
                                             <label class="form-label" for="keptoko"><small class="text-danger">*
                                                 </small>Kepemilikan Kios / Los</label>
                                             <select class="select2 w-100" name="kep_toko_id" id="keptoko" disabled>
                                                 <option value="{{ $pembiayaan->keteranganusaha->id }}">
                                                     {{ $pembiayaan->keteranganusaha->kep_toko_id }}</option>
                                             </select>
-                                        </div>
-                                        <div class="mb-1 col-md-6">
+                                        </div> --}}
+                                        {{-- <div class="mb-1 col-md-6">
                                             <label class="form-label" for="lamausaha"><small class="text-danger">*
                                                 </small>Lama Usaha</label>
                                             <select class="select2 w-100" name="lama_usaha" id="lama_usaha" disabled>
                                                 <option value="{{ $pembiayaan->keteranganusaha->lamadagang->id }}">
-                                                    {{ $pembiayaan->keteranganusaha->lamadagang->nama_lamaberdagang }}</option>
+                                                    {{ $pembiayaan->keteranganusaha->lamadagang->nama_lamaberdagang }}
+                                                </option>
                                             </select>
-                                        </div>
-                                        <div class="mb-1 col-md-6">
+                                        </div> --}}
+                                        {{-- <div class="mb-1 col-md-6">
                                             <label class="form-label" for="lamausaha"> </small>No / Blok Lama</label>
                                             <input type="text" name="blok" id="blok" class="form-control"
                                                 placeholder="Masukan No / Blok Lama"
                                                 value="{{ $pembiayaan->keteranganusaha->no_blok }}" disabled>
-                                        </div>
-                                        <div class="mb-1 col-md-6">
+                                        </div> --}}
+                                        {{-- <div class="mb-1 col-md-6">
                                             <label class="form-label" for="legalitastoko"><small class="text-danger">*
                                                 </small>Legalitas Kepemilikan Kios / Los</label>
                                             <select class="select2 w-100" name="leg_toko_id" id="legalitastoko" disabled>
                                                 <option value="{{ $pembiayaan->keteranganusaha->id }}">
                                                     {{ $pembiayaan->keteranganusaha->leg_toko_id }}</option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="mb-0 mt-2 col-md-2">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#fototoko">
@@ -486,7 +489,7 @@
                                                 placeholder="Masukan No KTB"
                                                 value="{{ $pembiayaan->jaminanpasar->no_ktb }}" disabled>
                                         </div>
-                                    
+
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="jaminan"></small>Jaminan Lainnya</label>
                                             <select class="select2 w-100" name="jaminanlain_id" id="jaminan" disabled>
@@ -714,10 +717,13 @@
                                                 value="{{ $pembiayaan->kesanggupan_angsuran }}" disabled>
                                         </div><br>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="dokumen_keuangan"><small class="text-danger">*</small>Upload IDEB</label>
-                                            <input type="file" name="dokumen_keuangan" id="dokumen_keuangan" rows="3"class="form-control" required />
-                                        
+                                            <label class="form-label" for="dokumen_keuangan"><small
+                                                    class="text-danger">*</small>Upload IDEB</label>
+                                            <input type="file" name="dokumen_keuangan" id="dokumen_keuangan"
+                                                rows="3"class="form-control" required />
+
                                         </div>
+
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <button class="btn btn-primary btn-prev">
@@ -733,114 +739,112 @@
                 </section>
 
 
-   <!-- foto diri  -->
-   <div class="modal fade" id="fotodiri" tabindex="-1" aria-labelledby="addNewCardTitle"
-   aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered">
-       <div class="modal-content">
-           <div class="modal-header bg-transparent">
-               <button type="button" class="btn-close" data-bs-dismiss="modal"
-                   aria-label="Close"></button>
-           </div>
-           <div class="modal-body px-sm-5 mx-50 pb-5">
-               <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fotodiri->kategori }}</h1>
-               <p class="text-center">Lampiran Foto Nasabah</p>
-               <div class="card-body">
-                   <img src="{{ asset('storage/' . $fotodiri->foto) }}" class="d-block w-100" />
-               </div>
-           </div>
-       </div>
-   </div>
-</div>
-<!--/ foto diri  -->
-<!-- foto ktp  -->
-<div class="modal fade" id="fotoktp" tabindex="-1" aria-labelledby="addNewCardTitle"
-   aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered">
-       <div class="modal-content">
-           <div class="modal-header bg-transparent">
-               <button type="button" class="btn-close" data-bs-dismiss="modal"
-                   aria-label="Close"></button>
-           </div>
-           <div class="modal-body px-sm-5 mx-50 pb-5">
-               <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fotoktp->kategori }}</h1>
-               <p class="text-center">Lampiran Foto Nasabah</p>
-               <div class="card-body">
-                   <img src="{{ asset('storage/' . $fotoktp->foto) }}" class="d-block w-100" />
-               </div>
-           </div>
-       </div>
-   </div>
-</div>
-<!--/ foto ktp  -->
-<!-- foto diri bersama ktp  -->
-<div class="modal fade" id="fotodiribersamaktp" tabindex="-1" aria-labelledby="addNewCardTitle"
-   aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered">
-       <div class="modal-content">
-           <div class="modal-header bg-transparent">
-               <button type="button" class="btn-close" data-bs-dismiss="modal"
-                   aria-label="Close"></button>
-           </div>
-           <div class="modal-body px-sm-5 mx-50 pb-5">
-               <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fotodiribersamaktp->kategori }}
-               </h1>
-               <p class="text-center">Lampiran Foto Nasabah</p>
-               <div class="card-body">
-                   <img src="{{ asset('storage/' . $fotodiribersamaktp->foto) }}"
-                       class="d-block w-100" />
-               </div>
-           </div>
-       </div>
-   </div>
-</div>
-<!--/ foto diribersama  -->
+                <!-- foto diri  -->
+                <div class="modal fade" id="fotodiri" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            {{-- <div class="modal-body px-sm-5 mx-50 pb-5">
+                                <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fotodiri->kategori }}</h1>
+                                <p class="text-center">Lampiran Foto Nasabah</p>
+                                <div class="card-body">
+                                    <img src="{{ asset('storage/' . $fotodiri->foto) }}" class="d-block w-100" />
+                                </div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+                <!--/ foto diri  -->
+                <!-- foto ktp  -->
+                <div class="modal fade" id="fotoktp" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-5 mx-50 pb-5">
+                                <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fotoktp->kategori }}</h1>
+                                <p class="text-center">Lampiran Foto Nasabah</p>
+                                <div class="card-body">
+                                    <img src="{{ asset('storage/' . $fotoktp->foto) }}" class="d-block w-100" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ foto ktp  -->
+                <!-- foto diri bersama ktp  -->
+                <div class="modal fade" id="fotodiribersamaktp" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-5 mx-50 pb-5">
+                                <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fotodiribersamaktp->kategori }}
+                                </h1>
+                                <p class="text-center">Lampiran Foto Nasabah</p>
+                                <div class="card-body">
+                                    <img src="{{ asset('storage/' . $fotodiribersamaktp->foto) }}"
+                                        class="d-block w-100" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ foto diribersama  -->
 
-<!-- foto toko  -->
-<div class="modal fade" id="fototoko" tabindex="-1" aria-labelledby="addNewCardTitle"
-   aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered">
-       <div class="modal-content">
-           <div class="modal-header bg-transparent">
-               <button type="button" class="btn-close" data-bs-dismiss="modal"
-                   aria-label="Close"></button>
-           </div>
-           <div class="modal-body px-sm-5 mx-50 pb-5">
-               <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fototoko->kategori }}
-               </h1>
-               <p class="text-center">Lampiran Foto Nasabah</p>
-               <div class="card-body">
-                   <img src="{{ asset('storage/' . $fototoko->foto) }}"
-                       class="d-block w-100" />
-               </div>
-           </div>
-       </div>
-   </div>
-</div>
-<!--/ foto toko  -->
+                <!-- foto toko  -->
+                <div class="modal fade" id="fototoko" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-5 mx-50 pb-5">
+                                <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fototoko->kategori }}
+                                </h1>
+                                <p class="text-center">Lampiran Foto Nasabah</p>
+                                <div class="card-body">
+                                    <img src="{{ asset('storage/' . $fototoko->foto) }}" class="d-block w-100" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ foto toko  -->
 
-<!-- foto kk -->
-<div class="modal fade" id="fotokk" tabindex="-1" aria-labelledby="addNewCardTitle"
-   aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered">
-       <div class="modal-content">
-           <div class="modal-header bg-transparent">
-               <button type="button" class="btn-close" data-bs-dismiss="modal"
-                   aria-label="Close"></button>
-           </div>
-           <div class="modal-body px-sm-5 mx-50 pb-5">
-               <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fotokk->kategori }}
-               </h1>
-               <p class="text-center">Lampiran Foto Nasabah</p>
-               <div class="card-body">
-                   <img src="{{ asset('storage/' . $fotokk->foto) }}"
-                       class="d-block w-100" />
-               </div>
-           </div>
-       </div>
-   </div>
-</div>
-<!--/ foto kk  -->
+                <!-- foto kk -->
+                <div class="modal fade" id="fotokk" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-5 mx-50 pb-5">
+                                <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fotokk->kategori }}
+                                </h1>
+                                <p class="text-center">Lampiran Foto Nasabah</p>
+                                <div class="card-body">
+                                    <img src="{{ asset('storage/' . $fotokk->foto) }}" class="d-block w-100" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ foto kk  -->
 
             </div>
         </div>

@@ -119,9 +119,10 @@ class SkpdProposalController extends Controller
 
         $role=role::select()->where('user_id', Auth::user()->id)->get()->first();
         $dokumen_keuangan= $request->foto->store('ideb-skpd-pembiayaan');
+         $dokumen_konfirmasi= $request->foto->store('konfirmasi-skpd-pembiayaan');
         SkpdPembiayaanHistory::create([
             'skpd_pembiayaan_id'=> $id,
-            'status_id'=> 1,
+            'status_id'=> 2,
             'jabatan_id'=>$role->jabatan_id,
             'divisi_id'=>$role->divisi_id,
             'user_id'=> Auth::user()->id,
@@ -129,6 +130,9 @@ class SkpdProposalController extends Controller
 
             if ($request->foto){
                 $foto= $request->file('foto')->store('ideb-skpd-pembiayaan');
+            }
+            if ($request->foto){
+                $foto= $request->file('foto')->store('konfirmasi-skpd-pembiayaan');
             }
             // return $foto;
             SkpdFoto::create([

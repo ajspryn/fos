@@ -1,4 +1,4 @@
-@extends('analis::layouts.main')
+@extends('kabag::layouts.main')
 
 @section('content')
     <div class="app-content content ">
@@ -74,13 +74,21 @@
                                             {{-- <td style="text-align: center">{{ $proposal_skpd->golongan->nama_golongan }}</td> --}}
                                             <td style="text-align: center">
                                                 Rp.{{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
-                                            <td style="text-align: center"><span
-                                                    class="badge rounded-pill badge-light-info">{{ $history->status }}</span>
+                                            <td style="text-align: center">
+                                             @if ($history->statushistory->id == 5)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @elseif ($history->statushistory->id == 4)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @endif
                                             </td>
                                             <td style="text-align: center">{{ $proposal_skpd->tanggal_pengajuan }}</td>
                                             <td style="text-align: center">{{ $proposal_skpd->user->name }}</td>
                                             <td style="text-align: center">
-                                                <a href="/analis/skpd/komite/{{ $proposal_skpd->id }}"
+                                                <a href="/kabag/skpd/komite/{{ $proposal_skpd->id }}"
                                                     class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>

@@ -28,7 +28,7 @@ class SkpdKomiteController extends Controller
      */
     public function index()
     {
-        $proposal=SkpdPembiayaanHistory::select()->where('status_id', 5 )->get();;
+        $proposal=SkpdPembiayaanHistory::select()->where('status_id', 5 )->where('user_id',auth::user()->id)->get();
         return view('analis::skpd.komite.index',[
             'title'=>'Data Komite Nasabah',
             'proposals'=>$proposal,
@@ -69,13 +69,26 @@ class SkpdKomiteController extends Controller
      */
     public function show($id)
     {
-        SkpdPembiayaanHistory::create([
-            'skpd_pembiayaan_id'=>$id,
-            'status_id'=>4,
-            'jabatan_id'=>3,
-            'divisi_id'=>0,
-            'user_id'=>Auth::user()->$id,
-        ]);
+       $cek=SkpdPembiayaanHistory::select()
+        ->where('skpd_pembiayaan_id', $id)
+        ->where('user_id',Auth::user()->id)
+        ->get()
+        ->count();
+
+        if ($cek==0){
+            SkpdPembiayaanHistory::create([
+                'skpd_pembiayaan_id'=>$id,
+                'status_id'=>4,
+                'jabatan_id'=>3,
+                'divisi_id'=>0,
+                'user_id'=>Auth::user()->$id,
+            ]);
+        }
+        $historystatus = SkpdPembiayaanHistory::select()
+        ->where('skpd_pembiayaan_id', $id)
+         ->orderby('created_at', 'desc')
+         ->get()
+         ->first();
         $nasabah=SkpdNasabah::select()->where('id',$id)->get()->first();
         $data=SkpdPembiayaan::select()->where('id',$id)->get()->first();
         $jaminan=SkpdJaminan::select()->where('skpd_pembiayaan_id',$id)->get()->first();
@@ -203,6 +216,8 @@ class SkpdKomiteController extends Controller
             'jaminanlainnyas'=>SkpdJaminanLainnya::select()->where('skpd_pembiayaan_id',$id)->get(),
             'skpengangkatans'=>SkpdPembiayaan::select()->where('id',$id)->get(),
             'ideb'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori','IDEB')->get()->first(),
+            'konfirmasi'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori','Konfirmasi Bendahara')->get()->first(),
+
 
             //history
             'history'=>SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),

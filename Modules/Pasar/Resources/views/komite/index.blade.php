@@ -72,11 +72,24 @@
                                                     {{ $komite->keteranganusaha->jenispasar->nama_pasar }}</td>
                                                 <td style="text-align: center">{{ $komite->harga }}</td>
                                                 <td style="text-align: center">{{ $komite->tgl_pembiayaan }}</td>
-                                                <td style="text-align: center"><span
-                                                        value="{{ $history->statushistory->id }}, {{ $history->jabatan->jabatan_id }}">
-                                                        <span
-                                                            class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
-                                                            {{ $history->jabatan->keterangan }}</span>
+                                                <td style="text-align: center">
+                                                 @if ($history->statushistory->id == 5)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @elseif ($history->statushistory->id == 3)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @elseif ($history->statushistory->id == 6)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-danger">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                 @else
+                                                    <span
+                                                        class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @endif
                                                     <td style="text-align: center">
                                                     <a href="/pasar/komite/{{ $komite->id }}"
                                                         class="btn btn-outline-info round">Detail</a>

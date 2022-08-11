@@ -17,7 +17,7 @@ class PasarJaminanRumahh extends Model
 
     public function legalitas()
     {
-        return $this->hasMany(PasarLegalitasRumah::class,UmkmLegalitasRumah::class);
+        return $this->hasMany(PasarLegalitasRumah::class);
     }
-  
+
 }

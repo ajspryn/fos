@@ -131,7 +131,7 @@ class PasarProposalController extends Controller
                                 'luas'=>$request->luas,
                                 'cashpickup'=>$request->cashpickup,
                                 'nasabah'=>$request->nasabah,
-                                'rate'=>$request->nasabah,
+                                'rate'=>$request->rate,
                                 'dokumen_keuangan'=>$dokumen_keuangan,
                             ]);
             PasarNasabahh::where('id',$id)
@@ -142,7 +142,6 @@ class PasarProposalController extends Controller
 
             PasarKeteranganUsaha::where('id',$id)
             ->update([
-                'jenispasar_id'=>$request->jenispasar_id,
                 'suku_bangsa_id'=>$request->suku_bangsa_id,
                 'kepala_pasar_id'=>$request->kepala_pasar_id,
 

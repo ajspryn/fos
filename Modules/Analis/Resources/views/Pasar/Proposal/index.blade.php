@@ -41,8 +41,8 @@
                                         <th style="text-align: center">Alamat Pasar</th>
                                         <th style="text-align: center">Nominal Pembiayaan</th>
                                         <th style="text-align: center">Tanggal Pengajuan</th>
-                                        {{-- <th style="text-align: center">AO Yang Menangani</th> --}}
                                         <th style="text-align: center">Status</th>
+                                        <th style="text-align: center">AO Yang Menangani</th>
                                         <th style="text-align: center">Action</th>
                                     </tr>
                                 </thead>
@@ -72,13 +72,7 @@
                                                 </td>
                                                 <td style="text-align: center">{{ $loop->iteration }}</td>
                                                 <td>{{ $proposal_pasar->nasabahh->nama_nasabah }}</td>
-                                                <td>{{ $proposal_pasar->nasabahh->alamat }},
-                                                    {{ $proposal_pasar->nasabahh->rt }},
-                                                    {{ $proposal_pasar->nasabahh->rw }},
-                                                    {{ $proposal_pasar->nasabahh->desa_kelurahan }},
-                                                    {{ $proposal_pasar->nasabahh->kecamatan }},
-                                                    {{ $proposal_pasar->nasabahh->kabkota }},
-                                                    {{ $proposal_pasar->nasabahh->provinsi }}</td>
+                                                <td>{{ $proposal_pasar->nasabahh->alamat }}
                                                 <td style="text-align: center">
                                                     {{ $proposal_pasar->keteranganusaha->nama_usaha }}</td>
                                                 <td style="text-align: center"
@@ -88,11 +82,17 @@
                                                 <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
                                                 <td style="text-align: center"
                                                     value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
+                                                     @if ($history->statushistory->id == 5)
                                                     <span
-                                                        class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                        class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>
+                                                @elseif ($history->statushistory->id == 4)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @endif
                                                 </td>
-                                                {{-- <td style="text-align: center">{{ $proposal_pasar->user->name }}</td> --}}
+                                                <td style="text-align: center">{{ $proposal_pasar->user->name }}</td>
                                                 <td>
                                                     <a href="/analis/pasar/komite/{{ $proposal_pasar->id }}"
                                                         class="btn btn-outline-info round">Detail</a>

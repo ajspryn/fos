@@ -48,15 +48,16 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
+                                          $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                                                ->where('skpd_pembiayaan_id', $proposal->skpd_pembiayaan_id)
+                                                ->orderby('created_at','desc')
+                                                ->get()
+                                                ->first();
                                             $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-                                                ->where('id', $proposal->skpd_pembiayaan_id)
+                                                ->where('id', $history->skpd_pembiayaan_id)
                                                 ->get()
                                                 ->first();
-                                            $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-                                                ->where('skpd_pembiayaan_id', $proposal_skpd->id)
-                                                ->orderby('created_at', 'desc')
-                                                ->get()
-                                                ->first();
+
                                         @endphp
                                         <tr>
                                             <td style="text-align: center">
@@ -71,11 +72,20 @@
                                             <td style="text-align: center">
                                                 {{ $proposal_skpd->instansi->nama_instansi }}
                                             </td>
-                                            {{-- <td style="text-align: center">{{ $proposal_skpd->golongan->nama_golongan }}</td> --}}
+
                                             <td style="text-align: center">
                                                 Rp.{{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
-                                            <td style="text-align: center"><span
-                                                    class="badge rounded-pill badge-light-info">{{ $history->status }}</span>
+                                            <td style="text-align: center"
+                                                value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
+                                                @if ($history->statushistory->id == 5)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @elseif ($history->statushistory->id == 4)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @endif
                                             </td>
                                             <td style="text-align: center">{{ $proposal_skpd->tanggal_pengajuan }}</td>
                                             <td style="text-align: center">{{ $proposal_skpd->user->name }}</td>

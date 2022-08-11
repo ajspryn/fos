@@ -1,4 +1,4 @@
-@extends('analis::layouts.main')
+@extends('kabag::layouts.main')
 
 @section('content')
 

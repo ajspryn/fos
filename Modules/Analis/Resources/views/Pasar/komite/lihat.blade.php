@@ -62,270 +62,7 @@
                                             <!-- Invoice -->
                                             <div class="col-xl-12 col-md-8 col-12">
                                                 <div class="card invoice-preview-card">
-                                                    <div class="card-body invoice-padding pb-0">
-                                                        <!-- Header starts -->
-                                                        <div
-                                                            class="d-flex justify-content-center flex-xl-row flex-column invoice-spacing mt-0">
-                                                            <div>
-                                                                <h4>Summary Analis</h4>
-                                                                <hr>
-                                                                <div class="table-responsive mt-1">
-                                                                    <table class="table">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th style="text-align: center">No</th>
-                                                                                <th style="text-align: center">
-                                                                                    Parameter
-                                                                                </th>
-                                                                                <th style="text-align: center">Kategori
-                                                                                </th>
-                                                                                <th style="text-align: center">Bobot
-                                                                                </th>
-                                                                                <th style="text-align: center">Rating
-                                                                                </th>
-                                                                                <th style="text-align: center">Nilai
-                                                                                </th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td style="text-align: center">1</td>
-                                                                                <td>IDIR</td>
-                                                                                <td>
-                                                                                    {{ $idir->idir_rendah }}% -
-                                                                                    {{ $idir->idir_tinggi }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $idir->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_idir }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $score_idir }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">2</td>
-                                                                                <td>Cash Pick Up</td>
-                                                                                <td value="{{ $cashs->id }}">
-                                                                                    {{ $cashs->nama_jeniscash }}
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $cashs->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_cashpick }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $score_cashpick }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">3</td>
-                                                                                <td>Jaminan Rumah</td>
-                                                                                <td value="{{ $rumahs->id }}">
-                                                                                    {{ $rumahs->nama_jaminan }}
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rumahs->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_jaminanrumah }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $score_jaminanrumah }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">4</td>
-                                                                                <td>Slik</td>
-                                                                                <td>{{ $slik->kategori }}
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $slik->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_slik }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $score_slik }}</td>
-                                                                            </tr>
 
-                                                                            <tr>
-                                                                                <td style="text-align: center">5</td>
-                                                                                <td>Jenis Nasabah</td>
-                                                                                <td value="{{ $nasabahs->id }}">
-                                                                                    {{ $nasabahs->nama_jenisnasabah }}
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $nasabahs->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_jenisnasabah }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $score_jenisnasabah }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">6</td>
-                                                                                <td>Konfirmasi Kepala Pasar</td>
-                                                                                <td></td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $kepalapasar->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_kepalapasar }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $score_kepalapasar }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">7</td>
-                                                                                <td>Jaminan Kios</td>
-                                                                                <td>{{ $jaminans->nama_jaminan }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $jaminans->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_jaminanlain }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $score_jaminanlain }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">8</td>
-                                                                                <td>Lama Berdagang</td>
-                                                                                <td value="{{ $lamas->id }}">
-                                                                                    {{ $lamas->nama_lamaberdagang }}
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $lamas->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_lamadagang }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $score_lamadagang }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">9</td>
-                                                                                <td>Jenis Dagangan</td>
-                                                                                <td value="{{ $dagangs->id }}">
-                                                                                    {{ $dagangs->nama_jenisdagang }}
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $dagangs->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_jenisdagang }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $score_jenisdagang }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">10</td>
-                                                                                <td>Suku Bangsa</td>
-                                                                                <td value="{{ $sukus->id }}">
-                                                                                    {{ $sukus->nama_suku }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $sukus->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_sukubangsa }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $score_sukubangsa }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">11</td>
-                                                                                <td>Jenis Pasar</td>
-                                                                                <td value="{{ $pasars->id }}">
-                                                                                    {{ $pasars->nama_pasar }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $pasars->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_jenispasar }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $score_jenispasar }}</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                @php
-                                                                    $total_score = $score_idir + $score_slik + $score_cashpick + $score_jaminanrumah + $score_kepalapasar + $score_lamadagang + $score_jenisnasabah + $score_jenisdagang + $score_sukubangsa + $score_jenispasar;
-                                                                @endphp
-                                                                <div class="card-body invoice-padding pt-0">
-                                                                    <div class="row invoice-spacing">
-                                                                        <div class="col-xl-8 p-0">
-                                                                            <table>
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="pe-1">Total Nilai
-                                                                                        </td>
-                                                                                        <td>: {{ $total_score }}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td class="pe-1">Status</td>
-                                                                                        <td>:
-                                                                                            @if ($nilai_idir >= 80 || $nilai_idir < 0)
-                                                                                                @if ($nilai_idir >= 80)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                                    <small
-                                                                                                        class="text-danger">*IDIR
-                                                                                                        > 80%</small>
-                                                                                                @elseif($nilai_idir < 0)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                                    <small
-                                                                                                        class="text-danger">*Pengeluaran
-                                                                                                        >
-                                                                                                        Pendapatan</small>
-                                                                                                @endif
-                                                                                            @else
-                                                                                                @if ($total_score > 3)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                                @elseif($total_score > 2 || $total_score > 3)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                                        Ulang</span>
-                                                                                                @else
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                                @endif
-                                                                                            @endif
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                        <div class="col-xl-4 p-10 mt-xl-0 mt-2">
-                                                                            <p class="mb-1 fw-bold">Note :</p>
-                                                                            <table>
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="pe-1 mb-2">Nilai < 2
-                                                                                                </td>
-                                                                                        <td>: <span class="fw-bold"><span
-                                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span></span>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td class="pe-1 mb-2">Nilai > 2
-                                                                                            - 3
-                                                                                        </td>
-                                                                                        <td>: <span class="fw-bold"><span
-                                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                                    Ulang</span></span>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td class="pe-1 mb-2">Nilai > 3
-                                                                                        </td>
-                                                                                        <td>: <span class="fw-bold"><span
-                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Header ends -->
-                                                    </div>
 
                                                     <hr class="invoice-spacing" />
 
@@ -639,7 +376,7 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1">Equivalen Rate</td>
-                                                                            <td>: {{ $pembiayaan->rate / 100 }} %</td>
+                                                                            <td>: {{ $pembiayaan->rate }} %</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1">Angsuran</td>
@@ -669,56 +406,360 @@
                                             <!-- Invoice Actions -->
                                             <hr class="invoice-spacing" />
 
+                                            <div class="card-body invoice-padding pb-0">
+                                                <!-- Header starts -->
+                                                <div
+                                                    class="d-flex justify-content-center flex-xl-row flex-column invoice-spacing mt-0">
+                                                    <div>
+                                                        <h4>Summary Analis</h4>
+                                                        <hr>
+                                                        <div class="table-responsive mt-1">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="text-align: center">No</th>
+                                                                        <th style="text-align: center">
+                                                                            Parameter
+                                                                        </th>
+                                                                        <th style="text-align: center">Kategori
+                                                                        </th>
+                                                                        <th style="text-align: center">Bobot
+                                                                        </th>
+                                                                        <th style="text-align: center">Rating
+                                                                        </th>
+                                                                        <th style="text-align: center">Nilai
+                                                                        </th>
+                                                                        <th style="text-align: center"> Detail </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="text-align: center">1</td>
+                                                                        <td>IDIR</td>
+                                                                        <td>
+                                                                            {{ $idir->idir_rendah }}% -
+                                                                            {{ $idir->idir_tinggi }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $idir->bobot * 100 }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rating_idir }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $score_idir }}</td>
+                                                                        <td style="text-align: center">
+                                                                            <button type="button"
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#idir">
+                                                                                <i data-feather="eye"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: center">2</td>
+                                                                        <td>Cash Pick Up</td>
+                                                                        <td value="{{ $cashs->id }}">
+                                                                            {{ $cashs->nama_jeniscash }}
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $cashs->bobot * 100 }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rating_cashpick }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $score_cashpick }}</td>
+                                                                        <td style="text-align: center">
+                                                                            <button type="button"
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                <i data-feather="eye"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: center">3</td>
+                                                                        <td>Jaminan Rumah</td>
+                                                                        <td value="{{ $rumahs->id }}">
+                                                                            {{ $rumahs->nama_jaminan }}
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rumahs->bobot * 100 }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rating_jaminanrumah }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $score_jaminanrumah }}</td>
+                                                                        <td style="text-align: center">
+                                                                            <button type="button"
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                <i data-feather="eye"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: center">4</td>
+                                                                        <td>Slik</td>
+                                                                        <td>{{ $slik->kategori }}
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $slik->bobot * 100 }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rating_slik }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $score_slik }}</td>
+                                                                        <td style="text-align: center">
+                                                                            <button type="button"
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#slik">
+                                                                                <i data-feather="eye"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td style="text-align: center">5</td>
+                                                                        <td>Jenis Nasabah</td>
+                                                                        <td value="{{ $nasabahs->id }}">
+                                                                            {{ $nasabahs->nama_jenisnasabah }}
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $nasabahs->bobot * 100 }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rating_jenisnasabah }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $score_jenisnasabah }}</td>
+                                                                        <td style="text-align: center">
+                                                                            <button type="button"
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                <i data-feather="eye"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: center">6</td>
+                                                                        <td>Konfirmasi Kepala Pasar</td>
+                                                                        <td>{{ $kepalapasar->kategori }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $kepalapasar->bobot * 100 }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rating_kepalapasar }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $score_kepalapasar }}</td>
+                                                                        <td style="text-align: center">
+                                                                            <button type="button"
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                <i data-feather="eye"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: center">7</td>
+                                                                        <td>Jaminan Kios</td>
+                                                                        <td>{{ $jaminans->nama_jaminan }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $jaminans->bobot * 100 }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rating_jaminanlain }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $score_jaminanlain }}</td>
+                                                                        <td style="text-align: center">
+                                                                            <button type="button"
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                <i data-feather="eye"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: center">8</td>
+                                                                        <td>Lama Berdagang</td>
+                                                                        <td value="{{ $lamas->id }}">
+                                                                            {{ $lamas->nama_lamaberdagang }}
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $lamas->bobot * 100 }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rating_lamadagang }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $score_lamadagang }}</td>
+                                                                        <td style="text-align: center">
+                                                                            <button type="button"
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                <i data-feather="eye"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: center">9</td>
+                                                                        <td>Jenis Dagangan</td>
+                                                                        <td value="{{ $dagangs->id }}">
+                                                                            {{ $dagangs->nama_jenisdagang }}
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $dagangs->bobot * 100 }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rating_jenisdagang }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $score_jenisdagang }}</td>
+                                                                        <td style="text-align: center">
+                                                                            <button type="button"
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                <i data-feather="eye"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: center">10</td>
+                                                                        <td>Suku Bangsa</td>
+                                                                        <td value="{{ $sukus->id }}">
+                                                                            {{ $sukus->nama_suku }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $sukus->bobot * 100 }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rating_sukubangsa }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $score_sukubangsa }}</td>
+                                                                        <td style="text-align: center">
+                                                                            <button type="button"
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                <i data-feather="eye"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: center">11</td>
+                                                                        <td>Jenis Pasar</td>
+                                                                        <td value="{{ $pasars->id }}">
+                                                                            {{ $pasars->nama_pasar }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $pasars->bobot * 100 }}%
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $rating_jenispasar }}</td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $score_jenispasar }}</td>
+                                                                        <td style="text-align: center">
+                                                                            <button type="button"
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                <i data-feather="eye"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        @php
+                                                            $total_score = $score_idir + $score_slik + $score_cashpick + $score_jaminanrumah + $score_kepalapasar + $score_lamadagang + $score_jenisnasabah + $score_jenisdagang + $score_sukubangsa + $score_jenispasar;
+                                                        @endphp
+                                                        <div class="card-body invoice-padding pt-0">
+                                                            <div class="row invoice-spacing">
+                                                                <div class="col-xl-8 p-0">
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="pe-1">Total Nilai
+                                                                                </td>
+                                                                                <td>: {{ $total_score }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1">Status</td>
+                                                                                <td>:
+                                                                                    @if ($nilai_idir >= 80 || $nilai_idir < 0)
+                                                                                        @if ($nilai_idir >= 80)
+                                                                                            <span
+                                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                            <small
+                                                                                                class="text-danger">*IDIR
+                                                                                                > 80%</small>
+                                                                                        @elseif($nilai_idir < 0)
+                                                                                            <span
+                                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                            <small
+                                                                                                class="text-danger">*Pengeluaran
+                                                                                                >
+                                                                                                Pendapatan</small>
+                                                                                        @endif
+                                                                                    @else
+                                                                                        @if ($total_score > 3)
+                                                                                            <span
+                                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                        @elseif($total_score > 2 || $total_score > 3)
+                                                                                            <span
+                                                                                                class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                Ulang</span>
+                                                                                        @else
+                                                                                            <span
+                                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                        @endif
+                                                                                    @endif
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="col-xl-4 p-10 mt-xl-0 mt-2">
+                                                                    <p class="mb-1 fw-bold">Note :</p>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="pe-1 mb-2">Nilai < 2 </td>
+                                                                                <td>: <span class="fw-bold"><span
+                                                                                            class="badge rounded-pill badge-glow bg-danger">Ditolak</span></span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1 mb-2"><br>Nilai > 2
+                                                                                    - 3
+                                                                                </td>
+                                                                                <td><br>: <span class="fw-bold"><span
+                                                                                            class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                            Ulang</span></span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1 mb-2"><br>Nilai > 3
+                                                                                </td>
+                                                                                <td><br>: <span class="fw-bold"><span
+                                                                                            class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Header ends -->
+                                            </div>
+
                                             <div class="card-body invoice-padding pt-0">
                                                 <div class="row invoice-spacing">
-                                                    <div class="col-xl-7 p-0">
-                                                        <table>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td class="pe-1">Total Nilai</td>
-                                                                    <td>: {{ $total_score }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="pe-1">Status</td>
-                                                                    <td>:
-                                                                        @if ($nilai_idir >= 80 || $nilai_idir < 0)
-                                                                            @if ($nilai_idir >= 80)
-                                                                                <span
-                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                <small class="text-danger">*DSR
-                                                                                    > 40%</small>
-                                                                            @elseif($nilai_idir < 0)
-                                                                                <span
-                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                <small class="text-danger">*Pengeluaran
-                                                                                    >
-                                                                                    Pendapatan</small>
-                                                                            @endif
-                                                                        @else
-                                                                            @if ($total_score > 3)
-                                                                                <span
-                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                            @elseif($total_score > 2 || $total_score > 3)
-                                                                                <span
-                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                    Ulang</span>
-                                                                            @else
-                                                                                <span
-                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                            @endif
-                                                                        @endif
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                    <div class="col-xl-3 p-0">
+
                                                     </div>
                                                     <div class="col-xl-5 p-0 mt-xl-0 mt-2">
-                                                        @if ($history->status_id == 4)
+                                                        @php
+                                                            $historystatus = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+                                                                ->where('pasar_pembiayaan_id', $pembiayaan->id)
+                                                                ->orderby('created_at', 'desc')
+                                                                ->get()
+                                                                ->first();
+                                                        @endphp
+                                                        @if ($historystatus->status_id == 4 && $historystatus->jabatan_id == 3)
                                                             <div class="card-body">
-                                                                <button class="btn btn-primary w-100"
+                                                                <button class="btn btn-success w-100"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#lanjut_komite">
-                                                                    Lanjut Komite
+                                                                    Disetujui
                                                                 </button>
                                                             </div>
                                                             <div class="card-body">
@@ -729,30 +770,6 @@
                                                                 </button>
                                                             </div>
                                                         @endif
-                                                        <p class="mb-1 fw-bold">Note :</p>
-                                                        <table>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td class="pe-1 mb-1">Nilai < 2 </td>
-                                                                    <td>: <span class="fw-bold"><span
-                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span></span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="pe-1 mb-1">Nilai > 2 - 3 </td>
-                                                                    <td>: <span class="fw-bold"><span
-                                                                                class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                Ulang</span></span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="pe-1 mb-1">Nilai > 3 </td>
-                                                                    <td>: <span class="fw-bold"><span
-                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
@@ -784,7 +801,7 @@
                                                                 </div>
                                                                 <input type="hidden" name="pasar_pembiayaan_id"
                                                                     value="{{ $pembiayaan->id }}">
-                                                                <input type="hidden" name="status" value=5>
+                                                                <input type="hidden" name="status_id" value=5>
                                                                 <input type="hidden" name="user_id"
                                                                     value="{{ Auth::user()->id }}">
 
@@ -897,6 +914,13 @@
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
                                                                         </div>
+                                                                          @if (isset($timeline->catatan))
+
+                                                                        <p value="{{ $timeline->id }}"> <br>Catatan :
+                                                                            {{ $timeline->catatan }}
+                                                                        <p>
+
+                                                                    @endif
                                                                         <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
@@ -915,6 +939,85 @@
                                     <!-- Justified Tabs ends -->
                                 </div>
                 </section>
+                <!-- Idir -->
+                <div class="modal fade" id="idir" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-5 mx-50 pb-5">
+                                <h3 class="text-center">Nilai IDIR </h3>
+                                <hr class="invoice-spacing" />
+                                <div class="card-body">
+                                    <div class="col-md-12 d-flex order-md-2 order-1">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="pe-1">Harga Beli</td>
+                                                    <td><span class="fw-bold">: Rp.
+                                                            {{ number_format($pembiayaan->harga) }}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Harga Jual</td>
+                                                    <td>: Rp. {{ number_format($harga_jual) }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Jangka Waktu</td>
+                                                    <td>: {{ $pembiayaan->tenor }} bulan</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Equivalen Rate</td>
+                                                    <td>: {{ $pembiayaan->rate }} %</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Angsuran</td>
+                                                    <td>: Rp. {{ number_format($angsuran) }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1 mt-1">IDIR</td>
+                                                    <td><span class="fw-bold">:
+                                                            {{ $nilai_idir }}
+                                                            %</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--akhir idir -->
+
+                 <!-- Slik -->
+                <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">IDEB </h3>
+                                <hr class="invoice-spacing" />
+                                <div class="card-body">
+                                    <div class="col-md-12 d-flex order-md-2 order-1">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--akhir Slik -->
+
 
             </div>
         </div>

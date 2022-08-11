@@ -1,5 +1,27 @@
 @extends('pasar::layouts.main')
+@php
+    $diterima = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('status_id',5)
+    ->where('jabatan_id', 4)
+    ->get()
+    ->count();
 
+    $proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
+    ->where('akad_id',null)
+    ->get()
+    ->count();
+
+    $ditolak = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('status_id',6)
+    ->get()
+    ->count();
+
+     $review = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('status_id',7)
+    ->orderby('created_at','desc')
+    ->get()
+    ->count();
+@endphp
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -47,7 +69,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ 0 }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $proposal }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>
@@ -60,7 +82,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">0</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Ditolak</p>
                                                 </div>
                                             </div>
@@ -73,7 +95,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">0</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $review }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Review</p>
                                                 </div>
                                             </div>
@@ -86,7 +108,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">0</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $diterima }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Disetujui</p>
                                                 </div>
                                             </div>

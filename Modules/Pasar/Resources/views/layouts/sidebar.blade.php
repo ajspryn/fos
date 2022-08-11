@@ -38,11 +38,29 @@ $notif_proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
                     href="/pasar/komite"><i data-feather="file-text"></i><span class="menu-title text-truncate"
                         data-i18n="home">Komite</span></a>
             </li>
-            <li class="{{ Request::is('pasar/proposal*') ? 'active' : 'nav-item' }} "><a
-                    class="d-flex align-items-center" href="/pasar/proposal"><i data-feather="clipboard"></i><span
-                        class="menu-title text-truncate" data-i18n="home">Proposal</span><span
-                        class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal }}</span></a>
+            <li><a class="d-flex align-items-center" href="#"><i data-feather="clipboard"></i><span
+                        class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span></a>
+                <ul class="menu-content">
+                    <li class="{{ Request::is('pasar/proposal*') ? 'active' : 'nav-item' }} "><a
+                            class="d-flex align-items-center" href="/pasar/proposal"><i
+                                data-feather="clipboard"></i><span class="menu-title text-truncate"
+                                data-i18n="home">Proposal</span><span
+                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal }}</span></a>
+                    </li>
+                     <li class="{{ Request::is('pasar/revisi*') ? 'active' : 'nav-item' }} "><a
+                            class="d-flex align-items-center" href="/pasar/revisi"><i
+                                data-feather="circle"></i><span class="menu-title text-truncate"
+                                data-i18n="home">Revisi Proposal</span><span
+                                class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
+                    </li>
+                </ul>
             </li>
+
+            {{-- <li class="{{ Request::is('pasar/proposal*') ? 'active' : 'nav-item' }} "><a
+                    class="d-flex align-items-center" href="/pasar/proposal"><i data-feather="clipboard"></i><span
+                        class="menu-title text-truncate" data-i18n="home">Revisi Proposal</span><span
+                        class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
+            </li> --}}
         </ul>
     </div>
 </div>

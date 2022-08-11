@@ -1,0 +1,13 @@
+{
+    "name": "Dirbis",
+    "alias": "dirbis",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Dirbis\\Providers\\DirbisServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

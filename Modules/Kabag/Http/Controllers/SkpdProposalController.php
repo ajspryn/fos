@@ -5,6 +5,7 @@ namespace Modules\Kabag\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Skpd\Entities\SkpdPembiayaan;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
 
 class SkpdProposalController extends Controller
@@ -15,7 +16,11 @@ class SkpdProposalController extends Controller
      */
     public function index()
     {
-        $proposal=SkpdPembiayaanHistory::select()->where('jabatan_id', 1 )->orderby('created_at','desc')->get();
+
+        $proposal=SkpdPembiayaan::all();
+
+        // return $proposal[0];
+
         return view('kabag::skpd.proposal.index',[
             'title'=>'Proposal SKPD',
             'proposals'=>$proposal,

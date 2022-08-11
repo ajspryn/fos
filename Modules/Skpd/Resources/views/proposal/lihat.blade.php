@@ -617,6 +617,14 @@
                                         <input type="hidden" name="kategori" value="IDEB" rows="3"
                                             class="form-control" />
                                     </div>
+                                      <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="ideb"><small class="text-danger">*
+                                            </small>Upload Konfirmasi Bendahara</label>
+                                        <input type="file" name="foto" id="ideb" rows="3"
+                                            class="form-control">
+                                        <input type="hidden" name="kategori" value="Konfirmasi Bendahara" rows="3"
+                                            class="form-control" />
+                                    </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting">Pengeluaran Lainnya (Per
                                             Bulan)</label>

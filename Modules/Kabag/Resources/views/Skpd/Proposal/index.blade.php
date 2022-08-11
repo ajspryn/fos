@@ -1,4 +1,4 @@
-@extends('analis::layouts.main')
+@extends('kabag::layouts.main')
 
 @section('content')
     <div class="app-content content ">
@@ -45,39 +45,52 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
-                                            $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-                                                ->where('id', $proposal->skpd_pembiayaan_id)
-                                                ->get()
-                                                ->first();
-
                                             $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-                                                ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+                                                ->where('skpd_pembiayaan_id', $proposal->id)
                                                 ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
+
+                                            if ($history) {
+                                                $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                                    ->where('id', $history->skpd_pembiayaan_id)
+                                                    ->get()
+                                                    ->first();
+                                            }
                                         @endphp
-                                        <tr>
-                                            <td style="text-align: center">
-                                                <button type="button"
-                                                    class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                    <i data-feather="eye"></i>
-                                                </button>
-                                            </td>
-                                            <td style="text-align: center">{{ $loop->iteration }}</td>
-                                            <td>{{ $proposal_skpd->nasabah->nama_nasabah }}</td>
-                                            <td>{{ $proposal_skpd->nasabah->alamat }}, {{ $proposal_skpd->nasabah->rt }},
-                                                {{ $proposal_skpd->nasabah->rw }}, {{ $proposal_skpd->nasabah->desa_kelurahan }},
-                                                {{ $proposal_skpd->nasabah->kecamatan }}, {{ $proposal_skpd->nasabah->kabkota }},
-                                                {{ $proposal_skpd->nasabah->provinsi }}</td>
-                                            <td style="text-align: center">{{ $proposal_skpd->instansi->nama_instansi }}</td>
-                                            <td style="text-align: center">{{ $proposal_skpd->golongan->nama_golongan }}</td>
-                                            <td style="text-align: center">Rp.
-                                                {{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
-                                            <td style="text-align: center">
-                                                <a href="/analis/skpd/komite/{{ $proposal_skpd->id }}"
-                                                    class="btn btn-outline-info round">Detail</a>
-                                            </td>
-                                        </tr>
+                                        @if ($history)
+                                            @if ($history->status_id == 3 && $history->jabatan_id == 1)
+                                                <tr>
+                                                    <td style="text-align: center">
+                                                        <button type="button"
+                                                            class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                            <i data-feather="eye"></i>
+                                                        </button>
+                                                    </td>
+                                                    <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                    <td>{{ $proposal_skpd->nasabah->nama_nasabah }}</td>
+                                                    <td>{{ $proposal_skpd->nasabah->alamat }},
+                                                        {{ $proposal_skpd->nasabah->rt }},
+                                                        {{ $proposal_skpd->nasabah->rw }},
+                                                        {{ $proposal_skpd->nasabah->desa_kelurahan }},
+                                                        {{ $proposal_skpd->nasabah->kecamatan }},
+                                                        {{ $proposal_skpd->nasabah->kabkota }},
+                                                        {{ $proposal_skpd->nasabah->provinsi }}</td>
+                                                    <td style="text-align: center">
+                                                        {{ $proposal_skpd->instansi->nama_instansi }}
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        {{ $proposal_skpd->golongan->nama_golongan }}
+                                                    </td>
+                                                    <td style="text-align: center">Rp.
+                                                        {{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
+                                                    <td style="text-align: center">
+                                                        <a href="/kabag/skpd/komite/{{ $proposal_skpd->id }}"
+                                                            class="btn btn-outline-info round">Detail</a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>

@@ -1,4 +1,4 @@
-@extends('analis::layouts.main')
+@extends('kabag::layouts.main')
 
 @section('content')
     <!-- BEGIN: Content-->
@@ -88,9 +88,16 @@
                                                 <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
                                                 <td style="text-align: center"
                                                     value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
+                                                     @if ($history->statushistory->id == 5)
                                                     <span
-                                                        class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                        class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>
+                                                @elseif ($history->statushistory->id == 4)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                        
+                                                @endif
                                                 </td>
                                                 {{-- <td style="text-align: center">{{ $proposal_pasar->user->name }}</td> --}}
                                                 <td>

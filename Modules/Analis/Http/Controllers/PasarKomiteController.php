@@ -38,7 +38,7 @@ class PasarKomiteController extends Controller
     public function index()
     {
         // $komite=PasarPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->get();
-        $komite=PasarPembiayaanHistory::select()->where('status_id', 5 )->get();
+        $komite=PasarPembiayaanHistory::select()->where('status_id', 5 )->where('user_id',auth::user()->id)->get();
         return view('analis::pasar.komite.index',[
             'title'=>'Data Nasabah',
             'komites'=>$komite,
@@ -69,6 +69,8 @@ class PasarKomiteController extends Controller
             'jabatan_id'=>3,
             'divisi_id'=>null,
         ]);
+
+        return redirect('/analis/pasar/komite');
     }
 
     /**
@@ -78,13 +80,27 @@ class PasarKomiteController extends Controller
      */
     public function show($id)
     {
-        PasarPembiayaanHistory::create([
-            'pasar_pembiayaan_id'=>$id,
-            'status_id'=>4,
-            'jabatan_id'=>3,
-            'divisi_id'=>0,
-            'user_id'=>Auth::user()->$id,
-        ]);
+        $cek=PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $id)
+        ->where('user_id',Auth::user()->id)
+        ->get()
+        ->count();
+
+        if ($cek==0){
+            PasarPembiayaanHistory::create([
+                'pasar_pembiayaan_id'=>$id,
+                'status_id'=>4,
+                'jabatan_id'=>3,
+                'divisi_id'=>0,
+                'user_id'=>Auth::user()->$id,
+            ]);
+        }
+        $historystatus = PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $id)
+         ->orderby('created_at', 'desc')
+         ->get()
+         ->first();
+
 
         $data=PasarPembiayaan::select()->where('id',$id)->get()->first();
         $nasabah=PasarNasabahh::select()->where('id',$id)->get()->first();

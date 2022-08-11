@@ -39,12 +39,15 @@
                                         <th style="text-align: center">Instansi</th>
                                         <th style="text-align: center">Golongan</th>
                                         <th style="text-align: center">Nominal Pembiayaan</th>
+                                        <th style="text-align: center">Status</th>
+                                        <th style="text-align: center">AO Yang Menangani</th>
                                         <th style="text-align: center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
+                                        
                                             $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                                                 ->where('id', $proposal->skpd_pembiayaan_id)
                                                 ->get()
@@ -56,6 +59,7 @@
                                                 ->get()
                                                 ->first();
                                         @endphp
+                                         @if ($history->status_id == 5 && $history->jabatan_id == 2)
                                         <tr>
                                             <td style="text-align: center">
                                                 <button type="button"
@@ -73,11 +77,25 @@
                                             <td style="text-align: center">{{ $proposal_skpd->golongan->nama_golongan }}</td>
                                             <td style="text-align: center">Rp.
                                                 {{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
+                                            <td style="text-align: center"
+                                                    value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
+                                                      @if ($history->statushistory->id == 5)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @elseif ($history->statushistory->id == 4)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @endif
+                                                </td>
+                                                <td style="text-align: center">{{ $proposal_skpd->user->name }}</td>
                                             <td style="text-align: center">
                                                 <a href="/analis/skpd/komite/{{ $proposal_skpd->id }}"
                                                     class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>

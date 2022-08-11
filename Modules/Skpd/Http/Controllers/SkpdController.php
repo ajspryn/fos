@@ -2,12 +2,14 @@
 
 namespace Modules\Skpd\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Skpd\Entities\SkpdJaminan;
 use Modules\Skpd\Entities\SkpdNasabah;
 use Modules\Skpd\Entities\SkpdPembiayaan;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\Auth;
 use Modules\Skpd\Entities\SkpdFoto;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
 use Modules\Skpd\Entities\SkpdOrangTerdekat;
@@ -43,8 +45,6 @@ class SkpdController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
-        // dd($tes);
         $hitung=SkpdPembiayaan::select()->get()->count();
         $id=$hitung+1;
 
@@ -116,9 +116,11 @@ class SkpdController extends Controller
             'dokumen_jaminan'=> $dokumen_jaminan,
         ]);
 
-        SkpdPembiayaanHistory::create([
+         SkpdPembiayaanHistory::create([
             'skpd_pembiayaan_id'=> $id,
-            'status'=> 'Calon Debitur Menginput Permohonan',
+            'status_id'=> 1,
+            'jabatan_id'=>0,
+            'divisi_id'=>null,
             'user_id'=> null,
         ]);
 

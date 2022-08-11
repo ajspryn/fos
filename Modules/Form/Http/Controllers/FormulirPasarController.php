@@ -201,7 +201,7 @@ class FormulirPasarController extends Controller
 
 
 
-        return redirect()->back()->with('success', 'Data Pasar Berhasil Ditambahkan');
+        return redirect('/')->with('success', 'Data Pasar Berhasil Ditambahkan');
     }
 
 
@@ -247,3 +247,4 @@ class FormulirPasarController extends Controller
         //
     }
 }
+{{  }}

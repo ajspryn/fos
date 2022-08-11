@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Modules\Pasar\Http\Controllers\EditProposalController;
 use Modules\Pasar\Http\Controllers\PasarController;
 use Modules\Pasar\Http\Controllers\PasarKomiteController;
 use Modules\Pasar\Http\Controllers\PasarNasabahController;
@@ -24,4 +25,5 @@ Route::prefix('pasar')->middleware(['auth:sanctum', 'verified', 'role:2', 'divis
     Route::resource('/nasabah', PasarNasabahController::class);
     Route::resource('/komite', PasarKomiteController::class);
     Route::resource('/proposal', PasarProposalController::class);
+    Route::resource('/revisi', EditProposalController::class);
 });

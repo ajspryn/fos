@@ -40,7 +40,7 @@ class HomeController extends Controller
                     $url='/analis';
                 }
                 elseif ($role->jabatan_id==4){
-                    $url='/direksi';
+                    $url='/dirbis';
                 }
                 else{
                     $url='/';

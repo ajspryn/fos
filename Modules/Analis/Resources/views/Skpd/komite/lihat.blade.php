@@ -62,223 +62,7 @@
                                             <!-- proposal -->
                                             <div class="col-xl-12 col-md-8 col-12">
                                                 <div class="card invoice-preview-card">
-                                                    <div class="card-body invoice-padding pb-0">
-                                                        <!-- Header starts -->
-                                                        <div
-                                                            class="d-flex justify-content-center flex-md-row flex-column invoice-spacing mt-0">
-                                                            <div>
-                                                                <h4>Summary Kabag</h4>
-                                                                <hr>
-                                                                <div class="table-responsive mt-1">
-                                                                    <table class="table">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th style="text-align: center">No</th>
-                                                                                <th style="text-align: center">
-                                                                                    Parameter
-                                                                                </th>
-                                                                                <th style="text-align: center">Kategori
-                                                                                </th>
-                                                                                <th style="text-align: center">Bobot
-                                                                                </th>
-                                                                                <th style="text-align: center">Rating
-                                                                                </th>
-                                                                                <th style="text-align: center">Nilai
-                                                                                </th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td style="text-align: center">1</td>
-                                                                                <td>Konfirmasi Bendahara</td>
-                                                                                <td></td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $bendahara->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_bendahara }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $nilai_bendahara }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">2</td>
-                                                                                <td>DSR</td>
-                                                                                <td>{{ $dsr->score_terendah }}% -
-                                                                                    {{ $dsr->score_tertinggi }}%</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $dsr->bobot * 100 }}%</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_dsr }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $nilai_dsr }}</td>
-                                                                            </tr>
-                                                                            @if ($ideps->count() > 0)
-                                                                                <tr>
-                                                                                    <td style="text-align: center">3
-                                                                                    </td>
-                                                                                    <td>Slik</td>
-                                                                                    <td>Kol Tertinggi
-                                                                                        {{ $slik->kol }}
-                                                                                    </td>
-                                                                                    <td style="text-align: center">
-                                                                                        {{ $slik->bobot * 100 }}%
-                                                                                    </td>
-                                                                                    <td style="text-align: center">
-                                                                                        {{ $rating_slik }}</td>
-                                                                                    <td style="text-align: center">
-                                                                                        {{ $nilai_slik }}</td>
-                                                                                </tr>
-                                                                            @else
-                                                                                @php
-                                                                                    $bobot_ta_slik = 0.2;
-                                                                                    $rating_ta_slik = 4;
-                                                                                    $nilai_slik = $bobot_ta_slik * $rating_ta_slik;
-                                                                                @endphp
-                                                                                <tr>
-                                                                                    <td style="text-align: center">3
-                                                                                    </td>
-                                                                                    <td>Slik</td>
-                                                                                    <td>Tidak Ada Slik
-                                                                                    </td>
-                                                                                    <td style="text-align: center">
-                                                                                        {{ $bobot_ta_slik * 100 }}%
-                                                                                    </td>
-                                                                                    <td style="text-align: center">
-                                                                                        {{ $rating_ta_slik }}</td>
-                                                                                    <td style="text-align: center">
-                                                                                        {{ $nilai_slik }}</td>
-                                                                                </tr>
-                                                                            @endif
-                                                                            <tr>
-                                                                                <td style="text-align: center">4</td>
-                                                                                <td>Jaminan</td>
-                                                                                <td>{{ $jaminan->nama_jaminan }}
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $jaminan->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_jaminan }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $nilai_jaminan }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">5</td>
-                                                                                <td>Jenis Nasabah</td>
-                                                                                <td>{{ $nasabah }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ 0.1 * 100 }}%</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_nasabah }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $nilai_nasabah }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center">6</td>
-                                                                                <td>Instansi</td>
-                                                                                <td>{{ $instansi->nama_instansi }}
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $instansi->bobot * 100 }}%
-                                                                                </td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $rating_instansi }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    {{ $nilai_instansi }}</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
 
-                                                                @php
-                                                                    $total_score = $nilai_bendahara + $nilai_dsr + $nilai_slik + $nilai_jaminan + $nilai_nasabah + $nilai_instansi;
-                                                                @endphp
-                                                                <div class="card-body invoice-padding pt-0">
-                                                                    <div class="row invoice-spacing">
-                                                                        <div class="col-xl-7 p-0">
-                                                                            <table>
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="pe-1">Total Nilai
-                                                                                        </td>
-                                                                                        <td>: {{ $total_score }}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td class="pe-1">Status</td>
-                                                                                        <td>:
-                                                                                            @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
-                                                                                                @if ($nilai_dsr1 >= 40)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                                    <small
-                                                                                                        class="text-danger">*DSR
-                                                                                                        >
-                                                                                                        40%</small>
-                                                                                                @elseif($nilai_dsr1 < 0)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                                    <small
-                                                                                                        class="text-danger">*Pengeluaran
-                                                                                                        >
-                                                                                                        Pendapatan</small>
-                                                                                                @endif
-                                                                                            @else
-                                                                                                @if ($total_score > 3)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                                @elseif($total_score > 2 || $total_score > 3)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                                        Ulang</span>
-                                                                                                @else
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                                @endif
-                                                                                            @endif
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                        <div class="col-xl-5 p-0 mt-xl-0 mt-2">
-                                                                            <p class="mb-1 fw-bold">Note :</p>
-                                                                            <table>
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="pe-1 mb-2">Nilai < 2
-                                                                                                </td>
-                                                                                        <td>: <span class="fw-bold"><span
-                                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span></span>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td class="pe-1 mb-2">Nilai > 2
-                                                                                            - 3
-                                                                                        </td>
-                                                                                        <td>: <span class="fw-bold"><span
-                                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                                    Ulang</span></span>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td class="pe-1 mb-2">Nilai > 3
-                                                                                        </td>
-                                                                                        <td>: <span class="fw-bold"><span
-                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- Invoice Note ends -->
-                                                            </div>
-                                                        </div>
-                                                        <!-- Header ends -->
-                                                    </div>
-
-                                                    <hr class="invoice-spacing" />
 
                                                     <!-- Address and Contact starts -->
                                                     <div class="card-body invoice-padding pt-0">
@@ -530,54 +314,282 @@
 
                                                     <hr class="invoice-spacing" />
 
+                                                    <div class="card-body invoice-padding pb-0">
+                                                        <!-- Header starts -->
+                                                        <div
+                                                            class="d-flex justify-content-center flex-md-row flex-column invoice-spacing mt-0">
+                                                            <div>
+                                                                <h4 >Summary Analis</h4>
+                                                                <hr>
+                                                                <div class="table-responsive mt-1">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="text-align: center">No</th>
+                                                                                <th style="text-align: center">
+                                                                                    Parameter
+                                                                                </th>
+                                                                                <th style="text-align: center">Kategori
+                                                                                </th>
+                                                                                <th style="text-align: center">Bobot
+                                                                                </th>
+                                                                                <th style="text-align: center">Rating
+                                                                                </th>
+                                                                                <th style="text-align: center">Nilai
+                                                                                </th>
+                                                                                <th style="text-align: center">Detail
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="text-align: center">1</td>
+                                                                                <td>Konfirmasi Bendahara</td>
+                                                                                <td></td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $bendahara->bobot * 100 }}%
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $rating_bendahara }}</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $nilai_bendahara }}</td>
+                                                                                <td style="text-align: center">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#konfirmasibendahara">
+                                                                                        <i data-feather="eye"></i>
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align: center">2</td>
+                                                                                <td>DSR</td>
+                                                                                <td>{{ $dsr->score_terendah }}% -
+                                                                                    {{ $dsr->score_tertinggi }}%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $dsr->bobot * 100 }}%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $rating_dsr }}</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $nilai_dsr }}</td>
+                                                                                <td style="text-align: center">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#dsr">
+                                                                                        <i data-feather="eye"></i>
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                            @if ($ideps->count() > 0)
+                                                                                <tr>
+                                                                                    <td style="text-align: center">3
+                                                                                    </td>
+                                                                                    <td>Slik</td>
+                                                                                    <td>Kol Tertinggi
+                                                                                        {{ $slik->kol }}
+                                                                                    </td>
+                                                                                    <td style="text-align: center">
+                                                                                        {{ $slik->bobot * 100 }}%
+                                                                                    </td>
+                                                                                    <td style="text-align: center">
+                                                                                        {{ $rating_slik }}</td>
+                                                                                    <td style="text-align: center">
+                                                                                        {{ $nilai_slik }}</td>
+                                                                                    <td style="text-align: center">
+                                                                                        <button type="button"
+                                                                                            class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                            data-bs-toggle="modal"
+                                                                                            data-bs-target="#slik">
+                                                                                            <i data-feather="eye"></i>
+                                                                                        </button>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @else
+                                                                                @php
+                                                                                    $bobot_ta_slik = 0.2;
+                                                                                    $rating_ta_slik = 4;
+                                                                                    $nilai_slik = $bobot_ta_slik * $rating_ta_slik;
+                                                                                @endphp
+                                                                                <tr>
+                                                                                    <td style="text-align: center">3
+                                                                                    </td>
+                                                                                    <td>Slik</td>
+                                                                                    <td>Tidak Ada Slik
+                                                                                    </td>
+                                                                                    <td style="text-align: center">
+                                                                                        {{ $bobot_ta_slik * 100 }}%
+                                                                                    </td>
+                                                                                    <td style="text-align: center">
+                                                                                        {{ $rating_ta_slik }}</td>
+                                                                                    <td style="text-align: center">
+                                                                                        {{ $nilai_slik }}</td>
+                                                                                    <td style="text-align: center">
+                                                                                        <button type="button"
+                                                                                            class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                            data-bs-toggle="modal"
+                                                                                            data-bs-target="#slik">
+                                                                                            <i data-feather="eye"></i>
+                                                                                        </button>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @endif
+                                                                            <tr>
+                                                                                <td style="text-align: center">4</td>
+                                                                                <td>Jaminan</td>
+                                                                                <td>{{ $jaminan->nama_jaminan }}
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $jaminan->bobot * 100 }}%
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $rating_jaminan }}</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $nilai_jaminan }}</td>
+                                                                                <td style="text-align: center">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#jaminan">
+                                                                                        <i data-feather="eye"></i>
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align: center">5</td>
+                                                                                <td>Jenis Nasabah</td>
+                                                                                <td>{{ $nasabah }}</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ 0.1 * 100 }}%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $rating_nasabah }}</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $nilai_nasabah }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align: center">6</td>
+                                                                                <td>Instansi</td>
+                                                                                <td>{{ $instansi->nama_instansi }}
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $instansi->bobot * 100 }}%
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $rating_instansi }}</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $nilai_instansi }}</td>
+
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                @php
+                                                                    $total_score = $nilai_bendahara + $nilai_dsr + $nilai_slik + $nilai_jaminan + $nilai_nasabah + $nilai_instansi;
+                                                                @endphp
+                                                                <div class="card-body invoice-padding pt-0">
+                                                                    <div class="row invoice-spacing">
+                                                                        <div class="col-xl-7 p-0">
+                                                                            <table>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="pe-1">Total Nilai
+                                                                                        </td>
+                                                                                        <td>: {{ $total_score }}</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="pe-1">Status</td>
+                                                                                        <td>:
+                                                                                            @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
+                                                                                                @if ($nilai_dsr1 >= 40)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                    <small
+                                                                                                        class="text-danger">*DSR
+                                                                                                        >
+                                                                                                        40%</small>
+                                                                                                @elseif($nilai_dsr1 < 0)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                    <small
+                                                                                                        class="text-danger">*Pengeluaran
+                                                                                                        >
+                                                                                                        Pendapatan</small>
+                                                                                                @endif
+                                                                                            @else
+                                                                                                @if ($total_score > 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                                @elseif($total_score > 2 || $total_score > 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                        Ulang</span>
+                                                                                                @else
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                @endif
+                                                                                            @endif
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="col-xl-5 p-0 mt-xl-0 mt-2">
+                                                                            <p class="mb-1 fw-bold">Note :</p>
+                                                                            <table>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="pe-1 mb-2">Nilai < 2
+                                                                                                </td>
+                                                                                        <td>: <span class="fw-bold"><span
+                                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span></span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="pe-1 mb-2"><br>Nilai > 2
+                                                                                            - 3
+                                                                                        </td>
+                                                                                        <td><br>: <span
+                                                                                                class="fw-bold"><span
+                                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                    Ulang</span></span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="pe-1 mb-2"><br>Nilai > 3
+                                                                                        </td>
+                                                                                        <td><br>: <span
+                                                                                                class="fw-bold"><span
+                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Invoice Note ends -->
+                                                            </div>
+                                                        </div>
+                                                        <!-- Header ends -->
+                                                    </div>
+
+                                                    <hr class="invoice-spacing" />
                                                     <!-- Invoice Note starts -->
                                                     <div class="card-body invoice-padding pt-0">
                                                         <div class="row invoice-spacing">
-                                                            <div class="col-xl-7 p-0">
-                                                                <table>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td class="pe-1">Total Nilai</td>
-                                                                            <td>: {{ $total_score }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="pe-1">Status</td>
-                                                                            <td>:
-                                                                                @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
-                                                                                    @if ($nilai_dsr1 >= 40)
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                        <small class="text-danger">*DSR
-                                                                                            >
-                                                                                            40%</small>
-                                                                                    @elseif($nilai_dsr1 < 0)
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                        <small
-                                                                                            class="text-danger">*Pengeluaran
-                                                                                            >
-                                                                                            Pendapatan</small>
-                                                                                    @endif
-                                                                                @else
-                                                                                    @if ($total_score > 3)
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                    @elseif($total_score > 2 || $total_score > 3)
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                            Ulang</span>
-                                                                                    @else
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                    @endif
-                                                                                @endif
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
+                                                            <div class="col-xl-3 p-0">
                                                             </div>
                                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
-                                                                @if ($history->status_id == 4)
+                                                                 @php
+                                                            $historystatus = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                                                                ->where('skpd_pembiayaan_id', $pembiayaan->id)
+                                                                ->orderby('created_at', 'desc')
+                                                                ->get()
+                                                                ->first();
+                                                        @endphp
+                                                        @if ($historystatus->status_id == 4 && $historystatus->jabatan_id == 3)
                                                                     <div class="card-body">
                                                                         <button class="btn btn-primary w-100"
                                                                             data-bs-toggle="modal"
@@ -593,30 +605,6 @@
                                                                         </button>
                                                                     </div>
                                                                 @endif
-                                                                <p class="mb-1 fw-bold">Note :</p>
-                                                                <table>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td class="pe-1 mb-1">Nilai < 2 </td>
-                                                                            <td>: <span class="fw-bold"><span
-                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span></span>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="pe-1 mb-1">Nilai > 2 - 3 </td>
-                                                                            <td>: <span class="fw-bold"><span
-                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                        Ulang</span></span>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="pe-1 mb-1">Nilai > 3 </td>
-                                                                            <td>: <span class="fw-bold"><span
-                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -782,9 +770,10 @@
                                             aria-labelledby="settings-tab-justified">
                                             {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
                                         width="1000" height="900"></iframe> --}}
-                                            <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
-                                                width="1000" height="900">
+                                            {{-- <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
+                                                width="1000" height="900"> --}}
                                         </div>
+
                                         <div class="tab-pane" id="timeline" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
                                             <div class="col-xl-12 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
@@ -799,7 +788,11 @@
                                                                     <div class="timeline-event">
                                                                         <div
                                                                             class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-0">
-                                                                            <h6>{{ $timeline->status }}</h6>
+                                                                            <h6
+                                                                                value="{{ $timeline->statushistory->id }}, {{ $timeline->jabatan->jabatan_id }}">
+                                                                                {{ $timeline->statushistory->keterangan }}
+                                                                                {{ $timeline->jabatan->keterangan }}
+                                                                            </h6>
                                                                         </div>
                                                                         <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
@@ -820,8 +813,141 @@
                                 <!-- Justified Tabs ends -->
                             </div>
                 </section>
+                <!-- Idir -->
+                <div class="modal fade" id="dsr" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-5 mx-50 pb-5">
+                                <h3 class="text-center">Nilai DSR </h3>
+                                <hr class="invoice-spacing" />
+                                <div class="card-body">
+                                    <div class="col-md-12 d-flex order-md-2 order-1">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="pe-1">Harga Beli</td>
+                                                    <td><span class="fw-bold">: Rp.
+                                                            {{ number_format($pembiayaan->nominal_pembiayaan) }}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Harga Jual</td>
+                                                    <td>: Rp. {{ number_format($harga_jual) }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Jangka Waktu</td>
+                                                    <td>: {{ $tenor }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Equivalen Rate</td>
+                                                    <td>: {{ $pembiayaan->rate }} %</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Angsuran</td>
+                                                    <td>: Rp. {{ number_format($angsuran1) }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1 mt-1">DSR</td>
+                                                    <td><span class="fw-bold">:
+                                                            {{ $nilai_dsr1 }}
+                                                            %</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!--akhir idir -->
+
+                <!-- ideb  -->
+                <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">Lampiran IDEB</h3>
+                                <div class="card-body">
+                                    {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
+                                        height='500' weight='800'></iframe> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ ideb  -->
+
+                <!-- ideb  -->
+                <div class="modal fade" id="konfirmasibendahara" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">Lampiran Konfirmasi Bendahara</h3>
+                                <div class="card-body">
+                                    <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
+                                        height='500'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ ideb  -->
+
+                    <!-- ideb  -->
+                    <div class="modal fade" id="jaminan" tabindex="-1" aria-labelledby="addNewCardTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-transparent">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body px-sm-12 mx-50 pb-5">
+                                     @foreach ($jaminans as $jaminan)
+                                                <!-- post 1 -->
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-start align-items-center mb-1">
+                                                            <div>
+                                                                <h6 class="mb-0">
+                                                                    {{ $jaminan->jenis_jaminan->nama_jaminan }}
+                                                                </h6>
+                                                                <small class="text-muted">Diupload Pada :
+                                                                    {{ $jaminan->created_at->diffForhumans() }}</small>
+                                                            </div>
+                                                        </div>
+                                                        <!-- post img -->
+                                                        <img class="img-fluid rounded mb-75"
+                                                            src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
+                                                            alt="avatar img" />
+                                                        <!--/ post img -->
+                                                    </div>
+                                                </div>
+                                                <!--/ post 1 -->
+                                            @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ ideb  -->
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-@endsection
+        @endsection
