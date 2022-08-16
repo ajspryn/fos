@@ -1,0 +1,5 @@
+@include('umkm::layouts.head')
+@include('umkm::layouts.navbar')
+@include('umkm::layouts.sidebar')
+@yield('content')
+@include('umkm::layouts.footer')

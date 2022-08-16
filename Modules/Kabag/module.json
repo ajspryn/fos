@@ -1,0 +1,13 @@
+{
+    "name": "Kabag",
+    "alias": "kabag",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Kabag\\Providers\\KabagServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

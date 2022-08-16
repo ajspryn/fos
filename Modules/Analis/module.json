@@ -1,0 +1,13 @@
+{
+    "name": "Analis",
+    "alias": "analis",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Analis\\Providers\\AnalisServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
