@@ -420,6 +420,8 @@
                                                                         </th>
                                                                         <th style="text-align: center">Nilai
                                                                         </th>
+                                                                        <th style="text-align: center">Detail
+                                                                        </th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -437,6 +439,14 @@
                                                                             {{ $rating_idir }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_idir }}</td>
+                                                                            <td style="text-align: center">
+                                                                                <button type="button"
+                                                                                    class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#idir">
+                                                                                    <i data-feather="eye"></i>
+                                                                                </button>
+                                                                            </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">2</td>
@@ -478,6 +488,13 @@
                                                                             {{ $rating_slik }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_slik }}</td>
+                                                                            <td style="text-align: center">
+                                                                                <button type="button"
+                                                                                    class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#slik">
+                                                                                    <i data-feather="eye"></i>
+                                                                                </button>
                                                                     </tr>
 
                                                                     <tr>
@@ -497,7 +514,8 @@
                                                                     <tr>
                                                                         <td style="text-align: center">6</td>
                                                                         <td>Konfirmasi Kepala Pasar</td>
-                                                                        <td></td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $kepalapasar->kategori }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $kepalapasar->bobot * 100 }}%
                                                                         </td>
@@ -505,6 +523,13 @@
                                                                             {{ $rating_kepalapasar }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_kepalapasar }}</td>
+                                                                            <td style="text-align: center">
+                                                                                <button type="button"
+                                                                                    class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#kepalapasar">
+                                                                                    <i data-feather="eye"></i>
+                                                                                </button>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">7</td>
@@ -517,6 +542,13 @@
                                                                             {{ $rating_jaminanlain }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_jaminanlain }}</td>
+                                                                            <td style="text-align: center">
+                                                                                <button type="button"
+                                                                                    class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#jaminankios">
+                                                                                    <i data-feather="eye"></i>
+                                                                                </button>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">8</td>
@@ -545,6 +577,13 @@
                                                                             {{ $rating_jenisdagang }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_jenisdagang }}</td>
+                                                                            <td style="text-align: center">
+                                                                                <button type="button"
+                                                                                    class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#fototoko">
+                                                                                    <i data-feather="eye"></i>
+                                                                                </button>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">10</td>
@@ -585,9 +624,9 @@
                                                                     <table>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td class="pe-1">Total Nilai
+                                                                                <td class="pe-1"><br>Total Nilai
                                                                                 </td>
-                                                                                <td>: {{ $total_score }}</td>
+                                                                                <td><br>: {{ $total_score }}</td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td class="pe-1">Status</td>
@@ -626,7 +665,7 @@
                                                                     </table>
                                                                 </div>
                                                                 <div class="col-xl-4 p-10 mt-xl-0 mt-2">
-                                                                    <p class="mb-1 fw-bold">Note :</p>
+                                                                    <p class="mb-1 fw-bold"><br>Note :</p>
                                                                     <table>
                                                                         <tbody>
                                                                             <tr>
@@ -636,18 +675,18 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td class="pe-1 mb-2">Nilai > 2
+                                                                                <td class="pe-1 mb-2"><br>Nilai > 2
                                                                                     - 3
                                                                                 </td>
-                                                                                <td>: <span class="fw-bold"><span
+                                                                                <td><br>: <span class="fw-bold"><span
                                                                                             class="badge rounded-pill badge-glow bg-warning">Tinjau
                                                                                             Ulang</span></span>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td class="pe-1 mb-2">Nilai > 3
+                                                                                <td class="pe-1 mb-2"><br>Nilai > 3
                                                                                 </td>
-                                                                                <td>: <span class="fw-bold"><span
+                                                                                <td><br>: <span class="fw-bold"><span
                                                                                             class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
                                                                                 </td>
                                                                             </tr>
@@ -955,12 +994,36 @@
                                             @endforeach
                                         </div>
 
+                                        <div class="tab-pane" id="legalitas-usaha"
+                                            role="tabpanel"aria-labelledby="messages-tab-justified">
+                                            
+                                                <!-- post 1 -->
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-start align-items-center mb-1">
+                                                            <div>
+                                                                <h6 class="mb-0">Foto Kios / Los :
+                                                                    {{ $fototoko->kategori }}
+                                                                </h6>
+                                                                <small class="text-muted">Diupload Pada :
+                                                                    {{ $fototoko->created_at->diffForhumans() }}</small>
+                                                            </div>
+                                                        </div>
+                                                        <!-- post img -->
+                                                        <img class="img-fluid rounded mb-75"
+                                                            src="{{ asset('storage/' . $fototoko->foto) }}"
+                                                            alt="avatar img" />
+                                                        <!--/ post img -->
+                                                    </div>
+                                                </div>
+                                        </div>
+
                                         <div class="tab-pane" id="ideb" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
                                             {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
                                             width="1000" height="900"></iframe> --}}
-                                            <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
-                                                width="1000" height="900">
+                                            <iframe src="{{ asset('storage/' . $pembiayaan->dokumen_keuangan) }}" class="d-block w-100"
+                                                height='500' weight='800'></iframe> 
                                         </div>
                                         <div class="tab-pane" id="timeline" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
@@ -1005,7 +1068,164 @@
                                             </div>
                                         </div>
                 </section>
+                <!-- Idir -->
+                <div class="modal fade" id="idir" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-5 mx-50 pb-5">
+                                <h3 class="text-center">Nilai IDIR </h3>
+                                <hr class="invoice-spacing" />
+                                <div class="card-body">
+                                    <div class="col-md-12 d-flex order-md-2 order-1">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="pe-1">Harga Beli</td>
+                                                    <td><span class="fw-bold">: Rp.
+                                                            {{ number_format($pembiayaan->harga) }}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Harga Jual</td>
+                                                    <td>: Rp. {{ number_format($harga_jual) }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Jangka Waktu</td>
+                                                    <td>: {{ $pembiayaan->tenor }} bulan</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Equivalen Rate</td>
+                                                    <td>: {{ $pembiayaan->rate }} %</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Angsuran</td>
+                                                    <td>: Rp. {{ number_format($angsuran) }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Cicilan Bank Lain</td>
+                                                    <td>: Rp. {{ number_format($cicilan) }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Pendapatan Bersih</td>
+                                                    <td>: Rp. {{ number_format($laba_bersih - $total_pengeluaran) }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1 mt-1">IDIR</td>
+                                                    <td><span class="fw-bold">:
+                                                            {{ $nilai_idir }}
+                                                            %</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--akhir idir -->
 
+                <!-- Slik -->
+                <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">IDEB </h3>
+                                <hr class="invoice-spacing" />
+                                <div class="card-body">
+                                    <div class="col-md-12 d-flex order-md-2 order-1">
+                                        <iframe src="{{ asset('storage/' . $pembiayaan->dokumen_keuangan) }}" class="d-block w-100"
+                                            height='500' weight='800'></iframe> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--akhir Slik -->
+                <!-- Slik -->
+                <div class="modal fade" id="kepalapasar" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">Konfirmasi Kepala Pasar </h3>
+                                <hr class="invoice-spacing" />
+                                <div class="card-body">
+                                    <div class="col-md-12 d-flex order-md-2 order-1">
+                                        <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
+                                            height='500' weight='800'>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--akhir Slik -->
+                <!-- Slik -->
+                <div class="modal fade" id="fototoko" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">Jenis Dagangan  </h3>
+                                <hr class="invoice-spacing" />
+                                <div class="card-body">
+                                    <div class="col-md-12 d-flex order-md-2 order-1">
+                                        <img src="{{ asset('storage/' . $fototoko->foto) }}" class="d-block w-100"
+                                            height='500' weight='800'>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--akhir Slik -->
+                <!-- Slik -->
+                <div class="modal fade" id="jaminankios" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">Jaminan Kios  </h3>
+                                <hr class="invoice-spacing" />
+                                <div class="card-body">
+                                    <div class="col-md-12 d-flex order-md-2 order-1">
+                                        <img src="{{ asset('storage/' . $jaminan->dokumenktb) }}" class="d-block w-100"
+                                            height='500' weight='800'>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--akhir Slik -->
             </div>
         </div>
     </div>

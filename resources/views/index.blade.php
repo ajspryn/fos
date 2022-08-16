@@ -33,8 +33,9 @@
                         <div class="col-md-3 col-sm-6 col-12 kb-search-content">
                             <div class="card">
                                 <a href="/form/skpd">
-                                    <img src="https://pngimage.net/wp-content/uploads/2018/06/logo-kab-bogor-png.png"
-                                        height="200" class="card-img-top" alt="knowledge-base-image" />
+                                    <img src="../../../bogor.png"
+                                    style="width: 77%; display: block; margin: 0 auto; padding-bottom: 15px"
+                                    class="card-img-top" alt="pasar-image" />
 
                                     <div class="card-body text-center">
                                         <h4>Pembiayaan SKPD</h4>
@@ -56,7 +57,7 @@
                                         class="card-img-top" alt="pasar-image" />
 
                                     <div class="card-body text-center">
-                                        <h4>Pembiayaan Pasar</h4>
+                                        <h4>Pembiayaan Pasar (Kios)</h4>
                                         <p class="text-body mt-1 mb-0">
 
                                         </p>
@@ -75,10 +76,7 @@
                                         class="card-img-top" alt="pasar-image" />
 
                                     <div class="card-body text-center">
-                                        <h4>Pembiayaan Pasar</h4>
-                                        <p class="text-body mt-1 mb-0">
-                                            UMKM
-                                        </p>
+                                        <h4>Pembiayaan Modal Kerja</h4>
                                     </div>
                                 </a>
                             </div>

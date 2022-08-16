@@ -118,8 +118,8 @@ class SkpdProposalController extends Controller
 
 
         $role=role::select()->where('user_id', Auth::user()->id)->get()->first();
-        $dokumen_keuangan= $request->foto->store('ideb-skpd-pembiayaan');
-         $dokumen_konfirmasi= $request->foto->store('konfirmasi-skpd-pembiayaan');
+        // $dokumen_keuangan= $request->foto->store('ideb-skpd-pembiayaan');
+        //  $dokumen_konfirmasi= $request->foto->store('konfirmasi-skpd-pembiayaan');
         SkpdPembiayaanHistory::create([
             'skpd_pembiayaan_id'=> $id,
             'status_id'=> 2,
@@ -128,18 +128,21 @@ class SkpdProposalController extends Controller
             'user_id'=> Auth::user()->id,
         ]);
 
-            if ($request->foto){
-                $foto= $request->file('foto')->store('ideb-skpd-pembiayaan');
+        $request -> validate([
+            'foto.*.kategori'=> 'required',
+            'foto.*.foto'=> 'required',
+        ]);
+
+        foreach ($request->foto as $key => $value) {
+            if ($value['foto']){
+                $foto= $value['foto']->store('foto-skpd-pembiayaan');
             }
-            if ($request->foto){
-                $foto= $request->file('foto')->store('konfirmasi-skpd-pembiayaan');
-            }
-            // return $foto;
             SkpdFoto::create([
                 'skpd_pembiayaan_id'=>$id,
-                'kategori'=> $request->kategori,
+                'kategori'=> $value['kategori'],
                 'foto'=> $foto,
             ]);
+        }
 
             if ($request->slik[0]['nama_bank']){
 

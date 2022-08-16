@@ -12,28 +12,12 @@
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
-                        <!-- Medal Card -->
-                        <div class="col-xl-4 col-md-6 col-12">
-                            <div class="card card-congratulation-medal">
-                                <div class="card-body">
-                                    <h5>Hii !! </h5>
-                                    <h5>{{ Auth::user()->name }}</h5>
-                                    <p class="card-text font-small-3">Target Belum Tercapai</p>
-                                    <h3 class="mb-75 mt-2 pt-50">
-                                        <a href="#"></a>
-                                    </h3>
-                                    {{-- <button type="button" class="btn btn-primary">View Sales</button> --}}
-                                    <img src="../../../app-assets/images/illustration/badge.svg"
-                                        class="congratulation-medal" alt="Medal Pic" />
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ Medal Card -->
+                      
                         <!-- Statistics Card -->
-                        <div class="col-xl-8 col-md-6 col-12">
+                        <div class="col-xl-12 col-md-6 col-12">
                             <div class="card card-statistics">
                                 <div class="card-header">
-                                    <h4 class="card-title">Statistik Proposal Anda</h4>
+                                    <h4 class="card-title">Statistik</h4>
                                     <div class="d-flex align-items-center">
                                         <p class="card-text font-small-2 me-25 mb-0"></p>
                                     </div>
@@ -108,7 +92,7 @@
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
+                                    <h2 class="fw-bolder">0</h2>
                                     <p class="card-text">Pipeline</p>
                                 </div>
                             </div>
@@ -121,7 +105,7 @@
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
+                                    <h2 class="fw-bolder">0</h2>
                                     <p class="card-text">Proposal</p>
                                 </div>
                             </div>
@@ -134,7 +118,7 @@
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
+                                    <h2 class="fw-bolder">0</h2>
                                     <p class="card-text">Komite</p>
                                 </div>
                             </div>
@@ -147,14 +131,14 @@
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
+                                    <h2 class="fw-bolder">0</h2>
                                     <p class="card-text">Disburse</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row match-height">
+                    {{-- <div class="row match-height">
                         <div class="col-lg-4 col-12">
                             <div class="row match-height">
                                 <!-- Bar Chart - Orders -->
@@ -253,7 +237,7 @@
                             </div>
                         </div>
                         <!--/ Revenue Report Card -->
-                    </div>
+                    </div> --}}
                 </section>
                 <!-- Dashboard Ecommerce ends -->
 

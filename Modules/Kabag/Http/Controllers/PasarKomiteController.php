@@ -223,6 +223,7 @@ class PasarKomiteController extends Controller
             'usahas'=>PasarKeteranganUsaha::all(), //udah
             'akads'=>PasarAkad::all(),
             'sektors'=>PasarSektorEkonomi::all(),
+            'kepalapasar'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Konfirmasi Kepala Pasar')->get()->first(),
             'pasars'=>PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first(),
             'lamas'=>PasarLamaBerdagang::select()->where('kode_lamaberdagang',$usaha->lama_usaha)->get()->first(),
             'rumahs'=>PasarJaminanRumahh::select()->where('kode_jaminan',$jaminanrumah->legalitas_kepemilikan_rumah)->get()->first(),

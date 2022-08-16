@@ -175,6 +175,22 @@ class PasarProposalController extends Controller
                 ]);
             }
 
+            $request -> validate([
+                'foto.*.kategori'=> 'required',
+                'foto.*.foto'=> 'required',
+            ]);
+    
+            foreach ($request->foto as $key => $value) {
+                if ($value['foto']){
+                    $foto= $value['foto']->store('foto-pasar-pembiayaan');
+                }
+                PasarFoto::create([
+                    'pasar_pembiayaan_id'=>$id,
+                    'kategori'=> $value['kategori'],
+                    'foto'=> $foto,
+                ]);
+            }
+
             return redirect('/pasar/komite/')->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
 
     }

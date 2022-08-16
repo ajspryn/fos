@@ -10,7 +10,6 @@
                 <section id="nav-filled">
                     <div class="row match-height">
 
-                        <!-- Justified Tabs starts -->
                         <div class="col-xl-12 col-lg-12">
                             <div class="card">
                                 <div class="card-header">
@@ -451,7 +450,7 @@
                                                                                     <button type="button"
                                                                                         class="btn btn-icon btn-icon rounded-circle btn-flat-success"
                                                                                         data-bs-toggle="modal"
-                                                                                        data-bs-target="#jaminan">
+                                                                                        data-bs-target="#ijazah">
                                                                                         <i data-feather="eye"></i>
                                                                                     </button>
                                                                                 </td>
@@ -839,10 +838,10 @@
                                         </div>
                                         <div class="tab-pane" id="ideb" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
-                                            {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
-                                        width="1000" height="900"></iframe> --}}
-                                            {{-- <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
-                                                width="1000" height="900"> --}}
+                                            <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
+                                        width="1000" height="900"></iframe>
+                                             <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
+                                                width="1000" height="900">
                                         </div>
 
                                         <div class="tab-pane" id="timeline" role="tabpanel"
@@ -920,6 +919,11 @@
                                                     <td>: {{ $pembiayaan->rate }} %</td>
                                                 </tr>
                                                 <tr>
+                                                    <td class="pe-1">Sisa Pendapatan Bersih</td>
+                                                    <td>: Rp. {{ number_format($pendapatan_bersih) }} </td>
+                                                </tr>
+                                               
+                                                <tr>
                                                     <td class="pe-1">Angsuran</td>
                                                     <td>: Rp. {{ number_format($angsuran1) }}
                                                     </td>
@@ -940,7 +944,26 @@
                 </div>
 
                 <!--akhir idir -->
-
+                 <!-- ideb  -->
+                 <div class="modal fade" id="ijazah" tabindex="-1" aria-labelledby="addNewCardTitle"
+                 aria-hidden="true">
+                 <div class="modal-dialog modal-dialog-centered">
+                     <div class="modal-content">
+                         <div class="modal-header bg-transparent">
+                             <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                 aria-label="Close"></button>
+                         </div>
+                         <div class="modal-body px-sm-12 mx-50 pb-5">
+                             <h3 class="text-center">Lampiran Jaminan</h3>
+                             <div class="card-body">
+                                 <iframe src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}" class="d-block w-100"
+                                     height='500' weight='800'></iframe> 
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <!--/ ideb  -->
                 <!-- ideb  -->
                 <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
@@ -953,8 +976,8 @@
                             <div class="modal-body px-sm-12 mx-50 pb-5">
                                 <h3 class="text-center">Lampiran IDEB</h3>
                                 <div class="card-body">
-                                    {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
-                                        height='500' weight='800'></iframe> --}}
+                                    <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
+                                        height='500' weight='800'></iframe> 
                                 </div>
                             </div>
                         </div>
@@ -981,7 +1004,26 @@
                         </div>
                     </div>
                     <!--/ ideb  -->
-
+                <!-- jaminan  -->
+                <div class="modal fade" id="iii" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">Lampiran Jaminan</h3>
+                                <div class="card-body">
+                                    {{-- <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
+                                    height='500'> --}}
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
                  
                 </div>
             </div>

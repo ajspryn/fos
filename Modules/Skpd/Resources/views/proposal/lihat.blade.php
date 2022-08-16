@@ -612,17 +612,17 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="ideb"><small class="text-danger">*
                                             </small>Upload IDEB</label>
-                                        <input type="file" name="foto" id="ideb" rows="3"
+                                        <input type="file" name="foto[1][foto]" id="ideb" rows="3"
                                             class="form-control">
-                                        <input type="hidden" name="kategori" value="IDEB" rows="3"
+                                        <input type="hidden" name="foto[1][kategori]" value="IDEB" rows="3"
                                             class="form-control" />
                                     </div>
                                       <div class="mb-1 col-md-6">
                                         <label class="form-label" for="konfirmasi"><small class="text-danger">*
                                             </small>Upload Konfirmasi Bendahara</label>
-                                        <input type="file" name="foto" id="konfirmasi" rows="3"
+                                        <input type="file" name="foto[2][foto]" id="konfirmasi" rows="3"
                                             class="form-control">
-                                        <input type="hidden" name="kategori" value="Konfirmasi Bendahara" rows="3"
+                                        <input type="hidden" name="foto[2][kategori]" value="Konfirmasi Bendahara" rows="3"
                                             class="form-control" />
                                     </div>
                                     <div class="mb-1 col-md-6">
