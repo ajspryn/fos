@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Controller\Providers;
+namespace Modules\Blr\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -12,7 +12,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $moduleNamespace = 'Modules\Controller\Http\Controllers';
+    protected $moduleNamespace = 'Modules\Blr\Http\Controllers';
 
     /**
      * Called before routes are registered.
@@ -49,7 +49,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web')
             ->namespace($this->moduleNamespace)
-            ->group(module_path('Controller', '/Routes/web.php'));
+            ->group(module_path('Blr', '/Routes/web.php'));
     }
 
     /**
@@ -64,6 +64,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('api')
             ->middleware('api')
             ->namespace($this->moduleNamespace)
-            ->group(module_path('Controller', '/Routes/api.php'));
+            ->group(module_path('Blr', '/Routes/api.php'));
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Controller\Http\Controllers;
+namespace Modules\Blr\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class ControllerController extends Controller
+class BlrController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,9 @@ class ControllerController extends Controller
      */
     public function index()
     {
-        return view('controller::index');
+        return view('blr::index',[
+            'title'=> 'Dashboard'
+        ]);
     }
 
     /**
@@ -23,7 +25,7 @@ class ControllerController extends Controller
      */
     public function create()
     {
-        return view('controller::create');
+        return view('blr::create');
     }
 
     /**
@@ -43,7 +45,7 @@ class ControllerController extends Controller
      */
     public function show($id)
     {
-        return view('controller::show');
+        return view('blr::show');
     }
 
     /**
@@ -53,7 +55,7 @@ class ControllerController extends Controller
      */
     public function edit($id)
     {
-        return view('controller::edit');
+        return view('blr::edit');
     }
 
     /**

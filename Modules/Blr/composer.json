@@ -1,5 +1,5 @@
 {
-    "name": "nwidart/controller",
+    "name": "nwidart/blr",
     "description": "",
     "authors": [
         {
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Controller\\": ""
+            "Modules\\Blr\\": ""
         }
     }
 }

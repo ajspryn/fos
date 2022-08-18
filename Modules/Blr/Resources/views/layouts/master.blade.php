@@ -4,16 +4,16 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Module Controller</title>
+        <title>Module Skpd</title>
 
        {{-- Laravel Mix - CSS File --}}
-       {{-- <link rel="stylesheet" href="{{ mix('css/controller.css') }}"> --}}
+       {{-- <link rel="stylesheet" href="{{ mix('css/skpd.css') }}"> --}}
 
     </head>
     <body>
         @yield('content')
 
         {{-- Laravel Mix - JS File --}}
-        {{-- <script src="{{ mix('js/controller.js') }}"></script> --}}
+        {{-- <script src="{{ mix('js/skpd.js') }}"></script> --}}
     </body>
 </html>

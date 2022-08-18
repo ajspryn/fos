@@ -61,6 +61,11 @@ class SkpdPembiayaan extends Model
         return $this->belongsTo(SkpdJaminan::class,'id', 'skpd_pembiayaan_id');
     }
 
+    public function foto()
+    {
+        return $this->belongsTo(SkpdFoto::class,'id', 'skpd_pembiayaan_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

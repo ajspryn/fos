@@ -1,11 +1,11 @@
 {
-    "name": "Controller",
-    "alias": "controller",
+    "name": "Blr",
+    "alias": "blr",
     "description": "",
     "keywords": [],
     "priority": 0,
     "providers": [
-        "Modules\\Controller\\Providers\\ControllerServiceProvider"
+        "Modules\\Blr\\Providers\\BlrServiceProvider"
     ],
     "aliases": {},
     "files": [],
