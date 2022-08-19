@@ -504,16 +504,16 @@
                                                                                             @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
                                                                                                 @if ($nilai_dsr1 >= 40)
                                                                                                     <span
-                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
-                                                                                                        class="text-danger">*DSR
+                                                                                                        class="text-danger">*Catatan : DSR
                                                                                                         >
                                                                                                         40%</small>
                                                                                                 @elseif($nilai_dsr1 < 0)
                                                                                                     <span
-                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
-                                                                                                        class="text-danger">*Pengeluaran
+                                                                                                        class="text-danger">*catatan : Pengeluaran
                                                                                                         >
                                                                                                         Pendapatan</small>
                                                                                                 @endif

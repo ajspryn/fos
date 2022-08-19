@@ -526,18 +526,19 @@
                                                                         <td>:
                                                                             @if ($nilai_idir >= 80 || $nilai_idir < 0)
                                                                                 @if ($nilai_idir >= 80)
-                                                                                    <span
-                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                    <small
-                                                                                        class="text-danger">*IDIR
-                                                                                        > 80%</small>
-                                                                                @elseif($nilai_idir < 0)
-                                                                                    <span
-                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                    <small
-                                                                                        class="text-danger">*Pengeluaran
-                                                                                        >
-                                                                                        Pendapatan</small>
+                                                                                <span
+                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                            <small
+                                                                                class="text-danger">*Catatan : DSR
+                                                                                >
+                                                                                40%</small>
+                                                                        @elseif($nilai_dsr1 < 0)
+                                                                            <span
+                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                            <small
+                                                                                class="text-danger">*catatan : Pengeluaran
+                                                                                >
+                                                                                Pendapatan</small>
                                                                                 @endif
                                                                             @else
                                                                                 @if ($total_score > 3)

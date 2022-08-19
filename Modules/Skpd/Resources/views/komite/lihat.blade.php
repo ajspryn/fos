@@ -502,19 +502,19 @@
                                                                                         <td>:
                                                                                             @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
                                                                                                 @if ($nilai_dsr1 >= 40)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                                    <small
-                                                                                                        class="text-danger">*DSR
-                                                                                                        >
-                                                                                                        40%</small>
-                                                                                                @elseif($nilai_dsr1 < 0)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                                    <small
-                                                                                                        class="text-danger">*Pengeluaran
-                                                                                                        >
-                                                                                                        Pendapatan</small>
+                                                                                                <span
+                                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                            <small
+                                                                                                class="text-danger">*Catatan : DSR
+                                                                                                >
+                                                                                                40%</small>
+                                                                                        @elseif($nilai_dsr1 < 0)
+                                                                                            <span
+                                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                            <small
+                                                                                                class="text-danger">*Catatan : Pengeluaran
+                                                                                                >
+                                                                                                Pendapatan</small>
                                                                                                 @endif
                                                                                             @else
                                                                                                 @if ($total_score > 3)
@@ -584,11 +584,26 @@
                                                                 @if ($history->status_id == 2)
                                                                 @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
                                                                 <div class="card-body">
+                                                                <form action="">
+                                                                    <label class="form-label" for="fotokk"><small class="text-danger">*
+                                                                    </small>Upload Dokumen Deviasi</label>
+                                                                <input type="file" name="dokumendeviasi" id="fotokk" rows="3"
+                                                                    class="form-control" required />
+                                                                </form>
+                                                            </div>
+                                                            
+                                                            <div class="card-body">
                                                                     <button class="btn btn-warning w-100 mb-75"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#edit_proposal">
                                                                         Edit Proposal
                                                                     </button>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                        <button class="btn btn-success w-100 mb-75"
+                                                                            data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                                            Lanjut Komite
+                                                                        </button>
                                                                 </div>
                                                             @else
                                                                 @if ($total_score > 3)
