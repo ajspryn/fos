@@ -183,13 +183,22 @@ class SkpdRevisiController extends Controller
         ]);
 
         if($request->file('dokumen_jaminan_lainnya')){
-            $dokumen_jaminan_lainnya=$request->file('dokumen_jaminan_lainnya')->store('skpd-dokumen_jaminan_lainnya');
+            $dokumen_jaminan_lainnya=$request->file('dokumen_jaminan_lainnya')->store('skpd-dokumen_jaminan_lainnya'); 
             SkpdJaminanLainnya::where('skpd_pembiayaan_id',$id)->update([
                 'skpd_pembiayaan_id'=> $id,
                 'nama_jaminan_lainnya'=> $request->skpd_jenis_jaminan_id,
                 'dokumen_jaminan_lainnya'=> $dokumen_jaminan_lainnya,
             ]);
         }
+        else{
+            $dokumen_jaminan_lainnya=$request->file('dokumen_jaminan_lainnya')->store('skpd-dokumen_jaminan_lainnya'); 
+            SkpdJaminanLainnya::where('skpd_pembiayaan_id',$id)->update([
+                'skpd_pembiayaan_id'=> $id,
+                'nama_jaminan_lainnya'=> $request->skpd_jenis_jaminan_id,
+                'dokumen_jaminan_lainnya'=> $dokumen_jaminan_lainnya,
+            ]);
+        }
+        
 
         $request -> validate([
             'foto.*.kategori'=> 'required',
@@ -198,6 +207,9 @@ class SkpdRevisiController extends Controller
 
         foreach ($request->foto as $key => $value) {
             if ($value['foto']){
+                $foto= $value['foto']->store('foto-skpd-pembiayaan');
+            }
+            else{
                 $foto= $value['foto']->store('foto-skpd-pembiayaan');
             }
             SkpdFoto::where('skpd_pembiayaan_id',$id)->update([

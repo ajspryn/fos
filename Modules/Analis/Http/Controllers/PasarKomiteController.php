@@ -44,7 +44,6 @@ class PasarKomiteController extends Controller
             'komites'=>$komite,
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      * @return Renderable

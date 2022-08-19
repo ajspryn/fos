@@ -451,7 +451,7 @@
                                                                                     <button type="button"
                                                                                         class="btn btn-icon btn-icon rounded-circle btn-flat-success"
                                                                                         data-bs-toggle="modal"
-                                                                                        data-bs-target="#jaminan">
+                                                                                        data-bs-target="#ijazah">
                                                                                         <i data-feather="eye"></i>
                                                                                     </button>
                                                                                 </td>
@@ -819,8 +819,8 @@
                                         </div>
                                         <div class="tab-pane" id="ideb" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
-                                            {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
-                                        width="1000" height="900"></iframe> --}}
+                                            <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
+                                        width="1000" height="900"></iframe>
                                             {{-- <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
                                                 width="1000" height="900"> --}}
                                         </div>
@@ -921,6 +921,87 @@
 
                 <!--akhir idir -->
 
+                <!-- Idir -->
+                <div class="modal fade" id="dsr" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-5 mx-50 pb-5">
+                                <h3 class="text-center">Nilai DSR </h3>
+                                <hr class="invoice-spacing" />
+                                <div class="card-body">
+                                    <div class="col-md-12 d-flex order-md-2 order-1">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="pe-1">Harga Beli</td>
+                                                    <td><span class="fw-bold">: Rp.
+                                                            {{ number_format($pembiayaan->nominal_pembiayaan) }}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Harga Jual</td>
+                                                    <td>: Rp. {{ number_format($harga_jual) }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Jangka Waktu</td>
+                                                    <td>: {{ $tenor }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Equivalen Rate</td>
+                                                    <td>: {{ $pembiayaan->rate }} %</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">Sisa Pendapatan Bersih</td>
+                                                    <td>: Rp. {{ number_format($pendapatan_bersih) }} </td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                    <td class="pe-1">Angsuran</td>
+                                                    <td>: Rp. {{ number_format($angsuran1) }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1 mt-1">DSR</td>
+                                                    <td><span class="fw-bold">:
+                                                            {{ $nilai_dsr1 }}
+                                                            %</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--akhir idir -->
+                 <!-- ideb  -->
+                 <div class="modal fade" id="ijazah" tabindex="-1" aria-labelledby="addNewCardTitle"
+                 aria-hidden="true">
+                 <div class="modal-dialog modal-dialog-centered">
+                     <div class="modal-content">
+                         <div class="modal-header bg-transparent">
+                             <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                 aria-label="Close"></button>
+                         </div>
+                         <div class="modal-body px-sm-12 mx-50 pb-5">
+                             <h3 class="text-center">Lampiran Jaminan</h3>
+                             <div class="card-body">
+                                 <iframe src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}" class="d-block w-100"
+                                     height='500' weight='800'></iframe> 
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <!--/ ideb  -->
                 <!-- ideb  -->
                 <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
@@ -933,8 +1014,8 @@
                             <div class="modal-body px-sm-12 mx-50 pb-5">
                                 <h3 class="text-center">Lampiran IDEB</h3>
                                 <div class="card-body">
-                                    {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
-                                        height='500' weight='800'></iframe> --}}
+                                    <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
+                                        height='500' weight='800'></iframe> 
                                 </div>
                             </div>
                         </div>
@@ -961,44 +1042,27 @@
                         </div>
                     </div>
                     <!--/ ideb  -->
-
-                    <!-- ideb  -->
-                    <div class="modal fade" id="jaminan" tabindex="-1" aria-labelledby="addNewCardTitle"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header bg-transparent">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body px-sm-12 mx-50 pb-5">
-                                     @foreach ($jaminans as $jaminan)
-                                                <!-- post 1 -->
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                                            <div>
-                                                                <h6 class="mb-0">
-                                                                    {{ $jaminan->jenis_jaminan->nama_jaminan }}
-                                                                </h6>
-                                                                <small class="text-muted">Diupload Pada :
-                                                                    {{ $jaminan->created_at->diffForhumans() }}</small>
-                                                            </div>
-                                                        </div>
-                                                        <!-- post img -->
-                                                        <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
-                                                            alt="avatar img" />
-                                                        <!--/ post img -->
-                                                    </div>
-                                                </div>
-                                                <!--/ post 1 -->
-                                            @endforeach
+                <!-- jaminan  -->
+                <div class="modal fade" id="iii" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">Lampiran Jaminan</h3>
+                                <div class="card-body">
+                                    {{-- <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
+                                    height='500'> --}}
+                                   
                                 </div>
                             </div>
                         </div>
-                        <!--/ ideb  -->
                     </div>
+                   
+                 
                 </div>
             </div>
         @endsection

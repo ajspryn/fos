@@ -37,11 +37,6 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="settings-tab-justified" data-bs-toggle="tab"
-                                                href="#legalitas-usaha" role="tab" aria-controls="settings-just"
-                                                aria-selected="false">Legalitas Usaha</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="settings-tab-justified" data-bs-toggle="tab"
                                                 href="#keuangan" role="tab" aria-controls="settings-just"
                                                 aria-selected="false">Keuangan</a>
                                         </li>
@@ -454,7 +449,7 @@
                                                                 <button type="button"
                                                                 class="btn btn-icon btn-icon rounded-circle btn-flat-success"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#">
+                                                                data-bs-target="#jaminankios">
                                                                 <i data-feather="eye"></i>
                                                             </button>
                                                                 </td>
@@ -490,7 +485,7 @@
                                                                 <button type="button"
                                                                 class="btn btn-icon btn-icon rounded-circle btn-flat-success"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#">
+                                                                data-bs-target="#fototoko">
                                                                 <i data-feather="eye"></i>
                                                             </button>
                                                                 </td>
@@ -853,7 +848,13 @@
                                                 <!--/ post 1 -->
                                             @endforeach
                                         </div>
-
+                                        <div class="tab-pane" id="ideb" role="tabpanel"
+                                        aria-labelledby="settings-tab-justified">
+                                        {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
+                                        width="1000" height="900"></iframe> --}}
+                                        <iframe src="{{ asset('storage/' . $pembiayaan->dokumen_keuangan) }}" class="d-block w-100"
+                                            height='500' weight='800'></iframe> 
+                                    </div>
                                         <div class="tab-pane" id="legalitas-agunan"
                                             role="tabpanel"aria-labelledby="messages-tab-justified">
                                             @foreach ($jaminanusahas as $jaminan)
@@ -1002,27 +1003,77 @@
            <!--akhir idir -->
 
            <!-- Slik -->
-           <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
-               aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                   <div class="modal-content">
-                       <div class="modal-header bg-transparent">
-                           <button type="button" class="btn-close" data-bs-dismiss="modal"
-                               aria-label="Close"></button>
-                       </div>
-                       <div class="modal-body px-sm-12 mx-50 pb-5">
-                           <h3 class="text-center">IDEB </h3>
-                           <hr class="invoice-spacing" />
-                           <div class="card-body">
-                               <div class="col-md-12 d-flex order-md-2 order-1">
-
-                               </div>
+           <div class="modal fade" id="fototoko" tabindex="-1" aria-labelledby="addNewCardTitle"
+           aria-hidden="true">
+           <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content">
+                   <div class="modal-header bg-transparent">
+                       <button type="button" class="btn-close" data-bs-dismiss="modal"
+                           aria-label="Close"></button>
+                   </div>
+                   <div class="modal-body px-sm-12 mx-50 pb-5">
+                       <h3 class="text-center">Jenis Dagangan  </h3>
+                       <hr class="invoice-spacing" />
+                       <div class="card-body">
+                           <div class="col-md-12 d-flex order-md-2 order-1">
+                               <img src="{{ asset('storage/' . $fototoko->foto) }}" class="d-block w-100"
+                                   height='500' weight='800'>
                            </div>
                        </div>
                    </div>
                </div>
            </div>
-           <!--akhir Slik -->
+       </div>
+       <!--akhir Slik -->
+
+        <!-- Slik -->
+        <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-transparent">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-sm-12 mx-50 pb-5">
+                    <h3 class="text-center">IDEB </h3>
+                    <hr class="invoice-spacing" />
+                    <div class="card-body">
+                        <div class="col-md-12 d-flex order-md-2 order-1">
+                            <iframe src="{{ asset('storage/' . $pembiayaan->dokumen_keuangan) }}" class="d-block w-100"
+                                height='500' weight='800'></iframe> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--akhir Slik -->
+
+    
+                <!-- Slik -->
+                <div class="modal fade" id="jaminankios" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">Jaminan Kios  </h3>
+                                <hr class="invoice-spacing" />
+                                <div class="card-body">
+                                    <div class="col-md-12 d-flex order-md-2 order-1">
+                                        <img src="{{ asset('storage/' . $jaminan->dokumenktb) }}" class="d-block w-100"
+                                            height='500' weight='800'>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--akhir Slik -->
 
             </div>
         </div>

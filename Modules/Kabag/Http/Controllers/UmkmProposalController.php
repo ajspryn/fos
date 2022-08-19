@@ -28,7 +28,9 @@ class UmkmProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::create');
+        return view('kabag::umkm.index',[
+            'title' => 'Dasboard Kabag',
+        ]);
     }
 
     /**

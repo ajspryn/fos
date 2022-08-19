@@ -19,12 +19,25 @@ use Modules\Dirbis\Http\Controllers\SkpdProposalController;
 
 Route::prefix('dirbis')->middleware(['auth:sanctum', 'role:2', 'divisi:0', 'jabatan:4'])->group(function() {
     Route::get('/', 'DirbisController@index');
-    Route::resource('/pasar/proposal', PasarProposalController::class);
-    Route::resource('/pasar/komite', PasarKomiteController::class);
-    Route::resource('/pasar/nasabah', PasarNasabahController::class);
-    Route::resource('/skpd/proposal', SkpdProposalController::class);
-    Route::resource('/skpd/komite', SkpdKomiteController::class);
-    Route::resource('/skpd/nasabah', SkpdNasabahController::class);
+
+    Route::prefix('skpd')->group(function() {
+        Route::resource('/komite', SkpdKomiteController::class);
+        Route::resource('/proposal', SkpdProposalController::class);
+        Route::resource('/', SkpdProposalController::class);
+    });
+
+    // Route::prefix('umkm')->group(function() {
+    //     Route::resource('/komite', UmkmKomiteController::class);
+    //     Route::resource('/proposal', UmkmProposalController::class);
+    //     Route::resource('/', UmkmProposalController::class);
+    // });
+
+    Route::prefix('pasar')->group(function() {
+        Route::resource('/komite', PasarKomiteController::class);
+        Route::resource('/proposal', PasarProposalController::class);
+        Route::resource('/', PasarProposalController::class);
+
+    });
 
 });
 

@@ -28,7 +28,10 @@ class PasarProposalController extends Controller
      */
     public function create()
     {
-        return view('dirbis::create');
+        return view('dirbis::pasar.index',[
+            'title' => 'Dasboard Direktur Bisnis',
+            
+        ]);
     }
 
     /**

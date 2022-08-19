@@ -15,7 +15,7 @@ class SkpdProposalController extends Controller
      */
     public function index()
     {
-        $proposal=SkpdPembiayaanHistory::select()->where('jabatan_id', 2 )->where('status',5)->orderby('created_at','desc')->get();
+        $proposal=SkpdPembiayaanHistory::select()->where('jabatan_id', 2 )->where('status_id',5)->orderby('created_at','desc')->get();
         return view('analis::skpd.proposal.index',[
             'title'=>'Data Nasabah',
             'proposals'=>$proposal,
@@ -28,7 +28,10 @@ class SkpdProposalController extends Controller
      */
     public function create()
     {
-        return view('analis::create');
+        return view('analis::skpd.index',[
+            'title' => 'Dasboard Analis',
+            
+        ]);
     }
 
     /**

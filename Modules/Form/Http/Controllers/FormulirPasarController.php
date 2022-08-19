@@ -140,7 +140,6 @@ class FormulirPasarController extends Controller
 
 
         PasarJaminan::create([
-            'id'=>$id,
             'pasar_pembiayaan_id'=> $id,
             'no_ktb'=> $request ->no_ktb,
             'dokumenktb'=> $dokumenktb,
@@ -148,14 +147,12 @@ class FormulirPasarController extends Controller
 
 
         PasarJaminanLain::create([
-            'id'=>$id,
             'pasar_pembiayaan_id'=> $id,
             'jaminanlain'=> $request ->jaminanlain,
             'dokumen_jaminan'=>$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminanlain'),
         ]);
 
         PasarLegalitasRumah::create([
-            'id'=>$id,
             'pasar_pembiayaan_id'=> $id,
             'kepemilikan_rumah'=> $request ->kepemilikan_rumah,
             'legalitas_kepemilikan_rumah'=> $request ->legalitas_kepemilikan_rumah,
@@ -171,7 +168,6 @@ class FormulirPasarController extends Controller
         ]);
 
         PasarKeteranganUsaha::create([
-            'id'=>$id,
             'pasar_pembiayaan_id'=> $id,
             'jenispasar_id'=>$request->jenispasar_id,
             'nama_usaha'=>$request->nama_usaha,

@@ -104,7 +104,8 @@
                                                 </small>Sektor Ekonomi</label>
                                             <select class="select2 w-100" name="skpd_sektor_ekonomi_id" id="sektor"
                                                 required>
-                                                <option label="sektor"></option>
+                                                <option value="{{ $pembiayaan->sektor->id }}">
+                                                    {{ $pembiayaan->sektor->jenis_penggunaan }}</option>
                                                 @foreach ($sektors as $sektor)
                                                     <option value="{{ $sektor->id }}">{{ $sektor->nama_sektor_ekonomi }}
                                                     </option>
@@ -125,7 +126,7 @@
                                             <label class="form-label" for="nominal_pembiayaan"><small
                                                     class="text-danger">* </small>Nominal Pembiayaan</label>
                                             <input type="text" name="nominal_pembiayaan"
-                                                class="form-control numeral-mask1" placeholder="Rp. {{ number_format($pembiayaan->nominal_pembiayaan) }}"
+                                                class="form-control numeral-mask1" value =" {{ number_format($pembiayaan->nominal_pembiayaan) }}"
                                                 id="nominal_pembiayaan"
                                                 required />
                                         </div>
@@ -282,7 +283,7 @@
                                         <label class="form-label" for="fotodiri"><small class="text-danger">*
                                             </small>Upload Foto Diri</label>
                                         <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
-                                            class="form-control" required />
+                                            class="form-control" value ="{{ $fotodiri->foto }}">
                                         <input type="hidden" name="foto[1][kategori]" value="Foto Diri" rows="3"
                                             class="form-control" />
                                     </div>
@@ -290,7 +291,7 @@
                                         <label class="form-label" for="fotoktp"><small class="text-danger">*
                                             </small>Upload Foto KTP</label>
                                         <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
-                                            class="form-control" required />
+                                            class="form-control" value ="{{ $fotoktp->foto }}">
                                         <input type="hidden" name="foto[2][kategori]" value="Foto KTP" rows="3"
                                             class="form-control" />
                                     </div>
@@ -485,7 +486,7 @@
                                             <label class="form-label" for="gaji_pokok"><small class="text-danger">*
                                                 </small>Gaji Pokok (Per Bulan)</label>
                                             <input type="text" name="gaji_pokok" class="form-control numeral-mask1"
-                                                placeholder="Rp. {{ number_format($pembiayaan->gaji_pokok) }}" id="gaji_pokok"
+                                                value="{{ number_format($pembiayaan->gaji_pokok) }}" id="gaji_pokok"
                                                  required />
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -493,24 +494,28 @@
                                                     class="text-danger">* </small>Gaji / Pendapatan Lainnya (Per
                                                 Bulan)</label>
                                             <input type="text" name="pendapatan_lainnya"
-                                                class="form-control numeral-mask2" placeholder="Rp."
+                                                class="form-control numeral-mask2"  value="{{ number_format($pembiayaan->pendapatan_lainnya) }}"
                                                 id="pendapatan_lainnya" required />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="pendapatan_tpp"><small class="text-danger">*
                                                 </small>Pendapatan TPP (Per Bulan)</label>
                                             <input type="text" name="gaji_tpp" class="form-control numeral-mask3"
-                                                placeholder="Rp.{{ number_format($pembiayaan->gaji_tpp) }}" id="pendapatan_tpp"
+                                                value="{{ number_format($pembiayaan->gaji_tpp) }}" id="pendapatan_tpp"
                                                required />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="lampiran_keuangan">Upload Lampiran Keuangan</label>
                                             <input type="file" name="dokumen_keuangan" id="lampiran_keuangan"
                                                 rows="3" class="form-control" />
+                                            <input type="hidden" name="dokumen_keuangan" value="{{ $pembiayaan->dokumen_keuangan }}" rows="3"
+                                            class="form-control" />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="slip_gaji">Upload Slip Gaji</label>
                                             <input type="file" name="dokumen_slip_gaji" id="slip_gaji" rows="3"
+                                                class="form-control" value="{{ $pembiayaan->dokumen_slip_gaji }}">
+                                                <input type="hidden" name="dokumen_keuangan"  rows="3"
                                                 class="form-control" />
                                         </div>
                                     </div>

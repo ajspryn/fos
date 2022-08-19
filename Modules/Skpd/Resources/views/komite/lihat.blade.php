@@ -170,7 +170,7 @@
                                                                         <tr>
                                                                             <td class="pe-1">Potongan Lainnya</td>
                                                                             <td>: Rp.
-                                                                                {{ number_format($pembiayaan->potongan_lainnya) }}
+                                                                                {{ number_format($pembiayaan->pengeluaran_lainnya) }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>

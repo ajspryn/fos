@@ -33,7 +33,9 @@ class SkpdProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::create');
+        return view('kabag::skpd.index',[
+            'title' => 'Dasboard Kabag',
+        ]);
     }
 
     /**

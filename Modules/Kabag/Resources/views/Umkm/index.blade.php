@@ -1,22 +1,22 @@
 @extends('kabag::layouts.main')
 @php
-    $diterima = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    $diterima = Modules\UMKM\Entities\UmkmPembiayaanHistory::select()
     ->where('status_id',5)
     ->where('jabatan_id', 4)
     ->get()
     ->count();
 
-    $proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
+    $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
     ->where('akad_id',null)
     ->get()
     ->count();
 
-    $ditolak = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    $ditolak = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
     ->where('status_id',6)
     ->get()
     ->count();
 
-     $review = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+     $review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
     ->where('status_id',7)
     ->orderby('created_at','desc')
     ->get()
@@ -34,24 +34,8 @@
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
-                        <!-- Medal Card -->
-                        <div class="col-xl-4 col-md-6 col-12">
-                            <div class="card card-congratulation-medal">
-                                <div class="card-body">
-                                    <h5>{{ Auth::user()->name }}</h5>
-                                    <p class="card-text font-small-3">Kamu Belum Mencapai Target</p>
-                                    <h3 class="mb-75 mt-2 pt-50">
-                                        <a href="#"></a>
-                                    </h3>
-                                    {{-- <button type="button" class="btn btn-primary">View Sales</button> --}}
-                                    <img src="../../../app-assets/images/illustration/badge.svg"
-                                        class="congratulation-medal" alt="Medal Pic" />
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ Medal Card -->
                         <!-- Statistics Card -->
-                        <div class="col-xl-8 col-md-6 col-12">
+                        <div class="col-xl-12 col-md-6 col-12">
                             <div class="card card-statistics">
                                 <div class="card-header">
                                     <h4 class="card-title">Statistik Proposal Anda</h4>
@@ -119,7 +103,7 @@
                         </div>
                         <!--/ Statistics Card -->
                     </div>
-
+{{-- 
                     <div class="row">
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
@@ -274,7 +258,7 @@
                             </div>
                         </div>
                         <!--/ Revenue Report Card -->
-                    </div>
+                    </div> --}}
                 </section>
                 <!-- Dashboard Ecommerce ends -->
 

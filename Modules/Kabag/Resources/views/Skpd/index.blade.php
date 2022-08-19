@@ -1,6 +1,30 @@
 @extends('kabag::layouts.main')
 
 @section('content')
+@php
+    $diterima = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('status_id',5)
+    ->where('jabatan_id', 4)
+    ->get()
+    ->count();
+
+    $proposal = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('status_id',3)
+    ->orderby('created_at','desc')
+    ->get()
+    ->count();
+
+    $ditolak = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('status_id',6)
+    ->get()
+    ->count();
+
+     $revisi= Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('status_id',7)
+    ->orderby('created_at','desc')
+    ->get()
+    ->count();
+@endphp
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -45,7 +69,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $tolak }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Ditolak</p>
                                                 </div>
                                             </div>
@@ -58,7 +82,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">0</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $revisi }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Review</p>
                                                 </div>
                                             </div>

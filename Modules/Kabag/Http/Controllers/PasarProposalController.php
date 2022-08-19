@@ -26,7 +26,10 @@ class PasarProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::create');
+        return view('kabag::pasar.index',[
+            'title' => 'Dasboard Kabag',
+            
+        ]);
     }
 
     /**

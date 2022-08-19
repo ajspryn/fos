@@ -1,5 +1,28 @@
-@extends('kabag::layouts.main')
+@extends('analis::layouts.main')
+@php
+    $diterima = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('status_id',5)
+    ->where('jabatan_id', 4)
+    ->get()
+    ->count();
 
+    $proposal = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('status_id',3)
+    ->orderby('created_at','desc')
+    ->get()
+    ->count();
+
+    $ditolak = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('status_id',6)
+    ->get()
+    ->count();
+
+     $review = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('status_id',7)
+    ->orderby('created_at','desc')
+    ->get()
+    ->count();
+@endphp
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -12,12 +35,11 @@
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
-                      
                         <!-- Statistics Card -->
                         <div class="col-xl-12 col-md-6 col-12">
                             <div class="card card-statistics">
                                 <div class="card-header">
-                                    <h4 class="card-title">Statistik</h4>
+                                    <h4 class="card-title">Statistik Proposal Anda</h4>
                                     <div class="d-flex align-items-center">
                                         <p class="card-text font-small-2 me-25 mb-0"></p>
                                     </div>
@@ -45,7 +67,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $tolak }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Ditolak</p>
                                                 </div>
                                             </div>
@@ -58,7 +80,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">0</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $review }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Review</p>
                                                 </div>
                                             </div>
@@ -92,8 +114,8 @@
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Pipeline</p>
+                                    <h2 class="fw-bolder">36.9k</h2>
+                                    <p class="card-text">Views</p>
                                 </div>
                             </div>
                         </div>
@@ -105,8 +127,8 @@
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Proposal</p>
+                                    <h2 class="fw-bolder">36.9k</h2>
+                                    <p class="card-text">Views</p>
                                 </div>
                             </div>
                         </div>
@@ -118,8 +140,8 @@
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Komite</p>
+                                    <h2 class="fw-bolder">36.9k</h2>
+                                    <p class="card-text">Views</p>
                                 </div>
                             </div>
                         </div>
@@ -131,8 +153,8 @@
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Disburse</p>
+                                    <h2 class="fw-bolder">36.9k</h2>
+                                    <p class="card-text">Views</p>
                                 </div>
                             </div>
                         </div>

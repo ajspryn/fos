@@ -28,22 +28,22 @@ class PasarPembiayaan extends Model
 
     public function keteranganusaha()
     {
-        return $this->belongsTo(PasarKeteranganUsaha::class,'pasar_keterangan_usaha_id', 'id');
+        return $this->belongsTo(PasarKeteranganUsaha::class,'pasar_keterangan_usaha_id', 'pasar_pembiayaan_id');
     }
     
     public function rumah()
     {
-        return $this->belongsTo(PasarLegalitasRumah::class,'pasar_legalitas_rumah_id', 'id');
+        return $this->belongsTo(PasarLegalitasRumah::class,'pasar_legalitas_rumah_id', 'pasar_pembiayaan_id');
     }
 
     public function jaminanpasar()
     {
-        return $this->belongsTo(PasarJaminan::class,'jaminan_id', 'id');
+        return $this->belongsTo(PasarJaminan::class,'jaminan_id', 'pasar_pembiayaan_id');
     }
 
     public function jaminanpasarlain()
     {
-        return $this->belongsTo(PasarJaminanLain::class,'jaminanlain_id', 'id');
+        return $this->belongsTo(PasarJaminanLain::class,'jaminanlain_id', 'pasar_pembiayaan_id');
     }
 
     public function user()

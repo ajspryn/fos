@@ -22,10 +22,32 @@ $notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="{{ Request::is('admin') ? 'active' : '' }} "><a class="d-flex align-items-center"
-                    href="/admin"><i data-feather="home"></i><span class="menu-title text-truncate"
-                        data-i18n="home">Dashboard</span></a>
+            <li><a class="d-flex align-items-center" href="#"><i data-feather="menu"></i><span
+                class="menu-item text-truncate" data-i18n="Account Settings">Dashboard</span></a>
+        <ul class="menu-content">
+            <li class="{{ Request::is('dirbis/') ? 'active' : '' }}"><a class="d-flex align-items-center"
+                    href="/dirbis"><i data-feather="bar-chart"></i><span
+                        class="menu-item text-truncate" data-i18n="Account">Analytic</span></a>
             </li>
+            <li class="{{ Request::is('dirbis/skpd/create') ? 'active' : '' }} "><a
+                    class="d-flex align-items-center" href="/dirbis/skpd/create"><i data-feather="home"></i><span
+                        class="menu-title text-truncate" data-i18n="home">SKPD</span></a>
+            </li>
+            <li class="{{ Request::is('dirbis/pasar/create') ? 'active' : '' }} "><a
+                    class="d-flex align-items-center" href="/dirbis/pasar/create"><i
+                        data-feather="home"></i><span class="menu-title text-truncate"
+                        data-i18n="home">Pasar</span></a>
+            </li>
+            <li class="{{ Request::is('dirbis/umkm/create') ? 'active' : '' }} "><a
+                    class="d-flex align-items-center" href="/dirbis/umkm/create"><i data-feather="home"></i><span
+                        class="menu-title text-truncate" data-i18n="home">UMKM</span></a>
+            </li>
+            <li class="{{ Request::is('dirbis/skpd/ppr') ? 'active' : '' }}"><a
+                    class="d-flex align-items-center" href="/dirbis/skpd/proposal"><i
+                        data-feather="home"></i><span class="menu-item text-truncate"
+                        data-i18n="Security">PPR</span></a>
+            </li>
+        </ul>
             <li class=" navigation-header"><span data-i18n="Forms &amp; Tables">Pembiayaan</span><i
                     data-feather="more-horizontal"></i>
             </li>

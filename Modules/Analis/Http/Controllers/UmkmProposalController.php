@@ -5,6 +5,7 @@ namespace Modules\Analis\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Umkm\Entities\UmkmPembiayaan;
 
 class UmkmProposalController extends Controller
 {
@@ -14,7 +15,11 @@ class UmkmProposalController extends Controller
      */
     public function index()
     {
-        return view('analis::index');
+        $proposal=UmkmPembiayaan::select()->get();
+        return view('analis::umkm.proposal.index',[
+            'title'=>'Data Nasabah',
+            'proposals'=>$proposal,
+        ]);
     }
 
     /**
@@ -23,7 +28,10 @@ class UmkmProposalController extends Controller
      */
     public function create()
     {
-        return view('analis::create');
+        return view('analis::umkm.index',[
+            'title' => 'Dasboard Analis',
+            
+        ]);
     }
 
     /**

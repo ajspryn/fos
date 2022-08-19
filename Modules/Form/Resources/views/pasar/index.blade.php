@@ -88,12 +88,12 @@
                                         </select>
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="nominal_pembiayaan">Kios / Los Yang Di Pesan</label>
+                                        <label class="form-label" for="pesanan_blok">Kios / Los Yang Di Pesan</label>
                                         <input type="text" name="pesanan_blok" class="form-control "
-                                            placeholder="Blok Pesanan" id="pesanan_blok" required>
+                                            placeholder="Blok Pesanan" id="pesanan_blok" >
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="nominal_pembiayaan">Luas Kios / Los Yang Di
+                                        <label class="form-label" for="luas">Luas Kios / Los Yang Di
                                             Pesan</label>
                                         <input type="text" name="luas" class="form-control "
                                             placeholder="Luas Blok Pesanan" id="pesanan_blok">

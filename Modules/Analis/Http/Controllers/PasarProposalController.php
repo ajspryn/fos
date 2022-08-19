@@ -53,7 +53,10 @@ class PasarProposalController extends Controller
      */
     public function create()
     {
-        return view('analis::create');
+        return view('analis::pasar.index',[
+            'title' => 'Dasboard Analis',
+            
+        ]);
     }
 
     /**

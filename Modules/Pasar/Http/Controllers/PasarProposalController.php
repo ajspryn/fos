@@ -191,7 +191,7 @@ class PasarProposalController extends Controller
                 ]);
             }
 
-            return redirect('/pasar/komite/')->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
+            return redirect('/pasar/komite/'.$id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
 
     }
     }
