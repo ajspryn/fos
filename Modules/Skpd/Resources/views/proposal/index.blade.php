@@ -26,16 +26,20 @@
                 </div>
             </div>
             <!-- Profile Card -->
-            @foreach ($proposals as $proposal)
+            {{-- @foreach ($proposals as $proposal)
+            @php
+            $fotoktp=Modules\Skpd\Entities\SkpdFoto::select()->where('skpd_pembiayaan_id',$proposal->id)->where('kategori', 'foto ktp')->get()->first();
+            $fotodiri=Modules\Skpd\Entities\SkpdFoto::select()->where('skpd_pembiayaan_id',$proposal->id)->where('kategori', 'foto diri')->get()->first();
+            @endphp
                 <div class="col-lg-12 col-md-6 col-12">
                     <div class="card card-profile">
-                        <img src="{{ asset('storage/' . $proposal->foto->where('keterangan', 'Foto KTP')) }}"
+                        <img src="{{ asset('storage/' . $fotoktp) }}"
                             class="img-fluid card-img-top" alt="Profile Cover Photo" />
                         <div class="card-body">
                             <div class="profile-image-wrapper">
                                 <div class="profile-image">
                                     <div class="avatar">
-                                        <img src="../../../app-assets/images/portrait/small/avatar-s-9.jpg"
+                                        <img src="{{ asset('storage/' . $fotoktp) }}"
                                             alt="Profile Picture" />
                                     </div>
                                 </div>
@@ -61,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @endforeach --}}
             <!--/ Profile Card -->
             <!-- Basic table -->
             <section id="basic-datatable">

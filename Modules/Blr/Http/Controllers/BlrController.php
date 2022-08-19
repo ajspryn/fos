@@ -14,8 +14,8 @@ class BlrController extends Controller
      */
     public function index()
     {
-        return view('blr::index',[
-            'title'=> 'Dashboard'
+        return view('blr::index', [
+            'title' => 'Dashboard'
         ]);
     }
 
