@@ -1,4 +1,4 @@
-@extends('kabag::layouts.main')
+@extends('dirbis::layouts.main')
 
 @section('content')
     <!-- BEGIN: Content-->
@@ -61,7 +61,7 @@
                                                 ->first();
                                         @endphp
 
-                                        @if ($history->status_id == 3 && $history->jabatan_id == 1)
+                                        @if ($history->status_id == 5 && $history->jabatan_id == 3)
                                             <tr>
                                                 <td style="text-align: center">
                                                     <button type="button"
@@ -94,7 +94,7 @@
                                                 </td>
                                                 <td style="text-align: center">{{ $proposal_pasar->user->name }}</td>
                                                 <td>
-                                                    <a href="/kabag/umkm/komite/{{ $proposal_pasar->id }}"
+                                                    <a href="/dirbis/umkm/komite/{{ $proposal_pasar->id }}"
                                                         class="btn btn-outline-info round">Detail</a>
                                                 </td>
                                             </tr>
