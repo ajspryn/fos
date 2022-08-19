@@ -655,7 +655,17 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-
+                                                        @if ($deviasi)
+                                                            <div class="card-body invoice-padding pt-0">
+                                                                <div class="mb-0 mt-1 col-md-4">
+                                                                    <button type="button" class="btn btn-primary"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#dokumendeviasi">Dokumen
+                                                                        Deviasi
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        @endif
                                                         @php
                                                             $total_score = $score_idir + $score_slik + $score_cashpick + $score_jaminanrumah + $score_kepalapasar + $score_lamadagang + $score_jenisnasabah + $score_jenisdagang + $score_sukubangsa + $score_jenispasar;
                                                         @endphp
@@ -675,15 +685,15 @@
                                                                                     @if ($nilai_idir >= 80 || $nilai_idir < 0)
                                                                                         @if ($nilai_idir >= 80)
                                                                                             <span
-                                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                             <small
-                                                                                                class="text-danger">*IDIR
+                                                                                                class="text-danger">*Catatan : IDIR
                                                                                                 > 80%</small>
                                                                                         @elseif($nilai_idir < 0)
                                                                                             <span
-                                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                class="badge rounded-pill badge-glow bg-successs">Diterima</span>
                                                                                             <small
-                                                                                                class="text-danger">*Pengeluaran
+                                                                                                class="text-danger">*Catatan : Pengeluaran
                                                                                                 >
                                                                                                 Pendapatan</small>
                                                                                         @endif
@@ -821,54 +831,77 @@
                                             </div>
                                             <!-- /Invoice Actions -->
 
-                                                   <!-- Invoice Note ends -->
+                                            <!-- Invoice Note ends -->
 
-                                                   <div class="modal fade" id="edit_proposal" tabindex="-1"
-                                                   aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                                   <div class="modal-dialog modal-dialog-centered">
-                                                       <div class="modal-content">
-                                                           <div class="modal-header bg-transparent">
-                                                               <button type="button" class="btn-close"
-                                                                   data-bs-dismiss="modal" aria-label="Close"></button>
-                                                           </div>
-                                                           <div class="modal-body px-sm-5 mx-50 pb-5">
-                                                               <h1 class="text-center mb-1" id="addNewCardTitle">
-                                                                   Revisi Proposal ?
-                                                               </h1>
-                                                               <p class="text-center"></p>
-   
-                                                               <!-- form -->
-                                                               <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"
-                                                                   method="POST" action="/analis/pasar/komite">
-                                                                   @csrf
-   
-                                                                   <div class="col-md-12">
-                                                                       <label class="form-label"
-                                                                           for="catatan">Catatan</label>
-                                                                       <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
-                                                                   </div>
-                                                                   <input type="hidden" name="pasar_pembiayaan_id"
-                                                                       value="{{ $pembiayaan->id }}">
-                                                                   <input type="hidden" name="status_id" value=7>
-                                                                   <input type="hidden" name="jabatan_id" value=3>
-                                                                   <input type="hidden" name="user_id"
-                                                                       value="{{ Auth::user()->id }}">
-   
-                                                                   <div class="col-12 text-center">
-                                                                       <button type="submit"
-                                                                           class="btn btn-primary me-1 mt-1">Submit</button>
-                                                                       <button type="reset"
-                                                                           class="btn btn-outline-secondary mt-1"
-                                                                           data-bs-dismiss="modal" aria-label="Close">
-                                                                           Cancel
-                                                                       </button>
-                                                                   </div>
-                                                               </form>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           <!-- /Invoice Actions -->
+                                            <div class="modal fade" id="edit_proposal" tabindex="-1"
+                                                aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-transparent">
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                            <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                Revisi Proposal ?
+                                                            </h1>
+                                                            <p class="text-center"></p>
+
+                                                            <!-- form -->
+                                                            <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"
+                                                                method="POST" action="/analis/pasar/komite">
+                                                                @csrf
+
+                                                                <div class="col-md-12">
+                                                                    <label class="form-label"
+                                                                        for="catatan">Catatan</label>
+                                                                    <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
+                                                                </div>
+                                                                <input type="hidden" name="pasar_pembiayaan_id"
+                                                                    value="{{ $pembiayaan->id }}">
+                                                                <input type="hidden" name="status_id" value=7>
+                                                                <input type="hidden" name="jabatan_id" value=3>
+                                                                <input type="hidden" name="user_id"
+                                                                    value="{{ Auth::user()->id }}">
+
+                                                                <div class="col-12 text-center">
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary me-1 mt-1">Submit</button>
+                                                                    <button type="reset"
+                                                                        class="btn btn-outline-secondary mt-1"
+                                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                                        Cancel
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Invoice Actions -->
+
+                                            @if ($deviasi)
+                                                <div class="modal fade" id="dokumendeviasi" tabindex="-1"
+                                                    aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-transparent">
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                <h3 class="text-center">Lampiran Dokumen Deviasi</h3>
+                                                                <div class="card-body">
+                                                                    <iframe
+                                                                        src="{{ asset('storage/' . $deviasi->dokumen_deviasi) }}"
+                                                                        class="d-block w-100" height="500"
+                                                                        weight='900'></iframe>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
 
                                         <div class="tab-pane" id="identitas-pribadi" role="tabpanel"
@@ -963,13 +996,11 @@
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
                                                                         </div>
-                                                                          @if (isset($timeline->catatan))
-
-                                                                        <p value="{{ $timeline->id }}"> <br>Catatan :
-                                                                            {{ $timeline->catatan }}
-                                                                        <p>
-
-                                                                    @endif
+                                                                        @if (isset($timeline->catatan))
+                                                                            <p value="{{ $timeline->id }}"> <br>Catatan :
+                                                                                {{ $timeline->catatan }}
+                                                                            <p>
+                                                                        @endif
                                                                         <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
@@ -1044,7 +1075,7 @@
                 </div>
                 <!--akhir idir -->
 
-                 <!-- Slik -->
+                <!-- Slik -->
                 <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">

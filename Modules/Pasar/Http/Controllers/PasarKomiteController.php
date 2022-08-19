@@ -21,6 +21,7 @@ use Modules\Admin\Entities\PasarScoreIdir;
 use Modules\Admin\Entities\PasarScoreSlik;
 use Modules\Admin\Entities\PasarSektorEkonomi;
 use Modules\Admin\Entities\PasarSukuBangsa;
+use Modules\Pasar\Entities\PasarDeviasi;
 use Modules\Pasar\Entities\PasarDokumen;
 use Modules\Pasar\Entities\PasarFoto;
 use Modules\Pasar\Entities\PasarJaminan;
@@ -76,6 +77,14 @@ class PasarKomiteController extends Controller
             'user_id'=> $request->user_id,
             'jabatan_id'=> $request->jabatan_id,
         ]);
+
+        if($request->file('dokumen_deviasi')){
+            $dokumen_deviasi=$request->file('dokumen_deviasi')->store('pasar-dokumen_deviasi');
+            PasarDeviasi::create([
+                'pasar_pembiayaan_id'=> $request->pasar_pembiayaan_id,
+                'dokumen_deviasi'=> $dokumen_deviasi,
+            ]);
+        }
 
 
         return redirect('/pasar/komite');

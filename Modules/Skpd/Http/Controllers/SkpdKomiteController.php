@@ -17,6 +17,7 @@ use Modules\Admin\Entities\SkpdScoreSlik;
 use Modules\Skpd\Entities\SkpdPembiayaan;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Admin\Entities\SkpdJenisJaminan;
+use Modules\Skpd\Entities\SkpdDeviasi;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
 
@@ -56,6 +57,7 @@ class SkpdKomiteController extends Controller
     {
        $role=role::select()->where('user_id', Auth::user()->id)->get()->first();
 
+    //    dd($request);
         SkpdPembiayaanHistory::create([
             'skpd_pembiayaan_id'=> $request->skpd_pembiayaan_id,
             'status_id'=> $request->status_id,
@@ -64,6 +66,15 @@ class SkpdKomiteController extends Controller
             'divisi_id'=>$role->divisi_id,
             'user_id'=> Auth::user()->id,
         ]);
+
+        if($request->file('dokumen_deviasi')){
+            $dokumen_deviasi=$request->file('dokumen_deviasi')->store('skpd-dokumen_deviasi');
+            SkpdDeviasi::create([
+                'skpd_pembiayaan_id'=> $request->skpd_pembiayaan_id,
+                'dokumen_deviasi'=> $dokumen_deviasi,
+            ]);
+        }
+
 
     }
 

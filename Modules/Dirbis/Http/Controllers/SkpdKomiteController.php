@@ -11,6 +11,7 @@ use Modules\Admin\Entities\SkpdInstansi;
 use Modules\Admin\Entities\SkpdJenisJaminan;
 use Modules\Admin\Entities\SkpdScoreDsr;
 use Modules\Admin\Entities\SkpdScoreSlik;
+use Modules\Skpd\Entities\SkpdDeviasi;
 use Modules\Skpd\Entities\SkpdFoto;
 use Modules\Skpd\Entities\SkpdJaminan;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
@@ -185,6 +186,7 @@ class SkpdKomiteController extends Controller
             'nilai_dsr'=>$dsr,
             'nilai_dsr1'=>$dsr,
             'total_pendapatan'=>$data->pendapatan_lainnya + $data->gaji_pokok + $data->pendapatan_lainnya,
+            'deviasi'=>SkpdDeviasi::select()->where('skpd_pembiayaan_id',$id)->get()->first(),
 
             'bendahara'=>$proses_bendahara,
             'dsr'=>$proses_dsr,

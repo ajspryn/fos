@@ -17,6 +17,7 @@ use Modules\Admin\Entities\SkpdBendahara;
 use Modules\Admin\Entities\SkpdScoreSlik;
 use Modules\Skpd\Entities\SkpdPembiayaan;
 use Modules\Admin\Entities\SkpdJenisJaminan;
+use Modules\Skpd\Entities\SkpdDeviasi;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
 
@@ -217,6 +218,7 @@ class SkpdKomiteController extends Controller
             'skpengangkatans'=>SkpdPembiayaan::select()->where('id',$id)->get(),
             'ideb'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori','IDEB')->get()->first(),
             'konfirmasi'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori','Konfirmasi Bendahara')->get()->first(),
+            'deviasi'=>SkpdDeviasi::select()->where('skpd_pembiayaan_id',$id)->get()->first(),
 
 
             //history

@@ -19,6 +19,7 @@ use Modules\Admin\Entities\PasarScoreIdir;
 use Modules\Admin\Entities\PasarScoreSlik;
 use Modules\Admin\Entities\PasarSektorEkonomi;
 use Modules\Admin\Entities\PasarSukuBangsa;
+use Modules\Pasar\Entities\PasarDeviasi;
 use Modules\Pasar\Entities\PasarDokumen;
 use Modules\Pasar\Entities\PasarFoto;
 use Modules\Pasar\Entities\PasarJaminan;
@@ -236,6 +237,7 @@ class PasarKomiteController extends Controller
             'slik'=>$prosesslik,
             'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
             'ideb'=>PasarPembiayaan::select()->where('id',$id)->get(),
+            'deviasi'=>PasarDeviasi::select()->where('skpd_pembiayaan_id',$id)->get()->first(),
             'kepalapasar'=>$proses_kepalapasar,
             'idir'=>$proses_idir,
             'laba_bersih'=>$laba_bersih,

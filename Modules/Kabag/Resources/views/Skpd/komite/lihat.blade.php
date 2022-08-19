@@ -484,7 +484,17 @@
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-
+                                                                @if ($deviasi)
+                                                                    <div class="card-body invoice-padding pt-0">
+                                                                        <div class="mb-0 mt-1 col-md-4">
+                                                                            <button type="button" class="btn btn-primary"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#dokumendeviasi">Dokumen
+                                                                                Deviasi
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
                                                                 @php
                                                                     $total_score = $nilai_bendahara + $nilai_dsr + $nilai_slik + $nilai_jaminan + $nilai_nasabah + $nilai_instansi;
                                                                 @endphp
@@ -506,14 +516,16 @@
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
-                                                                                                        class="text-danger">*Catatan : DSR
+                                                                                                        class="text-danger">*Catatan
+                                                                                                        : DSR
                                                                                                         >
                                                                                                         40%</small>
                                                                                                 @elseif($nilai_dsr1 < 0)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
-                                                                                                        class="text-danger">*catatan : Pengeluaran
+                                                                                                        class="text-danger">*catatan
+                                                                                                        : Pengeluaran
                                                                                                         >
                                                                                                         Pendapatan</small>
                                                                                                 @endif
@@ -582,15 +594,14 @@
                                                             <div class="col-xl-3 p-0">
                                                             </div>
                                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
-                                                                 @php
-                                                            $historystatus = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-                                                                ->where('skpd_pembiayaan_id', $pembiayaan->id)
-                                                                ->orderby('created_at', 'desc')
-                                                                ->get()
-                                                                ->first();
-                                                        @endphp
-                                                        @if ($historystatus->status_id == 4 && $historystatus->jabatan_id == 2)
-
+                                                                @php
+                                                                    $historystatus = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                                                                        ->where('skpd_pembiayaan_id', $pembiayaan->id)
+                                                                        ->orderby('created_at', 'desc')
+                                                                        ->get()
+                                                                        ->first();
+                                                                @endphp
+                                                                @if ($historystatus->status_id == 4 && $historystatus->jabatan_id == 2)
                                                                     <div class="card-body">
                                                                         <button class="btn btn-success w-100"
                                                                             data-bs-toggle="modal"
@@ -659,56 +670,78 @@
                                                         </div>
                                                     </div>
                                                     <!--/ add new card modal  -->
-                                                    
-                                                      <!-- add new card modal  -->
-                                                      <div class="modal fade" id="edit_proposal" tabindex="-1"
-                                                      aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                                      <div class="modal-dialog modal-dialog-centered">
-                                                          <div class="modal-content">
-                                                              <div class="modal-header bg-transparent">
-                                                                  <button type="button" class="btn-close"
-                                                                      data-bs-dismiss="modal"
-                                                                      aria-label="Close"></button>
-                                                              </div>
-                                                              <div class="modal-body px-sm-5 mx-50 pb-5">
-                                                                  <h1 class="text-center mb-1" id="addNewCardTitle">
-                                                                     Rekomendasi Revisi Proposal ?
-                                                                  </h1>
-                                                                  <p class="text-center"></p>
 
-                                                                  <!-- form -->
-                                                                  <form id="addNewCardValidation"
-                                                                      class="row gy-1 gx-2 mt-75" method="POST"
-                                                                      action="/kabag/skpd/komite">
-                                                                      @csrf
+                                                    <!-- add new card modal  -->
+                                                    <div class="modal fade" id="edit_proposal" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                        Rekomendasi Revisi Proposal ?
+                                                                    </h1>
+                                                                    <p class="text-center"></p>
 
-                                                                      <div class="col-md-12">
-                                                                          <label class="form-label"
-                                                                              for="catatan">Catatan</label>
-                                                                          <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
-                                                                      </div>
-                                                                      <input type="hidden" name="skpd_pembiayaan_id"
-                                                                          value="{{ $pembiayaan->id }}">
-                                                                      <input type="hidden" name="status_id" value=7>
-                                                                      <input type="hidden" name="user_id"
-                                                                          value="{{ Auth::user()->id }}">
+                                                                    <!-- form -->
+                                                                    <form id="addNewCardValidation"
+                                                                        class="row gy-1 gx-2 mt-75" method="POST"
+                                                                        action="/kabag/skpd/komite">
+                                                                        @csrf
 
-                                                                      <div class="col-12 text-center">
-                                                                          <button type="submit"
-                                                                              class="btn btn-primary me-1 mt-1">Submit</button>
-                                                                          <button type="reset"
-                                                                              class="btn btn-outline-secondary mt-1"
-                                                                              data-bs-dismiss="modal"
-                                                                              aria-label="Close">
-                                                                              Cancel
-                                                                          </button>
-                                                                      </div>
-                                                                  </form>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                                  <!--/ add new card modal  -->
+                                                                        <div class="col-md-12">
+                                                                            <label class="form-label"
+                                                                                for="catatan">Catatan</label>
+                                                                            <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
+                                                                        </div>
+                                                                        <input type="hidden" name="skpd_pembiayaan_id"
+                                                                            value="{{ $pembiayaan->id }}">
+                                                                        <input type="hidden" name="status_id" value=7>
+                                                                        <input type="hidden" name="user_id"
+                                                                            value="{{ Auth::user()->id }}">
+
+                                                                        <div class="col-12 text-center">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary me-1 mt-1">Submit</button>
+                                                                            <button type="reset"
+                                                                                class="btn btn-outline-secondary mt-1"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                                Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ add new card modal  -->
+
+                                                    @if($deviasi)
+                                                    <div class="modal fade" id="dokumendeviasi" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h3 class="text-center">Lampiran Dokumen Deviasi</h3>
+                                                                    <div class="card-body">
+                                                                        <iframe src="{{ asset('storage/' . $deviasi->dokumen_deviasi) }}" class="d-block w-100"
+                                                                          height="500"  weight='900'></iframe>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <!-- /proposal -->
@@ -820,7 +853,7 @@
                                         <div class="tab-pane" id="ideb" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
                                             <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
-                                        width="1000" height="900"></iframe>
+                                                width="1000" height="900"></iframe>
                                             {{-- <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
                                                 width="1000" height="900"> --}}
                                         </div>
@@ -960,7 +993,7 @@
                                                     <td class="pe-1">Sisa Pendapatan Bersih</td>
                                                     <td>: Rp. {{ number_format($pendapatan_bersih) }} </td>
                                                 </tr>
-                                               
+
                                                 <tr>
                                                     <td class="pe-1">Angsuran</td>
                                                     <td>: Rp. {{ number_format($angsuran1) }}
@@ -982,26 +1015,26 @@
                 </div>
 
                 <!--akhir idir -->
-                 <!-- ideb  -->
-                 <div class="modal fade" id="ijazah" tabindex="-1" aria-labelledby="addNewCardTitle"
-                 aria-hidden="true">
-                 <div class="modal-dialog modal-dialog-centered">
-                     <div class="modal-content">
-                         <div class="modal-header bg-transparent">
-                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                 aria-label="Close"></button>
-                         </div>
-                         <div class="modal-body px-sm-12 mx-50 pb-5">
-                             <h3 class="text-center">Lampiran Jaminan</h3>
-                             <div class="card-body">
-                                 <iframe src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}" class="d-block w-100"
-                                     height='500' weight='800'></iframe> 
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <!--/ ideb  -->
+                <!-- ideb  -->
+                <div class="modal fade" id="ijazah" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">Lampiran Jaminan</h3>
+                                <div class="card-body">
+                                    <iframe src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
+                                        class="d-block w-100" height='500' weight='800'></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ ideb  -->
                 <!-- ideb  -->
                 <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
@@ -1015,7 +1048,7 @@
                                 <h3 class="text-center">Lampiran IDEB</h3>
                                 <div class="card-body">
                                     <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
-                                        height='500' weight='800'></iframe> 
+                                        height='500' weight='800'></iframe>
                                 </div>
                             </div>
                         </div>
@@ -1042,27 +1075,30 @@
                         </div>
                     </div>
                     <!--/ ideb  -->
-                <!-- jaminan  -->
-                <div class="modal fade" id="iii" tabindex="-1" aria-labelledby="addNewCardTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body px-sm-12 mx-50 pb-5">
-                                <h3 class="text-center">Lampiran Jaminan</h3>
-                                <div class="card-body">
-                                    {{-- <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
+                    <!-- jaminan  -->
+                    <div class="modal fade" id="iii" tabindex="-1" aria-labelledby="addNewCardTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-transparent">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body px-sm-12 mx-50 pb-5">
+                                    <h3 class="text-center">Lampiran Jaminan</h3>
+                                    <div class="card-body">
+                                        {{-- <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
                                     height='500'> --}}
-                                   
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
-                   
-                 
+                    <!-- ideb  -->
+
                 </div>
             </div>
         @endsection

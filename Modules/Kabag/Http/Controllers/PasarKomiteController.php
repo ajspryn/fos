@@ -19,6 +19,7 @@ use Modules\Admin\Entities\PasarScoreIdir;
 use Modules\Admin\Entities\PasarScoreSlik;
 use Modules\Admin\Entities\PasarSektorEkonomi;
 use Modules\Admin\Entities\PasarSukuBangsa;
+use Modules\Pasar\Entities\PasarDeviasi;
 use Modules\Pasar\Entities\PasarDokumen;
 use Modules\Pasar\Entities\PasarFoto;
 use Modules\Pasar\Entities\PasarJaminan;
@@ -210,6 +211,7 @@ class PasarKomiteController extends Controller
         return view('kabag::pasar.komite.lihat',[
             'title'=>'Detail Calon Nasabah',
             // 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
+            'deviasi'=>PasarDeviasi::select()->where('skpd_pembiayaan_id',$id)->get()->first(),
             'timelines'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->get(),
             'history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
             'waktuawal'=>PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->last(),

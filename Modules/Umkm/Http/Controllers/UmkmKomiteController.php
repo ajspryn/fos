@@ -18,6 +18,7 @@ use Modules\Admin\Entities\PasarScoreSlik;
 use Modules\Admin\Entities\PasarSektorEkonomi;
 use Modules\Admin\Entities\PasarSukuBangsa;
 use Modules\Admin\Entities\UmkmScoreIdir;
+use Modules\Umkm\Entities\UmkmDeviasi;
 use Modules\Umkm\Entities\UmkmFoto;
 use Modules\Umkm\Entities\UmkmJaminan;
 use Modules\Umkm\Entities\UmkmJaminanLain;
@@ -70,6 +71,13 @@ class UmkmKomiteController extends Controller
             'user_id'=> $request->user_id,
             'jabatan_id'=> $request->jabatan_id,
         ]);
+        if($request->file('dokumen_deviasi')){
+            $dokumen_deviasi=$request->file('dokumen_deviasi')->store('umkm-dokumen_deviasi');
+            UmkmDeviasi::create([
+                'umkm_pembiayaan_id'=> $request->umkm_pembiayaan_id,
+                'dokumen_deviasi'=> $dokumen_deviasi,
+            ]);
+        }
 
 
         return redirect('/umkm/komite');

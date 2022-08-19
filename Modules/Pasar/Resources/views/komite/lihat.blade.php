@@ -806,7 +806,15 @@
                                                                 <input type="hidden" name="jabatan_id" value=1>
                                                                 <input type="hidden" name="user_id"
                                                                     value="{{ Auth::user()->id }}">
-
+                                                                    @if ($nilai_idir >= 80 || $nilai_idir < 0)
+                                                                    <label class="form-label"
+                                                                        for="fotokk"><small
+                                                                            class="text-danger">*
+                                                                        </small>Upload Dokumen Deviasi</label>
+                                                                    <input type="file" name="dokumen_deviasi"
+                                                                        id="fotokk" rows="3"
+                                                                        class="form-control" >
+                                                                @endif
                                                                 <div class="col-12 text-center">
                                                                     <button type="submit"
                                                                         class="btn btn-primary me-1 mt-1">Submit</button>

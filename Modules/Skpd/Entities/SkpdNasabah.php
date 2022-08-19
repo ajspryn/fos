@@ -36,8 +36,5 @@ class SkpdNasabah extends Model
         return $this->belongsTo(SkpdOrangTerdekat::class, 'id', 'skpd_nasabah_id');
     }
 
-    protected static function newFactory()
-    {
-        return \Modules\Skpd\Database\factories\SkpdNasabahFactory::new();
-    }
+    
 }

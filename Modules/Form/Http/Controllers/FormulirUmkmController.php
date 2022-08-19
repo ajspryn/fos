@@ -188,7 +188,7 @@ class FormulirUmkmController extends Controller
 
         
         
-        return redirect()->back()->with('success', 'Data Umkm Berhasil Ditambahkan');
+        return redirect("/")->back()->with('success', 'Data Umkm Berhasil Ditambahkan');
     }
     
 

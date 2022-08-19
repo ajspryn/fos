@@ -60,6 +60,10 @@ class SkpdPembiayaan extends Model
     {
         return $this->belongsTo(SkpdJaminan::class,'id', 'skpd_pembiayaan_id');
     }
+    public function deviasi()
+    {
+        return $this->belongsTo(SkpdDeviasi::class,'id', 'skpd_pembiayaan_id');
+    }
 
     public function foto()
     {
@@ -71,8 +75,5 @@ class SkpdPembiayaan extends Model
         return $this->belongsTo(User::class);
     }
 
-    protected static function newFactory()
-    {
-        return \Modules\Skpd\Database\factories\SkpdPembiayaanFactory::new();
-    }
+ 
 }

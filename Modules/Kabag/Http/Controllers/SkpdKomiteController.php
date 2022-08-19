@@ -11,6 +11,7 @@ use Modules\Admin\Entities\SkpdInstansi;
 use Modules\Admin\Entities\SkpdJenisJaminan;
 use Modules\Admin\Entities\SkpdScoreDsr;
 use Modules\Admin\Entities\SkpdScoreSlik;
+use Modules\Skpd\Entities\SkpdDeviasi;
 use Modules\Skpd\Entities\SkpdFoto;
 use Modules\Skpd\Entities\SkpdJaminan;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
@@ -210,7 +211,8 @@ class SkpdKomiteController extends Controller
             'jaminanlainnyas'=>SkpdJaminanLainnya::select()->where('skpd_pembiayaan_id',$id)->get(),
             'skpengangkatans'=>SkpdPembiayaan::select()->where('id',$id)->get(),
             'ideb'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori','IDEB')->get()->first(),
-             'konfirmasi'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori','Konfirmasi Bendahara')->get()->first(),
+            'konfirmasi'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori','Konfirmasi Bendahara')->get()->first(),
+            'deviasi'=>SkpdDeviasi::select()->where('skpd_pembiayaan_id',$id)->get()->first(),
 
             //history
             'history'=>SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),

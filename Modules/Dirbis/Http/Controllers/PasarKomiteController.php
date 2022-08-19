@@ -19,6 +19,7 @@ use Modules\Admin\Entities\PasarScoreIdir;
 use Modules\Admin\Entities\PasarScoreSlik;
 use Modules\Admin\Entities\PasarSektorEkonomi;
 use Modules\Admin\Entities\PasarSukuBangsa;
+use Modules\Pasar\Entities\PasarDeviasi;
 use Modules\Pasar\Entities\PasarDokumen;
 use Modules\Pasar\Entities\PasarFoto;
 use Modules\Pasar\Entities\PasarJaminan;
@@ -245,6 +246,7 @@ class PasarKomiteController extends Controller
             'angsuran'=>$angsuran1,
             'nilai_idir'=>$idir,
             'harga_jual'=>$harga_jual,
+            'deviasi'=>PasarDeviasi::select()->where('skpd_pembiayaan_id',$id)->get()->first(),
 
             //rating
             'rating_kepalapasar'=>$score_kepalapasar,
