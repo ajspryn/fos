@@ -1,5 +1,0 @@
-@include('dirbis::layouts.head')
-@include('dirbis::layouts.navbar')
-@include('dirbis::layouts.sidebar')
-@yield('content')
-@include('dirbis::layouts.footer')
