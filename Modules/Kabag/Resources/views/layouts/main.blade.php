@@ -1,0 +1,5 @@
+@include('kabag::layouts.head')
+@include('kabag::layouts.navbar')
+@include('kabag::layouts.sidebar')
+@yield('content')
+@include('kabag::layouts.footer')
