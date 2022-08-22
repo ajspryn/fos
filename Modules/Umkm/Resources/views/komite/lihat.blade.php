@@ -377,7 +377,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td style="text-align: center">3</td>
-                                                            <td>Jaminan Rumah</td>
+                                                            <td>Legalitas Kepemilikkan Rumah</td>
                                                             <td value="{{ $rumahs->id }}">
                                                                 {{ $rumahs->nama_jaminan }}
                                                             </td>
@@ -435,7 +435,7 @@
                                                         </tr>
 
                                                         <tr>
-                                                            <td style="text-align: center">7</td>
+                                                            <td style="text-align: center">6</td>
                                                             <td>Jaminan Kios</td>
                                                             <td>{{ $jaminans->nama_jaminan }}</td>
                                                             <td style="text-align: center">
@@ -455,7 +455,7 @@
                                                                 </td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="text-align: center">8</td>
+                                                            <td style="text-align: center">7</td>
                                                             <td>Lama Berdagang</td>
                                                             <td value="{{ $lamas->id }}">
                                                                 {{ $lamas->nama_lamaberdagang }}
@@ -469,7 +469,7 @@
                                                                 {{ $score_lamadagang }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="text-align: center">9</td>
+                                                            <td style="text-align: center">8</td>
                                                             <td>Jenis Dagangan</td>
                                                             <td value="{{ $dagangs->id }}">
                                                                 {{ $dagangs->nama_jenisdagang }}
@@ -491,7 +491,7 @@
                                                                 </td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="text-align: center">10</td>
+                                                            <td style="text-align: center">9</td>
                                                             <td>Suku Bangsa</td>
                                                             <td value="{{ $sukus->id }}">
                                                                 {{ $sukus->nama_suku }}</td>

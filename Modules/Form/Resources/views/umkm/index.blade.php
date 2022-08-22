@@ -97,23 +97,23 @@
                                 <div class="row">
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="nama"><small class="text-danger">* </small>Nama Lengkap Nasabah</label>
-                                        <input type="text" name="nama_nasabah" id="nama_nasabah" class="form-control" placeholder="Nama Lengkap" >
+                                        <input type="text" name="nama_nasabah" id="nama_nasabah" class="form-control" placeholder="Nama Lengkap" required >
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="noktp"><small class="text-danger">* </small>No KTP</label>
-                                        <input type="number" name="no_ktp" id="no_ktp" class="form-control" placeholder="Masukan Nomor KTP Anda" >
+                                        <input type="number" name="no_ktp" id="no_ktp" class="form-control" placeholder="Masukan Nomor KTP Anda" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="tempatlahir"><small class="text-danger">* </small>Tempat Lahir</label>
-                                        <input type="text" name="tmp_lahir" id="tmp_lahir" class="form-control" placeholder="Maukan Tempat Lahir Anda" >
+                                        <input type="text" name="tmp_lahir" id="tmp_lahir" class="form-control" placeholder="Maukan Tempat Lahir Anda" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="tgl_lahir"><small class="text-danger">* </small>Tanggal Tanggal</label>
-                                        <input type="date" id="tgl_lahir" class="form-control flatpickr-basic" name="tgl_lahir" placeholder="YYYY-MM-DD" >
+                                        <input type="date" id="tgl_lahir" class="form-control flatpickr-basic" name="tgl_lahir" placeholder="YYYY-MM-DD" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="gender"><small class="text-danger">* </small>Jenis Kelamin</label>
-                                        <select class="select2 w-100" name="jenis_kelamin" id="gender">
+                                        <select class="select2 w-100" name="jenis_kelamin" id="gender" required>
                                             <option label="jenis_kelamin">Pilih Jenis Kelamin</option>
                                               <option >Laki-Laki</option>  
                                               <option >Perempuan</option> 
@@ -157,7 +157,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="lamatinggal"><small class="text-danger">* </small>Lama Tinggal Di Alamat Rumah</label>
-                                        <select class="select2 w-100" name="lama_tinggal" id="lama_tinggal">
+                                        <select class="select2 w-100" name="lama_tinggal" id="lama_tinggal" required>
                                             <option label="kep_rumah">Pilih Lama Tinggal </option>
                                             <option>< 1 Tahun</option>
                                             <option>1 - 3 Tahun</option>
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="kep_rumah"><small class="text-danger">* </small>Kepemilikan Rumah</label>
-                                        <select class="select2 w-100" name="kepemilikan_rumah" id="kep_rumah">
+                                        <select class="select2 w-100" name="kepemilikan_rumah" id="kep_rumah" required>
                                             <option label="kep_rumah">Pilih Kepemilikan Rumah</option>
                                             <option>Milik Sendiri</option>
                                             <option>Milik Keluarga</option>
@@ -224,7 +224,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jumlahanak"> </small>Jumlah Anak/Tanggungan</label>
-                                        <select class="select2 w-100" name="jumlah_anak" id="jumlah_anak">
+                                        <select class="select2 w-100" name="jumlah_anak" id="jumlah_anak" required>
                                             <option label="jumlahanak">Pilih Jumlah Anak</option>
                                             @foreach ($tanggungans as $tanggungan )
                                             <option value="{{ $tanggungan->id }}">{{ $tanggungan->bannyak_tanggungan }}</option>
@@ -262,15 +262,15 @@
                                 <div class="row">
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="namaot"><small class="text-danger">* </small>Nama</label>
-                                        <input type="text" name="namaot" id="namaot" class="form-control" placeholder="Masukan Nama Orang Terdekat" >
+                                        <input type="text" name="namaot" id="namaot" class="form-control" placeholder="Masukan Nama Orang Terdekat" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="telpot"><small class="text-danger">* </small>No Telepon</label>
-                                        <input type="number" name="telp_ot" id="telp_ot" class="form-control prefix-mask" placeholder="Masukan Nomor Telepon Orang Terdekat" >
+                                        <input type="number" name="telp_ot" id="telp_ot" class="form-control prefix-mask" placeholder="Masukan Nomor Telepon Orang Terdekat" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="exampleFormControlTextarea1"><small class="text-danger">* </small>Alamat</label>
-                                        <textarea class="form-control" name="alamat_ot" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Orang Terdekat" ></textarea>
+                                        <textarea class="form-control" name="alamat_ot" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Orang Terdekat"required ></textarea>
                                     </div>
                                 </div>
                                 <div class="content-header">
@@ -280,11 +280,11 @@
                                 <div class="row">
                                 <div class="mb-1 col-md-6">
                                         <label class="form-label" for="nama_usaha"><small class="text-danger">* </small>Nama Usaha</label>
-                                        <input type="text" name="nama_usaha" id="nama_usaha" class="form-control" placeholder="Masukan Nama Toko Atau Usaha" >
+                                        <input type="text" name="nama_usaha" id="nama_usaha" class="form-control" placeholder="Masukan Nama Toko Atau Usaha"required >
                                 </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jenisdagang_id"><small class="text-danger">* </small>Jenis Dagang</label>
-                                        <select class="select2 w-100" name="jenisdagang_id" id="jenisdagang_id">
+                                        <select class="select2 w-100" name="jenisdagang_id" id="jenisdagang_id" required>
                                             <option label="jenisdagang">Pilih Jenis Dagang</option>
                                             @foreach ($dagangs as $dagang )
                                             <option value="{{ $dagang->id }}">{{ $dagang->nama_jenisdagang }}</option>
@@ -293,7 +293,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="keptoko"><small class="text-danger">* </small>Kepemilikan Usaha</label>
-                                        <select class="select2 w-100" name="kep_toko_id" id="keptoko">
+                                        <select class="select2 w-100" name="kep_toko_id" id="keptoko" required>
                                             <option label="golongan">Pilih Kepemilikan Toko</option>
                                             <option>Milik Sendiri</option>
                                             <option>Milik Keluarga</option>
@@ -302,7 +302,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="lamausaha"><small class="text-danger">* </small>Lama Usaha</label>
-                                        <select class="select2 w-100" name="lama_usaha" id="lama_usaha">
+                                        <select class="select2 w-100" name="lama_usaha" id="lama_usaha" required>
                                             <option label="lamausaha">Pilih Lama Usaha</option>
                                             @foreach ($lamas as $lama )
                                             <option value="{{ $lama->id }}">{{ $lama->nama_lamaberdagang}}</option>
@@ -311,11 +311,11 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="alamatusaha"> </small>Alamat Usaha</label>
-                                        <input type="text" name="alamatusaha" id="alamatusaha" class="form-control" placeholder="Masukan Alamat Usaha" >
+                                        <input type="text" name="alamatusaha" id="alamatusaha" class="form-control" placeholder="Masukan Alamat Usaha"  required>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="legalitastoko"><small class="text-danger">* </small>Legalitas Kepemilikan Kios / Los</label>
-                                        <select class="select2 w-100" name="leg_toko_id" id="legalitastoko">
+                                        <select class="select2 w-100" name="leg_toko_id" id="legalitastoko" required>
                                             <option label="legalitastoko">Pilih Legalitas Kepemilikan Toko</option>
                                             <option>Surat Keterangan Usaha ( SKU )</option>
                                             <option>Surat Keterangan Domisili Usaha ( SKDU )</option>
@@ -343,7 +343,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jaminanlain"><small class="text-danger">* </small>Jaminan Lainnya</label>
-                                        <select class="select2 w-100" name="jaminanlain" id="jaminanlain">
+                                        <select class="select2 w-100" name="jaminanlain" id="jaminanlain"required>
                                             <option label="jaminanlain">Pilih Jaminan</option>
                                             @foreach ($jaminans as $jaminan )
                                             <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan}}</option>
@@ -352,7 +352,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="dokumen_jaminan"><small class="text-danger">* </small>Upload Jaminan Lainnya</label>
-                                        <input type="file" name="dokumen_jaminan" id="dokumen_jaminan" rows="3" class="form-control" >
+                                        <input type="file" name="dokumen_jaminan" id="dokumen_jaminan" rows="3" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">

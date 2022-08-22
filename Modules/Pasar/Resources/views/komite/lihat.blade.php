@@ -464,7 +464,7 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">3</td>
-                                                                        <td>Jaminan Rumah</td>
+                                                                        <td>Legalitas Kepemilikkan Rumah</td>
                                                                         <td value="{{ $rumahs->id }}">
                                                                             {{ $rumahs->nama_jaminan }}
                                                                         </td>
@@ -1070,6 +1070,8 @@
                                                                     </div>
                                                                 </li>
                                                             @endforeach
+
+                                                            <p class="fw-bold"> Total SLA : {{ $totalwaktu }}</p>
                                                         </ul>
                                                     </div>
                                                 </div>

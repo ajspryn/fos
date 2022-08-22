@@ -329,7 +329,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="suku"><small class="text-danger">*
                                             </small>Suku Bangsa</label>
-                                        <select class="select2 w-100" name="suku_bangsa_id" id="suku_bangsa_id">
+                                        <select class="select2 w-100" name="suku_bangsa_id" id="suku_bangsa_id" required>
                                             <option label="suku_bangsa_id">Pilih Suku Bangsa Nasabah</option>
                                             @foreach ($sukus as $suku)
                                                 <option value="{{ $suku->kode_suku }}">{{ $suku->nama_suku }}
@@ -526,81 +526,120 @@
                                                     <div class="row d-flex align-items-end">
                                                         <div class="col-md-2 col-12">
                                                             <div class="mb-1">
-                                                                <label class="form-label" for="itemcost">Nama Bank</label>
-                                                                <input type="number" class="form-control" name="nama_bank" id="nama_bank" aria-describedby="itemcost" placeholder="Nama Bank"/>
+                                                                <label class="form-label" for="nama_bank">Nama
+                                                                    Bank</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="nama_bank" id="nama_bank"
+                                                                    aria-describedby="nama_bank"
+                                                                    placeholder="Nama Bank" />
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-2 col-12">
                                                             <div class="mb-1">
-                                                                <label class="form-label" for="itemcost">Plafond</label>
-                                                                <input type="number" class="form-control" name="plafond" id="plafond" aria-describedby="itemcost" placeholder="Rp."/>
+                                                                <label class="form-label"
+                                                                    for="plafond">Plafond</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="plafond" id="plafond"
+                                                                    aria-describedby="itemcost"
+                                                                    placeholder="Rp." />
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-2 col-12">
                                                             <div class="mb-1">
-                                                                <label class="form-label" for="itemquantity">Outstanding</label>
-                                                                <input type="number" class="form-control" name="outstanding" id="outstanding" aria-describedby="itemquantity" placeholder="Rp."/>
+                                                                <label class="form-label"
+                                                                    for="outstanding">Outstanding</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="outstanding" id="outstanding"
+                                                                    aria-describedby="outstanding"
+                                                                    placeholder="Rp." />
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-md-1 col-4">
+                                                        <div class="col-md-1 col-8">
                                                             <div class="mb-1">
-                                                                <label class="form-label" for="itemquantity">Tenor</label>
-                                                                <input type="number" class="form-control" name="tenor" id="tenor" aria-describedby="itemquantity" placeholder="1"/>
+                                                                <label class="form-label"
+                                                                    for="tenor">Tenor</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="tenor" id="tenor"
+                                                                    aria-describedby="tenor"
+                                                                    placeholder="tenor" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-1 col-8">
+                                                            <div class="mb-1">
+                                                                <label class="form-label"
+                                                                    for="margin">Margin</label>
+                                                                <input type="number" class="form-control persen"
+                                                                    name="margin" id="margin"
+                                                                    aria-describedby="margin" placeholder="%" />
+                                                            </div>
+                                                        </div>
+
+                                                        {{-- <div class="col-md-1 col-12">
+                                                        <div class="mb-1">
+                                                            <label class="form-label" for="itemquantity">Angsuran</label>
+                                                            <input type="number" class="form-control" name="angsuran" id="angsuran" aria-describedby="itemquantity" placeholder="1"/>
+                                                        </div>
+                                                    </div> --}}
+
+                                                        <div class="col-md-1 col-8">
+                                                            <div class="mb-1">
+                                                                <label class="form-label"
+                                                                    for="itemquantity">Agunan</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="agunan" id="agunan"
+                                                                    aria-describedby="itemquantity" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-2 col-12">
+                                                            <div class="mb-1">
+                                                                <label class="form-label"
+                                                                    for="angsuran">Angsuran</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="angsuran" id="angsuran"
+                                                                    aria-describedby="angsuran"
+                                                                    placeholder="Rp." />
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-1 col-2">
                                                             <div class="mb-1">
-                                                                <label class="form-label" for="bng/mgn">Margin</label>
-                                                                <input type="text" class="form-control persen" name="margin" id="bng/mgn" aria-describedby="itemquantity" placeholder="%"/>
+                                                                <label class="form-label"
+                                                                    for="angsuran">Kol</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="kol" id="kol"
+                                                                    aria-describedby="angsuran"
+                                                                    placeholder="Rp." />
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-md-1 col-12">
-                                                            <div class="mb-1">
-                                                                <label class="form-label" for="itemquantity">Agunan</label>
-                                                                <input type="text" class="form-control" name ="agunan" id="agunan" aria-describedby="itemquantity"/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-1 col-12">
-                                                            <div class="mb-1">
-                                                                <label class="form-label" for="bng/mgn">Angsuran</label>
-                                                                <input type="text" class="form-control persen" name="angsuran" id="bng/mgn" aria-describedby="itemquantity" placeholder="Rp. "/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-1 col-2">
-                                                            <div class="mb-1">
-                                                                <label class="form-label" for="itemquantity">Kol</label>
-                                                                <input type="text" class="form-control" name ="kol" id="agunan" aria-describedby="itemquantity"/>
-                                                            </div>
-                                                        </div>
-
 
                                                         <div class="col-md-1 col-12 mb-25">
                                                             <div class="mb-1">
-                                                                <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
+                                                                <button
+                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                    data-repeater-delete type="button">
                                                                     <i data-feather="x" class="me-25"></i>
                                                                     {{-- <span>Delete</span> --}}
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                    <hr>
+                                                        <hr>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-1 col-12">
-                                            <a data-repeater-create class="btn btn-icon btn-primary" type="button">
-                                                <i data-feather="plus" class="me-30"></i>
-                                                <span>Tambah</span>
-                                            </a>
+                                            <div class="col-md-1 col-12">
+                                                <a data-repeater-create class="btn btn-icon btn-primary"
+                                                    type="button">
+                                                    <i data-feather="plus" class="me-30"></i>
+                                                    <span>Tambah</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </section>
                             <div class="row">
                                 <div class="mb-1 col-md-6">

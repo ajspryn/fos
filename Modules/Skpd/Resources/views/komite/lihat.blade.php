@@ -500,8 +500,8 @@
                                                                                     <tr>
                                                                                         <td class="pe-1">Status</td>
                                                                                         <td>:
-                                                                                            @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
-                                                                                                @if ($nilai_dsr1 >= 40)
+                                                                                            @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0 && $total_score > 3)
+                                                                                                @if ($nilai_dsr1 >= 40 && $total_score > 3 )
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
@@ -509,7 +509,7 @@
                                                                                                         : DSR
                                                                                                         >
                                                                                                         40%</small>
-                                                                                                @elseif($nilai_dsr1 < 0)
+                                                                                                @elseif($nilai_dsr1 < 0 && $total_score > 3)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
@@ -517,6 +517,13 @@
                                                                                                         : Pengeluaran
                                                                                                         >
                                                                                                         Pendapatan</small>
+                                                                                                        @elseif($total_score > 2 || $total_score > 3)
+                                                                                                        <span
+                                                                                                            class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                            Ulang</span>
+                                                                                                    @else
+                                                                                                        <span
+                                                                                                            class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
                                                                                                 @endif
                                                                                             @else
                                                                                                 @if ($total_score > 3)
@@ -889,6 +896,7 @@
                                                                     </div>
                                                                 </li>
                                                             @endforeach
+                                                            <p class="fw-bold"> Total SLA = {{ $totalwaktu }}</p>
                                                         </ul>
                                                     </div>
                                                 </div>
