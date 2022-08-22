@@ -1,0 +1,5 @@
+@include('ppr::layouts.head')
+@include('ppr::layouts.navbar')
+@include('ppr::layouts.sidebar')
+@yield('content')
+@include('ppr::layouts.footer')

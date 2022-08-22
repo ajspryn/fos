@@ -19,11 +19,11 @@ use Modules\Skpd\Http\Controllers\SkpdController;
 |
 */
 
-Route::prefix('form')->group(function() {
+Route::prefix('form')->group(function () {
     // Route::get('/', 'FormController@index');
     Route::resource('/skpd', FormSkpdController::class);
     Route::resource('/umkm', FormulirUmkmController::class);
-    Route::resource('/kpr', KprController::class);
+    Route::resource('/ppr', FormPprController::class);
     Route::resource('/pasar', FormulirPasarController::class);
     Route::resource('/pembiayaanskpd', SkpdController::class);
 });

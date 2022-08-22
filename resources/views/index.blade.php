@@ -34,13 +34,13 @@
                             <div class="card">
                                 <a href="/form/skpd">
                                     <img src="../../../bogor.png"
-                                    style="width: 77%; display: block; margin: 0 auto; padding-bottom: 15px"
-                                    class="card-img-top" alt="pasar-image" />
+                                        style="width: 77%; display: block; margin: 0 auto; padding-bottom: 15px"
+                                        class="card-img-top" alt="pasar-image" />
 
                                     <div class="card-body text-center">
                                         <h4>Pembiayaan SKPD</h4>
                                         <p class="text-body mt-1 mb-0">
-                                         PNS Kabupaten Bogor.
+                                            PNS Kabupaten Bogor.
                                         </p>
                                     </div>
                                 </a>
@@ -97,22 +97,67 @@
                             </div>
                         </div> --}}
 
-                        <!-- Pembiayaan KPR -->
+                        <!-- Pembiayaan PPR -->
                         <div class="col-md-3 col-sm-6 col-12 kb-search-content">
                             <div class="card">
-                                <a href="/form/kpr">
-                                    <img src="../../../KPR.jpeg"
+                                <a data-bs-toggle="modal" data-bs-target="#pilihPendapatan">
+                                    <img src="../../../PPR.JPEG"
                                         style="width: 60%; display: block; margin: 0 auto; padding-top: 30px"
                                         class="card-img-top" alt="knowledge-base-image" />
 
                                     <div class="card-body text-center">
-                                        <h4>Pembiayaan PPR</h4>
+                                        <h4>PPR</h4>
                                         <p class="text-body mt-1 mb-0">
-                                            Deskripsi.
+                                            Deskripsi
                                         </p>
                                     </div>
                                 </a>
                             </div>
+                        </div>
+
+                        <!-- Vertical modal -->
+                        <div class="vertical-modal-ex">
+                            <!-- Modal -->
+                            <div class="modal fade" id="pilihPendapatan" tabindex="-1"
+                                aria-labelledby="pilihPendapatanTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="pilihPendapatanTitle">
+                                                Silakan Pilih Jenis Pendapatan
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <form action="/form/ppr">
+                                                        <input type="hidden" name="jenis_nasabah" value="Fixed Income" />
+                                                        <button type="submit"
+                                                            class="btn btn-primary btn-block form-control">Fixed
+                                                            Income
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <form action="/form/ppr">
+                                                        <input type="hidden" name="jenis_nasabah"
+                                                            value="Non Fixed Income" />
+                                                        <button type="submit"
+                                                            class="btn btn-primary btn-block form-control">Non Fixed
+                                                            Income
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Vertical modal end-->
+
+
                         </div>
 
                     </div>

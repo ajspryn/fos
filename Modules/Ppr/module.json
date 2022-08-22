@@ -1,0 +1,13 @@
+{
+    "name": "Ppr",
+    "alias": "ppr",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Ppr\\Providers\\PprServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
