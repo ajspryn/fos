@@ -93,7 +93,7 @@
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="akad">Sektor Ekonomi</label>
-                                            <select class="select2 w-100" name="sektor_id" id="sektor_id" required>
+                                            <select class="select2 w-100" name="sektor_id" id="sektor_id" required >
                                                 <option label="akad">Pilih Sektor</option>
                                                 @foreach ($sektors as $sektor)
                                                     <option value="{{ $sektor->kode_sektor_ekonomi }}">
@@ -415,22 +415,22 @@
                                         <small class="text-muted">Lengkapi Data Usaha Anda.</small>
                                     </div>
                                     <div class="row">
-                                        {{-- <div class="mb-1 col-md-6">
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="nama_usaha"><small class="text-danger">*
                                                 </small>Nama Kios / Los</label>
                                             <input type="text" name="nama_usaha" id="nama_usaha" class="form-control"
                                                 placeholder="Masukan Nama Toko Atau Usaha"value="{{ $pembiayaan->keteranganusaha->nama_usaha }}"
                                                 disabled>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
+                                        </div> 
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
                                                 </small>Jenis Pasar</label>
                                             <select class="select2 w-100" name="jenispasar_id" id="jenispasar_id">
                                                 <option value="{{ $pembiayaan->keteranganusaha->jenispasar->id }}">
                                                     {{ $pembiayaan->keteranganusaha->jenispasar->nama_pasar }}</option>
                                             </select>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
                                                 </small>Jenis Dagang</label>
                                             <select class="select2 w-100" name="jenisdagang_id" id="jenisdagang_id"
@@ -438,16 +438,16 @@
                                                 <option value="{{ $pembiayaan->keteranganusaha->dagang->id }}">
                                                     {{ $pembiayaan->keteranganusaha->dagang->nama_jenisdagang }}</option>
                                             </select>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="keptoko"><small class="text-danger">*
                                                 </small>Kepemilikan Kios / Los</label>
                                             <select class="select2 w-100" name="kep_toko_id" id="keptoko" disabled>
                                                 <option value="{{ $pembiayaan->keteranganusaha->id }}">
                                                     {{ $pembiayaan->keteranganusaha->kep_toko_id }}</option>
                                             </select>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="lamausaha"><small class="text-danger">*
                                                 </small>Lama Usaha</label>
                                             <select class="select2 w-100" name="lama_usaha" id="lama_usaha" disabled>
@@ -455,21 +455,21 @@
                                                     {{ $pembiayaan->keteranganusaha->lamadagang->nama_lamaberdagang }}
                                                 </option>
                                             </select>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="lamausaha"> </small>No / Blok Lama</label>
                                             <input type="text" name="blok" id="blok" class="form-control"
                                                 placeholder="Masukan No / Blok Lama"
                                                 value="{{ $pembiayaan->keteranganusaha->no_blok }}" disabled>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="legalitastoko"><small class="text-danger">*
                                                 </small>Legalitas Kepemilikan Kios / Los</label>
                                             <select class="select2 w-100" name="leg_toko_id" id="legalitastoko" disabled>
                                                 <option value="{{ $pembiayaan->keteranganusaha->id }}">
                                                     {{ $pembiayaan->keteranganusaha->leg_toko_id }}</option>
                                             </select>
-                                        </div> --}}
+                                        </div>
                                         <div class="mb-0 mt-2 col-md-2">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#fototoko">

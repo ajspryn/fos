@@ -112,7 +112,7 @@ class FormulirUmkmController extends Controller
             'nama_pasangan'=> $request ->nama_pasangan,
             'nama_ibu'=> $request ->nama_ibu,
             'agama_id'=> $request ->agama_id,
-            'status_id'=> $id,
+            'status_id'=> $request -> status_id,
             'jenis_kelamin'=>$request ->jenis_kelamin,
             'pendidikan'=> $request ->pendidikan,
             'jumlah_anak'=> $request ->jumlah_anak,
@@ -188,7 +188,7 @@ class FormulirUmkmController extends Controller
 
         
         
-        return redirect("/")->back()->with('success', 'Data Umkm Berhasil Ditambahkan');
+        return redirect('/')->with('success', 'Data Umkm Berhasil Ditambahkan');
     }
     
 

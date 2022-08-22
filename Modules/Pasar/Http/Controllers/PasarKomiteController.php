@@ -4,6 +4,7 @@ namespace Modules\Pasar\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\Status;
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -207,6 +208,17 @@ class PasarKomiteController extends Controller
         $statushistory=Status::select()->where('id',$timeline->status_id)->get();
 
 
+        $waktuawal=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
+        $waktuakhir=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
+        $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
+
+        $waktumulai=Carbon::parse($waktuawal->created_at); 
+        $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+        $selanjutnya=Carbon::parse($next->created_at);
+
+
+        $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
+
      //   return $statushistory;
         return view('pasar::komite.lihat',[
             'title'=>'Detail Calon Nasabah',
@@ -269,6 +281,9 @@ class PasarKomiteController extends Controller
             'score_slik'=>$score_slik * $prosesslik->bobot,
             'score_idir'=>$score_idir *$proses_idir->bobot,
             'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
+
+            //SLA
+            'totalwaktu'=>$totalwaktu,
 
 
         ]);

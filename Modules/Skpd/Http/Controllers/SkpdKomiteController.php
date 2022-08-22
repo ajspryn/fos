@@ -3,6 +3,7 @@
 namespace Modules\Skpd\Http\Controllers;
 
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Skpd\Entities\SkpdFoto;
@@ -162,7 +163,7 @@ class SkpdKomiteController extends Controller
         }
         // $proses_slik=SkpdScoreSlik::select()->where('kol',$slik)->get()->first();
         $proses_jaminan=SkpdJenisJaminan::select()->where('id',$jaminan->skpd_jenis_jaminan_id)->get()->first();
-        $proses_nasabah='Nasabah Baru';
+        $proses_nasabah='RO Lancar Rekomendasi';
         $proses_instansi=SkpdInstansi::select()->where('id',$data->skpd_instansi_id)->get()->first();
 
         // return $dsr;
@@ -175,7 +176,7 @@ class SkpdKomiteController extends Controller
         // $rating_slik=$proses_slik->rating;
         $rating_bendahara=$proses_bendahara->rating;
         $rating_jaminan=$proses_jaminan->rating;
-        $rating_nasabah=2;
+        $rating_nasabah=4;
         $rating_instansi=$proses_instansi->rating;
 
         // $angsuran1=$angsuran;
@@ -186,6 +187,17 @@ class SkpdKomiteController extends Controller
         if($rating_slik){
                 $nilai_slik = $rating_slik*$proses_slik->bobot;
         }
+
+        $waktuawal=SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
+        $waktuakhir=SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
+        // $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
+
+        $waktumulai=Carbon::parse($waktuawal->created_at); 
+        $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+        // $selanjutnya=Carbon::parse($next->created_at);
+
+
+        $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
         // return $proses_dsr;
         return view('skpd::komite.lihat',[
             'title'=>'Detail Proposal',
@@ -232,6 +244,9 @@ class SkpdKomiteController extends Controller
 
             //history
             'history'=>SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
+
+            //sla
+            'totalwaktu'=>$totalwaktu
         ]);
     }
 

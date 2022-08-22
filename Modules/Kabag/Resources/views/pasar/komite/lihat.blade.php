@@ -472,7 +472,7 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">3</td>
-                                                                        <td>Jaminan Rumah</td>
+                                                                        <td>Legalitas Kepemilikkan Rumah</td>
                                                                         <td value="{{ $rumahs->id }}">
                                                                             {{ $rumahs->nama_jaminan }}
                                                                         </td>
@@ -959,11 +959,14 @@
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
                                                                         <div class="d-flex flex-row align-items-center">
-
+                                                                            {{-- {{ $waktumulai }} --}}
                                                                         </div>
                                                                     </div>
                                                                 </li>
                                                             @endforeach
+                                                            
+                                                             <hr class="invoice-spacing" />
+                                                            <p class="fw-bold"> Total SLA = {{ $totalwaktu }}</p>
                                                         </ul>
                                                     </div>
                                                 </div>

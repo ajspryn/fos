@@ -1,6 +1,8 @@
 <?php
 
 namespace Modules\Kabag\Http\Controllers;
+
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -206,12 +208,22 @@ class PasarKomiteController extends Controller
         $score_slik = $prosesslik->rating;
 
 
+        
+        $waktuawal=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
+        $waktuakhir=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
+        $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
 
-        //    return $harga1;
+        $waktumulai=Carbon::parse($waktuawal->created_at); 
+        $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+        $selanjutnya=Carbon::parse($next->created_at);
+
+
+        $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
+        //    return $totalwaktu;
         return view('kabag::pasar.komite.lihat',[
             'title'=>'Detail Calon Nasabah',
             // 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
-            'deviasi'=>PasarDeviasi::select()->where('skpd_pembiayaan_id',$id)->get()->first(),
+            'deviasi'=>PasarDeviasi::select()->where('pasar_pembiayaan_id',$id)->get()->first(),
             'timelines'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->get(),
             'history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
             'waktuawal'=>PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->last(),
@@ -272,6 +284,12 @@ class PasarKomiteController extends Controller
             'score_idir'=>$score_idir *$proses_idir->bobot,
             'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
 
+
+            //perhitunganSLA
+            'totalwaktu'=>$totalwaktu,
+            'next'=>$next,
+            'waktumulai'=>$waktumulai->diffAsCarbonInterval($selanjutnya) 
+            
 
         ]);
 }
