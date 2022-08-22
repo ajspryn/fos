@@ -79,7 +79,7 @@ use Modules\Admin\Http\Controllers\PprCollateralJangkaWaktuLikuiditasController;
 |
 */
 
-Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:1', 'divisi:0', 'jabatan:0'])->group(function () {
+Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:1' , 'divisi:0' , 'jabatan:0'])->group(function() {
     Route::get('/', 'AdminController@index');
     Route::resource('/skpd/akad', SkpdAkadController::class);
     Route::resource('/skpd/penggunaan', SkpdJenisPenggunaanController::class);

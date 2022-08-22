@@ -1,0 +1,5 @@
+@include('simulasi::layouts.head')
+@include('simulasi::layouts.navbar')
+@include('simulasi::layouts.sidebar')
+@yield('content')
+@include('simulasi::layouts.footer')
