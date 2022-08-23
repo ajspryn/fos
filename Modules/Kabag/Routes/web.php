@@ -5,6 +5,8 @@ use Modules\Kabag\Http\Controllers\KabagKomiteController;
 use Modules\Kabag\Http\Controllers\KabagProposalController;
 use Modules\Kabag\Http\Controllers\PasarKomiteController;
 use Modules\Kabag\Http\Controllers\PasarProposalController;
+use Modules\Kabag\Http\Controllers\PprKomiteController;
+use Modules\Kabag\Http\Controllers\PprProposalController;
 use Modules\Kabag\Http\Controllers\UmkmKomiteController;
 use Modules\Kabag\Http\Controllers\UmkmProposalController;
 
@@ -38,6 +40,13 @@ Route::prefix('kabag')->middleware(['auth:sanctum', 'verified', 'role:2', 'divis
         Route::resource('/komite', PasarKomiteController::class);
         Route::resource('/proposal', PasarProposalController::class);
         Route::resource('/', PasarProposalController::class);
+
+    });
+
+    Route::prefix('ppr')->group(function() {
+        Route::resource('/komite', PprKomiteController::class);
+        Route::resource('/proposal', PprProposalController::class);
+        Route::resource('/', PprProposalController::class);
 
     });
 
