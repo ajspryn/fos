@@ -222,17 +222,22 @@ class FormulirPasarController extends Controller
             'fotokk'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
             'fototoko'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
             'usahas'=>PasarKeteranganUsaha::all(), //udah
+            'aos'=>Role::select()->where('jabatan_id',1)->get(),
+            'cashs'=>PasarCashPick::all(),
+            'jaminans'=>PasarJenisJaminan::all(),
+            'nasabahs'=>PasarJenisNasabah::all(),
+            'sukus'=>PasarSukuBangsa::all(),
             'akads'=>PasarAkad::all(),
+            'penggunaans'=>PasarPenggunaan::all(),
             'sektors'=>PasarSektorEkonomi::all(),
             'pasars'=>PasarJenisPasar::all(),
             'lamas'=>PasarLamaBerdagang::all(),
             'rumahs'=>PasarJaminanRumahh::all(),
             'dagangs'=>PasarJenisDagang::all(),
             'aos'=>Role::select()->where('jabatan_id',1)->get(),
-            'cashs'=>PasarCashPick::all(),
+            'tanggungans'=>PasarTanggungan::all(),
+            'statuss'=>PasarStatusPerkawinan::all(),
             'jaminans'=>PasarJenisJaminan::all(),
-            'nasabahs'=>PasarJenisNasabah::all(),
-            'sukus'=>PasarSukuBangsa::all(),
         ]);
     }
 

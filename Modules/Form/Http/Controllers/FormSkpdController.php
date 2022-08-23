@@ -124,7 +124,22 @@ class FormSkpdController extends Controller
      */
     public function show($id)
     {
-        return view('form::show');
+        return view('form::skpd.nasabah',[
+            'title' => 'Form SKPD',
+            'aos'=>Role::select()->where('jabatan_id',1)->get(),
+            'akads'=>SkpdAkad::all(), //udah
+            'golongans'=>SkpdGolongan::all(), //udah
+            'instansis'=>SkpdInstansi::all(), //udah
+            'jaminans'=>SkpdJenisJaminan::all(), //udah
+            'penggunaans'=>SkpdJenisPenggunaan::all(), //udah
+            'sektors'=>SkpdSektorEkonomi::all(), //udah
+            'statusperkawinans'=>SkpdStatusPerkawinan::all(), //udah
+            'tanggungans'=>SkpdTanggungan::all(),
+            'pembiayaan'=>SkpdPembiayaan::select()->where('id',$id)->get()->first(),
+            'nasabah'=>SkpdNasabah::select()->where('id',$id)->get()->first(),
+    
+
+        ]);
     }
 
     /**

@@ -1,20 +1,23 @@
 <?php
 
-namespace Modules\Form\Http\Controllers;
+namespace Modules\Umkm\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Admin\Entities\PasarAkad;
-use Modules\Admin\Entities\PasarLamaBerdagang;
+use Modules\Admin\Entities\PasarCashPick;
 use Modules\Admin\Entities\PasarJaminanRumahh;
 use Modules\Admin\Entities\PasarJenisDagang;
 use Modules\Admin\Entities\PasarJenisJaminan;
+use Modules\Admin\Entities\PasarJenisNasabah;
 use Modules\Admin\Entities\PasarJenisPasar;
+use Modules\Admin\Entities\PasarLamaBerdagang;
 use Modules\Admin\Entities\PasarPenggunaan;
 use Modules\Admin\Entities\PasarSektorEkonomi;
 use Modules\Admin\Entities\PasarStatusPerkawinan;
+use Modules\Admin\Entities\PasarSukuBangsa;
 use Modules\Admin\Entities\PasarTanggungan;
 use Modules\Umkm\Entities\UmkmFoto;
 use Modules\Umkm\Entities\UmkmJaminan;
@@ -24,8 +27,9 @@ use Modules\Umkm\Entities\UmkmLegalitasRumah;
 use Modules\Umkm\Entities\UmkmNasabah;
 use Modules\Umkm\Entities\UmkmPembiayaan;
 use Modules\Umkm\Entities\UmkmPembiayaanHistory;
+use Modules\Umkm\Entities\UmkmSlik;
 
-class FormulirUmkmController extends Controller
+class UmkmRevisiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,20 +37,10 @@ class FormulirUmkmController extends Controller
      */
     public function index()
     {
-        return view('form::umkm.index',[
-            
-            'akads'=>PasarAkad::all(),
-            'penggunaans'=>PasarPenggunaan::all(),
-            'sektors'=>PasarSektorEkonomi::all(),
-            'pasars'=>PasarJenisPasar::all(),
-            'lamas'=>PasarLamaBerdagang::all(),
-            'rumahs'=>PasarJaminanRumahh::all(),
-            'dagangs'=>PasarJenisDagang::all(),
-            'aos'=>Role::select()->where('jabatan_id',1)->get(),
-            'tanggungans'=>PasarTanggungan::all(),
-            'statuss'=>PasarStatusPerkawinan::all(),
-            'jaminans'=>PasarJenisJaminan::all(),
-
+        $komite = UmkmPembiayaanHistory::select()->where('status_id', 7)->get();
+        return view('umkm::Revisi.index', [
+            'title' => 'Data  Revisi Proposal Nasabah',
+            'komites' => $komite,
         ]);
     }
 
@@ -56,7 +50,7 @@ class FormulirUmkmController extends Controller
      */
     public function create()
     {
-        return view('form::create');
+        return view('umkm::create');
     }
 
     /**
@@ -66,10 +60,66 @@ class FormulirUmkmController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $hitung=UmkmPembiayaan::select()->get()->count();
-        $id=$hitung+1;
-        UmkmPembiayaan::create([
+        //
+    }
+
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function show($id)
+    {
+        return view('umkm::show');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function edit($id)
+    {
+        $datafoto = UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->get();
+        $foto = $datafoto;
+        return view('umkm::Revisi.lihat', [
+            'title' => 'Detail Calon Nasabah',
+            'pembiayaan' => UmkmPembiayaan::select()->where('id', $id)->get()->first(),
+            'nasabah' => UmkmNasabah::select()->where('id', $id)->get()->first(),
+            'fotodiri' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Diri')->get()->first(),
+            'fotoktp' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotodiribersamaktp' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
+            'fotokk' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'fototoko' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto toko')->get()->first(),
+            'usahas' => UmkmKeteranganUsaha::all(), //udah
+            'akads' => PasarAkad::all(),
+            'sektors' => PasarSektorEkonomi::all(),
+            'pasars' => PasarJenisPasar::all(),
+            'lamas' => PasarLamaBerdagang::all(),
+            'rumahs' => PasarJaminanRumahh::all(),
+            'dagangs' => PasarJenisDagang::all(),
+            'aos' => Role::select()->where('jabatan_id', 1)->get(),
+            'cashs' => PasarCashPick::all(),
+            'jaminans' => PasarJenisJaminan::all(),
+            'nasabahs' => PasarJenisNasabah::all(),
+            'sukus' => PasarSukuBangsa::all(),
+            'penggunaans'=>PasarPenggunaan::all(),
+            'dagangs'=>PasarJenisDagang::all(),
+            'tanggungans'=>PasarTanggungan::all(),
+            'statuss'=>PasarStatusPerkawinan::all(),
+        ]);
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param int $id
+     * @return Renderable
+     */
+    public function update(Request $request, $id)
+    {
+        UmkmPembiayaan::where('id',$id)->updatecreate([
             'id'=>$id,
             'tgl_pembiayaan'=> $request ->tgl_pembiayaan,
             'nasabah_id'=> $id,
@@ -94,7 +144,7 @@ class FormulirUmkmController extends Controller
             'keterangan_keb_keluarga'=>$request->keterangan_keb_keluarga,
         ]);
 
-        UmkmNasabah::create([
+        UmkmNasabah::where('id',$id)->updatecreate([
             'id'=>$id,
             'nama_nasabah'=> $request ->nama_nasabah,
             'no_ktp'=> $request ->no_ktp,
@@ -128,21 +178,21 @@ class FormulirUmkmController extends Controller
         $dokumenktb=$request->file('dokumenktb')->store('Umkm-dokumen-ktb');
         $dokumen_jaminan=$request->file('dokumen_jaminan')->store('Umkm-dokumen_jaminanlain');
 
-        UmkmJaminan::create([
+        UmkmJaminan::where('umkm_pembiayaan_id',$id)([
             'umkm_pembiayaan_id'=> $id,
             'no_ktb'=> $request ->no_ktb,
             'dokumenktb'=> $dokumenktb,
         ]);
 
 
-        UmkmJaminanLain::create([
+        UmkmJaminanLain::where('umkm_pembiayaan_id',$id)([
         
             'umkm_pembiayaan_id'=> $id,
             'jaminanlain'=> $request ->jaminanlain,
             'dokumen_jaminan'=> $dokumen_jaminan,
         ]);
 
-        UmkmLegalitasRumah::create([
+        UmkmLegalitasRumah::where('umkm_pembiayaan_id',$id)([
            
             'umkm_pembiayaan_id'=> $id,
             'kepemilikan_rumah'=> $request ->kepemilikan_rumah,
@@ -152,14 +202,14 @@ class FormulirUmkmController extends Controller
 
         UmkmPembiayaanHistory::create([
                 'umkm_pembiayaan_id'=> $id,
-                'status_id'=> 1,
+                'status_id'=> 7,
                 'user_id'=> null,
-                'jabatan_id'=>0,
+                'jabatan_id'=>1,
                 'divisi_id'=>null
             ]);
        
         
-        UmkmKeteranganUsaha::create([
+        UmkmKeteranganUsaha::where('umkm_pembiayaan_id',$id)([
             
             'umkm_pembiayaan_id'=> $id,
             'nama_usaha'=>$request->nama_usaha,
@@ -179,62 +229,28 @@ class FormulirUmkmController extends Controller
             if($value['foto']){
                 $foto=$value['foto']->store('foto-Umkm-pembiayaan');
             }
-            UmkmFoto::create([
+            UmkmFoto::where('umkm_pembiayaan_id',$id)([
                 'umkm_pembiayaan_id'=>$id,
                 'kategori'=>$value['kategori'],
                 'foto'=>$foto,
             ]);
         }
 
-        
+          // return $value;
+          UmkmSlik::where('umkm_pembiayaan_id',$id)->update([
+            'pasar_pembiayaan_id' => $id,
+            'nama_bank' => $value['nama_bank'],
+            'plafond' => $value['plafond'],
+            'outstanding' => $value['outstanding'],
+            'tenor' => $value['tenor'],
+            'margin' => $value['margin'],
+            'angsuran' => $value['angsuran'],
+            'agunan' => $value['agunan'],
+            'kol' => $value['kol'],
+        ]);
+    
         
         return redirect('/')->with('success', 'Data Umkm Berhasil Ditambahkan');
-    }
-    
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('form::umkm.nasabah',[
-            
-            'akads'=>PasarAkad::all(),
-            'penggunaans'=>PasarPenggunaan::all(),
-            'sektors'=>PasarSektorEkonomi::all(),
-            'pasars'=>PasarJenisPasar::all(),
-            'lamas'=>PasarLamaBerdagang::all(),
-            'rumahs'=>PasarJaminanRumahh::all(),
-            'dagangs'=>PasarJenisDagang::all(),
-            'aos'=>Role::select()->where('jabatan_id',1)->get(),
-            'tanggungans'=>PasarTanggungan::all(),
-            'statuss'=>PasarStatusPerkawinan::all(),
-            'jaminans'=>PasarJenisJaminan::all(),
-
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('form::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

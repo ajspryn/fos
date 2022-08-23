@@ -224,19 +224,14 @@
                         Apakah Anda Yakin Untuk Mengajukan Pembiayaan Baru ?
                     </h1>
                     <p class="text-center"></p>
-
-                    <!-- form -->
-                   <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"
-                       >
-                        @csrf 
                         <div class="col-12 text-center">
-                            <button href = "/form/pasar "type="submit"
-                                class="btn btn-primary me-1 mt-1">Yes</button>
-                            <button type="reset"
+                            <a href = "/form/pasar/{{ $pembiayaan->id }} "type="submit"
+                                class="btn btn-primary me-1 mt-1">Yes</a>
+                            <a type="reset"
                                 class="btn btn-outline-secondary mt-1"
                                 data-bs-dismiss="modal" aria-label="Close">
                                 Cancel
-                            </button>
+                            </a>
                         </div>
                     </form>
                 </div>

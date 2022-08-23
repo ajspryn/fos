@@ -189,14 +189,9 @@
                         Apakah Anda Yakin Untuk Mengajukan Pembiayaan Baru ?
                     </h1>
                     <p class="text-center"></p>
-
-                    <!-- form -->
-                    <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"
-                        method="POST" action="/pasar/komite">
-                        @csrf
                         <div class="col-12 text-center">
-                            <button href = "/form/umkm"type="submit"
-                                class="btn btn-primary me-1 mt-1">Yes</button>
+                            <a href = "/form/skpd/{{ $pembiayaan->id }}"type="submit"
+                                class="btn btn-primary me-1 mt-1">Yes</a>
                             <button type="reset"
                                 class="btn btn-outline-secondary mt-1"
                                 data-bs-dismiss="modal" aria-label="Close">
