@@ -1,7 +1,35 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/u1527319/public_html/fos/
+    - export DEPLOYPATH=/home/u1527319/fos/
+    # - /bin/cp -R images $DEPLOYPATH
     # - /bin/cp index.html $DEPLOYPATH
     # - /bin/cp style.css $DEPLOYPATH
+    - /bin/cp -R Modules $DEPLOYPATH
+    - /bin/cp -R app $DEPLOYPATH
+    - /bin/cp -R bootstrap $DEPLOYPATH
+    - /bin/cp -R config $DEPLOYPATH
+    - /bin/cp -R database $DEPLOYPATH
+    - /bin/cp -R lang/en $DEPLOYPATH
+    - /bin/cp -R public $DEPLOYPATH
+    - /bin/cp -R resources $DEPLOYPATH
+    - /bin/cp -R routes $DEPLOYPATH
+    - /bin/cp -R storage $DEPLOYPATH
+    - /bin/cp -R tests $DEPLOYPATH
+    - /bin/cp .editorconfig $DEPLOYPATH
+    - /bin/cp .env.example $DEPLOYPATH
+    - /bin/cp .gitattributes $DEPLOYPATH
+    - /bin/cp .gitignore $DEPLOYPATH
+    - /bin/cp .styleci.yml $DEPLOYPATH
+    - /bin/cp artisan $DEPLOYPATH
+    - /bin/cp composer.json $DEPLOYPATH
+    - /bin/cp composer.lock $DEPLOYPATH
+    - /bin/cp modules_statuses.json $DEPLOYPATH
+    - /bin/cp tambah module simulas $DEPLOYPATH
+    - /bin/cp package-lock.json $DEPLOYPATH
+    - /bin/cp package.json $DEPLOYPATH
+    - /bin/cp phpunit.xml $DEPLOYPATH
+    - /bin/cp vendor.zip $DEPLOYPATH
+    - /bin/cp vite.config.js $DEPLOYPATH
+    - /bin/cp webpack.mix.js $DEPLOYPATH
 
