@@ -32,4 +32,4 @@ deployment:
     - /bin/cp vendor.zip $DEPLOYPATH
     - /bin/cp vite.config.js $DEPLOYPATH
     - /bin/cp webpack.mix.js $DEPLOYPATH
-
+    - /bin/cp .cpanel.yml $DEPLOYPATH
