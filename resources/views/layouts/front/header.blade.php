@@ -50,7 +50,7 @@
             <ul class="nav navbar-nav">
                 <li class="nav-item">
                     <a class="navbar-brand" href="#">
-                        <img src="logo_BPRS_BTB.png" height="70" alt="logo">
+                        <img src="Logo_BPRS_BTB.png" height="70" alt="logo">
                         {{-- <h2 class="brand-text mb-0">Vuexy</h2> --}}
                     </a>
                 </li>

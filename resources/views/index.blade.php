@@ -33,7 +33,7 @@
                         <div class="col-md-3 col-sm-6 col-12 kb-search-content">
                             <div class="card">
                                 <a href="/form/skpd">
-                                    <img src="../../../bogor.png"
+                                    <img src="../../../Bogor.png"
                                         style="width: 77%; display: block; margin: 0 auto; padding-bottom: 15px"
                                         class="card-img-top" alt="pasar-image" />
 
@@ -101,7 +101,7 @@
                         <div class="col-md-3 col-sm-6 col-12 kb-search-content">
                             <div class="card">
                                 <a data-bs-toggle="modal" data-bs-target="#pilihPendapatan">
-                                    <img src="../../../PPR.JPEG"
+                                    <img src="../../../PPR.jpeg"
                                         style="width: 60%; display: block; margin: 0 auto; padding-top: 30px"
                                         class="card-img-top" alt="knowledge-base-image" />
 
