@@ -57,8 +57,7 @@
                             </div>
                         </div>
                         <div class="bs-stepper-content">
-                            <form method='post' action="/skpd/revisi/{{ $pembiayaan->id }}"
-                                enctype="multipart/form-data">
+                            <form method='post' action="/skpd/revisi/{{ $pembiayaan->id }}" enctype="multipart/form-data">
                                 @method('put')
                                 @csrf
                                 <div id="form1" class="content" role="tabpanel"
@@ -74,7 +73,7 @@
                                             <select class="select2 w-100" name="user_id" id="ao" required>
                                                 <option value="{{ $pembiayaan->user->id }}">{{ $pembiayaan->user->name }}
                                                     @foreach ($aos as $ao)
-                                                    <option value="{{ $ao->user->id }}">{{ $ao->user->name }}</option>
+                                                <option value="{{ $ao->user->id }}">{{ $ao->user->name }}</option>
                                                 @endforeach
                                                 </option>
                                             </select>
@@ -93,10 +92,11 @@
                                                 id="jenispenggunaan" required>
                                                 <option value="{{ $pembiayaan->jenis_penggunaan->id }}">
                                                     {{ $pembiayaan->jenis_penggunaan->jenis_penggunaan }}</option>
-                                                    @foreach ($penggunaans as $penggunaan)
-                                                <option value="{{ $penggunaan->id }}">{{ $penggunaan->jenis_penggunaan }}
-                                                </option>
-                                            @endforeach
+                                                @foreach ($penggunaans as $penggunaan)
+                                                    <option value="{{ $penggunaan->id }}">
+                                                        {{ $penggunaan->jenis_penggunaan }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -126,32 +126,32 @@
                                             <label class="form-label" for="nominal_pembiayaan"><small
                                                     class="text-danger">* </small>Nominal Pembiayaan</label>
                                             <input type="text" name="nominal_pembiayaan"
-                                                class="form-control numeral-mask1" value =" {{ number_format($pembiayaan->nominal_pembiayaan) }}"
-                                                id="nominal_pembiayaan"
-                                                required />
+                                                class="form-control numeral-mask1"
+                                                value=" {{ number_format($pembiayaan->nominal_pembiayaan) }}"
+                                                id="nominal_pembiayaan" required />
                                         </div>
                                         <div class="mb-1 col-md-4">
                                             <label class="form-label" for="tenorr"><small class="text-danger">*
                                                 </small>Tenor</label>
                                             <select class="select2 w-100" name="tenor" id="tenorr" required>
-                                                <option value="{{ $pembiayaan->tenor }}">{{ $pembiayaan->tenor }} Bulan 
+                                                <option value="{{ $pembiayaan->tenor }}">{{ $pembiayaan->tenor }} Bulan
                                                 </option>
                                                 <option label="tenor"></option>
-                                            <option value="3">3 Bulan</option>
-                                            <option value="4">4 Bulan</option>
-                                            <option value="5">5 Bulan</option>
-                                            <option value="6">6 Bulan</option>
-                                            <option value="7">7 Bulan</option>
-                                            <option value="8">8 Bulan</option>
-                                            <option value="9">9 Bulan</option>
-                                            <option value="10">10 Bulan</option>
-                                            <option value="11">11 Bulan</option>
-                                            <option value="12">12 Bulan</option>
-                                            <option value="12">18 Bulan</option>
-                                            <option value="24">24 Bulan</option>
-                                            <option value="36">36 Bulan</option>
-                                            <option value="48">48 Bulan</option>
-                                            <option value="60">60 Bulan</option>
+                                                <option value="3">3 Bulan</option>
+                                                <option value="4">4 Bulan</option>
+                                                <option value="5">5 Bulan</option>
+                                                <option value="6">6 Bulan</option>
+                                                <option value="7">7 Bulan</option>
+                                                <option value="8">8 Bulan</option>
+                                                <option value="9">9 Bulan</option>
+                                                <option value="10">10 Bulan</option>
+                                                <option value="11">11 Bulan</option>
+                                                <option value="12">12 Bulan</option>
+                                                <option value="12">18 Bulan</option>
+                                                <option value="24">24 Bulan</option>
+                                                <option value="36">36 Bulan</option>
+                                                <option value="48">48 Bulan</option>
+                                                <option value="60">60 Bulan</option>
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-2">
@@ -198,7 +198,7 @@
                                             <label class="form-label" for="exampleFormControlTextarea1"><small
                                                     class="text-danger">* </small>Alamat Sesuai KTP</label>
                                             <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat"
-                                                value="{{ $pembiayaan->nasabah->alamat }}" ></textarea>
+                                                value="{{ $pembiayaan->nasabah->alamat }}"></textarea>
                                         </div>
                                         <div class="mb-1 col-md-1">
                                             <label class="form-label" for="rt"><small class="text-danger">*
@@ -278,47 +278,56 @@
                                                 class="form-control prefix-mask" placeholder="Masukan Nomor telepon Anda"
                                                 value="{{ $pembiayaan->nasabah->no_telp }}" required />
                                         </div>
-                                       
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotodiri"><small class="text-danger">*
-                                            </small>Upload Foto Diri</label>
-                                        <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
-                                            class="form-control" value ="{{ $fotodiri->foto }}">
-                                        <input type="hidden" name="foto[1][kategori]" value="Foto Diri" rows="3"
-                                            class="form-control" />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotoktp"><small class="text-danger">*
-                                            </small>Upload Foto KTP</label>
-                                        <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
-                                            class="form-control" value ="{{ $fotoktp->foto }}">
-                                        <input type="hidden" name="foto[2][kategori]" value="Foto KTP" rows="3"
-                                            class="form-control" />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotodiriktp"><small class="text-danger">*
-                                            </small>Upload Foto Diri Bersama KTP</label>
-                                        <input type="file" name="foto[3][foto]" id="fotodiriktp" rows="3"
-                                            class="form-control" required />
-                                        <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
-                                            rows="3" class="form-control" />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotokk"><small class="text-danger">*
-                                            </small>Upload Foto Kartu Keluarga</label>
-                                        <input type="file" name="foto[4][foto]" id="fotokk" rows="3"
-                                            class="form-control" required />
-                                        <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga"
-                                            rows="3" class="form-control" />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotokk"><small class="text-danger">*
-                                            </small>Upload Akta Nikah/Cerai</label>
-                                        <input type="file" name="foto[5][foto]" id="fotokk" rows="3"
-                                            class="form-control" required />
-                                        <input type="hidden" name="foto[5][kategori]" value="Akta Status Pekawinan"
-                                            rows="3" class="form-control" />
-                                    </div>
+
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="fotodiri"><small class="text-danger">*
+                                                </small>Upload Foto Diri</label>
+                                            @php
+                                                $fotodiri = Modules\Skpd\Entities\SkpdFoto::Select()
+                                                    ->where('skpd_pembiayaan_id', $pembiayaan->id)
+                                                    ->where('kategori', 'Foto Diri')
+                                                    ->get()
+                                                    ->first();
+                                            @endphp
+                                            <input type="hidden" name="foto[1][foto_lama]"
+                                                value="{{ $fotodiri->foto }}">
+                                            <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
+                                                class="form-control" value="{{ $fotodiri->foto }}">
+                                            <input type="hidden" name="foto[1][kategori]" value="Foto Diri"
+                                                rows="3" class="form-control" />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="fotoktp"><small class="text-danger">*
+                                                </small>Upload Foto KTP</label>
+                                            <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
+                                                class="form-control" value="{{ $fotoktp->foto }}">
+                                            <input type="hidden" name="foto[2][kategori]" value="Foto KTP"
+                                                rows="3" class="form-control" />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="fotodiriktp"><small class="text-danger">*
+                                                </small>Upload Foto Diri Bersama KTP</label>
+                                            <input type="file" name="foto[3][foto]" id="fotodiriktp" rows="3"
+                                                class="form-control" required />
+                                            <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
+                                                rows="3" class="form-control" />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="fotokk"><small class="text-danger">*
+                                                </small>Upload Foto Kartu Keluarga</label>
+                                            <input type="file" name="foto[4][foto]" id="fotokk" rows="3"
+                                                class="form-control" required />
+                                            <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga"
+                                                rows="3" class="form-control" />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="fotokk"><small class="text-danger">*
+                                                </small>Upload Akta Nikah/Cerai</label>
+                                            <input type="file" name="foto[5][foto]" id="fotokk" rows="3"
+                                                class="form-control" required />
+                                            <input type="hidden" name="foto[5][kategori]" value="Akta Status Pekawinan"
+                                                rows="3" class="form-control" />
+                                        </div>
                                     </div>
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Orang Terdekat</h5>
@@ -410,10 +419,10 @@
                                                 required>
                                                 <option value="{{ $pembiayaan->instansi->id }}">
                                                     {{ $pembiayaan->instansi->nama_instansi }}</option>
-                                                    <@foreach ($instansis as $instansi)
-                                                <option value="{{ $instansi->id }}">{{ $instansi->nama_instansi }}
-                                                </option>
-                                                @endforeach
+                                                <@foreach ($instansis as $instansi)
+                                                    <option value="{{ $instansi->id }}">{{ $instansi->nama_instansi }}
+                                                    </option>
+                                                    @endforeach
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -423,16 +432,18 @@
                                                 required>
                                                 <option value="{{ $pembiayaan->golongan->id }}">
                                                     {{ $pembiayaan->golongan->nama_golongan }}</option>
-                                                    @foreach ($golongans as $golongan)
+                                                @foreach ($golongans as $golongan)
                                                     <option value="{{ $golongan->id }}">{{ $golongan->nama_golongan }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="skpengangkatan"><small class="text-danger">* </small>Upload Softcopy SK Pengangkatan / SK Terakhir</label>
-                                        <input type="file" name="sk_pengangkatan" id="skpengangkatan" rows="3" class="form-control" />
-                                    </div>
+                                            <label class="form-label" for="skpengangkatan"><small class="text-danger">*
+                                                </small>Upload Softcopy SK Pengangkatan / SK Terakhir</label>
+                                            <input type="file" name="sk_pengangkatan" id="skpengangkatan"
+                                                rows="3" class="form-control" />
+                                        </div>
                                     </div>
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Jaminan</h5>
@@ -446,23 +457,28 @@
                                                 required>
                                                 <option value="{{ $pembiayaan->jaminan->jenis_jaminan->id }}">
                                                     {{ $pembiayaan->jaminan->jenis_jaminan->nama_jaminan }}</option>
-                                                    @foreach ($jaminans as $jaminan)
-                                                <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}</option>
-                                            @endforeach
-                                                </select>
+                                                @foreach ($jaminans as $jaminan)
+                                                    <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="jaminan_dokumen"><small class="text-danger">* </small>Upload Jaminan</label>
-                                        <input type="file" name="dokumen_jaminan" id="jaminan_dokumen" class="form-control" />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="notelpot">Jaminan Lainya</label>
-                                        <input type="text" name="nama_jaminan_lainnya" id="notelpot" class="form-control" placeholder="Masukan Jaminan Lainnya" />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="jaminan_lainnya">Upload Jaminan Lainnya</label>
-                                        <input type="file" name="dokumen_jaminan_lainnya" id="jaminan_lainnya" rows="3" class="form-control" />
-                                    </div>
+                                            <label class="form-label" for="jaminan_dokumen"><small class="text-danger">*
+                                                </small>Upload Jaminan</label>
+                                            <input type="file" name="dokumen_jaminan" id="jaminan_dokumen"
+                                                class="form-control" />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="notelpot">Jaminan Lainya</label>
+                                            <input type="text" name="nama_jaminan_lainnya" id="notelpot"
+                                                class="form-control" placeholder="Masukan Jaminan Lainnya" />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="jaminan_lainnya">Upload Jaminan Lainnya</label>
+                                            <input type="file" name="dokumen_jaminan_lainnya" id="jaminan_lainnya"
+                                                rows="3" class="form-control" />
+                                        </div>
                                     </div>
                                     <div class="d-flex justify-content-between mt-3">
                                         <button type="button" class="btn btn-outline-secondary btn-prev" required>
@@ -487,14 +503,15 @@
                                                 </small>Gaji Pokok (Per Bulan)</label>
                                             <input type="text" name="gaji_pokok" class="form-control numeral-mask1"
                                                 value="{{ number_format($pembiayaan->gaji_pokok) }}" id="gaji_pokok"
-                                                 required />
+                                                required />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="pendapatan_lainnya"><small
                                                     class="text-danger">* </small>Gaji / Pendapatan Lainnya (Per
                                                 Bulan)</label>
                                             <input type="text" name="pendapatan_lainnya"
-                                                class="form-control numeral-mask2"  value="{{ number_format($pembiayaan->pendapatan_lainnya) }}"
+                                                class="form-control numeral-mask2"
+                                                value="{{ number_format($pembiayaan->pendapatan_lainnya) }}"
                                                 id="pendapatan_lainnya" required />
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -502,20 +519,22 @@
                                                 </small>Pendapatan TPP (Per Bulan)</label>
                                             <input type="text" name="gaji_tpp" class="form-control numeral-mask3"
                                                 value="{{ number_format($pembiayaan->gaji_tpp) }}" id="pendapatan_tpp"
-                                               required />
+                                                required />
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="lampiran_keuangan">Upload Lampiran Keuangan</label>
+                                            <label class="form-label" for="lampiran_keuangan">Upload Lampiran
+                                                Keuangan</label>
                                             <input type="file" name="dokumen_keuangan" id="lampiran_keuangan"
                                                 rows="3" class="form-control" />
-                                            <input type="hidden" name="dokumen_keuangan" value="{{ $pembiayaan->dokumen_keuangan }}" rows="3"
-                                            class="form-control" />
+                                            <input type="hidden" name="dokumen_keuangan"
+                                                value="{{ $pembiayaan->dokumen_keuangan }}" rows="3"
+                                                class="form-control" />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="slip_gaji">Upload Slip Gaji</label>
                                             <input type="file" name="dokumen_slip_gaji" id="slip_gaji" rows="3"
                                                 class="form-control" value="{{ $pembiayaan->dokumen_slip_gaji }}">
-                                                <input type="hidden" name="dokumen_keuangan"  rows="3"
+                                            <input type="hidden" name="dokumen_keuangan" rows="3"
                                                 class="form-control" />
                                         </div>
                                     </div>
@@ -661,13 +680,13 @@
                                         <input type="hidden" name="kategori" value="IDEB" rows="3"
                                             class="form-control" />
                                     </div>
-                                      <div class="mb-1 col-md-6">
+                                    <div class="mb-1 col-md-6">
                                         <label class="form-label" for="ideb"><small class="text-danger">*
                                             </small>Upload Konfirmasi Bendahara</label>
                                         <input type="file" name="foto" id="ideb" rows="3"
                                             class="form-control">
-                                        <input type="hidden" name="kategori" value="Konfirmasi Bendahara" rows="3"
-                                            class="form-control" />
+                                        <input type="hidden" name="kategori" value="Konfirmasi Bendahara"
+                                            rows="3" class="form-control" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting">Pengeluaran Lainnya (Per
