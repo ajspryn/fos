@@ -169,7 +169,7 @@ class UmkmProposalController extends Controller
             ]);
         }
 
-        return redirect('/umkm/komite/')->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
+        return redirect('/umkm/komite/'.$id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
 
 }
     }

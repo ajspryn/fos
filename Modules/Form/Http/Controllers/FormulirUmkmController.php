@@ -199,7 +199,6 @@ class FormulirUmkmController extends Controller
      */
     public function show($id)
     {
-        return view('form::show');
     }
 
     /**

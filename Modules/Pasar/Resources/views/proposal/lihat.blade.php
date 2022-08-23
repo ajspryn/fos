@@ -115,14 +115,14 @@
                                                     class="text-danger">* </small>Kios / Los Yang Di Pesan</label>
                                             <input type="text" name="pesanan_blok" class="form-control "
                                                 placeholder="Blok Pesanan" id="pesanan_blok"
-                                                value="{{ $pembiayaan->pesanan_blok }}" required />
+                                                value="{{ $pembiayaan->pesanan_blok }}" >
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="nominal_pembiayaan"><small
                                                     class="text-danger">* </small>Luas Kios / Los Yang Di Pesan</label>
                                             <input type="text" name="luas" class="form-control "
                                                 placeholder="Luas Blok Pesanan" id="pesanan_blok"
-                                                value="{{ $pembiayaan->luas }}" required />
+                                                value="{{ $pembiayaan->luas }}" >
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="harga"><small class="text-danger">*
@@ -163,7 +163,7 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="nasabah"><small class="text-danger">*
                                                 </small>Nasabah</label>
-                                            <select class="select2 w-100" name="nasabah" id="nasabah">
+                                            <select class="select2 w-100" name="nasabah" id="nasabah" required>
                                                 <option label="akad">Pilih Jenis Nasabah</option>
                                                 @foreach ($nasabahs as $nasabah)
                                                     <option value="{{ $nasabah->kode_jenisnasabah }}">
@@ -209,8 +209,11 @@
                                             <label class="form-label" for="gender"><small class="text-danger">*
                                                 </small>Jenis Kelamin</label>
                                             <select class="select2 w-100" name="jk_id" id="gender" disabled>
-                                                <option value="{{ $pembiayaan->nasabahh->id }}">
+                                                <option>
                                                     {{ $pembiayaan->nasabahh->jk_id }}</option>
+                                                <option label="jenis_kelamin">Pilih Jenis Kelamin</option>
+                                                    <option >Laki-Laki</option>  
+                                                    <option >Perempuan</option> 
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -289,7 +292,7 @@
                                                     {{ $pembiayaan->rumah->kepemilikan_rumah }}</option>
                                             </select>
                                         </div>
-                                        {{-- <div class="mb-1 col-md-6">
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="leg_rumah"><small class="text-danger">*
                                                 </small>Legalitas Kepemilikan Rumah</label>
                                             <select class="select2 w-100" name="legalitas_kepemilikan_rumah"
@@ -297,7 +300,7 @@
                                                 <option value="{{ $pembiayaan->rumah->legalitas->id }}">
                                                     {{ $pembiayaan->rumah->legalitas->nama_jaminan }}</option>
                                             </select>
-                                        </div> --}}
+                                        </div> 
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="Pendidikan_id"><small class="text-danger">*
                                                 </small>Pendidikan Terakhir</label>
@@ -348,17 +351,7 @@
                                                 placeholder="Masukan Nomor telepon Anda"
                                                 value="{{ $pembiayaan->nasabahh->no_tlp }}" disabled />
                                         </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="suku"><small class="text-danger">*
-                                                </small>Suku Bangsa</label>
-                                            <select class="select2 w-100" name="suku_bangsa_id" id="suku_bangsa_id" required>
-                                                <option label="suku_bangsa_id">Pilih Suku Bangsa Nasabah</option>
-                                                @foreach ($sukus as $suku)
-                                                    <option value="{{ $suku->kode_suku }}">{{ $suku->nama_suku }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                        
                                         <div class="mb-0 mt-1 col-md-2">
                                             <button type="butt  on" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#fotodiri">
@@ -457,7 +450,7 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="lamausaha"> </small>No / Blok Lama</label>
+                                            <label class="form-label" for="lamausaha"> </small>No / Blok Usaha</label>
                                             <input type="text" name="blok" id="blok" class="form-control"
                                                 placeholder="Masukan No / Blok Lama"
                                                 value="{{ $pembiayaan->keteranganusaha->no_blok }}" disabled>
@@ -468,6 +461,17 @@
                                             <select class="select2 w-100" name="leg_toko_id" id="legalitastoko" disabled>
                                                 <option value="{{ $pembiayaan->keteranganusaha->id }}">
                                                     {{ $pembiayaan->keteranganusaha->leg_toko_id }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="suku"><small class="text-danger">*
+                                                </small>Suku Bangsa</label>
+                                            <select class="select2 w-100" name="suku_bangsa_id" id="suku_bangsa_id" required>
+                                                <option label="suku_bangsa_id">Pilih Suku Bangsa Nasabah</option>
+                                                @foreach ($sukus as $suku)
+                                                    <option value="{{ $suku->kode_suku }}">{{ $suku->nama_suku }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="mb-0 mt-2 col-md-2">

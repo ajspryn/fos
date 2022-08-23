@@ -7,6 +7,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Modules\Admin\Entities\PasarAkad;
 use Modules\Admin\Entities\PasarCashPick;
 use Modules\Admin\Entities\PasarJaminanRumahh;
@@ -128,7 +129,7 @@ class EditProposalController extends Controller
      */
     public function update(Request $request, $id)
     { {
-            // return $request;
+            return $request;
 
             PasarPembiayaan::where('id',$id)->update([
                 'id' => $id,
@@ -233,24 +234,26 @@ class EditProposalController extends Controller
                 'foto_id' => $id,
             ]);
 
-            $request->validate([
-                'foto.*.kategori' => 'required',
-                'foto.*.foto' => 'required',
-            ]);
+            // $request->validate([
+            //     'foto.*.kategori' => 'required',
+            //     'foto.*.foto' => 'required',
+            // ]);
 
             foreach ($request->foto as $key => $value) {
                 if ($value['foto']) {
+                    if ($value['foto_lama']) {
+                        Storage::delete($value['foto_lama']);
+                    }
+    
                     $foto = $value['foto']->store('foto-pasar-pembiayaan');
+    
+                   PasarFoto::where('pasar_pembiayaan_id', $id)->update([
+                        'pasar_pembiayaan_id' => $id,
+                        'kategori' => $value['kategori'],
+                        'foto' => $foto,
+                    ]);
                 }
-                PasarFoto::create([
-                    'pasar_pembiayaan_id' => $id,
-                    'kategori' => $value['kategori'],
-                    'foto' => $foto,
-                ]);
             }
-
-            foreach ($request->slik as $key => $value) {
-
 
 
                 // return $value;
@@ -265,9 +268,9 @@ class EditProposalController extends Controller
                     'agunan' => $value['agunan'],
                     'kol' => $value['kol'],
                 ]);
-            }
+            
 
-            return redirect('/pasar/komite/')->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
+            return redirect('/pasar/komite/'.$id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
         }
     }
 

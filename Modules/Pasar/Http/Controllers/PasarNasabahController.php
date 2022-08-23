@@ -5,6 +5,12 @@ namespace Modules\Pasar\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\PasarJenisJaminan;
+use Modules\Pasar\Entities\PasarFoto;
+use Modules\Pasar\Entities\PasarJaminanLain;
+use Modules\Pasar\Entities\PasarNasabahh;
+use Modules\Pasar\Entities\PasarPembiayaan;
+use Modules\Pasar\Entities\PasarSlik;
 
 class PasarNasabahController extends Controller
 {
@@ -15,7 +21,8 @@ class PasarNasabahController extends Controller
     public function index()
     {
         return view('pasar::nasabah.index',[
-            'title'=>'Komite',]);
+            'title'=>'Nasabah',
+            'proposals'=>PasarPembiayaan::select()->get(),]);
     }
 
     /**
@@ -43,8 +50,32 @@ class PasarNasabahController extends Controller
      * @return Renderable
      */
     public function show($id)
-    {
-        return view('pasar::show');
+    {    
+        $data=PasarPembiayaan::select()->where('id',$id)->get()->first();
+        $nasabah=PasarNasabahh::select()->where('id', $data->id)->get()->first();
+        $carihistory=PasarNasabahh::select()->where('no_ktp', $nasabah->no_ktp)->get()->first();
+        $history = PasarPembiayaan::select()->where('id',$id)->get()->first();
+        $jaminanlain=PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get()->first();
+        $tenor=$data->tenor;
+        $harga=$data->harga;
+        $rate=$data->rate;
+        $margin=($rate*$tenor)/100;
+
+        $harga1=$harga*$margin;
+        $harga_jual=$harga1+$harga;
+
+        $angsuran1=(int)($harga_jual/$tenor);
+
+        return view('pasar::nasabah.lihat',[
+            'title'=>'Nasabah',
+            'pembiayaan'=>PasarPembiayaan::select()->where('id',$id)->get()->first(),
+            'nasabah'=>PasarNasabahh::select()->where('id',$id)->get()->first(),
+            // 'history'=PasarNasabahh::select()->where('no_ktp'),
+            'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
+            'fotodiri'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+            'angsuran'=>$angsuran1,
+            'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
+        ]);
     }
 
     /**

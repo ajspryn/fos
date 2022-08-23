@@ -7,14 +7,17 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Admin\Entities\PasarAkad;
+use Modules\Admin\Entities\PasarCashPick;
 use Modules\Admin\Entities\PasarLamaBerdagang;
 use Modules\Admin\Entities\PasarJaminanRumahh;
 use Modules\Admin\Entities\PasarJenisDagang;
 use Modules\Admin\Entities\PasarJenisJaminan;
+use Modules\Admin\Entities\PasarJenisNasabah;
 use Modules\Admin\Entities\PasarJenisPasar;
 use Modules\Admin\Entities\PasarPenggunaan;
 use Modules\Admin\Entities\PasarSektorEkonomi;
 use Modules\Admin\Entities\PasarStatusPerkawinan;
+use Modules\Admin\Entities\PasarSukuBangsa;
 use Modules\Admin\Entities\PasarTanggungan;
 use Modules\Pasar\Entities\PasarDokumen;
 use Modules\Pasar\Entities\PasarFoto;
@@ -209,7 +212,28 @@ class FormulirPasarController extends Controller
      */
     public function show($id)
     {
-        return view('pasar::show');
+        return view('form::pasar.nasabah',[
+            'title'=>'Form Pasar',
+            'pembiayaan'=>PasarPembiayaan::select()->where('id',$id)->get()->first(),
+            'nasabah'=>PasarNasabahh::select()->where('id',$id)->get()->first(),
+            'fotodiri'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+            'fotoktp'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotodiribersamaktp'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
+            'fotokk'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'fototoko'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
+            'usahas'=>PasarKeteranganUsaha::all(), //udah
+            'akads'=>PasarAkad::all(),
+            'sektors'=>PasarSektorEkonomi::all(),
+            'pasars'=>PasarJenisPasar::all(),
+            'lamas'=>PasarLamaBerdagang::all(),
+            'rumahs'=>PasarJaminanRumahh::all(),
+            'dagangs'=>PasarJenisDagang::all(),
+            'aos'=>Role::select()->where('jabatan_id',1)->get(),
+            'cashs'=>PasarCashPick::all(),
+            'jaminans'=>PasarJenisJaminan::all(),
+            'nasabahs'=>PasarJenisNasabah::all(),
+            'sukus'=>PasarSukuBangsa::all(),
+        ]);
     }
 
     /**

@@ -56,11 +56,11 @@
                                 <div class="row">
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="tanggal"><small class="text-danger">* </small>Tanggal Pengajuan</label>
-                                        <input type="text" name="tgl_pembiayaan" id="tgl_pembiayaan" class="form-control flatpickr-basic" name="tanggal" placeholder="YYYY-MM-DD" >
+                                        <input type="text" name="tgl_pembiayaan" id="tgl_pembiayaan" class="form-control flatpickr-basic" name="tanggal" placeholder="YYYY-MM-DD" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jenispenggunaan"><small class="text-danger">* </small>Jenis Penggunaan</label>
-                                        <select class="select2 w-100" name="penggunaan_id" id="jenispenggunaan">
+                                        <select class="select2 w-100" name="penggunaan_id" id="jenispenggunaan" required>
                                             <option label="jenispenggunaan">Pilih Jenis Penggunaan</option>
                                             <option>Kesehatan</option>
                                             <option>Kepemilikan Kendaraan Bermotor</option>
@@ -86,7 +86,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="nominal_pembiayaan">Nominal Pembiayaan</label>
                                         <input type="text" name="nominal_pembiayaan" class="form-control numeral-mask1"
-                                            placeholder="Nominal Pembiayaan" id="nominal_pembiayaan">
+                                            placeholder="Nominal Pembiayaan" id="nominal_pembiayaan" required>
                                     </div>
                                 
                                 </div>
@@ -377,7 +377,7 @@
                                 </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small class="text-danger">* </small>Omset Per Bulan</label>
-                                        <input type="text" class="form-control numeral-mask1" placeholder="Rp." name ="omset" id="omset" >
+                                        <input type="text" class="form-control numeral-mask1" placeholder="Rp." name ="omset" id="omset" required>
                                     </div>
                                     <div class = "row">
                                     <div class="mb-1 col-md-6">
@@ -412,15 +412,15 @@
                                 <div class ="row">
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Pengeluaran Lainnya</label>
-                                        <input type="text" class="form-control numeral-mask7" placeholder="Rp."  name ="keb_keluarga" id="kebkeluarga" require >
+                                        <input type="text" class="form-control numeral-mask7" placeholder="Rp."  name ="keb_keluarga" id="kebkeluarga" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Keterangan Pengeluaran Lainnya</label>
-                                        <input type="text" class="form-control" placeholder="Keterangan Pengeluaran"  name ="keterangan_keb_keluarga" id="kebkeluarga" require >
+                                        <input type="text" class="form-control" placeholder="Keterangan Pengeluaran"  name ="keterangan_keb_keluarga" id="kebkeluarga" required >
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Kesanggupan Angsuran</label>
-                                        <input type="text" class="form-control numeral-mask8"  name ="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran" >
+                                        <input type="text" class="form-control numeral-mask8"  name ="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran" required >
                                     </div><br>
                                 </div>
                                 <div class="d-flex justify-content-between">
