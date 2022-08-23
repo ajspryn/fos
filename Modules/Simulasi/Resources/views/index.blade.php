@@ -66,47 +66,53 @@
                                     </div>
                                     <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                                         <!-- Congratulations Card -->
-                                            <div class="card card-congratulations">
-                                                <div class="card-body text-center">
-                                                    <img src="../../../app-assets/images/elements/decore-left.png"
-                                                        class="congratulations-img-left" alt="card-img-left" />
-                                                    <img src="../../../app-assets/images/elements/decore-right.png"
-                                                        class="congratulations-img-right" alt="card-img-right" />
-                                                    <div class="avatar avatar-xl bg-primary shadow">
-                                                        <div class="avatar-content">
-                                                            <i data-feather="award" class="font-large-1"></i>
-                                                        </div>
+                                        <div class="card card-congratulations">
+                                            <div class="card-body text-center">
+                                                {{-- <img src="../../../app-assets/images/elements/decore-left.png"
+                                                    class="congratulations-img-left" alt="card-img-left" />
+                                                <img src="../../../app-assets/images/elements/decore-right.png"
+                                                    class="congratulations-img-right" alt="card-img-right" /> --}}
+                                            <div class="avatar avatar-xl bg-primary shadow">
+                                                {{-- <div class="avatar-content">
+                                                        <i data-feather="dolar" class="font-large-1"></i>
+                                                    </div> --}}
+                                            </div>
+                                            <div class="text-center">
+                                                <h3 class="mb-2 text-white" >Hasil Perhitungan Simulasi</h3>
+                                                <div class="row">
+                                                    <div class="col-xl-6 mb-1 text-white">
+                                                        <h5 class="mb-1 text-white">Angsuran</h5>
+                                                        {{-- <h1><span id="angsuranDummyfix"></span></h1> --}}
+                                                        <input type="text" class="form-control" id="angsuranDummyfix" />
                                                     </div>
-                                                    <div class="text-center">
-                                                        <h1 class="mb-1 text-white">Angsuran Anda Sebesar,</h1>
-                                                        <div class="mb-1 text-white"><input type="text"
-                                                                class="form-control" id="angsuranDummyfix" /></div>
-                                                        <p class="card-text m-auto w-75">
-                                                            Total Harga Jual sebesar <strong>
-                                                                <div id="harga_jual"></div>
-                                                            </strong> more sales today. Check
-                                                            your new badge in your profile.
-                                                        </p>
+                                                    <div class="col-xl-6 mb-1 text-white">
+                                                        <h5 class="mb-1 text-white">Harga Jual</h5>
+
+                                                        {{-- <h1><span id="angsuranDummyfix"></span></h1> --}}
+                                                        {{-- <input type="text" class="form-control" id="harga_jualDummy" /> --}}
+                                                        <input type="text" class="form-control" id="harga_jual" />
                                                     </div>
                                                 </div>
                                             </div>
-                                        <!--/ Congratulations Card -->
+                                        </div>
                                     </div>
+                                    <!--/ Congratulations Card -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-                <!-- Input Mask End -->
-
             </div>
+            </section>
+            <!-- Input Mask End -->
+
         </div>
+    </div>
     </div>
     <!-- END: Content-->
 
     <script>
         function simulasi(value) {
-            var plafond, margin, tenor, hitung_harga, harga_jual, hasil, angsuran, angsuranDummy, angsuranDummyfix, rate;
+            var plafond, margin, tenor, hitung_harga, harga_jual, hasil, angsuran, angsuranDummy, angsuranDummyfix, rate, harga_jualDummy, harga_jualDummyfix ;
             plafond = document.getElementById("plafond").value.replace(/,/g, "");
             margin = document.getElementById("margin").value;
             tenor = document.getElementById("tenor").value.replace(/,/g, "");
@@ -116,13 +122,18 @@
             harga_jual = +hitung_harga + +plafond;
             angsuran = harga_jual / tenor;
 
-            document.getElementById("harga_jual").value = harga_jual;
-            document.getElementById("angsuran").value = angsuran;
+            document.getElementById("harga_jual").value = "Rp."+" "+harga_jual.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("angsuran").value = "Rp."+" "+angsuran.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+            // harga_jualDummy = harga_jual.toFixed(2);
+            // document.getElementById("harga_jualDummy").value = harga_jualDummy.toFixed(2);
+            // harga_jualDummyfix = document.getElementById("harga_jualDummy").value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            // document.getElementById("harga_jualDummyfix").value = "Rp."+" "+harga_jualDummyfix.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
             angsuranDummy = angsuran;
             document.getElementById("angsuranDummy").value = angsuranDummy.toFixed(2);
             angsuranDummyfix = document.getElementById("angsuranDummy").value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            document.getElementById("angsuranDummyfix").value = angsuranDummyfix;
+            document.getElementById("angsuranDummyfix").value = "Rp."+" "+angsuranDummyfix;
 
 
         }
