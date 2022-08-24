@@ -289,8 +289,8 @@
                                                     ->get()
                                                     ->first();
                                             @endphp
-                                            <input type="hidden" name="foto[1][foto_lama]"
-                                                value="{{ $fotodiri->foto }}">
+                                            <input type="hidden" name="foto_diri_lama"
+                                                value="{{ old('foto',$fotodiri->foto) }}">
                                             <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
                                                 class="form-control" value="{{ $fotodiri->foto }}">
                                             <input type="hidden" name="foto[1][kategori]" value="Foto Diri"

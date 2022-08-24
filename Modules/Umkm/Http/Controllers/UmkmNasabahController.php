@@ -1,13 +1,16 @@
 <?php
 
-namespace Modules\Kabag\Http\Controllers;
+namespace Modules\Umkm\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Form\Entities\FormPprPembiayaan;
+use Modules\Umkm\Entities\UmkmFoto;
+use Modules\Umkm\Entities\UmkmNasabah;
+use Modules\Umkm\Entities\UmkmPembiayaan;
+use Modules\Umkm\Entities\UmkmSlik;
 
-class PprProposalController extends Controller
+class UmkmNasabahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +18,9 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        $proposal=FormPprPembiayaan::select()->get();
-        return view('kabag::Ppr.proposal.index',[
-            'title'=>'Data Nasabah',
-            'proposals'=>$proposal,
-        ]);
+        return view('umkm::nasabah.index',[
+            'title'=>'Nasabah',
+            'proposals'=>UmkmPembiayaan::select()->get(),]);
     }
 
     /**
@@ -28,7 +29,7 @@ class PprProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::create');
+        return view('umkm::create');
     }
 
     /**
@@ -48,7 +49,13 @@ class PprProposalController extends Controller
      */
     public function show($id)
     {
-        return view('kabag::show');
+        return view('umkm::nasabah.lihat',[
+            'title'=>'Nasabah',
+            'pembiayaan'=>UmkmPembiayaan::select()->where('id',$id)->get()->first(),
+            'nasabah'=>UmkmNasabah::select()->where('id',$id)->get()->first(),
+            'idebs'=>UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get(),
+            'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+        ]);
     }
 
     /**
@@ -58,7 +65,7 @@ class PprProposalController extends Controller
      */
     public function edit($id)
     {
-        return view('kabag::edit');
+        return view('umkm::edit');
     }
 
     /**

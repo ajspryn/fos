@@ -199,7 +199,7 @@ class FormulirUmkmController extends Controller
      */
     public function show($id)
     {
-        return view('form::show');
+       
     }
 
     /**
@@ -209,7 +209,21 @@ class FormulirUmkmController extends Controller
      */
     public function edit($id)
     {
-        return view('form::edit');
+        return view('form::umkm.nasabah',[
+            
+            'akads'=>PasarAkad::all(),
+            'penggunaans'=>PasarPenggunaan::all(),
+            'sektors'=>PasarSektorEkonomi::all(),
+            'pasars'=>PasarJenisPasar::all(),
+            'lamas'=>PasarLamaBerdagang::all(),
+            'rumahs'=>PasarJaminanRumahh::all(),
+            'dagangs'=>PasarJenisDagang::all(),
+            'aos'=>Role::select()->where('jabatan_id',1)->get(),
+            'tanggungans'=>PasarTanggungan::all(),
+            'statuss'=>PasarStatusPerkawinan::all(),
+            'jaminans'=>PasarJenisJaminan::all(),
+
+        ]);
     }
 
     /**
@@ -220,7 +234,128 @@ class FormulirUmkmController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $hitung=UmkmPembiayaan::select()->get()->count();
+        $number=$hitung+1;
+        UmkmPembiayaan::create([
+            'id'=>$number,
+            'tgl_pembiayaan'=> $request ->tgl_pembiayaan,
+            'nasabah_id'=> $id,
+            'AO_id'=>$request->AO_id,
+            'penggunaan_id'=> $request ->penggunaan_id,
+            'tenor'=> $request ->tenor,
+            'nominal_pembiayaan'=>str_replace(",","", $request ->nominal_pembiayaan),
+            'jaminan_id'=> $number,
+            'jaminanlain_id'=> $number,
+            'umkm_legalitas_rumah_id'=> $number,
+            'umkm_usaha_id'=> $number,
+            'omset'=>str_replace(",","",$request->omset),
+            'hpp'=>str_replace(",","",$request->hpp),
+            'listrik'=>str_replace(",","",$request->listrik),
+            'trasport'=>str_replace(",","",$request->trasport),
+            'karyawan'=>str_replace(",","",$request->karyawan),
+            'telpon'=>str_replace(",","",$request->telpon),
+            'sewa'=>str_replace(",","",$request->sewa),
+            'slik_id'=>$number,
+            'keb_keluarga'=>str_replace(",","",$request->keb_keluarga),
+            'kesanggupan_angsuran'=>str_replace(",","",$request->kesanggupan_angsuran),
+            'keterangan_keb_keluarga'=>$request->keterangan_keb_keluarga,
+        ]);
+
+        UmkmNasabah::create([
+            'id'=>$id,
+            'nama_nasabah'=> $request ->nama_nasabah,
+            'no_ktp'=> $request ->no_ktp,
+            'tmp_lahir'=> $request ->tmp_lahir,
+            'tgl_lahir'=> $request ->tgl_lahir,
+            'alamat'=> $request ->alamat,
+            'rt'=> $request ->rt,
+            'rw'=> $request ->rw,
+            'desa_kelurahan'=> $request ->desa_kelurahan,
+            'kecamatan'=> $request ->kecamatan,
+            'kabkota'=> $request ->kabkota,
+            'provinsi'=> $request ->provinsi,
+            'alamat_domisili'=> $request ->provinsi,
+            'lama_tinggal'=> $request ->lama_tinggal,
+            'nama_pasangan'=> $request ->nama_pasangan,
+            'nama_ibu'=> $request ->nama_ibu,
+            'agama_id'=> $request ->agama_id,
+            'status_id'=> $request -> status_id,
+            'jenis_kelamin'=>$request ->jenis_kelamin,
+            'pendidikan'=> $request ->pendidikan,
+            'jumlah_anak'=> $request ->jumlah_anak,
+            'npwp'=> $request ->npwp,
+            'no_tlp'=>str_replace("+62 0","",$request->no_tlp),
+            'namaot'=> $request ->namaot,
+            'alamat_ot'=> $request ->alamat_ot,
+            'telp_ot'=> str_replace("+62 0","",$request ->telp_ot),
+            'foto_id'=> $number,
+        ]);
+
+        
+        $dokumenktb=$request->file('dokumenktb')->store('Umkm-dokumen-ktb');
+        $dokumen_jaminan=$request->file('dokumen_jaminan')->store('Umkm-dokumen_jaminanlain');
+
+        UmkmJaminan::create([
+            'umkm_pembiayaan_id'=> $number,
+            'no_ktb'=> $request ->no_ktb,
+            'dokumenktb'=> $dokumenktb,
+        ]);
+
+
+        UmkmJaminanLain::create([
+        
+            'umkm_pembiayaan_id'=> $number,
+            'jaminanlain'=> $request ->jaminanlain,
+            'dokumen_jaminan'=> $dokumen_jaminan,
+        ]);
+
+        UmkmLegalitasRumah::create([
+           
+            'umkm_pembiayaan_id'=> $number,
+            'kepemilikan_rumah'=> $request ->kepemilikan_rumah,
+            'legalitas_kepemilikan_rumah'=> $request ->legalitas_kepemilikan_rumah,
+            'dokumen_legalitas_kepemilikan_rumah'=> $request ->dokumen_legalitas_kepemilikan_rumah,
+        ]);
+
+        UmkmPembiayaanHistory::create([
+                'umkm_pembiayaan_id'=> $number,
+                'status_id'=> 1,
+                'user_id'=> null,
+                'jabatan_id'=>0,
+                'divisi_id'=>null
+            ]);
+       
+        
+        UmkmKeteranganUsaha::create([
+            
+            'umkm_pembiayaan_id'=> $number,
+            'nama_usaha'=>$request->nama_usaha,
+            'lama_usaha'=>$request->lama_usaha,
+            'kep_toko_id'=>$request->kep_toko_id,
+            'leg_toko_id'=>$request->leg_toko_id,
+            'jenisdagang_id'=>$request->jenisdagang_id,
+            'foto_id'=>$number,
+        ]);
+
+        $request->validate([
+            'foto.*.kategori'=>'required',
+            'foto.*.foto'=>'required',
+        ]);
+        
+        foreach($request->foto as $key => $value){
+            if($value['foto']){
+                $foto=$value['foto']->store('foto-Umkm-pembiayaan');
+            }
+            UmkmFoto::create([
+                'umkm_pembiayaan_id'=>$number,
+                'kategori'=>$value['kategori'],
+                'foto'=>$foto,
+            ]);
+        }
+
+        
+        
+        return redirect('/')->with('success', 'Data Umkm Berhasil Ditambahkan');
     }
 
     /**

@@ -5,6 +5,7 @@ namespace Modules\Admin\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Pasar\Entities\PasarJaminan;
+use Modules\Pasar\Entities\PasarJaminanLain;
 
 class PasarJenisJaminan extends Model
 {
@@ -13,9 +14,9 @@ class PasarJenisJaminan extends Model
         'created_at'
     ];
 
-    public function jaminan()
+    public function jaminanlain()
     {
-        return $this->hasMany(PasarJaminan::class);
+        return $this->hasMany(PasarJaminanLain::class);
     }
 }
 

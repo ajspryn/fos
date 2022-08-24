@@ -326,17 +326,7 @@
                                             placeholder="Masukan Nomor telepon Anda"
                                             value="{{ $pembiayaan->nasabahh->no_tlp }}" disabled />
                                     </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="suku"><small class="text-danger">*
-                                            </small>Suku Bangsa</label>
-                                        <select class="select2 w-100" name="suku_bangsa_id" id="suku_bangsa_id" required>
-                                            <option label="suku_bangsa_id">Pilih Suku Bangsa Nasabah</option>
-                                            @foreach ($sukus as $suku)
-                                                <option value="{{ $suku->kode_suku }}">{{ $suku->nama_suku }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    
                                     <div class="mb-0 mt-1 col-md-2">
                                         <button type="butt  on" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#fotodiri">
@@ -430,7 +420,17 @@
                                                 {{ $pembiayaan->keteranganusaha->leg_toko_id }}</option>
                                         </select>
                                     </div>
-                            
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="suku"><small class="text-danger">*
+                                            </small>Suku Bangsa</label>
+                                        <select class="select2 w-100" name="suku_bangsa_id" id="suku_bangsa_id" required>
+                                            <option label="suku_bangsa_id">Pilih Suku Bangsa Nasabah</option>
+                                            @foreach ($sukus as $suku)
+                                                <option value="{{ $suku->kode_suku }}">{{ $suku->nama_suku }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Data Jaminan</h5>

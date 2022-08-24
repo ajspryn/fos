@@ -163,7 +163,7 @@ class SkpdKomiteController extends Controller
         }
         // $proses_slik=SkpdScoreSlik::select()->where('kol',$slik)->get()->first();
         $proses_jaminan=SkpdJenisJaminan::select()->where('id',$jaminan->skpd_jenis_jaminan_id)->get()->first();
-        $proses_nasabah='RO Lancar Rekomendasi';
+        $proses_nasabah='Nasabah Baru';
         $proses_instansi=SkpdInstansi::select()->where('id',$data->skpd_instansi_id)->get()->first();
 
         // return $dsr;
@@ -176,7 +176,7 @@ class SkpdKomiteController extends Controller
         // $rating_slik=$proses_slik->rating;
         $rating_bendahara=$proses_bendahara->rating;
         $rating_jaminan=$proses_jaminan->rating;
-        $rating_nasabah=4;
+        $rating_nasabah=2;
         $rating_instansi=$proses_instansi->rating;
 
         // $angsuran1=$angsuran;
