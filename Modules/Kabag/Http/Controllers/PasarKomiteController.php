@@ -41,7 +41,7 @@ class PasarKomiteController extends Controller
     public function index()
     {
          $komite=PasarPembiayaanHistory::select()->where('status_id', 3 )->get();
-            return view('kabag::pasar.komite.index',[
+            return view('kabag::Pasar.komite.index',[
             'title'=>'Data Nasabah',
             'komites'=>$komite,
         ]);
@@ -208,19 +208,19 @@ class PasarKomiteController extends Controller
         $score_slik = $prosesslik->rating;
 
 
-        
+
         $waktuawal=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
         $waktuakhir=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
         $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
 
-        $waktumulai=Carbon::parse($waktuawal->created_at); 
+        $waktumulai=Carbon::parse($waktuawal->created_at);
         $waktuberakhir=Carbon::parse($waktuakhir->created_at);
         $selanjutnya=Carbon::parse($next->created_at);
 
 
         $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
         //    return $totalwaktu;
-        return view('kabag::pasar.komite.lihat',[
+        return view('kabag::Pasar.komite.lihat',[
             'title'=>'Detail Calon Nasabah',
             // 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
             'deviasi'=>PasarDeviasi::select()->where('pasar_pembiayaan_id',$id)->get()->first(),
@@ -288,8 +288,8 @@ class PasarKomiteController extends Controller
             //perhitunganSLA
             'totalwaktu'=>$totalwaktu,
             'next'=>$next,
-            'waktumulai'=>$waktumulai->diffAsCarbonInterval($selanjutnya) 
-            
+            'waktumulai'=>$waktumulai->diffAsCarbonInterval($selanjutnya)
+
 
         ]);
 }

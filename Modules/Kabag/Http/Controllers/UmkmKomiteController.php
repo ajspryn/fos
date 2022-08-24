@@ -35,10 +35,10 @@ class UmkmKomiteController extends Controller
      * @return Renderable
      */
     public function index()
-    {   
+    {
         $komite=UmkmPembiayaanHistory::select()->where('status_id',3)->get();
 
-        return view('kabag::umkm.komite.index',[
+        return view('kabag::Umkm.komite.index',[
         'title'=>'Data Nasabah',
         'komites'=>$komite,
     ]);
@@ -95,7 +95,7 @@ class UmkmKomiteController extends Controller
                 'user_id'=>Auth::user()->$id,
             ]);
         }
-        
+
             $data=UmkmPembiayaan::select()->where('id',$id)->get()->first();
             $nasabah=UmkmNasabah::select()->where('id',$id)->get()->first();
             $usaha=UmkmKeteranganUsaha::select()->where('umkm_pembiayaan_id',$id)->get()->first();
@@ -106,16 +106,16 @@ class UmkmKomiteController extends Controller
             $rate=$data->rate;
             $margin=($rate*$tenor)/100;
             $cash=PasarCashPick::select()->first();
-    
+
             //idir
             $harga1=$harga*$margin;
             $harga_jual=$harga1+$harga;
-    
+
             $angsuran1=(int)($harga_jual/$tenor);
-            
-    
+
+
             //pemasukan
-    
+
             $omset=$data->omset;
             $hpp=$data->hpp;
             $listrik=$data->listrik;
@@ -124,38 +124,38 @@ class UmkmKomiteController extends Controller
             $karyawan=$data->karyawan;
             $telpon=$data->telpon;
             $laba_bersih=($omset-($hpp+$listrik+$sewa+$karyawan+$telpon+$transport));
-    
+
             //pengeluaran
-    
+
             $cicilan=UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->sum('angsuran');
             $biaya_anak=$nasabah->tanggungan->biaya;
             $biaya_istri=$nasabah->status->biaya;
             $kebutuhan_keluarga=UmkmPembiayaan::select()->where('id',$id)->sum('keb_keluarga');
             $pengeluaranlain=$biaya_anak+$biaya_istri+$cicilan+$kebutuhan_keluarga;
             $total_pengeluaran = ($pengeluaranlain+$cicilan+$angsuran1);
-    
+
             $di=($laba_bersih-$total_pengeluaran);
-    
+
             //rating
-    
+
             $proses_jenisdagang=PasarJenisDagang::select()->where('kode_jenisdagang',$usaha->jenisdagang_id)->get()->first();
             $proses_sukubangsa=PasarSukuBangsa::select()->where('kode_suku',$usaha->suku_bangsa_id)->get()->first();
             $proses_lamadagang=PasarLamaBerdagang::select()->where('kode_lamaberdagang',$usaha->lama_usaha)->get()->first();
             $proses_jaminanrumah=PasarJaminanRumahh::select()->where('kode_jaminan',$jaminanrumah->legalitas_kepemilikan_rumah)->get()->first();
             $proses_cashpickup=PasarCashPick::select()->where('kode_jeniscash',$data->cashpickup)->get()->first();
             $proses_jenisnasabah=PasarJenisNasabah::select()->where('kode_jenisnasabah',$data->nasabah)->get()->first();
-    
-    
+
+
             $proses_jaminanlain=PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first();
-            
+
             // if(!isset($proses_jaminanlain)){
             //     $prosesjaminanlain=PasarJenisJaminan::select()->where('kol',null)->get()->first();
             // }
             // else{
             //     $prosesslik=PasarScoreSlik::select()->where('kol',$data_slik->kol)->get()->first();
             // }
-            //score 
-    
+            //score
+
             $score_jenisdagang=$proses_jenisdagang->rating;
             $score_sukubangsa=$proses_sukubangsa->rating;
             $score_lamadagang=$proses_lamadagang->rating;
@@ -163,32 +163,32 @@ class UmkmKomiteController extends Controller
             $score_cashpick=$proses_cashpickup->rating;
             $score_jenisnasabah=$proses_jenisnasabah->rating;
             $score_jaminanlain=$proses_jaminanlain->rating;
-    
+
             $idir=number_format(($cicilan+$angsuran1)/($di)*100);
-    
+
             if($idir<=50){
                 $proses_idir=UmkmScoreIdir::select()->where('rating',4)->get()->first();
             }
-    
+
             if($idir>=50 && $idir<=60){
                 $proses_idir=UmkmScoreIdir::select()->where('rating',3)->get()->first();
             }
-        
+
             if($idir>=60 && $idir<=69){
                 $proses_idir=UmkmScoreIdir::select()->where('rating',2)->get()->first();
             }
-    
+
             if( $idir>=70){
                 $proses_idir=UmkmScoreIdir::select()->where('rating',1)->get()->first();
             }
-           
-    
-    
+
+
+
             $score_idir=$proses_idir->rating;
-            //slik 
-    
-            $data_slik=UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->orderBy('kol', 'desc')->get()->first(); 
-    
+            //slik
+
+            $data_slik=UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->orderBy('kol', 'desc')->get()->first();
+
             if(!isset($data_slik)){
                 $prosesslik=PasarScoreSlik::select()->where('kol',null)->get()->first();
             }
@@ -196,12 +196,12 @@ class UmkmKomiteController extends Controller
                 $prosesslik=PasarScoreSlik::select()->where('kol',$data_slik->kol)->get()->first();
             }
             $score_slik = $prosesslik->rating;
-    
-          
-          
-          
+
+
+
+
             //    return $harga1;
-            return view('kabag::umkm.komite.lihat',[
+            return view('kabag::Umkm.komite.lihat',[
                 'title'=>'Detail Calon Nasabah',
                 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
                 'timelines'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->get(),
@@ -234,7 +234,7 @@ class UmkmKomiteController extends Controller
                  'idir'=>$proses_idir,
                  'nilai_idir'=>$idir,
                  'slik'=>$prosesslik,
-            
+
                 //rating
                 'rating_jenisdagang'=>$score_jenisdagang,
                 'rating_sukubangsa'=>$score_sukubangsa,
@@ -245,7 +245,7 @@ class UmkmKomiteController extends Controller
                 'rating_slik'=>$score_slik,
                 'rating_idir'=>$score_idir,
                 'rating_jaminanlain'=>$score_jaminanlain,
-    
+
                 'score_jenisdagang'=> $score_jenisdagang *  $proses_jenisdagang->bobot,
                 'score_sukubangsa'=>$score_sukubangsa * $proses_sukubangsa->bobot,
                 'score_lamadagang'=>$score_lamadagang * $proses_lamadagang->bobot,
@@ -255,11 +255,11 @@ class UmkmKomiteController extends Controller
                 'score_slik'=>$score_slik * $prosesslik->bobot,
                 'score_idir'=>$score_idir *$proses_idir->bobot,
                 'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
-                 
-                
+
+
             ]);
-        
-    
+
+
 
     }
 

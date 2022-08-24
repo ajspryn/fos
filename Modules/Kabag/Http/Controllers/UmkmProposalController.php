@@ -16,7 +16,7 @@ class UmkmProposalController extends Controller
     public function index()
     {
         $proposal=UmkmPembiayaan::select()->get();
-        return view('kabag::umkm.proposal.index',[
+        return view('kabag::Umkm.proposal.index',[
             'title'=>'Data Nasabah',
             'proposals'=>$proposal,
         ]);
@@ -28,7 +28,7 @@ class UmkmProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::umkm.index',[
+        return view('kabag::Umkm.index',[
             'title' => 'Dasboard Kabag',
         ]);
     }

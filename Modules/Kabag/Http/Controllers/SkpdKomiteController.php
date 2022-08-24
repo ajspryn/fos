@@ -30,7 +30,7 @@ class SkpdKomiteController extends Controller
     public function index()
     {
        $komite=SkpdPembiayaanHistory::select()->where('status_id', 3 )->get();
-        return view('kabag::skpd.komite.index',[
+        return view('kabag::Skpd.komite.index',[
             'title'=>'Data Komite',
             'proposals'=>$komite,
         ]);
@@ -175,14 +175,14 @@ class SkpdKomiteController extends Controller
         $waktuakhir=SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
         // $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
 
-        $waktumulai=Carbon::parse($waktuawal->created_at); 
+        $waktumulai=Carbon::parse($waktuawal->created_at);
         $waktuberakhir=Carbon::parse($waktuakhir->created_at);
         // $selanjutnya=Carbon::parse($next->created_at);
 
 
         $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
         // return $proses_dsr;
-        return view('kabag::skpd.komite.lihat',[
+        return view('kabag::Skpd.komite.lihat',[
             'title'=>'Detail Proposal',
             'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
             'pembiayaan'=>SkpdPembiayaan::select()->where('id',$id)->get()->first(),
