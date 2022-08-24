@@ -21,7 +21,7 @@ class SkpdProposalController extends Controller
 
         // return $proposal[0];
 
-        return view('kabag::Skpd.proposal.index',[
+        return view('kabag::skpd.proposal.index',[
             'title'=>'Proposal SKPD',
             'proposals'=>$proposal,
         ]);
@@ -33,7 +33,7 @@ class SkpdProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::Skpd.index',[
+        return view('kabag::skpd.index',[
             'title' => 'Dasboard Kabag',
         ]);
     }

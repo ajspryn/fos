@@ -15,7 +15,7 @@ class PasarProposalController extends Controller
      */
     public function index(){
         $proposal=PasarPembiayaan::select()->get();
-        return view('kabag::Pasar.proposal.index',[
+        return view('kabag::pasar.proposal.index',[
             'title'=>'Data Nasabah',
             'proposals'=>$proposal,
         ]);
@@ -26,7 +26,7 @@ class PasarProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::Pasar.index',[
+        return view('kabag::pasar.index',[
             'title' => 'Dasboard Kabag',
 
         ]);

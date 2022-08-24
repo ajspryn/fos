@@ -30,7 +30,7 @@ class SkpdKomiteController extends Controller
     public function index()
     {
        $komite=SkpdPembiayaanHistory::select()->where('status_id', 3 )->get();
-        return view('kabag::Skpd.komite.index',[
+        return view('kabag::skpd.komite.index',[
             'title'=>'Data Komite',
             'proposals'=>$komite,
         ]);
@@ -182,7 +182,7 @@ class SkpdKomiteController extends Controller
 
         $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
         // return $proses_dsr;
-        return view('kabag::Skpd.komite.lihat',[
+        return view('kabag::skpd.komite.lihat',[
             'title'=>'Detail Proposal',
             'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
             'pembiayaan'=>SkpdPembiayaan::select()->where('id',$id)->get()->first(),

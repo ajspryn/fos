@@ -41,7 +41,7 @@ class PasarKomiteController extends Controller
     public function index()
     {
          $komite=PasarPembiayaanHistory::select()->where('status_id', 3 )->get();
-            return view('kabag::Pasar.komite.index',[
+            return view('kabag::pasar.komite.index',[
             'title'=>'Data Nasabah',
             'komites'=>$komite,
         ]);
@@ -220,7 +220,7 @@ class PasarKomiteController extends Controller
 
         $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
         //    return $totalwaktu;
-        return view('kabag::Pasar.komite.lihat',[
+        return view('kabag::pasar.komite.lihat',[
             'title'=>'Detail Calon Nasabah',
             // 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
             'deviasi'=>PasarDeviasi::select()->where('pasar_pembiayaan_id',$id)->get()->first(),

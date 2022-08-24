@@ -38,7 +38,7 @@ class UmkmKomiteController extends Controller
     {
         $komite=UmkmPembiayaanHistory::select()->where('status_id',3)->get();
 
-        return view('kabag::Umkm.komite.index',[
+        return view('kabag::umkm.komite.index',[
         'title'=>'Data Nasabah',
         'komites'=>$komite,
     ]);
@@ -201,7 +201,7 @@ class UmkmKomiteController extends Controller
 
 
             //    return $harga1;
-            return view('kabag::Umkm.komite.lihat',[
+            return view('kabag::umkm.komite.lihat',[
                 'title'=>'Detail Calon Nasabah',
                 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
                 'timelines'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->get(),
