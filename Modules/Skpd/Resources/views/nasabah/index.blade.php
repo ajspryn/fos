@@ -54,11 +54,11 @@
                                                 </button>
                                             </td>
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
-                                            <td>{{ $proposal->nasabah->nama_nasabah }}</td>
-                                            <td>{{ $proposal->nasabah->no_ktp }}</td>
-                                            <td>{{ $proposal->nasabah->alamat }}, {{ $proposal->nasabah->rt }},
-                                                {{ $proposal->nasabah->rw }}</td>
-                                            <td>{{ $proposal->nasabah->no_telp}}</td>
+                                            <td>{{ $proposal->nama_nasabah }}</td>
+                                            <td>{{ $proposal->no_ktp }}</td>
+                                            <td>{{ $proposal->alamat }}, {{ $proposal->rt }},
+                                                {{ $proposal->rw }}</td>
+                                            <td>{{ $proposal->no_telp}}</td>
                                             <td style="text-align: center">
                                                 <a href="/skpd/nasabah/{{ $proposal->id }}"
                                                     class="btn btn-outline-info round">Detail</a>

@@ -119,7 +119,7 @@ class UmkmRevisiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        UmkmPembiayaan::where('id',$id)->updatecreate([
+        UmkmPembiayaan::where('id',$id)->update([
             'id'=>$id,
             'tgl_pembiayaan'=> $request ->tgl_pembiayaan,
             'nasabah_id'=> $id,
@@ -144,7 +144,7 @@ class UmkmRevisiController extends Controller
             'keterangan_keb_keluarga'=>$request->keterangan_keb_keluarga,
         ]);
 
-        UmkmNasabah::where('id',$id)->updatecreate([
+        UmkmNasabah::where('id',$id)->update([
             'id'=>$id,
             'nama_nasabah'=> $request ->nama_nasabah,
             'no_ktp'=> $request ->no_ktp,
@@ -178,21 +178,21 @@ class UmkmRevisiController extends Controller
         $dokumenktb=$request->file('dokumenktb')->store('Umkm-dokumen-ktb');
         $dokumen_jaminan=$request->file('dokumen_jaminan')->store('Umkm-dokumen_jaminanlain');
 
-        UmkmJaminan::where('umkm_pembiayaan_id',$id)([
+        UmkmJaminan::where('umkm_pembiayaan_id',$id)->update([
             'umkm_pembiayaan_id'=> $id,
             'no_ktb'=> $request ->no_ktb,
             'dokumenktb'=> $dokumenktb,
         ]);
 
 
-        UmkmJaminanLain::where('umkm_pembiayaan_id',$id)([
+        UmkmJaminanLain::where('umkm_pembiayaan_id',$id)->update([
         
             'umkm_pembiayaan_id'=> $id,
             'jaminanlain'=> $request ->jaminanlain,
             'dokumen_jaminan'=> $dokumen_jaminan,
         ]);
 
-        UmkmLegalitasRumah::where('umkm_pembiayaan_id',$id)([
+        UmkmLegalitasRumah::where('umkm_pembiayaan_id',$id)->update([
            
             'umkm_pembiayaan_id'=> $id,
             'kepemilikan_rumah'=> $request ->kepemilikan_rumah,
@@ -209,7 +209,7 @@ class UmkmRevisiController extends Controller
             ]);
        
         
-        UmkmKeteranganUsaha::where('umkm_pembiayaan_id',$id)([
+        UmkmKeteranganUsaha::where('umkm_pembiayaan_id',$id)->update([
             
             'umkm_pembiayaan_id'=> $id,
             'nama_usaha'=>$request->nama_usaha,
@@ -229,7 +229,7 @@ class UmkmRevisiController extends Controller
             if($value['foto']){
                 $foto=$value['foto']->store('foto-Umkm-pembiayaan');
             }
-            UmkmFoto::where('umkm_pembiayaan_id',$id)([
+            UmkmFoto::where('umkm_pembiayaan_id',$id)->update([
                 'umkm_pembiayaan_id'=>$id,
                 'kategori'=>$value['kategori'],
                 'foto'=>$foto,

@@ -19,9 +19,12 @@ class SkpdNasabahController extends Controller
      */
     public function index()
     {
+        // 'proposals'=>SkpdPembiayaan::select()->get();
         return view('skpd::nasabah.index',[
             'title'=>'Data Nasabah',
-            'proposals'=>SkpdPembiayaan::select()->get(),]);
+            'proposals'=>SkpdNasabah::select()->get(),
+            // 'nasabah'=>SkpdNasabah::select()->where('skpd_pembiayaan_id',$proposal->id)
+        ]);
         
     }
 
@@ -49,9 +52,9 @@ class SkpdNasabahController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show($skpd_pembiayaan_id)
     {   
-        $data=SkpdPembiayaan::select()->where('id',$id)->get()->first();
+        $data=SkpdPembiayaan::select()->where('id',$skpd_pembiayaan_id)->get()->first();
         $tenor=$data->tenor;
         $harga=$data->harga;
         $rate=$data->rate;
@@ -61,13 +64,13 @@ class SkpdNasabahController extends Controller
         $harga_jual=$harga1+$harga;
 
         $angsuran1=(int)($harga_jual/$tenor);
-        $jaminanlain=SkpdJaminan::select()->where('skpd_pembiayaan_id',$id)->get()->first();
+        $jaminanlain=SkpdJaminan::select()->where('skpd_pembiayaan_id',$skpd_pembiayaan_id)->get()->first();
         return view('skpd::nasabah.lihat',[
         'title'=>'Nasabah',
-        'pembiayaan'=>SkpdPembiayaan::select()->where('id',$id)->get()->first(),
-        'nasabah'=>SkpdNasabah::select()->where('id',$id)->get()->first(),
+        'pembiayaan'=>SkpdPembiayaan::select()->where('id',$skpd_pembiayaan_id)->get()->first(),
+        'nasabah'=>SkpdNasabah::select()->where('id',$skpd_pembiayaan_id)->get()->first(),
         // 'history'=SkpdNasabahh::select()->where('no_ktp'),
-        'fotodiri'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+        'fotodiri'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$skpd_pembiayaan_id)->where('kategori', 'Foto Diri')->get()->first(),
         'angsuran'=>$angsuran1,
         'jaminans'=>SkpdJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
     ]);

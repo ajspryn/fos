@@ -13,7 +13,7 @@
                             <h2 class="content-header-title float-start mb-0">Form Proposal</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/">Pasar</a>
+                                    <li class="breadcrumb-item"><a href="/">UMKM</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Proposal</a>
                                     </li>
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="bs-stepper-content">
-                            <form method='post'action="/pasar/revisi/{{ $pembiayaan->id }}" enctype="multipart/form-data">
+                            <form method='post'action="/umkm/revisi/{{ $pembiayaan->id }}" enctype="multipart/form-data">
                                 @method('put')
                                 @csrf
                                 <div id="form1" class="content" role="tabpanel"
@@ -121,22 +121,8 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="nominal_pembiayaan"><small
-                                                    class="text-danger">* </small>Kios / Los Yang Di Pesan</label>
-                                            <input type="text" name="pesanan_blok" class="form-control "
-                                                placeholder="Blok Pesanan" id="pesanan_blok"
-                                                value="{{ $pembiayaan->pesanan_blok }}" required />
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="nominal_pembiayaan"><small
-                                                    class="text-danger">* </small>Luas Kios / Los Yang Di Pesan</label>
-                                            <input type="text" name="luas" class="form-control "
-                                                placeholder="Luas Blok Pesanan" id="pesanan_blok"
-                                                value="{{ $pembiayaan->luas }}" required>
-                                        </div>
-                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="harga"><small class="text-danger">*
-                                                </small>Harga Kios / Los</label>
+                                                </small>Nominal Pembiayaan</label>
                                             <input type="text" name="harga" class="form-control numeral-mask4"
                                                 placeholder="Rp." id="harga" value="{{ $pembiayaan->harga }}"
                                                 required />
@@ -483,21 +469,10 @@
                                     <div class="row">
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="nama_usaha"><small class="text-danger">*
-                                                </small>Nama Kios / Los</label>
+                                                </small>Nama Usaha</label>
                                             <input type="text" name="nama_usaha" id="nama_usaha" class="form-control"
                                                 placeholder="Masukan Nama Toko Atau Usaha"value="{{ $pembiayaan->keteranganusaha->nama_usaha }}"
                                                 required>
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
-                                                </small>Jenis Pasar</label>
-                                            <select class="select2 w-100" name="jenispasar_id" id="jenispasar_id">
-                                                <option value="{{ $pembiayaan->keteranganusaha->jenispasar->id }}">
-                                                    {{ $pembiayaan->keteranganusaha->jenispasar->nama_pasar }}</option>
-                                                @foreach ($pasars as $pasar)
-                                                    <option value="{{ $pasar->id }}">{{ $pasar->nama_pasar }}</option>
-                                                @endforeach
-                                            </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
@@ -514,7 +489,7 @@
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="keptoko"><small class="text-danger">*
-                                                </small>Kepemilikan Kios / Los</label>
+                                                </small>Kepemilikan Usaha</label>
                                             <select class="select2 w-100" name="kep_toko_id" id="keptoko" required>
                                                 <option value="{{ $pembiayaan->keteranganusaha->id }}">
                                                     {{ $pembiayaan->keteranganusaha->kep_toko_id }}</option>
@@ -534,10 +509,10 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="lamausaha"> </small>No / Blok Lama</label>
-                                            <input type="text" name="blok" id="blok" class="form-control"
-                                                placeholder="Masukan No / Blok Lama"
-                                                value="{{ $pembiayaan->keteranganusaha->no_blok }}" required>
+                                            <label class="form-label" for="lamausaha"> </small>Alamat Usaha</label>
+                                            <input type="text" name="alamat" id="alamat" class="form-control"
+                                                placeholder="Alamat Usaha"
+                                                value="{{ $pembiayaan->keteranganusaha->alamat }}" required>
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="legalitastoko"><small class="text-danger">*

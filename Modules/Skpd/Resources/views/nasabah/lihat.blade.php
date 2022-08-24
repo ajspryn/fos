@@ -190,7 +190,7 @@
                     </h1>
                     <p class="text-center"></p>
                         <div class="col-12 text-center">
-                            <a href = "/form/skpd/{{ $pembiayaan->id }}"type="submit"
+                            <a href = "/form/skpd/{{ $pembiayaan->id }}/edit"type="submit"
                                 class="btn btn-primary me-1 mt-1">Yes</a>
                             <button type="reset"
                                 class="btn btn-outline-secondary mt-1"

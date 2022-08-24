@@ -36,7 +36,8 @@
                         </div>
                     </div>
                     <div class="bs-stepper-content">
-                        <form action="/form/umkm" method="post" enctype="multipart/form-data">
+                        <form action="/form/umkm{{ $pembiayaan->id }}" method="post" enctype="multipart/form-data">
+                            @method('put')
                             @csrf
                       
                             <div id="form1" class="content" role="tabpanel" aria-labelledby="account-details-trigger">

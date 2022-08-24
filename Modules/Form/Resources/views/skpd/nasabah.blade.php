@@ -35,7 +35,8 @@
                         </div>
                     </div>
                     <div class="bs-stepper-content">
-                        <form method='post' action="/skpd/pembiayaan" enctype="multipart/form-data">
+                        <form method='post' action="/form/skpd/{{ $pembiayaan->id }}" enctype="multipart/form-data">
+                            @method('put')
                             @csrf
                             <div id="form1" class="content" role="tabpanel" aria-labelledby="account-details-trigger">
                                 <div class="content-header">
@@ -161,7 +162,7 @@
                                             value="{{ $pembiayaan->nasabah->tgl_lahir }}" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="exampleFormControlTextarea1"><small
+                                        <label class="form-label" for="alamat"><small
                                                 class="text-danger">* </small>Alamat Sesuai KTP</label>
                                         <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat"
                                             value="{{ $pembiayaan->nasabah->alamat }}"></textarea>

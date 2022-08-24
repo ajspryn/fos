@@ -35,9 +35,9 @@
                         </div>
                     </div>
                     <div class="bs-stepper-content">
-                        <form action="/form/pasar" method="post" enctype="multipart/form-data">
+                        <form action="/form/pasar/{{ $pembiayaan->id }}" method="post" enctype="multipart/form-data">
+                            @method('put')
                             @csrf
-
                             <div id="form1" class="content" role="tabpanel" aria-labelledby="account-details-trigger">
                                 <div class="content-header">
                                     {{-- <h5 class="mb-0">Account Details</h5> --}}
