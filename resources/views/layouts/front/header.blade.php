@@ -99,7 +99,7 @@
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
                             <a class="dropdown-item" href="/home"><i class="me-50" data-feather="airplay"></i>
                                 Dashboard</a>
-                            <a class="dropdown-item" href="#"><i class="me-50" data-feather="user"></i>
+                            <a class="dropdown-item" href="/profile"><i class="me-50" data-feather="user"></i>
                                 Profile</a>
                             <div class="dropdown-divider">
                             </div>

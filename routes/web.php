@@ -23,6 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile', [App\Http\Controllers\UserController::class, 'index'])->name('user');
 
 Route::middleware(['auth:sanctum', 'verified'])->resource('/dashboard', DashboardController::class);
 

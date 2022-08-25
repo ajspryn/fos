@@ -7,7 +7,7 @@
                 <li class="nav-item"><a class="nav-link menu-toggle" href="#"><i class="ficon"
                             data-feather="menu"></i></a></li>
             </ul>
-            
+
             {{-- <ul class="nav navbar-nav bookmark-icons">
             <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-email.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Email"><i class="ficon" data-feather="mail"></i></a></li>
             <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-chat.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Chat"><i class="ficon" data-feather="message-square"></i></a></li>
@@ -208,7 +208,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
                     {{-- <a class="dropdown-item" href="/home"><i class="me-50" data-feather="airplay"></i> Dashboard</a> --}}
-                    <a class="dropdown-item" href="#"><i class="me-50" data-feather="user"></i> Profile</a>
+                    <a class="dropdown-item" href="/profile"><i class="me-50" data-feather="user"></i> Profile</a>
                     <div class="dropdown-divider">
                     </div>
                     <a class="dropdown-item" href="auth-login-cover.html"
