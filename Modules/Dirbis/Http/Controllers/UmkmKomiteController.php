@@ -69,11 +69,7 @@ class UmkmKomiteController extends Controller
 
         ]);
 
-<<<<<<< Updated upstream
         return redirect('/dirbis/umkm/komite');
-=======
-        return redirect('/dirbis/umkm/komite')->with('success');;
->>>>>>> Stashed changes
     }
 
     /**
@@ -93,11 +89,7 @@ class UmkmKomiteController extends Controller
             UmkmPembiayaanHistory::create([
                 'umkm_pembiayaan_id'=>$id,
                 'status_id'=>4,
-<<<<<<< Updated upstream
                 'jabatan_id'=>3,
-=======
-                'jabatan_id'=>4,
->>>>>>> Stashed changes
                 'divisi_id'=>0,
                 'user_id'=>Auth::user()->$id,
             ]);
@@ -107,11 +99,7 @@ class UmkmKomiteController extends Controller
             $nasabah=UmkmNasabah::select()->where('id',$id)->get()->first();
             $usaha=UmkmKeteranganUsaha::select()->where('umkm_pembiayaan_id',$id)->get()->first();
             $jaminanrumah=UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id',$id)->get()->first();
-<<<<<<< Updated upstream
             $jaminanlain=UmkmJaminanLain::select()->where('umkm_pembiayaan_id',$id)->get()->first();
-=======
-            $jaminanlain=UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get()->first();
->>>>>>> Stashed changes
             $tenor=$data->tenor;
             $harga=$data->nominal_pembiayaan;
             $rate=$data->rate;

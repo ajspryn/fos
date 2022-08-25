@@ -85,7 +85,7 @@ class FormulirPasarController extends Controller
             'tenor'=> $request ->tenor,
             'nominal_pembiayaan'=> $request ->nominal_pembiayaan,
             'luas'=> $request ->luas,
-            'harga'=> str_replace(",","",$request->harga),
+            'harga'=> $request ->harga,
             'jenis_tempat_usaha'=> $request ->jenis_tempat_usaha,
             'administrasi'=> $request ->administrasi,
             'jumlah'=> $request ->jumlah,
@@ -93,6 +93,7 @@ class FormulirPasarController extends Controller
             'jaminanlain_id'=> $id,
             'pasar_legalitas_rumah_id'=> $id,
             'pasar_keterangan_usaha_id'=> $id,
+            'jaminanlain_id'=> $request ->jaminanlain_id,
             'omset'=>str_replace(",","",$request->omset),
             'hpp'=>str_replace(",","",$request->hpp),
             'listrik'=>str_replace(",","",$request->listrik),
@@ -145,25 +146,14 @@ class FormulirPasarController extends Controller
             'pasar_pembiayaan_id'=> $id,
             'no_ktb'=> $request ->no_ktb,
             'dokumenktb'=> $dokumenktb,
-<<<<<<< Updated upstream
         ]);
 
 
         PasarJaminanLain::create([
             'pasar_pembiayaan_id'=> $id,
-=======
->>>>>>> Stashed changes
             'jaminanlain'=> $request ->jaminanlain,
+            'dokumen_jaminan'=>$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminanlain'),
         ]);
-
-        if($request->file('dokumen_jaminan')){
-           $dokumen_jaminan_lainnya=$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminanlain');
-          
-        PasarJaminanLain::create([
-           'pasar_pembiayaan_id'=> $id,
-           'dokumen_jaminan'=>$dokumen_jaminan_lainnya,
-       ]);
-       }
 
         PasarLegalitasRumah::create([
             'pasar_pembiayaan_id'=> $id,
@@ -269,12 +259,6 @@ class FormulirPasarController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
          // return dd($request);
          $hitung=PasarPembiayaan::select()->get()->count();
          $number=$hitung+1;
@@ -348,7 +332,6 @@ class FormulirPasarController extends Controller
              'pasar_pembiayaan_id'=> $number,
              'no_ktb'=> $request ->no_ktb,
              'dokumenktb'=> $dokumenktb,
-<<<<<<< Updated upstream
          ]);
  
  
@@ -358,20 +341,6 @@ class FormulirPasarController extends Controller
              'dokumen_jaminan'=>$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminanlain'),
          ]);
  
-=======
-             'jaminanlain'=> $request ->jaminanlain,
-         ]);
- 
-         if($request->file('dokumen_jaminan')){
-            $dokumen_jaminan_lainnya=$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminanlain');
-           
-         PasarJaminanLain::create([
-            'pasar_pembiayaan_id'=> $number,
-            'dokumen_jaminan'=>$dokumen_jaminan_lainnya,
-        ]);
-        }
- 
->>>>>>> Stashed changes
          PasarLegalitasRumah::create([
              'pasar_pembiayaan_id'=> $number,
              'kepemilikan_rumah'=> $request ->kepemilikan_rumah,
@@ -418,10 +387,6 @@ class FormulirPasarController extends Controller
  
  
          return redirect('/')->with('success', 'Data Pasar Berhasil Ditambahkan');
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     }
 
     /**

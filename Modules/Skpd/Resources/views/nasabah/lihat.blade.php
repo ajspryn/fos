@@ -147,30 +147,10 @@
                                 <th style="text-align: center" class="py-1">
                                     Agunan
                                 </th>
-<<<<<<< Updated upstream
-=======
-                                <th style="text-align: center" class="py-1">
-                                    Detail
-                                </th>
->>>>>>> Stashed changes
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($datas as $data)
-<<<<<<< Updated upstream
-=======
-                            @php
-                            $tenor = $data->tenor;
-                            $harga = $data->nominal_pembiayaan;
-                            $rate = $data->rate;
-                            $margin = ($rate * $tenor) / 100;
-                            
-                            $harga1 = $harga * $margin;
-                            $harga_jual = $harga1 + $harga;
-                            
-                            $angsuran1 = (int) ($harga_jual / $tenor);
-                        @endphp
->>>>>>> Stashed changes
                                 <tr>
                                     <td style="text-align: center">
                                         {{ $loop->iteration }}</td>
@@ -182,22 +162,11 @@
                                     <td style="text-align: center">
                                         {{ $data->rate }} %
                                     </td>
-<<<<<<< Updated upstream
                                     <td style="text-align: center">Rp. {{ number_format($angsuran) }}
-=======
-                                    <td style="text-align: center">Rp. {{ number_format($angsuran1) }}
->>>>>>> Stashed changes
                                     </td>
                                     <td style="text-align: center">
                                         {{ $data->jaminan->jenis_jaminan->nama_jaminan }}
                                     </td>
-<<<<<<< Updated upstream
-=======
-                                    <td style="text-align: center">
-                                        <a href="/skpd/komite/{{ $data->id }}"
-                                            class="btn btn-outline-info round">Detail</a>
-                                    </td>
->>>>>>> Stashed changes
                             @endforeach
 
                         </tbody>

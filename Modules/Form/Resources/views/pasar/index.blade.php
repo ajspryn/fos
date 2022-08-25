@@ -98,12 +98,7 @@
                                         <input type="text" name="luas" class="form-control "
                                             placeholder="Luas Blok Pesanan" id="pesanan_blok">
                                     </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*
-                                            </small>Nominal Pembiayaan</label>
-                                        <input type="text" class="form-control numeral-mask7" placeholder="Rp."
-                                            name="harga" id="harga">
-                                    </div>
+
                                 </div>
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Data Diri</h5>
@@ -436,16 +431,7 @@
                                     <small class="text-muted">Silahkan Upload Data Jaminan Anda</small>
                                 </div>
                                 <div class="row">
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="jaminanlain"><small class="text-danger">*
-                                        </small>Jaminan</label>
-                                        <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
-                                            <option label="jaminanlain">Pilih Jaminan</option>
-                                            @foreach ($jaminans as $jaminan)
-                                                <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    <small>Jaminan Utama</small>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="lamausaha"><small class="text-danger">* </small>No
                                             KTB</label>
@@ -459,9 +445,20 @@
                                             class="form-control" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="dokumen_jaminan">Upload Jaminan Lainnya</label>
+                                        <label class="form-label" for="jaminanlain"><small class="text-danger">*
+                                        </small>Jaminan Lainnya</label>
+                                        <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
+                                            <option label="jaminanlain">Pilih Jaminan</option>
+                                            @foreach ($jaminans as $jaminan)
+                                                <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="dokumen_jaminan"><small class="text-danger">*
+                                        </small>Upload Jaminan Lainnya</label>
                                         <input type="file" name="dokumen_jaminan" id="dokumen_jaminan" rows="3"
-                                            class="form-control">
+                                            class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">

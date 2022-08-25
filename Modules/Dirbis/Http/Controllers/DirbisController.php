@@ -5,9 +5,6 @@ namespace Modules\Dirbis\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Pasar\Entities\PasarPembiayaanHistory;
-use Modules\Skpd\Entities\SkpdPembiayaanHistory;
-use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 
 class DirbisController extends Controller
 {
@@ -17,21 +14,8 @@ class DirbisController extends Controller
      */
     public function index()
     {
-        $pasarproposal= PasarPembiayaanHistory::select()->where('status_id',4)->where('jabatan_id',3)->orderby('created_at','desc')->get()->count();
-        $skpdproposal= SkpdPembiayaanHistory::select()->where('status_id',3)->orderby('created_at','desc')->get()->count();
-        $pasarditerima = PasarPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id', 4)->get()->count();
-        $skpdditerima = SkpdPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id', 4)->get()->count();
-        $umkmditerima = UmkmPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id', 4)->get()->count();
-        $pasarditolak =PasarPembiayaanHistory::select()->where('status_id',6)->get()->count();
-        $skpdditolak =SkpdPembiayaanHistory::select()->where('status_id',6)->get()->count();
-        $umkmditolak =UmkmPembiayaanHistory::select()->where('status_id',6)->get()->count();
-        $review =PasarPembiayaanHistory::select()->where('status_id',7)->orderby('created_at','desc')->get()->count();
-        return view('dirbis::index',[
-            'title' => 'Dasboard Direktur Bisnis',
-            'diterima'=>$pasarditerima+$skpdditerima+$umkmditerima,
-            'tolak'=>$pasarditolak+$skpdditolak+$umkmditolak,
-            'proposal'=>$pasarproposal+$skpdproposal,
-        ]);
+      return view('dirbis::index',[
+            'title'=>"Dashboard Direksi"]);
     }
 
     /**

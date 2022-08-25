@@ -25,11 +25,6 @@ $(function () {
         numeralMask8 = $(".numeral-mask8"),
         numeralMask9 = $(".numeral-mask9"),
         numeralMask10 = $(".numeral-mask10"),
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
         numeralMask11 = $(".numeral-mask11"),
         numeralMask12 = $(".numeral-mask12"),
         numeralMask13 = $(".numeral-mask13"),
@@ -130,15 +125,7 @@ $(function () {
         numeralMask108 = $(".numeral-mask108"),
         numeralMask109 = $(".numeral-mask109"),
         numeralMask110 = $(".numeral-mask110"),
-<<<<<<< Updated upstream
         
-=======
-        numeralMask111 = $(".numeral-mask111"),
-        numeralMask112 = $(".numeral-mask112"),
-        numeralMask113 = $(".numeral-mask113"),
-        
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         blockMask = $(".block-mask"),
         delimiterMask = $(".delimiter-mask"),
         customDelimiter = $(".custom-delimiter-mask"),
@@ -267,11 +254,6 @@ $(function () {
             numeralThousandsGroupStyle: "thousand",
         });
     }
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
     if (numeralMask.length) {
         new Cleave(numeralMask11, {
             numeral: true,
@@ -872,30 +854,7 @@ $(function () {
             numeralThousandsGroupStyle: "thousand",
         });
     }
-<<<<<<< Updated upstream
     
-=======
-    if (numeralMask.length) {
-        new Cleave(numeralMask111, {
-            numeral: true,
-            numeralThousandsGroupStyle: "thousand",
-        });
-    }
-    if (numeralMask.length) {
-        new Cleave(numeralMask112, {
-            numeral: true,
-            numeralThousandsGroupStyle: "thousand",
-        });
-    }
-    if (numeralMask.length) {
-        new Cleave(numeralMask113, {
-            numeral: true,
-            numeralThousandsGroupStyle: "thousand",
-        });
-    }
-    
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
     //Block
     if (blockMask.length) {

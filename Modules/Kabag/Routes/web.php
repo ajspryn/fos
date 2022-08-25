@@ -4,21 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Modules\Kabag\Http\Controllers\KabagKomiteController;
 use Modules\Kabag\Http\Controllers\KabagProposalController;
 use Modules\Kabag\Http\Controllers\PasarKomiteController;
-use Modules\Kabag\Http\Controllers\PasarNasabahController;
 use Modules\Kabag\Http\Controllers\PasarProposalController;
-<<<<<<< Updated upstream
 use Modules\Kabag\Http\Controllers\PprKomiteController;
 use Modules\Kabag\Http\Controllers\PprProposalController;
-=======
-<<<<<<< Updated upstream
-=======
-use Modules\Kabag\Http\Controllers\PprKomiteController;
-use Modules\Kabag\Http\Controllers\PprProposalController;
-use Modules\Kabag\Http\Controllers\SkpdNasabahController;
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 use Modules\Kabag\Http\Controllers\UmkmKomiteController;
-use Modules\Kabag\Http\Controllers\UmkmNasabahController;
 use Modules\Kabag\Http\Controllers\UmkmProposalController;
 
 /*
@@ -38,42 +27,19 @@ Route::prefix('kabag')->middleware(['auth:sanctum', 'verified', 'role:2', 'divis
     Route::prefix('skpd')->group(function() {
         Route::resource('/komite', SkpdKomiteController::class);
         Route::resource('/proposal', SkpdProposalController::class);
-<<<<<<< Updated upstream
         Route::resource('/', SkpdProposalController::class);
-=======
-<<<<<<< Updated upstream
-=======
-        Route::resource('/', SkpdProposalController::class);
-        Route::resource('/nasabah', SkpdNasabahController::class);
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     });
 
     Route::prefix('umkm')->group(function() {
         Route::resource('/komite', UmkmKomiteController::class);
         Route::resource('/proposal', UmkmProposalController::class);
-<<<<<<< Updated upstream
         Route::resource('/', UmkmProposalController::class);
-=======
-<<<<<<< Updated upstream
-=======
-        Route::resource('/', UmkmProposalController::class);
-        Route::resource('/nasabah', UmkmNasabahController::class);
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     });
 
     Route::prefix('pasar')->group(function() {
         Route::resource('/komite', PasarKomiteController::class);
         Route::resource('/proposal', PasarProposalController::class);
-<<<<<<< Updated upstream
         Route::resource('/', PasarProposalController::class);
-=======
-<<<<<<< Updated upstream
-=======
-        Route::resource('/', PasarProposalController::class);
-        Route::resource('/nasabah', PasarNasabahController::class);
->>>>>>> Stashed changes
 
     });
 
@@ -82,10 +48,6 @@ Route::prefix('kabag')->middleware(['auth:sanctum', 'verified', 'role:2', 'divis
         Route::resource('/proposal', PprProposalController::class);
         Route::resource('/', PprProposalController::class);
 
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     });
 
 });

@@ -662,7 +662,6 @@
                                         <small>Data Pengeluaran Nasabah Anda</small>
                                     </div>
                                     <small>Cicilan Bank</small>
-                                    @foreach ($ideps as $idep)
                                     <section id="form-repeater">
                                         <div class="row">
                                             <div class="mb-1 col-md-12">
@@ -677,7 +676,7 @@
                                                                         <input type="text" class="form-control"
                                                                             name="nama_bank" id="nama_bank"
                                                                             aria-describedby="nama_bank"
-                                                                            placeholder="Nama Bank" value="{{ $idep->nama_bank }}" />
+                                                                            placeholder="Nama Bank" />
                                                                     </div>
                                                                 </div>
 
@@ -688,7 +687,7 @@
                                                                         <input type="number" class="form-control"
                                                                             name="plafond" id="plafond"
                                                                             aria-describedby="itemcost"
-                                                                            placeholder="Rp." value="{{ $idep->plafond }}" />
+                                                                            placeholder="Rp." />
                                                                     </div>
                                                                 </div>
 
@@ -699,7 +698,7 @@
                                                                         <input type="number" class="form-control"
                                                                             name="outstanding" id="outstanding"
                                                                             aria-describedby="outstanding"
-                                                                            placeholder="Rp." value="{{ $idep->outstanding }}" />
+                                                                            placeholder="Rp." />
                                                                     </div>
                                                                 </div>
 
@@ -710,7 +709,7 @@
                                                                         <input type="number" class="form-control"
                                                                             name="tenor" id="tenor"
                                                                             aria-describedby="tenor"
-                                                                            placeholder="tenor" value="{{ $idep->tenor }}"  />
+                                                                            placeholder="tenor" />
                                                                     </div>
                                                                 </div>
 
@@ -720,7 +719,7 @@
                                                                             for="margin">Margin</label>
                                                                         <input type="number" class="form-control persen"
                                                                             name="margin" id="margin"
-                                                                            aria-describedby="margin" placeholder="%" value="{{ $idep->margin }}" />
+                                                                            aria-describedby="margin" placeholder="%" />
                                                                     </div>
                                                                 </div>
 
@@ -737,7 +736,7 @@
                                                                             for="itemquantity">Agunan</label>
                                                                         <input type="text" class="form-control"
                                                                             name="agunan" id="agunan"
-                                                                            aria-describedby="itemquantity" value="{{ $idep->agunan }}" />
+                                                                            aria-describedby="itemquantity" />
                                                                     </div>
                                                                 </div>
 
@@ -748,7 +747,7 @@
                                                                         <input type="number" class="form-control"
                                                                             name="angsuran" id="angsuran"
                                                                             aria-describedby="angsuran"
-                                                                            placeholder="Rp." value="{{ $idep->angsuran }}" />
+                                                                            placeholder="Rp." />
                                                                     </div>
                                                                 </div>
 
@@ -759,7 +758,7 @@
                                                                         <input type="number" class="form-control"
                                                                             name="kol" id="kol"
                                                                             aria-describedby="angsuran"
-                                                                            placeholder="Rp." value="{{ $idep->kol }}" />
+                                                                            placeholder="Rp." />
                                                                     </div>
                                                                 </div>
 
@@ -787,7 +786,6 @@
                                                 </div>
                                             </div>
                                     </section>
-                                    @endforeach
                                     <div class="row">
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"><small

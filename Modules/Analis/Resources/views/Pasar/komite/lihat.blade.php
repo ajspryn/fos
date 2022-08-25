@@ -1,5 +1,4 @@
 @extends('analis::layouts.main')
-
 @section('content')
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -684,7 +683,6 @@
                                                                                 <td class="pe-1">Status</td>
                                                                                 <td>:
                                                                                     @if ($nilai_idir >= 80 || $nilai_idir < 0)
-<<<<<<< Updated upstream
                                                                                         @if ($nilai_idir >= 80)
                                                                                             <span
                                                                                                 class="badge rounded-pill badge-glow bg-success">Diterima</span>
@@ -699,29 +697,6 @@
                                                                                                 >
                                                                                                 Pendapatan</small>
                                                                                         @endif
-=======
-                                                                                    @if ($nilai_idir >= 80 && $total_score > 3)
-                                                                                    <span
-                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                    <small
-                                                                                        class="text-danger">*IDIR
-                                                                                        > 80%</small>
-                                                                                @elseif($nilai_idir < 0 && $total_score > 3)
-                                                                                    <span
-                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                    <small
-                                                                                        class="text-danger">*Pengeluaran
-                                                                                        >
-                                                                                        Pendapatan</small>
-                                                                                        @elseif($total_score > 2 || $total_score > 3)
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                            Ulang</span>
-                                                                                    @else
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                @endif
->>>>>>> Stashed changes
                                                                                     @else
                                                                                         @if ($total_score > 3)
                                                                                             <span

@@ -332,15 +332,7 @@
                                     <small class="text-muted">Silahkan Upload Data Jaminan Anda</small>
                                 </div>
                                 <div class="row">
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="jaminanlain"><small class="text-danger">* </small>Jaminan Lainnya</label>
-                                        <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
-                                            <option label="jaminanlain">Pilih Jaminan</option>
-                                            @foreach ($jaminans as $jaminan )
-                                            <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    <small>Jaminan Utama</small>
                                     <div class="mb-1 col-md-6">
                                          <label class="form-label" for="lamausaha"><small class="text-danger">* </small>No KTB</label>
                                          <input type="text" name="no_ktb" id="lamausaha" class="form-control" placeholder="Masukan No KTB" required/>
@@ -350,7 +342,6 @@
                                         <input type="file" name="dokumenktb" id="dokumenktb" rows="3" class="form-control" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
-<<<<<<< Updated upstream
                                         <label class="form-label" for="jaminanlain"><small class="text-danger">* </small>Jaminan Lainnya</label>
                                         <select class="select2 w-100" name="jaminanlain" id="jaminanlain"required>
                                             <option label="jaminanlain">Pilih Jaminan</option>
@@ -361,15 +352,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="dokumen_jaminan"><small class="text-danger">* </small>Upload Jaminan Lainnya</label>
-<<<<<<< Updated upstream
                                         <input type="file" name="dokumen_jaminan" id="dokumen_jaminan" rows="3" class="form-control" required>
-=======
-                                        <input type="file" name="dokumen_jaminan" id="dokumen_jaminan" rows="3" class="form-control" >
-=======
-                                        <label class="form-label" for="dokumen_jaminan"></small>Upload Jaminan Lainnya</label>
-                                        <input type="file" name="dokumen_jaminan" id="dokumen_jaminan" rows="3" class="form-control">
->>>>>>> Stashed changes
->>>>>>> Stashed changes
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">

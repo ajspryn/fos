@@ -84,7 +84,7 @@
                                                 <td style="text-align: center"
                                                     value="{{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}">
                                                     {{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}</td>
-                                                <td style="text-align: center">{{ number_format( $proposal_pasar->harga) }}</td>
+                                                <td style="text-align: center">{{ $proposal_pasar->harga }}</td>
                                                 <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
                                                 <td style="text-align: center"
                                                     value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
@@ -96,10 +96,7 @@
                                                     <span
                                                         class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>
-                                                @else 
-                                                <span
-                                                class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
-                                                {{ $history->jabatan->keterangan }}</span>
+                                                        
                                                 @endif
                                                 </td>
                                                 {{-- <td style="text-align: center">{{ $proposal_pasar->user->name }}</td> --}}

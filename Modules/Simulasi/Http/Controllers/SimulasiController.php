@@ -5,14 +5,6 @@ namespace Modules\Simulasi\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-<<<<<<< Updated upstream:Modules/Form/Http/Controllers/KprController.php
-=======
-use Modules\Umkm\Entities\UmkmFoto;
-use Modules\Umkm\Entities\UmkmJaminan;
-use Modules\Umkm\Entities\UmkmNasabah;
-use Modules\Umkm\Entities\UmkmPembiayaan;
-use Modules\Umkm\Entities\UmkmSlik;
->>>>>>> Stashed changes:Modules/Umkm/Http/Controllers/UmkmNasabahController.php
 
 class SimulasiController extends Controller
 {
@@ -50,36 +42,8 @@ class SimulasiController extends Controller
      * @return Renderable
      */
     public function show($id)
-<<<<<<< Updated upstream:Modules/Form/Http/Controllers/KprController.php
     {
-<<<<<<< Updated upstream:Modules/Simulasi/Http/Controllers/SimulasiController.php
         return view('simulasi::show');
-=======
-        return view('form::show');
-=======
-    { 
-        $data=UmkmPembiayaan::select()->where('nasabah_id',$id)->get()->first();
-        $nasabah=UmkmNasabah::select()->where('id', $id)->get()->first();
-       
-        $jaminanlain=UmkmJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first();
-        $tenor=$data->tenor;
-        $harga=$data->harga;
-        $rate=$data->rate;
-        $margin=($rate*$tenor)/100;
-
-        $harga1=$harga*$margin;
-        $harga_jual=$harga1+$harga;
-
-        $angsuran1=(int)($harga_jual/$tenor);
-        return view('umkm::nasabah.lihat',[
-            'title'=>'Nasabah',
-            'pembiayaan'=>UmkmPembiayaan::select()->where('id',$id)->get()->first(),
-            'nasabah'=>UmkmNasabah::select()->where('id',$id)->get()->first(),
-            'idebs'=>UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get(),
-            'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
-        ]);
->>>>>>> Stashed changes:Modules/Umkm/Http/Controllers/UmkmNasabahController.php
->>>>>>> Stashed changes:Modules/Form/Http/Controllers/KprController.php
     }
 
     /**

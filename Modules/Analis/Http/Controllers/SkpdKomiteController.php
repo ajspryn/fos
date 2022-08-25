@@ -60,7 +60,7 @@ class SkpdKomiteController extends Controller
             'jabatan_id'=>3,
             'divisi_id'=>null,
         ]);
-        return redirect('/analis/skpd/komite')->with('success');
+
 }
 
     /**
