@@ -175,7 +175,7 @@ class SkpdKomiteController extends Controller
         $waktuakhir=SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
         // $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
 
-        $waktumulai=Carbon::parse($waktuawal->created_at); 
+        $waktumulai=Carbon::parse($waktuawal->created_at);
         $waktuberakhir=Carbon::parse($waktuakhir->created_at);
         // $selanjutnya=Carbon::parse($next->created_at);
 

@@ -28,7 +28,7 @@ class PasarProposalController extends Controller
     {
         return view('kabag::pasar.index',[
             'title' => 'Dasboard Kabag',
-            
+
         ]);
     }
 

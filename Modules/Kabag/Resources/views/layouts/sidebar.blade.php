@@ -27,7 +27,7 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">Dashboard</span></a>
                 <ul class="menu-content">
-                    <li class="{{ Request::is('kabag/') ? 'active' : '' }}"><a class="d-flex align-items-center"
+                    <li class="{{ Request::is('kabag') ? 'active' : '' }}"><a class="d-flex align-items-center"
                             href="/kabag"><i data-feather="bar-chart"></i><span
                                 class="menu-item text-truncate" data-i18n="Account">Analytic</span></a>
                     </li>
@@ -44,8 +44,8 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                             class="d-flex align-items-center" href="/kabag/umkm/create"><i data-feather="home"></i><span
                                 class="menu-title text-truncate" data-i18n="home">UMKM</span></a>
                     </li>
-                    <li class="{{ Request::is('analis/skpd/ppr') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/skpd/proposal"><i
+                    <li class="{{ Request::is('kabag/skpd/ppr') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/skpd/proposal"><i
                                 data-feather="home"></i><span class="menu-item text-truncate"
                                 data-i18n="Security">PPR</span></a>
                     </li>

@@ -208,12 +208,12 @@ class PasarKomiteController extends Controller
         $score_slik = $prosesslik->rating;
 
 
-        
+
         $waktuawal=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
         $waktuakhir=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
         $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
 
-        $waktumulai=Carbon::parse($waktuawal->created_at); 
+        $waktumulai=Carbon::parse($waktuawal->created_at);
         $waktuberakhir=Carbon::parse($waktuakhir->created_at);
         $selanjutnya=Carbon::parse($next->created_at);
 
@@ -288,8 +288,8 @@ class PasarKomiteController extends Controller
             //perhitunganSLA
             'totalwaktu'=>$totalwaktu,
             'next'=>$next,
-            'waktumulai'=>$waktumulai->diffAsCarbonInterval($selanjutnya) 
-            
+            'waktumulai'=>$waktumulai->diffAsCarbonInterval($selanjutnya)
+
 
         ]);
 }
