@@ -36,11 +36,9 @@
                                         <th style="text-align: center"></th>
                                         <th style="text-align: center">No</th>
                                         <th style="text-align: center">Nama Nasabah</th>
+                                        <th style="text-align: center">NIK</th>
                                         <th style="text-align: center">Alamat</th>
                                         <th style="text-align: center">Telepon</th>
-                                        <th style="text-align: center">Nama Kios / Los</th>
-                                        <th style="text-align: center">Jenis Pasar</th>
-                                        <th style="text-align: center">Blok Kios / Los</th>
                                         <th style="text-align: center">Detail</th>
 
                                        
@@ -56,14 +54,11 @@
                                                 </button>
                                             </td>
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
-                                            <td>{{ $proposal->nasabahh->nama_nasabah }}</td>
-                                            <td>{{ $proposal->nasabahh->alamat }}, {{ $proposal->nasabahh->rt }},
-                                                {{ $proposal->nasabahh->rw }}</td>
-                                            <td>{{ $proposal->nasabahh->no_tlp}}</td>
-                                            <td style="text-align: center">{{ $proposal->keteranganusaha->nama_usaha }}</td>
-                                            <td style="text-align: center" value="{{ $proposal->keteranganusaha->jenispasar->id }}">
-                                                {{ $proposal->keteranganusaha->jenispasar->nama_pasar }}</td>
-                                            <td style="text-align: center">{{ $proposal->keteranganusaha->no_blok }}</td>
+                                            <td>{{ $proposal->nama_nasabah }}</td>
+                                            <td>{{ $proposal->no_ktp }}</td>
+                                            <td>{{ $proposal->alamat }}, {{ $proposal->rt }},
+                                                {{ $proposal->rw }}</td>
+                                            <td>{{ $proposal->no_tlp}}</td>
                                             <td style="text-align: center">
                                                 <a href="/pasar/nasabah/{{ $proposal->id }}"
                                                     class="btn btn-outline-info round">Detail</a>

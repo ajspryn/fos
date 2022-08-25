@@ -76,11 +76,11 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="sektor">Sektor Ekonomi</label>
                                         <input type="text" name="sektor" id="sektor_id" class="form-control"
-                                            placeholder="Sektor Ekonomi" required />
+                                            placeholder="Sektor Ekonomi" disabled />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="akad">Akad</label>
-                                        <select class="select2 w-100" name="akad" id="akad" required>
+                                        <select class="select2 w-100" name="akad" id="akad" disabled>
                                             <option label="leg_rumah">Pilih Jenis Akad </option>
                                             @foreach ($akads as $akad)
                                                 <option value="{{ $akad->kode_akad }}">{{ $akad->nama_akad }}</option>
@@ -259,7 +259,8 @@
                                             <label class="form-label" for="agama"><small class="text-danger">*
                                                 </small>Agama</label>
                                             <select class="select2 w-100" name="agama_id" id="agama_id" required>
-                                                <option value="{{ $pembiayaan->nasabahh->id }}">
+
+                                                <option>
                                                     {{ $pembiayaan->nasabahh->agama_id }}</option>
                                                     <option label="Agama">Pilih Agama</option>
                                                     <option>Islam</option>
@@ -310,8 +311,8 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="notelp"><small class="text-danger">*
                                                 </small>No Telepon</label>
-                                            <input type="number" name="no_tlp" id="no_tlp" class="form-control"
-                                                placeholder="Masukan Nomor telepon Anda"
+                                                <input type="text" name="no_tlp" id="no_tlp"
+                                                class="form-control prefix-mask" placeholder="Masukan Nomor telepon Anda"
                                                 value="{{ $pembiayaan->nasabahh->no_tlp }}" required />
                                         </div>
                                     <div class="mb-1 col-md-6">
@@ -586,21 +587,6 @@
                                             name="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran"
                                             value="{{ $pembiayaan->kesanggupan_angsuran }}" required>
                                     </div><br>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="dokumen_keuangan"><small
-                                                class="text-danger">*</small>Upload IDEB</label>
-                                        <input type="file" name="dokumen_keuangan" id="dokumen_keuangan"
-                                            rows="3"class="form-control" required />
-
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="konfirmasi"><small class="text-danger">*
-                                            </small>Upload Konfirmasi kepala Pasar</label>
-                                        <input type="file" name="foto[1][foto]" id="konfirmasi" rows="3"
-                                            class="form-control">
-                                        <input type="hidden" name="foto[1][kategori]" value="Konfirmasi Kepala Pasar" rows="3"
-                                            class="form-control" />
-                                    </div>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <button class="btn btn-primary btn-prev">
