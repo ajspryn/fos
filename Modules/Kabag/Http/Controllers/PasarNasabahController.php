@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Analis\Http\Controllers;
+namespace Modules\Kabag\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -19,8 +19,8 @@ class PasarNasabahController extends Controller
      * @return Renderable
      */
     public function index()
-    {  
-        return view('analis::pasar.nasabah.index',[
+    {
+        return view('kabag::pasar.nasabah.index',[
             'title'=>'Nasabah',
             'proposals'=>PasarNasabahh::select()->get(),]);
     }
@@ -31,7 +31,7 @@ class PasarNasabahController extends Controller
      */
     public function create()
     {
-        return view('analis::create');
+        return view('kabag::create');
     }
 
     /**
@@ -65,7 +65,7 @@ class PasarNasabahController extends Controller
 
         $angsuran1=(int)($harga_jual/$tenor);
 
-        return view('analis::pasar.nasabah.lihat',[
+        return view('kabag::pasar.nasabah.lihat',[
             'title'=>'Nasabah',
             'pembiayaan'=>PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first(),
             'nasabah'=>$nasabah,
@@ -85,7 +85,7 @@ class PasarNasabahController extends Controller
      */
     public function edit($id)
     {
-        return view('analis::edit');
+        return view('kabag::edit');
     }
 
     /**

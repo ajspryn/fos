@@ -55,7 +55,7 @@
                                     <td>{{ $proposal->nasabahh->nama_nasabah }}</td>
                                     <td>{{ $proposal->nasabahh->alamat }}, {{ $proposal->nasabahh->rt }}, {{ $proposal->nasabahh->rw }}, {{ $proposal->nasabahh->desa_kelurahan }}, {{ $proposal->nasabahh->kecamatan }}, {{ $proposal->nasabahh->kabkota }}, {{ $proposal->nasabahh->provinsi }}</td>
                                     <td style="text-align: center">{{ $proposal->keteranganusaha->nama_usaha}}</td>
-                                    <td style="text-align: center">{{ $proposal->nominal_pembiayaan}}</td>
+                                    <td style="text-align: center">{{ number_format($proposal->nominal_pembiayaan)}}</td>
                                     <td style="text-align: center">
                                         <a href="/umkm/proposal/{{ $proposal->id }}" class="btn btn-outline-info round">Lengkapi</a>
                                     </td>

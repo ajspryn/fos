@@ -5,12 +5,24 @@ namespace Modules\Pasar\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+<<<<<<< Updated upstream
 use Modules\Admin\Entities\PasarJenisJaminan;
 use Modules\Pasar\Entities\PasarFoto;
+=======
+<<<<<<< Updated upstream
+=======
+use Modules\Admin\Entities\PasarJenisJaminan;
+use Modules\Pasar\Entities\PasarFoto;
+use Modules\Pasar\Entities\PasarJaminan;
+>>>>>>> Stashed changes
 use Modules\Pasar\Entities\PasarJaminanLain;
 use Modules\Pasar\Entities\PasarNasabahh;
 use Modules\Pasar\Entities\PasarPembiayaan;
 use Modules\Pasar\Entities\PasarSlik;
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 class PasarNasabahController extends Controller
 {
@@ -50,11 +62,22 @@ class PasarNasabahController extends Controller
      * @return Renderable
      */
     public function show($id)
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+    {
+        return view('pasar::show');
+=======
+>>>>>>> Stashed changes
     {    
         $data=PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first();
         $nasabah=PasarNasabahh::select()->where('id', $id)->get()->first();
        
+<<<<<<< Updated upstream
         $jaminanlain=PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get()->first();
+=======
+        $jaminanlain=PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first();
+>>>>>>> Stashed changes
         $tenor=$data->tenor;
         $harga=$data->harga;
         $rate=$data->rate;
@@ -76,6 +99,10 @@ class PasarNasabahController extends Controller
             'angsuran'=>$angsuran1,
             'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
         ]);
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     }
 
     /**

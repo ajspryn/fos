@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Analis\Http\Controllers;
+namespace Modules\Kabag\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -11,6 +11,7 @@ use Modules\Skpd\Entities\SkpdJaminan;
 use Modules\Skpd\Entities\SkpdNasabah;
 use Modules\Skpd\Entities\SkpdPembiayaan;
 
+
 class SkpdNasabahController extends Controller
 {
     /**
@@ -19,7 +20,7 @@ class SkpdNasabahController extends Controller
      */
     public function index()
     {
-        return view('analis::skpd.nasabah.index',[
+        return view('kabag::skpd.nasabah.index',[
             'title'=>'Data Nasabah',
             'proposals'=>SkpdNasabah::select()->get(),
             // 'nasabah'=>SkpdNasabah::select()->where('skpd_pembiayaan_id',$proposal->id)
@@ -32,7 +33,7 @@ class SkpdNasabahController extends Controller
      */
     public function create()
     {
-        return view('analis::create');
+        return view('kabag::create');
     }
 
     /**
@@ -67,7 +68,7 @@ class SkpdNasabahController extends Controller
     
             $angsuran1=(int)($harga_jual/$tenor);
             $jaminanlain=SkpdJaminan::select()->where('skpd_pembiayaan_id',$data->id)->get()->first();
-            return view('analis::skpd.nasabah.lihat',[
+            return view('kabag::skpd.nasabah.lihat',[
             'title'=>'Nasabah',
             'pembiayaan'=>SkpdPembiayaan::select()->where('skpd_nasabah_id',$id)->get()->first(),
             'nasabah'=>$nasabah,
@@ -87,7 +88,7 @@ class SkpdNasabahController extends Controller
      */
     public function edit($id)
     {
-        return view('analis::edit');
+        return view('kabag::edit');
     }
 
     /**

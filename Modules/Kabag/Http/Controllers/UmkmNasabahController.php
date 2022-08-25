@@ -1,28 +1,28 @@
 <?php
 
-namespace Modules\Analis\Http\Controllers;
+namespace Modules\Kabag\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Admin\Entities\PasarJenisJaminan;
-use Modules\Pasar\Entities\PasarFoto;
-use Modules\Pasar\Entities\PasarJaminan;
-use Modules\Pasar\Entities\PasarNasabahh;
-use Modules\Pasar\Entities\PasarPembiayaan;
-use Modules\Pasar\Entities\PasarSlik;
+use Modules\Umkm\Entities\UmkmFoto;
+use Modules\Umkm\Entities\UmkmJaminan;
+use Modules\Umkm\Entities\UmkmNasabah;
+use Modules\Umkm\Entities\UmkmPembiayaan;
+use Modules\Umkm\Entities\UmkmSlik;
 
-class PasarNasabahController extends Controller
+class UmkmNasabahController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
-    {  
-        return view('analis::pasar.nasabah.index',[
+    {
+        return view('kabag::umkm.nasabah.index',[
             'title'=>'Nasabah',
-            'proposals'=>PasarNasabahh::select()->get(),]);
+            'proposals'=>UmkmNasabah::select()->get(),]);
     }
 
     /**
@@ -31,7 +31,7 @@ class PasarNasabahController extends Controller
      */
     public function create()
     {
-        return view('analis::create');
+        return view('kabag::create');
     }
 
     /**
@@ -51,10 +51,10 @@ class PasarNasabahController extends Controller
      */
     public function show($id)
     {
-        $data=PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first();
-        $nasabah=PasarNasabahh::select()->where('id', $id)->get()->first();
+        $data=UmkmPembiayaan::select()->where('nasabah_id',$id)->get()->first();
+        $nasabah=UmkmNasabah::select()->where('id', $id)->get()->first();
        
-        $jaminanlain=PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first();
+        $jaminanlain=UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get()->first();
         $tenor=$data->tenor;
         $harga=$data->harga;
         $rate=$data->rate;
@@ -64,17 +64,14 @@ class PasarNasabahController extends Controller
         $harga_jual=$harga1+$harga;
 
         $angsuran1=(int)($harga_jual/$tenor);
-
-        return view('analis::pasar.nasabah.lihat',[
+        return view('kabag::umkm.nasabah.lihat',[
             'title'=>'Nasabah',
-            'pembiayaan'=>PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first(),
-            'nasabah'=>$nasabah,
-            'datas'=>PasarPembiayaan::select()->where('nasabah_id',$id)->get(),
-            // 'history'=PasarNasabahh::select()->where('no_ktp'),
-            'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
-            'fotodiri'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
-            'angsuran'=>$angsuran1,
+            'pembiayaan'=>UmkmPembiayaan::select()->where('nasabah_id',$id)->get()->first(),
+            'nasabah'=>UmkmNasabah::select()->where('id',$id)->get()->first(),
+            'datas'=>UmkmPembiayaan::select()->where('nasabah_id',$id)->get(),
+            'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
             'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
+            'angsuran'=>$angsuran1,
         ]);
     }
 
@@ -85,7 +82,7 @@ class PasarNasabahController extends Controller
      */
     public function edit($id)
     {
-        return view('analis::edit');
+        return view('kabag::edit');
     }
 
     /**

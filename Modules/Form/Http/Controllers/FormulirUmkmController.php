@@ -126,21 +126,23 @@ class FormulirUmkmController extends Controller
 
         
         $dokumenktb=$request->file('dokumenktb')->store('Umkm-dokumen-ktb');
-        $dokumen_jaminan=$request->file('dokumen_jaminan')->store('Umkm-dokumen_jaminanlain');
+        
 
         UmkmJaminan::create([
             'umkm_pembiayaan_id'=> $id,
             'no_ktb'=> $request ->no_ktb,
             'dokumenktb'=> $dokumenktb,
-        ]);
-
-
-        UmkmJaminanLain::create([
-        
-            'umkm_pembiayaan_id'=> $id,
             'jaminanlain'=> $request ->jaminanlain,
-            'dokumen_jaminan'=> $dokumen_jaminan,
         ]);
+
+        if($request->file('dokumen_jaminan')){
+           $dokumen_jaminan_lainnya=$request->file('dokumen_jaminan')->store('umkm-dokumen_jaminanlain');
+          
+        UmkmJaminanLain::create([
+           'umkm_pembiayaan_id'=> $id,
+           'dokumen_jaminan'=>$dokumen_jaminan_lainnya,
+       ]);
+       }
 
         UmkmLegalitasRumah::create([
            
@@ -234,6 +236,12 @@ class FormulirUmkmController extends Controller
      */
     public function update(Request $request, $id)
     {
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+        //
+=======
+>>>>>>> Stashed changes
         $hitung=UmkmPembiayaan::select()->get()->count();
         $number=$hitung+1;
         UmkmPembiayaan::create([
@@ -261,7 +269,11 @@ class FormulirUmkmController extends Controller
             'keterangan_keb_keluarga'=>$request->keterangan_keb_keluarga,
         ]);
 
+<<<<<<< Updated upstream
         UmkmNasabah::create([
+=======
+        UmkmNasabah::where('id', $id)->update([
+>>>>>>> Stashed changes
             'id'=>$id,
             'nama_nasabah'=> $request ->nama_nasabah,
             'no_ktp'=> $request ->no_ktp,
@@ -293,6 +305,7 @@ class FormulirUmkmController extends Controller
 
         
         $dokumenktb=$request->file('dokumenktb')->store('Umkm-dokumen-ktb');
+<<<<<<< Updated upstream
         $dokumen_jaminan=$request->file('dokumen_jaminan')->store('Umkm-dokumen_jaminanlain');
 
         UmkmJaminan::create([
@@ -309,6 +322,25 @@ class FormulirUmkmController extends Controller
             'dokumen_jaminan'=> $dokumen_jaminan,
         ]);
 
+=======
+
+        UmkmJaminan::create([
+            'umkm_pembiayaan_id'=> $id,
+            'no_ktb'=> $request ->no_ktb,
+            'dokumenktb'=> $dokumenktb,
+            'jaminanlain'=> $request ->jaminanlain,
+        ]);
+
+        if($request->file('dokumen_jaminan')){
+           $dokumen_jaminan_lainnya=$request->file('dokumen_jaminan')->store('umkm-dokumen_jaminanlain');
+          
+        UmkmJaminanLain::create([
+           'umkm_pembiayaan_id'=> $id,
+           'dokumen_jaminan'=>$dokumen_jaminan_lainnya,
+       ]);
+       }
+
+>>>>>>> Stashed changes
         UmkmLegalitasRumah::create([
            
             'umkm_pembiayaan_id'=> $number,
@@ -334,6 +366,10 @@ class FormulirUmkmController extends Controller
             'kep_toko_id'=>$request->kep_toko_id,
             'leg_toko_id'=>$request->leg_toko_id,
             'jenisdagang_id'=>$request->jenisdagang_id,
+<<<<<<< Updated upstream
+=======
+            'alamatusaha'=>$request->alamatusaha,
+>>>>>>> Stashed changes
             'foto_id'=>$number,
         ]);
 
@@ -356,6 +392,10 @@ class FormulirUmkmController extends Controller
         
         
         return redirect('/')->with('success', 'Data Umkm Berhasil Ditambahkan');
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     }
 
     /**

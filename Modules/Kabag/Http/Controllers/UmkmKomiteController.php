@@ -70,7 +70,7 @@ class UmkmKomiteController extends Controller
 
         ]);
 
-        return redirect('/kabag/umkm/komite');
+        return redirect('/kabag/umkm/komite')->with('success');
     }
 
     /**
@@ -100,7 +100,7 @@ class UmkmKomiteController extends Controller
             $nasabah=UmkmNasabah::select()->where('id',$id)->get()->first();
             $usaha=UmkmKeteranganUsaha::select()->where('umkm_pembiayaan_id',$id)->get()->first();
             $jaminanrumah=UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id',$id)->get()->first();
-            $jaminanlain=UmkmJaminanLain::select()->where('umkm_pembiayaan_id',$id)->get()->first();
+            $jaminanlain=UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get()->first();
             $tenor=$data->tenor;
             $harga=$data->nominal_pembiayaan;
             $rate=$data->rate;

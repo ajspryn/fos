@@ -70,7 +70,7 @@ class PasarKomiteController extends Controller
             'divisi_id'=>null,
         ]);
 
-        return redirect('/analis/pasar/komite');
+        return redirect('/analis/pasar/komite')->with('success');;
     }
 
     /**
@@ -107,7 +107,7 @@ class PasarKomiteController extends Controller
         $usaha=PasarKeteranganUsaha::select()->where('pasar_pembiayaan_id',$id)->get()->first();
         $pasar=PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first();
         $jaminanrumah=PasarLegalitasRumah::select()->where('pasar_pembiayaan_id',$id)->get()->first();
-        $jaminanlain=PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get()->first();
+        $jaminanlain=PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first();
         $tenor=$data->tenor;
         $harga=$data->harga;
         $rate=$data->rate;
@@ -237,7 +237,6 @@ class PasarKomiteController extends Controller
             'slik'=>$prosesslik,
             'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
             'ideb'=>PasarPembiayaan::select()->where('id',$id)->get(),
-            'deviasi'=>PasarDeviasi::select()->where('skpd_pembiayaan_id',$id)->get()->first(),
             'kepalapasar'=>$proses_kepalapasar,
             'idir'=>$proses_idir,
             'laba_bersih'=>$laba_bersih,

@@ -1,4 +1,4 @@
-@extends('pasar::layouts.main')
+@extends('dirbis::layouts.main')
 
 @section('content')
     <!-- BEGIN: Content-->
@@ -14,7 +14,7 @@
                             <h2 class="content-header-title float-start mb-0">Data Nasabah</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/pasar">Pasar</a>
+                                    <li class="breadcrumb-item"><a href="/dirbis">Pasar</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Nasabah</a>
                                     </li>
@@ -116,37 +116,31 @@
                                     </li>
                                     <li class="mb-75">
                                         <span class="fw-bolder me-25">Nama Usaha : </span>
-                                        <span >{{ $pembiayaan->keteranganusaha->nama_usaha }}</span>
+                                        <span>{{ $pembiayaan->keteranganusaha->nama_usaha }}</span>
                                     </li>
-                                     <li class="mb-75">
+                                    <li class="mb-75">
                                         <span class="fw-bolder me-25">Lama Usaha : </span>
                                         <span value="{{ $pembiayaan->keteranganusaha->lamadagang->id }}">
                                             {{ $pembiayaan->keteranganusaha->lamadagang->nama_lamaberdagang }}</span>
                                     </li>
                                     <li class="mb-75">
-                                        <span class="fw-bolder me-25">Alamat Pasar :  </span>
+                                        <span class="fw-bolder me-25">Alamat Pasar : </span>
                                         <span value="{{ $pembiayaan->keteranganusaha->jenispasar->id }}">
                                             {{ $pembiayaan->keteranganusaha->jenispasar->nama_pasar }}</span>
                                     </li>
                                     <li class="mb-75">
-                                        <span class="fw-bolder me-25">No. Blok Kios / Los :  </span>
-                                        <span >
+                                        <span class="fw-bolder me-25">No. Blok Kios / Los : </span>
+                                        <span>
                                             {{ $pembiayaan->keteranganusaha->no_blok }}</span>
                                     </li>
                                     <li class="mb-75">
                                         <span class="fw-bolder me-25">Omset Perbulan :</span>
                                         <span>
-                                            Rp. {{ number_format( $pembiayaan->omset)}}</span>
+                                            Rp. {{ number_format($pembiayaan->omset) }}</span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center pt-2">
-                        <a href="/" class="btn btn-primary me-1" data-bs-target="#ajukan"
-                            data-bs-toggle="modal">
-                            Ajukan Pembiayaan Baru
-                        </a>
                     </div>
                 </div>
             </div>
@@ -164,8 +158,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th style="text-align: center; width: 5%;"
-                                    class="py-1">No</th>
+                                <th style="text-align: center; width: 5%;" class="py-1">No</th>
                                 <th style="text-align: center" class="py-1">Tanggal Pembiayaan</th>
                                 <th style="text-align: center" class="py-1">
                                     Plafond
@@ -182,89 +175,49 @@
                                 <th style="text-align: center" class="py-1">
                                     Agunan
                                 </th>
-<<<<<<< Updated upstream
-=======
                                 <th style="text-align: center" class="py-1">
                                     Detail
                                 </th>
->>>>>>> Stashed changes
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($datas as $data)
-<<<<<<< Updated upstream
-=======
-                            @php
-                            $tenor = $data->tenor;
-                            $harga = $data->harga;
-                            $rate = $data->rate;
-                            $margin = ($rate * $tenor) / 100;
-                            
-                            $harga1 = $harga * $margin;
-                            $harga_jual = $harga1 + $harga;
-                            
-                            $angsuran1 = (int) ($harga_jual / $tenor);
-                        @endphp
->>>>>>> Stashed changes
+                                @php
+                                    $tenor = $data->tenor;
+                                    $harga = $data->harga;
+                                    $rate = $data->rate;
+                                    $margin = ($rate * $tenor) / 100;
+                                    
+                                    $harga1 = $harga * $margin;
+                                    $harga_jual = $harga1 + $harga;
+                                    
+                                    $angsuran1 = (int) ($harga_jual / $tenor);
+                                @endphp
                                 <tr>
                                     <td style="text-align: center">
                                         {{ $loop->iteration }}</td>
-                                    <td style="text-align: center">{{$data->tgl_pembiayaan}} </td>
+                                    <td style="text-align: center">{{ $data->tgl_pembiayaan }} </td>
                                     <td style="text-align: center">Rp. {{ number_format($data->harga) }}
                                     </td>
                                     <td style="text-align: center">{{ $data->tenor }} Bulan
                                     </td>
                                     <td style="text-align: center">
-                                       {{ $data->rate }} %
+                                        {{ $data->rate }} %
                                     </td>
-<<<<<<< Updated upstream
-                                    <td style="text-align: center">Rp. {{ number_format($angsuran) }}
-=======
                                     <td style="text-align: center">Rp. {{ number_format($angsuran1) }}
->>>>>>> Stashed changes
                                     </td>
                                     <td style="text-align: center">
                                         {{ $jaminans->nama_jaminan }}
                                     </td>
-<<<<<<< Updated upstream
-=======
                                     <td style="text-align: center">
-                                        <a href="/pasar/komite/{{ $data->id }}"
+                                        <a href="/dirbis/pasar/komite/{{ $data->id }}"
                                             class="btn btn-outline-info round">Detail</a>
                                     </td>
->>>>>>> Stashed changes
                             @endforeach
 
 
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-        <!-- /Plan Card -->
-        <div class="modal fade" id="ajukan" tabindex="-1"
-        aria-labelledby="addNewCardTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-transparent">
-                    <button type="button" class="btn-close"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body px-sm-5 mx-50 pb-5">
-                    <h1 class="text-center mb-1" id="addNewCardTitle">
-                        Apakah Anda Yakin Untuk Mengajukan Pembiayaan Baru ?
-                    </h1>
-                    <p class="text-center"></p>
-                        <div class="col-12 text-center">
-                            <a href = "/form/pasar/{{ $pembiayaan->id }}/edit "type="submit"
-                                class="btn btn-primary me-1 mt-1">Yes</a>
-                            <a type="reset"
-                                class="btn btn-outline-secondary mt-1"
-                                data-bs-dismiss="modal" aria-label="Close">
-                                Cancel
-                            </a>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

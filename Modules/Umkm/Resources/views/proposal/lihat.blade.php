@@ -107,7 +107,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="nominal_pembiayaan">Nominal Pembiayaan</label>
                                         <input type="text" name="nominal_pembiayaan" class="form-control numeral-mask1"
-                                            placeholder="Nominal Pembiayaan" id="nominal_pembiayaan" value="{{ $pembiayaan->nominal_pembiayaan }}">
+                                            placeholder="Nominal Pembiayaan" id="nominal_pembiayaan" value="{{ number_format($pembiayaan->nominal_pembiayaan) }}">
                                     </div>
                                     <div class="mb-1 col-md-4">
                                         <label class="form-label" for="tenor"><small class="text-danger">*
@@ -115,9 +115,16 @@
                                         <select class="select2 w-100" name="tenor" id="tenor" required>
                                             <option label="tenor"> Pilih Tenor</option>
                                             <option value="3">3 Bulan</option>
+                                            <option value="3">4 Bulan</option>
+                                            <option value="3">5 Bulan</option>
                                             <option value="6">6 Bulan</option>
+                                            <option value="3">7 Bulan</option>
+                                            <option value="6">8 Bulan</option>
+                                            <option value="3">9 Bulan</option>
+                                            <option value="6">10 Bulan</option>
                                             <option value="12">12 Bulan</option>
                                             <option value="24">24 Bulan</option>
+                                            <option value="24">36 Bulan</option>
                                             <option value="48">48 Bulan</option>
                                             <option value="60">60 Bulan</option>
                                         </select>
@@ -473,43 +480,43 @@
                                 <label class="form-label" for="numeral-formatting"><small class="text-danger">*
                                     </small>Omset Per Bulan</label>
                                 <input type="text" class="form-control numeral-mask1" placeholder="Rp."
-                                    name="omset" id="omset" value="{{ $pembiayaan->omset }}" disabled>
+                                    name="omset" id="omset" value="{{number_format( $pembiayaan->omset) }}" disabled>
                             </div>
                             <div class="row">
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"></small>HPP</label>
                                     <input type="text" class="form-control numeral-mask" placeholder="Rp."
-                                        name="hpp" id="hpp" value="{{ $pembiayaan->hpp }}">
+                                        name="hpp" id="hpp" value="{{ number_format($pembiayaan->hpp) }}">
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"></small>Biaya
                                         Listrik</label>
                                     <input type="text" class="form-control numeral-mask2" placeholder="Rp."
-                                        name="listrik" id="listrik" value="{{ $pembiayaan->listrik }}">
+                                        name="listrik" id="listrik" value="{{ number_format($pembiayaan->listrik )}}">
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"></small>Biaya
                                         Transport</label>
                                     <input type="text" class="form-control numeral-mask6" placeholder="Rp."
-                                        name="trasport" id="transport" value="{{ $pembiayaan->trasport }}">
+                                        name="trasport" id="transport" value="{{ number_format($pembiayaan->trasport) }}">
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"></small>Biaya
                                         Karyawan</label>
                                     <input type="text" class="form-control numeral-mask3" placeholder="Rp."
-                                        name="karyawan" id="karyawan" value="{{ $pembiayaan->karyawan }}">
+                                        name="karyawan" id="karyawan" value="{{ number_format($pembiayaan->karyawan) }}">
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"></small>Biaya
                                         Telpon</label>
                                     <input type="text" class="form-control numeral-mask5" placeholder="Rp."
-                                        name="telpon" id="telpon" value="{{ $pembiayaan->telpon }}">
+                                        name="telpon" id="telpon" value="{{number_format($pembiayaan->telpon) }}">
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"> </small>Biaya Sewa
                                         Kios</label>
                                     <input type="text" class="form-control numeral-mask4" placeholder="Rp."
-                                        name="sewa" id="sewa" value="{{ $pembiayaan->sewa }}">
+                                        name="sewa" id="sewa" value="{{ number_format($pembiayaan->sewa) }}">
                                 </div>
                             </div>
                             <div class="content-header">

@@ -1,4 +1,4 @@
-@extends('pasar::layouts.main')
+@extends('kabag::layouts.main')
 
 @section('content')
     <!-- BEGIN: Content-->
@@ -14,7 +14,7 @@
                             <h2 class="content-header-title float-start mb-0">Data Nasabah</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/pasar">Pasar</a>
+                                    <li class="breadcrumb-item"><a href="/kabag">Pasar</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Nasabah</a>
                                     </li>
@@ -142,12 +142,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center pt-2">
-                        <a href="/" class="btn btn-primary me-1" data-bs-target="#ajukan"
-                            data-bs-toggle="modal">
-                            Ajukan Pembiayaan Baru
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -182,18 +177,13 @@
                                 <th style="text-align: center" class="py-1">
                                     Agunan
                                 </th>
-<<<<<<< Updated upstream
-=======
                                 <th style="text-align: center" class="py-1">
                                     Detail
                                 </th>
->>>>>>> Stashed changes
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($datas as $data)
-<<<<<<< Updated upstream
-=======
                             @php
                             $tenor = $data->tenor;
                             $harga = $data->harga;
@@ -205,7 +195,6 @@
                             
                             $angsuran1 = (int) ($harga_jual / $tenor);
                         @endphp
->>>>>>> Stashed changes
                                 <tr>
                                     <td style="text-align: center">
                                         {{ $loop->iteration }}</td>
@@ -217,54 +206,20 @@
                                     <td style="text-align: center">
                                        {{ $data->rate }} %
                                     </td>
-<<<<<<< Updated upstream
-                                    <td style="text-align: center">Rp. {{ number_format($angsuran) }}
-=======
                                     <td style="text-align: center">Rp. {{ number_format($angsuran1) }}
->>>>>>> Stashed changes
                                     </td>
                                     <td style="text-align: center">
                                         {{ $jaminans->nama_jaminan }}
                                     </td>
-<<<<<<< Updated upstream
-=======
                                     <td style="text-align: center">
-                                        <a href="/pasar/komite/{{ $data->id }}"
+                                        <a href="/kabag/pasar/komite/{{ $data->id }}"
                                             class="btn btn-outline-info round">Detail</a>
                                     </td>
->>>>>>> Stashed changes
                             @endforeach
 
 
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-        <!-- /Plan Card -->
-        <div class="modal fade" id="ajukan" tabindex="-1"
-        aria-labelledby="addNewCardTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-transparent">
-                    <button type="button" class="btn-close"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body px-sm-5 mx-50 pb-5">
-                    <h1 class="text-center mb-1" id="addNewCardTitle">
-                        Apakah Anda Yakin Untuk Mengajukan Pembiayaan Baru ?
-                    </h1>
-                    <p class="text-center"></p>
-                        <div class="col-12 text-center">
-                            <a href = "/form/pasar/{{ $pembiayaan->id }}/edit "type="submit"
-                                class="btn btn-primary me-1 mt-1">Yes</a>
-                            <a type="reset"
-                                class="btn btn-outline-secondary mt-1"
-                                data-bs-dismiss="modal" aria-label="Close">
-                                Cancel
-                            </a>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

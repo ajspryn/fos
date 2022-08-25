@@ -84,11 +84,12 @@ class EditProposalController extends Controller
     public function edit($id)
     {
         $datafoto = PasarFoto::select()->where('pasar_pembiayaan_id', $id)->get();
+        $pembiayaan =  PasarPembiayaan::select()->where('id', $id)->get()->first();
         $foto = $datafoto;
         return view('pasar::Revisi.lihat', [
             'title' => 'Detail Calon Nasabah',
             'pembiayaan' => PasarPembiayaan::select()->where('id', $id)->get()->first(),
-            'nasabah' => PasarNasabahh::select()->where('id', $id)->get()->first(),
+            'nasabah' => PasarNasabahh::select()->where('id', $pembiayaan->nasabah_id)->get()->first(),
             'fotodiri' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Diri')->get()->first(),
             'fotoktp' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->get()->first(),
             'fotodiribersamaktp' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
@@ -106,17 +107,11 @@ class EditProposalController extends Controller
             'jaminans' => PasarJenisJaminan::all(),
             'nasabahs' => PasarJenisNasabah::all(),
             'sukus' => PasarSukuBangsa::all(),
-            'akads'=>PasarAkad::all(),
             'penggunaans'=>PasarPenggunaan::all(),
-            'sektors'=>PasarSektorEkonomi::all(),
-            'pasars'=>PasarJenisPasar::all(),
-            'lamas'=>PasarLamaBerdagang::all(),
-            'rumahs'=>PasarJaminanRumahh::all(),
-            'dagangs'=>PasarJenisDagang::all(),
-            'aos'=>Role::select()->where('jabatan_id',1)->get(),
             'tanggungans'=>PasarTanggungan::all(),
             'statuss'=>PasarStatusPerkawinan::all(),
             'jaminans'=>PasarJenisJaminan::all(),
+            'ideps'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
         ]);
 
     }
@@ -129,8 +124,16 @@ class EditProposalController extends Controller
      */
     public function update(Request $request, $id)
     { {
+<<<<<<< Updated upstream
             return $request;
+=======
+            // return $request;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 
+=======
+            $pembiayaan= PasarPembiayaan::select()->where('id', $id)->get()->first();
+>>>>>>> Stashed changes
             PasarPembiayaan::where('id',$id)->update([
                 'id' => $id,
                 'tgl_pembiayaan' => $request->tgl_pembiayaan,
@@ -145,7 +148,6 @@ class EditProposalController extends Controller
                 'jaminanlain_id' => $id,
                 'pasar_legalitas_rumah_id' => $id,
                 'pasar_keterangan_usaha_id' => $id,
-                'jaminanlain_id' => $request->jaminanlain_id,
                 'omset' => str_replace(",", "", $request->omset),
                 'hpp' => str_replace(",", "", $request->hpp),
                 'listrik' => str_replace(",", "", $request->listrik),
@@ -160,8 +162,7 @@ class EditProposalController extends Controller
                 'aset' => $request->aset,
             ]);
 
-            PasarNasabahh::where('id',$id)->update([
-                'id' => $id,
+            PasarNasabahh::where('id',$pembiayaan->nasabah_id)->update([
                 'nama_nasabah' => $request->nama_nasabah,
                 'no_ktp' => $request->no_ktp,
                 'tmp_lahir' => $request->tmp_lahir,
@@ -194,18 +195,21 @@ class EditProposalController extends Controller
             $dokumenktb = $request->file('dokumenktb')->store('pasar-dokumen-ktb');
 
 
-            PasarJaminan::where('pasar_pembiayaan_id',$id)->update([
-                'pasar_pembiayaan_id' => $id,
-                'no_ktb' => $request->no_ktb,
-                'dokumenktb' => $dokumenktb,
+            PasarJaminan::create([
+                'pasar_pembiayaan_id'=> $id,
+                'no_ktb'=> $request ->no_ktb,
+                'dokumenktb'=> $dokumenktb,
+                'jaminanlain'=> $request ->jaminanlain,
             ]);
-
-
-            PasarJaminanLain::where('pasar_pembiayaan_id',$id)->update([
-                'pasar_pembiayaan_id' => $id,
-                'jaminanlain' => $request->jaminanlain,
-                'dokumen_jaminan' => $request->file('dokumen_jaminan')->store('pasar-dokumen_jaminanlain'),
-            ]);
+    
+            if($request->file('dokumen_jaminan')){
+               $dokumen_jaminan_lainnya=$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminanlain');
+              
+            PasarJaminanLain::create([
+               'pasar_pembiayaan_id'=> $id,
+               'dokumen_jaminan'=>$dokumen_jaminan_lainnya,
+           ]);
+           }
 
             PasarLegalitasRumah::where('pasar_pembiayaan_id',$id)->update([
                 'pasar_pembiayaan_id' => $id,
@@ -256,19 +260,31 @@ class EditProposalController extends Controller
             }
 
 
+            foreach ($request->slik as $key => $value) {
+
+
+
                 // return $value;
                 PasarSlik::where('pasar_pembiayaan_id',$id)->update([
-                    'pasar_pembiayaan_id' => $id,
-                    'nama_bank' => $value['nama_bank'],
-                    'plafond' => $value['plafond'],
-                    'outstanding' => $value['outstanding'],
-                    'tenor' => $value['tenor'],
-                    'margin' => $value['margin'],
-                    'angsuran' => $value['angsuran'],
-                    'agunan' => $value['agunan'],
-                    'kol' => $value['kol'],
+                    'pasar_pembiayaan_id'=>$id,
+                    'nama_bank'=> $value['nama_bank'],
+                    'plafond'=> $value['plafond'],
+                    'outstanding'=> $value['outstanding'],
+                    'tenor'=> $value['tenor'],
+                    'margin'=> $value['margin'],
+                    'angsuran'=> $value['angsuran'],
+                    'agunan'=> $value['agunan'],
+                    'kol'=> $value['kol'],
                 ]);
+<<<<<<< Updated upstream
             
+=======
+            }
+<<<<<<< Updated upstream
+=======
+            
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
             return redirect('/pasar/komite/'.$id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
         }

@@ -5,25 +5,24 @@ namespace Modules\Analis\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Admin\Entities\SkpdJenisJaminan;
-use Modules\Skpd\Entities\SkpdFoto;
-use Modules\Skpd\Entities\SkpdJaminan;
-use Modules\Skpd\Entities\SkpdNasabah;
-use Modules\Skpd\Entities\SkpdPembiayaan;
+use Modules\Admin\Entities\PasarJenisJaminan;
+use Modules\Umkm\Entities\UmkmFoto;
+use Modules\Umkm\Entities\UmkmJaminan;
+use Modules\Umkm\Entities\UmkmNasabah;
+use Modules\Umkm\Entities\UmkmPembiayaan;
+use Modules\Umkm\Entities\UmkmSlik;
 
-class SkpdNasabahController extends Controller
+class UmkmNasabahController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
-    {
-        return view('analis::skpd.nasabah.index',[
-            'title'=>'Data Nasabah',
-            'proposals'=>SkpdNasabah::select()->get(),
-            // 'nasabah'=>SkpdNasabah::select()->where('skpd_pembiayaan_id',$proposal->id)
-        ]);
+    {    return view('analis::umkm.nasabah.index',[
+                'title'=>'Nasabah',
+                'proposals'=>UmkmNasabah::select()->get(),]);
+        
     }
 
     /**
@@ -52,11 +51,10 @@ class SkpdNasabahController extends Controller
      */
     public function show($id)
     {
-        {   
-            $data=SkpdPembiayaan::select()->where('skpd_nasabah_id',$id)->get()->first();
-            
-            $nasabah=SkpdNasabah::select()->where('id',$id)->get()->first();
-    
+            $data=UmkmPembiayaan::select()->where('nasabah_id',$id)->get()->first();
+            $nasabah=UmkmNasabah::select()->where('id', $id)->get()->first();
+           
+            $jaminanlain=UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get()->first();
             $tenor=$data->tenor;
             $harga=$data->nominal_pembiayaan;
             $rate=$data->rate;
@@ -66,18 +64,17 @@ class SkpdNasabahController extends Controller
             $harga_jual=$harga1+$harga;
     
             $angsuran1=(int)($harga_jual/$tenor);
-            $jaminanlain=SkpdJaminan::select()->where('skpd_pembiayaan_id',$data->id)->get()->first();
-            return view('analis::skpd.nasabah.lihat',[
-            'title'=>'Nasabah',
-            'pembiayaan'=>SkpdPembiayaan::select()->where('skpd_nasabah_id',$id)->get()->first(),
-            'nasabah'=>$nasabah,
-            'datas'=>SkpdPembiayaan::select()->where('skpd_nasabah_id',$id)->get(),
-            'historys'=>SkpdPembiayaan::select()->where('skpd_nasabah_id',$id)->get(),
-            'fotodiri'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
-            'angsuran'=>$angsuran1,
-            'jaminans'=>SkpdJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
-        ]);
-        }
+            // return($angsuran1);
+            return view('analis::umkm.nasabah.lihat',[
+                'title'=>'Nasabah',
+                'pembiayaan'=>UmkmPembiayaan::select()->where('nasabah_id',$id)->get()->first(),
+                'nasabah'=>UmkmNasabah::select()->where('id',$id)->get()->first(),
+                'datas'=>UmkmPembiayaan::select()->where('nasabah_id',$id)->get(),
+                'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+                'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
+            ]);
+        
+    
     }
 
     /**

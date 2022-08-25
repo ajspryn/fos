@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Analis\Http\Controllers;
+namespace Modules\Dirbis\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Admin\Entities\PasarJenisJaminan;
 use Modules\Pasar\Entities\PasarFoto;
 use Modules\Pasar\Entities\PasarJaminan;
+use Modules\Pasar\Entities\PasarJaminanLain;
 use Modules\Pasar\Entities\PasarNasabahh;
 use Modules\Pasar\Entities\PasarPembiayaan;
 use Modules\Pasar\Entities\PasarSlik;
@@ -19,8 +20,8 @@ class PasarNasabahController extends Controller
      * @return Renderable
      */
     public function index()
-    {  
-        return view('analis::pasar.nasabah.index',[
+    {
+        return view('dirbis::pasar.nasabah.index',[
             'title'=>'Nasabah',
             'proposals'=>PasarNasabahh::select()->get(),]);
     }
@@ -31,7 +32,7 @@ class PasarNasabahController extends Controller
      */
     public function create()
     {
-        return view('analis::create');
+        return view('dirbis::create');
     }
 
     /**
@@ -65,7 +66,7 @@ class PasarNasabahController extends Controller
 
         $angsuran1=(int)($harga_jual/$tenor);
 
-        return view('analis::pasar.nasabah.lihat',[
+        return view('dirbis::pasar.nasabah.lihat',[
             'title'=>'Nasabah',
             'pembiayaan'=>PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first(),
             'nasabah'=>$nasabah,
@@ -85,7 +86,7 @@ class PasarNasabahController extends Controller
      */
     public function edit($id)
     {
-        return view('analis::edit');
+        return view('dirbis::edit');
     }
 
     /**

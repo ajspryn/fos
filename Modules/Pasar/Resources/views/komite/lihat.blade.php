@@ -632,19 +632,26 @@
                                                                                 <td class="pe-1">Status</td>
                                                                                 <td>:
                                                                                     @if ($nilai_idir >= 80 || $nilai_idir < 0)
-                                                                                        @if ($nilai_idir >= 80)
+                                                                                        @if ($nilai_idir >= 80 && $total_score > 3)
                                                                                             <span
-                                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                             <small
                                                                                                 class="text-danger">*IDIR
                                                                                                 > 80%</small>
-                                                                                        @elseif($nilai_idir < 0)
+                                                                                        @elseif($nilai_idir < 0 && $total_score > 3)
                                                                                             <span
-                                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                             <small
                                                                                                 class="text-danger">*Pengeluaran
                                                                                                 >
                                                                                                 Pendapatan</small>
+                                                                                                @elseif($total_score > 2 || $total_score > 3)
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                    Ulang</span>
+                                                                                            @else
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
                                                                                         @endif
                                                                                     @else
                                                                                         @if ($total_score > 3)
@@ -708,8 +715,14 @@
                                                     </div>
                                                     <div class="col-xl-5 p-0 mt-xl-0 mt-2">
                                                         @if ($history->status_id == 2)
-                                                            @if ($nilai_idir >= 80 || $nilai_idir < 0)
-                                                                <div class="card-body">
+                                                            @if ($nilai_idir >= 80 || $nilai_idir < 0 )
+                                                            <div class="card-body">
+                                                                <button class="btn btn-success w-100 mb-75"
+                                                                    data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                                    Lanjut Komite
+                                                                </button>
+                                                            </div>   
+                                                            <div class="card-body">
                                                                     <button class="btn btn-warning w-100 mb-75"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#edit_proposal">
@@ -723,6 +736,7 @@
                                                                         Ditolak
                                                                     </button>
                                                                 </div>
+                                                                
                                                             @else
                                                                 @if ($total_score > 3)
                                                                     <div class="card-body">
@@ -806,15 +820,28 @@
                                                                 <input type="hidden" name="jabatan_id" value=1>
                                                                 <input type="hidden" name="user_id"
                                                                     value="{{ Auth::user()->id }}">
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
                                                                     @if ($nilai_idir >= 80 || $nilai_idir < 0)
                                                                     <label class="form-label"
                                                                         for="fotokk"><small
                                                                             class="text-danger">*
                                                                         </small>Upload Dokumen Deviasi</label>
                                                                     <input type="file" name="dokumen_deviasi"
+<<<<<<< Updated upstream
                                                                         id="fotokk" rows="3"
                                                                         class="form-control" >
                                                                 @endif
+=======
+                                                                        id="dokumen_deviasi" rows="3"
+                                                                        class="form-control" >
+                                                                @endif
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                                                                 <div class="col-12 text-center">
                                                                     <button type="submit"
                                                                         class="btn btn-primary me-1 mt-1">Submit</button>
