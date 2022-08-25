@@ -280,7 +280,6 @@ class FormulirPasarController extends Controller
              'jaminanlain_id'=> $number,
              'pasar_legalitas_rumah_id'=> $number,
              'pasar_keterangan_usaha_id'=> $number,
-             'jaminanlain_id'=> $request ->jaminanlain_id,
              'omset'=>str_replace(",","",$request->omset),
              'hpp'=>str_replace(",","",$request->hpp),
              'listrik'=>str_replace(",","",$request->listrik),

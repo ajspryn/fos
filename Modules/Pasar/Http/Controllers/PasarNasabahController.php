@@ -22,7 +22,7 @@ class PasarNasabahController extends Controller
     {
         return view('pasar::nasabah.index',[
             'title'=>'Nasabah',
-            'proposals'=>PasarPembiayaan::select()->get(),]);
+            'proposals'=>PasarNasabahh::select()->get(),]);
     }
 
     /**
@@ -51,10 +51,9 @@ class PasarNasabahController extends Controller
      */
     public function show($id)
     {    
-        $data=PasarPembiayaan::select()->where('id',$id)->get()->first();
-        $nasabah=PasarNasabahh::select()->where('id', $data->id)->get()->first();
-        $carihistory=PasarNasabahh::select()->where('no_ktp', $nasabah->no_ktp)->get()->first();
-        $history = PasarPembiayaan::select()->where('id',$id)->get()->first();
+        $data=PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first();
+        $nasabah=PasarNasabahh::select()->where('id', $id)->get()->first();
+       
         $jaminanlain=PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get()->first();
         $tenor=$data->tenor;
         $harga=$data->harga;
@@ -68,8 +67,9 @@ class PasarNasabahController extends Controller
 
         return view('pasar::nasabah.lihat',[
             'title'=>'Nasabah',
-            'pembiayaan'=>PasarPembiayaan::select()->where('id',$id)->get()->first(),
-            'nasabah'=>PasarNasabahh::select()->where('id',$id)->get()->first(),
+            'pembiayaan'=>PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first(),
+            'nasabah'=>$nasabah,
+            'datas'=>PasarPembiayaan::select()->where('nasabah_id',$id)->get(),
             // 'history'=PasarNasabahh::select()->where('no_ktp'),
             'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
             'fotodiri'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),

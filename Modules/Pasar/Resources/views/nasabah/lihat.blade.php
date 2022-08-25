@@ -34,8 +34,8 @@
                             <img class="img-fluid rounded mb-75" src="{{ asset('storage/' . $fotodiri->foto) }}"
                                 height="300" width="300" alt="avatar img" />
                             <div class="user-info text-center">
-                                <h4>{{ $pembiayaan->nasabahh->nama_nasabah }}</h4>
-                                <span class="badge bg-light-secondary">{{ $pembiayaan->nasabahh->no_ktp }}</span>
+                                <h4>{{ $nasabah->nama_nasabah }}</h4>
+                                <span class="badge bg-light-secondary">{{ $nasabah->no_ktp }}</span>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                 <i data-feather="phone" class="font-medium-2"></i>
                             </span>
                             <div class="ms-75">
-                                <h5 class="mb-0">{{ $pembiayaan->nasabahh->no_tlp }}</h5>
+                                <h5 class="mb-0">{{ $nasabah->no_tlp }}</h5>
                                 <small>No Telepon Genggam</small>
                             </div>
                         </div>
@@ -54,10 +54,10 @@
                                 <i data-feather="home" class="font-medium-2"></i>
                             </span>
                             <div class="ms-75">
-                                <h5 class="mb-0">{{ $pembiayaan->nasabahh->alamat }}, Rt
-                                    {{ $pembiayaan->nasabahh->rt }}/{{ $pembiayaan->nasabahh->rw }}</h4>
-                                    <small>{{ $pembiayaan->nasabahh->desa_kelurahan }} ,
-                                        {{ $pembiayaan->nasabahh->kecamatan }}</small>
+                                <h5 class="mb-0">{{ $nasabah->alamat }}, Rt
+                                    {{ $nasabah->rt }}/{{ $nasabah->rw }}</h4>
+                                    <small>{{ $nasabah->desa_kelurahan }} ,
+                                        {{ $nasabah->kecamatan }}</small>
                             </div>
                         </div>
                         <div class="d-flex align-items-start me-2">
@@ -80,29 +80,29 @@
                                 <ul class="list-unstyled">
                                     <li class="mb-75">
                                         <span class="fw-bolder me-25">Tempat / Tanggal Lahir :</span>
-                                        <span> {{ $pembiayaan->nasabahh->tmp_lahir }} /
-                                            {{ $pembiayaan->nasabahh->tgl_lahir }}</span>
+                                        <span> {{ $nasabah->tmp_lahir }} /
+                                            {{ $nasabah->tgl_lahir }}</span>
                                     </li>
                                     <li class="mb-75">
                                         <span class="fw-bolder me-25">Jenis Kelamin :</span>
-                                        <span>{{ $pembiayaan->nasabahh->jk_id }}</span>
+                                        <span>{{ $nasabah->jk_id }}</span>
                                     </li>
                                     <li class="mb-75">
                                         <span class="fw-bolder me-25">Agama : </span>
-                                        <span>{{ $pembiayaan->nasabahh->agama_id }}</span>
+                                        <span>{{ $nasabah->agama_id }}</span>
                                     </li>
                                     <li class="mb-75">
                                         <span class="fw-bolder me-25">Nama Ibu Kandung</span>
-                                        <span> {{ $pembiayaan->nasabahh->nama_ibu }}</span>
+                                        <span> {{ $nasabah->nama_ibu }}</span>
                                     </li>
                                     <li class="mb-75">
                                         <span class="fw-bolder me-25">Status Perkawinan :</span>
-                                        <span {{ $pembiayaan->nasabahh->status->id }}>
-                                            {{ $pembiayaan->nasabahh->status->nama_status_perkawinan }}</span>
+                                        <span {{ $nasabah->status->id }}>
+                                            {{ $nasabah->status->nama_status_perkawinan }}</span>
                                     </li>
                                     <li class="mb-75">
                                         <span class="fw-bolder me-25">Nama Pasangan :</span>
-                                        <span> {{ $pembiayaan->nasabahh->nama_pasangan }}</span>
+                                        <span> {{ $nasabah->nama_pasangan }}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -185,17 +185,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($idebs as $ideb)
+                            @foreach ($datas as $data)
                                 <tr>
                                     <td style="text-align: center">
                                         {{ $loop->iteration }}</td>
-                                    <td style="text-align: center">{{$pembiayaan->tgl_pembiayaan}} </td>
-                                    <td style="text-align: center">Rp. {{ number_format($pembiayaan->harga) }}
+                                    <td style="text-align: center">{{$data->tgl_pembiayaan}} </td>
+                                    <td style="text-align: center">Rp. {{ number_format($data->harga) }}
                                     </td>
-                                    <td style="text-align: center">{{ $pembiayaan->tenor }} Bulan
+                                    <td style="text-align: center">{{ $data->tenor }} Bulan
                                     </td>
                                     <td style="text-align: center">
-                                       {{ $pembiayaan->rate }} %
+                                       {{ $data->rate }} %
                                     </td>
                                     <td style="text-align: center">Rp. {{ number_format($angsuran) }}
                                     </td>
@@ -225,7 +225,7 @@
                     </h1>
                     <p class="text-center"></p>
                         <div class="col-12 text-center">
-                            <a href = "/form/pasar/{{ $pembiayaan->id }} "type="submit"
+                            <a href = "/form/pasar/{{ $pembiayaan->id }}/edit "type="submit"
                                 class="btn btn-primary me-1 mt-1">Yes</a>
                             <a type="reset"
                                 class="btn btn-outline-secondary mt-1"
