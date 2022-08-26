@@ -41,8 +41,8 @@
                                         <th style="text-align: center">Alamat Pasar</th>
                                         <th style="text-align: center">Nominal Pembiayaan</th>
                                         <th style="text-align: center">Tanggal Pengajuan</th>
-                                        {{-- <th style="text-align: center">AO Yang Menangani</th> --}}
                                         <th style="text-align: center">Status</th>
+                                        <th style="text-align: center">AO Yang Menangani</th>
                                         <th style="text-align: center">Action</th>
                                     </tr>
                                 </thead>
@@ -53,14 +53,14 @@
                                                 ->where('id', $komite->pasar_pembiayaan_id)
                                                 ->get()
                                                 ->first();
-
+                                            
                                             $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                                                 ->where('pasar_pembiayaan_id', $proposal_pasar->id)
                                                 ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
                                         @endphp
-                                        @if ($history->jabatan_id == 4)
+                                        @if ($history->jabatan_id == 4 || ($history->jabatan_id == 3 && $history->status_id == 5))
                                             <tr>
                                                 <td style="text-align: center">
                                                     <button type="button"
@@ -80,17 +80,21 @@
                                                 <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
                                                 <td style="text-align: center"
                                                     value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
-                                                   @if ($history->statushistory->id == 5)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
-                                                        {{ $history->jabatan->keterangan }}</span>
-                                                @elseif ($history->statushistory->id == 4)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
-                                                        {{ $history->jabatan->keterangan }}</span>
-                                                @endif
+                                                    @if ($history->statushistory->id == 5 && $history->jabatan->jabatan_id == 4)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @elseif ($history->statushistory->id == 4)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @elseif ($history->statushistory->id == 5 && $history->jabatan->jabatan_id == 3)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @endif
                                                 </td>
-                                                {{-- <td style="text-align: center">{{ $proposal_pasar->user->name }}</td> --}}
+                                                <td style="text-align: center">{{ $proposal_pasar->user->name }}</td>
                                                 <td>
                                                     <a href="/dirbis/pasar/komite/{{ $proposal_pasar->id }}"
                                                         class="btn btn-outline-info round">Detail</a>

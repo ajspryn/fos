@@ -17,7 +17,7 @@ class UmkmProposalController extends Controller
      */
     public function index()
     {
-        $komite=UmkmPembiayaanHistory::select()->where('status_id', 5 )->where('user_id',Auth::user()->id)->get();
+        $komite=UmkmPembiayaanHistory::select()->get();
         return view('dirbis::umkm.proposal.index',[
         'title'=>'Data Nasabah',
         'proposals'=>$komite,

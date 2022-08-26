@@ -54,11 +54,11 @@
                                                 </button>
                                             </td>
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
-                                            <td>{{ $proposal->nama_nasabah }}</td>
-                                            <td>{{ $proposal->no_ktp }}</td>
-                                            <td>{{ $proposal->alamat }}, {{ $proposal->rt }},
+                                             <td style="text-align: center">{{ $proposal->nama_nasabah }}</td>
+                                             <td style="text-align: center">{{ $proposal->no_ktp }}</td>
+                                             <td style="text-align: center">{{ $proposal->alamat }}, {{ $proposal->rt }},
                                                 {{ $proposal->rw }}</td>
-                                            <td>{{ $proposal->no_tlp}}</td>
+                                             <td style="text-align: center">{{ $proposal->no_tlp}}</td>
                                             <td style="text-align: center">
                                                 <a href="/dirbis/pasar/nasabah/{{ $proposal->id }}"
                                                     class="btn btn-outline-info round">Detail</a>
