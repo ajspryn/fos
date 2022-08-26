@@ -78,7 +78,7 @@ class SkpdRevisiController extends Controller
     {
         $datafoto = SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->get();
         $foto = $datafoto;
-        return view('skpd::Revisi.lihat', [
+        return view('skpd::revisi.lihat', [
             'title' => 'Detail Calon Nasabah',
             'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
             'nasabah' => SkpdNasabah::select()->where('id', $id)->get()->first(),
