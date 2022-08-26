@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Umkm\Entities\UmkmPembiayaan;
+use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 
 class UmkmProposalController extends Controller
 {
@@ -15,7 +16,7 @@ class UmkmProposalController extends Controller
      */
     public function index()
     {
-        $proposal=UmkmPembiayaan::select()->get();
+        $proposal=UmkmPembiayaanHistory::select()->where('jabatan_id', 2 )->where('status_id',5)->orderby('created_at','desc')->get();
         return view('analis::umkm.proposal.index',[
             'title'=>'Data Nasabah',
             'proposals'=>$proposal,

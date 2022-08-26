@@ -59,7 +59,8 @@
                                             }
                                         @endphp
                                         @if ($history)
-                                            @if ($history->status_id == 5 && $history->jabatan_id == 3)
+                                        @if ($history->status_id == 5 && $history->jabatan_id == 3 || $history->status_id == 4 && $history->jabatan_id == 4) 
+                                        <tr>
                                                 <tr>
                                                     <td style="text-align: center">
                                                         <button type="button"

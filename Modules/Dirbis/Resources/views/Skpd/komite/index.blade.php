@@ -58,6 +58,7 @@
                                                 ->get()
                                                 ->first();
                                         @endphp
+                                         @if ($history->jabatan_id == 4)
                                         <tr>
                                             <td style="text-align: center">
                                                 <button type="button"
@@ -92,6 +93,7 @@
                                                     class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>

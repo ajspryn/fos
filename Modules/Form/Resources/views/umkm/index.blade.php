@@ -254,6 +254,11 @@
                                         <input type="file" name="foto[3][foto]" id="fotodiribersamaktp" rows="3" class="form-control" required/>
                                         <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP" rows="3" class="form-control" />
                                     </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotodiri"><small class="text-danger">* </small>Upload Foto  Kartu Keluarga</label>
+                                        <input type="file" name="foto[4][foto]" id="fotokartukeluarga rows="4" class="form-control" required/>
+                                        <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga" rows="3" class="form-control" />
+                                    </div>
                                 </div>
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Data Orang Terdekat</h5>
@@ -334,15 +339,7 @@
                                 <div class="row">
                                     <small>Jaminan Utama</small>
                                     <div class="mb-1 col-md-6">
-                                         <label class="form-label" for="lamausaha"><small class="text-danger">* </small>No KTB</label>
-                                         <input type="text" name="no_ktb" id="lamausaha" class="form-control" placeholder="Masukan No KTB" required/>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="SHPB"> <small class="text-danger">* </small>Upload Jaminan KTB</label>
-                                        <input type="file" name="dokumenktb" id="dokumenktb" rows="3" class="form-control" required/>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="jaminanlain"><small class="text-danger">* </small>Jaminan Lainnya</label>
+                                        <label class="form-label" for="jaminanlain"><small class="text-danger">* </small>Jenis Jaminan</label>
                                         <select class="select2 w-100" name="jaminanlain" id="jaminanlain"required>
                                             <option label="jaminanlain">Pilih Jaminan</option>
                                             @foreach ($jaminans as $jaminan )
@@ -351,8 +348,17 @@
                                         </select>
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="dokumen_jaminan"><small class="text-danger">* </small>Upload Jaminan Lainnya</label>
-                                        <input type="file" name="dokumen_jaminan" id="dokumen_jaminan" rows="3" class="form-control" required>
+                                         <label class="form-label" for="lamausaha"><small class="text-danger">* </small>No KTB</label>
+                                         <input type="text" name="no_ktb" id="lamausaha" class="form-control" placeholder="Masukan No KTB" required/>
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="SHPB"> <small class="text-danger">* </small>Upload Jaminan KTB</label>
+                                        <input type="file" name="dokumenktb" id="dokumenktb" rows="3" class="form-control" required/>
+                                    </div>
+                                  
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="dokumen_jaminan">Upload Jaminan Lainnya</label>
+                                        <input type="file" name="dokumen_jaminan" id="dokumen_jaminan" rows="3" class="form-control">
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
@@ -377,32 +383,32 @@
                                 </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small class="text-danger">* </small>Omset Per Bulan</label>
-                                        <input type="text" class="form-control numeral-mask1" placeholder="Rp." name ="omset" id="omset" required>
+                                        <input type="text" class="form-control numeral-mask9" placeholder="Rp." name ="omset" id="omset" required/>
                                     </div>
                                     <div class = "row">
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"></small>HPP</label>
-                                        <input type="text" class="form-control numeral-mask" placeholder="Rp."  name ="hpp" id="hpp">
+                                        <input type="text" class="form-control numeral-mask" placeholder="Rp."  name ="hpp" id="hpp" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"></small>Biaya Listrik</label>
-                                        <input type="text" class="form-control numeral-mask2" placeholder="Rp."  name ="listrik" id="listrik">
+                                        <input type="text" class="form-control numeral-mask2" placeholder="Rp."  name ="listrik" id="listrik" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"></small>Biaya Transport</label>
-                                        <input type="text" class="form-control numeral-mask6" placeholder="Rp." name ="trasport" id="transport">
+                                        <input type="text" class="form-control numeral-mask6" placeholder="Rp." name ="trasport" id="transport" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"></small>Biaya Karyawan</label>
-                                        <input type="text" class="form-control numeral-mask3" placeholder="Rp."  name ="karyawan" id="karyawan">
+                                        <input type="text" class="form-control numeral-mask3" placeholder="Rp."  name ="karyawan" id="karyawan" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"></small>Biaya Telpon</label>
-                                        <input type="text" class="form-control numeral-mask5" placeholder="Rp."  name ="telpon" id="telpon">
+                                        <input type="text" class="form-control numeral-mask5" placeholder="Rp."  name ="telpon" id="telpon" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"> </small>Biaya Sewa Kios</label>
-                                        <input type="text" class="form-control numeral-mask4" placeholder="Rp."  name ="sewa" id="sewa">
+                                        <input type="text" class="form-control numeral-mask4" placeholder="Rp."  name ="sewa" id="sewa" required/>
                                     </div>
                                     </div>
                                 <div class="content-header">
@@ -416,11 +422,11 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Keterangan Pengeluaran Lainnya</label>
-                                        <input type="text" class="form-control" placeholder="Keterangan Pengeluaran"  name ="keterangan_keb_keluarga" id="kebkeluarga" required >
+                                        <input type="text" class="form-control" placeholder="Keterangan Pengeluaran"  name ="keterangan_keb_keluarga" id="kebkeluarga" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Kesanggupan Angsuran</label>
-                                        <input type="text" class="form-control numeral-mask8"  name ="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran" required >
+                                        <input type="text" class="form-control numeral-mask8"  name ="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran" required/>
                                     </div><br>
                                 </div>
                                 <div class="d-flex justify-content-between">

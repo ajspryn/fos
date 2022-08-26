@@ -126,21 +126,21 @@ class FormulirUmkmController extends Controller
 
         
         $dokumenktb=$request->file('dokumenktb')->store('Umkm-dokumen-ktb');
-        $dokumen_jaminan=$request->file('dokumen_jaminan')->store('Umkm-dokumen_jaminanlain');
 
         UmkmJaminan::create([
             'umkm_pembiayaan_id'=> $id,
             'no_ktb'=> $request ->no_ktb,
-            'dokumenktb'=> $dokumenktb,
-        ]);
-
-
-        UmkmJaminanLain::create([
-        
-            'umkm_pembiayaan_id'=> $id,
+            'dokumenktb'=> $dokumenktb,   
             'jaminanlain'=> $request ->jaminanlain,
-            'dokumen_jaminan'=> $dokumen_jaminan,
         ]);
+
+        if($request->file('dokumen_jaminan')){
+            $dokumen_jaminan=$request->file('dokumen_jaminan')->store('umkm-dokumen_jaminan');
+            UmkmJaminanLain::create([
+                'umkm_pembiayaan_id'=> $id,
+                'dokumen_jaminan'=>$dokumen_jaminan,
+            ]);
+        }
 
         UmkmLegalitasRumah::create([
            
@@ -167,6 +167,7 @@ class FormulirUmkmController extends Controller
             'kep_toko_id'=>$request->kep_toko_id,
             'leg_toko_id'=>$request->leg_toko_id,
             'jenisdagang_id'=>$request->jenisdagang_id,
+            'alamatusaha'=>$request->alamatusaha,
             'foto_id'=>$id,
         ]);
 
@@ -293,22 +294,21 @@ class FormulirUmkmController extends Controller
 
         
         $dokumenktb=$request->file('dokumenktb')->store('Umkm-dokumen-ktb');
-        $dokumen_jaminan=$request->file('dokumen_jaminan')->store('Umkm-dokumen_jaminanlain');
 
         UmkmJaminan::create([
             'umkm_pembiayaan_id'=> $number,
             'no_ktb'=> $request ->no_ktb,
-            'dokumenktb'=> $dokumenktb,
-        ]);
-
-
-        UmkmJaminanLain::create([
-        
-            'umkm_pembiayaan_id'=> $number,
+            'dokumenktb'=> $dokumenktb,   
             'jaminanlain'=> $request ->jaminanlain,
-            'dokumen_jaminan'=> $dokumen_jaminan,
         ]);
 
+        if($request->file('dokumen_jaminan')){
+            $dokumen_jaminan=$request->file('dokumen_jaminan')->store('umkm-dokumen_jaminan');
+            UmkmJaminanLain::create([
+                'umkm_pembiayaan_id'=> $number,
+                'dokumen_jaminan'=>$dokumen_jaminan,
+            ]);
+        }
         UmkmLegalitasRumah::create([
            
             'umkm_pembiayaan_id'=> $number,

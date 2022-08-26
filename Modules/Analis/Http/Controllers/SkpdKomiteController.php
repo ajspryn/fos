@@ -61,6 +61,10 @@ class SkpdKomiteController extends Controller
             'divisi_id'=>null,
         ]);
 
+        
+
+        return redirect('/analis/analis/komite');
+
 }
 
     /**

@@ -141,76 +141,82 @@
             </div>
         </div>
         <!-- /User Card -->
-        <!-- Plan Card -->
-        <div class="card border-primary">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start">
-                    <h5 class="badge bg-light-primary">IDEB Nasabah</h5>
-                    <div class="d-flex justify-content-center">
-                    </div>
-                </div>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="text-align: center; width: 5%;"
-                                    class="py-1">No</th>
-                                <th style="text-align: center" class="py-1">Nama
-                                    Bank</th>
-                                <th style="text-align: center" class="py-1">
-                                    Plafond
-                                </th>
-                                <th style="text-align: center" class="py-1">
-                                    Outstanding</th>
-                                <th style="text-align: center" class="py-1">
-                                    Tenor
-                                </th>
-                                <th style="text-align: center" class="py-1">
-                                    Margin
-                                </th>
-                                <th style="text-align: center" class="py-1">
-                                    Angsuran
-                                </th>
-                                <th style="text-align: center" class="py-1">
-                                    Agunan
-                                </th>
-                                <th style="text-align: center" class="py-1">Kol
-                                    Tertinggi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($idebs as $ideb)
-                                <tr>
-                                    <td style="text-align: center">
-                                        {{ $loop->iteration }}</td>
-                                    <td>{{ $ideb->nama_bank }}</td>
-                                    <td>Rp. {{ number_format($ideb->plafond) }}
-                                    </td>
-                                    <td>Rp. {{ number_format($ideb->outstanding) }}
-                                    </td>
-                                    <td style="text-align: center">
-                                        {{ $ideb->tenor }}
-                                    </td>
-                                    <td style="text-align: center">
-                                        {{ number_format($ideb->margin) }}%
-                                    </td>
-                                    <td>Rp. {{ number_format($ideb->angsuran) }}
-                                    </td>
-                                    <td style="text-align: center">
-                                        {{ $ideb->agunan }}
-                                    </td>
-                                    <td style="text-align: center">
-                                        {{ $ideb->kol }}</td>
-                                </tr>
-                            @endforeach
-
-
-                        </tbody>
-                    </table>
-                </div>
+   <!-- Plan Card -->
+   <div class="card border-primary">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+            <h5 class="badge bg-light-primary">History Pembiayaan Nasabah</h5>
+            <div class="d-flex justify-content-center">
             </div>
         </div>
-        <!-- /Plan Card -->
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="text-align: center; width: 5%;" class="py-1">No</th>
+                        <th style="text-align: center" class="py-1">Tanggal Pembiayaan</th>
+                        <th style="text-align: center" class="py-1">
+                            Plafond
+                        </th>
+                        <th style="text-align: center" class="py-1">
+                            Tenor
+                        </th>
+                        <th style="text-align: center" class="py-1">
+                            Margin
+                        </th>
+                        <th style="text-align: center" class="py-1">
+                            Angsuran
+                        </th>
+                        <th style="text-align: center" class="py-1">
+                            Agunan
+                        </th>
+                        <th style="text-align: center" class="py-1">
+                            Detail
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($datas as $data)
+                        @php
+                            $tenor = $data->tenor;
+                            $harga = $data->nominal_pembiayaan;
+                            $rate = $data->rate;
+                            $margin = ($rate * $tenor) / 100;
+                            
+                            $harga1 = $harga * $margin;
+                            $harga_jual = $harga1 + $harga;
+                            
+                            $angsuran1 = (int) ($harga_jual / $tenor);
+                        @endphp
+                        <tr>
+                            <td style="text-align: center">
+                                {{ $loop->iteration }}</td>
+                            <td style="text-align: center">{{ $data->tgl_pembiayaan }} </td>
+                            <td style="text-align: center">Rp. {{ number_format($data->nominal_pembiayaan) }}
+                            </td>
+                            <td style="text-align: center">{{ $data->tenor }} Bulan
+                            </td>
+                            <td style="text-align: center">
+                                {{ $data->rate }} %
+                            </td>
+                            <td style="text-align: center">Rp. {{ number_format($angsuran1) }}
+                            </td>
+                            <td style="text-align: center">
+                                {{ $jaminans->nama_jaminan }}
+                            </td>
+                            <td style="text-align: center">
+                                <a href="/umkm/komite/{{ $data->id }}"
+                                    class="btn btn-outline-info round">Detail</a>
+                            </td>
+                    @endforeach
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /Plan Card -->
         <div class="modal fade" id="ajukan" tabindex="-1"
         aria-labelledby="addNewCardTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

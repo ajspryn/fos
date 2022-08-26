@@ -507,7 +507,17 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-
+                                            @if ($deviasi)
+                                            <div class="card-body invoice-padding pt-0">
+                                                <div class="mb-0 mt-1 col-md-4">
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#dokumendeviasi">Dokumen
+                                                        Deviasi
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        @endif
                                             @php
                                                 $total_score = $score_idir + $score_slik + $score_cashpick + $score_jaminanrumah  + $score_lamadagang + $score_jenisnasabah + $score_jenisdagang + $score_sukubangsa ;
                                             @endphp
@@ -525,21 +535,27 @@
                                                                         <td class="pe-1">Status</td>
                                                                         <td>:
                                                                             @if ($nilai_idir >= 80 || $nilai_idir < 0)
-                                                                                @if ($nilai_idir >= 80)
+                                                                            @if ($nilai_idir >= 80 && $total_score > 3)
                                                                                 <span
-                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                            <small
-                                                                                class="text-danger">*Catatan : DSR
-                                                                                >
-                                                                                40%</small>
-                                                                        @elseif($nilai_dsr1 < 0)
-                                                                            <span
-                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                            <small
-                                                                                class="text-danger">*catatan : Pengeluaran
-                                                                                >
-                                                                                Pendapatan</small>
-                                                                                @endif
+                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                <small
+                                                                                    class="text-danger">*IDIR
+                                                                                    > 80%</small>
+                                                                            @elseif($nilai_idir < 0 && $total_score > 3)
+                                                                                <span
+                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                <small
+                                                                                    class="text-danger">*Pengeluaran
+                                                                                    >
+                                                                                    Pendapatan</small>
+                                                                                    @elseif($total_score > 2 || $total_score > 3)
+                                                                                    <span
+                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                        Ulang</span>
+                                                                                @else
+                                                                                    <span
+                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                            @endif
                                                                             @else
                                                                                 @if ($total_score > 3)
                                                                                     <span
@@ -814,6 +830,28 @@
                                         </div>
                                     </div>
                                     <!-- /Invoice Actions -->
+
+                                    @if($deviasi)
+                                                    <div class="modal fade" id="dokumendeviasi" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h3 class="text-center">Lampiran Dokumen Deviasi</h3>
+                                                                    <div class="card-body">
+                                                                        <iframe src="{{ asset('storage/' . $deviasi->dokumen_deviasi) }}" class="d-block w-100"
+                                                                          height="500"  weight='900'></iframe>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @endif
                                 </div>
                      
             

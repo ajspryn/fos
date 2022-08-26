@@ -71,6 +71,7 @@ class PasarKomiteController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         PasarPembiayaanHistory::create([
             'pasar_pembiayaan_id'=>$request->pasar_pembiayaan_id,
             'catatan'=>$request->catatan,
@@ -99,12 +100,12 @@ class PasarKomiteController extends Controller
     public function show($id)
     {
 
-        $data=PasarPembiayaan::select()->where('id',$id)->get()->first();
+        $data=PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first();
         $nasabah=PasarNasabahh::select()->where('id',$data->nasabah_id)->get()->first();
         $usaha=PasarKeteranganUsaha::select()->where('pasar_pembiayaan_id',$id)->get()->first();
         $pasar=PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first();
         $jaminanrumah=PasarLegalitasRumah::select()->where('pasar_pembiayaan_id',$id)->get()->first();
-        $jaminanlain=PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get()->first();
+        $jaminanlain=PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first();
         $tenor=$data->tenor;
         $harga=$data->harga;
         $rate=$data->rate;
