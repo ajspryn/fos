@@ -11,7 +11,6 @@ deployment:
     - /bin/cp -R public $DEPLOYPATH
     - /bin/cp -R resources $DEPLOYPATH
     - /bin/cp -R routes $DEPLOYPATH
-    - /bin/cp -R storage $DEPLOYPATH
     - /bin/cp -R tests $DEPLOYPATH
     - /bin/cp .editorconfig $DEPLOYPATH
     - /bin/cp .env.example $DEPLOYPATH
