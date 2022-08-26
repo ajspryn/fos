@@ -43,46 +43,46 @@
                                         <th style="text-align: center">Tanggal Pengajuan</th>
                                         <th style="text-align: center">Status</th>
                                         <th style="text-align: center">AO Yang Menangani</th>
-                                        <th style="text-align: center">Actionn</th>
+                                        {{-- <th style="text-align: center">Actionn</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
-
+                                            
                                             $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                                                 ->where('pasar_pembiayaan_id', $proposal->id)
                                                 ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
-
+                                            
                                             $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
                                                 ->where('id', $history->pasar_pembiayaan_id)
                                                 ->get()
                                                 ->first();
                                         @endphp
 
-                                        @if ($history->status_id == 5 && $history->jabatan_id == 3 || $history->status_id == 4 && $history->jabatan_id == 4) 
-                                            <tr>
-                                                <td style="text-align: center">
-                                                    <button type="button"
-                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                        <i data-feather="eye"></i>
-                                                    </button>
-                                                </td>
-                                                <td style="text-align: center">{{ $loop->iteration }}</td>
-                                                <td>{{ $proposal_pasar->nasabahh->nama_nasabah }}</td>
-                                                <td>{{ $proposal_pasar->nasabahh->alamat }}
-                                                <td style="text-align: center">
-                                                    {{ $proposal_pasar->keteranganusaha->nama_usaha }}</td>
-                                                <td style="text-align: center"
-                                                    value="{{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}">
-                                                    {{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}</td>
-                                                <td style="text-align: center">{{ number_format($proposal_pasar->harga) }}</td>
-                                                <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
-                                                <td style="text-align: center"
-                                                    value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
-                                                   @if ($history->statushistory->id == 5)
+                                        @if (( $history->jabatan_id == 0 || $history->jabatan_id == 1 ||  $history->jabatan_id == 2 || $history->jabatan_id == 3 && $history->status_id == 4))
+                                        <tr>
+                                            <td style="text-align: center">
+                                                <button type="button"
+                                                    class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                    <i data-feather="eye"></i>
+                                                </button>
+                                            </td>
+                                            <td style="text-align: center">{{ $loop->iteration }}</td>
+                                            <td>{{ $proposal_pasar->nasabahh->nama_nasabah }}</td>
+                                            <td>{{ $proposal_pasar->nasabahh->alamat }}
+                                            <td style="text-align: center">
+                                                {{ $proposal_pasar->keteranganusaha->nama_usaha }}</td>
+                                            <td style="text-align: center"
+                                                value="{{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}">
+                                                {{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}</td>
+                                            <td style="text-align: center">Rp.{{ number_format($proposal_pasar->harga) }}</td>
+                                            <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
+                                            <td style="text-align: center"
+                                                value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
+                                                @if ($history->statushistory->id == 5 )
                                                     <span
                                                         class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>
@@ -90,16 +90,28 @@
                                                     <span
                                                         class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>
+                                                @elseif ($history->statushistory->id == 7)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @elseif ($history->statushistory->id == 6)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-danger">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
+                                                @else
+                                                        <span
+                                                            class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
                                                 @endif
-                                                </td>
-                                                <td style="text-align: center">{{ $proposal_pasar->user->name }}</td>
-                                                <td>
-                                                    <a href="/dirbis/pasar/komite/{{ $proposal_pasar->id }}"
-                                                        class="btn btn-outline-info round">Detail</a>
-                                                </td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
+                                            </td>
+                                            <td style="text-align: center">{{ $proposal_pasar->user->name }}</td>
+                                            {{-- <td>
+                                                <a href="/dirbis/pasar/komite/{{ $proposal_pasar->id }}"
+                                                    class="btn btn-outline-info round">Detail</a>
+                                            </td> --}}
+                                        </tr>
+                                    @endif
+                  @endforeach
                                 </tbody>
                             </table>
                         </div>
