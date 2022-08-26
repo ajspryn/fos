@@ -85,7 +85,7 @@ class FormulirPasarController extends Controller
             'tenor'=> $request ->tenor,
             'nominal_pembiayaan'=> $request ->nominal_pembiayaan,
             'luas'=> $request ->luas,
-            'harga'=> $request ->harga,
+            'harga'=> str_replace(",","",$request->harga),
             'jenis_tempat_usaha'=> $request ->jenis_tempat_usaha,
             'administrasi'=> $request ->administrasi,
             'jumlah'=> $request ->jumlah,
@@ -93,7 +93,6 @@ class FormulirPasarController extends Controller
             'jaminanlain_id'=> $id,
             'pasar_legalitas_rumah_id'=> $id,
             'pasar_keterangan_usaha_id'=> $id,
-            'jaminanlain_id'=> $request ->jaminanlain_id,
             'omset'=>str_replace(",","",$request->omset),
             'hpp'=>str_replace(",","",$request->hpp),
             'listrik'=>str_replace(",","",$request->listrik),
@@ -145,15 +144,19 @@ class FormulirPasarController extends Controller
         PasarJaminan::create([
             'pasar_pembiayaan_id'=> $id,
             'no_ktb'=> $request ->no_ktb,
-            'dokumenktb'=> $dokumenktb,
-        ]);
-
-
-        PasarJaminanLain::create([
-            'pasar_pembiayaan_id'=> $id,
+            'dokumenktb'=> $dokumenktb,   
             'jaminanlain'=> $request ->jaminanlain,
-            'dokumen_jaminan'=>$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminanlain'),
         ]);
+
+        if($request->file('dokumen_jaminan')){
+            $dokumen_jaminan=$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminan');
+            PasarJaminanLain::create([
+                'pasar_pembiayaan_id'=> $id,
+                'dokumen_jaminan'=>$dokumen_jaminan,
+            ]);
+        }
+
+      
 
         PasarLegalitasRumah::create([
             'pasar_pembiayaan_id'=> $id,
@@ -270,7 +273,7 @@ class FormulirPasarController extends Controller
              'penggunaan_id'=> $request ->penggunaan_id,
              'pesanan_blok'=> $request ->pesanan_blok,
              'tenor'=> $request ->tenor,
-             'nominal_pembiayaan'=> $request ->nominal_pembiayaan,
+             'harga'=> str_replace(",","",$request->harga),
              'luas'=> $request ->luas,
              'harga'=> $request ->harga,
              'jenis_tempat_usaha'=> $request ->jenis_tempat_usaha,
@@ -328,18 +331,21 @@ class FormulirPasarController extends Controller
          $dokumenktb=$request->file('dokumenktb')->store('pasar-dokumen-ktb');
  
  
-         PasarJaminan::create([
-             'pasar_pembiayaan_id'=> $number,
-             'no_ktb'=> $request ->no_ktb,
-             'dokumenktb'=> $dokumenktb,
-         ]);
- 
- 
-         PasarJaminanLain::create([
-             'pasar_pembiayaan_id'=> $number,
-             'jaminanlain'=> $request ->jaminanlain,
-             'dokumen_jaminan'=>$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminanlain'),
-         ]);
+        
+        PasarJaminan::create([
+            'pasar_pembiayaan_id'=> $number,
+            'no_ktb'=> $request ->no_ktb,
+            'dokumenktb'=> $dokumenktb,   
+            'jaminanlain'=> $request ->jaminanlain,
+        ]);
+
+        if($request->file('dokumen_jaminan')){
+            $dokumen_jaminan=$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminan');
+            PasarJaminanLain::create([
+                'pasar_pembiayaan_id'=> $number,
+                'dokumen_jaminan'=>$dokumen_jaminan,
+            ]);
+        }
  
          PasarLegalitasRumah::create([
              'pasar_pembiayaan_id'=> $number,

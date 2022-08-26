@@ -98,7 +98,12 @@
                                         <input type="text" name="luas" class="form-control "
                                             placeholder="Luas Blok Pesanan" id="pesanan_blok">
                                     </div>
-
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*
+                                            </small>Nominal Pembiayaan</label>
+                                        <input type="text" class="form-control numeral-mask1" placeholder="Rp."
+                                            name="harga" id="harga">
+                                    </div>
                                 </div>
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Data Diri</h5>
@@ -431,7 +436,17 @@
                                     <small class="text-muted">Silahkan Upload Data Jaminan Anda</small>
                                 </div>
                                 <div class="row">
-                                    <small>Jaminan Utama</small>
+                                  
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="jaminanlain"><small class="text-danger">*
+                                        </small>Jenis Jaminan </label>
+                                        <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
+                                            <option label="jaminanlain">Pilih Jaminan</option>
+                                            @foreach ($jaminans as $jaminan)
+                                                <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="lamausaha"><small class="text-danger">* </small>No
                                             KTB</label>
@@ -445,20 +460,9 @@
                                             class="form-control" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="jaminanlain"><small class="text-danger">*
-                                        </small>Jaminan Lainnya</label>
-                                        <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
-                                            <option label="jaminanlain">Pilih Jaminan</option>
-                                            @foreach ($jaminans as $jaminan)
-                                                <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="dokumen_jaminan"><small class="text-danger">*
-                                        </small>Upload Jaminan Lainnya</label>
+                                        <label class="form-label" for="dokumen_jaminan">Upload Jaminan Lainnya</label>
                                         <input type="file" name="dokumen_jaminan" id="dokumen_jaminan" rows="3"
-                                            class="form-control" required>
+                                            class="form-control">
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
@@ -485,40 +489,40 @@
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"><small class="text-danger">*
                                         </small>Omset Per Bulan</label>
-                                    <input type="text" class="form-control numeral-mask1" placeholder="Rp."
-                                        name="omset" id="omset">
+                                    <input type="text" class="form-control numeral-mask9" placeholder="Rp."
+                                        name="omset" id="omset" required/>
                                 </div>
                                 <div class="row">
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"></small>HPP</label>
+                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>HPP</label>
                                         <input type="text" class="form-control numeral-mask" placeholder="Rp."
-                                            name="hpp" id="hpp">
+                                            name="hpp" id="hpp" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"></small>Biaya Listrik</label>
+                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya Listrik</label>
                                         <input type="text" class="form-control numeral-mask2" placeholder="Rp."
                                             name="listrik" id="listrik">
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"></small>Biaya Transport</label>
+                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya Transport</label>
                                         <input type="text" class="form-control numeral-mask6" placeholder="Rp."
-                                            name="trasport" id="transport">
+                                            name="trasport" id="transport" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"></small>Biaya Karyawan</label>
+                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya Karyawan</label>
                                         <input type="text" class="form-control numeral-mask3" placeholder="Rp."
-                                            name="karyawan" id="karyawan">
+                                            name="karyawan" id="karyawan" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"></small>Biaya Telpon</label>
+                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya Telpon</label>
                                         <input type="text" class="form-control numeral-mask5" placeholder="Rp."
-                                            name="telpon" id="telpon">
+                                            name="telpon" id="telpon" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"> </small>Biaya Sewa
+                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya Sewa
                                             Kios</label>
                                         <input type="text" class="form-control numeral-mask4" placeholder="Rp."
-                                            name="sewa" id="sewa">
+                                            name="sewa" id="sewa" required/>
                                     </div>
                                 </div>
                                 <div class="content-header">
@@ -530,13 +534,13 @@
                                         <label class="form-label" for="numeral-formatting"><small
                                                 class="text-danger">*</small>Pengeluaran Lainnya</label>
                                         <input type="text" class="form-control numeral-mask7" placeholder="Rp."
-                                            name="keb_keluarga" id="kebkeluarga" require>
+                                            name="keb_keluarga" id="kebkeluarga" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small
                                                 class="text-danger">*</small>Keterangan Pengeluaran Lainnya</label>
                                         <input type="text" class="form-control" placeholder="Keterangan Pengeluaran"
-                                            name="keterangan_keb_keluarga" id="kebkeluarga" require>
+                                            name="keterangan_keb_keluarga" id="kebkeluarga" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="aset">Aset / Harta Benda</label>
@@ -547,7 +551,7 @@
                                         <label class="form-label" for="numeral-formatting"><small
                                                 class="text-danger">*</small>Kesanggupan Angsuran</label>
                                         <input type="text" class="form-control numeral-mask8"
-                                            name="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran">
+                                            name="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran" required/>
                                     </div><br>
                                 </div>
                                 <div class="d-flex justify-content-between">

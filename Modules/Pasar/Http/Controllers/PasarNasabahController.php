@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Admin\Entities\PasarJenisJaminan;
 use Modules\Pasar\Entities\PasarFoto;
+use Modules\Pasar\Entities\PasarJaminan;
 use Modules\Pasar\Entities\PasarJaminanLain;
 use Modules\Pasar\Entities\PasarNasabahh;
 use Modules\Pasar\Entities\PasarPembiayaan;
@@ -54,7 +55,7 @@ class PasarNasabahController extends Controller
         $data=PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first();
         $nasabah=PasarNasabahh::select()->where('id', $id)->get()->first();
        
-        $jaminanlain=PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get()->first();
+        $jaminanlain=PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first();
         $tenor=$data->tenor;
         $harga=$data->harga;
         $rate=$data->rate;

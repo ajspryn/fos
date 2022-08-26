@@ -176,21 +176,22 @@ class UmkmRevisiController extends Controller
 
         
         $dokumenktb=$request->file('dokumenktb')->store('Umkm-dokumen-ktb');
-        $dokumen_jaminan=$request->file('dokumen_jaminan')->store('Umkm-dokumen_jaminanlain');
 
+        
         UmkmJaminan::where('umkm_pembiayaan_id',$id)->update([
             'umkm_pembiayaan_id'=> $id,
             'no_ktb'=> $request ->no_ktb,
-            'dokumenktb'=> $dokumenktb,
-        ]);
-
-
-        UmkmJaminanLain::where('umkm_pembiayaan_id',$id)->update([
-        
-            'umkm_pembiayaan_id'=> $id,
+            'dokumenktb'=> $dokumenktb,   
             'jaminanlain'=> $request ->jaminanlain,
-            'dokumen_jaminan'=> $dokumen_jaminan,
         ]);
+
+        if($request->file('dokumen_jaminan')){
+            $dokumen_jaminan=$request->file('dokumen_jaminan')->store('umkm-dokumen_jaminan');
+            UmkmJaminanLain::where('umkm_pembiayaan_id',$id)->update([
+                'umkm_pembiayaan_id'=> $id,
+                'dokumen_jaminan'=>$dokumen_jaminan,
+            ]);
+        }
 
         UmkmLegalitasRumah::where('umkm_pembiayaan_id',$id)->update([
            

@@ -685,7 +685,7 @@
 
                                                     <!-- form -->
                                                     <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"
-                                                        method="POST" action="/umkm/komite">
+                                                        method="POST" action="/umkm/komite" enctype="multipart/form-data">
                                                         @csrf
 
                                                         <div class="col-md-12">

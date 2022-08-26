@@ -335,15 +335,7 @@
                                 <div class="row">
                                     <small>Jaminan Utama</small>
                                     <div class="mb-1 col-md-6">
-                                         <label class="form-label" for="lamausaha"><small class="text-danger">* </small>No KTB</label>
-                                         <input type="text" name="no_ktb" id="lamausaha" class="form-control" placeholder="Masukan No KTB" required/>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="SHPB"> <small class="text-danger">* </small>Upload Jaminan KTB</label>
-                                        <input type="file" name="dokumenktb" id="dokumenktb" rows="3" class="form-control" required/>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="jaminanlain"><small class="text-danger">* </small>Jaminan Lainnya</label>
+                                        <label class="form-label" for="jaminanlain"><small class="text-danger">* </small>Jenis Jaminan</label>
                                         <select class="select2 w-100" name="jaminanlain" id="jaminanlain"required>
                                             <option label="jaminanlain">Pilih Jaminan</option>
                                             @foreach ($jaminans as $jaminan )
@@ -352,8 +344,17 @@
                                         </select>
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="dokumen_jaminan"><small class="text-danger">* </small>Upload Jaminan Lainnya</label>
-                                        <input type="file" name="dokumen_jaminan" id="dokumen_jaminan" rows="3" class="form-control" required>
+                                         <label class="form-label" for="lamausaha"><small class="text-danger">* </small>No KTB</label>
+                                         <input type="text" name="no_ktb" id="lamausaha" class="form-control" placeholder="Masukan No KTB" required/>
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="SHPB"> <small class="text-danger">* </small>Upload Jaminan KTB</label>
+                                        <input type="file" name="dokumenktb" id="dokumenktb" rows="3" class="form-control" required/>
+                                    </div>
+                                   
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="dokumen_jaminan">Upload Jaminan Lainnya</label>
+                                        <input type="file" name="dokumen_jaminan" id="dokumen_jaminan" rows="3" class="form-control">
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">

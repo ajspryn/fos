@@ -18,6 +18,7 @@ use Modules\Admin\Entities\PasarScoreSlik;
 use Modules\Admin\Entities\PasarSektorEkonomi;
 use Modules\Admin\Entities\PasarSukuBangsa;
 use Modules\Admin\Entities\UmkmScoreIdir;
+use Modules\Umkm\Entities\UmkmDeviasi;
 use Modules\Umkm\Entities\UmkmFoto;
 use Modules\Umkm\Entities\UmkmJaminan;
 use Modules\Umkm\Entities\UmkmJaminanLain;
@@ -100,7 +101,7 @@ class UmkmKomiteController extends Controller
             $nasabah=UmkmNasabah::select()->where('id',$id)->get()->first();
             $usaha=UmkmKeteranganUsaha::select()->where('umkm_pembiayaan_id',$id)->get()->first();
             $jaminanrumah=UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id',$id)->get()->first();
-            $jaminanlain=UmkmJaminanLain::select()->where('umkm_pembiayaan_id',$id)->get()->first();
+            $jaminanlain=UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get()->first();
             $tenor=$data->tenor;
             $harga=$data->nominal_pembiayaan;
             $rate=$data->rate;
@@ -255,6 +256,8 @@ class UmkmKomiteController extends Controller
                 'score_slik'=>$score_slik * $prosesslik->bobot,
                 'score_idir'=>$score_idir *$proses_idir->bobot,
                 'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
+
+                'deviasi'=>UmkmDeviasi::select()->where('umkm_pembiayaan_id',$id)->get()->first(),
 
 
             ]);

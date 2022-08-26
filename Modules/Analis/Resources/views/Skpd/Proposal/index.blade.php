@@ -59,7 +59,7 @@
                                                 ->get()
                                                 ->first();
                                         @endphp
-                                         @if ($history->status_id == 5 && $history->jabatan_id == 2)
+                                        @if ($history->status_id == 5 && $history->jabatan_id == 2 || $history->status_id == 4 && $history->jabatan_id == 3 )
                                         <tr>
                                             <td style="text-align: center">
                                                 <button type="button"

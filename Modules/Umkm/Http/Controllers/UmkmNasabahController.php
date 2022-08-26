@@ -5,7 +5,9 @@ namespace Modules\Umkm\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\PasarJenisJaminan;
 use Modules\Umkm\Entities\UmkmFoto;
+use Modules\Umkm\Entities\UmkmJaminan;
 use Modules\Umkm\Entities\UmkmNasabah;
 use Modules\Umkm\Entities\UmkmPembiayaan;
 use Modules\Umkm\Entities\UmkmSlik;
@@ -49,12 +51,29 @@ class UmkmNasabahController extends Controller
      */
     public function show($id)
     {
+        $data=UmkmPembiayaan::select()->where('nasabah_id',$id)->get()->first();
+        $nasabah=UmkmNasabah::select()->where('id', $id)->get()->first();
+       
+        $jaminanlain=UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get()->first();
+        $tenor=$data->tenor;
+        $harga=$data->harga;
+        $rate=$data->rate;
+        $margin=($rate*$tenor)/100;
+
+        $harga1=$harga*$margin;
+        $harga_jual=$harga1+$harga;
+
+        $angsuran1=(int)($harga_jual/$tenor);
+
         return view('umkm::nasabah.lihat',[
             'title'=>'Nasabah',
-            'pembiayaan'=>UmkmPembiayaan::select()->where('id',$id)->get()->first(),
-            'nasabah'=>UmkmNasabah::select()->where('id',$id)->get()->first(),
-            'idebs'=>UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get(),
+            'pembiayaan'=>UmkmPembiayaan::select()->where('nasabah_id',$id)->get()->first(),
+            'nasabah'=>$nasabah,
+            'datas'=>UmkmPembiayaan::select()->where('nasabah_id',$id)->get(),
+            // 'history'=PasarNasabahh::select()->where('no_ktp'),
             'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+            'angsuran'=>$angsuran1,
+            'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
         ]);
     }
 

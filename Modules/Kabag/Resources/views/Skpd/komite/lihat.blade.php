@@ -724,7 +724,7 @@
                                                     @if($deviasi)
                                                     <div class="modal fade" id="dokumendeviasi" tabindex="-1"
                                                         aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
                                                             <div class="modal-content">
                                                                 <div class="modal-header bg-transparent">
                                                                     <button type="button" class="btn-close"

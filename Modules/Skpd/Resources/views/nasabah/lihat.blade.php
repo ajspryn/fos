@@ -147,6 +147,9 @@
                                 <th style="text-align: center" class="py-1">
                                     Agunan
                                 </th>
+                                <th style="text-align: center" class="py-1">
+                                    Detail
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -166,6 +169,10 @@
                                     </td>
                                     <td style="text-align: center">
                                         {{ $data->jaminan->jenis_jaminan->nama_jaminan }}
+                                    </td>
+                                    <td style="text-align: center">
+                                        <a href="/skpd/komite/{{ $data->id }}"
+                                            class="btn btn-outline-info round">Detail</a>
                                     </td>
                             @endforeach
 

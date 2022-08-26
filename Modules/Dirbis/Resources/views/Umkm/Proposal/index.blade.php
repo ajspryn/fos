@@ -48,20 +48,18 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
+                                            $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                                ->where('id', $proposal->umkm_pembiayaan_id)
+                                                ->get()
+                                                ->first();
 
                                             $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-                                                ->where('umkm_pembiayaan_id', $proposal->id)
+                                                ->where('umkm_pembiayaan_id', $proposal_umkm->id)
                                                 ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
-
-                                            $proposal_pasar = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                ->where('id', $history->umkm_pembiayaan_id)
-                                                ->get()
-                                                ->first();
                                         @endphp
-
-                                        @if ($history->status_id == 5 && $history->jabatan_id == 3)
+                                        @if ($history->status_id == 5 && $history->jabatan_id == 3 || $history->status_id == 4 && $history->jabatan_id == 4 )
                                             <tr>
                                                 <td style="text-align: center">
                                                     <button type="button"

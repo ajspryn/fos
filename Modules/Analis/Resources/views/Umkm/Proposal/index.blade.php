@@ -40,7 +40,7 @@
                                         <th style="text-align: center">Nama Usaha</th>
                                         <th style="text-align: center">Nominal Pembiayaan</th>
                                         <th style="text-align: center">Tanggal Pengajuan</th>
-                                        <th style="text-align: center">Status</th>                                        
+                                        <th style="text-align: center">Status</th>
                                         <th style="text-align: center">AO Yang Menangani</th>
                                         <th style="text-align: center">Action</th>
                                     </tr>
@@ -48,15 +48,15 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
-
-                                            $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-                                                ->where('umkm_pembiayaan_id', $proposal->id)
-                                                ->orderby('created_at', 'desc')
+                                            
+                                            $proposal_pasar = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                                ->where('id', $proposal->umkm_pembiayaan_id)
                                                 ->get()
                                                 ->first();
-
-                                            $proposal_pasar = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                ->where('id', $history->umkm_pembiayaan_id)
+                                            
+                                            $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+                                                ->where('umkm_pembiayaan_id', $proposal_pasar->id)
+                                                ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
                                         @endphp
@@ -74,23 +74,24 @@
                                                 <td>{{ $proposal_pasar->nasabahh->alamat }}</td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_pasar->keteranganusaha->nama_usaha }}</td>
-                                                <td style="text-align: center">{{ $proposal_pasar->nominal_pembiayaan }}</td>
+                                                <td style="text-align: center">{{ $proposal_pasar->nominal_pembiayaan }}
+                                                </td>
                                                 <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
                                                 <td style="text-align: center"
                                                     value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
-                                                     @if ($history->statushistory->id == 5)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
-                                                        {{ $history->jabatan->keterangan }}</span>
-                                                     @elseif ($history->statushistory->id == 4)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
-                                                        {{ $history->jabatan->keterangan }}</span>
+                                                    @if ($history->statushistory->id == 5)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @elseif ($history->statushistory->id == 4)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
                                                     @else
-                                                    <span
-                                                    class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
-                                                    {{ $history->jabatan->keterangan }}</span>
-                                                @endif
+                                                        <span
+                                                            class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @endif
                                                 </td>
                                                 <td style="text-align: center">{{ $proposal_pasar->user->name }}</td>
                                                 <td>
