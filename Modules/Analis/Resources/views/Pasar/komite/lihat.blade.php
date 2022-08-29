@@ -532,14 +532,7 @@
                                                                             {{ $rating_kepalapasar }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_kepalapasar }}</td>
-                                                                        <td style="text-align: center">
-                                                                            <button type="button"
-                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#kepalapasar">
-                                                                                <i data-feather="eye"></i>
-                                                                            </button>
-                                                                    </tr>
+                                                                    </tr>   
                                                                     <tr>
                                                                         <td style="text-align: center">7</td>
                                                                         <td>Jaminan Kios</td>
@@ -776,7 +769,7 @@
 
                                                             <!-- form -->
                                                             <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"
-                                                                method="POST" action="/analis/pasar/komite">
+                                                                method="POST" action="/analis/pasar/komite" enctype="multipart/form-data">
                                                                 @csrf
 
                                                                 <div class="col-md-12">
@@ -789,7 +782,13 @@
                                                                 <input type="hidden" name="status_id" value=5>
                                                                 <input type="hidden" name="user_id"
                                                                     value="{{ Auth::user()->id }}">
-
+                                                                    <label class="form-label"
+                                                                            for="fotokk"><small
+                                                                                class="text-danger">*
+                                                                            </small>Upload Konfirmasi Kepala Pasar</label>
+                                                                        <input type="file" name="foto"
+                                                                            id="foto" rows="3"
+                                                                            class="form-control" required />
                                                                 <div class="col-12 text-center">
                                                                     <button type="submit"
                                                                         class="btn btn-primary me-1 mt-1">Submit</button>
@@ -1019,11 +1018,18 @@
                                             </div>
                                     </div>
 
-                                        <div class="tab-pane" id="ideb" role="tabpanel"
+                                    <div class="tab-pane" id="ideb" role="tabpanel"
                                         aria-labelledby="settings-tab-justified">
                                         {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
                                         width="1000" height="900"></iframe> --}}
                                         <iframe src="{{ asset('storage/' . $pembiayaan->dokumen_keuangan) }}" class="d-block w-100"
+                                            height='500' weight='800'></iframe> 
+                                    </div>
+                                    <div class="tab-pane" id="keuangan" role="tabpanel"
+                                        aria-labelledby="settings-tab-justified">
+                                        {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
+                                        width="1000" height="900"></iframe> --}}
+                                        <iframe src="{{ asset('storage/' . $nota->foto) }}" class="d-block w-100"
                                             height='500' weight='800'></iframe> 
                                     </div>
 
@@ -1152,29 +1158,6 @@
                                           <div class="col-md-12 d-flex order-md-2 order-1">
                                               <iframe src="{{ asset('storage/' . $pembiayaan->dokumen_keuangan) }}"
                                                   class="d-block w-100" height='500' weight='800'></iframe>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <!--akhir Slik -->
-                      <!-- Slik -->
-                      <div class="modal fade" id="kepalapasar" tabindex="-1" aria-labelledby="addNewCardTitle"
-                          aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered">
-                              <div class="modal-content">
-                                  <div class="modal-header bg-transparent">
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                          aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body px-sm-12 mx-50 pb-5">
-                                      <h3 class="text-center">Konfirmasi Kepala Pasar </h3>
-                                      <hr class="invoice-spacing" />
-                                      <div class="card-body">
-                                          <div class="col-md-12 d-flex order-md-2 order-1">
-                                              <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
-                                                  height='500' weight='800'>
                                           </div>
                                       </div>
                                   </div>

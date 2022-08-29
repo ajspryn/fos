@@ -15,8 +15,8 @@ class PprCollateralKontribusiPemohonController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.collateral.kontribusi_pemohon.index', [
-            'title' => 'Pengaturan Collateral Kontribusi Pemohon (LTV)',
+        return view('admin::ppr.fixed_income.collateral.kontribusi_pemohon.index', [
+            'title' => 'Pengaturan Collateral Fixed Income Kontribusi Pemohon (FTV)',
             'collateral_kontribusi_pemohons' => PprCollateralKontribusiPemohon::all(),
         ]);
     }

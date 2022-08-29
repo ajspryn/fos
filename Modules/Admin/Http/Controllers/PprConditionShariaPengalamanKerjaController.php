@@ -15,8 +15,8 @@ class PprConditionShariaPengalamanKerjaController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.condition_sharia.pengalaman_kerja.index', [
-            'title' => 'Pengaturan Condition & Sharia Pengalaman Kerja',
+        return view('admin::ppr.fixed_income.condition_sharia.pengalaman_kerja.index', [
+            'title' => 'Pengaturan Condition & Sharia Fixed Income Pengalaman Kerja',
             'condition_sharia_pengalaman_kerjas' => PprConditionShariaPengalamanKerja::all(),
         ]);
     }

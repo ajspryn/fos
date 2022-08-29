@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('ppr_scoring_collateral_fixed_incomes', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('ppr_scoring_fixed_income_id');
+            $table->integer('form_ppr_pembiayaan_id');
+            $table->integer('ppr_scoring_id');
             $table->float('cc_marketabilitas')->nullable();
             $table->float('cc_kontribusi_pemohon_ftv')->nullable();
             $table->float('cc_pertumbuhan_agunan')->nullable();

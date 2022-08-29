@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('ppr_capacities', function (Blueprint $table) {
             $table->id();
 
+            $table->integer('form_ppr_pembiayaan_id');
             $table->integer('ppr_scoring_atr_fixed_income_id');
             $table->float('capacity_pekerjaan')->nullable();
             $table->float('capacity_pengalaman_riwayat_pembiayaan')->nullable();

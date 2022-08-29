@@ -15,8 +15,8 @@ class PprConditionShariaGajiBersihController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.condition_sharia.gaji_bersih.index', [
-            'title' => 'Pengaturan Condition & Sharia Pendapatan/Gaji Bersih',
+        return view('admin::ppr.fixed_income.condition_sharia.gaji_bersih.index', [
+            'title' => 'Pengaturan Condition & Sharia Fixed Income Pendapatan/Gaji Bersih',
             'condition_sharia_gaji_bersihs' => PprConditionShariaGajiBersih::all(),
         ]);
     }

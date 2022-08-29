@@ -19,20 +19,24 @@ use Modules\Form\Entities\FormPprDataPinjamanLainnya;
 use Modules\Ppr\Entities\PprAbilityToRepayFixedIncome;
 use Modules\Ppr\Entities\PprAbilityToRepayNonFixedIncome;
 use Modules\Ppr\Entities\PprCapacity;
+use Modules\Ppr\Entities\PprCapacityNonFixed;
 use Modules\Ppr\Entities\PprCapital;
 use Modules\Ppr\Entities\PprCharacter;
+use Modules\Ppr\Entities\PprCharacterNonFixed;
 use Modules\Ppr\Entities\PprClDokumen;
-use Modules\Ppr\Entities\PprClDokumenAgunan;
-use Modules\Ppr\Entities\PprClDokumenFixedIncome;
-use Modules\Ppr\Entities\PprClDokumenNonFixedIncome;
-use Modules\Ppr\Entities\PprClPersyaratan;
 use Modules\Ppr\Entities\PprCollateral;
+use Modules\Ppr\Entities\PprCollateralNonFixed;
 use Modules\Ppr\Entities\PprCondition;
-use Modules\Ppr\Entities\PprPemberkasanMemo;
+use Modules\Ppr\Entities\PprConditionNonFixed;
+use Modules\Ppr\Entities\PprScoring;
 use Modules\Ppr\Entities\PprScoringAtrFixedIncome;
+use Modules\Ppr\Entities\PprScoringAtrNonFixedIncome;
 use Modules\Ppr\Entities\PprScoringCollateralFixedIncome;
+use Modules\Ppr\Entities\PprScoringCollateralNonFixedIncome;
 use Modules\Ppr\Entities\PprScoringFixedIncome;
+use Modules\Ppr\Entities\PprScoringNonFixedIncome;
 use Modules\Ppr\Entities\PprScoringWtrFixedIncome;
+use Modules\Ppr\Entities\PprScoringWtrNonFixedIncome;
 
 class FormPprPembiayaan extends Model
 {
@@ -56,11 +60,6 @@ class FormPprPembiayaan extends Model
     {
         return $this->belongsTo(FormPprDataPekerjaan::class, 'form_ppr_data_pekerjaan_id', 'id');
     }
-
-    // public function penghasilan_pengeluaran()
-    // {
-    //     return $this->belongsTo(FormPprDataPenghasilanPengeluaran::class, 'form_ppr_data_penghasilan_pengeluaran_id', 'id');
-    // }
 
     public function agunan()
     {
@@ -107,47 +106,12 @@ class FormPprPembiayaan extends Model
         return $this->belongsTo(FormPprDataPinjamanLainnya::class, 'form_ppr_data_pinjaman_lainnya_id', 'id');
     }
 
-    // public function clPersyaratan()
-    // {
-    //     return $this->belongsTo(PprClPersyaratan::class, 'ppr_cl_persyaratan_id', 'id');
-    // }
-
-    // public function clDokumenFixedIncome()
-    // {
-    //     return $this->belongsTo(PprClDokumenFixedIncome::class, 'ppr_cl_dokumen_fixed_income_id', 'id');
-    // }
-
-    // public function clDokumenNonFixedIncome()
-    // {
-    //     return $this->belongsTo(PprClDokumenNonFixedIncome::class, 'ppr_cl_dokumen_non_fixed_income_id', 'id');
-    // }
-
-    // public function clDokumenAgunan()
-    // {
-    //     return $this->belongsTo(PprClDokumenAgunan::class, 'ppr_cl_dokumen_agunan_id', 'id');
-    // }
-
-    // public function ArtFixedIncome()
-    // {
-    //     return $this->belongsTo(PprAbilityToRepayFixedIncome::class, 'ppr_ability_to_repay_fixed_income_id', 'id');
-    // }
-
-    // public function ArtNonFixedIncome()
-    // {
-    //     return $this->belongsTo(PprAbilityToRepayNonFixedIncome::class, 'ppr_ability_to_repay_fixed_income_id', 'id');
-    // }
-
-    // public function pemberkasanMemo()
-    // {
-    //     return $this->belongsTo(PprPemberkasanMemo::class, 'ppr_pemberkasan_memo_id', 'id');
-    // }
-
     public function dokumen()
     {
         return $this->belongsTo(PprClDokumen::class, 'ppr_cl_dokumen_id', 'id');
     }
 
-    //Scoring
+    //Scoring Fixed
     public function character()
     {
         return $this->belongsTo(PprCharacter::class, 'ppr_character_id', 'id');
@@ -188,9 +152,45 @@ class FormPprPembiayaan extends Model
         return $this->belongsTo(PprScoringCollateralFixedIncome::class, 'ppr_scoring_collateral_fixed_income_id', 'id');
     }
 
-    public function scoringFixedIncome()
+    //Scoring Non Fixed
+    public function characterNonFixed()
     {
-        return $this->belongsTo(PprScoringFixedIncome::class, 'ppr_scoring_fixed_income_id', 'id');
+        return $this->belongsTo(PprCharacterNonFixed::class, 'ppr_character_non_fixed_id', 'id');
+    }
+
+    public function capacityNonFixed()
+    {
+        return $this->belongsTo(PprCapacityNonFixed::class, 'ppr_capacity_non_fixed_id', 'id');
+    }
+
+    public function conditionNonFixed()
+    {
+        return $this->belongsTo(PprConditionNonFixed::class, 'ppr_condition_non_fixed_id', 'id');
+    }
+
+    public function collateralNonFixed()
+    {
+        return $this->belongsTo(PprCollateralNonFixed::class, 'ppr_collateral_non_fixed_id', 'id');
+    }
+
+    public function scoringAtrNonFixedIncome()
+    {
+        return $this->belongsTo(PprScoringAtrNonFixedIncome::class, 'ppr_scoring_atr_non_fixed_income_id', 'id');
+    }
+
+    public function scoringWtrNonFixedIncome()
+    {
+        return $this->belongsTo(PprScoringWtrNonFixedIncome::class, 'ppr_scoring_wtr_non_fixed_income_id', 'id');
+    }
+
+    public function scoringCollateralNonFixedIncome()
+    {
+        return $this->belongsTo(PprScoringCollateralNonFixedIncome::class, 'ppr_scoring_collateral_non_fixed_income_id', 'id');
+    }
+
+    public function scoring()
+    {
+        return $this->belongsTo(PprScoring::class, 'ppr_scoring_id', 'id');
     }
 
     protected static function newFactory()

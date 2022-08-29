@@ -15,9 +15,9 @@ class PprCollateralJangkaWaktuLikuidasiController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.collateral.jangka_waktu_likuiditas.index', [
-            'title' => 'Pengaturan Collateral Jangka Waktu Likuiditas',
-            'collateral_jangka_waktu_likuiditases' => PprCollateralJangkaWaktuLikuidasi::all(),
+        return view('admin::ppr.fixed_income.collateral.jangka_waktu_likuidasi.index', [
+            'title' => 'Pengaturan Collateral Fixed Income Jangka Waktu Likuidasi',
+            'collateral_jangka_waktu_likuidasis' => PprCollateralJangkaWaktuLikuidasi::all(),
         ]);
     }
 

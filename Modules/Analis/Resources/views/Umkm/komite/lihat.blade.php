@@ -716,7 +716,6 @@
                                                         <input type="hidden" name="jabatan_id" value=3>
                                                         <input type="hidden" name="user_id"
                                                             value="{{ Auth::user()->id }}">
-
                                                         <div class="col-12 text-center">
                                                             <button type="submit"
                                                                 class="btn btn-primary me-1 mt-1">Submit</button>

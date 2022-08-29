@@ -15,8 +15,8 @@ class PprCapitalPengalamanPembiayaanController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capital.pengalaman_pembiayaan.index', [
-            'title' => 'Pengaturan Capital Pengalaman Riwayat Pembiayaan',
+        return view('admin::ppr.fixed_income.capital.pengalaman_pembiayaan.index', [
+            'title' => 'Pengaturan Capital Fixed Income Pengalaman Riwayat Pembiayaan',
             'capital_pengalaman_pembiayaans' => PprCapitalPengalamanPembiayaan::all(),
         ]);
     }

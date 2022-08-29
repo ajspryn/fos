@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('ppr_scoring_wtr_fixed_incomes', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('ppr_scoring_fixed_income_id');
+            $table->integer('form_ppr_pembiayaan_id');
+            $table->integer('ppr_scoring_id');
             $table->float('wtr_fixed_tempat_bekerja')->nullable();
             $table->float('wtr_fixed_konsistensi')->nullable();
             $table->float('wtr_fixed_kelengkapan_validitas_data')->nullable();

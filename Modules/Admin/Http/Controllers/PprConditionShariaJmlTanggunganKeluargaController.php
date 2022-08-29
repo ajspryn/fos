@@ -15,8 +15,8 @@ class PprConditionShariaJmlTanggunganKeluargaController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.condition_sharia.jml_tanggungan_keluarga.index', [
-            'title' => 'Pengaturan Condition & Sharia Jumlah Tanggungan Keluarga',
+        return view('admin::ppr.fixed_income.condition_sharia.jml_tanggungan_keluarga.index', [
+            'title' => 'Pengaturan Condition & Sharia Fixed Income Jumlah Tanggungan Keluarga',
             'condition_sharia_jml_tanggungan_keluargas' => PprConditionShariaJmlTanggunganKeluarga::all(),
         ]);
     }

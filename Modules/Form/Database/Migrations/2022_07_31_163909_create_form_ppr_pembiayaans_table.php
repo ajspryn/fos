@@ -29,8 +29,6 @@ return new class extends Migration
             $table->integer('form_ppr_data_pinjaman_kartu_kredit_id');
             $table->integer('form_ppr_data_pinjaman_lainnya_id');
             $table->integer('user_id');
-            $table->string('form_cl')->nullable();
-            $table->string('form_score')->nullable();
 
             //Check List
             // $table->integer('ppr_cl_persyaratan_id')->nullable();
@@ -41,7 +39,10 @@ return new class extends Migration
             // $table->integer('ppr_ability_to_repay_non_fixed_income_id')->nullable();
             // $table->integer('ppr_pemberkasan_memo_id')->nullable();
             $table->integer('ppr_cl_dokumen_id')->nullable();
+            $table->integer('ppr_scoring_id')->nullable();
 
+            $table->string('form_cl')->nullable();
+            $table->string('form_score')->nullable();
             //Scoring
             // $table->integer('ppr_character_id')->nullable();
             // $table->integer('ppr_capital_id')->nullable();
@@ -52,7 +53,8 @@ return new class extends Migration
             // $table->integer('ppr_scoring_atr_fixed_income')->nullable();
             // $table->integer('ppr_scoring_wtr_fixed_income')->nullable();
             // $table->integer('ppr_scoring_collateral_fixed_income')->nullable();
-            $table->integer('ppr_scoring_fixed_income_id')->nullable();
+            // $table->integer('ppr_scoring_fixed_income_id')->nullable();
+            // $table->integer('ppr_scoring_non_fixed_income_id')->nullable();
 
             $table->string('form_permohonan_jenis_akad_pembayaran')->nullable();
             $table->string('form_permohonan_jenis_akad_pembayaran_lain')->nullable();

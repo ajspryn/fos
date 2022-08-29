@@ -230,7 +230,7 @@ class PasarKomiteController extends Controller
             'nasabah'=>PasarNasabahh::select()->where('id',$id)->get()->first(),
             'fotos'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->get(),
             'fototoko'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
-            'konfirmasi'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Konfirmasi Kepala Pasar')->get()->first(),
+            'nota'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
             'jaminanusahas'=>PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get(),
             'jaminanlainusahas'=>PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get(),
             'usahas'=>PasarKeteranganUsaha::all(), //udah

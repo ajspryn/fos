@@ -15,8 +15,8 @@ class PprCollateralMarketabilitasController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.collateral.marketabilitas.index', [
-            'title' => 'Pengaturan Collateral Marketabilitas',
+        return view('admin::ppr.fixed_income.collateral.marketabilitas.index', [
+            'title' => 'Pengaturan Collateral Fixed Income Marketabilitas',
             'collateral_marketabilitases' => PprCollateralMarketabilitas::all(),
         ]);
     }

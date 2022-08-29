@@ -15,8 +15,8 @@ class PprCapitalKeamananBisnisPekerjaanController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capital.keamanan_bisnis_pekerjaan.index', [
-            'title' => 'Pengaturan Capital Keamanan Bisnis/Pekerjaan',
+        return view('admin::ppr.fixed_income.capital.keamanan_bisnis_pekerjaan.index', [
+            'title' => 'Pengaturan Capital Fixed Income Keamanan Bisnis/Pekerjaan',
             'capital_keamanan_bisnis_pekerjaans' => PprCapitalKeamananBisnisPekerjaan::all(),
         ]);
     }

@@ -15,8 +15,8 @@ class PprCharacterKelengkapanValiditasController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.character.kelengkapan_validitas.index', [
-            'title' => 'Pengaturan Character Kelengkapan & Validitas Data',
+        return view('admin::ppr.fixed_income.character.kelengkapan_validitas.index', [
+            'title' => 'Pengaturan Character Fixed Income Kelengkapan & Validitas Data',
             'character_kelengkapan_validitases' => PprCharacterKelengkapanValiditas::all(),
         ]);
     }

@@ -352,14 +352,7 @@
                                                                                     {{ $rating_bendahara }}</td>
                                                                                 <td style="text-align: center">
                                                                                     {{ $nilai_bendahara }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#konfirmasibendahara">
-                                                                                        <i data-feather="eye"></i>
-                                                                                    </button>
-                                                                                </td>
+
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="text-align: center">2</td>
@@ -1091,8 +1084,8 @@
                                 <div class="modal-body px-sm-12 mx-50 pb-5">
                                     <h3 class="text-center">Lampiran Jaminan</h3>
                                     <div class="card-body">
-                                        <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
-                                    height='500'>
+                                        {{-- <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
+                                    height='500'> --}}
 
                                     </div>
                                 </div>

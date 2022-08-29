@@ -49,14 +49,13 @@
                                 <tbody>
                                     @foreach ($komites as $komite)
                                         @php
-                                            $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                ->where('id', $komite->pasar_pembiayaan_id)
+                                            $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+                                                ->where('pasar_pembiayaan_id', $komite->id)
+                                                ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
-                                            
-                                            $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-                                                ->where('pasar_pembiayaan_id', $proposal_pasar->id)
-                                                ->orderby('created_at', 'desc')
+                                            $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+                                                ->where('id', $history->pasar_pembiayaan_id)
                                                 ->get()
                                                 ->first();
                                         @endphp
@@ -76,7 +75,7 @@
                                                 <td style="text-align: center"
                                                     value="{{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}">
                                                     {{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}</td>
-                                                <td style="text-align: center">{{ $proposal_pasar->harga }}</td>
+                                                <td style="text-align: center">Rp.{{ number_format( $proposal_pasar->harga) }}</td>
                                                 <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
                                                 <td style="text-align: center"
                                                     value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">

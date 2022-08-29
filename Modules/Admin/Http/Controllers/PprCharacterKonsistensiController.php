@@ -15,8 +15,8 @@ class PprCharacterKonsistensiController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.character.konsistensi.index', [
-            'title' => 'Pengaturan Character Konsistensi',
+        return view('admin::ppr.fixed_income.character.konsistensi.index', [
+            'title' => 'Pengaturan Character Fixed Income Konsistensi',
             'character_konsistensis' => PprCharacterKonsistensi::all(),
         ]);
     }

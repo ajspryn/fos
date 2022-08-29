@@ -15,8 +15,8 @@ class PprCapacityJmlTanggunganKeluargaController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capacity.jml_tanggungan_keluarga.index', [
-            'title' => 'Pengaturan Capacity Jumlah Tanggungan Keluarga',
+        return view('admin::ppr.fixed_income.capacity.jml_tanggungan_keluarga.index', [
+            'title' => 'Pengaturan Capacity Fixed Income Jumlah Tanggungan Keluarga',
             'capacity_jml_tanggungan_keluargas' => PprCapacityJmlTanggunganKeluarga::all(),
         ]);
     }

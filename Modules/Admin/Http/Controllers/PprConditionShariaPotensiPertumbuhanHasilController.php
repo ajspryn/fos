@@ -15,8 +15,8 @@ class PprConditionShariaPotensiPertumbuhanHasilController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.condition_sharia.potensi_pertumbuhan_hasil.index', [
-            'title' => 'Pengaturan Condition & Sharia Potensi Pertumbuhan Hasil',
+        return view('admin::ppr.fixed_income.condition_sharia.potensi_pertumbuhan_hasil.index', [
+            'title' => 'Pengaturan Condition & Sharia Fixed Income Potensi Pertumbuhan Hasil',
             'condition_sharia_potensi_pertumbuhan_hasils' => PprConditionShariaPotensiPertumbuhanHasil::all(),
         ]);
     }

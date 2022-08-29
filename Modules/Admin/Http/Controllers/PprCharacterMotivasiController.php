@@ -15,8 +15,8 @@ class PprCharacterMotivasiController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.character.motivasi.index', [
-            'title' => 'Pengaturan Character Motivasi',
+        return view('admin::ppr.fixed_income.character.motivasi.index', [
+            'title' => 'Pengaturan Character Fixed Income Motivasi',
             'character_motivasis' => PprCharacterMotivasi::all(),
         ]);
     }
