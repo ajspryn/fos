@@ -34,7 +34,7 @@ class SkpdRevisiController extends Controller
     public function index()
     {
         $proposal = SkpdPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull('skpd_sektor_ekonomi_id')->get();
-        return view('skpd::Revisi.index', [
+        return view('skpd::revisi.index', [
             'title' => 'Revisi Proposal',
             'proposals' => $proposal,
         ]);
@@ -78,7 +78,7 @@ class SkpdRevisiController extends Controller
     {
         $datafoto = SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->get();
         $foto = $datafoto;
-        return view('skpd::Revisi.lihat', [
+        return view('skpd::revisi.lihat', [
             'title' => 'Detail Calon Nasabah',
             'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
             'nasabah' => SkpdNasabah::select()->where('id', $id)->get()->first(),
