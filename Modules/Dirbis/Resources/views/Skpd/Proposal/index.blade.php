@@ -60,11 +60,15 @@
                                             }
                                         @endphp
                                         @if ($history)
-                                            @if ($history->jabatan_id == 1 ||
-                                                $history->jabatan_id == 2 ||
-                                                $history->jabatan_id == 0 ||
-                                                ($history->jabatan_id == 3 && $history->status_id == 4))
+                                        @if (($history->jabatan_id == 1 || $history->jabatan_id == 2 || $history->jabatan_id == 0  || $history->jabatan_id == 3 && $history->status_id == 4))
+                                        <tr>
                                                 <tr>
+                                                    <td style="text-align: center">
+                                                        <button type="button"
+                                                            class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                            <i data-feather="eye"></i>
+                                                        </button>
+                                                    </td>
                                                     <td style="text-align: center">{{ $loop->iteration }}</td>
                                                     <td>{{ $proposal_skpd->nasabah->nama_nasabah }}</td>
                                                     <td>{{ $proposal_skpd->nasabah->alamat }},

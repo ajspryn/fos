@@ -1,5 +1,6 @@
 @include('skpd::layouts.head')
 @include('skpd::layouts.navbar')
+@include('sweetalert::alert')
 @include('skpd::layouts.sidebar')
 @yield('content')
 @include('skpd::layouts.footer')

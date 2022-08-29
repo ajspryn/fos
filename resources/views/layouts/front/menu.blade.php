@@ -19,8 +19,8 @@
             <!-- include ../../../includes/mixins-->
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="{{ Request::is('/', 'dashboard') ? 'active' : 'nav-item' }}"><a
-                        class="nav-link d-flex align-items-center" href="/" data-bs-toggle="dropdown"><i
-                            data-feather="home"></i><span data-i18n="Dashboards">Dashboards</span></a>
+                        class="nav-link d-flex align-items-center" href="/"><i data-feather="home"></i><span
+                            class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span></a>
                 </li>
                 <li class="{{ Request::is('simulasi') ? 'active' : 'nav-item' }} "><a
                         class="nav-link d-flex align-items-center" href="/simulasi"><i data-feather="monitor"></i><span
