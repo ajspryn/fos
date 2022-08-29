@@ -220,6 +220,25 @@ class SkpdRevisiController extends Controller
             }
         }
 
+        if ($request->slik[0]['nama_bank']){
+
+            SkpdSlik::select()->where('skpd_pembiayaan_id',$id)->delete();
+        
+            foreach ($request->slik as $key => $value) {
+
+            SkpdSlik::create([
+                'skpd_pembiayaan_id' => $id,
+                'nama_bank' => $value['nama_bank'],
+                'plafond' => $value['plafond'],
+                'outstanding' => $value['outstanding'],
+                'tenor' => $value['tenor'],
+                'margin' => $value['margin'],
+                'angsuran' => $value['angsuran'],
+                'agunan' => $value['agunan'],
+                'kol' => $value['kol'],
+            ]);
+        }}
+
         return redirect('/skpd/komite')->with('success', 'Pengajuan Anda Sedang Di Proses Silahkan Hubungi AO');
     }
 

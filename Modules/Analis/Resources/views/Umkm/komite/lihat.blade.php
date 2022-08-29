@@ -932,7 +932,7 @@
                                                         </div>
                                                         <!-- post img -->
                                                         <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $jaminanlainnya->dokumen_jaminanlain) }}"
+                                                            src="{{ asset('storage/' . $jaminanlainnya->dokumen_jaminan) }}"
                                                             alt="avatar img" />
                                                         <!--/ post img -->
                                                     </div>

@@ -117,6 +117,7 @@ class EditProposalController extends Controller
             'tanggungans'=>PasarTanggungan::all(),
             'statuss'=>PasarStatusPerkawinan::all(),
             'jaminans'=>PasarJenisJaminan::all(),
+            'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
         ]);
 
     }
@@ -128,8 +129,8 @@ class EditProposalController extends Controller
      * @return Renderable
      */
     public function update(Request $request, $id)
-    { {
-            return $request;
+    { 
+            // return $request;
 
             PasarPembiayaan::where('id',$id)->update([
                 'id' => $id,
@@ -145,7 +146,6 @@ class EditProposalController extends Controller
                 'jaminanlain_id' => $id,
                 'pasar_legalitas_rumah_id' => $id,
                 'pasar_keterangan_usaha_id' => $id,
-                'jaminanlain_id' => $request->jaminanlain_id,
                 'omset' => str_replace(",", "", $request->omset),
                 'hpp' => str_replace(",", "", $request->hpp),
                 'listrik' => str_replace(",", "", $request->listrik),
@@ -193,19 +193,21 @@ class EditProposalController extends Controller
 
             $dokumenktb = $request->file('dokumenktb')->store('pasar-dokumen-ktb');
 
-
             PasarJaminan::where('pasar_pembiayaan_id',$id)->update([
-                'pasar_pembiayaan_id' => $id,
-                'no_ktb' => $request->no_ktb,
-                'dokumenktb' => $dokumenktb,
+                'pasar_pembiayaan_id'=> $id,
+                'no_ktb'=> $request ->no_ktb,
+                'dokumenktb'=> $dokumenktb,   
+                'jaminanlain'=> $request ->jaminanlain,
             ]);
 
 
-            PasarJaminanLain::where('pasar_pembiayaan_id',$id)->update([
-                'pasar_pembiayaan_id' => $id,
-                'jaminanlain' => $request->jaminanlain,
-                'dokumen_jaminan' => $request->file('dokumen_jaminan')->store('pasar-dokumen_jaminanlain'),
-            ]);
+            if($request->file('dokumen_jaminan')){
+                $dokumen_jaminan=$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminan');
+                PasarJaminanLain::create([
+                    'pasar_pembiayaan_id'=> $id,
+                    'dokumen_jaminan'=>$dokumen_jaminan,
+                ]);
+            }
 
             PasarLegalitasRumah::where('pasar_pembiayaan_id',$id)->update([
                 'pasar_pembiayaan_id' => $id,
@@ -216,7 +218,7 @@ class EditProposalController extends Controller
 
             PasarPembiayaanHistory::create([
                 'pasar_pembiayaan_id' => $id,
-                'status_id' => 7,
+                'status_id' => 2,
                 'user_id' => auth::user()->id,
                 'jabatan_id' => 1,
                 'divisi_id' => null,
@@ -238,26 +240,24 @@ class EditProposalController extends Controller
             //     'foto.*.kategori' => 'required',
             //     'foto.*.foto' => 'required',
             // ]);
-
-            foreach ($request->foto as $key => $value) {
-                if ($value['foto']) {
-                    if ($value['foto_lama']) {
-                        Storage::delete($value['foto_lama']);
-                    }
-    
-                    $foto = $value['foto']->store('foto-pasar-pembiayaan');
-    
-                   PasarFoto::where('pasar_pembiayaan_id', $id)->update([
-                        'pasar_pembiayaan_id' => $id,
-                        'kategori' => $value['kategori'],
-                        'foto' => $foto,
-                    ]);
+            foreach($request->foto as $key => $value){
+                if($value['foto']){
+                    $foto=$value['foto']->store('foto-pasar-pembiayaan');
                 }
+                PasarFoto::create([
+                    'pasar_pembiayaan_id'=>$id,
+                    'kategori'=>$value['kategori'],
+                    'foto'=>$foto,
+                ]);
             }
 
+            if ($request->slik[0]['nama_bank']){
 
-                // return $value;
-                PasarSlik::where('pasar_pembiayaan_id',$id)->update([
+                PasarSlik::select()->where('pasar_pembiayaan_id',$id)->delete();
+            
+                foreach ($request->slik as $key => $value) {
+
+                PasarSlik::create([
                     'pasar_pembiayaan_id' => $id,
                     'nama_bank' => $value['nama_bank'],
                     'plafond' => $value['plafond'],
@@ -268,10 +268,16 @@ class EditProposalController extends Controller
                     'agunan' => $value['agunan'],
                     'kol' => $value['kol'],
                 ]);
+            }}
+
+            else{
+
+            }
+            
             
 
             return redirect('/pasar/komite/'.$id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
-        }
+        
     }
 
     /**
