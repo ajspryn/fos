@@ -1,5 +1,6 @@
 @include('umkm::layouts.head')
 @include('umkm::layouts.navbar')
+@include('sweetalert::alert')
 @include('umkm::layouts.sidebar')
 @yield('content')
 @include('umkm::layouts.footer')
