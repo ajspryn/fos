@@ -15,8 +15,8 @@ class PprConditionShariaUsiaController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.condition_sharia.usia.index', [
-            'title' => 'Pengaturan Condition & Sharia Usia',
+        return view('admin::ppr.fixed_income.condition_sharia.usia.index', [
+            'title' => 'Pengaturan Condition & Sharia Fixed Income Usia',
             'condition_sharia_usias' => PprConditionShariaUsia::all(),
         ]);
     }

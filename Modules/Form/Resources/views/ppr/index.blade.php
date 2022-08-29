@@ -5,6 +5,59 @@
     <style>
         .data {
             visibility: hidden;
+            height: 0;
+        }
+
+        #ifMenikah {
+            background-size: cover;
+            width: 100%;
+            height: 300px;
+            transition: all 0.5s;
+        }
+
+        #ifMenikah.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifMenikahHeader {
+            background-size: cover;
+            width: 100%;
+            height: 60px;
+            transition: all 0.5s;
+        }
+
+        #ifMenikahHeader.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifISM {
+            background-size: cover;
+            width: 100%;
+            height: 1000px;
+            transition: all 0.5s;
+        }
+
+        #ifISM.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifISMHeader {
+            background-size: cover;
+            width: 100%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifISMHeader.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
         }
     </style>
 
@@ -187,13 +240,13 @@
                                         <label class="form-label" for="form_permohonan_nilai_hpp">Nilai HPP</label>
                                         <input type="text" name="form_permohonan_nilai_hpp"
                                             id="form_permohonan_nilai_hpp" class="form-control  numeral-mask2"
-                                            placeholder="Nilai HPP/Harga Jual" />
+                                            placeholder="Nilai HPP" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_permohonan_harga_jual">Harga Jual</label>
                                         <input type="text" name="form_permohonan_harga_jual"
                                             id="form_permohonan_harga_jual" class="form-control numeral-mask3"
-                                            placeholder="Nilai HPP/Harga Jual" />
+                                            placeholder="Harga Jual" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_permohonan_jangka_waktu_ppr"><small
@@ -261,6 +314,7 @@
                                             <option value="Kantor Pos">Kantor Pos</option>
                                         </select>
                                     </div>
+
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-3">
@@ -268,7 +322,7 @@
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                     </button>
-                                    <button class="btn btn-primary btn-next">
+                                    <button class="btn btn-primary btn-next" type="button">
                                         <span class="align-middle d-sm-inline-block d-none">Next</span>
                                         <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                     </button>
@@ -277,12 +331,13 @@
 
 
                             <!-- Form Data Pribadi -->
-
                             <div id="formDataPribadi" class="content" role="tabpanel" aria-labelledby="pribadi-trigger">
                                 <div class="content-header">
                                     <h4 class="mb-0 mt-2">Data Pribadi</h4>
                                     <hr>
                                 </div>
+
+                                <!-- Data Pemohon start -->
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Pemohon PPR Syariah</h5>
                                     <small class="text-muted">Lengkapi Data Diri.</small>
@@ -412,10 +467,10 @@
                                         <select class="select2 w-100" name="form_pribadi_pemohon_status_pernikahan"
                                             id="form_pribadi_pemohon_status_pernikahan" onChange="changeStatus()">
                                             <option label="status" selected disabled>Pilih Status Pernikahan</option>
-                                            <option value="BM">Belum Menikah</option>
-                                            <option value="M">Menikah</option>
-                                            <option value="JDM">Janda/Duda - Meninggal</option>
-                                            <option value="JDC">Janda/Duda - Cerai</option>
+                                            <option value="Belum Menikah">Belum Menikah</option>
+                                            <option value="Menikah">Menikah</option>
+                                            <option value="Janda/Duda - Meninggal">Janda/Duda - Meninggal</option>
+                                            <option value="Janda/Duda - Cerai">Janda/Duda - Cerai</option>
                                         </select>
                                     </div>
                                     <div class="mb-1 col-md-6">
@@ -563,7 +618,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="mb-1 col-md-6"></div>
 
                                         <div class="row">
                                             <div class="mb-1 col-md-12">
@@ -813,8 +867,88 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <!-- Data Pemohon end -->
 
-                                        <!-- Keluarga Terdekat -->
+                                        <!-- Istri/Suami start -->
+                                        <div class="content-header hide" id="ifMenikahHeader">
+                                            <h5 class="mb-0 mt-2">Istri / Suami</h5>
+                                            <small class="text-muted">Lengkapi Data Istri/Suami.</small>
+                                        </div>
+                                        <div class="row hide" id="ifMenikah">
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="form_pribadi_istri_suami_nama_lengkap">Nama
+                                                    Lengkap</label>
+                                                <input type="text" name="form_pribadi_istri_suami_nama_lengkap"
+                                                    id="form_pribadi_istri_suami_nama_lengkap" class="form-control"
+                                                    placeholder="Nama Lengkap" />
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label"
+                                                    for="form_pribadi_istri_suami_gelar">Gelar</label>
+                                                <input type="text" name="form_pribadi_istri_suami_gelar"
+                                                    id="form_pribadi_istri_suami_gelar" class="form-control"
+                                                    placeholder="Gelar" />
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="form_pribadi_istri_suami_no_ktp">No.
+                                                    KTP</label>
+                                                <input type="number" name="form_pribadi_istri_suami_no_ktp"
+                                                    id="form_pribadi_istri_suami_no_ktp" class="form-control"
+                                                    placeholder="Masukkan Nomor KTP Istri/Suami Anda" />
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label"
+                                                    for="form_pribadi_istri_suami_no_ktp_berlaku_sd">Berlaku
+                                                    s/d.</label>
+                                                <input type="date" id="form_pribadi_istri_suami_no_ktp_berlaku_sd"
+                                                    class="form-control flatpickr-basic"
+                                                    name="form_pribadi_istri_suami_no_ktp_berlaku_sd"
+                                                    placeholder="DD-MM-YYYY" />
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label"
+                                                    for="form_pribadi_istri_suami_tempat_lahir">Tempat Lahir</label>
+                                                <input type="text" name="form_pribadi_istri_suami_tempat_lahir"
+                                                    id="form_pribadi_istri_suami_tempat_lahir" class="form-control"
+                                                    placeholder="Masukkan Tempat Lahir Istri/Suami" />
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label"
+                                                    for="form_pribadi_istri_suami_tanggal_lahir">Tanggal Lahir</label>
+                                                <input type="date" id="form_pribadi_istri_suami_tanggal_lahir"
+                                                    class="form-control flatpickr-basic"
+                                                    name="form_pribadi_istri_suami_tanggal_lahir"
+                                                    placeholder="DD-MM-YYYY" />
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="form_pribadi_istri_suami_npwp">No.
+                                                    NPWP</label>
+                                                <input type="number" name="form_pribadi_istri_suami_npwp"
+                                                    id="form_pribadi_istri_suami_npwp" class="form-control"
+                                                    placeholder="Masukkan Nomor NPWP Anda" />
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label"
+                                                    for="form_pribadi_istri_suami_pendidikan">Pendidikan</label>
+                                                <select class="select2 w-100" name="form_pribadi_istri_suami_pendidikan"
+                                                    id="form_pribadi_istri_suami_pendidikan">
+                                                    <option label="pendidikanis" selected disabled>Pilih Pendidikan
+                                                    </option>
+                                                    <option value="SD">SD</option>
+                                                    <option value="SLTP">SLTP</option>
+                                                    <option value="SLTA">SLTA</option>
+                                                    <option value="D1">D1</option>
+                                                    <option value="D2">D2</option>
+                                                    <option value="D3">D3</option>
+                                                    <option value="S1">S1</option>
+                                                    <option value="S2">S2</option>
+                                                    <option value="S3">S3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Istri/Suami end -->
+
+                                        <!-- Keluarga Terdekat start -->
                                         <div class="content-header">
                                             <h5 class="mb-0 mt-2">Keluarga Terdekat</h5>
                                             <small class="text-muted">Untuk keperluan mendadak (keluarga dekat tidak
@@ -980,7 +1114,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -995,85 +1128,7 @@
                                                         placeholder="Masukkan Nomor Telepon Keluarga Terdekat" required />
                                                 </div>
                                             </div>
-
-                                            <!-- Istri/Suami -->
-                                            <div class="content-header data" id="ifMenikahHeader">
-                                                <h5 class="mb-0 mt-2">Istri / Suami</h5>
-                                                <small class="text-muted">Lengkapi Data Istri/Suami.</small>
-                                            </div>
-                                            <div class="row data" id="ifMenikah">
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label"
-                                                        for="form_pribadi_istri_suami_nama_lengkap">Nama Lengkap</label>
-                                                    <input type="text" name="form_pribadi_istri_suami_nama_lengkap"
-                                                        id="form_pribadi_istri_suami_nama_lengkap" class="form-control"
-                                                        placeholder="Nama Lengkap" />
-                                                </div>
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label"
-                                                        for="form_pribadi_istri_suami_gelar">Gelar</label>
-                                                    <input type="text" name="form_pribadi_istri_suami_gelar"
-                                                        id="form_pribadi_istri_suami_gelar" class="form-control"
-                                                        placeholder="Gelar" />
-                                                </div>
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label" for="form_pribadi_istri_suami_no_ktp">No.
-                                                        KTP</label>
-                                                    <input type="number" name="form_pribadi_istri_suami_no_ktp"
-                                                        id="form_pribadi_istri_suami_no_ktp" class="form-control"
-                                                        placeholder="Masukkan Nomor KTP Istri/Suami Anda" />
-                                                </div>
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label"
-                                                        for="form_pribadi_istri_suami_no_ktp_berlaku_sd">Berlaku
-                                                        s/d.</label>
-                                                    <input type="date" id="form_pribadi_istri_suami_no_ktp_berlaku_sd"
-                                                        class="form-control flatpickr-basic"
-                                                        name="form_pribadi_istri_suami_no_ktp_berlaku_sd"
-                                                        placeholder="DD-MM-YYYY" />
-                                                </div>
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label"
-                                                        for="form_pribadi_istri_suami_tempat_lahir">Tempat Lahir</label>
-                                                    <input type="text" name="form_pribadi_istri_suami_tempat_lahir"
-                                                        id="form_pribadi_istri_suami_tempat_lahir" class="form-control"
-                                                        placeholder="Masukkan Tempat Lahir Istri/Suami" />
-                                                </div>
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label"
-                                                        for="form_pribadi_istri_suami_tanggal_lahir">Tanggal Lahir</label>
-                                                    <input type="date" id="form_pribadi_istri_suami_tanggal_lahir"
-                                                        class="form-control flatpickr-basic"
-                                                        name="form_pribadi_istri_suami_tanggal_lahir"
-                                                        placeholder="DD-MM-YYYY" />
-                                                </div>
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label" for="form_pribadi_istri_suami_npwp">No.
-                                                        NPWP</label>
-                                                    <input type="number" name="form_pribadi_istri_suami_npwp"
-                                                        id="form_pribadi_istri_suami_npwp" class="form-control"
-                                                        placeholder="Masukkan Nomor NPWP Anda" />
-                                                </div>
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label"
-                                                        for="form_pribadi_istri_suami_pendidikan">Pendidikan</label>
-                                                    <select class="select2 w-100"
-                                                        name="form_pribadi_istri_suami_pendidikan"
-                                                        id="form_pribadi_istri_suami_pendidikan">
-                                                        <option label="pendidikanis" selected disabled>Pilih Pendidikan
-                                                        </option>
-                                                        <option value="SD">SD</option>
-                                                        <option value="SLTP">SLTP</option>
-                                                        <option value="SLTA">SLTA</option>
-                                                        <option value="D1">D1</option>
-                                                        <option value="D2">D2</option>
-                                                        <option value="D3">D3</option>
-                                                        <option value="S1">S1</option>
-                                                        <option value="S2">S2</option>
-                                                        <option value="S3">S3</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            <!-- Keluarga Terdekat end -->
 
                                             <div class="d-flex justify-content-between mt-3">
                                                 <button class="btn btn-primary btn-prev" type="button">
@@ -1428,12 +1483,12 @@
                                 </div>
 
                                 {{-- Istri/Suami pemohon --}}
-                                <div class="content-header" id="ifISMHeader">
+                                <div class="content-header hide" id="ifISMHeader">
                                     <h5 class="mb-0 mt-2">Istri/Suami Pemohon PPR Syariah</h5>
                                     <small class="text-muted">Lengkapi Data Pekerjaan, kosongkan bila tidak
                                         bekerja.</small>
                                 </div>
-                                <div class="row" id="ifISM">
+                                <div class="row hide" id="ifISM">
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_istri_suami_nama">Nama
                                             Perusahaan/Instansi</label>
@@ -1706,7 +1761,7 @@
                                             <div class="mb-1">
                                                 <label class="form-label"
                                                     for="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_jabatan">Jabatan</label>
-                                                <input type="number" class="form-control"
+                                                <input type="text" class="form-control"
                                                     name="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_jabatan"
                                                     id="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_jabatan"
                                                     aria-describedby="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_jabatan"
@@ -1885,7 +1940,7 @@
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                     </button>
-                                    <button class="btn btn-primary btn-next">
+                                    <button class="btn btn-primary btn-next" type="button">
                                         <span class="align-middle d-sm-inline-block d-none">Next</span>
                                         <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                     </button>
@@ -2488,7 +2543,7 @@
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                     </button>
-                                    <button class="btn btn-primary btn-next">
+                                    <button class="btn btn-primary btn-next" type="button">
                                         <span class="align-middle d-sm-inline-block d-none">Next</span>
                                         <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                     </button>
@@ -3580,19 +3635,26 @@
     <script>
         function changeStatus() {
             var status = document.getElementById("form_pribadi_pemohon_status_pernikahan");
-            if (status.value == "M") {
-                document.getElementById("ifMenikahHeader").style.visibility = "visible",
-                    document.getElementById("ifMenikah").style.visibility = "visible",
-                    document.getElementById("ifISMHeader").style.visibility = "visible",
-                    document.getElementById("ifISM").style.visibility = "visible";
-            } else {
-                document.getElementById("ifMenikahHeader").style.visibility = "collapse",
-                    document.getElementById("ifMenikah").style.visibility = "collapse",
-                    document.getElementById("ifISMHeader").style.visibility = "collapse",
-                    document.getElementById("ifISM").style.visibility = "collapse";
+            if (status.value == "Menikah") {
+                document.getElementById("ifMenikahHeader").classList.toggle("hide"),
+                    ifMenikahHeader.classList.add("content-header"),
 
+                    document.getElementById("ifMenikah").classList.toggle("hide"),
+                    ifMenikah.classList.add("row"),
+
+                    document.getElementById("ifISMHeader").classList.toggle("hide"),
+                    ifISMHeader.classList.add("content-header"),
+
+                    document.getElementById("ifISM").classList.toggle("hide"),
+                    ifISM.classList.add("row");
+            } else {
+                document.getElementById("ifMenikahHeader").classList = "hide",
+                    document.getElementById("ifMenikah").classList = "hide",
+                    document.getElementById("ifISMHeader").classList = "hide",
+                    document.getElementById("ifISM").classList = "hide";
             }
         }
+
 
         function changeJenisAkad() {
             var jenis_akad_pembayaran = document.getElementById("form_permohonan_jenis_akad_pembayaran");

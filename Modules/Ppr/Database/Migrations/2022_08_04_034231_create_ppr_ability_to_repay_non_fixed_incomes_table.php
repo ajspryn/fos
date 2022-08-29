@@ -19,95 +19,95 @@ return new class extends Migration
             $table->integer('ppr_cl_dokumen_id');
 
             //Usaha 1
-            $table->integer('usaha1_penjualan')->nullable();
-            $table->integer('usaha1_diskon')->nullable();
-            $table->integer('usaha1_retur')->nullable();
-            $table->integer('usaha1_penjualan_bersih')->nullable();
+            $table->string('usaha1_penjualan', 25)->nullable();
+            $table->string('usaha1_diskon', 25)->nullable();
+            $table->string('usaha1_retur', 25)->nullable();
+            $table->string('usaha1_penjualan_bersih', 25)->nullable();
 
-            $table->integer('usaha1_persediaan_barang_langsung')->nullable();
-            $table->integer('usaha1_pembelian_bahan_langsung')->nullable();
-            $table->integer('usaha1_upah_langsung')->nullable();
+            $table->string('usaha1_persediaan_barang_langsung', 25)->nullable();
+            $table->string('usaha1_pembelian_bahan_langsung', 25)->nullable();
+            $table->string('usaha1_upah_langsung', 25)->nullable();
 
-            $table->integer('usaha1_upah_tidak_langsung')->nullable();
-            $table->integer('usaha1_biaya_penyusutan')->nullable();
-            $table->integer('usaha1_boh_lain')->nullable();
-            $table->integer('usaha1_total_boh')->nullable();
+            $table->string('usaha1_upah_tidak_langsung', 25)->nullable();
+            $table->string('usaha1_biaya_penyusutan', 25)->nullable();
+            $table->string('usaha1_boh_lain', 25)->nullable();
+            $table->string('usaha1_total_boh', 25)->nullable();
 
-            $table->integer('usaha1_jumlah_harga_pokok_penjualan')->nullable();
-            $table->integer('usaha1_laba_kotor')->nullable();
+            $table->string('usaha1_jumlah_harga_pokok_penjualan', 25)->nullable();
+            $table->string('usaha1_laba_kotor', 25)->nullable();
 
-            $table->integer('usaha1_biaya_penjualan')->nullable();
-            $table->integer('usaha1_biaya_gaji_kds')->nullable();
-            $table->integer('usaha1_biaya_lisrik_telp_air')->nullable();
-            $table->integer('usaha1_biaya_perawatan_gedung')->nullable();
-            $table->integer('usaha1_biaya_bagi_hasil_sewa_margin')->nullable();
-            $table->integer('usaha1_biaya_adm_lain')->nullable();
-            $table->integer('usaha1_jml_biaya_adm')->nullable();
-            $table->integer('usaha1_laba_sebelum_pajak')->nullable();
-            $table->integer('usaha1_pajak_zakat')->nullable();
-            $table->integer('usaha1_laba_setelah_pajak')->nullable();
+            $table->string('usaha1_biaya_penjualan', 25)->nullable();
+            $table->string('usaha1_biaya_gaji_kds', 25)->nullable();
+            $table->string('usaha1_biaya_lisrik_telp_air', 25)->nullable();
+            $table->string('usaha1_biaya_perawatan_gedung', 25)->nullable();
+            $table->string('usaha1_biaya_bagi_hasil_sewa_margin', 25)->nullable();
+            $table->string('usaha1_biaya_adm_lain', 25)->nullable();
+            $table->string('usaha1_jml_biaya_adm', 25)->nullable();
+            $table->string('usaha1_laba_sebelum_pajak', 25)->nullable();
+            $table->string('usaha1_pajak_zakat', 25)->nullable();
+            $table->string('usaha1_laba_setelah_pajak', 25)->nullable();
 
             //Usaha 2
-            $table->integer('usaha2_penjualan')->nullable();
-            $table->integer('usaha2_diskon')->nullable();
-            $table->integer('usaha2_retur')->nullable();
-            $table->integer('usaha2_penjualan_bersih')->nullable();
+            $table->string('usaha2_penjualan', 25)->nullable();
+            $table->string('usaha2_diskon', 25)->nullable();
+            $table->string('usaha2_retur', 25)->nullable();
+            $table->string('usaha2_penjualan_bersih', 25)->nullable();
 
-            $table->integer('usaha2_persediaan_barang_langsung')->nullable();
-            $table->integer('usaha2_pembelian_bahan_langsung')->nullable();
-            $table->integer('usaha2_upah_langsung')->nullable();
+            $table->string('usaha2_persediaan_barang_langsung', 25)->nullable();
+            $table->string('usaha2_pembelian_bahan_langsung', 25)->nullable();
+            $table->string('usaha2_upah_langsung', 25)->nullable();
 
-            $table->integer('usaha2_upah_tidak_langsung')->nullable();
-            $table->integer('usaha2_biaya_penyusutan')->nullable();
-            $table->integer('usaha2_boh_lain')->nullable();
-            $table->integer('usaha2_total_boh')->nullable();
+            $table->string('usaha2_upah_tidak_langsung', 25)->nullable();
+            $table->string('usaha2_biaya_penyusutan', 25)->nullable();
+            $table->string('usaha2_boh_lain', 25)->nullable();
+            $table->string('usaha2_total_boh', 25)->nullable();
 
-            $table->integer('usaha2_jumlah_harga_pokok_penjualan')->nullable();
-            $table->integer('usaha2_laba_kotor')->nullable();
+            $table->string('usaha2_jumlah_harga_pokok_penjualan', 25)->nullable();
+            $table->string('usaha2_laba_kotor', 25)->nullable();
 
-            $table->integer('usaha2_biaya_penjualan')->nullable();
-            $table->integer('usaha2_biaya_gaji_kds')->nullable();
-            $table->integer('usaha2_biaya_lisrik_telp_air')->nullable();
-            $table->integer('usaha2_biaya_perawatan_gedung')->nullable();
-            $table->integer('usaha2_biaya_bagi_hasil_sewa_margin')->nullable();
-            $table->integer('usaha2_biaya_adm_lain')->nullable();
-            $table->integer('usaha2_jml_biaya_adm')->nullable();
-            $table->integer('usaha2_laba_sebelum_pajak')->nullable();
-            $table->integer('usaha2_pajak_zakat')->nullable();
-            $table->integer('usaha2_laba_setelah_pajak')->nullable();
+            $table->string('usaha2_biaya_penjualan', 25)->nullable();
+            $table->string('usaha2_biaya_gaji_kds', 25)->nullable();
+            $table->string('usaha2_biaya_lisrik_telp_air', 25)->nullable();
+            $table->string('usaha2_biaya_perawatan_gedung', 25)->nullable();
+            $table->string('usaha2_biaya_bagi_hasil_sewa_margin', 25)->nullable();
+            $table->string('usaha2_biaya_adm_lain', 25)->nullable();
+            $table->string('usaha2_jml_biaya_adm', 25)->nullable();
+            $table->string('usaha2_laba_sebelum_pajak', 25)->nullable();
+            $table->string('usaha2_pajak_zakat', 25)->nullable();
+            $table->string('usaha2_laba_setelah_pajak', 25)->nullable();
 
             //Usaha Pasangan
-            $table->integer('usaha_pasangan_penjualan')->nullable();
-            $table->integer('usaha_pasangan_diskon')->nullable();
-            $table->integer('usaha_pasangan_retur')->nullable();
-            $table->integer('usaha_pasangan_penjualan_bersih')->nullable();
+            $table->string('usaha_pasangan_penjualan', 25)->nullable();
+            $table->string('usaha_pasangan_diskon', 25)->nullable();
+            $table->string('usaha_pasangan_retur', 25)->nullable();
+            $table->string('usaha_pasangan_penjualan_bersih', 25)->nullable();
 
-            $table->integer('usaha_pasangan_persediaan_barang_langsung')->nullable();
-            $table->integer('usaha_pasangan_pembelian_bahan_langsung')->nullable();
-            $table->integer('usaha_pasangan_upah_langsung')->nullable();
+            $table->string('usaha_pasangan_persediaan_barang_langsung', 25)->nullable();
+            $table->string('usaha_pasangan_pembelian_bahan_langsung', 25)->nullable();
+            $table->string('usaha_pasangan_upah_langsung', 25)->nullable();
 
-            $table->integer('usaha_pasangan_upah_tidak_langsung')->nullable();
-            $table->integer('usaha_pasangan_biaya_penyusutan')->nullable();
-            $table->integer('usaha_pasangan_boh_lain')->nullable();
-            $table->integer('usaha_pasangan_total_boh')->nullable();
+            $table->string('usaha_pasangan_upah_tidak_langsung', 25)->nullable();
+            $table->string('usaha_pasangan_biaya_penyusutan', 25)->nullable();
+            $table->string('usaha_pasangan_boh_lain', 25)->nullable();
+            $table->string('usaha_pasangan_total_boh', 25)->nullable();
 
-            $table->integer('usaha_pasangan_jumlah_harga_pokok_penjualan')->nullable();
-            $table->integer('usaha_pasangan_laba_kotor')->nullable();
+            $table->string('usaha_pasangan_jumlah_harga_pokok_penjualan', 25)->nullable();
+            $table->string('usaha_pasangan_laba_kotor', 25)->nullable();
 
-            $table->integer('usaha_pasangan_biaya_penjualan')->nullable();
-            $table->integer('usaha_pasangan_biaya_gaji_kds')->nullable();
-            $table->integer('usaha_pasangan_biaya_lisrik_telp_air')->nullable();
-            $table->integer('usaha_pasangan_biaya_perawatan_gedung')->nullable();
-            $table->integer('usaha_pasangan_biaya_bagi_hasil_sewa_margin')->nullable();
-            $table->integer('usaha_pasangan_biaya_adm_lain')->nullable();
-            $table->integer('usaha_pasangan_jml_biaya_adm')->nullable();
-            $table->integer('usaha_pasangan_laba_sebelum_pajak')->nullable();
-            $table->integer('usaha_pasangan_pajak_zakat')->nullable();
-            $table->integer('usaha_pasangan_laba_setelah_pajak')->nullable();
+            $table->string('usaha_pasangan_biaya_penjualan', 25)->nullable();
+            $table->string('usaha_pasangan_biaya_gaji_kds', 25)->nullable();
+            $table->string('usaha_pasangan_biaya_lisrik_telp_air', 25)->nullable();
+            $table->string('usaha_pasangan_biaya_perawatan_gedung', 25)->nullable();
+            $table->string('usaha_pasangan_biaya_bagi_hasil_sewa_margin', 25)->nullable();
+            $table->string('usaha_pasangan_biaya_adm_lain', 25)->nullable();
+            $table->string('usaha_pasangan_jml_biaya_adm', 25)->nullable();
+            $table->string('usaha_pasangan_laba_sebelum_pajak', 25)->nullable();
+            $table->string('usaha_pasangan_pajak_zakat', 25)->nullable();
+            $table->string('usaha_pasangan_laba_setelah_pajak', 25)->nullable();
 
             //Total
-            $table->integer('total_penghasilan_bersih')->nullable();
-            $table->integer('total_angsuran')->nullable();
+            $table->string('total_penghasilan_bersih', 25)->nullable();
+            $table->string('total_angsuran', 25)->nullable();
             $table->timestamps();
         });
     }

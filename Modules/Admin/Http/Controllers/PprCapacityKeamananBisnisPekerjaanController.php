@@ -15,8 +15,8 @@ class PprCapacityKeamananBisnisPekerjaanController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capacity.keamanan_bisnis_pekerjaan.index', [
-            'title' => 'Pengaturan Capacity Keamanan Bisnis/Pekerjaan',
+        return view('admin::ppr.fixed_income.capacity.keamanan_bisnis_pekerjaan.index', [
+            'title' => 'Pengaturan Capacity Fixed Income Keamanan Bisnis/Pekerjaan',
             'capacity_keamanan_bisnis_pekerjaans' => PprCapacityKeamananBisnisPekerjaan::all(),
         ]);
     }

@@ -81,7 +81,7 @@
                                             <td style="text-align: center">
                                                 {{ date_format($proposal->created_at, 'd-m-Y') }}
                                             </td>
-                                            <td>{{ $proposal->jenis_nasabah }}</td>
+                                            <td style="text-align: center">{{ $proposal->jenis_nasabah }}</td>
                                             <td style="text-align: center">
                                                 {{ $proposal->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
                                             <td style="text-align: center">

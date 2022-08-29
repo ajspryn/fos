@@ -15,8 +15,8 @@ class PprCollateralPertumbuhanAgunanController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.collateral.pertumbuhan_agunan.index', [
-            'title' => 'Pengaturan Collateral Pertumbuhan Agunan',
+        return view('admin::ppr.fixed_income.collateral.pertumbuhan_agunan.index', [
+            'title' => 'Pengaturan Collateral Fixed Income Pertumbuhan Agunan',
             'collateral_pertumbuhan_agunans' => PprCollateralPertumbuhanAgunan::all(),
         ]);
     }

@@ -15,8 +15,8 @@ class PprCharacterTempatBekerjaController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.character.tempat_bekerja.index', [
-            'title' => 'Pengaturan Character Tempat Bekerja',
+        return view('admin::ppr.fixed_income.character.tempat_bekerja.index', [
+            'title' => 'Pengaturan Character Fixed Income Tempat Bekerja',
             'character_tempat_bekerjas' => PprCharacterTempatBekerja::all(),
         ]);
     }

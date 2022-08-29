@@ -15,8 +15,8 @@ class PprCapacityPendidikanController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capacity.pendidikan.index', [
-            'title' => 'Pengaturan Capacity Pendidikan',
+        return view('admin::ppr.fixed_income.capacity.pendidikan.index', [
+            'title' => 'Pengaturan Capacity Fixed Income Pendidikan',
             'capacity_pendidikans' => PprCapacityPendidikan::all(),
         ]);
     }

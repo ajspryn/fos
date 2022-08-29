@@ -170,7 +170,8 @@
     <script src="../../../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
     <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
     <script src="../../../app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
-
+    <script src="../../../app-assets/vendors/js/forms/cleave/cleave.min.js"></script>
+    <script src="../../../app-assets/vendors/js/forms/cleave/addons/cleave-phone.us.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -180,12 +181,16 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="../../../app-assets/js/scripts/pages/dashboard-ecommerce.min.js"></script>
-    <script src="../../../app-assets/js/scripts/tables/table-datatables-basic.min.js"></script>
     <script src="../../../app-assets/js/scripts/forms/form-wizard.min.js"></script>
+    <script src="../../../app-assets/js/scripts/pages/dashboard-ecommerce.min.js"></script>
+    <script src="../../../app-assets/js/scripts/forms/pickers/form-pickers.min.js"></script>
+    <script src="../../../app-assets/js/scripts/tables/table-datatables-basic.min.js"></script>
     <script src="../../../app-assets/js/scripts/forms/form-repeater.min.js"></script>
+    <script src="../../../app-assets/js/scripts/forms/form-input-mask.min.js"></script>
+    <script src="../../../app-assets/js/scripts/forms/form-wizard.min.js"></script>
     <script src="../../../app-assets/js/scripts/pages/app-invoice.min.js"></script>
     <!-- END: Page JS-->
+
 
     <script>
         $(window).on('load', function() {

@@ -15,8 +15,8 @@ class PprConditionShariaKeamananBisnisPekerjaanController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.condition_sharia.keamanan_bisnis_pekerjaan.index', [
-            'title' => 'Pengaturan Condition & Sharia Keamanan Bisnis/Pekerjaan',
+        return view('admin::ppr.fixed_income.condition_sharia.keamanan_bisnis_pekerjaan.index', [
+            'title' => 'Pengaturan Condition & Sharia Fixed Income Keamanan Bisnis/Pekerjaan',
             'condition_sharia_keamanan_bisnis_pekerjaans' => PprConditionShariaKeamananBisnisPekerjaan::all(),
         ]);
     }

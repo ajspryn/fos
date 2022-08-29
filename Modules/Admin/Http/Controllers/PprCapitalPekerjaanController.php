@@ -15,8 +15,8 @@ class PprCapitalPekerjaanController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capital.pekerjaan.index', [
-            'title' => 'Pengaturan Capital Pekerjaan',
+        return view('admin::ppr.fixed_income.capital.pekerjaan.index', [
+            'title' => 'Pengaturan Capital Fixed Income Pekerjaan',
             'capital_pekerjaans' => PprCapitalPekerjaan::all(),
         ]);
     }

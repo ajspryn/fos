@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('ppr_characters', function (Blueprint $table) {
             $table->id();
 
+            $table->integer('form_ppr_pembiayaan_id');
             $table->integer('ppr_scoring_wtr_fixed_income_id');
             $table->float('character_tempat_bekerja')->nullable();
             $table->float('character_konsistensi')->nullable();

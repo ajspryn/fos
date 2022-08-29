@@ -15,8 +15,8 @@ class PprCharacterPengalamanPembiayaanController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.character.pengalaman_pembiayaan.index', [
-            'title' => 'Pengaturan Character Pengalaman Pembiayaan',
+        return view('admin::ppr.fixed_income.character.pengalaman_pembiayaan.index', [
+            'title' => 'Pengaturan Character Fixed Income Pengalaman Pembiayaan',
             'character_pengalaman_pembiayaans' => PprCharacterPengalamanPembiayaan::all(),
         ]);
     }

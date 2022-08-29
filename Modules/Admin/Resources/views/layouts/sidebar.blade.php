@@ -3,8 +3,8 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto">
-                <a class="navbar-brand" href="../../../html/ltr/vertical-menu-template/index.html">
-                    <img src="../../../logo_form.png" height="30" alt="">
+                <a class="navbar-brand" href="{{ url('') }}/html/ltr/vertical-menu-template/index.html">
+                    <img src="{{ url('') }}/logo_form.png" height="30" alt="">
                 </a>
             </li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i
@@ -181,294 +181,472 @@
                                 class="menu-item text-truncate" data-i18n="Account Settings">PPR</span></a>
                         <ul class="menu-content">
                             <li><a class="d-flex align-items-center" href="#"><i
-                                        data-feather="file-text"></i><span class="menu-item text-truncate"
-                                        data-i18n="Account Settings">Character</span></a>
+                                        data-feather="circle"></i><span class="menu-item text-truncate"
+                                        data-i18n="Account Settings">Fixed
+                                        Income</span></a>
                                 <ul class="menu-content">
-                                    <li
-                                        class="{{ Request::is('admin/ppr/character/tempat_bekerja') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/character/tempat_bekerja"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Tempat
-                                                Bekerja</span></a>
-                                    </li>
-                                    <li class="{{ Request::is('admin/ppr/character/konsistensi') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/character/konsistensi"><span
-                                                class="menu-item text-truncate"
-                                                data-i18n="Account">Konsistensi</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/character/kelengkapan_validitas') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/character/kelengkapan_validitas"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Kelengkapan &
-                                                Validitas Data</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/character/angsuran_kolektif') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/character/angsuran_kolektif"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Pembayaran
-                                                Angsuran & Kolektif</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/character/pengalaman_pembiayaan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/character/pengalaman_pembiayaan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Pengalaman
-                                                Pembiayaan</span></a>
-                                    </li>
-                                    <li class="{{ Request::is('admin/ppr/character/motivasi') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/character/motivasi"><span class="menu-item text-truncate"
-                                                data-i18n="Account">Motivasi</span></a>
-                                    </li>
-                                    <li class="{{ Request::is('admin/ppr/character/referensi') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/character/referensi"><span
-                                                class="menu-item text-truncate"
-                                                data-i18n="Account">Referensi</span></a>
+                                    <li><a class="d-flex align-items-center" href="#"><i
+                                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                                data-i18n="Account Settings">Character</span></a>
+                                        <ul class="menu-content">
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/character/tempat_bekerja') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/character/tempat_bekerja"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Tempat
+                                                        Bekerja</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/character/konsistensi') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/character/konsistensi"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Konsistensi</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/character/kelengkapan_validitas') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/character/kelengkapan_validitas"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Kelengkapan &
+                                                        Validitas Data</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/character/angsuran_kolektif') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/character/angsuran_kolektif"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Pembayaran
+                                                        Angsuran & Kolektif</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/character/pengalaman_pembiayaan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/character/pengalaman_pembiayaan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Pengalaman
+                                                        Pembiayaan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/character/motivasi') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/character/motivasi"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Motivasi</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/character/referensi') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/character/referensi"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Referensi</span></a>
+                                            </li>
+
+                                        </ul>
                                     </li>
 
+                                    <li><a class="d-flex align-items-center" href="#"><i
+                                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                                data-i18n="Account Settings">Capital</span></a>
+                                        <ul class="menu-content">
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capital/pekerjaan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capital/pekerjaan"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Pekerjaan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capital/pengalaman_pembiayaan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capital/pengalaman_pembiayaan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Pengalaman
+                                                        Riwayat
+                                                        Pembiayaan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capital/keamanan_bisnis_pekerjaan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capital/keamanan_bisnis_pekerjaan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Keamanan
+                                                        Bisnis/Pekerjaan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capital/potensi_pertumbuhan_hasil') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capital/potensi_pertumbuhan_hasil"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Potensi
+                                                        Pertumbuhan Hasil</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capital/sumber_pendapatan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capital/sumber_pendapatan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Sumber
+                                                        Pendapatan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capital/gaji_bersih') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capital/gaji_bersih"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Pendapatan/Gaji
+                                                        Bersih</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capital/jml_tanggungan_keluarga') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capital/jml_tanggungan_keluarga"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Jumlah
+                                                        Tanggungan
+                                                        Keluarga</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a class="d-flex align-items-center" href="#"><i
+                                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                                data-i18n="Account Settings">Capacity</span></a>
+                                        <ul class="menu-content">
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capacity/pekerjaan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capacity/pekerjaan"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Pekerjaan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capacity/pengalaman_pembiayaan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capacity/pengalaman_pembiayaan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Pengalaman
+                                                        Riwayat
+                                                        Pembiayaan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capacity/keamanan_bisnis_pekerjaan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capacity/keamanan_bisnis_pekerjaan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Keamanan
+                                                        Bisnis/Pekerjaan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capacity/potensi_pertumbuhan_hasil') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capacity/potensi_pertumbuhan_hasil"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Potensi
+                                                        Pertumbuhan Hasil</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capacity/pengalaman_kerja') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capacity/pengalaman_kerja"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Pengalaman
+                                                        Kerja</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capacity/pendidikan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capacity/pendidikan"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Pendidikan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capacity/usia') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capacity/usia"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Usia</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capacity/sumber_pendapatan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capacity/sumber_pendapatan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Sumber
+                                                        Pendapatan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capacity/gaji_bersih') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capacity/gaji_bersih"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Pendapatan/Gaji
+                                                        Bersih</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/capacity/jml_tanggungan_keluarga') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/capacity/jml_tanggungan_keluarga"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Jumlah
+                                                        Tanggungan
+                                                        Keluarga</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a class="d-flex align-items-center" href="#"><i
+                                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                                data-i18n="Account Settings">Condition</span></a>
+                                        <ul class="menu-content">
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/condition_sharia/pekerjaan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/condition_sharia/pekerjaan"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Pekerjaan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/condition_sharia/pengalaman_pembiayaan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/condition_sharia/pengalaman_pembiayaan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Pengalaman
+                                                        Riwayat
+                                                        Pembiayaan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/condition_sharia/keamanan_bisnis_pekerjaan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/condition_sharia/keamanan_bisnis_pekerjaan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Keamanan
+                                                        Bisnis/Pekerjaan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/condition_sharia/potensi_pertumbuhan_hasil') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/condition_sharia/potensi_pertumbuhan_hasil"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Potensi
+                                                        Pertumbuhan Hasil</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/condition_sharia/pengalaman_kerja') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/condition_sharia/pengalaman_kerja"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Pengalaman
+                                                        Kerja</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/condition_sharia/pendidikan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/condition_sharia/pendidikan"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Pendidikan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/condition_sharia/usia') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/condition_sharia/usia"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Usia</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/condition_sharia/sumber_pendapatan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/condition_sharia/sumber_pendapatan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Sumber
+                                                        Pendapatan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/condition_sharia/gaji_bersih') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/condition_sharia/gaji_bersih"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Pendapatan/Gaji
+                                                        Bersih</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/condition_sharia/jml_tanggungan_keluarga') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/condition_sharia/jml_tanggungan_keluarga"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Jumlah
+                                                        Tanggungan
+                                                        Keluarga</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a class="d-flex align-items-center" href="#"><i
+                                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                                data-i18n="Account Settings">Collateral</span></a>
+                                        <ul class="menu-content">
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/collateral/marketabilitas') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/collateral/marketabilitas"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Marketabilitas</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/collateral/kontribusi_pemohon') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/collateral/kontribusi_pemohon"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Kontribusi
+                                                        Pemohon</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/collateral/pertumbuhan_agunan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/collateral/pertumbuhan_agunan"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Pertumbuhan
+                                                        Agunan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/collateral/daya_tarik_agunan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/collateral/daya_tarik_agunan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Daya Tarik
+                                                        Agunan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/fixed_income/collateral/jangka_waktu_likuiditas') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/fixed_income/collateral/jangka_waktu_likuiditas"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Jangka
+                                                        Waktu
+                                                        Likuiditas</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
-
                             <li><a class="d-flex align-items-center" href="#"><i
-                                        data-feather="file-text"></i><span class="menu-item text-truncate"
-                                        data-i18n="Account Settings">Capital</span></a>
+                                        data-feather="circle"></i><span class="menu-item text-truncate"
+                                        data-i18n="Account Settings">Non Fixed
+                                        Income</span></a>
                                 <ul class="menu-content">
-                                    <li class="{{ Request::is('admin/ppr/capital/pekerjaan') ? 'active' : '' }}"><a
-                                            class="d-flex align-items-center"
-                                            href="/admin/ppr/capital/pekerjaan"><span class="menu-item text-truncate"
-                                                data-i18n="Account">Pekerjaan</span></a>
+                                    <li><a class="d-flex align-items-center" href="#"><i
+                                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                                data-i18n="Account Settings">Character</span></a>
+                                        <ul class="menu-content">
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/character/tingkat_kepercayaan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/character/tingkat_kepercayaan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Tingkat
+                                                        Kepercayaan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/character/pengelolaan_rekening') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/character/pengelolaan_rekening"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Pengelolaan Rekening Bank</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/character/reputasi_bisnis') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/character/reputasi_bisnis"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Reputasi
+                                                        Bisnis</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/character/perilaku_pribadi_debitur') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/character/perilaku_pribadi_debitur"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Perilaku
+                                                        Pribadi Debitur</span></a>
+                                            </li>
+                                        </ul>
                                     </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/capital/pengalaman_pembiayaan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/capital/pengalaman_pembiayaan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Pengalaman Riwayat
-                                                Pembiayaan</span></a>
+                                    <li><a class="d-flex align-items-center" href="#"><i
+                                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                                data-i18n="Account Settings">Capacity</span></a>
+                                        <ul class="menu-content">
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/capacity/situasi_persaingan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/capacity/situasi_persaingan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Situasi
+                                                        Pasar dan Persaingan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/capacity/kaderisasi') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/capacity/kaderisasi"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Kaderisasi</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/capacity/kualifikasi_komersial') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/capacity/kualifikasi_komersial"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Kualifikasi Komersial</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/capacity/kualifikasi_teknis') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/capacity/kualifikasi_teknis"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Kualifikasi Teknis</span></a>
+                                            </li>
+                                        </ul>
                                     </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/capital/keamanan_bisnis_pekerjaan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/capital/keamanan_bisnis_pekerjaan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Keamanan
-                                                Bisnis/Pekerjaan</span></a>
+                                    <li><a class="d-flex align-items-center" href="#"><i
+                                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                                data-i18n="Account Settings">Condition</span></a>
+                                        <ul class="menu-content">
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/condition_sharia/kualitas_produk_jasa') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/condition_sharia/kualitas_produk_jasa"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Kualitas
+                                                        Produk dan Jasa</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/condition_sharia/sistem_pembayaran') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/condition_sharia/sistem_pembayaran"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Sistem
+                                                        Pembayaran</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/condition_sharia/lokasi_usaha') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/condition_sharia/lokasi_usaha"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Lokasi
+                                                        Usaha</span></a>
+                                            </li>
+                                        </ul>
                                     </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/capital/potensi_pertumbuhan_hasil') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/capital/potensi_pertumbuhan_hasil"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Potensi
-                                                Pertumbuhan Hasil</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/capital/sumber_pendapatan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/capital/sumber_pendapatan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Sumber
-                                                Pendapatan</span></a>
-                                    </li>
-                                    <li class="{{ Request::is('admin/ppr/capital/gaji_bersih') ? 'active' : '' }}"><a
-                                            class="d-flex align-items-center"
-                                            href="/admin/ppr/capital/gaji_bersih"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Pendapatan/Gaji
-                                                Bersih</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/capital/jml_tanggungan_keluarga') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/capital/jml_tanggungan_keluarga"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Jumlah Tanggungan
-                                                Keluarga</span></a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li><a class="d-flex align-items-center" href="#"><i
-                                        data-feather="file-text"></i><span class="menu-item text-truncate"
-                                        data-i18n="Account Settings">Capacity</span></a>
-                                <ul class="menu-content">
-                                    <li class="{{ Request::is('admin/ppr/capacity/pekerjaan') ? 'active' : '' }}"><a
-                                            class="d-flex align-items-center"
-                                            href="/admin/ppr/capacity/pekerjaan"><span class="menu-item text-truncate"
-                                                data-i18n="Account">Pekerjaan</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/capacity/pengalaman_pembiayaan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/capacity/pengalaman_pembiayaan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Pengalaman Riwayat
-                                                Pembiayaan</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/capacity/keamanan_bisnis_pekerjaan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/capacity/keamanan_bisnis_pekerjaan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Keamanan
-                                                Bisnis/Pekerjaan</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/capacity/potensi_pertumbuhan_hasil') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/capacity/potensi_pertumbuhan_hasil"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Potensi
-                                                Pertumbuhan Hasil</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/capacity/pengalaman_kerja') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/capacity/pengalaman_kerja"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Pengalaman
-                                                Kerja</span></a>
-                                    </li>
-                                    <li class="{{ Request::is('admin/ppr/capacity/pendidikan') ? 'active' : '' }}"><a
-                                            class="d-flex align-items-center"
-                                            href="/admin/ppr/capacity/pendidikan"><span
-                                                class="menu-item text-truncate"
-                                                data-i18n="Account">Pendidikan</span></a>
-                                    </li>
-                                    <li class="{{ Request::is('admin/ppr/capacity/usia') ? 'active' : '' }}"><a
-                                            class="d-flex align-items-center" href="/admin/ppr/capacity/usia"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Usia</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/capacity/sumber_pendapatan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/capacity/sumber_pendapatan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Sumber
-                                                Pendapatan</span></a>
-                                    </li>
-                                    <li class="{{ Request::is('admin/ppr/capacity/gaji_bersih') ? 'active' : '' }}"><a
-                                            class="d-flex align-items-center"
-                                            href="/admin/ppr/capacity/gaji_bersih"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Pendapatan/Gaji
-                                                Bersih</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/capacity/jml_tanggungan_keluarga') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/capacity/jml_tanggungan_keluarga"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Jumlah Tanggungan
-                                                Keluarga</span></a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li><a class="d-flex align-items-center" href="#"><i
-                                        data-feather="file-text"></i><span class="menu-item text-truncate"
-                                        data-i18n="Account Settings">Condition</span></a>
-                                <ul class="menu-content">
-                                    <li
-                                        class="{{ Request::is('admin/ppr/condition_sharia/pekerjaan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/condition_sharia/pekerjaan"><span
-                                                class="menu-item text-truncate"
-                                                data-i18n="Account">Pekerjaan</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/condition_sharia/pengalaman_pembiayaan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/condition_sharia/pengalaman_pembiayaan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Pengalaman Riwayat
-                                                Pembiayaan</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/condition_sharia/keamanan_bisnis_pekerjaan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/condition_sharia/keamanan_bisnis_pekerjaan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Keamanan
-                                                Bisnis/Pekerjaan</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/condition_sharia/potensi_pertumbuhan_hasil') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/condition_sharia/potensi_pertumbuhan_hasil"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Potensi
-                                                Pertumbuhan Hasil</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/condition_sharia/pengalaman_kerja') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/condition_sharia/pengalaman_kerja"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Pengalaman
-                                                Kerja</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/condition_sharia/pendidikan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/condition_sharia/pendidikan"><span
-                                                class="menu-item text-truncate"
-                                                data-i18n="Account">Pendidikan</span></a>
-                                    </li>
-                                    <li class="{{ Request::is('admin/ppr/condition_sharia/usia') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/condition_sharia/usia"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Usia</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/condition_sharia/sumber_pendapatan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/condition_sharia/sumber_pendapatan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Sumber
-                                                Pendapatan</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/condition_sharia/gaji_bersih') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/condition_sharia/gaji_bersih"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Pendapatan/Gaji
-                                                Bersih</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/condition_sharia/jml_tanggungan_keluarga') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/condition_sharia/jml_tanggungan_keluarga"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Jumlah Tanggungan
-                                                Keluarga</span></a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li><a class="d-flex align-items-center" href="#"><i
-                                        data-feather="file-text"></i><span class="menu-item text-truncate"
-                                        data-i18n="Account Settings">Collateral</span></a>
-                                <ul class="menu-content">
-                                    <li
-                                        class="{{ Request::is('admin/ppr/collateral/marketabilitas') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/collateral/marketabilitas"><span
-                                                class="menu-item text-truncate"
-                                                data-i18n="Account">Marketabilitas</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/collateral/kontribusi_pemohon') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/collateral/kontribusi_pemohon"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Kontribusi
-                                                Pemohon</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/collateral/pertumbuhan_agunan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/collateral/pertumbuhan_agunan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Pertumbuhan
-                                                Agunan</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/collateral/daya_tarik_agunan') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/collateral/daya_tarik_agunan"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Daya Tarik
-                                                Agunan</span></a>
-                                    </li>
-                                    <li
-                                        class="{{ Request::is('admin/ppr/collateral/jangka_waktu_likuiditas') ? 'active' : '' }}">
-                                        <a class="d-flex align-items-center"
-                                            href="/admin/ppr/collateral/jangka_waktu_likuiditas"><span
-                                                class="menu-item text-truncate" data-i18n="Account">Jangka Waktu
-                                                Likuiditas</span></a>
+                                    <li><a class="d-flex align-items-center" href="#"><i
+                                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                                data-i18n="Account Settings">Collateral</span></a>
+                                        <ul class="menu-content">
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/collateral/marketabilitas') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/collateral/marketabilitas"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Marketabilitas</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/collateral/kontribusi_pemohon') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/collateral/kontribusi_pemohon"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Kontribusi
+                                                        Pemohon</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/collateral/pertumbuhan_agunan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/collateral/pertumbuhan_agunan"><span
+                                                        class="menu-item text-truncate"
+                                                        data-i18n="Account">Pertumbuhan Agunan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/collateral/daya_tarik_agunan') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/collateral/daya_tarik_agunan"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Daya Tarik
+                                                        Agunan</span></a>
+                                            </li>
+                                            <li
+                                                class="{{ Request::is('admin/ppr/non_fixed_income/collateral/jangka_waktu_likuidasi') ? 'active' : '' }}">
+                                                <a class="d-flex align-items-center"
+                                                    href="/admin/ppr/non_fixed_income/collateral/jangka_waktu_likuidasi"><span
+                                                        class="menu-item text-truncate" data-i18n="Account">Jangka
+                                                        Waktu Likuidasi</span></a>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </li>

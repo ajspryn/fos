@@ -15,8 +15,8 @@ class PprCapacityUsiaController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capacity.usia.index', [
-            'title' => 'Pengaturan Capacity Usia',
+        return view('admin::ppr.fixed_income.capacity.usia.index', [
+            'title' => 'Pengaturan Capacity Fixed Income Usia',
             'capacity_usias' => PprCapacityUsia::all(),
         ]);
     }

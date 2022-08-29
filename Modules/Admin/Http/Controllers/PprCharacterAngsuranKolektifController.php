@@ -15,8 +15,8 @@ class PprCharacterAngsuranKolektifController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.character.angsuran_kolektif.index', [
-            'title' => 'Pengaturan Character Pembayaran Angsuran & Kolektif',
+        return view('admin::ppr.fixed_income.character.angsuran_kolektif.index', [
+            'title' => 'Pengaturan Character Fixed Income Pembayaran Angsuran & Kolektif',
             'character_angsuran_kolektifs' => PprCharacterAngsuranKolektif::all(),
         ]);
     }

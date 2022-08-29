@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Form\Entities\FormPprPembiayaan;
 use Modules\Ppr\Entities\PprPembiayaanHistory;
+use Modules\Ppr\Entities\PprScoring;
 use Modules\Ppr\Entities\PprScoringFixedIncome;
 
 use function PHPUnit\Framework\assertNotNull;
@@ -84,7 +85,7 @@ class PprKomiteController extends Controller
             'title' => 'Detail Proposal',
             'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
             'pembiayaan' => FormPprPembiayaan::select()->where('id', $id)->get()->first(),
-            'scoring_fixed' => PprScoringFixedIncome::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'scoring' => PprScoring::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
             'timelines' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->get(),
 
             //History
