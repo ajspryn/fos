@@ -26,4 +26,7 @@ Route::prefix('pasar')->middleware(['auth:sanctum', 'verified', 'role:2', 'divis
     Route::resource('/komite', PasarKomiteController::class);
     Route::resource('/proposal', PasarProposalController::class);
     Route::resource('/revisi', EditProposalController::class);
+
 });
+
+

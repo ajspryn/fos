@@ -584,7 +584,7 @@
                                     <label class="form-label" for="numeral-formatting">Pengeluaran Lainnya (Per
                                         Bulan)</label>
                                     <input type="text" name="pengeluaran_lainnya" class="form-control numeral-mask"
-                                        placeholder="Rp." id="Pendapatan TPP" />
+                                        placeholder="Rp." id="Pendapatan TPP" required/>
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting">Keterangan Pengeluaran Lainnya (Per

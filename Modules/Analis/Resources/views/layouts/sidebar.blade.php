@@ -11,7 +11,7 @@ $notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto">
                 <a class="navbar-brand" href="../../../html/ltr/vertical-menu-template/index.html">
-                    <img src="../../../logo_form.png" height="30" alt="">
+                    <img src="../../../logo_sidebar.png" height="30" alt="">
                 </a>
             </li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i
@@ -24,32 +24,34 @@ $notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li><a class="d-flex align-items-center" href="#"><i data-feather="menu"></i><span
-                class="menu-item text-truncate" data-i18n="Account Settings">Dashboard</span></a>
-        <ul class="menu-content">
-            <li class="{{ Request::is('analis/') ? 'active' : '' }}"><a class="d-flex align-items-center"
-                    href="/analis"><i data-feather="bar-chart"></i><span
-                        class="menu-item text-truncate" data-i18n="Account">Analytic</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">Dashboard</span></a>
+                <ul class="menu-content">
+                    <li class="{{ Request::is('analis') ? 'active' : '' }}"><a class="d-flex align-items-center"
+                            href="/analis"><i data-feather="bar-chart"></i><span class="menu-item text-truncate"
+                                data-i18n="Account">Analytic</span></a>
+                    </li>
+                    <li class="{{ Request::is('analis/skpd/create') ? 'active' : '' }} "><a
+                            class="d-flex align-items-center" href="/analis/skpd/create"><i
+                                data-feather="home"></i><span class="menu-title text-truncate"
+                                data-i18n="home">SKPD</span></a>
+                    </li>
+                    <li class="{{ Request::is('analis/pasar/create') ? 'active' : '' }} "><a
+                            class="d-flex align-items-center" href="/analis/pasar/create"><i
+                                data-feather="home"></i><span class="menu-title text-truncate"
+                                data-i18n="home">Pasar</span></a>
+                    </li>
+                    <li class="{{ Request::is('analis/umkm/create') ? 'active' : '' }} "><a
+                            class="d-flex align-items-center" href="/analis/umkm/create"><i
+                                data-feather="home"></i><span class="menu-title text-truncate"
+                                data-i18n="home">UMKM</span></a>
+                    </li>
+                    <li class="{{ Request::is('analis/skpd/ppr') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/analis/skpd/proposal"><i
+                                data-feather="home"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">PPR</span></a>
+                    </li>
+                </ul>
             </li>
-            <li class="{{ Request::is('analis/skpd/create') ? 'active' : '' }} "><a
-                    class="d-flex align-items-center" href="/analis/skpd/create"><i data-feather="home"></i><span
-                        class="menu-title text-truncate" data-i18n="home">SKPD</span></a>
-            </li>
-            <li class="{{ Request::is('analis/pasar/create') ? 'active' : '' }} "><a
-                    class="d-flex align-items-center" href="/analis/pasar/create"><i
-                        data-feather="home"></i><span class="menu-title text-truncate"
-                        data-i18n="home">Pasar</span></a>
-            </li>
-            <li class="{{ Request::is('analis/umkm/create') ? 'active' : '' }} "><a
-                    class="d-flex align-items-center" href="/analis/umkm/create"><i data-feather="home"></i><span
-                        class="menu-title text-truncate" data-i18n="home">UMKM</span></a>
-            </li>
-            <li class="{{ Request::is('analis/skpd/ppr') ? 'active' : '' }}"><a
-                    class="d-flex align-items-center" href="/analis/skpd/proposal"><i
-                        data-feather="home"></i><span class="menu-item text-truncate"
-                        data-i18n="Security">PPR</span></a>
-            </li>
-        </ul>
-    </li>
             </li>
             <li class=" navigation-header"><span data-i18n="Forms &amp; Tables">Pembiayaan</span><i
                     data-feather="more-horizontal"></i>
@@ -89,29 +91,29 @@ $notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                     </li>
                 </ul>
             </li>
-           
-            <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                class="menu-item text-truncate" data-i18n="Account Settings">UMKM</span></a>
-        <ul class="menu-content">
 
-            <li class="{{ Request::is('analis/umkm/nasabah') ? 'active' : '' }}"><a
-                    class="d-flex align-items-center" href="/analis/umkm/nasabah"><i
-                        data-feather="users"></i><span class="menu-item text-truncate"
-                        data-i18n="Account">Data Nasabah</span></a>
+            <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                        class="menu-item text-truncate" data-i18n="Account Settings">UMKM</span></a>
+                <ul class="menu-content">
+
+                    <li class="{{ Request::is('analis/umkm/nasabah') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/analis/umkm/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate"
+                                data-i18n="Account">Data Nasabah</span></a>
+                    </li>
+                    <li class="{{ Request::is('analis/umkm/komite') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/analis/umkm/komite"><i
+                                data-feather="clipboard"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Komite</span></a>
+                    </li>
+                    <li class="{{ Request::is('analis/umkm/proposal') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/analis/umkm/proposal"><i
+                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Proposal</span><span
+                                class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
+                    </li>
+                </ul>
             </li>
-            <li class="{{ Request::is('analis/umkm/komite') ? 'active' : '' }}"><a
-                    class="d-flex align-items-center" href="/analis/umkm/komite"><i
-                        data-feather="clipboard"></i><span class="menu-item text-truncate"
-                        data-i18n="Security">Komite</span></a>
-            </li>
-            <li class="{{ Request::is('analis/umkm/proposal') ? 'active' : '' }}"><a
-                    class="d-flex align-items-center" href="/analis/umkm/proposal"><i
-                        data-feather="file-text"></i><span class="menu-item text-truncate"
-                        data-i18n="Security">Proposal</span><span
-                        class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
-            </li>
-        </ul>
-    </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">PPR</span></a>
                 <ul class="menu-content">

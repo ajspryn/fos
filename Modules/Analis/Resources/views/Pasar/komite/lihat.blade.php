@@ -35,7 +35,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="settings-tab-justified" data-bs-toggle="tab"
-                                                href="#legalitas-pekerjaan" role="tab" aria-controls="settings-just"
+                                                href="#legalitas-usaha" role="tab" aria-controls="settings-just"
                                                 aria-selected="false">Legalitas
                                                 Usaha</a>
                                         </li>
@@ -418,8 +418,7 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <th style="text-align: center">No</th>
-                                                                        <th style="text-align: center">
-                                                                            Parameter
+                                                                        <th style="text-align: center">Parameter
                                                                         </th>
                                                                         <th style="text-align: center">Kategori
                                                                         </th>
@@ -429,7 +428,8 @@
                                                                         </th>
                                                                         <th style="text-align: center">Nilai
                                                                         </th>
-                                                                        <th style="text-align: center"> Detail </th>
+                                                                        <th style="text-align: center">Detail
+                                                                        </th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -469,16 +469,10 @@
                                                                             {{ $rating_cashpick }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_cashpick }}</td>
-                                                                        <td style="text-align: center">
-                                                                            <button type="button"
-                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                                                <i data-feather="eye"></i>
-                                                                            </button>
-                                                                        </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">3</td>
-                                                                        <td>Jaminan Rumah</td>
+                                                                        <td>Legalitas Kepemilikkan Rumah</td>
                                                                         <td value="{{ $rumahs->id }}">
                                                                             {{ $rumahs->nama_jaminan }}
                                                                         </td>
@@ -489,12 +483,6 @@
                                                                             {{ $rating_jaminanrumah }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_jaminanrumah }}</td>
-                                                                        <td style="text-align: center">
-                                                                            <button type="button"
-                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                                                <i data-feather="eye"></i>
-                                                                            </button>
-                                                                        </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">4</td>
@@ -515,7 +503,6 @@
                                                                                 data-bs-target="#slik">
                                                                                 <i data-feather="eye"></i>
                                                                             </button>
-                                                                        </td>
                                                                     </tr>
 
                                                                     <tr>
@@ -531,17 +518,13 @@
                                                                             {{ $rating_jenisnasabah }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_jenisnasabah }}</td>
-                                                                        <td style="text-align: center">
-                                                                            <button type="button"
-                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                                                <i data-feather="eye"></i>
-                                                                            </button>
-                                                                        </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">6</td>
                                                                         <td>Konfirmasi Kepala Pasar</td>
-                                                                        <td>{{ $kepalapasar->kategori }}</td>
+                                                                        <td>
+                                                                            {{ $kepalapasar->kategori }}
+                                                                        </td>
                                                                         <td style="text-align: center">
                                                                             {{ $kepalapasar->bobot * 100 }}%
                                                                         </td>
@@ -551,10 +534,11 @@
                                                                             {{ $score_kepalapasar }}</td>
                                                                         <td style="text-align: center">
                                                                             <button type="button"
-                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#kepalapasar">
                                                                                 <i data-feather="eye"></i>
                                                                             </button>
-                                                                        </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">7</td>
@@ -569,10 +553,11 @@
                                                                             {{ $score_jaminanlain }}</td>
                                                                         <td style="text-align: center">
                                                                             <button type="button"
-                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#jaminankios">
                                                                                 <i data-feather="eye"></i>
                                                                             </button>
-                                                                        </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">8</td>
@@ -587,12 +572,6 @@
                                                                             {{ $rating_lamadagang }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_lamadagang }}</td>
-                                                                        <td style="text-align: center">
-                                                                            <button type="button"
-                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                                                <i data-feather="eye"></i>
-                                                                            </button>
-                                                                        </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">9</td>
@@ -609,10 +588,11 @@
                                                                             {{ $score_jenisdagang }}</td>
                                                                         <td style="text-align: center">
                                                                             <button type="button"
-                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#fototoko">
                                                                                 <i data-feather="eye"></i>
                                                                             </button>
-                                                                        </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">10</td>
@@ -626,12 +606,6 @@
                                                                             {{ $rating_sukubangsa }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_sukubangsa }}</td>
-                                                                        <td style="text-align: center">
-                                                                            <button type="button"
-                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                                                <i data-feather="eye"></i>
-                                                                            </button>
-                                                                        </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">11</td>
@@ -645,12 +619,6 @@
                                                                             {{ $rating_jenispasar }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_jenispasar }}</td>
-                                                                        <td style="text-align: center">
-                                                                            <button type="button"
-                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                                                <i data-feather="eye"></i>
-                                                                            </button>
-                                                                        </td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -683,20 +651,27 @@
                                                                                 <td class="pe-1">Status</td>
                                                                                 <td>:
                                                                                     @if ($nilai_idir >= 80 || $nilai_idir < 0)
-                                                                                        @if ($nilai_idir >= 80)
+                                                                                    @if ($nilai_idir >= 80 && $total_score > 3)
+                                                                                        <span
+                                                                                            class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                        <small
+                                                                                            class="text-danger">*IDIR
+                                                                                            > 80%</small>
+                                                                                    @elseif($nilai_idir < 0 && $total_score > 3)
+                                                                                        <span
+                                                                                            class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                        <small
+                                                                                            class="text-danger">*Pengeluaran
+                                                                                            >
+                                                                                            Pendapatan</small>
+                                                                                            @elseif($total_score > 2 || $total_score > 3)
                                                                                             <span
-                                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                            <small
-                                                                                                class="text-danger">*Catatan : IDIR
-                                                                                                > 80%</small>
-                                                                                        @elseif($nilai_idir < 0)
+                                                                                                class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                Ulang</span>
+                                                                                        @else
                                                                                             <span
-                                                                                                class="badge rounded-pill badge-glow bg-successs">Diterima</span>
-                                                                                            <small
-                                                                                                class="text-danger">*Catatan : Pengeluaran
-                                                                                                >
-                                                                                                Pendapatan</small>
-                                                                                        @endif
+                                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                    @endif
                                                                                     @else
                                                                                         @if ($total_score > 3)
                                                                                             <span
@@ -881,52 +856,97 @@
                                             <!-- /Invoice Actions -->
 
                                             @if ($deviasi)
-                                                <div class="modal fade" id="dokumendeviasi" tabindex="-1"
-                                                    aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header bg-transparent">
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body px-sm-5 mx-50 pb-5">
-                                                                <h3 class="text-center">Lampiran Dokumen Deviasi</h3>
-                                                                <div class="card-body">
-                                                                    <iframe
-                                                                        src="{{ asset('storage/' . $deviasi->dokumen_deviasi) }}"
-                                                                        class="d-block w-100" height="500"
-                                                                        weight='900'></iframe>
-                                                                </div>
-                                                            </div>
+                                            <div class="modal fade" id="dokumendeviasi" tabindex="-1"
+                                            aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-transparent">
+                                                        <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body ">
+                                                        <h3 class="text-center">Lampiran Dokumen Deviasi</h3>
+                                                        <div class="card-body">
+                                                            <iframe
+                                                                src="{{ asset('storage/' . $deviasi->dokumen_deviasi) }}"
+                                                                class="d-block w-100" height="1000"
+                                                                width='1000'></iframe>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
                                             @endif
                                         </div>
-
                                         <div class="tab-pane" id="identitas-pribadi" role="tabpanel"
-                                            aria-labelledby="profile-tab-justified">
-                                            @foreach ($fotos as $foto)
-                                                <!-- post 1 -->
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                                            <div>
-                                                                <h6 class="mb-0">{{ $foto->kategori }}</h6>
-                                                                <small class="text-muted">Diupload Pada :
-                                                                    {{ $foto->created_at->diffForhumans() }}</small>
-                                                            </div>
+                                        aria-labelledby="profile-tab-justified">
+                                            <!-- post 1 -->
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotodiri->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotodiri->created_at->diffForhumans() }}</small>
                                                         </div>
-                                                        <!-- post img -->
-                                                        <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $foto->foto) }}"
-                                                            alt="avatar img" />
-                                                        <!--/ post img -->
                                                     </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotodiri->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
                                                 </div>
-                                                <!--/ post 1 -->
-                                            @endforeach
-                                        </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotoktp->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotoktp->created_at->diffForhumans() }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotoktp->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotodiribersamaktp->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotodiribersamaktp->created_at->diffForhumans() }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotodiribersamaktp->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotokk->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotokk->created_at->diffForhumans() }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotokk->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
+                                                </div>
+                                            </div>
+                                           
+                                    </div>
 
                                         <div class="tab-pane" id="legalitas-agunan"
                                             role="tabpanel"aria-labelledby="messages-tab-justified">
@@ -975,6 +995,37 @@
                                                 <!--/ post 1 -->
                                             @endforeach
                                         </div>
+                                        <div class="tab-pane" id="legalitas-usaha"
+                                        role="tabpanel"aria-labelledby="messages-tab-justified">
+                                        
+                                            <!-- post 1 -->
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">Foto Kios / Los :
+                                                                {{ $fototoko->kategori }}
+                                                            </h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fototoko->created_at->diffForhumans() }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fototoko->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                        <div class="tab-pane" id="ideb" role="tabpanel"
+                                        aria-labelledby="settings-tab-justified">
+                                        {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
+                                        width="1000" height="900"></iframe> --}}
+                                        <iframe src="{{ asset('storage/' . $pembiayaan->dokumen_keuangan) }}" class="d-block w-100"
+                                            height='500' weight='800'></iframe> 
+                                    </div>
 
                                         <div class="tab-pane" id="timeline" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
@@ -1019,84 +1070,164 @@
                                     <!-- Justified Tabs ends -->
                                 </div>
                 </section>
-                <!-- Idir -->
-                <div class="modal fade" id="idir" tabindex="-1" aria-labelledby="addNewCardTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body px-sm-5 mx-50 pb-5">
-                                <h3 class="text-center">Nilai IDIR </h3>
-                                <hr class="invoice-spacing" />
-                                <div class="card-body">
-                                    <div class="col-md-12 d-flex order-md-2 order-1">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="pe-1">Harga Beli</td>
-                                                    <td><span class="fw-bold">: Rp.
-                                                            {{ number_format($pembiayaan->harga) }}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Harga Jual</td>
-                                                    <td>: Rp. {{ number_format($harga_jual) }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Jangka Waktu</td>
-                                                    <td>: {{ $pembiayaan->tenor }} bulan</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Equivalen Rate</td>
-                                                    <td>: {{ $pembiayaan->rate }} %</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Angsuran</td>
-                                                    <td>: Rp. {{ number_format($angsuran) }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1 mt-1">IDIR</td>
-                                                    <td><span class="fw-bold">:
-                                                            {{ $nilai_idir }}
-                                                            %</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--akhir idir -->
-
-                <!-- Slik -->
-                <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body px-sm-12 mx-50 pb-5">
-                                <h3 class="text-center">IDEB </h3>
-                                <hr class="invoice-spacing" />
-                                <div class="card-body">
-                                    <div class="col-md-12 d-flex order-md-2 order-1">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--akhir Slik -->
+                          <!-- Idir -->
+                          <div class="modal fade" id="idir" tabindex="-1" aria-labelledby="addNewCardTitle"
+                          aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                  <div class="modal-header bg-transparent">
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                          aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body px-sm-5 mx-50 pb-5">
+                                      <h3 class="text-center">Nilai IDIR </h3>
+                                      <hr class="invoice-spacing" />
+                                      <div class="card-body">
+                                          <div class="col-md-12 d-flex order-md-2 order-1">
+                                              <table>
+                                                  <tbody>
+                                                      <tr>
+                                                          <td class="pe-1">Harga Beli</td>
+                                                          <td><span class="fw-bold">: Rp.
+                                                                  {{ number_format($pembiayaan->harga) }}</span>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td class="pe-1">Harga Jual</td>
+                                                          <td>: Rp. {{ number_format($harga_jual) }}
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td class="pe-1">Jangka Waktu</td>
+                                                          <td>: {{ $pembiayaan->tenor }} bulan</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td class="pe-1">Equivalen Rate</td>
+                                                          <td>: {{ $pembiayaan->rate }} %</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td class="pe-1">Angsuran</td>
+                                                          <td>: Rp. {{ number_format($angsuran) }}
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td class="pe-1">Cicilan Bank Lain</td>
+                                                          <td>: Rp. {{ number_format($cicilan) }}
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td class="pe-1">Pendapatan Bersih</td>
+                                                          <td>: Rp. {{ number_format($laba_bersih - $total_pengeluaran) }}
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td class="pe-1 mt-1">IDIR</td>
+                                                          <td><span class="fw-bold">:
+                                                                  {{ $nilai_idir }}
+                                                                  %</span></td>
+                                                      </tr>
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--akhir idir -->
+      
+                      <!-- Slik -->
+                      <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
+                          aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                  <div class="modal-header bg-transparent">
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                          aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body px-sm-12 mx-50 pb-5">
+                                      <h3 class="text-center">IDEB </h3>
+                                      <hr class="invoice-spacing" />
+                                      <div class="card-body">
+                                          <div class="col-md-12 d-flex order-md-2 order-1">
+                                              <iframe src="{{ asset('storage/' . $pembiayaan->dokumen_keuangan) }}"
+                                                  class="d-block w-100" height='500' weight='800'></iframe>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--akhir Slik -->
+                      <!-- Slik -->
+                      <div class="modal fade" id="kepalapasar" tabindex="-1" aria-labelledby="addNewCardTitle"
+                          aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                  <div class="modal-header bg-transparent">
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                          aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body px-sm-12 mx-50 pb-5">
+                                      <h3 class="text-center">Konfirmasi Kepala Pasar </h3>
+                                      <hr class="invoice-spacing" />
+                                      <div class="card-body">
+                                          <div class="col-md-12 d-flex order-md-2 order-1">
+                                              <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
+                                                  height='500' weight='800'>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--akhir Slik -->
+                      <!-- Slik -->
+                      <div class="modal fade" id="fototoko" tabindex="-1" aria-labelledby="addNewCardTitle"
+                          aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                  <div class="modal-header bg-transparent">
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                          aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body px-sm-12 mx-50 pb-5">
+                                      <h3 class="text-center">Jenis Dagangan </h3>
+                                      <hr class="invoice-spacing" />
+                                      <div class="card-body">
+                                          <div class="col-md-12 d-flex order-md-2 order-1">
+                                              <img src="{{ asset('storage/' . $fototoko->foto) }}" class="d-block w-100"
+                                                  height='500' weight='800'>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--akhir Slik -->
+                      <!-- Slik -->
+                      <div class="modal fade" id="jaminankios" tabindex="-1" aria-labelledby="addNewCardTitle"
+                          aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                  <div class="modal-header bg-transparent">
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                          aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body px-sm-12 mx-50 pb-5">
+                                      <h3 class="text-center">Jaminan Kios </h3>
+                                      <hr class="invoice-spacing" />
+                                      <div class="card-body">
+                                          <div class="col-md-12 d-flex order-md-2 order-1">
+                                              <img src="{{ asset('storage/' . $jaminan->dokumenktb) }}" class="d-block w-100"
+                                                  height='500' weight='800'>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--akhir Slik -->
 
 
             </div>

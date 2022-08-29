@@ -4,6 +4,7 @@ namespace Modules\Pasar\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\Status;
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -70,6 +71,7 @@ class PasarKomiteController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         PasarPembiayaanHistory::create([
             'pasar_pembiayaan_id'=>$request->pasar_pembiayaan_id,
             'catatan'=>$request->catatan,
@@ -98,12 +100,12 @@ class PasarKomiteController extends Controller
     public function show($id)
     {
 
-        $data=PasarPembiayaan::select()->where('id',$id)->get()->first();
-        $nasabah=PasarNasabahh::select()->where('id',$id)->get()->first();
+        $data=PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first();
+        $nasabah=PasarNasabahh::select()->where('id',$data->nasabah_id)->get()->first();
         $usaha=PasarKeteranganUsaha::select()->where('pasar_pembiayaan_id',$id)->get()->first();
         $pasar=PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first();
         $jaminanrumah=PasarLegalitasRumah::select()->where('pasar_pembiayaan_id',$id)->get()->first();
-        $jaminanlain=PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get()->first();
+        $jaminanlain=PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first();
         $tenor=$data->tenor;
         $harga=$data->harga;
         $rate=$data->rate;
@@ -207,6 +209,17 @@ class PasarKomiteController extends Controller
         $statushistory=Status::select()->where('id',$timeline->status_id)->get();
 
 
+        $waktuawal=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
+        $waktuakhir=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
+        $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
+
+        $waktumulai=Carbon::parse($waktuawal->created_at); 
+        $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+        $selanjutnya=Carbon::parse($next->created_at);
+
+
+        $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
+
      //   return $statushistory;
         return view('pasar::komite.lihat',[
             'title'=>'Detail Calon Nasabah',
@@ -269,6 +282,9 @@ class PasarKomiteController extends Controller
             'score_slik'=>$score_slik * $prosesslik->bobot,
             'score_idir'=>$score_idir *$proses_idir->bobot,
             'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
+
+            //SLA
+            'totalwaktu'=>$totalwaktu,
 
 
         ]);

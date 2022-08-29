@@ -58,6 +58,7 @@
                                                 ->get()
                                                 ->first();
                                         @endphp
+                                            @if ($history->jabatan_id == 4 || ($history->jabatan_id == 3 && $history->status_id == 5))
                                         <tr>
                                             <td style="text-align: center">
                                                 <button type="button"
@@ -74,16 +75,20 @@
                                             {{-- <td style="text-align: center">{{ $proposal_skpd->golongan->nama_golongan }}</td> --}}
                                             <td style="text-align: center">
                                                 Rp.{{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
-                                            <td style="text-align: center">
-                                                 @if ($history->statushistory->id == 5)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
-                                                        {{ $history->jabatan->keterangan }}</span>
-                                                @elseif ($history->statushistory->id == 4)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
-                                                        {{ $history->jabatan->keterangan }}</span>
-                                                @endif
+                                                <td style="text-align: center">
+                                                @if ($history->statushistory->id == 5 && $history->jabatan->jabatan_id == 4)
+                                                <span
+                                                    class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
+                                                    {{ $history->jabatan->keterangan }}</span>
+                                            @elseif ($history->statushistory->id == 4)
+                                                <span
+                                                    class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                    {{ $history->jabatan->keterangan }}</span>
+                                            @elseif ($history->statushistory->id == 5 && $history->jabatan->jabatan_id == 3)
+                                                <span
+                                                    class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                    {{ $history->jabatan->keterangan }}</span>
+                                            @endif
                                             </td>
                                             <td style="text-align: center">{{ $proposal_skpd->tanggal_pengajuan }}</td>
                                             <td style="text-align: center">{{ $proposal_skpd->user->name }}</td>
@@ -92,6 +97,7 @@
                                                     class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>

@@ -5,7 +5,9 @@ namespace Modules\Dirbis\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Umkm\Entities\UmkmPembiayaan;
+use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 
 class UmkmProposalController extends Controller
 {
@@ -15,10 +17,10 @@ class UmkmProposalController extends Controller
      */
     public function index()
     {
-        $proposal=UmkmPembiayaan::select()->get();
+        $komite=UmkmPembiayaanHistory::select()->get();
         return view('dirbis::umkm.proposal.index',[
-            'title'=>'Data Nasabah',
-            'proposals'=>$proposal,
+        'title'=>'Data Nasabah',
+        'proposals'=>$komite,
         ]);
     }
 

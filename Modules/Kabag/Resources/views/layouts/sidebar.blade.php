@@ -12,7 +12,7 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto">
                 <a class="navbar-brand" href="../../../html/ltr/vertical-menu-template/index.html">
-                    <img src="../../../logo_form.png" height="30" alt="">
+                    <img src="../../../logo_sidebar.png" height="30" alt="">
                 </a>
             </li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i
@@ -27,7 +27,7 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">Dashboard</span></a>
                 <ul class="menu-content">
-                    <li class="{{ Request::is('kabag/') ? 'active' : '' }}"><a class="d-flex align-items-center"
+                    <li class="{{ Request::is('kabag') ? 'active' : '' }}"><a class="d-flex align-items-center"
                             href="/kabag"><i data-feather="bar-chart"></i><span
                                 class="menu-item text-truncate" data-i18n="Account">Analytic</span></a>
                     </li>
@@ -44,8 +44,8 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                             class="d-flex align-items-center" href="/kabag/umkm/create"><i data-feather="home"></i><span
                                 class="menu-title text-truncate" data-i18n="home">UMKM</span></a>
                     </li>
-                    <li class="{{ Request::is('analis/skpd/ppr') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/skpd/proposal"><i
+                    <li class="{{ Request::is('kabag/skpd/ppr') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/skpd/proposal"><i
                                 data-feather="home"></i><span class="menu-item text-truncate"
                                 data-i18n="Security">PPR</span></a>
                     </li>
@@ -120,35 +120,25 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                        data-feather="home"></i><span class="menu-title text-truncate"
-                        data-i18n="User">KPR</span></a>
+            <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                        class="menu-item text-truncate" data-i18n="Account Settings">PPR</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="app-user-list.html"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="List">List</span></a>
+
+                    <li class="{{ Request::is('kabag/ppr/nasabah') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/ppr/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate" data-i18n="Account">Data
+                                Nasabah</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate" data-i18n="View">View</span></a>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="app-user-view-account.html"><span
-                                        class="menu-item text-truncate" data-i18n="Account">Account</span></a>
-                            </li>
-                            <li><a class="d-flex align-items-center" href="app-user-view-security.html"><span
-                                        class="menu-item text-truncate" data-i18n="Security">Security</span></a>
-                            </li>
-                            <li><a class="d-flex align-items-center" href="app-user-view-billing.html"><span
-                                        class="menu-item text-truncate" data-i18n="Billing &amp; Plans">Billing &amp;
-                                        Plans</span></a>
-                            </li>
-                            <li><a class="d-flex align-items-center" href="app-user-view-notifications.html"><span
-                                        class="menu-item text-truncate"
-                                        data-i18n="Notifications">Notifications</span></a>
-                            </li>
-                            <li><a class="d-flex align-items-center" href="app-user-view-connections.html"><span
-                                        class="menu-item text-truncate" data-i18n="Connections">Connections</span></a>
-                            </li>
-                        </ul>
+                    <li class="{{ Request::is('kabag/ppr/komite') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/ppr/komite"><i
+                                data-feather="clipboard"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Komite</span></a>
+                    </li>
+                    <li class="{{ Request::is('kabag/ppr/proposal') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/ppr/proposal"><i
+                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Proposal</span><span
+                                class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
                     </li>
                 </ul>
             </li>

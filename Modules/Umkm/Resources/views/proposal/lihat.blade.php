@@ -107,7 +107,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="nominal_pembiayaan">Nominal Pembiayaan</label>
                                         <input type="text" name="nominal_pembiayaan" class="form-control numeral-mask1"
-                                            placeholder="Nominal Pembiayaan" id="nominal_pembiayaan" value="{{ $pembiayaan->nominal_pembiayaan }}">
+                                            placeholder="Nominal Pembiayaan" id="nominal_pembiayaan" value="{{ number_format($pembiayaan->nominal_pembiayaan) }}">
                                     </div>
                                     <div class="mb-1 col-md-4">
                                         <label class="form-label" for="tenor"><small class="text-danger">*
@@ -326,17 +326,7 @@
                                             placeholder="Masukan Nomor telepon Anda"
                                             value="{{ $pembiayaan->nasabahh->no_tlp }}" disabled />
                                     </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="suku"><small class="text-danger">*
-                                            </small>Suku Bangsa</label>
-                                        <select class="select2 w-100" name="suku_bangsa_id" id="suku_bangsa_id">
-                                            <option label="suku_bangsa_id">Pilih Suku Bangsa Nasabah</option>
-                                            @foreach ($sukus as $suku)
-                                                <option value="{{ $suku->kode_suku }}">{{ $suku->nama_suku }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    
                                     <div class="mb-0 mt-1 col-md-2">
                                         <button type="butt  on" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#fotodiri">
@@ -430,7 +420,17 @@
                                                 {{ $pembiayaan->keteranganusaha->leg_toko_id }}</option>
                                         </select>
                                     </div>
-                            
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="suku"><small class="text-danger">*
+                                            </small>Suku Bangsa</label>
+                                        <select class="select2 w-100" name="suku_bangsa_id" id="suku_bangsa_id" required>
+                                            <option label="suku_bangsa_id">Pilih Suku Bangsa Nasabah</option>
+                                            @foreach ($sukus as $suku)
+                                                <option value="{{ $suku->kode_suku }}">{{ $suku->nama_suku }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Data Jaminan</h5>
@@ -473,43 +473,43 @@
                                 <label class="form-label" for="numeral-formatting"><small class="text-danger">*
                                     </small>Omset Per Bulan</label>
                                 <input type="text" class="form-control numeral-mask1" placeholder="Rp."
-                                    name="omset" id="omset" value="{{ $pembiayaan->omset }}" disabled>
+                                    name="omset" id="omset" value="{{ number_format($pembiayaan->omset) }}" disabled>
                             </div>
                             <div class="row">
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"></small>HPP</label>
                                     <input type="text" class="form-control numeral-mask" placeholder="Rp."
-                                        name="hpp" id="hpp" value="{{ $pembiayaan->hpp }}">
+                                        name="hpp" id="hpp" value="{{ number_format($pembiayaan->hpp) }}">
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"></small>Biaya
                                         Listrik</label>
                                     <input type="text" class="form-control numeral-mask2" placeholder="Rp."
-                                        name="listrik" id="listrik" value="{{ $pembiayaan->listrik }}">
+                                        name="listrik" id="listrik" value="{{ number_format($pembiayaan->listrik) }}">
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"></small>Biaya
                                         Transport</label>
                                     <input type="text" class="form-control numeral-mask6" placeholder="Rp."
-                                        name="trasport" id="transport" value="{{ $pembiayaan->trasport }}">
+                                        name="trasport" id="transport" value="{{ number_format($pembiayaan->trasport) }}">
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"></small>Biaya
                                         Karyawan</label>
                                     <input type="text" class="form-control numeral-mask3" placeholder="Rp."
-                                        name="karyawan" id="karyawan" value="{{ $pembiayaan->karyawan }}">
+                                        name="karyawan" id="karyawan" value="{{ number_format($pembiayaan->karyawan) }}">
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"></small>Biaya
                                         Telpon</label>
                                     <input type="text" class="form-control numeral-mask5" placeholder="Rp."
-                                        name="telpon" id="telpon" value="{{ $pembiayaan->telpon }}">
+                                        name="telpon" id="telpon" value="{{ number_format($pembiayaan->telpon) }}">
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"> </small>Biaya Sewa
                                         Kios</label>
                                     <input type="text" class="form-control numeral-mask4" placeholder="Rp."
-                                        name="sewa" id="sewa" value="{{ $pembiayaan->sewa }}">
+                                        name="sewa" id="sewa" value="{{ number_format($pembiayaan->sewa) }}">
                                 </div>
                             </div>
                             <div class="content-header">
@@ -526,81 +526,120 @@
                                                     <div class="row d-flex align-items-end">
                                                         <div class="col-md-2 col-12">
                                                             <div class="mb-1">
-                                                                <label class="form-label" for="itemcost">Nama Bank</label>
-                                                                <input type="number" class="form-control" name="nama_bank" id="nama_bank" aria-describedby="itemcost" placeholder="Nama Bank"/>
+                                                                <label class="form-label" for="nama_bank">Nama
+                                                                    Bank</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="nama_bank" id="nama_bank"
+                                                                    aria-describedby="nama_bank"
+                                                                    placeholder="Nama Bank" />
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-2 col-12">
                                                             <div class="mb-1">
-                                                                <label class="form-label" for="itemcost">Plafond</label>
-                                                                <input type="number" class="form-control" name="plafond" id="plafond" aria-describedby="itemcost" placeholder="Rp."/>
+                                                                <label class="form-label"
+                                                                    for="plafond">Plafond</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="plafond" id="plafond"
+                                                                    aria-describedby="itemcost"
+                                                                    placeholder="Rp." />
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-2 col-12">
                                                             <div class="mb-1">
-                                                                <label class="form-label" for="itemquantity">Outstanding</label>
-                                                                <input type="number" class="form-control" name="outstanding" id="outstanding" aria-describedby="itemquantity" placeholder="Rp."/>
+                                                                <label class="form-label"
+                                                                    for="outstanding">Outstanding</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="outstanding" id="outstanding"
+                                                                    aria-describedby="outstanding"
+                                                                    placeholder="Rp." />
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-md-1 col-4">
+                                                        <div class="col-md-1 col-8">
                                                             <div class="mb-1">
-                                                                <label class="form-label" for="itemquantity">Tenor</label>
-                                                                <input type="number" class="form-control" name="tenor" id="tenor" aria-describedby="itemquantity" placeholder="1"/>
+                                                                <label class="form-label"
+                                                                    for="tenor">Tenor</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="tenor" id="tenor"
+                                                                    aria-describedby="tenor"
+                                                                    placeholder="tenor" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-1 col-8">
+                                                            <div class="mb-1">
+                                                                <label class="form-label"
+                                                                    for="margin">Margin</label>
+                                                                <input type="number" class="form-control persen"
+                                                                    name="margin" id="margin"
+                                                                    aria-describedby="margin" placeholder="%" />
+                                                            </div>
+                                                        </div>
+
+                                                        {{-- <div class="col-md-1 col-12">
+                                                        <div class="mb-1">
+                                                            <label class="form-label" for="itemquantity">Angsuran</label>
+                                                            <input type="number" class="form-control" name="angsuran" id="angsuran" aria-describedby="itemquantity" placeholder="1"/>
+                                                        </div>
+                                                    </div> --}}
+
+                                                        <div class="col-md-1 col-8">
+                                                            <div class="mb-1">
+                                                                <label class="form-label"
+                                                                    for="itemquantity">Agunan</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="agunan" id="agunan"
+                                                                    aria-describedby="itemquantity" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-2 col-12">
+                                                            <div class="mb-1">
+                                                                <label class="form-label"
+                                                                    for="angsuran">Angsuran</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="angsuran" id="angsuran"
+                                                                    aria-describedby="angsuran"
+                                                                    placeholder="Rp." />
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-1 col-2">
                                                             <div class="mb-1">
-                                                                <label class="form-label" for="bng/mgn">Margin</label>
-                                                                <input type="text" class="form-control persen" name="margin" id="bng/mgn" aria-describedby="itemquantity" placeholder="%"/>
+                                                                <label class="form-label"
+                                                                    for="angsuran">Kol</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="kol" id="kol"
+                                                                    aria-describedby="angsuran"
+                                                                    placeholder="Rp." />
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-md-1 col-12">
-                                                            <div class="mb-1">
-                                                                <label class="form-label" for="itemquantity">Agunan</label>
-                                                                <input type="text" class="form-control" name ="agunan" id="agunan" aria-describedby="itemquantity"/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-1 col-12">
-                                                            <div class="mb-1">
-                                                                <label class="form-label" for="bng/mgn">Angsuran</label>
-                                                                <input type="text" class="form-control persen" name="angsuran" id="bng/mgn" aria-describedby="itemquantity" placeholder="Rp. "/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-1 col-2">
-                                                            <div class="mb-1">
-                                                                <label class="form-label" for="itemquantity">Kol</label>
-                                                                <input type="text" class="form-control" name ="kol" id="agunan" aria-describedby="itemquantity"/>
-                                                            </div>
-                                                        </div>
-
 
                                                         <div class="col-md-1 col-12 mb-25">
                                                             <div class="mb-1">
-                                                                <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
+                                                                <button
+                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                    data-repeater-delete type="button">
                                                                     <i data-feather="x" class="me-25"></i>
                                                                     {{-- <span>Delete</span> --}}
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                    <hr>
+                                                        <hr>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-1 col-12">
-                                            <a data-repeater-create class="btn btn-icon btn-primary" type="button">
-                                                <i data-feather="plus" class="me-30"></i>
-                                                <span>Tambah</span>
-                                            </a>
+                                            <div class="col-md-1 col-12">
+                                                <a data-repeater-create class="btn btn-icon btn-primary"
+                                                    type="button">
+                                                    <i data-feather="plus" class="me-30"></i>
+                                                    <span>Tambah</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </section>
                             <div class="row">
                                 <div class="mb-1 col-md-6">

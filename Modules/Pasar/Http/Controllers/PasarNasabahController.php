@@ -5,6 +5,13 @@ namespace Modules\Pasar\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\PasarJenisJaminan;
+use Modules\Pasar\Entities\PasarFoto;
+use Modules\Pasar\Entities\PasarJaminan;
+use Modules\Pasar\Entities\PasarJaminanLain;
+use Modules\Pasar\Entities\PasarNasabahh;
+use Modules\Pasar\Entities\PasarPembiayaan;
+use Modules\Pasar\Entities\PasarSlik;
 
 class PasarNasabahController extends Controller
 {
@@ -15,7 +22,8 @@ class PasarNasabahController extends Controller
     public function index()
     {
         return view('pasar::nasabah.index',[
-            'title'=>'Komite',]);
+            'title'=>'Nasabah',
+            'proposals'=>PasarNasabahh::select()->get(),]);
     }
 
     /**
@@ -43,8 +51,32 @@ class PasarNasabahController extends Controller
      * @return Renderable
      */
     public function show($id)
-    {
-        return view('pasar::show');
+    {    
+        $data=PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first();
+        $nasabah=PasarNasabahh::select()->where('id', $id)->get()->first();
+       
+        $jaminanlain=PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first();
+        $tenor=$data->tenor;
+        $harga=$data->harga;
+        $rate=$data->rate;
+        $margin=($rate*$tenor)/100;
+
+        $harga1=$harga*$margin;
+        $harga_jual=$harga1+$harga;
+
+        $angsuran1=(int)($harga_jual/$tenor);
+
+        return view('pasar::nasabah.lihat',[
+            'title'=>'Nasabah',
+            'pembiayaan'=>PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first(),
+            'nasabah'=>$nasabah,
+            'datas'=>PasarPembiayaan::select()->where('nasabah_id',$id)->get(),
+            // 'history'=PasarNasabahh::select()->where('no_ktp'),
+            'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
+            'fotodiri'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+            'angsuran'=>$angsuran1,
+            'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
+        ]);
     }
 
     /**

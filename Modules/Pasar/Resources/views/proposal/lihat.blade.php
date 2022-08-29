@@ -93,7 +93,7 @@
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="akad">Sektor Ekonomi</label>
-                                            <select class="select2 w-100" name="sektor_id" id="sektor_id" required>
+                                            <select class="select2 w-100" name="sektor_id" id="sektor_id" required >
                                                 <option label="akad">Pilih Sektor</option>
                                                 @foreach ($sektors as $sektor)
                                                     <option value="{{ $sektor->kode_sektor_ekonomi }}">
@@ -111,24 +111,22 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="nominal_pembiayaan"><small
-                                                    class="text-danger">* </small>Kios / Los Yang Di Pesan</label>
+                                            <label class="form-label" for="nominal_pembiayaan">Kios / Los Yang Di Pesan</label>
                                             <input type="text" name="pesanan_blok" class="form-control "
                                                 placeholder="Blok Pesanan" id="pesanan_blok"
-                                                value="{{ $pembiayaan->pesanan_blok }}" required />
+                                                value="{{ $pembiayaan->pesanan_blok }}" >
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="nominal_pembiayaan"><small
-                                                    class="text-danger">* </small>Luas Kios / Los Yang Di Pesan</label>
+                                            <label class="form-label" for="nominal_pembiayaan">Luas Kios / Los Yang Di Pesan</label>
                                             <input type="text" name="luas" class="form-control "
                                                 placeholder="Luas Blok Pesanan" id="pesanan_blok"
-                                                value="{{ $pembiayaan->luas }}" required />
+                                                value="{{ $pembiayaan->luas }}" >
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="harga"><small class="text-danger">*
-                                                </small>Harga Kios / Los</label>
+                                                </small>Harga Kios / Los (Nominal Pembiayaan)</label>
                                             <input type="text" name="harga" class="form-control numeral-mask4"
-                                                placeholder="Rp." id="harga" value="{{ $pembiayaan->harga }}"
+                                                placeholder="Rp." id="harga" value="{{ number_format($pembiayaan->harga) }}"
                                                 required />
                                         </div>
                                         <div class="mb-1 col-md-4">
@@ -163,7 +161,7 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="nasabah"><small class="text-danger">*
                                                 </small>Nasabah</label>
-                                            <select class="select2 w-100" name="nasabah" id="nasabah">
+                                            <select class="select2 w-100" name="nasabah" id="nasabah" required>
                                                 <option label="akad">Pilih Jenis Nasabah</option>
                                                 @foreach ($nasabahs as $nasabah)
                                                     <option value="{{ $nasabah->kode_jenisnasabah }}">
@@ -209,8 +207,11 @@
                                             <label class="form-label" for="gender"><small class="text-danger">*
                                                 </small>Jenis Kelamin</label>
                                             <select class="select2 w-100" name="jk_id" id="gender" disabled>
-                                                <option value="{{ $pembiayaan->nasabahh->id }}">
+                                                <option>
                                                     {{ $pembiayaan->nasabahh->jk_id }}</option>
+                                                <option label="jenis_kelamin">Pilih Jenis Kelamin</option>
+                                                    <option >Laki-Laki</option>  
+                                                    <option >Perempuan</option> 
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -289,7 +290,7 @@
                                                     {{ $pembiayaan->rumah->kepemilikan_rumah }}</option>
                                             </select>
                                         </div>
-                                        {{-- <div class="mb-1 col-md-6">
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="leg_rumah"><small class="text-danger">*
                                                 </small>Legalitas Kepemilikan Rumah</label>
                                             <select class="select2 w-100" name="legalitas_kepemilikan_rumah"
@@ -297,7 +298,7 @@
                                                 <option value="{{ $pembiayaan->rumah->legalitas->id }}">
                                                     {{ $pembiayaan->rumah->legalitas->nama_jaminan }}</option>
                                             </select>
-                                        </div> --}}
+                                        </div> 
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="Pendidikan_id"><small class="text-danger">*
                                                 </small>Pendidikan Terakhir</label>
@@ -348,17 +349,7 @@
                                                 placeholder="Masukan Nomor telepon Anda"
                                                 value="{{ $pembiayaan->nasabahh->no_tlp }}" disabled />
                                         </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="suku"><small class="text-danger">*
-                                                </small>Suku Bangsa</label>
-                                            <select class="select2 w-100" name="suku_bangsa_id" id="suku_bangsa_id" required>
-                                                <option label="suku_bangsa_id">Pilih Suku Bangsa Nasabah</option>
-                                                @foreach ($sukus as $suku)
-                                                    <option value="{{ $suku->kode_suku }}">{{ $suku->nama_suku }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                        
                                         <div class="mb-0 mt-1 col-md-2">
                                             <button type="butt  on" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#fotodiri">
@@ -415,22 +406,22 @@
                                         <small class="text-muted">Lengkapi Data Usaha Anda.</small>
                                     </div>
                                     <div class="row">
-                                        {{-- <div class="mb-1 col-md-6">
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="nama_usaha"><small class="text-danger">*
                                                 </small>Nama Kios / Los</label>
                                             <input type="text" name="nama_usaha" id="nama_usaha" class="form-control"
                                                 placeholder="Masukan Nama Toko Atau Usaha"value="{{ $pembiayaan->keteranganusaha->nama_usaha }}"
                                                 disabled>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
+                                        </div> 
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
                                                 </small>Jenis Pasar</label>
                                             <select class="select2 w-100" name="jenispasar_id" id="jenispasar_id">
                                                 <option value="{{ $pembiayaan->keteranganusaha->jenispasar->id }}">
                                                     {{ $pembiayaan->keteranganusaha->jenispasar->nama_pasar }}</option>
                                             </select>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
                                                 </small>Jenis Dagang</label>
                                             <select class="select2 w-100" name="jenisdagang_id" id="jenisdagang_id"
@@ -438,16 +429,16 @@
                                                 <option value="{{ $pembiayaan->keteranganusaha->dagang->id }}">
                                                     {{ $pembiayaan->keteranganusaha->dagang->nama_jenisdagang }}</option>
                                             </select>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="keptoko"><small class="text-danger">*
                                                 </small>Kepemilikan Kios / Los</label>
                                             <select class="select2 w-100" name="kep_toko_id" id="keptoko" disabled>
                                                 <option value="{{ $pembiayaan->keteranganusaha->id }}">
                                                     {{ $pembiayaan->keteranganusaha->kep_toko_id }}</option>
                                             </select>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="lamausaha"><small class="text-danger">*
                                                 </small>Lama Usaha</label>
                                             <select class="select2 w-100" name="lama_usaha" id="lama_usaha" disabled>
@@ -455,21 +446,32 @@
                                                     {{ $pembiayaan->keteranganusaha->lamadagang->nama_lamaberdagang }}
                                                 </option>
                                             </select>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="lamausaha"> </small>No / Blok Lama</label>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="lamausaha"> </small>No / Blok Usaha</label>
                                             <input type="text" name="blok" id="blok" class="form-control"
                                                 placeholder="Masukan No / Blok Lama"
                                                 value="{{ $pembiayaan->keteranganusaha->no_blok }}" disabled>
-                                        </div> --}}
-                                        {{-- <div class="mb-1 col-md-6">
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="legalitastoko"><small class="text-danger">*
                                                 </small>Legalitas Kepemilikan Kios / Los</label>
                                             <select class="select2 w-100" name="leg_toko_id" id="legalitastoko" disabled>
                                                 <option value="{{ $pembiayaan->keteranganusaha->id }}">
                                                     {{ $pembiayaan->keteranganusaha->leg_toko_id }}</option>
                                             </select>
-                                        </div> --}}
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="suku"><small class="text-danger">*
+                                                </small>Suku Bangsa</label>
+                                            <select class="select2 w-100" name="suku_bangsa_id" id="suku_bangsa_id" required>
+                                                <option label="suku_bangsa_id">Pilih Suku Bangsa Nasabah</option>
+                                                @foreach ($sukus as $suku)
+                                                    <option value="{{ $suku->kode_suku }}">{{ $suku->nama_suku }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <div class="mb-0 mt-2 col-md-2">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#fototoko">
@@ -515,47 +517,41 @@
                                         <h5 class="mb-0">Data Pendapatan</h5>
                                         <small>Isikan Data Pendapatan Anda</small>
                                     </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*
-                                            </small>Omset Per Bulan</label>
-                                        <input type="text" class="form-control numeral-mask1" placeholder="Rp."
-                                            name="omset" id="omset" value="{{ $pembiayaan->omset }}" disabled>
-                                    </div>
                                     <div class="row">
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"></small>HPP</label>
                                             <input type="text" class="form-control numeral-mask" placeholder="Rp."
-                                                name="hpp" id="hpp" value="{{ $pembiayaan->hpp }}">
+                                                name="hpp" id="hpp" value="{{ number_format($pembiayaan->hpp) }}">
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"></small>Biaya
                                                 Listrik</label>
                                             <input type="text" class="form-control numeral-mask2" placeholder="Rp."
-                                                name="listrik" id="listrik" value="{{ $pembiayaan->listrik }}">
+                                                name="listrik" id="listrik" value="{{ number_format($pembiayaan->listrik) }}">
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"></small>Biaya
                                                 Transport</label>
                                             <input type="text" class="form-control numeral-mask6" placeholder="Rp."
-                                                name="trasport" id="transport" value="{{ $pembiayaan->trasport }}">
+                                                name="trasport" id="transport" value="{{ number_format($pembiayaan->trasport) }}">
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"></small>Biaya
                                                 Karyawan</label>
                                             <input type="text" class="form-control numeral-mask3" placeholder="Rp."
-                                                name="karyawan" id="karyawan" value="{{ $pembiayaan->karyawan }}">
+                                                name="karyawan" id="karyawan" value="{{ number_format($pembiayaan->karyawan) }}">
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"></small>Biaya
                                                 Telpon</label>
                                             <input type="text" class="form-control numeral-mask5" placeholder="Rp."
-                                                name="telpon" id="telpon" value="{{ $pembiayaan->telpon }}">
+                                                name="telpon" id="telpon" value="{{ number_format($pembiayaan->telpon) }}">
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"> </small>Biaya Sewa
                                                 Kios</label>
                                             <input type="text" class="form-control numeral-mask4" placeholder="Rp."
-                                                name="sewa" id="sewa" value="{{ $pembiayaan->sewa }}">
+                                                name="sewa" id="sewa" value="{{ number_format($pembiayaan->sewa) }}">
                                         </div>
                                     </div>
                                     <div class="content-header">

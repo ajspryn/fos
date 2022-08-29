@@ -5,6 +5,7 @@ namespace Modules\Kabag\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Form\Entities\FormPprPembiayaan;
 
 class PprProposalController extends Controller
 {
@@ -14,7 +15,11 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        return view('kabag::index');
+        $proposal=FormPprPembiayaan::select()->get();
+        return view('kabag::ppr.proposal.index',[
+            'title'=>'Data Nasabah',
+            'proposals'=>$proposal,
+        ]);
     }
 
     /**

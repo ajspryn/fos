@@ -47,20 +47,21 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($proposals as $proposal)
-                                        @php
+                                    @php
+                                    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+                                        ->where('umkm_pembiayaan_id', $proposal->id)
+                                        ->orderby('created_at', 'desc')
+                                        ->get()
+                                        ->first();
 
-                                            $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-                                                ->where('umkm_pembiayaan_id', $proposal->id)
-                                                ->orderby('created_at', 'desc')
-                                                ->get()
-                                                ->first();
-
-                                            $proposal_pasar = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                ->where('id', $history->umkm_pembiayaan_id)
-                                                ->get()
-                                                ->first();
-                                        @endphp
-
+                                    if ($history) {
+                                        $proposal_pasar = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                            ->where('id', $history->umkm_pembiayaan_id)
+                                            ->get()
+                                            ->first();
+                                    }
+                                @endphp
+                                @if ($history)
                                         @if ($history->status_id == 3 && $history->jabatan_id == 1)
                                             <tr>
                                                 <td style="text-align: center">
@@ -99,7 +100,9 @@
                                                 </td>
                                             </tr>
                                         @endif
-                                    @endforeach
+                                @endif
+                                
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
