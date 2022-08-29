@@ -15,8 +15,8 @@ class PprCapacityPotensiPertumbuhanHasilController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capacity.potensi_pertumbuhan_hasil.index', [
-            'title' => 'Pengaturan Capacity Potensi Pertumbuhan Hasil',
+        return view('admin::ppr.fixed_income.capacity.potensi_pertumbuhan_hasil.index', [
+            'title' => 'Pengaturan Capacity Fixed Income Potensi Pertumbuhan Hasil',
             'capacity_potensi_pertumbuhan_hasils' => PprCapacityPotensiPertumbuhanHasil::all(),
         ]);
     }

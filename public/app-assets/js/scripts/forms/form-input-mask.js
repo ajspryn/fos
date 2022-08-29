@@ -813,13 +813,13 @@ $(function () {
         });
     }
     if (numeralMask.length) {
-        new Cleave(numeralMask24, {
+        new Cleave(numeralMask104, {
             numeral: true,
             numeralThousandsGroupStyle: "thousand",
         });
     }
     if (numeralMask.length) {
-        new Cleave(numeralMask25, {
+        new Cleave(numeralMask105, {
             numeral: true,
             numeralThousandsGroupStyle: "thousand",
         });

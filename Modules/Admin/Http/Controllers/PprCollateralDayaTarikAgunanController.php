@@ -15,8 +15,8 @@ class PprCollateralDayaTarikAgunanController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.collateral.daya_tarik_agunan.index', [
-            'title' => 'Pengaturan Collateral Daya Tarik Agunan',
+        return view('admin::ppr.fixed_income.collateral.daya_tarik_agunan.index', [
+            'title' => 'Pengaturan Collateral Fixed Income Daya Tarik Agunan',
             'collateral_daya_tarik_agunans' => PprCollateralDayaTarikAgunan::all(),
         ]);
     }

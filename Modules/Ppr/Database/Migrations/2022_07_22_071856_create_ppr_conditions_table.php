@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('ppr_conditions', function (Blueprint $table) {
             $table->id();
 
+            $table->integer('form_ppr_pembiayaan_id');
             $table->integer('ppr_scoring_atr_fixed_income_id');
             $table->float('condition_pekerjaan')->nullable();
             $table->float('condition_pengalaman_riwayat_pembiayaan')->nullable();

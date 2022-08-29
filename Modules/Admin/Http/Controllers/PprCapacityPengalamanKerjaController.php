@@ -15,8 +15,8 @@ class PprCapacityPengalamanKerjaController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capacity.pengalaman_kerja.index', [
-            'title' => 'Pengaturan Capacity Pengalaman Kerja',
+        return view('admin::ppr.fixed_income.capacity.pengalaman_kerja.index', [
+            'title' => 'Pengaturan Capacity Fixed Income Pengalaman Kerja',
             'capacity_pengalaman_kerjas' => PprCapacityPengalamanKerja::all(),
         ]);
     }

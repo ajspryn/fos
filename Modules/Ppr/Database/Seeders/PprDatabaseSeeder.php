@@ -1454,7 +1454,7 @@ class PprDatabaseSeeder extends Seeder
             'bobot' => '0.30',
         ]);
 
-        //PPR Collateral Kontribusi Pemohon = LTV
+        //PPR Collateral Kontribusi Pemohon = FTV
         DB::table('ppr_collateral_kontribusi_pemohons')->insert([
             'id' => 1,
             'kode' => 'CLTKP1',
@@ -1611,6 +1611,665 @@ class PprDatabaseSeeder extends Seeder
         ]);
 
         DB::table('ppr_collateral_jangka_waktu_likuidasis')->insert([
+            'id' => 5,
+            'kode' => 'CLTJWL5',
+            'keterangan' => '1 bulan s/d 6 bulan',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+
+        //Non Fixed Income
+
+        //PPR Character Tingkat Kepercayaan
+        DB::table('ppr_character_nf_tingkat_kepercayaans')->insert([
+            'id' => 1,
+            'kode' => '1',
+            'keterangan' => 'Sangat Kurang',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_tingkat_kepercayaans')->insert([
+            'id' => 2,
+            'kode' => '2',
+            'keterangan' => 'Kurang',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_tingkat_kepercayaans')->insert([
+            'id' => 3,
+            'kode' => '3',
+            'keterangan' => 'Cukup Baik',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_tingkat_kepercayaans')->insert([
+            'id' => 4,
+            'kode' => '4',
+            'keterangan' => 'Baik',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_tingkat_kepercayaans')->insert([
+            'id' => 5,
+            'kode' => '5',
+            'keterangan' => 'Sangat Baik',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Character Pengelolaan Rekening Bank
+        DB::table('ppr_character_nf_pengelolaan_rekenings')->insert([
+            'id' => 1,
+            'kode' => '1',
+            'keterangan' => 'Sangat Kurang',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_pengelolaan_rekenings')->insert([
+            'id' => 2,
+            'kode' => '2',
+            'keterangan' => 'Kurang',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_pengelolaan_rekenings')->insert([
+            'id' => 3,
+            'kode' => '3',
+            'keterangan' => 'Cukup Baik',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_pengelolaan_rekenings')->insert([
+            'id' => 4,
+            'kode' => '4',
+            'keterangan' => 'Baik',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_pengelolaan_rekenings')->insert([
+            'id' => 5,
+            'kode' => '5',
+            'keterangan' => 'Sangat Baik',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Character Reputasi Bisnis
+        DB::table('ppr_character_nf_reputasi_bisnis')->insert([
+            'id' => 1,
+            'kode' => '1',
+            'keterangan' => 'Sangat Kurang',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_reputasi_bisnis')->insert([
+            'id' => 2,
+            'kode' => '2',
+            'keterangan' => 'Kurang',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_reputasi_bisnis')->insert([
+            'id' => 3,
+            'kode' => '3',
+            'keterangan' => 'Cukup Baik',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_reputasi_bisnis')->insert([
+            'id' => 4,
+            'kode' => '4',
+            'keterangan' => 'Baik',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_reputasi_bisnis')->insert([
+            'id' => 5,
+            'kode' => '5',
+            'keterangan' => 'Sangat Baik',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Character Perilaku Pribadi Debitur
+        DB::table('ppr_character_nf_perilaku_pribadis')->insert([
+            'id' => 1,
+            'kode' => '1',
+            'keterangan' => 'Sangat Kurang',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_perilaku_pribadis')->insert([
+            'id' => 2,
+            'kode' => '2',
+            'keterangan' => 'Kurang',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_perilaku_pribadis')->insert([
+            'id' => 3,
+            'kode' => '3',
+            'keterangan' => 'Cukup Baik',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_perilaku_pribadis')->insert([
+            'id' => 4,
+            'kode' => '4',
+            'keterangan' => 'Baik',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_character_nf_perilaku_pribadis')->insert([
+            'id' => 5,
+            'kode' => '5',
+            'keterangan' => 'Sangat Baik',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Capacity Situasi Pasar dan Persaingan
+        DB::table('ppr_capacity_nf_situasi_persaingans')->insert([
+            'id' => 1,
+            'kode' => '1',
+            'keterangan' => 'Sangat Kurang',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_situasi_persaingans')->insert([
+            'id' => 2,
+            'kode' => '2',
+            'keterangan' => 'Kurang',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_situasi_persaingans')->insert([
+            'id' => 3,
+            'kode' => '3',
+            'keterangan' => 'Cukup Baik',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_situasi_persaingans')->insert([
+            'id' => 4,
+            'kode' => '4',
+            'keterangan' => 'Baik',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_situasi_persaingans')->insert([
+            'id' => 5,
+            'kode' => '5',
+            'keterangan' => 'Sangat Baik',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Capacity Kaderisasi
+        DB::table('ppr_capacity_nf_kaderisasis')->insert([
+            'id' => 1,
+            'kode' => '1',
+            'keterangan' => 'Sangat Kurang',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kaderisasis')->insert([
+            'id' => 2,
+            'kode' => '2',
+            'keterangan' => 'Kurang',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kaderisasis')->insert([
+            'id' => 3,
+            'kode' => '3',
+            'keterangan' => 'Cukup Baik',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kaderisasis')->insert([
+            'id' => 4,
+            'kode' => '4',
+            'keterangan' => 'Baik',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kaderisasis')->insert([
+            'id' => 5,
+            'kode' => '5',
+            'keterangan' => 'Sangat Baik',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Capacity Kualifikasi Komersial
+        DB::table('ppr_capacity_nf_kualifikasi_komersials')->insert([
+            'id' => 1,
+            'kode' => '1',
+            'keterangan' => 'Sangat Kurang',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kualifikasi_komersials')->insert([
+            'id' => 2,
+            'kode' => '2',
+            'keterangan' => 'Kurang',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kualifikasi_komersials')->insert([
+            'id' => 3,
+            'kode' => '3',
+            'keterangan' => 'Cukup Baik',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kualifikasi_komersials')->insert([
+            'id' => 4,
+            'kode' => '4',
+            'keterangan' => 'Baik',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kualifikasi_komersials')->insert([
+            'id' => 5,
+            'kode' => '5',
+            'keterangan' => 'Sangat Baik',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Capacity Kualifikasi Teknis
+        DB::table('ppr_capacity_nf_kualifikasi_teknis')->insert([
+            'id' => 1,
+            'kode' => '1',
+            'keterangan' => 'Sangat Kurang',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kualifikasi_teknis')->insert([
+            'id' => 2,
+            'kode' => '2',
+            'keterangan' => 'Kurang',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kualifikasi_teknis')->insert([
+            'id' => 3,
+            'kode' => '3',
+            'keterangan' => 'Cukup Baik',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kualifikasi_teknis')->insert([
+            'id' => 4,
+            'kode' => '4',
+            'keterangan' => 'Baik',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_capacity_nf_kualifikasi_teknis')->insert([
+            'id' => 5,
+            'kode' => '5',
+            'keterangan' => 'Sangat Baik',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Condition & Sharia Kualitas Produk dan Jasa
+        DB::table('ppr_condition_sharia_nf_kualitas_produk_jasas')->insert([
+            'id' => 1,
+            'kode' => '1',
+            'keterangan' => 'Sangat Kurang',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_kualitas_produk_jasas')->insert([
+            'id' => 2,
+            'kode' => '2',
+            'keterangan' => 'Kurang',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_kualitas_produk_jasas')->insert([
+            'id' => 3,
+            'kode' => '3',
+            'keterangan' => 'Cukup Baik',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_kualitas_produk_jasas')->insert([
+            'id' => 4,
+            'kode' => '4',
+            'keterangan' => 'Baik',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_kualitas_produk_jasas')->insert([
+            'id' => 5,
+            'kode' => '5',
+            'keterangan' => 'Sangat Baik',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Condition & Sharia Sistem Pembayaran
+        DB::table('ppr_condition_sharia_nf_sistem_pembayarans')->insert([
+            'id' => 1,
+            'kode' => '1',
+            'keterangan' => 'Sangat Kurang',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_sistem_pembayarans')->insert([
+            'id' => 2,
+            'kode' => '2',
+            'keterangan' => 'Kurang',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_sistem_pembayarans')->insert([
+            'id' => 3,
+            'kode' => '3',
+            'keterangan' => 'Cukup Baik',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_sistem_pembayarans')->insert([
+            'id' => 4,
+            'kode' => '4',
+            'keterangan' => 'Baik',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_sistem_pembayarans')->insert([
+            'id' => 5,
+            'kode' => '5',
+            'keterangan' => 'Sangat Baik',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Condition & Sharia Lokasi Usaha
+        DB::table('ppr_condition_sharia_nf_lokasi_usahas')->insert([
+            'id' => 1,
+            'kode' => '1',
+            'keterangan' => 'Sangat Kurang',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_lokasi_usahas')->insert([
+            'id' => 2,
+            'kode' => '2',
+            'keterangan' => 'Kurang',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_lokasi_usahas')->insert([
+            'id' => 3,
+            'kode' => '3',
+            'keterangan' => 'Cukup Baik',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_lokasi_usahas')->insert([
+            'id' => 4,
+            'kode' => '4',
+            'keterangan' => 'Baik',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_condition_sharia_nf_lokasi_usahas')->insert([
+            'id' => 5,
+            'kode' => '5',
+            'keterangan' => 'Sangat Baik',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Collateral Marketabilitas
+        DB::table('ppr_collateral_nf_marketabilitas')->insert([
+            'id' => 1,
+            'kode' => 'CLTM1',
+            'keterangan' => 'Agunan sulit dijual',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_collateral_nf_marketabilitas')->insert([
+            'id' => 2,
+            'kode' => 'CLTM2',
+            'keterangan' => 'Agunan bisa dijual, tetapi membutuhkan waktu relatif lama',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_collateral_nf_marketabilitas')->insert([
+            'id' => 3,
+            'kode' => 'CLTM3',
+            'keterangan' => 'Agunan cukup mudah dijual',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_collateral_nf_marketabilitas')->insert([
+            'id' => 4,
+            'kode' => 'CLTM4',
+            'keterangan' => 'Daya jual agunan cukup tinggi',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_collateral_nf_marketabilitas')->insert([
+            'id' => 5,
+            'kode' => 'CLTM5',
+            'keterangan' => 'Agunan sangat mudah dijual setiap saat',
+            'rating' => '5',
+            'bobot' => '0.30',
+        ]);
+
+        //PPR Collateral Kontribusi Pemohon = FTV
+        DB::table('ppr_collateral_nf_kontribusi_pemohons')->insert([
+            'id' => 1,
+            'kode' => 'CLTKP1',
+            'keterangan' => 'Agunan mengcover < 50%A',
+            'rating' => '1',
+            'bobot' => '0.15',
+        ]);
+
+        DB::table('ppr_collateral_nf_kontribusi_pemohons')->insert([
+            'id' => 2,
+            'kode' => 'CLTKP2',
+            'keterangan' => 'Agunan mengcover > 50% s/d 60%',
+            'rating' => '2',
+            'bobot' => '0.15',
+        ]);
+
+        DB::table('ppr_collateral_nf_kontribusi_pemohons')->insert([
+            'id' => 3,
+            'kode' => 'CLTKP3',
+            'keterangan' => 'Agunan mengcover > 60% s/d 80%',
+            'rating' => '3',
+            'bobot' => '0.15',
+        ]);
+
+        DB::table('ppr_collateral_nf_kontribusi_pemohons')->insert([
+            'id' => 4,
+            'kode' => 'CLTKP4',
+            'keterangan' => 'Agunan mengcover > 80% s/d 100%',
+            'rating' => '4',
+            'bobot' => '0.15',
+        ]);
+
+        DB::table('ppr_collateral_nf_kontribusi_pemohons')->insert([
+            'id' => 5,
+            'kode' => 'CLTKP5',
+            'keterangan' => 'Agunan mengcover > 100%',
+            'rating' => '5',
+            'bobot' => '0.15',
+        ]);
+
+        //PPR Collateral Pertumbuhan Agunan
+        DB::table('ppr_collateral_nf_pertumbuhan_agunans')->insert([
+            'id' => 1,
+            'kode' => 'CLTPA1',
+            'keterangan' => 'Cukup Baik dan Prospek hunian ramai dalam waktu 5 tahun',
+            'rating' => '1',
+            'bobot' => '0.10',
+        ]);
+
+        DB::table('ppr_collateral_nf_pertumbuhan_agunans')->insert([
+            'id' => 2,
+            'kode' => 'CLTPA2',
+            'keterangan' => 'Cukup Baik dan Prospek hunian ramai dalam waktu 4 tahun',
+            'rating' => '2',
+            'bobot' => '0.10',
+        ]);
+
+        DB::table('ppr_collateral_nf_pertumbuhan_agunans')->insert([
+            'id' => 3,
+            'kode' => 'CLTPA3',
+            'keterangan' => 'Cukup Baik dan Prospek hunian ramai dalam waktu 3 tahun',
+            'rating' => '3',
+            'bobot' => '0.10',
+        ]);
+
+        DB::table('ppr_collateral_nf_pertumbuhan_agunans')->insert([
+            'id' => 4,
+            'kode' => 'CLTPA4',
+            'keterangan' => 'Cukup Baik dan Prospek hunian ramai dalam waktu 2 tahun',
+            'rating' => '4',
+            'bobot' => '0.10',
+        ]);
+
+        DB::table('ppr_collateral_nf_pertumbuhan_agunans')->insert([
+            'id' => 5,
+            'kode' => 'CLTPA5',
+            'keterangan' => 'Cukup Baik dan Prospek hunian ramai dalam waktu 1 tahun',
+            'rating' => '5',
+            'bobot' => '0.10',
+        ]);
+
+        //PPR Collateral Daya Tarik Agunan
+        DB::table('ppr_collateral_nf_daya_tarik_agunans')->insert([
+            'id' => 1,
+            'kode' => 'CLTDTA1',
+            'keterangan' => 'Tidak ada akses',
+            'rating' => '1',
+            'bobot' => '0.15',
+        ]);
+
+        DB::table('ppr_collateral_nf_daya_tarik_agunans')->insert([
+            'id' => 2,
+            'kode' => 'CLTDTA2',
+            'keterangan' => 'Akses motor',
+            'rating' => '2',
+            'bobot' => '0.15',
+        ]);
+
+        DB::table('ppr_collateral_nf_daya_tarik_agunans')->insert([
+            'id' => 3,
+            'kode' => 'CLTDTA3',
+            'keterangan' => 'Akses satu mobil',
+            'rating' => '3',
+            'bobot' => '0.15',
+        ]);
+
+        DB::table('ppr_collateral_nf_daya_tarik_agunans')->insert([
+            'id' => 4,
+            'kode' => 'CLTDTA4',
+            'keterangan' => 'Akses satu mobil + dapat dilalui angkutan umum',
+            'rating' => '4',
+            'bobot' => '0.15',
+        ]);
+
+        DB::table('ppr_collateral_nf_daya_tarik_agunans')->insert([
+            'id' => 5,
+            'kode' => 'CLTDTA5',
+            'keterangan' => 'Akses mobil dua arah',
+            'rating' => '5',
+            'bobot' => '0.15',
+        ]);
+
+        //PPR Collateral Jangka Waktu Likuidasi
+        DB::table('ppr_collateral_nf_jangka_waktu_likuidasis')->insert([
+            'id' => 1,
+            'kode' => 'CLTJWL1',
+            'keterangan' => '>5 tahun',
+            'rating' => '1',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_collateral_nf_jangka_waktu_likuidasis')->insert([
+            'id' => 2,
+            'kode' => 'CLTJWL2',
+            'keterangan' => '>2 tahun s/d 5 tahun',
+            'rating' => '2',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_collateral_nf_jangka_waktu_likuidasis')->insert([
+            'id' => 3,
+            'kode' => 'CLTJWL3',
+            'keterangan' => '>1 tahun s/d 2 tahun',
+            'rating' => '3',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_collateral_nf_jangka_waktu_likuidasis')->insert([
+            'id' => 4,
+            'kode' => 'CLTJWL4',
+            'keterangan' => '>6 bulan s/d 1 tahun',
+            'rating' => '4',
+            'bobot' => '0.30',
+        ]);
+
+        DB::table('ppr_collateral_nf_jangka_waktu_likuidasis')->insert([
             'id' => 5,
             'kode' => 'CLTJWL5',
             'keterangan' => '1 bulan s/d 6 bulan',

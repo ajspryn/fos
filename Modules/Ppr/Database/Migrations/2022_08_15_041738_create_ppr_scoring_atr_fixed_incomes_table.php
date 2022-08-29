@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('ppr_scoring_atr_fixed_incomes', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('ppr_scoring_fixed_income_id');
+            $table->integer('form_ppr_pembiayaan_id');
+            $table->integer('ppr_scoring_id');
             $table->float('atr_fixed_pekerjaan')->nullable();
             $table->float('atr_fixed_pengalaman_riwayat_pembiayaan')->nullable();
             $table->float('atr_fixed_keamanan_bisnis_pekerjaan')->nullable();
@@ -29,7 +30,6 @@ return new class extends Migration
             $table->float('atr_fixed_jml_tanggungan_keluarga')->nullable();
             $table->float('atr_fixed_total_bobot_bersih')->nullable();
             $table->float('atr_fixed_score')->nullable();
-
             $table->timestamps();
         });
     }

@@ -15,8 +15,8 @@ class PprConditionShariaPendidikanController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.condition_sharia.pendidikan.index', [
-            'title' => 'Pengaturan Condition & Sharia Pendidikan',
+        return view('admin::ppr.fixed_income.condition_sharia.pendidikan.index', [
+            'title' => 'Pengaturan Condition & Sharia Fixed Income Pendidikan',
             'condition_sharia_pendidikans' => PprConditionShariaPendidikan::all(),
         ]);
     }

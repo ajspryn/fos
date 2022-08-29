@@ -15,8 +15,8 @@ class PprCharacterReferensiController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.character.referensi.index', [
-            'title' => 'Pengaturan Character Referensi',
+        return view('admin::ppr.fixed_income.character.referensi.index', [
+            'title' => 'Pengaturan Character Fixed Income Referensi',
             'character_referensis' => PprCharacterReferensi::all(),
         ]);
     }

@@ -15,8 +15,8 @@ class PprCapitalJmlTanggunganKeluargaController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capital.jml_tanggungan_keluarga.index', [
-            'title' => 'Pengaturan Capital Jumlah Tanggungan Keluarga',
+        return view('admin::ppr.fixed_income.capital.jml_tanggungan_keluarga.index', [
+            'title' => 'Pengaturan Capital Fixed Income Jumlah Tanggungan Keluarga',
             'capital_jml_tanggungan_keluargas' => PprCapitalJmlTanggunganKeluarga::all(),
         ]);
     }

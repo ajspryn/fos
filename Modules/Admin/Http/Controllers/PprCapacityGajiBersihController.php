@@ -15,8 +15,8 @@ class PprCapacityGajiBersihController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capacity.gaji_bersih.index', [
-            'title' => 'Pengaturan Capacity Pendapatan/Gaji Bersih',
+        return view('admin::ppr.fixed_income.capacity.gaji_bersih.index', [
+            'title' => 'Pengaturan Capacity Fixed Income Pendapatan/Gaji Bersih',
             'capacity_gaji_bersihs' => PprCapacityGajiBersih::all(),
         ]);
     }

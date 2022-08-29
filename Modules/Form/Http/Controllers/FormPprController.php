@@ -25,6 +25,7 @@ use Modules\Form\Entities\FormPprPermohonan;
 use Modules\Ppr\Entities\PprAbilityToRepayFixedIncome;
 use Modules\Ppr\Entities\PprAbilityToRepayNonFixedIncome;
 use Modules\Ppr\Entities\PprCapacity;
+use Modules\Ppr\Entities\PprCapacityNonFixed;
 use Modules\Ppr\Entities\PprCapital;
 use Modules\Ppr\Entities\PprClDokumenAgunan;
 use Modules\Ppr\Entities\PprClDokumenFixedIncome;
@@ -32,13 +33,21 @@ use Modules\Ppr\Entities\PprClDokumenNonFixedIncome;
 use Modules\Ppr\Entities\PprClPersyaratan;
 use Modules\Ppr\Entities\PprPemberkasanMemo;
 use Modules\Ppr\Entities\PprCharacter;
+use Modules\Ppr\Entities\PprCharacterNonFixed;
 use Modules\Ppr\Entities\PprClDokumen;
 use Modules\Ppr\Entities\PprCollateral;
+use Modules\Ppr\Entities\PprCollateralNonFixed;
 use Modules\Ppr\Entities\PprCondition;
+use Modules\Ppr\Entities\PprConditionNonFixed;
+use Modules\Ppr\Entities\PprScoring;
 use Modules\Ppr\Entities\PprScoringAtrFixedIncome;
+use Modules\Ppr\Entities\PprScoringAtrNonFixedIncome;
 use Modules\Ppr\Entities\PprScoringCollateralFixedIncome;
+use Modules\Ppr\Entities\PprScoringCollateralNonFixedIncome;
 use Modules\Ppr\Entities\PprScoringFixedIncome;
+use Modules\Ppr\Entities\PprScoringNonFixedIncome;
 use Modules\Ppr\Entities\PprScoringWtrFixedIncome;
+use Modules\Ppr\Entities\PprScoringWtrNonFixedIncome;
 
 class FormPprController extends Controller
 {
@@ -70,9 +79,26 @@ class FormPprController extends Controller
      */
     public function store(Request $request)
     {
-
         $hitung = FormPprPembiayaan::select()->get()->count();
         $id = $hitung + 1;
+
+        $hitungIdScoringAtrFixed = PprScoringAtrFixedIncome::select()->get()->count();
+        $idScoringAtrFixed = $hitungIdScoringAtrFixed + 1;
+
+        $hitungIdScoringWtrFixed = PprScoringWtrFixedIncome::select()->get()->count();
+        $idScoringWtrFixed = $hitungIdScoringWtrFixed + 1;
+
+        $hitungIdScoringCcFixed = PprScoringCollateralFixedIncome::select()->get()->count();
+        $idScoringCcFixed = $hitungIdScoringCcFixed + 1;
+
+        $hitungIdScoringAtrNonFixed = PprScoringAtrNonFixedIncome::select()->get()->count();
+        $idScoringAtrNonFixed = $hitungIdScoringAtrNonFixed + 1;
+
+        $hitungIdScoringWtrNonFixed = PprScoringWtrNonFixedIncome::select()->get()->count();
+        $idScoringWtrNonFixed = $hitungIdScoringWtrNonFixed + 1;
+
+        $hitungIdScoringCcNonFixed = PprScoringCollateralNonFixedIncome::select()->get()->count();
+        $idScoringCcNonFixed = $hitungIdScoringCcNonFixed + 1;
 
         // $hitungFixedIncome = PprClDokumenFixedIncome::select()->get()->count();
         // $idFixedIncome = $hitungFixedIncome + 1;
@@ -80,6 +106,7 @@ class FormPprController extends Controller
         // $hitungNonFixedIncome = FormPprPembiayaan::select()->get()->count();
         // $idNonFixedIncome = $hitungNonFixedIncome + 1;
         // return $request;
+
         FormPprPembiayaan::create([
             'id' => $id,
             // 'user_id' => Auth::user()->id,
@@ -104,6 +131,7 @@ class FormPprController extends Controller
             // 'ppr_cl_dokumen_fixed_income_id' => $id,
             // 'ppr_ability_to_repay_fixed_income_id' => $id,
             'ppr_cl_dokumen_id' => $id,
+            'ppr_scoring_id' => $id,
 
             'form_permohonan_jenis_akad_pembayaran' => request('form_permohonan_jenis_akad_pembayaran'),
             'form_permohonan_jenis_akad_pembayaran_lain' => request('form_permohonan_jenis_akad_pembayaran_lain'),
@@ -132,6 +160,7 @@ class FormPprController extends Controller
         ]);
 
 
+
         if (request('jenis_nasabah') == 'Fixed Income') {
             PprClDokumen::create([
                 'form_ppr_pembiayaan_id' => $id,
@@ -150,44 +179,59 @@ class FormPprController extends Controller
                 'ppr_cl_dokumen_id' => $id,
             ]);
 
+            PprScoring::create([
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_atr_fixed_income_id' => $idScoringAtrFixed,
+                'ppr_scoring_wtr_fixed_income_id' => $idScoringWtrFixed,
+                'ppr_scoring_collateral_fixed_income_id' => $idScoringCcFixed,
+            ]);
+
             PprCharacter::create([
-                'ppr_scoring_wtr_fixed_income_id' => $id,
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_wtr_fixed_income_id' => $idScoringWtrFixed,
             ]);
 
             PprCapital::create([
-                'ppr_scoring_atr_fixed_income_id' => $id,
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_atr_fixed_income_id' => $idScoringAtrFixed,
             ]);
 
             PprCapacity::create([
-                'ppr_scoring_atr_fixed_income_id' => $id,
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_atr_fixed_income_id' => $idScoringAtrFixed,
             ]);
 
             PprCondition::create([
-                'ppr_scoring_atr_fixed_income_id' => $id,
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_atr_fixed_income_id' => $idScoringAtrFixed,
             ]);
 
             PprCollateral::create([
-                'ppr_scoring_collateral_fixed_income_id' => $id,
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_collateral_fixed_income_id' => $idScoringCcFixed,
             ]);
 
             PprScoringAtrFixedIncome::create([
-                'ppr_scoring_fixed_income_id' => $id,
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_id' => $id,
             ]);
 
             PprScoringWtrFixedIncome::create([
-                'ppr_scoring_fixed_income_id' => $id,
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_id' => $id,
             ]);
 
             PprScoringCollateralFixedIncome::create([
-                'ppr_scoring_fixed_income_id' => $id,
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_id' => $id,
             ]);
 
-            PprScoringFixedIncome::create([
-                'form_ppr_pembiayaan_id' => $id,
-                'ppr_scoring_atr_fixed_income_id' => $id,
-                'ppr_scoring_wtr_fixed_income_id' => $id,
-                'ppr_scoring_collateral_fixed_income_id' => $id,
-            ]);
+            // PprScoringFixedIncome::create([
+            //     'form_ppr_pembiayaan_id' => $id,
+            //     'ppr_scoring_atr_fixed_income_id' => $id,
+            //     'ppr_scoring_wtr_fixed_income_id' => $id,
+            //     'ppr_scoring_collateral_fixed_income_id' => $id,
+            // ]);
         } else {
             PprClDokumen::create([
                 'form_ppr_pembiayaan_id' => $id,
@@ -198,7 +242,6 @@ class FormPprController extends Controller
                 'ppr_ability_to_repay_non_fixed_income_id' => $id,
             ]);
 
-
             PprClDokumenNonFixedIncome::create([
                 'ppr_cl_dokumen_id' => $id,
             ]);
@@ -206,6 +249,55 @@ class FormPprController extends Controller
             PprAbilityToRepayNonFixedIncome::create([
                 'ppr_cl_dokumen_id' => $id,
             ]);
+
+            PprScoring::create([
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_atr_non_fixed_income_id' => $idScoringAtrNonFixed,
+                'ppr_scoring_wtr_non_fixed_income_id' => $idScoringWtrNonFixed,
+                'ppr_scoring_collateral_non_fixed_income_id' => $idScoringCcNonFixed,
+            ]);
+
+            PprCharacterNonFixed::create([
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_wtr_non_fixed_income_id' => $idScoringWtrNonFixed,
+            ]);
+
+            PprCapacityNonFixed::create([
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_atr_non_fixed_income_id' => $idScoringAtrNonFixed,
+            ]);
+
+            PprConditionNonFixed::create([
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_atr_non_fixed_income_id' => $idScoringAtrNonFixed,
+            ]);
+
+            PprCollateralNonFixed::create([
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_collateral_non_fixed_income_id' => $idScoringCcNonFixed,
+            ]);
+
+            PprScoringAtrNonFixedIncome::create([
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_id' => $id,
+            ]);
+
+            PprScoringWtrNonFixedIncome::create([
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_id' => $id,
+            ]);
+
+            PprScoringCollateralNonFixedIncome::create([
+                'form_ppr_pembiayaan_id' => $id,
+                'ppr_scoring_id' => $id,
+            ]);
+
+            // PprScoringNonFixedIncome::create([
+            //     'form_ppr_pembiayaan_id' => $id,
+            //     'ppr_scoring_atr_non_fixed_income_id' => $id,
+            //     'ppr_scoring_wtr_non_fixed_income_id' => $id,
+            //     'ppr_scoring_collateral_non_fixed_income_id' => $id,
+            // ]);
         }
 
         PprClPersyaratan::create([

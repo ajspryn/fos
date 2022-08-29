@@ -15,8 +15,8 @@ class PprCapitalGajiBersihController extends Controller
      */
     public function index()
     {
-        return view('admin::ppr.capital.gaji_bersih.index', [
-            'title' => 'Pengaturan Capital Pendapatan/Gaji Bersih',
+        return view('admin::ppr.fixed_income.capital.gaji_bersih.index', [
+            'title' => 'Pengaturan Capital Fixed Income Pendapatan/Gaji Bersih',
             'capital_gaji_bersihs' => PprCapitalGajiBersih::all(),
         ]);
     }

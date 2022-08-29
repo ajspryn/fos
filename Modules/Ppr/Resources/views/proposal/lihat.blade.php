@@ -40,6 +40,11 @@
             overflow-x: auto;
             display: block;
         }
+
+        .li-disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
     </style>
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -84,10 +89,18 @@
                             <a class="nav-link" id="check-list-justified" data-bs-toggle="tab" href="#check-list"
                                 role="tab" aria-controls="check-list" aria-selected="true">Check List</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="scoring-justified" data-bs-toggle="tab" href="#scoring" role="tab"
-                                aria-controls="scoring" aria-selected="false">Scoring</a>
-                        </li>
+                        @if ($pembiayaan->form_cl != 'Telah diisi')
+                            <li class="nav-item li-disabled">
+                                <a class="nav-link" id="scoring-justified" data-bs-toggle="tab" href="#scoring"
+                                    role="tab" aria-controls="scoring" aria-selected="false">Scoring <br /><small
+                                        class="text-danger">* Silakan isi Check List terlebih dahulu</small></a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" id="scoring-justified" data-bs-toggle="tab" href="#scoring"
+                                    role="tab" aria-controls="scoring" aria-selected="false">Scoring</a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -4681,13 +4694,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="aplikasi_permohonan"
                                                                         value="Ada"
-                                                                        {{ $dokFixedIncome->dokumen->aplikasi_permohonan == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->aplikasi_permohonan == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="aplikasi_permohonan"
                                                                         value="Tidak"
-                                                                        {{ $dokFixedIncome->dokumen->aplikasi_permohonan == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->aplikasi_permohonan == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -4719,13 +4732,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_ktp"
                                                                         value="Ada"
-                                                                        {{ $dokFixedIncome->dokumen->copy_ktp == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_ktp == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_ktp"
                                                                         value="Tidak"
-                                                                        {{ $dokFixedIncome->dokumen->copy_ktp == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_ktp == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -4743,13 +4756,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_kk"
                                                                         value="Ada"
-                                                                        {{ $dokFixedIncome->dokumen->copy_kk == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_kk == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_kk"
                                                                         value="Tidak"
-                                                                        {{ $dokFixedIncome->dokumen->copy_kk == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_kk == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -4765,13 +4778,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_sn_sc"
                                                                         value="Ada"
-                                                                        {{ $dokFixedIncome->dokumen->copy_sn_sc == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_sn_sc == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_sn_sc"
                                                                         value="Tidak"
-                                                                        {{ $dokFixedIncome->dokumen->copy_sn_sc == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_sn_sc == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -4791,13 +4804,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="pasphoto_ktp_sn"
                                                                         value="Ada"
-                                                                        {{ $dokFixedIncome->dokumen->pasphoto_ktp_sn == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->pasphoto_ktp_sn == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="pasphoto_ktp_sn"
                                                                         value="Tidak"
-                                                                        {{ $dokFixedIncome->dokumen->pasphoto_ktp_sn == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->pasphoto_ktp_sn == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -4828,13 +4841,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_slip_gaji"
                                                                         value="Ada"
-                                                                        {{ $dokFixedIncome->dokumen->copy_slip_gaji == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_slip_gaji == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_slip_gaji"
                                                                         value="Tidak"
-                                                                        {{ $dokFixedIncome->dokumen->copy_slip_gaji == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_slip_gaji == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -4857,13 +4870,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_tabungan"
                                                                         value="Ada"
-                                                                        {{ $dokFixedIncome->dokumen->copy_tabungan == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_tabungan == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_tabungan"
                                                                         value="Tidak"
-                                                                        {{ $dokFixedIncome->dokumen->copy_tabungan == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_tabungan == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -4886,13 +4899,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_sk"
                                                                         value="Ada"
-                                                                        {{ $dokFixedIncome->dokumen->copy_sk == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_sk == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_sk"
                                                                         value="Tidak"
-                                                                        {{ $dokFixedIncome->dokumen->copy_sk == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->copy_sk == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -4919,13 +4932,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="sk_pemotongan_gaji"
                                                                         value="Ada"
-                                                                        {{ $dokFixedIncome->dokumen->sk_pemotongan_gaji == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->sk_pemotongan_gaji == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="sk_pemotongan_gaji"
                                                                         value="Tidak"
-                                                                        {{ $dokFixedIncome->dokumen->sk_pemotongan_gaji == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->sk_pemotongan_gaji == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -4943,13 +4956,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="npwp"
                                                                         value="Ada"
-                                                                        {{ $dokFixedIncome->dokumen->npwp == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->npwp == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="npwp"
                                                                         value="Tidak"
-                                                                        {{ $dokFixedIncome->dokumen->npwp == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokFixedIncome->npwp == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -5013,13 +5026,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="aplikasi_permohonan"
                                                                         value="Ada"
-                                                                        {{ $dokNonFixedIncome->dokumen->aplikasi_permohonan == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->aplikasi_permohonan == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="aplikasi_permohonan"
                                                                         value="Tidak"
-                                                                        {{ $dokNonFixedIncome->dokumen->aplikasi_permohonan == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->aplikasi_permohonan == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -5038,13 +5051,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_ktp"
                                                                         value="Ada"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_ktp == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->copy_ktp == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_ktp"
                                                                         value="Tidak"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_ktp == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->copy_ktp == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -5061,13 +5074,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_kk"
                                                                         value="Ada"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_kk == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->copy_kk == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_kk"
                                                                         value="Tidak"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_kk == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->copy_kk == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -5083,13 +5096,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_sn_sc"
                                                                         value="Ada"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_sn_sc == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->copy_sn_sc == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="copy_sn_sc"
                                                                         value="Tidak"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_sn_sc == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->copy_sn_sc == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -5107,13 +5120,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio"
                                                                         name="foto_pemohon_pasangan" value="Ada"
-                                                                        {{ $dokNonFixedIncome->dokumen->foto_pemohon_pasangan == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->foto_pemohon_pasangan == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio"
                                                                         name="foto_pemohon_pasangan" value="Tidak"
-                                                                        {{ $dokNonFixedIncome->dokumen->foto_pemohon_pasangan == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->foto_pemohon_pasangan == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -5140,13 +5153,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="sk_penghasilan"
                                                                         value="Ada"
-                                                                        {{ $dokNonFixedIncome->dokumen->sk_penghasilan == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->sk_penghasilan == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="sk_penghasilan"
                                                                         value="Tidak"
-                                                                        {{ $dokNonFixedIncome->dokumen->sk_penghasilan == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->sk_penghasilan == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -5166,13 +5179,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio"
                                                                         name="copy_tabungan_menyimpan" value="Ada"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_tabungan_menyimpan == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->copy_tabungan_menyimpan == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio"
                                                                         name="copy_tabungan_menyimpan" value="Tidak"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_tabungan_menyimpan == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->copy_tabungan_menyimpan == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -5189,14 +5202,14 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio"
                                                                         name="copy_akta_izin_usaha" value="Ada"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_akta_izin_usaha == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->copy_akta_izin_usaha == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio"
                                                                         name="copy_akta_izin_usaha" value="Tidak"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_akta_izin_usaha == 'Tidak' ? 'checked' : '' }} />
-                                                                </center>
+                                                                        {{ $dokNonFixedIncome->copy_akta_izin_usaha == 'Tidak' ? 'checked' : '' }} />
+                                                                </center>F
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -5214,13 +5227,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio"
                                                                         name="copy_tabungan_mengambil" value="Ada"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_tabungan_mengambil == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->copy_tabungan_mengambil == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio"
                                                                         name="copy_tabungan_mengambil" value="Tidak"
-                                                                        {{ $dokNonFixedIncome->dokumen->copy_tabungan_mengambil == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->copy_tabungan_mengambil == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -5237,13 +5250,13 @@
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="npwp_bukti_pp"
                                                                         value="Ada"
-                                                                        {{ $dokNonFixedIncome->dokumen->npwp_bukti_pp == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->npwp_bukti_pp == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio" name="npwp_bukti_pp"
                                                                         value="Tidak"
-                                                                        {{ $dokNonFixedIncome->dokumen->npwp_bukti_pp == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->npwp_bukti_pp == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -5262,14 +5275,14 @@
                                                                 <center><input type="radio"
                                                                         name="laporan_keuangan_perusahaan"
                                                                         value="Ada"
-                                                                        {{ $dokNonFixedIncome->dokumen->laporan_keuangan_perusahaan == 'Ada' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->laporan_keuangan_perusahaan == 'Ada' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <center><input type="radio"
                                                                         name="laporan_keuangan_perusahaan"
                                                                         value="Tidak"
-                                                                        {{ $dokNonFixedIncome->dokumen->laporan_keuangan_perusahaan == 'Tidak' ? 'checked' : '' }} />
+                                                                        {{ $dokNonFixedIncome->laporan_keuangan_perusahaan == 'Tidak' ? 'checked' : '' }} />
                                                                 </center>
                                                             </td>
                                                         </tr>
@@ -6082,23 +6095,25 @@
                                                                 <b>Penjualan Bersih</b>
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="penjualanBersihNF1"
-                                                                    class="form-control" name="usaha1_penjualan_bersih"
-                                                                    placeholder="Total"
-                                                                    onkeyup="sumNonFixed(this.value);" disabled />
-                                                            </td>
-                                                            <td style="vertical-align: middle;">
-                                                                <input type="text" id="penjualanBersihNF2"
-                                                                    class="form-control" name="usaha2_penjualan_bersih"
-                                                                    placeholder="Total"
-                                                                    onkeyup="sumNonFixed(this.value);" disabled />
-                                                            </td>
-                                                            <td style="vertical-align: middle;">
-                                                                <input type="text" id="penjualanBersihNFP"
+                                                                <input type="text" id="penjualanBersihNF1Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="penjualanBersihNF1"
                                                                     class="form-control"
-                                                                    name="usaha_pasangan_penjualan_bersih"
-                                                                    placeholder="Total"
-                                                                    onkeyup="sumNonFixed(this.value);" disabled />
+                                                                    name="usaha1_penjualan_bersih" />
+                                                            </td>
+                                                            <td style="vertical-align: middle;">
+                                                                <input type="text" id="penjualanBersihNF2Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="penjualanBersihNF2"
+                                                                    class="form-control"
+                                                                    name="usaha2_penjualan_bersih" />
+                                                            </td>
+                                                            <td style="vertical-align: middle;">
+                                                                <input type="text" id="penjualanBersihNFPDummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="penjualanBersihNFP"
+                                                                    class="form-control"
+                                                                    name="usaha_pasangan_penjualan_bersih" />
                                                             </td>
                                                         </tr>
                                                         <tr style="height: 25px"></tr>
@@ -6171,21 +6186,21 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="upahLangsungNF1"
-                                                                    class="form-control numeral-mask71"
+                                                                    class="form-control numeral-mask72"
                                                                     name="usaha1_upah_langsung" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="upahLangsungNF2"
-                                                                    class="form-control numeral-mask72"
+                                                                    class="form-control numeral-mask73"
                                                                     name="usaha2_upah_langsung" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="upahLangsungNFP"
-                                                                    class="form-control numeral-mask73"
+                                                                    class="form-control numeral-mask74"
                                                                     name="usaha_pasangan_upah_langsung"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6197,28 +6212,23 @@
                                                                 Biaya Over Head
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="totalBohNF1"
-                                                                    class="form-control" name="usaha1_total_boh"
-                                                                    placeholder="Sub Total"
-                                                                    onkeyup="sumNonFixed(this.value);"
-                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    disabled />
+                                                                <input type="text" id="totalBohNF1Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="totalBohNF1"
+                                                                    class="form-control" name="usaha1_total_boh" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="totalBohNF2"
-                                                                    class="form-control" name="usaha2_total_boh"
-                                                                    placeholder="Sub Total"
-                                                                    onkeyup="sumNonFixed(this.value);"
-                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    disabled />
+                                                                <input type="text" id="totalBohNF2Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="totalBohNF2"
+                                                                    class="form-control" name="usaha2_total_boh" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="totalBohNFP"
-                                                                    class="form-control" name="usaha_pasangan_total_boh"
-                                                                    placeholder="Sub Total"
-                                                                    onkeyup="sumNonFixed(this.value);"
-                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    disabled />
+                                                                <input type="text" id="totalBohNFPDummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="totalBohNFP"
+                                                                    class="form-control"
+                                                                    name="usaha_pasangan_total_boh" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6227,7 +6237,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="upahTidakLangsungNF1"
-                                                                    class="form-control numeral-mask74"
+                                                                    class="form-control numeral-mask75"
                                                                     name="usaha1_upah_tidak_langsung"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6235,7 +6245,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="upahTidakLangsungNF2"
-                                                                    class="form-control numeral-mask75"
+                                                                    class="form-control numeral-mask76"
                                                                     name="usaha2_upah_tidak_langsung"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6243,7 +6253,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="upahTidakLangsungNFP"
-                                                                    class="form-control numeral-mask76"
+                                                                    class="form-control numeral-mask77"
                                                                     name="usaha_pasangan_upah_tidak_langsung"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6256,7 +6266,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="penyusutanNF1"
-                                                                    class="form-control numeral-mask77"
+                                                                    class="form-control numeral-mask78"
                                                                     name="usaha1_biaya_penyusutan"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6264,7 +6274,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="penyusutanNF2"
-                                                                    class="form-control numeral-mask78"
+                                                                    class="form-control numeral-mask79"
                                                                     name="usaha2_biaya_penyusutan"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6272,7 +6282,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="penyusutanNFP"
-                                                                    class="form-control numeral-mask79"
+                                                                    class="form-control numeral-mask80"
                                                                     name="usaha_pasangan_biaya_penyusutan"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6285,21 +6295,21 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="bohLainNF1"
-                                                                    class="form-control numeral-mask80"
+                                                                    class="form-control numeral-mask81"
                                                                     name="usaha1_boh_lain" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="bohLainNF2"
-                                                                    class="form-control numeral-mask81"
+                                                                    class="form-control numeral-mask82"
                                                                     name="usaha2_boh_lain" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="bohLainNFP"
-                                                                    class="form-control numeral-mask82"
+                                                                    class="form-control numeral-mask83"
                                                                     name="usaha_pasangan_boh_lain"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6311,31 +6321,28 @@
                                                                 <b>Jumlah Harga Pokok Penjualan</b>
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="jmlHargaPokokPenjualanNF1"
+                                                                <input type="text"
+                                                                    id="jmlHargaPokokPenjualanNF1Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="jmlHargaPokokPenjualanNF1"
                                                                     class="form-control"
-                                                                    name="usaha1_jumlah_harga_pokok_penjualan"
-                                                                    placeholder="Sub Total"
-                                                                    onkeyup="sumNonFixed(this.value);"
-                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    disabled />
+                                                                    name="usaha1_jumlah_harga_pokok_penjualan" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="jmlHargaPokokPenjualanNF2"
+                                                                <input type="text"
+                                                                    id="jmlHargaPokokPenjualanNF2Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="jmlHargaPokokPenjualanNF2"
                                                                     class="form-control"
-                                                                    name="usaha2_jumlah_harga_pokok_penjualan"
-                                                                    placeholder="Sub Total"
-                                                                    onkeyup="sumNonFixed(this.value);"
-                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    disabled />
+                                                                    name="usaha2_jumlah_harga_pokok_penjualan" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="jmlHargaPokokPenjualanNFP"
+                                                                <input type="text"
+                                                                    id="jmlHargaPokokPenjualanNFPDummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="jmlHargaPokokPenjualanNFP"
                                                                     class="form-control"
-                                                                    name="usaha_pasangan_jumlah_harga_pokok_penjualan"
-                                                                    placeholder="Sub Total"
-                                                                    onkeyup="sumNonFixed(this.value);"
-                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    disabled />
+                                                                    name="usaha_pasangan_jumlah_harga_pokok_penjualan" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6343,29 +6350,23 @@
                                                                 <b>Laba Kotor</b>
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="labaKotorNF1"
-                                                                    class="form-control" name="usaha1_laba_kotor"
-                                                                    placeholder="Sub Total"
-                                                                    onkeyup="sumNonFixed(this.value);"
-                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    disabled />
+                                                                <input type="text" id="labaKotorNF1Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="labaKotorNF1"
+                                                                    class="form-control" name="usaha1_laba_kotor" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="labaKotorNF2"
-                                                                    class="form-control" name="usaha2_laba_kotor"
-                                                                    placeholder="Sub Total"
-                                                                    onkeyup="sumNonFixed(this.value);"
-                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    disabled />
+                                                                <input type="text" id="labaKotorNF2Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="labaKotorNF2"
+                                                                    class="form-control" name="usaha2_laba_kotor" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="labaKotorNFP"
+                                                                <input type="text" id="labaKotorNFPDummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="labaKotorNFP"
                                                                     class="form-control"
-                                                                    name="usaha_pasangan_laba_kotor"
-                                                                    placeholder="Sub Total"
-                                                                    onkeyup="sumNonFixed(this.value);"
-                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    disabled />
+                                                                    name="usaha_pasangan_laba_kotor" />
                                                             </td>
                                                         </tr>
                                                         <tr style="height: 25px"></tr>
@@ -6380,7 +6381,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaPenjualanNF1"
-                                                                    class="form-control numeral-mask83"
+                                                                    class="form-control numeral-mask84"
                                                                     name="usaha1_biaya_penjualan"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6388,7 +6389,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaPenjualanNF2"
-                                                                    class="form-control numeral-mask84"
+                                                                    class="form-control numeral-mask85"
                                                                     name="usaha2_biaya_penjualan"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6396,7 +6397,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaPenjualanNFP"
-                                                                    class="form-control numeral-mask55"
+                                                                    class="form-control numeral-mask86"
                                                                     name="usaha_pasangan_biaya_penjualan"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6410,7 +6411,7 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text"
                                                                     id="biayaGajiKomisarisDireksiStaffNF1"
-                                                                    class="form-control numeral-mask86"
+                                                                    class="form-control numeral-mask87"
                                                                     name="usaha1_biaya_gaji_kds" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');" />
@@ -6418,7 +6419,7 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text"
                                                                     id="biayaGajiKomisarisDireksiStaffNF2"
-                                                                    class="form-control numeral-mask87"
+                                                                    class="form-control numeral-mask88"
                                                                     name="usaha2_biaya_gaji_kds" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');" />
@@ -6426,7 +6427,7 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text"
                                                                     id="biayaGajiKomisarisDireksiStaffNFP"
-                                                                    class="form-control numeral-mask88"
+                                                                    class="form-control numeral-mask89"
                                                                     name="usaha_pasangan_biaya_gaji_kds"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6439,7 +6440,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaListrikTeleponAirNF1"
-                                                                    class="form-control numeral-mask89"
+                                                                    class="form-control numeral-mask90"
                                                                     name="usaha1_biaya_lisrik_telp_air"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6447,7 +6448,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaListrikTeleponAirNF2"
-                                                                    class="form-control numeral-mask90"
+                                                                    class="form-control numeral-mask91"
                                                                     name="usaha2_biaya_lisrik_telp_air"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6455,7 +6456,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaListrikTeleponAirNFP"
-                                                                    class="form-control numeral-mask91"
+                                                                    class="form-control numeral-mask92"
                                                                     name="usaha_pasangan_biaya_lisrik_telp_air"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6468,7 +6469,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaPerawatanGedungNF1"
-                                                                    class="form-control numeral-mask92"
+                                                                    class="form-control numeral-mask93"
                                                                     name="usaha1_biaya_perawatan_gedung"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6476,7 +6477,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaPerawatanGedungNF2"
-                                                                    class="form-control numeral-mask93"
+                                                                    class="form-control numeral-mask94"
                                                                     name="usaha2_biaya_perawatan_gedung"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6484,7 +6485,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaPerawatanGedungNFP"
-                                                                    class="form-control numeral-mask94"
+                                                                    class="form-control numeral-mask95"
                                                                     name="usaha_pasangan_biaya_perawatan_gedung"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6497,7 +6498,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaBagiHasilSewaMarginNF1"
-                                                                    class="form-control numeral-mask95"
+                                                                    class="form-control numeral-mask96"
                                                                     name="usaha1_biaya_bagi_hasil_sewa_margin"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6505,7 +6506,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaBagiHasilSewaMarginNF2"
-                                                                    class="form-control numeral-mask96"
+                                                                    class="form-control numeral-mask97"
                                                                     name="usaha2_biaya_bagi_hasil_sewa_margin"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6513,7 +6514,7 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaBagiHasilSewaMarginNFP"
-                                                                    class="form-control numeral-mask97"
+                                                                    class="form-control numeral-mask98"
                                                                     name="usaha_pasangan_biaya_bagi_hasil_sewa_margin"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6526,21 +6527,21 @@
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaAdmLainNF1"
-                                                                    class="form-control numeral-mask98"
+                                                                    class="form-control numeral-mask99"
                                                                     name="usaha1_jml_biaya_adm" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaAdmLainNF2"
-                                                                    class="form-control numeral-mask99"
+                                                                    class="form-control numeral-mask100"
                                                                     name="usaha2_jml_biaya_adm" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaAdmLainNFP"
-                                                                    class="form-control numeral-mask100"
+                                                                    class="form-control numeral-mask101"
                                                                     name="usaha_pasangan_biaya_adm_lain"
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
@@ -6552,23 +6553,23 @@
                                                                 <b>Jumlah Biaya Administrasi</b>
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="jmlBiayaAdmNF1"
-                                                                    class="form-control" name="usaha1_jml_biaya_adm"
-                                                                    placeholder="Total"
-                                                                    onkeyup="sumNonFixed(this.value);" disabled />
+                                                                <input type="text" id="jmlBiayaAdmNF1Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="jmlBiayaAdmNF1"
+                                                                    class="form-control" name="usaha1_jml_biaya_adm" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="jmlBiayaAdmNF2"
-                                                                    class="form-control" name="usaha2_jml_biaya_adm"
-                                                                    placeholder="Total"
-                                                                    onkeyup="sumNonFixed(this.value);" disabled />
+                                                                <input type="text" id="jmlBiayaAdmNF2Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="jmlBiayaAdmNF2"
+                                                                    class="form-control" name="usaha2_jml_biaya_adm" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="jmlBiayaAdmNFP"
+                                                                <input type="text" id="jmlBiayaAdmNFPDummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="jmlBiayaAdmNFP"
                                                                     class="form-control"
-                                                                    name="usaha_pasangan_jml_biaya_adm"
-                                                                    placeholder="Total"
-                                                                    onkeyup="sumNonFixed(this.value);" disabled />
+                                                                    name="usaha_pasangan_jml_biaya_adm" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6577,22 +6578,25 @@
                                                             </td>
 
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="labaSebelumPajakNF1"
+                                                                <input type="text" id="labaSebelumPajakNF1Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="labaSebelumPajakNF1"
                                                                     class="form-control"
-                                                                    name="usaha1_laba_sebelum_pajak" placeholder="Total"
-                                                                    disabled />
+                                                                    name="usaha1_laba_sebelum_pajak" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="labaSebelumPajakNF2"
+                                                                <input type="text" id="labaSebelumPajakNF2Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="labaSebelumPajakNF2"
                                                                     class="form-control"
-                                                                    name="usaha2_laba_sebelum_pajak" placeholder="Total"
-                                                                    disabled />
+                                                                    name="usaha2_laba_sebelum_pajak" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="labaSebelumPajakNFP"
+                                                                <input type="text" id="labaSebelumPajakNFPDummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="labaSebelumPajakNFP"
                                                                     class="form-control"
-                                                                    name="usaha_pasangan_laba_sebelum_pajak"
-                                                                    placeholder="Total" disabled />
+                                                                    name="usaha_pasangan_laba_sebelum_pajak" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6629,22 +6633,25 @@
                                                             </td>
 
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="labaSetelahPajakNF1"
+                                                                <input type="text" id="labaSetelahPajakNF1Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="labaSetelahPajakNF1"
                                                                     class="form-control"
-                                                                    name="usaha1_laba_setelah_pajak" placeholder="Total"
-                                                                    disabled />
+                                                                    name="usaha1_laba_setelah_pajak" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="labaSetelahPajakNF2"
+                                                                <input type="text" id="labaSetelahPajakNF2Dummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="labaSetelahPajakNF2"
                                                                     class="form-control"
-                                                                    name="usaha2_laba_setelah_pajak" placeholder="Total"
-                                                                    disabled />
+                                                                    name="usaha2_laba_setelah_pajak" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
-                                                                <input type="text" id="labaSetelahPajakNFP"
+                                                                <input type="text" id="labaSetelahPajakNFPDummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden" id="labaSetelahPajakNFP"
                                                                     class="form-control"
-                                                                    name="usaha_pasangan_laba_setelah_pajak"
-                                                                    placeholder="Total" disabled />
+                                                                    name="usaha_pasangan_laba_setelah_pajak" />
                                                             </td>
                                                         </tr>
                                                         <tr></tr>
@@ -6654,9 +6661,12 @@
                                                             </td>
                                                             <td style="vertical-align: middle;" colspan="3">
                                                                 <input type="text"
+                                                                    id="totalPenghasilanBersihPerBulanDummy"
+                                                                    class="form-control" placeholder="Total" disabled />
+                                                                <input type="hidden"
                                                                     id="totalPenghasilanBersihPerBulan"
-                                                                    class="form-control" name="total_penghasilan_bersih"
-                                                                    placeholder="Total" disabled />
+                                                                    class="form-control"
+                                                                    name="total_penghasilan_bersih" />
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -6944,22 +6954,25 @@
                                     <div class="line">
                                         <i data-feather="chevron-right" class="font-medium-2"></i>
                                     </div>
-                                    <div class="step" href="#formAnalisaCapital" data-bs-toggle="tab"
-                                        role="tab" id="formAnalisaCapital-tab-justified"
-                                        aria-controls="formAnalisaCapital" aria-selected="true">
-                                        <button type="button" class="step-trigger">
-                                            <span class="bs-stepper-box">
-                                                <i data-feather="file-text" class="font-medium-3"></i>
-                                            </span>
-                                            <span class="bs-stepper-label">
-                                                <span class="bs-stepper-title">Capital</span>
-                                                <span class="bs-stepper-subtitle">Isi Data </span>
-                                            </span>
-                                        </button>
-                                    </div>
-                                    <div class="line">
-                                        <i data-feather="chevron-right" class="font-medium-2"></i>
-                                    </div>
+                                    @if ($pembiayaan->jenis_nasabah == 'Fixed Income')
+                                        <div class="step" href="#formAnalisaCapital" data-bs-toggle="tab"
+                                            role="tab" id="formAnalisaCapital-tab-justified"
+                                            aria-controls="formAnalisaCapital" aria-selected="true">
+                                            <button type="button" class="step-trigger">
+                                                <span class="bs-stepper-box">
+                                                    <i data-feather="file-text" class="font-medium-3"></i>
+                                                </span>
+                                                <span class="bs-stepper-label">
+                                                    <span class="bs-stepper-title">Capital</span>
+                                                    <span class="bs-stepper-subtitle">Isi Data </span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="line">
+                                            <i data-feather="chevron-right" class="font-medium-2"></i>
+                                        </div>
+                                    @else
+                                    @endif
                                     <div class="step" href="#formAnalisaCapacity" data-bs-toggle="tab"
                                         role="tab" id="formAnalisaCapacity-tab-justified"
                                         aria-controls="formAnalisaCapacity" aria-selected="true">
@@ -7117,163 +7130,260 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            a.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Tempat Bekerja
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="character_tempat_bekerja"
-                                                                id="character_tempat_bekerja">
-                                                                <option label="character_tempat_bekerja" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($character_tempat_bekerjas as $character_tempat_bekerja)
-                                                                    <option
-                                                                        value="{{ $character_tempat_bekerja->rating * $character_tempat_bekerja->bobot }}">
-                                                                        {{ $character_tempat_bekerja->keterangan }}
+                                                    @if ($pembiayaan->jenis_nasabah == 'Fixed Income')
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                a.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Tempat Bekerja
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="character_tempat_bekerja"
+                                                                    id="character_tempat_bekerja">
+                                                                    <option label="character_tempat_bekerja" selected
+                                                                        disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            b.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Konsistensi
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100" name="character_konsistensi"
-                                                                id="character_konsistensi">
-                                                                <option label="character_konsistensi" selected disabled>
-                                                                    Pilih
-                                                                </option>
-                                                                @foreach ($character_konsistensis as $character_konsistensi)
-                                                                    <option
-                                                                        value="{{ $character_konsistensi->rating * $character_konsistensi->bobot }}">
-                                                                        {{ $character_konsistensi->keterangan }}
+                                                                    @foreach ($character_tempat_bekerjas as $character_tempat_bekerja)
+                                                                        <option
+                                                                            value="{{ $character_tempat_bekerja->rating * $character_tempat_bekerja->bobot }}">
+                                                                            {{ $character_tempat_bekerja->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                b.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Konsistensi
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="character_konsistensi"
+                                                                    id="character_konsistensi">
+                                                                    <option label="character_konsistensi" selected
+                                                                        disabled>
+                                                                        Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
+                                                                    @foreach ($character_konsistensis as $character_konsistensi)
+                                                                        <option
+                                                                            value="{{ $character_konsistensi->rating * $character_konsistensi->bobot }}">
+                                                                            {{ $character_konsistensi->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            c.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Kelengkapan & Validitas Data
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="form-control w-100"
-                                                                name="character_kelengkapan_validitas_data"
-                                                                id="character_kelengkapan_validitas_data">
-                                                                <option label="Pilih" selected disabled>
-                                                                </option>
-                                                                @foreach ($character_kelengkapan_validitas_datas as $character_kelengkapan_validitas_data)
-                                                                    <option
-                                                                        value="{{ $character_kelengkapan_validitas_data->rating * $character_kelengkapan_validitas_data->bobot }}">
-                                                                        {{ $character_kelengkapan_validitas_data->keterangan }}
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                c.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Kelengkapan & Validitas Data
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="form-control w-100"
+                                                                    name="character_kelengkapan_validitas_data"
+                                                                    id="character_kelengkapan_validitas_data">
+                                                                    <option label="Pilih" selected disabled>
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            d.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pembayaran Angsuran & Kolektif
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="character_pembayaran_angsuran_kolektif"
-                                                                id="character_pembayaran_angsuran_kolektif">
-                                                                <option label="character_pembayaran_angsuran_kolektif"
-                                                                    selected disabled>Pilih
-                                                                </option>
-                                                                @foreach ($character_pembayaran_angsuran_kolektifs as $character_pembayaran_angsuran_kolektif)
-                                                                    <option
-                                                                        value="{{ $character_pembayaran_angsuran_kolektif->rating * $character_pembayaran_angsuran_kolektif->bobot }}">
-                                                                        {{ $character_pembayaran_angsuran_kolektif->keterangan }}
+                                                                    @foreach ($character_kelengkapan_validitas_datas as $character_kelengkapan_validitas_data)
+                                                                        <option
+                                                                            value="{{ $character_kelengkapan_validitas_data->rating * $character_kelengkapan_validitas_data->bobot }}">
+                                                                            {{ $character_kelengkapan_validitas_data->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                d.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pembayaran Angsuran & Kolektif
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="character_pembayaran_angsuran_kolektif"
+                                                                    id="character_pembayaran_angsuran_kolektif">
+                                                                    <option label="character_pembayaran_angsuran_kolektif"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            e.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pengalaman Pembiayaan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="character_pengalaman_pembiayaan"
-                                                                id="character_pengalaman_pembiayaan">
-                                                                <option label="character_pengalaman_pembiayaan" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($character_pengalaman_pembiayaans as $character_pengalaman_pembiayaan)
-                                                                    <option
-                                                                        value="{{ $character_pengalaman_pembiayaan->rating * $character_pengalaman_pembiayaan->bobot }}">
-                                                                        {{ $character_pengalaman_pembiayaan->keterangan }}
+                                                                    @foreach ($character_pembayaran_angsuran_kolektifs as $character_pembayaran_angsuran_kolektif)
+                                                                        <option
+                                                                            value="{{ $character_pembayaran_angsuran_kolektif->rating * $character_pembayaran_angsuran_kolektif->bobot }}">
+                                                                            {{ $character_pembayaran_angsuran_kolektif->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                e.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pengalaman Pembiayaan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="character_pengalaman_pembiayaan"
+                                                                    id="character_pengalaman_pembiayaan">
+                                                                    <option label="character_pengalaman_pembiayaan"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            f.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Motivasi
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100" name="character_motivasi"
-                                                                id="character_motivasi">
-                                                                <option label="character_motivasi" selected disabled>Pilih
-                                                                </option>
-                                                                @foreach ($character_motivasis as $character_motivasi)
-                                                                    <option
-                                                                        value="{{ $character_motivasi->rating * $character_motivasi->bobot }}">
-                                                                        {{ $character_motivasi->keterangan }}
+                                                                    @foreach ($character_pengalaman_pembiayaans as $character_pengalaman_pembiayaan)
+                                                                        <option
+                                                                            value="{{ $character_pengalaman_pembiayaan->rating * $character_pengalaman_pembiayaan->bobot }}">
+                                                                            {{ $character_pengalaman_pembiayaan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                f.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Motivasi
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100" name="character_motivasi"
+                                                                    id="character_motivasi">
+                                                                    <option label="character_motivasi" selected disabled>
+                                                                        Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            g.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Referensi
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100" name="character_referensi"
-                                                                id="character_referensi">
-                                                                <option label="character_referensi" selected disabled>
-                                                                    Pilih
-                                                                </option>
-                                                                @foreach ($character_referensis as $character_referensi)
-                                                                    <option
-                                                                        value="{{ $character_referensi->rating * $character_referensi->bobot }}">
-                                                                        {{ $character_referensi->keterangan }}
+                                                                    @foreach ($character_motivasis as $character_motivasi)
+                                                                        <option
+                                                                            value="{{ $character_motivasi->rating * $character_motivasi->bobot }}">
+                                                                            {{ $character_motivasi->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                g.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Referensi
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100" name="character_referensi"
+                                                                    id="character_referensi">
+                                                                    <option label="character_referensi" selected disabled>
+                                                                        Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
+                                                                    @foreach ($character_referensis as $character_referensi)
+                                                                        <option
+                                                                            value="{{ $character_referensi->rating * $character_referensi->bobot }}">
+                                                                            {{ $character_referensi->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    @elseif ($pembiayaan->jenis_nasabah == 'Non Fixed Income')
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                a.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Tingkat Kepercayaan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="character_nf_tingkat_kepercayaan"
+                                                                    id="character_nf_tingkat_kepercayaan">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($character_nf_tingkat_kepercayaans as $character_nf_tingkat_kepercayaan)
+                                                                        <option
+                                                                            value="{{ $character_nf_tingkat_kepercayaan->rating * $character_nf_tingkat_kepercayaan->bobot }}">
+                                                                            {{ $character_nf_tingkat_kepercayaan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                b.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pengelolaan Rekening Bank
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="character_nf_pengelolaan_rekening"
+                                                                    id="character_nf_pengelolaan_rekening">
+                                                                    <option label="Pilih" selected disabled>
+                                                                        Pilih
+                                                                    </option>
+                                                                    @foreach ($character_nf_pengelolaan_rekenings as $character_nf_pengelolaan_rekening)
+                                                                        <option
+                                                                            value="{{ $character_nf_pengelolaan_rekening->rating * $character_nf_pengelolaan_rekening->bobot }}">
+                                                                            {{ $character_nf_pengelolaan_rekening->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                c.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Reputasi Bisnis
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="form-control w-100"
+                                                                    name="character_nf_reputasi_bisnis"
+                                                                    id="character_nf_reputasi_bisnis">
+                                                                    <option label="Pilih" selected disabled>
+                                                                    </option>
+                                                                    @foreach ($character_nf_reputasi_bisnises as $character_nf_reputasi_bisnis)
+                                                                        <option
+                                                                            value="{{ $character_nf_reputasi_bisnis->rating * $character_nf_reputasi_bisnis->bobot }}">
+                                                                            {{ $character_nf_reputasi_bisnis->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                d.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Perilaku Pribadi Debitur
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="character_nf_perilaku_pribadi"
+                                                                    id="character_nf_perilaku_pribadi">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($character_nf_perilaku_pribadis as $character_nf_perilaku_pribadi)
+                                                                        <option
+                                                                            value="{{ $character_nf_perilaku_pribadi->rating * $character_nf_perilaku_pribadi->bobot }}">
+                                                                            {{ $character_nf_perilaku_pribadi->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    @else
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -7595,6 +7705,7 @@
                                                             </select>
                                                         </td>
                                                     </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -7767,231 +7878,323 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            a.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pekerjaan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100" name="capacity_pekerjaan"
-                                                                id="capacity_pekerjaan">
-                                                                <option label="capacity_pekerjaan" selected disabled>Pilih
-                                                                </option>
-                                                                @foreach ($capacity_pekerjaans as $capacity_pekerjaan)
-                                                                    <option
-                                                                        value="{{ $capacity_pekerjaan->rating * $capacity_pekerjaan->bobot }}">
-                                                                        {{ $capacity_pekerjaan->keterangan }}
+                                                    @if ($pembiayaan->jenis_nasabah == 'Fixed Income')
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                a.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pekerjaan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100" name="capacity_pekerjaan"
+                                                                    id="capacity_pekerjaan">
+                                                                    <option label="capacity_pekerjaan" selected disabled>
+                                                                        Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            b.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pengalaman Riwayat Pembiayaan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="capacity_pengalaman_riwayat_pembiayaan"
-                                                                id="capacity_pengalaman_riwayat_pembiayaan">
-                                                                <option label="capacity_pengalaman_riwayat_pembiayaan"
-                                                                    selected disabled>Pilih
-                                                                </option>
-                                                                @foreach ($capacity_pengalaman_riwayat_pembiayaans as $capacity_pengalaman_riwayat_pembiayaan)
-                                                                    <option
-                                                                        value="{{ $capacity_pengalaman_riwayat_pembiayaan->rating * $capacity_pengalaman_riwayat_pembiayaan->bobot }}">
-                                                                        {{ $capacity_pengalaman_riwayat_pembiayaan->keterangan }}
+                                                                    @foreach ($capacity_pekerjaans as $capacity_pekerjaan)
+                                                                        <option
+                                                                            value="{{ $capacity_pekerjaan->rating * $capacity_pekerjaan->bobot }}">
+                                                                            {{ $capacity_pekerjaan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                b.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pengalaman Riwayat Pembiayaan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="capacity_pengalaman_riwayat_pembiayaan"
+                                                                    id="capacity_pengalaman_riwayat_pembiayaan">
+                                                                    <option label="Pilih" selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            c.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Keamanan Bisnis/Pekerjaan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="capacity_keamanan_bisnis_pekerjaan"
-                                                                id="capacity_keamanan_bisnis_pekerjaan">
-                                                                <option label="capacity_keamanan_bisnis_pekerjaan"
-                                                                    selected disabled>Pilih
-                                                                </option>
-                                                                @foreach ($capacity_keamanan_bisnis_pekerjaans as $capacity_keamanan_bisnis_pekerjaan)
-                                                                    <option
-                                                                        value="{{ $capacity_keamanan_bisnis_pekerjaan->rating * $capacity_keamanan_bisnis_pekerjaan->bobot }}">
-                                                                        {{ $capacity_keamanan_bisnis_pekerjaan->keterangan }}
+                                                                    @foreach ($capacity_pengalaman_riwayat_pembiayaans as $capacity_pengalaman_riwayat_pembiayaan)
+                                                                        <option
+                                                                            value="{{ $capacity_pengalaman_riwayat_pembiayaan->rating * $capacity_pengalaman_riwayat_pembiayaan->bobot }}">
+                                                                            {{ $capacity_pengalaman_riwayat_pembiayaan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                c.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Keamanan Bisnis/Pekerjaan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="capacity_keamanan_bisnis_pekerjaan"
+                                                                    id="capacity_keamanan_bisnis_pekerjaan">
+                                                                    <option label="capacity_keamanan_bisnis_pekerjaan"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            d.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Potensi Pertumbuhan Hasil
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="capacity_potensi_pertumbuhan_hasil"
-                                                                id="capacity_potensi_pertumbuhan_hasil">
-                                                                <option label="capacity_potensi_pertumbuhan_hasil"
-                                                                    selected disabled>Pilih
-                                                                </option>
-                                                                @foreach ($capacity_potensi_pertumbuhan_hasils as $capacity_potensi_pertumbuhan_hasil)
-                                                                    <option
-                                                                        value="{{ $capacity_potensi_pertumbuhan_hasil->rating * $capacity_potensi_pertumbuhan_hasil->bobot }}">
-                                                                        {{ $capacity_potensi_pertumbuhan_hasil->keterangan }}
+                                                                    @foreach ($capacity_keamanan_bisnis_pekerjaans as $capacity_keamanan_bisnis_pekerjaan)
+                                                                        <option
+                                                                            value="{{ $capacity_keamanan_bisnis_pekerjaan->rating * $capacity_keamanan_bisnis_pekerjaan->bobot }}">
+                                                                            {{ $capacity_keamanan_bisnis_pekerjaan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                d.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Potensi Pertumbuhan Hasil
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="capacity_potensi_pertumbuhan_hasil"
+                                                                    id="capacity_potensi_pertumbuhan_hasil">
+                                                                    <option label="capacity_potensi_pertumbuhan_hasil"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            e.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pengalaman Kerja
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="capacity_pengalaman_kerja"
-                                                                id="capacity_pengalaman_kerja">
-                                                                <option label="capacity_pengalaman_kerja" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($capacity_pengalaman_kerjas as $capacity_pengalaman_kerja)
-                                                                    <option
-                                                                        value="{{ $capacity_pengalaman_kerja->rating * $capacity_pengalaman_kerja->bobot }}">
-                                                                        {{ $capacity_pengalaman_kerja->keterangan }}
+                                                                    @foreach ($capacity_potensi_pertumbuhan_hasils as $capacity_potensi_pertumbuhan_hasil)
+                                                                        <option
+                                                                            value="{{ $capacity_potensi_pertumbuhan_hasil->rating * $capacity_potensi_pertumbuhan_hasil->bobot }}">
+                                                                            {{ $capacity_potensi_pertumbuhan_hasil->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                e.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pengalaman Kerja
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="capacity_pengalaman_kerja"
+                                                                    id="capacity_pengalaman_kerja">
+                                                                    <option label="capacity_pengalaman_kerja" selected
+                                                                        disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            f.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pendidikan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100" name="capacity_pendidikan"
-                                                                id="capacity_pendidikan">
-                                                                <option label="capacity_pendidikan" selected disabled>
-                                                                    Pilih
-                                                                </option>
-                                                                @foreach ($capacity_pendidikans as $capacity_pendidikan)
-                                                                    <option
-                                                                        value="{{ $capacity_pendidikan->rating * $capacity_pendidikan->bobot }}">
-                                                                        {{ $capacity_pendidikan->keterangan }}
+                                                                    @foreach ($capacity_pengalaman_kerjas as $capacity_pengalaman_kerja)
+                                                                        <option
+                                                                            value="{{ $capacity_pengalaman_kerja->rating * $capacity_pengalaman_kerja->bobot }}">
+                                                                            {{ $capacity_pengalaman_kerja->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                f.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pendidikan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100" name="capacity_pendidikan"
+                                                                    id="capacity_pendidikan">
+                                                                    <option label="capacity_pendidikan" selected disabled>
+                                                                        Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            g.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Usia
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100" name="capacity_usia"
-                                                                id="capacity_usia">
-                                                                <option label="capacity_usia" selected disabled>Pilih
-                                                                </option>
-                                                                @foreach ($capacity_usias as $capacity_usia)
-                                                                    <option
-                                                                        value="{{ $capacity_usia->rating * $capacity_usia->bobot }}">
-                                                                        {{ $capacity_usia->keterangan }}
+                                                                    @foreach ($capacity_pendidikans as $capacity_pendidikan)
+                                                                        <option
+                                                                            value="{{ $capacity_pendidikan->rating * $capacity_pendidikan->bobot }}">
+                                                                            {{ $capacity_pendidikan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                g.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Usia
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100" name="capacity_usia"
+                                                                    id="capacity_usia">
+                                                                    <option label="capacity_usia" selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            h.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Sumber Pendapatan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="capacity_sumber_pendapatan"
-                                                                id="capacity_sumber_pendapatan">
-                                                                <option label="capacity_sumber_pendapatan" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($capacity_sumber_pendapatans as $capacity_sumber_pendapatan)
-                                                                    <option
-                                                                        value="{{ $capacity_sumber_pendapatan->rating * $capacity_sumber_pendapatan->bobot }}">
-                                                                        {{ $capacity_sumber_pendapatan->keterangan }}
+                                                                    @foreach ($capacity_usias as $capacity_usia)
+                                                                        <option
+                                                                            value="{{ $capacity_usia->rating * $capacity_usia->bobot }}">
+                                                                            {{ $capacity_usia->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                h.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Sumber Pendapatan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="capacity_sumber_pendapatan"
+                                                                    id="capacity_sumber_pendapatan">
+                                                                    <option label="capacity_sumber_pendapatan" selected
+                                                                        disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            i.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pendapatan/Gaji Bersih
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="capacity_pendapatan_gaji_bersih"
-                                                                id="capacity_pendapatan_gaji_bersih">
-                                                                <option label="capacity_pendapatan_gaji_bersih" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($capacity_pendapatan_gaji_bersihs as $capacity_pendapatan_gaji_bersih)
-                                                                    <option
-                                                                        value="{{ $capacity_pendapatan_gaji_bersih->rating * $capacity_pendapatan_gaji_bersih->bobot }}">
-                                                                        {{ $capacity_pendapatan_gaji_bersih->keterangan }}
+                                                                    @foreach ($capacity_sumber_pendapatans as $capacity_sumber_pendapatan)
+                                                                        <option
+                                                                            value="{{ $capacity_sumber_pendapatan->rating * $capacity_sumber_pendapatan->bobot }}">
+                                                                            {{ $capacity_sumber_pendapatan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                i.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pendapatan/Gaji Bersih
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="capacity_pendapatan_gaji_bersih"
+                                                                    id="capacity_pendapatan_gaji_bersih">
+                                                                    <option label="capacity_pendapatan_gaji_bersih"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            j.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Jumlah Tanggungan Keluarga
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="capacity_jml_tanggungan_keluarga"
-                                                                id="capacity_jml_tanggungan_keluarga">
-                                                                <option label="capacity_jml_tanggungan_keluarga" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($capacity_jml_tanggungan_keluargas as $capacity_jml_tanggungan_keluarga)
-                                                                    <option
-                                                                        value="{{ $capacity_jml_tanggungan_keluarga->rating * $capacity_jml_tanggungan_keluarga->bobot }}">
-                                                                        {{ $capacity_jml_tanggungan_keluarga->keterangan }}
+                                                                    @foreach ($capacity_pendapatan_gaji_bersihs as $capacity_pendapatan_gaji_bersih)
+                                                                        <option
+                                                                            value="{{ $capacity_pendapatan_gaji_bersih->rating * $capacity_pendapatan_gaji_bersih->bobot }}">
+                                                                            {{ $capacity_pendapatan_gaji_bersih->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                j.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Jumlah Tanggungan Keluarga
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="capacity_jml_tanggungan_keluarga"
+                                                                    id="capacity_jml_tanggungan_keluarga">
+                                                                    <option label="capacity_jml_tanggungan_keluarga"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
+                                                                    @foreach ($capacity_jml_tanggungan_keluargas as $capacity_jml_tanggungan_keluarga)
+                                                                        <option
+                                                                            value="{{ $capacity_jml_tanggungan_keluarga->rating * $capacity_jml_tanggungan_keluarga->bobot }}">
+                                                                            {{ $capacity_jml_tanggungan_keluarga->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    @elseif ($pembiayaan->jenis_nasabah == 'Non Fixed Income')
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                a.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Situasi Pasar dan Persaingan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="capacity_nf_situasi_persaingan"
+                                                                    id="capacity_nf_situasi_persaingan">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($capacity_nf_situasi_persaingans as $capacity_nf_situasi_persaingan)
+                                                                        <option
+                                                                            value="{{ $capacity_nf_situasi_persaingan->rating * $capacity_nf_situasi_persaingan->bobot }}">
+                                                                            {{ $capacity_nf_situasi_persaingan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                b.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Kaderisasi
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="capacity_nf_kaderisasi"
+                                                                    id="capacity_nf_kaderisasi">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($capacity_nf_kaderisasis as $capacity_nf_kaderisasi)
+                                                                        <option
+                                                                            value="{{ $capacity_nf_kaderisasi->rating * $capacity_nf_kaderisasi->bobot }}">
+                                                                            {{ $capacity_nf_kaderisasi->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                c.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Kualifikasi Komersial
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="capacity_nf_kualifikasi_komersial"
+                                                                    id="capacity_nf_kualifikasi_komersial">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($capacity_nf_kualifikasi_komersials as $capacity_nf_kualifikasi_komersial)
+                                                                        <option
+                                                                            value="{{ $capacity_nf_kualifikasi_komersial->rating * $capacity_nf_kualifikasi_komersial->bobot }}">
+                                                                            {{ $capacity_nf_kualifikasi_komersial->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                d.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Kualifikasi Teknis
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="capacity_nf_kualifikasi_teknis"
+                                                                    id="capacity_nf_kualifikasi_teknis">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($capacity_nf_kualifikasi_teknises as $capacity_nf_kualifikasi_teknis)
+                                                                        <option
+                                                                            value="{{ $capacity_nf_kualifikasi_teknis->rating * $capacity_nf_kualifikasi_teknis->bobot }}">
+                                                                            {{ $capacity_nf_kualifikasi_teknis->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    @else
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -8146,232 +8349,305 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            a.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pekerjaan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100" name="condition_pekerjaan"
-                                                                id="condition_pekerjaan">
-                                                                <option label="condition_pekerjaan" selected disabled>
-                                                                    Pilih
-                                                                </option>
-                                                                @foreach ($condition_pekerjaans as $condition_pekerjaan)
-                                                                    <option
-                                                                        value="{{ $condition_pekerjaan->rating * $condition_pekerjaan->bobot }}">
-                                                                        {{ $condition_pekerjaan->keterangan }}
+                                                    @if ($pembiayaan->jenis_nasabah == 'Fixed Income')
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                a.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pekerjaan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100" name="condition_pekerjaan"
+                                                                    id="condition_pekerjaan">
+                                                                    <option label="condition_pekerjaan" selected disabled>
+                                                                        Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            b.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pengalaman Riwayat Pembiayaan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="condition_pengalaman_riwayat_pembiayaan"
-                                                                id="condition_pengalaman_riwayat_pembiayaan">
-                                                                <option label="condition_pengalaman_riwayat_pembiayaan"
-                                                                    selected disabled>Pilih
-                                                                </option>
-                                                                @foreach ($condition_pengalaman_riwayat_pembiayaans as $condition_pengalaman_riwayat_pembiayaan)
+                                                                    @foreach ($condition_pekerjaans as $condition_pekerjaan)
+                                                                        <option
+                                                                            value="{{ $condition_pekerjaan->rating * $condition_pekerjaan->bobot }}">
+                                                                            {{ $condition_pekerjaan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                b.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pengalaman Riwayat Pembiayaan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="condition_pengalaman_riwayat_pembiayaan"
+                                                                    id="condition_pengalaman_riwayat_pembiayaan">
                                                                     <option
-                                                                        value="{{ $condition_pengalaman_riwayat_pembiayaan->rating * $condition_pengalaman_riwayat_pembiayaan->bobot }}">
-                                                                        {{ $condition_pengalaman_riwayat_pembiayaan->keterangan }}
+                                                                        label="condition_pengalaman_riwayat_pembiayaan"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            c.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Keamanan Bisnis/Pekerjaan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="condition_keamanan_bisnis_pekerjaan"
-                                                                id="condition_keamanan_bisnis_pekerjaan">
-                                                                <option label="condition_keamanan_bisnis_pekerjaan"
-                                                                    selected disabled>Pilih
-                                                                </option>
-                                                                @foreach ($condition_keamanan_bisnis_pekerjaans as $condition_keamanan_bisnis_pekerjaan)
-                                                                    <option
-                                                                        value="{{ $condition_keamanan_bisnis_pekerjaan->rating * $condition_keamanan_bisnis_pekerjaan->bobot }}">
-                                                                        {{ $condition_keamanan_bisnis_pekerjaan->keterangan }}
+                                                                    @foreach ($condition_pengalaman_riwayat_pembiayaans as $condition_pengalaman_riwayat_pembiayaan)
+                                                                        <option
+                                                                            value="{{ $condition_pengalaman_riwayat_pembiayaan->rating * $condition_pengalaman_riwayat_pembiayaan->bobot }}">
+                                                                            {{ $condition_pengalaman_riwayat_pembiayaan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                c.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Keamanan Bisnis/Pekerjaan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="condition_keamanan_bisnis_pekerjaan"
+                                                                    id="condition_keamanan_bisnis_pekerjaan">
+                                                                    <option label="condition_keamanan_bisnis_pekerjaan"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            d.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Potensi Pertumbuhan Hasil
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="condition_potensi_pertumbuhan_hasil"
-                                                                id="condition_potensi_pertumbuhan_hasil">
-                                                                <option label="condition_potensi_pertumbuhan_hasil"
-                                                                    selected disabled>Pilih
-                                                                </option>
-                                                                @foreach ($condition_potensi_pertumbuhan_hasils as $condition_potensi_pertumbuhan_hasil)
-                                                                    <option
-                                                                        value="{{ $condition_potensi_pertumbuhan_hasil->rating * $condition_potensi_pertumbuhan_hasil->bobot }}">
-                                                                        {{ $condition_potensi_pertumbuhan_hasil->keterangan }}
+                                                                    @foreach ($condition_keamanan_bisnis_pekerjaans as $condition_keamanan_bisnis_pekerjaan)
+                                                                        <option
+                                                                            value="{{ $condition_keamanan_bisnis_pekerjaan->rating * $condition_keamanan_bisnis_pekerjaan->bobot }}">
+                                                                            {{ $condition_keamanan_bisnis_pekerjaan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                d.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Potensi Pertumbuhan Hasil
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="condition_potensi_pertumbuhan_hasil"
+                                                                    id="condition_potensi_pertumbuhan_hasil">
+                                                                    <option label="condition_potensi_pertumbuhan_hasil"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            e.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pengalaman Kerja
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="condition_pengalaman_kerja"
-                                                                id="condition_pengalaman_kerja">
-                                                                <option label="condition_pengalaman_kerja" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($condition_pengalaman_kerjas as $condition_pengalaman_kerja)
-                                                                    <option
-                                                                        value="{{ $condition_pengalaman_kerja->rating * $condition_pengalaman_kerja->bobot }}">
-                                                                        {{ $condition_pengalaman_kerja->keterangan }}
+                                                                    @foreach ($condition_potensi_pertumbuhan_hasils as $condition_potensi_pertumbuhan_hasil)
+                                                                        <option
+                                                                            value="{{ $condition_potensi_pertumbuhan_hasil->rating * $condition_potensi_pertumbuhan_hasil->bobot }}">
+                                                                            {{ $condition_potensi_pertumbuhan_hasil->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                e.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pengalaman Kerja
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="condition_pengalaman_kerja"
+                                                                    id="condition_pengalaman_kerja">
+                                                                    <option label="condition_pengalaman_kerja" selected
+                                                                        disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            f.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pendidikan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100" name="condition_pendidikan"
-                                                                id="condition_pendidikan">
-                                                                <option label="condition_pendidikan" selected disabled>
-                                                                    Pilih
-                                                                </option>
-                                                                @foreach ($condition_pendidikans as $condition_pendidikan)
-                                                                    <option
-                                                                        value="{{ $condition_pendidikan->rating * $condition_pendidikan->bobot }}">
-                                                                        {{ $condition_pendidikan->keterangan }}
+                                                                    @foreach ($condition_pengalaman_kerjas as $condition_pengalaman_kerja)
+                                                                        <option
+                                                                            value="{{ $condition_pengalaman_kerja->rating * $condition_pengalaman_kerja->bobot }}">
+                                                                            {{ $condition_pengalaman_kerja->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                f.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pendidikan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="condition_pendidikan"
+                                                                    id="condition_pendidikan">
+                                                                    <option label="condition_pendidikan" selected
+                                                                        disabled>
+                                                                        Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            g.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Usia
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100" name="condition_usia"
-                                                                id="condition_usia">
-                                                                <option label="condition_usia" selected disabled>Pilih
-                                                                </option>
-                                                                @foreach ($condition_usias as $condition_usia)
-                                                                    <option
-                                                                        value="{{ $condition_usia->rating * $condition_usia->bobot }}">
-                                                                        {{ $condition_usia->keterangan }}
+                                                                    @foreach ($condition_pendidikans as $condition_pendidikan)
+                                                                        <option
+                                                                            value="{{ $condition_pendidikan->rating * $condition_pendidikan->bobot }}">
+                                                                            {{ $condition_pendidikan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                g.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Usia
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100" name="condition_usia"
+                                                                    id="condition_usia">
+                                                                    <option label="condition_usia" selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            h.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Sumber Pendapatan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="condition_sumber_pendapatan"
-                                                                id="condition_sumber_pendapatan">
-                                                                <option label="condition_sumber_pendapatan" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($condition_sumber_pendapatans as $condition_sumber_pendapatan)
-                                                                    <option
-                                                                        value="{{ $condition_sumber_pendapatan->rating * $condition_sumber_pendapatan->bobot }}">
-                                                                        {{ $condition_sumber_pendapatan->keterangan }}
+                                                                    @foreach ($condition_usias as $condition_usia)
+                                                                        <option
+                                                                            value="{{ $condition_usia->rating * $condition_usia->bobot }}">
+                                                                            {{ $condition_usia->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                h.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Sumber Pendapatan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="condition_sumber_pendapatan"
+                                                                    id="condition_sumber_pendapatan">
+                                                                    <option label="condition_sumber_pendapatan" selected
+                                                                        disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            i.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pendapatan/Gaji Bersih
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="condition_pendapatan_gaji_bersih"
-                                                                id="condition_pendapatan_gaji_bersih">
-                                                                <option label="condition_pendapatan_gaji_bersih" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($condition_pendapatan_gaji_bersihs as $condition_pendapatan_gaji_bersih)
-                                                                    <option
-                                                                        value="{{ $condition_pendapatan_gaji_bersih->rating * $condition_pendapatan_gaji_bersih->bobot }}">
-                                                                        {{ $condition_pendapatan_gaji_bersih->keterangan }}
+                                                                    @foreach ($condition_sumber_pendapatans as $condition_sumber_pendapatan)
+                                                                        <option
+                                                                            value="{{ $condition_sumber_pendapatan->rating * $condition_sumber_pendapatan->bobot }}">
+                                                                            {{ $condition_sumber_pendapatan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                i.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pendapatan/Gaji Bersih
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="condition_pendapatan_gaji_bersih"
+                                                                    id="condition_pendapatan_gaji_bersih">
+                                                                    <option label="condition_pendapatan_gaji_bersih"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            j.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Jumlah Tanggungan Keluarga
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="condition_jml_tanggungan_keluarga"
-                                                                id="condition_jml_tanggungan_keluarga">
-                                                                <option label="condition_jml_tanggungan_keluarga" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($condition_jml_tanggungan_keluargas as $condition_jml_tanggungan_keluarga)
-                                                                    <option
-                                                                        value="{{ $condition_jml_tanggungan_keluarga->rating * $condition_jml_tanggungan_keluarga->bobot }}">
-                                                                        {{ $condition_jml_tanggungan_keluarga->keterangan }}
+                                                                    @foreach ($condition_pendapatan_gaji_bersihs as $condition_pendapatan_gaji_bersih)
+                                                                        <option
+                                                                            value="{{ $condition_pendapatan_gaji_bersih->rating * $condition_pendapatan_gaji_bersih->bobot }}">
+                                                                            {{ $condition_pendapatan_gaji_bersih->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                j.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Jumlah Tanggungan Keluarga
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="condition_jml_tanggungan_keluarga"
+                                                                    id="condition_jml_tanggungan_keluarga">
+                                                                    <option label="condition_jml_tanggungan_keluarga"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
+                                                                    @foreach ($condition_jml_tanggungan_keluargas as $condition_jml_tanggungan_keluarga)
+                                                                        <option
+                                                                            value="{{ $condition_jml_tanggungan_keluarga->rating * $condition_jml_tanggungan_keluarga->bobot }}">
+                                                                            {{ $condition_jml_tanggungan_keluarga->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    @elseif($pembiayaan->jenis_nasabah == 'Non Fixed Income')
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                a.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Kualitas Produk dan Jasa
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="condition_nf_kualitas_produk_jasa"
+                                                                    id="condition_nf_kualitas_produk_jasa">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($condition_sharia_nf_kualitas_produk_jasas as $condition_sharia_nf_kualitas_produk_jasa)
+                                                                        <option
+                                                                            value="{{ $condition_sharia_nf_kualitas_produk_jasa->rating * $condition_sharia_nf_kualitas_produk_jasa->bobot }}">
+                                                                            {{ $condition_sharia_nf_kualitas_produk_jasa->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                b.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Sistem Pembayaran
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="condition_nf_sistem_pembayaran"
+                                                                    id="condition_nf_sistem_pembayaran">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($condition_sharia_nf_sistem_pembayarans as $condition_sharia_nf_sistem_pembayaran)
+                                                                        <option
+                                                                            value="{{ $condition_sharia_nf_sistem_pembayaran->rating * $condition_sharia_nf_sistem_pembayaran->bobot }}">
+                                                                            {{ $condition_sharia_nf_sistem_pembayaran->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                c.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Lokasi Usaha
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="condition_nf_lokasi_usaha"
+                                                                    id="condition_nf_lokasi_usaha">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($condition_sharia_nf_lokasi_usahas as $condition_sharia_nf_lokasi_usaha)
+                                                                        <option
+                                                                            value="{{ $condition_sharia_nf_lokasi_usaha->rating * $condition_sharia_nf_lokasi_usaha->bobot }}">
+                                                                            {{ $condition_sharia_nf_lokasi_usaha->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    @else
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -8557,121 +8833,235 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            a.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Marketabilitas
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="collateral_marketabilitas"
-                                                                id="collateral_marketabilitas">
-                                                                <option label="collateral_marketabilitas" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($collateral_marketabilitases as $collateral_marketabilitas)
-                                                                    <option
-                                                                        value="{{ $collateral_marketabilitas->rating * $collateral_marketabilitas->bobot }}">
-                                                                        {{ $collateral_marketabilitas->keterangan }}
+                                                    @if ($pembiayaan->jenis_nasabah == 'Fixed Income')
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                a.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Marketabilitas
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="collateral_marketabilitas"
+                                                                    id="collateral_marketabilitas">
+                                                                    <option label="collateral_marketabilitas" selected
+                                                                        disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            b.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Kontribusi Pemohon = FTV
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="collateral_kontribusi_pemohon_ftv"
-                                                                id="collateral_kontribusi_pemohon_ftv">
-                                                                <option label="collateral_kontribusi_pemohon_ftv" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($collateral_kontribusi_pemohon_ftvs as $collateral_kontribusi_pemohon_ftv)
-                                                                    <option
-                                                                        value="{{ $collateral_kontribusi_pemohon_ftv->rating * $collateral_kontribusi_pemohon_ftv->bobot }}">
-                                                                        {{ $collateral_kontribusi_pemohon_ftv->keterangan }}
+                                                                    @foreach ($collateral_marketabilitases as $collateral_marketabilitas)
+                                                                        <option
+                                                                            value="{{ $collateral_marketabilitas->rating * $collateral_marketabilitas->bobot }}">
+                                                                            {{ $collateral_marketabilitas->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                b.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Kontribusi Pemohon = FTV
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="collateral_kontribusi_pemohon_ftv"
+                                                                    id="collateral_kontribusi_pemohon_ftv">
+                                                                    <option label="collateral_kontribusi_pemohon_ftv"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            c.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Pertumbuhan Agunan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="collateral_pertumbuhan_agunan"
-                                                                id="collateral_pertumbuhan_agunan">
-                                                                <option label="collateral_pertumbuhan_agunan" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($collateral_pertumbuhan_agunans as $collateral_pertumbuhan_agunan)
-                                                                    <option
-                                                                        value="{{ $collateral_pertumbuhan_agunan->rating * $collateral_pertumbuhan_agunan->bobot }}">
-                                                                        {{ $collateral_pertumbuhan_agunan->keterangan }}
+                                                                    @foreach ($collateral_kontribusi_pemohon_ftvs as $collateral_kontribusi_pemohon_ftv)
+                                                                        <option
+                                                                            value="{{ $collateral_kontribusi_pemohon_ftv->rating * $collateral_kontribusi_pemohon_ftv->bobot }}">
+                                                                            {{ $collateral_kontribusi_pemohon_ftv->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                c.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pertumbuhan Agunan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="collateral_pertumbuhan_agunan"
+                                                                    id="collateral_pertumbuhan_agunan">
+                                                                    <option label="collateral_pertumbuhan_agunan" selected
+                                                                        disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            d.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Daya Tarik Agunan
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="collateral_daya_tarik_agunan"
-                                                                id="collateral_daya_tarik_agunan">
-                                                                <option label="collateral_daya_tarik_agunan" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($collateral_daya_tarik_agunans as $collateral_daya_tarik_agunan)
-                                                                    <option
-                                                                        value="{{ $collateral_daya_tarik_agunan->rating * $collateral_daya_tarik_agunan->bobot }}">
-                                                                        {{ $collateral_daya_tarik_agunan->keterangan }}
+                                                                    @foreach ($collateral_pertumbuhan_agunans as $collateral_pertumbuhan_agunan)
+                                                                        <option
+                                                                            value="{{ $collateral_pertumbuhan_agunan->rating * $collateral_pertumbuhan_agunan->bobot }}">
+                                                                            {{ $collateral_pertumbuhan_agunan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                d.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Daya Tarik Agunan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="collateral_daya_tarik_agunan"
+                                                                    id="collateral_daya_tarik_agunan">
+                                                                    <option label="collateral_daya_tarik_agunan" selected
+                                                                        disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="midCenter">
-                                                            e.
-                                                        </td>
-                                                        <td class="midJustify">
-                                                            Jangka Waktu Likuidasi
-                                                        </td>
-                                                        <td class="midCenter">
-                                                            <select class="select2 w-100"
-                                                                name="collateral_jangka_waktu_likuidasi"
-                                                                id="collateral_jangka_waktu_likuidasi">
-                                                                <option label="collateral_jangka_waktu_likuidasi" selected
-                                                                    disabled>Pilih
-                                                                </option>
-                                                                @foreach ($collateral_jangka_waktu_likuidasis as $collateral_jangka_waktu_likuidasi)
-                                                                    <option
-                                                                        value="{{ $collateral_jangka_waktu_likuidasi->rating * $collateral_jangka_waktu_likuidasi->bobot }}">
-                                                                        {{ $collateral_jangka_waktu_likuidasi->keterangan }}
+                                                                    @foreach ($collateral_daya_tarik_agunans as $collateral_daya_tarik_agunan)
+                                                                        <option
+                                                                            value="{{ $collateral_daya_tarik_agunan->rating * $collateral_daya_tarik_agunan->bobot }}">
+                                                                            {{ $collateral_daya_tarik_agunan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                e.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Jangka Waktu Likuidasi
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="collateral_jangka_waktu_likuidasi"
+                                                                    id="collateral_jangka_waktu_likuidasi">
+                                                                    <option label="collateral_jangka_waktu_likuidasi"
+                                                                        selected disabled>Pilih
                                                                     </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
+                                                                    @foreach ($collateral_jangka_waktu_likuidasis as $collateral_jangka_waktu_likuidasi)
+                                                                        <option
+                                                                            value="{{ $collateral_jangka_waktu_likuidasi->rating * $collateral_jangka_waktu_likuidasi->bobot }}">
+                                                                            {{ $collateral_jangka_waktu_likuidasi->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    @elseif($pembiayaan->jenis_nasabah == 'Non Fixed Income')
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                a.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Marketabilitas
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="collateral_nf_marketabilitas"
+                                                                    id="collateral_nf_marketabilitas">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($collateral_nf_marketabilitases as $collateral_nf_marketabilitas)
+                                                                        <option
+                                                                            value="{{ $collateral_nf_marketabilitas->rating * $collateral_nf_marketabilitas->bobot }}">
+                                                                            {{ $collateral_nf_marketabilitas->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                b.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Kontribusi Pemohon = FTV
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="collateral_nf_kontribusi_pemohon_ftv"
+                                                                    id="collateral_nf_kontribusi_pemohon_ftv">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($collateral_nf_kontribusi_pemohons as $collateral_nf_kontribusi_pemohon)
+                                                                        <option
+                                                                            value="{{ $collateral_nf_kontribusi_pemohon->rating * $collateral_nf_kontribusi_pemohon->bobot }}">
+                                                                            {{ $collateral_nf_kontribusi_pemohon->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                c.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Pertumbuhan Agunan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="collateral_nf_pertumbuhan_agunan"
+                                                                    id="collateral_nf_pertumbuhan_agunan">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($collateral_nf_pertumbuhan_agunans as $collateral_nf_pertumbuhan_agunan)
+                                                                        <option
+                                                                            value="{{ $collateral_nf_pertumbuhan_agunan->rating * $collateral_nf_pertumbuhan_agunan->bobot }}">
+                                                                            {{ $collateral_nf_pertumbuhan_agunan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                d.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Daya Tarik Agunan
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="collateral_nf_daya_tarik_agunan"
+                                                                    id="collateral_nf_daya_tarik_agunan">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($collateral_nf_daya_tarik_agunans as $collateral_nf_daya_tarik_agunan)
+                                                                        <option
+                                                                            value="{{ $collateral_nf_daya_tarik_agunan->rating * $collateral_nf_daya_tarik_agunan->bobot }}">
+                                                                            {{ $collateral_nf_daya_tarik_agunan->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="midCenter">
+                                                                e.
+                                                            </td>
+                                                            <td class="midJustify">
+                                                                Jangka Waktu Likuidasi
+                                                            </td>
+                                                            <td class="midCenter">
+                                                                <select class="select2 w-100"
+                                                                    name="collateral_nf_jangka_waktu_likuidasi"
+                                                                    id="collateral_nf_jangka_waktu_likuidasi">
+                                                                    <option label="Pilih" selected disabled>Pilih
+                                                                    </option>
+                                                                    @foreach ($collateral_nf_jangka_waktu_likuidasis as $collateral_nf_jangka_waktu_likuidasi)
+                                                                        <option
+                                                                            value="{{ $collateral_nf_jangka_waktu_likuidasi->rating * $collateral_nf_jangka_waktu_likuidasi->bobot }}">
+                                                                            {{ $collateral_nf_jangka_waktu_likuidasi->keterangan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    @else
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -8858,25 +9248,28 @@
         }
 
         function sumNonFixed(value) {
-            var penjualanNF1, diskonNF1, returNF1, penjualanBersihNF1,
-                penjualanNF2, diskonNF2, returNF2, penjualanBersihNF2,
-                penjualanNFP, diskonNFP, returNFP, penjualanBersihNFP,
+            var penjualanNF1, diskonNF1, returNF1, penjualanBersihNF1, penjualanBersihNF1Dummy,
+                penjualanNF2, diskonNF2, returNF2, penjualanBersihNF2, penjualanBersihNF2Dummy,
+                penjualanNFP, diskonNFP, returNFP, penjualanBersihNFP, penjualanBersihNFPDummy,
                 persediaanBarangNF1, pembelianBahanNF1, upahLangsungNF1, upahTidakLangsungNF1, penyusutanNF1, bohLainNF1,
-                totalBohNF1, jmlHargaPokokPenjualanNF1, labaKotorNF1,
+                totalBohNF1, totalBohNF1Dummy, jmlHargaPokokPenjualanNF1, jmlHargaPokokPenjualanNF1Dummy, labaKotorNF1,
+                labaKotorNF1Dummy,
                 persediaanBarangNF2, pembelianBahanNF2, upahLangsungNF2, upahTidakLangsungNF2, penyusutanNF2, bohLainNF2,
-                totalBohNF2, jmlHargaPokokPenjualanNF2, labaKotorNF2,
+                totalBohNF2, totalBohNF2Dummy, jmlHargaPokokPenjualanNF2, jmlHargaPokokPenjualanNF2Dummy, labaKotorNF2,
+                labaKotorNF2Dummy,
                 persediaanBarangNFP, pembelianBahanNFP, upahLangsungNFP, upahTidakLangsungNFP, penyusutanNFP, bohLainNFP,
-                totalBohNFP, jmlHargaPokokPenjualanNFP, labaKotorNFP,
+                totalBohNFP, totalBohNFPDummy, jmlHargaPokokPenjualanNFP, jmlHargaPokokPenjualanNFPDummy, labaKotorNFP,
+                labaKotorNFPDummy,
                 biayaPenjualanNF1, biayaGajiKomisarisDireksiStaffNF1, biayaListrikTeleponAirNF1, biayaPerawatanGedungNF1,
-                biayaBagiHasilSewaMarginNF1, biayaAdmLainNF1, jmlBiayaAdmNF1, labaSebelumPajakNF1, pajakZakatNF1,
-                labaSetelahPajakNF1,
+                biayaBagiHasilSewaMarginNF1, biayaAdmLainNF1, jmlBiayaAdmNF1, jmlBiayaAdmNF1Dummy, labaSebelumPajakNF1,
+                labaSebelumPajakNF1Dummy, pajakZakatNF1, labaSetelahPajakNF1, labaSetelahPajakNF1Dummy,
                 biayaPenjualanNF2, biayaGajiKomisarisDireksiStaffNF2, biayaListrikTeleponAirNF2, biayaPerawatanGedungNF2,
-                biayaBagiHasilSewaMarginNF2, biayaAdmLainNF2, jmlBiayaAdmNF2, labaSebelumPajakNF2, pajakZakatNF2,
-                labaSetelahPajakNF2,
+                biayaBagiHasilSewaMarginNF2, biayaAdmLainNF2, jmlBiayaAdmNF2, jmlBiayaAdmNF2Dummy, labaSebelumPajakNF2,
+                labaSebelumPajakNF2Dummy, pajakZakatNF2, labaSetelahPajakNF2, labaSetelahPajakNF2Dummy,
                 biayaPenjualanNFP, biayaGajiKomisarisDireksiStaffNFP, biayaListrikTeleponAirNFP, biayaPerawatanGedungNFP,
-                biayaBagiHasilSewaMarginNFP, biayaAdmLainNFP, jmlBiayaAdmNFP, labaSebelumPajakNFP, pajakZakatNFP,
-                labaSetelahPajakNFP,
-                totalPenghasilanBersihPerBulan;
+                biayaBagiHasilSewaMarginNFP, biayaAdmLainNFP, jmlBiayaAdmNFP, jmlBiayaAdmNFPDummy, labaSebelumPajakNFP,
+                labaSebelumPajakNFPDummy, pajakZakatNFP, labaSetelahPajakNFP, labaSetelahPajakNFPDummy,
+                totalPenghasilanBersihPerBulan, totalPenghasilanBersihPerBulanDummy;
 
 
             //Penjualan
@@ -8888,6 +9281,13 @@
             penjualanBersihNF1 = +penjualanNF1 - (+diskonNF1 + +returNF1);
             document.getElementById("penjualanBersihNF1").value = penjualanBersihNF1;
 
+            penjualanBersihNF1Dummy = penjualanBersihNF1;
+            document.getElementById("penjualanBersihNF1Dummy").value = penjualanBersihNF1Dummy;
+            penjualanBersihNF1Dummy = document.getElementById("penjualanBersihNF1Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("penjualanBersihNF1Dummy").value =
+                penjualanBersihNF1Dummy;
+
             //Sum Non Fixed Income Penjualan Usaha 2
             penjualanNF2 = document.getElementById("penjualanNF2").value.replace(/,/g, "");
             diskonNF2 = document.getElementById("diskonNF2").value.replace(/,/g, "");
@@ -8896,6 +9296,13 @@
             penjualanBersihNF2 = +penjualanNF2 - (+diskonNF2 + +returNF2);
             document.getElementById("penjualanBersihNF2").value = penjualanBersihNF2;
 
+            penjualanBersihNF2Dummy = penjualanBersihNF2;
+            document.getElementById("penjualanBersihNF2Dummy").value = penjualanBersihNF2Dummy;
+            penjualanBersihNF2Dummy = document.getElementById("penjualanBersihNF2Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("penjualanBersihNF2Dummy").value =
+                penjualanBersihNF2Dummy;
+
             //Sum Non Fixed Income Penjualan Usaha Pasangan
             penjualanNFP = document.getElementById("penjualanNFP").value.replace(/,/g, "");
             diskonNFP = document.getElementById("diskonNFP").value.replace(/,/g, "");
@@ -8903,6 +9310,13 @@
 
             penjualanBersihNFP = +penjualanNFP - (+diskonNFP + +returNFP);
             document.getElementById("penjualanBersihNFP").value = penjualanBersihNFP;
+
+            penjualanBersihNFPDummy = penjualanBersihNFP;
+            document.getElementById("penjualanBersihNFPDummy").value = penjualanBersihNFPDummy;
+            penjualanBersihNFPDummy = document.getElementById("penjualanBersihNFPDummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("penjualanBersihNFPDummy").value =
+                penjualanBersihNFPDummy;
 
             //Harga Pokok Penjualan
             //Sum Non Fixed Income Harga Pokok Penjualan Usaha 1
@@ -8916,11 +9330,32 @@
             totalBohNF1 = +upahTidakLangsungNF1 + +penyusutanNF1 + +bohLainNF1;
             document.getElementById("totalBohNF1").value = totalBohNF1;
 
+            totalBohNF1Dummy = totalBohNF1;
+            document.getElementById("totalBohNF1Dummy").value = totalBohNF1Dummy;
+            totalBohNF1Dummy = document.getElementById("totalBohNF1Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("totalBohNF1Dummy").value =
+                totalBohNF1Dummy;
+
             jmlHargaPokokPenjualanNF1 = +persediaanBarangNF1 + +pembelianBahanNF1 + +upahLangsungNF1 + +totalBohNF1;
             document.getElementById("jmlHargaPokokPenjualanNF1").value = jmlHargaPokokPenjualanNF1;
 
+            jmlHargaPokokPenjualanNF1Dummy = jmlHargaPokokPenjualanNF1;
+            document.getElementById("jmlHargaPokokPenjualanNF1Dummy").value = jmlHargaPokokPenjualanNF1Dummy;
+            jmlHargaPokokPenjualanNF1Dummy = document.getElementById("jmlHargaPokokPenjualanNF1Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("jmlHargaPokokPenjualanNF1Dummy").value =
+                jmlHargaPokokPenjualanNF1Dummy;
+
             labaKotorNF1 = +penjualanBersihNF1 - +jmlHargaPokokPenjualanNF1;
             document.getElementById("labaKotorNF1").value = labaKotorNF1;
+
+            labaKotorNF1Dummy = labaKotorNF1;
+            document.getElementById("labaKotorNF1Dummy").value = labaKotorNF1Dummy;
+            labaKotorNF1Dummy = document.getElementById("labaKotorNF1Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("labaKotorNF1Dummy").value =
+                labaKotorNF1Dummy;
 
             //Sum Non Fixed Income Harga Pokok Penjualan Usaha 2
             persediaanBarangNF2 = document.getElementById("persediaanBarangNF2").value.replace(/,/g, "");
@@ -8933,11 +9368,32 @@
             totalBohNF2 = +upahTidakLangsungNF2 + +penyusutanNF2 + +bohLainNF2;
             document.getElementById("totalBohNF2").value = totalBohNF2;
 
+            totalBohNF2Dummy = totalBohNF2;
+            document.getElementById("totalBohNF2Dummy").value = totalBohNF2Dummy;
+            totalBohNF2Dummy = document.getElementById("totalBohNF2Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("totalBohNF2Dummy").value =
+                totalBohNF2Dummy;
+
             jmlHargaPokokPenjualanNF2 = +persediaanBarangNF2 + +pembelianBahanNF2 + +upahLangsungNF2 + +totalBohNF2;
             document.getElementById("jmlHargaPokokPenjualanNF2").value = jmlHargaPokokPenjualanNF2;
 
+            jmlHargaPokokPenjualanNF2Dummy = jmlHargaPokokPenjualanNF2;
+            document.getElementById("jmlHargaPokokPenjualanNF2Dummy").value = jmlHargaPokokPenjualanNF2Dummy;
+            jmlHargaPokokPenjualanNF2Dummy = document.getElementById("jmlHargaPokokPenjualanNF2Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("jmlHargaPokokPenjualanNF2Dummy").value =
+                jmlHargaPokokPenjualanNF2Dummy;
+
             labaKotorNF2 = +penjualanBersihNF2 - +jmlHargaPokokPenjualanNF2;
             document.getElementById("labaKotorNF2").value = labaKotorNF2;
+
+            labaKotorNF2Dummy = labaKotorNF2;
+            document.getElementById("labaKotorNF2Dummy").value = labaKotorNF2Dummy;
+            labaKotorNF2Dummy = document.getElementById("labaKotorNF2Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("labaKotorNF2Dummy").value =
+                labaKotorNF2Dummy;
 
             //Sum Non Fixed Income Harga Pokok Penjualan Usaha Pasangan
             persediaanBarangNFP = document.getElementById("persediaanBarangNFP").value.replace(/,/g, "");
@@ -8950,11 +9406,32 @@
             totalBohNFP = +upahTidakLangsungNFP + +penyusutanNFP + +bohLainNFP;
             document.getElementById("totalBohNFP").value = totalBohNFP;
 
+            totalBohNFPDummy = totalBohNFP;
+            document.getElementById("totalBohNFPDummy").value = totalBohNFPDummy;
+            totalBohNFPDummy = document.getElementById("totalBohNFPDummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("totalBohNFPDummy").value =
+                totalBohNFPDummy;
+
             jmlHargaPokokPenjualanNFP = +persediaanBarangNFP + +pembelianBahanNFP + +upahLangsungNFP + +totalBohNFP;
             document.getElementById("jmlHargaPokokPenjualanNFP").value = jmlHargaPokokPenjualanNFP;
 
+            jmlHargaPokokPenjualanNFPDummy = jmlHargaPokokPenjualanNFP;
+            document.getElementById("jmlHargaPokokPenjualanNFPDummy").value = jmlHargaPokokPenjualanNFPDummy;
+            jmlHargaPokokPenjualanNFPDummy = document.getElementById("jmlHargaPokokPenjualanNFPDummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("jmlHargaPokokPenjualanNFPDummy").value =
+                jmlHargaPokokPenjualanNFPDummy;
+
             labaKotorNFP = +penjualanBersihNFP - +jmlHargaPokokPenjualanNFP;
             document.getElementById("labaKotorNFP").value = labaKotorNFP;
+
+            labaKotorNFPDummy = labaKotorNFP;
+            document.getElementById("labaKotorNFPDummy").value = labaKotorNFPDummy;
+            labaKotorNFPDummy = document.getElementById("labaKotorNFPDummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("labaKotorNFPDummy").value =
+                labaKotorNFPDummy;
 
             //Biaya Administrasi
             //Biaya Administrasi dan Laba Usaha 1
@@ -8970,13 +9447,34 @@
                 +biayaPerawatanGedungNF1 + +biayaBagiHasilSewaMarginNF1 + +biayaAdmLainNF1;
             document.getElementById("jmlBiayaAdmNF1").value = jmlBiayaAdmNF1;
 
+            jmlBiayaAdmNF1Dummy = jmlBiayaAdmNF1;
+            document.getElementById("jmlBiayaAdmNF1Dummy").value = jmlBiayaAdmNF1Dummy;
+            jmlBiayaAdmNF1Dummy = document.getElementById("jmlBiayaAdmNF1Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("jmlBiayaAdmNF1Dummy").value =
+                jmlBiayaAdmNF1Dummy;
+
             labaSebelumPajakNF1 = +labaKotorNF1 - +jmlBiayaAdmNF1;
             document.getElementById("labaSebelumPajakNF1").value = labaSebelumPajakNF1;
+
+            labaSebelumPajakNF1Dummy = labaSebelumPajakNF1;
+            document.getElementById("labaSebelumPajakNF1Dummy").value = labaSebelumPajakNF1Dummy;
+            labaSebelumPajakNF1Dummy = document.getElementById("labaSebelumPajakNF1Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("labaSebelumPajakNF1Dummy").value =
+                labaSebelumPajakNF1Dummy;
 
             pajakZakatNF1 = document.getElementById("pajakZakatNF1").value;
 
             labaSetelahPajakNF1 = +labaSebelumPajakNF1 - +pajakZakatNF1;
             document.getElementById("labaSetelahPajakNF1").value = labaSetelahPajakNF1;
+
+            labaSetelahPajakNF1Dummy = labaSetelahPajakNF1;
+            document.getElementById("labaSetelahPajakNF1Dummy").value = labaSetelahPajakNF1Dummy;
+            labaSetelahPajakNF1Dummy = document.getElementById("labaSetelahPajakNF1Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("labaSetelahPajakNF1Dummy").value =
+                labaSetelahPajakNF1Dummy;
 
             //Biaya Administrasi dan Laba Usaha 2
             biayaPenjualanNF2 = document.getElementById("biayaPenjualanNF2").value.replace(/,/g, "");
@@ -8991,13 +9489,34 @@
                 +biayaPerawatanGedungNF2 + +biayaBagiHasilSewaMarginNF2 + +biayaAdmLainNF2;
             document.getElementById("jmlBiayaAdmNF2").value = jmlBiayaAdmNF2;
 
+            jmlBiayaAdmNF2Dummy = jmlBiayaAdmNF2;
+            document.getElementById("jmlBiayaAdmNF2Dummy").value = jmlBiayaAdmNF2Dummy;
+            jmlBiayaAdmNF2Dummy = document.getElementById("jmlBiayaAdmNF2Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("jmlBiayaAdmNF2Dummy").value =
+                jmlBiayaAdmNF2Dummy;
+
             labaSebelumPajakNF2 = +labaKotorNF2 - +jmlBiayaAdmNF2;
             document.getElementById("labaSebelumPajakNF2").value = labaSebelumPajakNF2;
+
+            labaSebelumPajakNF2Dummy = labaSebelumPajakNF2;
+            document.getElementById("labaSebelumPajakNF2Dummy").value = labaSebelumPajakNF2Dummy;
+            labaSebelumPajakNF2Dummy = document.getElementById("labaSebelumPajakNF2Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("labaSebelumPajakNF2Dummy").value =
+                labaSebelumPajakNF2Dummy;
 
             pajakZakatNF2 = document.getElementById("pajakZakatNF2").value;
 
             labaSetelahPajakNF2 = +labaSebelumPajakNF2 - +pajakZakatNF2;
             document.getElementById("labaSetelahPajakNF2").value = labaSetelahPajakNF2;
+
+            labaSetelahPajakNF2Dummy = labaSetelahPajakNF2;
+            document.getElementById("labaSetelahPajakNF2Dummy").value = labaSetelahPajakNF2Dummy;
+            labaSetelahPajakNF2Dummy = document.getElementById("labaSetelahPajakNF2Dummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("labaSetelahPajakNF2Dummy").value =
+                labaSetelahPajakNF2Dummy;
 
             //Biaya Administrasi dan Laba Usaha Pasangan
             biayaPenjualanNFP = document.getElementById("biayaPenjualanNFP").value;
@@ -9012,17 +9531,44 @@
                 +biayaPerawatanGedungNFP + +biayaBagiHasilSewaMarginNFP + +biayaAdmLainNFP;
             document.getElementById("jmlBiayaAdmNFP").value = jmlBiayaAdmNFP;
 
+            jmlBiayaAdmNFPDummy = jmlBiayaAdmNFP;
+            document.getElementById("jmlBiayaAdmNFPDummy").value = jmlBiayaAdmNFPDummy;
+            jmlBiayaAdmNFPDummy = document.getElementById("jmlBiayaAdmNFPDummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("jmlBiayaAdmNFPDummy").value =
+                jmlBiayaAdmNFPDummy;
+
             labaSebelumPajakNFP = +labaKotorNFP - +jmlBiayaAdmNFP;
             document.getElementById("labaSebelumPajakNFP").value = labaSebelumPajakNFP;
+
+            labaSebelumPajakNFPDummy = labaSebelumPajakNFP;
+            document.getElementById("labaSebelumPajakNFPDummy").value = labaSebelumPajakNFPDummy;
+            labaSebelumPajakNFPDummy = document.getElementById("labaSebelumPajakNFPDummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("labaSebelumPajakNFPDummy").value =
+                labaSebelumPajakNFPDummy;
 
             pajakZakatNFP = document.getElementById("pajakZakatNFP").value;
 
             labaSetelahPajakNFP = +labaSebelumPajakNFP - +pajakZakatNFP;
             document.getElementById("labaSetelahPajakNFP").value = labaSetelahPajakNFP;
 
+            labaSetelahPajakNFPDummy = labaSetelahPajakNFP;
+            document.getElementById("labaSetelahPajakNFPDummy").value = labaSetelahPajakNFPDummy;
+            labaSetelahPajakNFPDummy = document.getElementById("labaSetelahPajakNFPDummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("labaSetelahPajakNFPDummy").value =
+                labaSetelahPajakNFPDummy;
+
             totalPenghasilanBersihPerBulan = +labaSebelumPajakNF1 + +labaSebelumPajakNF2 + +labaSebelumPajakNFP;
             document.getElementById("totalPenghasilanBersihPerBulan").value = totalPenghasilanBersihPerBulan;
 
+            totalPenghasilanBersihPerBulanDummy = totalPenghasilanBersihPerBulan;
+            document.getElementById("totalPenghasilanBersihPerBulanDummy").value = totalPenghasilanBersihPerBulanDummy;
+            totalPenghasilanBersihPerBulanDummy = document.getElementById("totalPenghasilanBersihPerBulanDummy").value
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById("totalPenghasilanBersihPerBulanDummy").value =
+                totalPenghasilanBersihPerBulanDummy;
         }
 
         function SumAngsuran(value) {
@@ -9039,8 +9585,6 @@
             document.getElementById("angsuran").value = Math.round(angsuran);
 
         }
-    </script>
-
     </script>
     <!-- END: Content-->
 @endsection
