@@ -38,7 +38,7 @@ class PasarKomiteController extends Controller
      */
     public function index()
     {
-        $komite=PasarPembiayaanHistory::select()->where('status_id', 5 )->get();
+        $komite=PasarPembiayaan::select()->orderby('created_at','desc')->get();
         return view('dirbis::pasar.komite.index',[
             'title'=>'Data Nasabah',
             'komites'=>$komite,
@@ -234,6 +234,7 @@ class PasarKomiteController extends Controller
             'akads'=>PasarAkad::all(),
             'sektors'=>PasarSektorEkonomi::all(),
             'konfirmasi'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Konfirmasi Kepala Pasar')->get()->first(),
+            'nota'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
             'pasars'=>PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first(),
             'lamas'=>PasarLamaBerdagang::select()->where('kode_lamaberdagang',$usaha->lama_usaha)->get()->first(),
             'rumahs'=>PasarJaminanRumahh::select()->where('kode_jaminan',$jaminanrumah->legalitas_kepemilikan_rumah)->get()->first(),

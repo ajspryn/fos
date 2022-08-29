@@ -972,6 +972,14 @@
                                             </div>
                                     </div>
 
+                                    <div class="tab-pane" id="keuangan" role="tabpanel"
+                                        aria-labelledby="settings-tab-justified">
+                                        {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
+                                        width="1000" height="900"></iframe> --}}
+                                        <iframe src="{{ asset('storage/' . $nota->foto) }}" class="d-block w-100"
+                                            height='500' weight='800'></iframe> 
+                                    </div>
+
                                     <div class="tab-pane" id="ideb" role="tabpanel"
                                     aria-labelledby="settings-tab-justified">
                                     {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"

@@ -352,14 +352,7 @@
                                                                                     {{ $rating_bendahara }}</td>
                                                                                 <td style="text-align: center">
                                                                                     {{ $nilai_bendahara }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#konfirmasibendahara">
-                                                                                        <i data-feather="eye"></i>
-                                                                                    </button>
-                                                                                </td>
+                                                                                
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="text-align: center">2</td>
@@ -1057,47 +1050,4 @@
                     </div>
                 </div>
                 <!--/ ideb  -->
-
-                <!-- ideb  -->
-                <div class="modal fade" id="konfirmasibendahara" tabindex="-1" aria-labelledby="addNewCardTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body px-sm-12 mx-50 pb-5">
-                                <h3 class="text-center">Lampiran Konfirmasi Bendahara</h3>
-                                <div class="card-body">
-                                    <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
-                                        height='500'>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/ ideb  -->
-                    <!-- jaminan  -->
-                    <div class="modal fade" id="iii" tabindex="-1" aria-labelledby="addNewCardTitle"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header bg-transparent">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body px-sm-12 mx-50 pb-5">
-                                    <h3 class="text-center">Lampiran Jaminan</h3>
-                                    <div class="card-body">
-                                        {{-- <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
-                                    height='500'> --}}
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
             @endsection

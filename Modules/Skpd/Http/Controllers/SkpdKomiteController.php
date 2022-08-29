@@ -76,7 +76,7 @@ class SkpdKomiteController extends Controller
             ]);
         }
 
-
+          return redirect('/skpd/komite');
     }
 
     /**

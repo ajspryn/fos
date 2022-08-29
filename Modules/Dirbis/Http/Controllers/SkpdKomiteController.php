@@ -28,7 +28,7 @@ class SkpdKomiteController extends Controller
      */
     public function index()
     {
-        $komite=SkpdPembiayaanHistory::select()->where('status_id', 5 )->where('user_id',auth::user()->id)->get();
+        $komite=SkpdPembiayaan::select()->orderby('created_at','desc')->get();
         return view('dirbis::skpd.komite.index',[
             'title'=>'Data Komite',
             'proposals'=>$komite,

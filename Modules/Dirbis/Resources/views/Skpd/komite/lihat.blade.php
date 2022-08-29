@@ -801,8 +801,8 @@
                                         </div>
                                         <div class="tab-pane" id="ideb" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
-                                            {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
-                                        width="1000" height="900"></iframe> --}}
+                                            <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
+                                        width="1000" height="900"></iframe>
                                             {{-- <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
                                                 width="1000" height="900"> --}}
                                         </div>
@@ -827,6 +827,13 @@
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
                                                                         </div>
+                                                                        @if ($timeline->catatan)
+
+                                                                        <p value="{{ $timeline->id }}"> <br>Catatan :
+                                                                            {{ $timeline->catatan }}
+                                                                        <p>
+
+                                                                    @endif
                                                                         <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
@@ -915,8 +922,8 @@
                             <div class="modal-body px-sm-12 mx-50 pb-5">
                                 <h3 class="text-center">Lampiran IDEB</h3>
                                 <div class="card-body">
-                                    {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
-                                        height='500' weight='800'></iframe> --}}
+                                    <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
+                                        height='500' weight='800'></iframe>
                                 </div>
                             </div>
                         </div>

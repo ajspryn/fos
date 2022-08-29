@@ -48,13 +48,13 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
-                                            $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-                                                ->where('id', $proposal->skpd_pembiayaan_id)
-                                                ->get()
-                                                ->first();
                                             $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-                                                ->where('skpd_pembiayaan_id', $proposal_skpd->id)
-                                                ->orderby('created_at', 'desc')
+                                            ->where('skpd_pembiayaan_id', $proposal->id)
+                                            ->orderby('created_at', 'desc')
+                                            ->get()
+                                            ->first();
+                                            $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                                ->where('id', $history->skpd_pembiayaan_id)
                                                 ->get()
                                                 ->first();
                                         @endphp

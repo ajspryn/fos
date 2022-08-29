@@ -455,7 +455,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="SHPB"> <small class="text-danger">*
-                                            </small>Upload Jaminan KTB</label>
+                                            </small>Upload Jaminan </label>
                                         <input type="file" name="dokumenktb" id="dokumenktb" rows="3"
                                             class="form-control" required />
                                     </div>
@@ -523,6 +523,14 @@
                                             Kios</label>
                                         <input type="text" class="form-control numeral-mask4" placeholder="Rp."
                                             name="sewa" id="sewa" required/>
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotonota"><small class="text-danger">*
+                                            </small>Upload Nota Pembelanjaan</label>
+                                        <input type="file" name="foto[6][foto]" id="fotonota" rows="3"
+                                            class="form-control" required />
+                                        <input type="hidden" name="foto[6][kategori]" value="Foto Nota Pembelanjaan" rows="3"
+                                            class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="content-header">

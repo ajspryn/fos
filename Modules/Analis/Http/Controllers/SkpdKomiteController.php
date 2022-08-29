@@ -52,6 +52,7 @@ class SkpdKomiteController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         SkpdPembiayaanHistory::create([
             'skpd_pembiayaan_id'=>$request->skpd_pembiayaan_id,
             'catatan'=>$request->catatan,
@@ -61,9 +62,17 @@ class SkpdKomiteController extends Controller
             'divisi_id'=>null,
         ]);
 
+        if($request->file('foto')){
+            $foto=$request->file('foto')->store('foto-skpd-pembiayaan');
+            SkpdFoto::create([
+                'skpd_pembiayaan_id'=>$request->skpd_pembiayaan_id,
+                'kategori'=> 'Konfirmasi Bendahara',
+                'foto'=> $foto,
+            ]);
+        }           
         
 
-        return redirect('/analis/analis/komite');
+        return redirect('/analis/skpd/komite');
 
 }
 

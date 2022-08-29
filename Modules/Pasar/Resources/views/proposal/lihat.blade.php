@@ -719,14 +719,6 @@
                                                 rows="3"class="form-control" required />
 
                                         </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="konfirmasi"><small class="text-danger">*
-                                                </small>Upload Konfirmasi kepala Pasar</label>
-                                            <input type="file" name="foto[1][foto]" id="konfirmasi" rows="3"
-                                                class="form-control">
-                                            <input type="hidden" name="foto[1][kategori]" value="Konfirmasi Kepala Pasar" rows="3"
-                                                class="form-control" />
-                                        </div>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <button class="btn btn-primary btn-prev">
