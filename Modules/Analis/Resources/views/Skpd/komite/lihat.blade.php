@@ -641,7 +641,7 @@
                                                                         </div>
                                                                         <input type="hidden" name="skpd_pembiayaan_id"
                                                                             value="{{ $pembiayaan->id }}">
-                                                                        <input type="hidden" name="status" value=5>
+                                                                        <input type="hidden" name="status_id" value=5>
                                                                         <input type="hidden" name="user_id"
                                                                             value="{{ Auth::user()->id }}">
                                                                             <label class="form-label"
