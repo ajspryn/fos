@@ -33,7 +33,7 @@ class SkpdRevisiController extends Controller
      */
     public function index()
     {
-        $proposal = SkpdPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull('skpd_sektor_ekonomi_id')->get();
+        $proposal = SkpdPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull('skpd_sektor_ekonomi_id')->orderBy('id', 'desc')->get();
         return view('skpd::revisi.index', [
             'title' => 'Revisi Proposal',
             'proposals' => $proposal,

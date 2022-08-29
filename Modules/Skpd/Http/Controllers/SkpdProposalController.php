@@ -31,7 +31,7 @@ class SkpdProposalController extends Controller
     {
         return view('skpd::proposal.index',[
             'title'=>'Proposal Calon Debitur',
-            'proposals'=>SkpdPembiayaan::select()->where('user_id',Auth::user()->id)->where('skpd_sektor_ekonomi_id',null)->get(),
+            'proposals'=>SkpdPembiayaan::select()->where('user_id',Auth::user()->id)->where('skpd_sektor_ekonomi_id',null)->orderBy('id','desc')->get(),
         ]);
     }
 
