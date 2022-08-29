@@ -56,7 +56,7 @@ class SkpdKomiteController extends Controller
         SkpdPembiayaanHistory::create([
             'skpd_pembiayaan_id'=>$request->skpd_pembiayaan_id,
             'catatan'=>$request->catatan,
-            'status_id'=>5,
+            'status_id'=>$request->status_id,
             'user_id'=>Auth::user()->id,
             'jabatan_id'=>3,
             'divisi_id'=>null,
