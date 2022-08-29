@@ -934,6 +934,11 @@
                                                                             <span
                                                                                 class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
                                                                         </div>
+                                                                        @if ($timeline->catatan)
+                                                                            <p value="{{ $timeline->id }}"> <br>Catatan :
+                                                                                {{ $timeline->catatan }}
+                                                                            <p>
+                                                                        @endif
                                                                         <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
