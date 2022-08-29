@@ -935,8 +935,10 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
+                                                                            <span
+                                                                                class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
                                                                         </div>
-                                                                        <span
+                                                                            <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
                                                                         <div class="d-flex flex-row align-items-center">
@@ -1089,8 +1091,8 @@
                                 <div class="modal-body px-sm-12 mx-50 pb-5">
                                     <h3 class="text-center">Lampiran Jaminan</h3>
                                     <div class="card-body">
-                                        {{-- <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
-                                    height='500'> --}}
+                                        <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
+                                    height='500'>
 
                                     </div>
                                 </div>

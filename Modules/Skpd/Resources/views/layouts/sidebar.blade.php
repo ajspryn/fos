@@ -20,7 +20,7 @@ $revisi = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto">
                 <a class="navbar-brand" href="../../../html/ltr/vertical-menu-template/index.html">
-                    <img src="../../../logo_sidebar.png" height="30" alt="">
+                    <img src="../../../Logo_sidebar.png" height="30" alt="">
                 </a>
             </li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i
