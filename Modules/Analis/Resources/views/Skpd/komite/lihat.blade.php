@@ -444,7 +444,7 @@
                                                                                     <button type="button"
                                                                                         class="btn btn-icon btn-icon rounded-circle btn-flat-success"
                                                                                         data-bs-toggle="modal"
-                                                                                        data-bs-target="#jaminan">
+                                                                                        data-bs-target="#ijazah">
                                                                                         <i data-feather="eye"></i>
                                                                                     </button>
                                                                                 </td>
@@ -876,6 +876,8 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
+                                                                            <span
+                                                                            class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
                                                                         </div>
                                                                         @if ($timeline->catatan)
 
@@ -963,7 +965,7 @@
                 <!-- ideb  -->
                 <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -980,6 +982,27 @@
                     </div>
                 </div>
                 <!--/ ideb  -->
+
+                     <!-- LampiranJaminan  -->
+                     <div class="modal fade" id="ijazah" tabindex="-1" aria-labelledby="addNewCardTitle"
+                     aria-hidden="true">
+                     <div class="modal-dialog modal-dialog-centered modal-lg">
+                         <div class="modal-content">
+                             <div class="modal-header bg-transparent">
+                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                     aria-label="Close"></button>
+                             </div>
+                             <div class="modal-body px-sm-12 mx-50 pb-5">
+                                 <h3 class="text-center">Lampiran Jaminan</h3>
+                                 <div class="card-body">
+                                     <iframe src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
+                                         class="d-block w-100" height='500' weight='800'></iframe>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <!--/ LampiranJaminan  -->
 
             </div>
         @endsection

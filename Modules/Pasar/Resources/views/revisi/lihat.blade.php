@@ -104,6 +104,7 @@
                                             <label class="form-label" for="akad"><small
                                                 class="text-danger">* </small> Sektor Ekonomi</label>
                                             <select class="select2 w-100" name="sektor_id" id="sektor_id" required>
+                                                <option >{{ $pembiayaan->sektor->nama_sektor_ekonomi }}</option>
                                                 <option label="akad">Pilih Sektor</option>
                                                 @foreach ($sektors as $sektor)
                                                     <option value="{{ $sektor->kode_sektor_ekonomi }}">
@@ -115,6 +116,7 @@
                                             <label class="form-label" for="akad"><small
                                                 class="text-danger">* </small> Akad</label>
                                             <select class="select2 w-100" name="akad_id" id="akad" required>
+                                                <option >{{ $pembiayaan->akad->nama_akad }}</option>
                                                 <option label="akad">Pilih Jenis Akad</option>
                                                 @foreach ($akads as $akad)
                                                     <option value="{{ $akad->kode_akad }}">{{ $akad->nama_akad }}
@@ -145,6 +147,7 @@
                                             <label class="form-label" for="tenor"><small class="text-danger">*
                                                 </small>Tenor</label>
                                             <select class="select2 w-100" name="tenor" id="tenor" required>
+                                                <option >{{ $pembiayaan->tenor }}</option>
                                                 <option label="tenor"></option>
                                                 <option value="3">3 Bulan</option>
                                                 <option value="4">4 Bulan</option>
@@ -167,11 +170,12 @@
                                             <label class="form-label" for="harga"><small class="text-danger">*
                                                 </small>Equivalen Rate</label>
                                             <input type="text" name="rate" class="form-control numeral-mask4"
-                                                placeholder="%" id="rate" required />
+                                                placeholder="%" id="rate"  value ="{{ $pembiayaan->rate }}"required />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="akad">Cash Pick Up</label>
                                             <select class="select2 w-100" name="cashpickup" id="cashpickup" required>
+                                                <option>{{ $pembiayaan->cash->nama_jeniscash }}</option>
                                                 <option label="cashpickup">Pilih Jenis Cash Pick Up</option>
                                                 @foreach ($cashs as $cash)
                                                     <option value="{{ $cash->kode_jeniscash }}">
@@ -183,6 +187,7 @@
                                             <label class="form-label" for="nasabah"><small class="text-danger">*
                                                 </small>Nasabah</label>
                                             <select class="select2 w-100" name="nasabah" id="nasabah">
+                                                <option>{{ $pembiayaan->jenisnasabah->nama_jenisnasabah }}</option>
                                                 <option label="akad">Pilih Jenis Nasabah</option>
                                                 @foreach ($nasabahs as $nasabah)
                                                     <option value="{{ $nasabah->kode_jenisnasabah }}">
@@ -228,8 +233,7 @@
                                             <label class="form-label" for="gender"><small class="text-danger">*
                                                 </small>Jenis Kelamin</label>
                                             <select class="select2 w-100" name="jk_id" id="gender" required>
-                                                <option value="{{ $pembiayaan->nasabahh->id }}">
-                                                    {{ $pembiayaan->nasabahh->jk_id }}</option>
+                                                <option>{{ $nasabah->jk_id }}</option>
                                                 <option>Laki-Laki</option>
                                                 <option>Perempuan</option>
                                             </select>
@@ -310,6 +314,8 @@
                                                 </small>Kepemilikan Rumah</label>
                                             <select class="select2 w-100" name="kepemilikan_rumah" id="kep_rumah"
                                                 required>
+                                                <option label="{{ $pembiayaan->nasabahh->id }}">
+                                                    {{ $pembiayaan->nasabahh->kepemilikkan_rumah }}</option>
                                                 <option label="kep_rumah">Pilih Kepemilikan Rumah</option>
                                                 <option>Milik Sendiri</option>
                                                 <option>Milik Keluarga</option>
@@ -321,6 +327,7 @@
                                                 </small>Legalitas Kepemilikan Rumah</label>
                                             <select class="select2 w-100" name="legalitas_kepemilikan_rumah"
                                                 id="legalitas_kepemilikan_rumah" required>
+                                                <option>{{ $pembiayaan->rumah->nama_jaminan }}</option>
                                                 <option label="legalitas_kepemilikan_rumah">Pilih Legalitas Kepemilikan
                                                     Rumah
                                                 </option>
@@ -591,7 +598,7 @@
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="SHPB"> <small class="text-danger">*
-                                                </small>Upload Jaminan KTB</label>
+                                                </small>Upload Jaminan Utama</label>
                                             <input type="file" name="dokumenktb" id="dokumenktb" rows="3"
                                                 class="form-control" required />
                                         </div>
@@ -871,7 +878,7 @@
                                             <label class="form-label" for="aset">Aset / Harta Benda</label>
                                             <input type="text" name="aset" id="aset" class="form-control"
                                                 placeholder="Masukan Kepemilikkan Aset" value="{{ $pembiayaan->aset }}"
-                                                required>
+                                               >
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"><small

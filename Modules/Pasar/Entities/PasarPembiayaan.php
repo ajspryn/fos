@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Admin\Entities\PasarAkad;
 use Modules\Admin\Entities\PasarCashPick;
+use Modules\Admin\Entities\PasarJenisNasabah;
 use Modules\Admin\Entities\PasarSektorEkonomi;
 use Modules\Pasar\Entities\PasarNasabahh;
 use Modules\Pasar\Entities\PasarKeteranganUsaha;
@@ -66,6 +67,12 @@ class PasarPembiayaan extends Model
     {
         return $this->belongsTo(PasarCashPick::class,'cashpickup', 'id');
     }
+
+    public function jenisnasabah()
+    {
+        return $this->belongsTo(PasarJenisNasabah::class,'nasabah', 'id');
+    }
+
     public function slik()
     {
         return $this->belongsTo(PasarSlik::class,'slik_id', 'id');
