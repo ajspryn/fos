@@ -96,6 +96,7 @@ class SkpdRevisiController extends Controller
             'sektors' => SkpdSektorEkonomi::all(), //udah
             'statusperkawinans' => SkpdStatusPerkawinan::all(), //udah
             'tanggungans' => SkpdTanggungan::all(),
+            'idebs'=>SkpdSlik::select()->where('slik_pembiayaan_id',$id)->get(),
         ]);
     }
 
