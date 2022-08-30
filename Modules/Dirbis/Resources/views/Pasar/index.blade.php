@@ -6,11 +6,24 @@
     ->get()
     ->count();
 
-    $proposal = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('status_id',3)
-    ->orderby('created_at','desc')
-    ->get()
-    ->count();
+    $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
+
+$data = 0;
+foreach ($pasars as $pasar) {
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $pasar->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+        $data++;
+    }
+}
 
     $ditolak = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
     ->where('status_id',6)
@@ -54,7 +67,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $proposal }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $data }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>

@@ -59,7 +59,6 @@
                                                 ->get()
                                                 ->first();
                                         @endphp
-                                        @if($history->status_id== 5 || $history->status_id== 4 )
                                         <tr>
                                             <td style="text-align: center">
                                                 <button type="button"
@@ -72,7 +71,7 @@
                                             <td>{{ $proposal_umkm->nasabahh->alamat }}
                                             <td style="text-align: center">
                                                 {{ $proposal_umkm->keteranganusaha->nama_usaha }}</td>
-                                            <td style="text-align: center">{{ $proposal_umkm->nominal_pembiayaan }}</td>
+                                            <td style="text-align: center">{{number_format($proposal_umkm->nominal_pembiayaan)}}</td>
                                             <td style="text-align: center">{{ $proposal_umkm->tgl_pembiayaan }}</td>
                                             <td style="text-align: center"
                                                 value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
@@ -92,7 +91,6 @@
                                                     class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
-                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>

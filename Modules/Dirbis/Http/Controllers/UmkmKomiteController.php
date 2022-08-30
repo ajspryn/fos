@@ -37,7 +37,7 @@ class UmkmKomiteController extends Controller
      */
     public function index()
     {
-        $komite=UmkmPembiayaanHistory::select()->where('status_id', 5 )->where('user_id',auth::user()->id)->get();
+        $komite=UmkmPembiayaan::select()->orderby('created_at','desc')->get();
         return view('dirbis::umkm.komite.index',[
         'title'=>'Data Nasabah',
         'komites'=>$komite,

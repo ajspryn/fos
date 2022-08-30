@@ -39,7 +39,7 @@ class PasarKomiteController extends Controller
     public function index()
     {
         // $komite=PasarPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->get();
-        $komite=PasarPembiayaanHistory::select()->where('status_id', 5 )->where('user_id',auth::user()->id)->get();
+        $komite=PasarPembiayaanHistory::select()->where('status_id', 5 )->where('user_id',auth::user()->id)->orderby('created_at','desc')->get();
         return view('analis::pasar.komite.index',[
             'title'=>'Data Nasabah',
             'komites'=>$komite,

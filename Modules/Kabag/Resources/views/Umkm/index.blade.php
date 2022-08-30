@@ -1,24 +1,38 @@
 @extends('kabag::layouts.main')
 @php
-    $diterima = Modules\UMKM\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id',5)
+$diterima = Modules\UMKM\Entities\UmkmPembiayaanHistory::select()
+    ->where('status_id', 5)
     ->where('jabatan_id', 4)
     ->get()
     ->count();
 
-    $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
-    ->where('akad_id',null)
+$umkms = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
+
+$proposal = 0;
+foreach ($umkms as $umkm) {
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $umkm->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $history->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 3 && $history->jabatan_id == 1) {
+        $proposal++;
+    }
+}
+
+$ditolak = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+    ->where('status_id', 6)
     ->get()
     ->count();
 
-    $ditolak = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id',6)
-    ->get()
-    ->count();
-
-     $review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id',7)
-    ->orderby('created_at','desc')
+$review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+    ->where('status_id', 7)
+    ->orderby('created_at', 'desc')
     ->get()
     ->count();
 @endphp
@@ -103,8 +117,7 @@
                         </div>
                         <!--/ Statistics Card -->
                     </div>
-{{-- 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">

@@ -29,7 +29,7 @@ class SkpdKomiteController extends Controller
      */
     public function index()
     {
-        $proposal=SkpdPembiayaanHistory::select()->where('status_id', 5 )->where('user_id',auth::user()->id)->get();
+        $proposal=SkpdPembiayaanHistory::select()->where('status_id',5 )->where('user_id',auth::user()->id)->orderby('created_at','desc')->get();
         return view('analis::skpd.komite.index',[
             'title'=>'Data Komite Nasabah',
             'proposals'=>$proposal,

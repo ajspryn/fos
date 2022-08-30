@@ -1,4 +1,4 @@
-@extends('kabag::layouts.main')
+@extends('dirbis::layouts.main')
 @php
     $diterima = Modules\UMKM\Entities\UmkmPembiayaanHistory::select()
     ->where('status_id',5)
@@ -6,10 +6,25 @@
     ->get()
     ->count();
 
-    $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
-    ->where('akad_id',null)
-    ->get()
-    ->count();
+$umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()->where('status_id', 3)->get();
+
+$b = 0;
+foreach ($umkms as $umkm) {
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $umkm->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $proposal_umkm->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+        if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+        $b++;
+    }
+}
 
     $ditolak = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
     ->where('status_id',6)
@@ -53,7 +68,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $proposal }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $b }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>

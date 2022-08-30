@@ -1,5 +1,71 @@
 @extends('dirbis::layouts.main')
+@php
+$proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+    ->where('user_id', Auth::user()->id)
+    ->where('skpd_sektor_ekonomi_id', null)
+    ->get()
+    ->count();
 
+$proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('status_id', 3)
+    ->get();
+
+$proposalskpd = 0;
+foreach ($proposals as $proposal) {
+    $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+        ->where('id', $proposal->skpd_pembiayaan_id)
+        ->get()
+        ->first();
+    $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+        ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+        $proposalskpd++;
+    }
+}
+
+$pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
+
+$data = 0;
+foreach ($pasars as $pasar) {
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $pasar->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+        $data++;
+    }
+}
+
+$umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()->where('status_id', 3)->get();
+
+$b = 0;
+foreach ($umkms as $umkm) {
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $umkm->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $proposal_umkm->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+        if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+        $b++;
+    }
+}
+
+@endphp
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -31,7 +97,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ 0 }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $b+$proposalskpd+$data }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>

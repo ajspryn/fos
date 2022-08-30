@@ -33,7 +33,7 @@ class SkpdProposalController extends Controller
      */
     public function create()
     {
-        return view('dirbis::pasar.index',[
+        return view('dirbis::skpd.index',[
             'title' => 'Dasboard Direktur Bisnis',
             
         ]);

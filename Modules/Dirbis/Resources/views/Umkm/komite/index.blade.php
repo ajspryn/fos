@@ -48,14 +48,13 @@
                                 <tbody>
                                     @foreach ($komites as $komite)
                                         @php
-                                            $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                ->where('id', $komite->umkm_pembiayaan_id)
+                                                 $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+                                                ->where('umkm_pembiayaan_id', $komite->id)
+                                                ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
-
-                                            $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-                                                ->where('umkm_pembiayaan_id', $proposal_umkm->id)
-                                                ->orderby('created_at', 'desc')
+                                            $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                                ->where('id', $history->umkm_pembiayaan_id)
                                                 ->get()
                                                 ->first();
                                         @endphp

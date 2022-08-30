@@ -1,30 +1,44 @@
 @extends('dirbis::layouts.main')
 
 @section('content')
-@php
+    @php
     $diterima = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-    ->where('status_id',5)
-    ->where('jabatan_id', 4)
-    ->get()
-    ->count();
+        ->where('status_id', 5)
+        ->where('jabatan_id', 4)
+        ->get()
+        ->count();
 
-    $proposal = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-    ->where('status_id',3)
-    ->orderby('created_at','desc')
-    ->get()
-    ->count();
+    $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+        ->where('status_id', 3)
+        ->get();
+
+    $a = 0;
+    foreach ($proposals as $proposal) {
+        $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+            ->where('id', $proposal->skpd_pembiayaan_id)
+            ->get()
+            ->first();
+        $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+            ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+            ->orderby('created_at', 'desc')
+            ->get()
+            ->first();
+        if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+            $a++;
+        }
+    }
 
     $ditolak = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-    ->where('status_id',6)
-    ->get()
-    ->count();
+        ->where('status_id', 6)
+        ->get()
+        ->count();
 
-     $revisi= Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-    ->where('status_id',7)
-    ->orderby('created_at','desc')
-    ->get()
-    ->count();
-@endphp
+    $revisi = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+        ->where('status_id', 7)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->count();
+    @endphp
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -36,7 +50,7 @@
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
-                      
+
                         <!-- Statistics Card -->
                         <div class="col-xl-12 col-md-6 col-12">
                             <div class="card card-statistics">
@@ -56,7 +70,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $proposal }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $a }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>

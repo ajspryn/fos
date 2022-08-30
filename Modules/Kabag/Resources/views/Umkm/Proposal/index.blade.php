@@ -75,7 +75,7 @@
                                                 <td>{{ $proposal_pasar->nasabahh->alamat }}</td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_pasar->keteranganusaha->nama_usaha }}</td>
-                                                <td style="text-align: center">{{ $proposal_pasar->nominal_pembiayaan }}</td>
+                                                <td style="text-align: center">{{ number_format($proposal_pasar->nominal_pembiayaan) }}</td>
                                                 <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
                                                 <td style="text-align: center"
                                                     value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">

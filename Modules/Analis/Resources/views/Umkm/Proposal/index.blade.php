@@ -61,7 +61,7 @@
                                                 ->first();
                                         @endphp
 
-                                        @if ($history->status_id == 5 && $history->jabatan_id == 2)
+                                        @if ($history->status_id == 5 && $history->jabatan_id == 2 || $history->status_id == 4 && $history->jabatan_id == 3 )
                                             <tr>
                                                 <td style="text-align: center">
                                                     <button type="button"
@@ -74,7 +74,7 @@
                                                 <td>{{ $proposal_pasar->nasabahh->alamat }}</td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_pasar->keteranganusaha->nama_usaha }}</td>
-                                                <td style="text-align: center">{{ $proposal_pasar->nominal_pembiayaan }}
+                                                <td style="text-align: center">{{ number_format($proposal_pasar->nominal_pembiayaan) }}
                                                 </td>
                                                 <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
                                                 <td style="text-align: center"

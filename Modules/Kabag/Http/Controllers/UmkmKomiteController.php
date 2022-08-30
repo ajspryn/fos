@@ -38,7 +38,6 @@ class UmkmKomiteController extends Controller
     public function index()
     {
         $komite=UmkmPembiayaanHistory::select()->where('status_id',3)->get();
-
         return view('kabag::umkm.komite.index',[
         'title'=>'Data Nasabah',
         'komites'=>$komite,

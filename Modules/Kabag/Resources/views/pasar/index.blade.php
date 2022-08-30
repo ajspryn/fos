@@ -1,25 +1,38 @@
 @extends('kabag::layouts.main')
 @php
-    $diterima = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('status_id',5)
+$diterima = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('status_id', 5)
     ->where('jabatan_id', 4)
     ->get()
     ->count();
 
-    $proposal = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('status_id',3)
-    ->orderby('created_at','desc')
+$pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
+
+$proposal = 0;
+foreach ($pasars as $pasar) {
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $pasar->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 3 && $history->jabatan_id == 1) {
+        $proposal++;
+    }
+}
+
+$ditolak = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('status_id', 6)
     ->get()
     ->count();
 
-    $ditolak = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('status_id',6)
-    ->get()
-    ->count();
-
-     $review = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('status_id',7)
-    ->orderby('created_at','desc')
+$review = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('status_id', 7)
+    ->orderby('created_at', 'desc')
     ->get()
     ->count();
 @endphp
