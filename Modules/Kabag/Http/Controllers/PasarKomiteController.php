@@ -137,7 +137,7 @@ class PasarKomiteController extends Controller
         $biaya_anak=$nasabah->tanggungan->biaya;
         $biaya_istri=$nasabah->status->biaya;
         $kebutuhan_keluarga=PasarPembiayaan::select()->where('id',$id)->sum('keb_keluarga');
-        $pengeluaranlain=$biaya_anak+$biaya_istri+$cicilan+$kebutuhan_keluarga;
+        $pengeluaranlain=$biaya_anak+$biaya_istri+$kebutuhan_keluarga;
         $total_pengeluaran = ($pengeluaranlain+$cicilan+$angsuran1);
 
         $di=($laba_bersih-$total_pengeluaran);
