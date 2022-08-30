@@ -72,13 +72,7 @@
                                                 </td>
                                                 <td style="text-align: center">{{ $loop->iteration }}</td>
                                                 <td>{{ $proposal_pasar->nasabahh->nama_nasabah }}</td>
-                                                <td>{{ $proposal_pasar->nasabahh->alamat }},
-                                                    {{ $proposal_pasar->nasabahh->rt }},
-                                                    {{ $proposal_pasar->nasabahh->rw }},
-                                                    {{ $proposal_pasar->nasabahh->desa_kelurahan }},
-                                                    {{ $proposal_pasar->nasabahh->kecamatan }},
-                                                    {{ $proposal_pasar->nasabahh->kabkota }},
-                                                    {{ $proposal_pasar->nasabahh->provinsi }}</td>
+                                                <td>{{ $proposal_pasar->nasabahh->alamat }}</td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_pasar->keteranganusaha->nama_usaha }}</td>
                                                 <td style="text-align: center"
