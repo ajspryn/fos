@@ -5,6 +5,26 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
     ->where('skpd_sektor_ekonomi_id', null)
     ->get()
     ->count();
+
+$proposal = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('status_id', 3)
+    ->get();
+
+$i=0;
+foreach ($proposals as $proposal) {
+    $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+        ->where('id', $proposal->skpd_pembiayaan_id)
+        ->get()
+        ->first();
+    $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+        ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    if ($history->status_id == 5 || $history->status_id == 4) {
+        $i++;
+    }
+}
 @endphp
 <!-- BEGIN: Main Menu-->
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
@@ -28,8 +48,8 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                         class="menu-item text-truncate" data-i18n="Account Settings">Dashboard</span></a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('kabag') ? 'active' : '' }}"><a class="d-flex align-items-center"
-                            href="/kabag"><i data-feather="bar-chart"></i><span
-                                class="menu-item text-truncate" data-i18n="Account">Analytic</span></a>
+                            href="/kabag"><i data-feather="bar-chart"></i><span class="menu-item text-truncate"
+                                data-i18n="Account">Analytic</span></a>
                     </li>
                     <li class="{{ Request::is('kabag/skpd/create') ? 'active' : '' }} "><a
                             class="d-flex align-items-center" href="/kabag/skpd/create"><i data-feather="home"></i><span
@@ -44,9 +64,8 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                             class="d-flex align-items-center" href="/kabag/umkm/create"><i data-feather="home"></i><span
                                 class="menu-title text-truncate" data-i18n="home">UMKM</span></a>
                     </li>
-                    <li class="{{ Request::is('kabag/skpd/ppr') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/kabag/skpd/proposal"><i
-                                data-feather="home"></i><span class="menu-item text-truncate"
+                    <li class="{{ Request::is('kabag/skpd/ppr') ? 'active' : '' }}"><a class="d-flex align-items-center"
+                            href="/kabag/skpd/proposal"><i data-feather="home"></i><span class="menu-item text-truncate"
                                 data-i18n="Security">PPR</span></a>
                     </li>
                 </ul>
@@ -66,7 +85,8 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                     <li class="{{ Request::is('kabag/skpd/komite') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/kabag/skpd/komite"><i
                                 data-feather="clipboard"></i><span class="menu-item text-truncate"
-                                data-i18n="Security">Komite</span></a>
+                                data-i18n="Security">Komite</span><span
+                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $i }}</span></a>
                     </li>
                     <li class="{{ Request::is('kabag/skpd/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/kabag/skpd/proposal"><i
@@ -126,7 +146,8 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
 
                     <li class="{{ Request::is('kabag/ppr/nasabah') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/kabag/ppr/nasabah"><i
-                                data-feather="users"></i><span class="menu-item text-truncate" data-i18n="Account">Data
+                                data-feather="users"></i><span class="menu-item text-truncate"
+                                data-i18n="Account">Data
                                 Nasabah</span></a>
                     </li>
                     <li class="{{ Request::is('kabag/ppr/komite') ? 'active' : '' }}"><a
