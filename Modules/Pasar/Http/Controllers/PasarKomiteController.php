@@ -89,7 +89,7 @@ class PasarKomiteController extends Controller
         }
 
 
-        return redirect('/pasar/komite');
+        return redirect('/pasar/komite')->with('success', 'Pengajuan Diproses AO');
     }
 
     /**

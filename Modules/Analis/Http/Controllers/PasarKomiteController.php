@@ -81,7 +81,7 @@ class PasarKomiteController extends Controller
             ]);
         }  
 
-        return redirect('/analis/pasar/komite');
+        return redirect('/analis/pasar/komite')->with('success', 'Pengajuan Berhasil Diproses');
     }
 
     /**

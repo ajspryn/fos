@@ -392,7 +392,7 @@ class FormulirPasarController extends Controller
  
  
  
-         return redirect('/')->with('success', 'Data Pasar Berhasil Ditambahkan');
+         return redirect('/')->with('success', 'Pengajuan Anda Sedang Di Proses Silahkan Hubungi AO');
     }
 
     /**

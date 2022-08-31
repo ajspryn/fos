@@ -72,7 +72,7 @@ class UmkmKomiteController extends Controller
 
         ]);
 
-        return redirect('/analis/umkm/komite');
+        return redirect('/analis/umkm/komite')->with('success', 'Pengajuan Berhasil Diproses');
     }
 
     /**

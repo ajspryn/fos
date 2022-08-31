@@ -71,7 +71,7 @@ class UmkmKomiteController extends Controller
 
         ]);
 
-        return redirect('/kabag/umkm/komite');
+        return redirect('/kabag/umkm/komite')->with('success', 'Pengajuan Berhasil Diproses');
     }
 
     /**

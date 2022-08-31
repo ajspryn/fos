@@ -74,7 +74,7 @@ class PasarKomiteController extends Controller
 
         ]);
 
-        return redirect('/kabag/pasar/komite');
+        return redirect('/kabag/pasar/komite')->with('success', 'Pengajuan Berhasil Diproses');
     }
 
     /**

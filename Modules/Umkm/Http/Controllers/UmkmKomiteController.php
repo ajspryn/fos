@@ -80,7 +80,7 @@ class UmkmKomiteController extends Controller
         }
 
 
-        return redirect('/umkm/komite');
+        return redirect('/umkm/komite')->with('success', 'Pengajuan Diproses AO');
     }
 
     /**

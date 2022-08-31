@@ -73,7 +73,7 @@ class SkpdKomiteController extends Controller
         }           
         
 
-        return redirect('/analis/skpd/komite');
+        return redirect('/analis/skpd/komite')->with('success', 'Pengajuan Berhasil Diproses');
 
 }
 

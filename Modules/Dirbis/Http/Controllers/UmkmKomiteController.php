@@ -6,7 +6,8 @@ use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Admin\Entities\PasarAkad;
 use Modules\Admin\Entities\PasarCashPick;
 use Modules\Admin\Entities\PasarJaminanRumahh;
@@ -71,7 +72,7 @@ class UmkmKomiteController extends Controller
 
         ]);
 
-        return redirect('/dirbis/umkm/komite');
+        return redirect('/dirbis/umkm/komite')->with('success', 'Pengajuan Berhasil Diproses');
     }
 
     /**

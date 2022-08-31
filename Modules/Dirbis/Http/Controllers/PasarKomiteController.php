@@ -72,7 +72,7 @@ class PasarKomiteController extends Controller
             'divisi_id'=>null,
         ]);
 
-        return redirect('/dirbis/pasar/komite');
+        return redirect('/dirbis/pasar/komite')->with('success', 'Pengajuan Berhasil Diproses');
     }
 
     /**

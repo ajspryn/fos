@@ -604,7 +604,7 @@
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                     </button>
-                                    <button class="btn btn-success" type="submit">Submit</button>
+                                    <button type="submit" class="btn btn-success btn-submit">Submit</button>
                                 </div>
                             </div>
                         </form>

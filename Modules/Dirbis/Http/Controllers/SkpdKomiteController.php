@@ -60,7 +60,7 @@ class SkpdKomiteController extends Controller
             'jabatan_id'=>4,
             'divisi_id'=>null,
         ]);
-        return redirect('/dirbis/skpd/komite');
+        return redirect('/dirbis/skpd/komite')->with('success', 'Pengajuan Berhasil Diproses');
     }
 
     /**
