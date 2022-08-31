@@ -45,6 +45,12 @@
             pointer-events: none;
             opacity: 0.6;
         }
+
+        .form-text-beside {
+            color: #5e5873;
+            font-size: 12px;
+            margin-left: -15px;
+        }
     </style>
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -1623,7 +1629,7 @@
                                                 <div data-repeater-list="form_pekerjaan_pemohon_mulai_bekerja">
                                                     <div data-repeater-item>
                                                         <div class="row d-flex align-items-end">
-                                                            <div class="col-md-4 col-12">
+                                                            <div class="col-auto col-md-4">
                                                                 <div class="mb-1">
                                                                     <label class="form-label"
                                                                         for="form_pekerjaan_pemohon_mulai_bekerja"><small
@@ -1640,8 +1646,8 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="mb-1">
+                                                            <div class="row col-auto" style="margin-bottom: 15px;">
+                                                                <div class="col-auto">
                                                                     <label class="form-label"
                                                                         for="form_pekerjaan_pemohon_usia_pensiun"><small
                                                                             class="text-danger">*
@@ -1654,10 +1660,13 @@
                                                                         value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_usia_pensiun }}"
                                                                         required />
                                                                 </div>
+                                                                <div class="col-auto" style="margin-top: 32px;">
+                                                                    <span class="form-text-beside">Tahun</span>
+                                                                </div>
                                                             </div>
 
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="mb-1">
+                                                            <div class="row col-auto" style="margin-bottom: 15px;">
+                                                                <div class="col-auto">
                                                                     <label class="form-label"
                                                                         for="form_pekerjaan_pemohon_masa_kerja"><small
                                                                             class="text-danger">*
@@ -1671,7 +1680,11 @@
                                                                         value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_masa_kerja }}"
                                                                         required />
                                                                 </div>
+                                                                <div class="col-auto" style="margin-top: 32px;">
+                                                                    <span class="form-text-beside">Tahun</span>
+                                                                </div>
                                                             </div>
+
                                                         </div>
                                                     </div>
                                                 </div>
