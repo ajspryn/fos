@@ -43,7 +43,7 @@ class PasarKomiteController extends Controller
      */
     public function index()
     {
-        $komite=PasarPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->get();
+        $komite=PasarPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->orderby('updated_at','desc')->get();
 
 
         return view('pasar::komite.index',[
@@ -89,7 +89,7 @@ class PasarKomiteController extends Controller
         }
 
 
-        return redirect('/pasar/komite');
+        return redirect('/pasar/komite')->with('success', 'Pengajuan Diproses AO');
     }
 
     /**
@@ -100,7 +100,7 @@ class PasarKomiteController extends Controller
     public function show($id)
     {
 
-        $data=PasarPembiayaan::select()->where('nasabah_id',$id)->get()->first();
+        $data=PasarPembiayaan::select()->where('id',$id)->get()->first();
         $nasabah=PasarNasabahh::select()->where('id',$data->nasabah_id)->get()->first();
         $usaha=PasarKeteranganUsaha::select()->where('pasar_pembiayaan_id',$id)->get()->first();
         $pasar=PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first();

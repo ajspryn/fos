@@ -487,7 +487,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="SHPB"> <small class="text-danger">*
-                                            </small>Upload Jaminan KTB</label>
+                                            </small>Upload Jaminan Utama </label>
                                         <input type="file" name="dokumenktb" id="dokumenktb" rows="3"
                                             class="form-control" required />
                                     </div>
@@ -604,7 +604,7 @@
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                     </button>
-                                    <button class="btn btn-success" type="submit">Submit</button>
+                                    <button type="submit" class="btn btn-success btn-submit">Submit</button>
                                 </div>
                             </div>
                         </form>

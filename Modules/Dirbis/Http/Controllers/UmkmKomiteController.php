@@ -6,7 +6,8 @@ use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Admin\Entities\PasarAkad;
 use Modules\Admin\Entities\PasarCashPick;
 use Modules\Admin\Entities\PasarJaminanRumahh;
@@ -71,7 +72,7 @@ class UmkmKomiteController extends Controller
 
         ]);
 
-        return redirect('/dirbis/umkm/komite');
+        return redirect('/dirbis/umkm/komite')->with('success', 'Pengajuan Berhasil Diproses');
     }
 
     /**
@@ -98,7 +99,7 @@ class UmkmKomiteController extends Controller
         }
         
             $data=UmkmPembiayaan::select()->where('id',$id)->get()->first();
-            $nasabah=UmkmNasabah::select()->where('id',$id)->get()->first();
+            $nasabah=UmkmNasabah::select()->where('id',$data->nasabah_id)->get()->first();
             $usaha=UmkmKeteranganUsaha::select()->where('umkm_pembiayaan_id',$id)->get()->first();
             $jaminanrumah=UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id',$id)->get()->first();
             $jaminanlain=UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get()->first();

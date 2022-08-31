@@ -74,7 +74,7 @@ class PasarKomiteController extends Controller
 
         ]);
 
-        return redirect('/kabag/pasar/komite');
+        return redirect('/kabag/pasar/komite')->with('success', 'Pengajuan Berhasil Diproses');
     }
 
     /**
@@ -102,7 +102,7 @@ class PasarKomiteController extends Controller
         }
 
         $data=PasarPembiayaan::select()->where('id',$id)->get()->first();
-        $nasabah=PasarNasabahh::select()->where('id',$id)->get()->first();
+        $nasabah=PasarNasabahh::select()->where('id',$data->nasabah_id)->get()->first();
         $usaha=PasarKeteranganUsaha::select()->where('pasar_pembiayaan_id',$id)->get()->first();
         $pasar=PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first();
         $jaminanrumah=PasarLegalitasRumah::select()->where('pasar_pembiayaan_id',$id)->get()->first();

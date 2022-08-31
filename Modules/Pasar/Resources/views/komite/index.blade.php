@@ -70,7 +70,7 @@
                                                 <td style="text-align: center"
                                                     value="{{ $komite->keteranganusaha->jenispasar->nama_pasar }}">
                                                     {{ $komite->keteranganusaha->jenispasar->nama_pasar }}</td>
-                                                <td style="text-align: center">{{ $komite->harga }}</td>
+                                                <td style="text-align: center">{{ number_format($komite->harga) }}</td>
                                                 <td style="text-align: center">{{ $komite->tgl_pembiayaan }}</td>
                                                 <td style="text-align: center">
                                                  @if ($history->statushistory->id == 5)
@@ -187,7 +187,7 @@
                                                 <td style="text-align: center"
                                                     value="{{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}">
                                                     {{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}</td>
-                                                <td style="text-align: center">{{ $proposal_pasar->harga }}</td>
+                                                <td style="text-align: center">Rp. {{number_format( $proposal_pasar->harga) }}</td>
                                                 <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
                                                 {{-- <td style="text-align: center"><span
                                                         class="badge rounded-pill badge-light-info">{{ $history->status }}</span>
