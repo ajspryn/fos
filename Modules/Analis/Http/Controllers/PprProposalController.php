@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Kabag\Http\Controllers;
+namespace Modules\Analis\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Form\Entities\FormPprPembiayaan;
+use Modules\Ppr\Entities\PprPembiayaanHistory;
 
 class PprProposalController extends Controller
 {
@@ -15,12 +15,11 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        $proposal=FormPprPembiayaan::select()->get();
-        return view('kabag::ppr.proposal.index',[
-            'title'=>'Proposal PPR',
-            'proposals'=>$proposal,
+        $proposal = PprPembiayaanHistory::select()->where('jabatan_id', 2)->where('status_id', 5)->orderby('created_at', 'desc')->get();
+        return view('analis::ppr.proposal.index', [
+            'title' => 'Proposal PPR',
+            'proposals' => $proposal,
         ]);
-        
     }
 
     /**
@@ -29,7 +28,9 @@ class PprProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::create');
+        return view('analis::ppr.index', [
+            'title' => 'Dashboard Analis',
+        ]);
     }
 
     /**
@@ -49,7 +50,7 @@ class PprProposalController extends Controller
      */
     public function show($id)
     {
-        return view('kabag::show');
+        return view('analis::show');
     }
 
     /**
@@ -59,7 +60,7 @@ class PprProposalController extends Controller
      */
     public function edit($id)
     {
-        return view('kabag::edit');
+        return view('analis::edit');
     }
 
     /**

@@ -50,6 +50,27 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('gunanto123'),
         ]);
 
+        DB::table('users')->insert([
+            'id' => 5,
+            'name' => 'Guswanto',
+            'email' => 'Guswanto@bprsbtb.com',
+            'password' => bcrypt('guswanto123'),
+        ]);
+
+        DB::table('users')->insert([
+            'id' => 6,
+            'name' => 'Fattah Yasin',
+            'email' => 'Yasin@bprsbtb.com',
+            'password' => bcrypt('yasin123'),
+        ]);
+
+        DB::table('users')->insert([
+            'id' => 7,
+            'name' => 'Arie Wibowo Irawan',
+            'email' => 'Arie@bprsbtb.com',
+            'password' => bcrypt('ariebtb123'),
+        ]);
+
         DB::table('roles')->insert([
             'user_id' => 1,
             'role_id' => 1,
@@ -76,6 +97,27 @@ class DatabaseSeeder extends Seeder
             'role_id' => 2,
             'divisi_id' => 4,
             'jabatan_id' => 1,
+        ]);
+
+        DB::table('roles')->insert([
+            'user_id' => 5,
+            'role_id' => 2,
+            'divisi_id' => 0,
+            'jabatan_id' => 2,
+        ]);
+
+        DB::table('roles')->insert([
+            'user_id' => 6,
+            'role_id' => 2,
+            'divisi_id' => 0,
+            'jabatan_id' => 3,
+        ]);
+
+        DB::table('roles')->insert([
+            'user_id' => 7,
+            'role_id' => 2,
+            'divisi_id' => 0,
+            'jabatan_id' => 4,
         ]);
 
         //Status

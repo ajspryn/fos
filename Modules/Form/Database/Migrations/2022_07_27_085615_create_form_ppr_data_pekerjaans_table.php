@@ -27,7 +27,9 @@ return new class extends Migration
             $table->string('form_pekerjaan_pemohon_facsimile')->nullable();
             $table->string('form_pekerjaan_pemohon_npwp')->nullable();
             $table->string('form_pekerjaan_pemohon_bidang_usaha');
+            $table->string('form_pekerjaan_pemohon_bidang_usaha_lain')->nullable();
             $table->string('form_pekerjaan_pemohon_jenis_pekerjaan');
+            $table->string('form_pekerjaan_pemohon_jenis_pekerjaan_lain')->nullable();
             $table->string('form_pekerjaan_pemohon_jml_karyawan');
             $table->string('form_pekerjaan_pemohon_departemen');
             $table->string('form_pekerjaan_pemohon_pangkat_gol_jabatan');
@@ -55,7 +57,9 @@ return new class extends Migration
             $table->string('form_pekerjaan_istri_suami_facsimile')->nullable();
             $table->string('form_pekerjaan_istri_suami_npwp')->nullable();
             $table->string('form_pekerjaan_istri_suami_bidang_usaha')->nullable();
+            $table->string('form_pekerjaan_istri_suami_bidang_usaha_lain')->nullable();
             $table->string('form_pekerjaan_istri_suami_jenis_pekerjaan')->nullable();
+            $table->string('form_pekerjaan_istri_suami_jenis_pekerjaan_lain')->nullable();
             $table->string('form_pekerjaan_istri_suami_jml_karyawan')->nullable();
             $table->string('form_pekerjaan_istri_suami_departemen')->nullable();
             $table->string('form_pekerjaan_istri_suami_pangkat_gol_jabatan')->nullable();

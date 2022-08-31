@@ -1,10 +1,10 @@
 @extends('kabag::layouts.main')
 @php
-    $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+$proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
     ->where('status_id', 3)
     ->get();
 
-    $proposalskpd = 0;
+$proposalskpd = 0;
 foreach ($proposals as $proposal) {
     $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
         ->where('id', $proposal->skpd_pembiayaan_id)
@@ -19,7 +19,6 @@ foreach ($proposals as $proposal) {
         $proposalskpd++;
     }
 }
-
 
 $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
 
@@ -42,7 +41,6 @@ foreach ($pasars as $pasar) {
 
 $umkms = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
 
-
 $a = 0;
 foreach ($umkms as $umkm) {
     $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
@@ -55,11 +53,29 @@ foreach ($umkms as $umkm) {
         ->where('id', $history->umkm_pembiayaan_id)
         ->get()
         ->first();
-        if ($history->status_id == 3 && $history->jabatan_id == 1) {
+    if ($history->status_id == 3 && $history->jabatan_id == 1) {
         $a++;
     }
 }
 
+$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+
+$proposalppr = 0;
+foreach ($pprs as $ppr) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 3 && $history->jabatan_id == 1) {
+        $proposalppr++;
+    }
+}
 
 @endphp
 @section('content')
@@ -74,7 +90,7 @@ foreach ($umkms as $umkm) {
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
-                      
+
                         <!-- Statistics Card -->
                         <div class="col-xl-12 col-md-6 col-12">
                             <div class="card card-statistics">
@@ -94,7 +110,8 @@ foreach ($umkms as $umkm) {
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $proposalskpd+$a+$data }}</h4>
+                                                    <h4 class="fw-bolder mb-0">
+                                                        {{ $proposalskpd + $a + $data + $proposalppr }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>

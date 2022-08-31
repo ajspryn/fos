@@ -20,6 +20,7 @@ return new class extends Migration
 
             //Agunan I
             $table->string('form_agunan_1_jenis');
+            $table->string('form_agunan_1_jenis_lain')->nullable();
             $table->integer('form_agunan_1_nilai_harga_jual');
             $table->string('form_agunan_1_alamat');
             $table->string('form_agunan_1_alamat_rt');
@@ -45,6 +46,7 @@ return new class extends Migration
 
             //Agunan II
             $table->string('form_agunan_2_jenis')->nullable();
+            $table->string('form_agunan_2_jenis_lain')->nullable();
             $table->string('form_agunan_2_nilai_harga_jual')->nullable();
             $table->string('form_agunan_2_alamat')->nullable();
             $table->string('form_agunan_2_alamat_rt')->nullable();

@@ -45,7 +45,9 @@ foreach ($pasars as $pasar) {
     }
 }
 
-$umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()->where('status_id', 3)->get();
+$umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+    ->where('status_id', 3)
+    ->get();
 
 $b = 0;
 foreach ($umkms as $umkm) {
@@ -60,8 +62,27 @@ foreach ($umkms as $umkm) {
         ->get()
         ->first();
 
-        if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
         $b++;
+    }
+}
+
+$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+
+$proposalppr = 0;
+foreach ($pprs as $ppr) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+        $proposalppr++;
     }
 }
 
@@ -97,7 +118,8 @@ foreach ($umkms as $umkm) {
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $b+$proposalskpd+$data }}</h4>
+                                                    <h4 class="fw-bolder mb-0">
+                                                        {{ $b + $proposalskpd + $data + $proposalppr }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>

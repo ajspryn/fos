@@ -5,9 +5,11 @@ namespace Modules\Kabag\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Form\Entities\FormPprDataPekerjaan;
+use Modules\Form\Entities\FormPprDataPribadi;
 use Modules\Form\Entities\FormPprPembiayaan;
 
-class PprProposalController extends Controller
+class PprNasabahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +17,10 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        $proposal=FormPprPembiayaan::select()->get();
-        return view('kabag::ppr.proposal.index',[
-            'title'=>'Proposal PPR',
-            'proposals'=>$proposal,
+        return view('kabag::ppr.nasabah.index', [
+            'title' => 'Data Nasabah PPR',
+            'proposals' => FormPprDataPribadi::select()->get(),
         ]);
-        
     }
 
     /**
@@ -49,17 +49,19 @@ class PprProposalController extends Controller
      */
     public function show($id)
     {
-        return view('kabag::show');
-    }
+        $data = FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('kabag::edit');
+        $nasabah = FormPprDataPribadi::select()->where('id', $id)->get()->first();
+        $pekerjaan_nasabah = FormPprDataPekerjaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
+
+        return view('kabag::ppr.nasabah.lihat', [
+            'title' => 'Nasabah',
+            'pembiayaan' => FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first(),
+            'nasabah' => $nasabah,
+            'pekerjaan_nasabah' => $pekerjaan_nasabah,
+            'datas' => FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get(),
+            'histories' => FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get(),
+        ]);
     }
 
     /**

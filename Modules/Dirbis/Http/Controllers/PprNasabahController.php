@@ -1,13 +1,12 @@
 <?php
 
-namespace Modules\Kabag\Http\Controllers;
+namespace Modules\Dirbis\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Form\Entities\FormPprPembiayaan;
 
-class PprProposalController extends Controller
+class PprNasabahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,7 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        $proposal=FormPprPembiayaan::select()->get();
-        return view('kabag::ppr.proposal.index',[
-            'title'=>'Proposal PPR',
-            'proposals'=>$proposal,
-        ]);
-        
+        return view('dirbis::index');
     }
 
     /**
@@ -29,7 +23,7 @@ class PprProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::create');
+        return view('dirbis::create');
     }
 
     /**
@@ -49,7 +43,7 @@ class PprProposalController extends Controller
      */
     public function show($id)
     {
-        return view('kabag::show');
+        return view('dirbis::show');
     }
 
     /**
@@ -59,7 +53,7 @@ class PprProposalController extends Controller
      */
     public function edit($id)
     {
-        return view('kabag::edit');
+        return view('dirbis::edit');
     }
 
     /**

@@ -25,11 +25,47 @@ $komite = Modules\Ppr\Entities\PprPembiayaanHistory::select()
 //     ->where(['form_ppr_pembiayaan_id', $pembiayaan], ['status_id', 3])
 //     ->count();
 
-$notif_komite = Modules\Ppr\Entities\PprPembiayaanHistory::select('form_ppr_pembiayaan_id as pembiayaan_count, status_id')
-    ->where('status_id', 3)
-    ->groupBy('form_ppr_pembiayaan_id')
+$notif_komite = Modules\Ppr\Entities\PprPembiayaanHistory::groupBy('form_ppr_pembiayaan_id')
+    ->latest()
+    ->where('user_id', Auth::user()->id)
+    ->having('status_id', 2)
     ->get()
     ->count();
+
+// $notif_komite = DB::table('ppr_pembiayaan_histories')
+//     ->groupBy('form_ppr_pembiayaan_id')
+//     ->latest('form_ppr_pembiayaan_id')
+//     ->where('status_id', '=', 3)
+
+//     ->get()
+//     ->count();
+
+// $notif_komite = DB::table('ppr_pembiayaan_histories')
+//     ->latest('id')
+//     ->orderBy('created_at', 'DESC')
+//     ->groupBy('form_ppr_pembiayaan_id')
+//     ->where('status_id', '=', 3)
+//     ->paginate(20)
+
+//     ->count();
+
+// $notif_komite = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+//     ->latest()
+//     ->groupBy('form_ppr_pembiayaan_id')
+//     ->having('status_id', 3)
+//     ->get()
+//     ->count();
+
+// $notif_komite = DB::table('ppr_pembiayaan_histories')
+//     ->select('form_ppr_pembiayaan_id', DB::raw('count(*) as total'))
+//     ->groupBy('form_ppr_pembiayaan_id')
+//     ->get();
+
+// $notif_komite = Modules\Ppr\Entities\PprPembiayaanHistory::select('form_ppr_pembiayaan_id', DB::raw('MAX(form_ppr_pembiayaan_id) AS total'))
+//     ->groupBy('form_ppr_pembiayaan_id')
+//     ->where([['status_id', '=', 3], ['status_id', '>', 3], ['status_id', '<', 3]])
+//     ->get()
+//     ->count();
 
 $revisi = Modules\Ppr\Entities\PprPembiayaanHistory::select()
     ->where('status_id', 7)

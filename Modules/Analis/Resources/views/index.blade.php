@@ -21,7 +21,7 @@ foreach ($proposals as $proposal) {
         ->orderby('created_at', 'desc')
         ->get()
         ->first();
-        if ($history->status_id == 5 && $history->jabatan_id == 2 || $history->status_id == 4 && $history->jabatan_id == 3  ) {
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
         $proposalskpd++;
     }
 }
@@ -40,13 +40,12 @@ foreach ($pasars as $pasar) {
         ->where('id', $history->pasar_pembiayaan_id)
         ->get()
         ->first();
-        if ($history->status_id == 5 && $history->jabatan_id == 2 || $history->status_id == 4 && $history->jabatan_id == 3  ) {
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
         $data++;
     }
 }
 
 $umkms = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
-
 
 $a = 0;
 foreach ($umkms as $umkm) {
@@ -60,8 +59,26 @@ foreach ($umkms as $umkm) {
         ->where('id', $history->umkm_pembiayaan_id)
         ->get()
         ->first();
-        if ($history->status_id == 5 && $history->jabatan_id == 2 || $history->status_id == 4 && $history->jabatan_id == 3  ) {
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
         $a++;
+    }
+}
+
+$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+
+$proposalppr = 0;
+foreach ($pprs as $ppr) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+        $proposalppr++;
     }
 }
 
@@ -78,7 +95,7 @@ foreach ($umkms as $umkm) {
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
-                      
+
                         <!-- Statistics Card -->
                         <div class="col-xl-12 col-md-6 col-12">
                             <div class="card card-statistics">
@@ -98,7 +115,8 @@ foreach ($umkms as $umkm) {
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $proposalskpd+$a+$data }}</h4>
+                                                    <h4 class="fw-bolder mb-0">
+                                                        {{ $proposalskpd + $a + $data + $proposalppr }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>
@@ -111,7 +129,7 @@ foreach ($umkms as $umkm) {
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{$tolak  }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $tolak }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Ditolak</p>
                                                 </div>
                                             </div>

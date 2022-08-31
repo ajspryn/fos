@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Kabag\Http\Controllers;
+namespace Modules\Analis\Http\Controllers;
 
 use App\Models\Role;
 use Carbon\Carbon;
@@ -112,10 +112,10 @@ class PprKomiteController extends Controller
      */
     public function index()
     {
-        $komite = PprPembiayaanHistory::select()->where('status_id', 3)->get();
-        return view('kabag::ppr.komite.index', [
+        $komite = PprPembiayaanHistory::select()->where('status_id', 5)->where('user_id', auth::user()->id)->get();
+        return view('analis::ppr.komite.index', [
             'title' => 'Data Komite PPR',
-            'proposals' => $komite,
+            'komites' => $komite,
         ]);
     }
 
@@ -125,7 +125,7 @@ class PprKomiteController extends Controller
      */
     public function create()
     {
-        return view('kabag::create');
+        return view('analis::create');
     }
 
     /**
@@ -140,12 +140,20 @@ class PprKomiteController extends Controller
             'catatan' => $request->catatan,
             'status_id' => $request->status_id,
             'user_id' => Auth::user()->id,
-            'jabatan_id' => 2,
+            'jabatan_id' => 3,
             'divisi_id' => null,
-
         ]);
 
-        return redirect('/kabag/ppr/komite/')->with('success', 'Proposal Berhasil Disetujui');
+        // if($request->file('foto')){
+        //     $foto=$request->file('foto')->store('foto-pasar-pembiayaan');
+        //     PasarFoto::create([
+        //         'pasar_pembiayaan_id'=>$request->pasar_pembiayaan_id,
+        //         'kategori'=> 'Konfirmasi Kepala Pasar',
+        //         'foto'=> $foto,
+        //     ]);
+        // }
+
+        return redirect('/analis/ppr/komite');
     }
 
     /**
@@ -165,29 +173,32 @@ class PprKomiteController extends Controller
             PprPembiayaanHistory::create([
                 'form_ppr_pembiayaan_id' => $id,
                 'status_id' => 4,
-                'jabatan_id' => 2,
+                'jabatan_id' => 3,
                 'divisi_id' => 0,
                 'user_id' => Auth::user()->$id,
             ]);
         }
-        $data = FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
 
-        $nasabah = FormPprDataPribadi::select()->where('id', $id)->get()->first();
-
-        $pekerjaan_nasabah = FormPprDataPekerjaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
+        $historystatus = PprPembiayaanHistory::select()
+            ->where('form_ppr_pembiayaan_id', $id)
+            ->orderby('created_at', 'desc')
+            ->get()
+            ->first();
 
         //Timeline
         $waktuawal = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();
         $waktuakhir = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first();
-        $next = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->where('id', '>', $waktuawal->id)->orderby('id')->first();
 
         $waktumulai = Carbon::parse($waktuawal->created_at);
         $waktuberakhir = Carbon::parse($waktuakhir->created_at);
-        $selanjutnya = Carbon::parse($next->created_at);
-
 
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
-        return view('kabag::ppr.komite.lihat', [
+        // $data = FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
+
+        // $nasabah = FormPprDataPribadi::select()->where('id', $id)->get()->first();
+        // $pekerjaan_nasabah = FormPprDataPekerjaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
+
+        return view('analis::ppr.komite.lihat', [
             'title' => 'Detail Proposal',
             'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
             'pembiayaan' => FormPprPembiayaan::select()->where('id', $id)->get()->first(),
@@ -209,11 +220,11 @@ class PprKomiteController extends Controller
             //History
             'history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
 
-            //perhitunganSLA
+            //SLA
             'totalwaktu' => $totalwaktu,
-            'next' => $next,
-            'waktumulai' => $waktumulai->diffAsCarbonInterval($selanjutnya)
         ]);
+
+        return redirect('/analis/ppr/komite/')->with('success', 'Proposal Berhasil Disetujui');
     }
 
     /**
@@ -223,7 +234,7 @@ class PprKomiteController extends Controller
      */
     public function edit($id)
     {
-        return view('kabag::edit');
+        return view('analis::edit');
     }
 
     /**

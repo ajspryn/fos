@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Kabag\Http\Controllers;
+namespace Modules\Dirbis\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -15,12 +15,11 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        $proposal=FormPprPembiayaan::select()->get();
-        return view('kabag::ppr.proposal.index',[
-            'title'=>'Proposal PPR',
-            'proposals'=>$proposal,
+        $proposal = FormPprPembiayaan::select()->get();
+        return view('dirbis::ppr.proposal.index', [
+            'title' => 'Proposal PPR',
+            'proposals' => $proposal,
         ]);
-        
     }
 
     /**
@@ -29,7 +28,9 @@ class PprProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::create');
+        return view('dirbis::ppr.index', [
+            'title' => 'Dashboard Direktur Bisnis',
+        ]);
     }
 
     /**
@@ -49,7 +50,7 @@ class PprProposalController extends Controller
      */
     public function show($id)
     {
-        return view('kabag::show');
+        return view('dirbis::show');
     }
 
     /**
@@ -59,7 +60,7 @@ class PprProposalController extends Controller
      */
     public function edit($id)
     {
-        return view('kabag::edit');
+        return view('dirbis::edit');
     }
 
     /**

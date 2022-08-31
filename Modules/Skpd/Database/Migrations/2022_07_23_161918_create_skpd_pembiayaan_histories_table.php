@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('skpd_pembiayaan_histories', function (Blueprint $table) {
             $table->id();
             $table->string('skpd_pembiayaan_id');
-            $table->string('status');
+            $table->string('status_id');
             $table->string('user_id')->nullable();
+            $table->string('jabatan_id');
             $table->timestamps();
         });
     }

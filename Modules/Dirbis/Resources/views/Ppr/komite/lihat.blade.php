@@ -1,4 +1,4 @@
-@extends('kabag::layouts.main')
+@extends('dirbis::layouts.main')
 @section('content')
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -916,7 +916,7 @@
                                                                         ->get()
                                                                         ->first();
                                                                 @endphp
-                                                                @if ($historystatus->status_id == 4 && $historystatus->jabatan_id == 2)
+                                                                @if ($historystatus->status_id == 4 && $historystatus->jabatan_id == 4)
                                                                     <div class="card-body">
                                                                         <button class="btn btn-success w-100"
                                                                             data-bs-toggle="modal"
@@ -956,7 +956,7 @@
                                                                     <!-- form -->
                                                                     <form id="addNewCardValidation"
                                                                         class="row gy-1 gx-2 mt-75" method="POST"
-                                                                        action="/kabag/ppr/komite">
+                                                                        action="/dirbis/ppr/komite">
                                                                         @csrf
 
                                                                         <div class="col-md-12">
@@ -1007,7 +1007,7 @@
                                                                     <!-- form -->
                                                                     <form id="addNewCardValidation"
                                                                         class="row gy-1 gx-2 mt-75" method="POST"
-                                                                        action="/kabag/ppr/komite">
+                                                                        action="/dirbis/ppr/komite">
                                                                         @csrf
 
                                                                         <div class="col-md-12">
@@ -1098,7 +1098,6 @@
                                                             @endforeach
                                                             <hr class="invoice-spacing" />
                                                             <p class="fw-bold"> Total SLA = {{ $totalwaktu }}</p>
-                                                            {{-- <p>Total Waktu : {{ $waktuakhir- $waktuawal}}</p> --}}
                                                         </ul>
                                                     </div>
                                                 </div>

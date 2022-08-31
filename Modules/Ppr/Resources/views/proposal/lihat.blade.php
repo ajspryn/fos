@@ -505,7 +505,7 @@
                                                     placeholder="Masukkan Nomor KTP Anda"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_no_ktp }}" />
                                             </div>
-                                            <div class="mb-1 col-md-6">
+                                            {{-- <div class="mb-1 col-md-6">
                                                 <label class="form-label"
                                                     for="form_pribadi_pemohon_no_ktp_berlaku_sd"><small
                                                         class="text-danger">*
@@ -514,7 +514,7 @@
                                                     class="form-control flatpickr-basic"
                                                     name="form_pribadi_pemohon_no_ktp_berlaku_sd" placeholder="DD-MM-YYYY"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_no_ktp_berlaku_sd }}" />
-                                            </div>
+                                            </div> --}}
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_pribadi_pemohon_jenis_kelamin"><small
                                                         class="text-danger">*
@@ -1307,7 +1307,7 @@
                                                                 placeholder="Masukkan Nomor KTP Istri/Suami Anda"
                                                                 value="{{ $pembiayaan->pemohon->form_pribadi_istri_suami_no_ktp }}" />
                                                         </div>
-                                                        <div class="mb-1 col-md-6">
+                                                        {{-- <div class="mb-1 col-md-6">
                                                             <label class="form-label"
                                                                 for="form_pribadi_istri_suami_no_ktp_berlaku_sd">Berlaku
                                                                 s/d.</label>
@@ -1317,7 +1317,7 @@
                                                                 name="form_pribadi_istri_suami_no_ktp_berlaku_sd"
                                                                 placeholder="DD-MM-YYYY"
                                                                 value="{{ $pembiayaan->pemohon->form_pribadi_istri_suami_no_ktp_berlaku_sd }}" />
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="mb-1 col-md-6">
                                                             <label class="form-label"
                                                                 for="form_pribadi_istri_suami_tempat_lahir">Tempat

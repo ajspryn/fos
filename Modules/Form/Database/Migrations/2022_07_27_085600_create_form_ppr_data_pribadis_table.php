@@ -22,13 +22,13 @@ return new class extends Migration
             $table->string('form_pribadi_pemohon_gelar')->nullable();
             $table->string('form_pribadi_pemohon_nama_alias')->nullable();
             $table->string('form_pribadi_pemohon_no_ktp');
-            $table->date('form_pribadi_pemohon_no_ktp_berlaku_sd');
             $table->string('form_pribadi_pemohon_jenis_kelamin');
             $table->string('form_pribadi_pemohon_tempat_lahir');
             $table->date('form_pribadi_pemohon_tanggal_lahir');
             $table->string('form_pribadi_pemohon_npwp');
             $table->string('form_pribadi_pemohon_pendidikan');
             $table->string('form_pribadi_pemohon_agama')->nullable();
+            $table->string('form_pribadi_pemohon_agama_lain')->nullable();
             $table->string('form_pribadi_pemohon_status_pernikahan');
             $table->integer('form_pribadi_pemohon_jml_anak');
             $table->integer('form_pribadi_pemohon_jml_tanggungan');
@@ -62,7 +62,6 @@ return new class extends Migration
             $table->string('form_pribadi_istri_suami_nama_lengkap')->nullable();
             $table->string('form_pribadi_istri_suami_gelar')->nullable();
             $table->string('form_pribadi_istri_suami_no_ktp')->nullable();
-            $table->date('form_pribadi_istri_suami_no_ktp_berlaku_sd')->nullable();
             $table->string('form_pribadi_istri_suami_tempat_lahir')->nullable();
             $table->date('form_pribadi_istri_suami_tanggal_lahir')->nullable();
             $table->string('form_pribadi_istri_suami_npwp')->nullable();
@@ -71,6 +70,7 @@ return new class extends Migration
             //Keluarga terdekat pemohon
             $table->string('form_pribadi_keluarga_terdekat_nama_lengkap');
             $table->string('form_pribadi_keluarga_terdekat_hubungan');
+            $table->string('form_pribadi_keluarga_terdekat_hubungan_lain')->nullable();
             $table->string('form_pribadi_keluarga_terdekat_alamat');
             $table->string('form_pribadi_keluarga_terdekat_alamat_rt');
             $table->string('form_pribadi_keluarga_terdekat_alamat_rw');

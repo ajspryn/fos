@@ -20,7 +20,7 @@ foreach ($proposals as $proposal) {
         ->orderby('created_at', 'desc')
         ->get()
         ->first();
-        if ($history->status_id == 5 )  {
+    if ($history->status_id == 5) {
         $komiteskpd++;
     }
 }
@@ -36,7 +36,7 @@ foreach ($proposals as $proposal) {
         ->orderby('created_at', 'desc')
         ->get()
         ->first();
-        if ($history->status_id == 5 && $history->jabatan_id == 2 || $history->status_id == 4 && $history->jabatan_id == 3  ) {
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
         $proposalskpd++;
     }
 }
@@ -55,7 +55,7 @@ foreach ($pasars as $pasar) {
         ->where('id', $history->pasar_pembiayaan_id)
         ->get()
         ->first();
-    if ($history->status_id == 5 ) {
+    if ($history->status_id == 5) {
         $komite++;
     }
 }
@@ -71,7 +71,7 @@ foreach ($pasars as $pasar) {
         ->where('id', $history->pasar_pembiayaan_id)
         ->get()
         ->first();
-        if ($history->status_id == 5 && $history->jabatan_id == 2 || $history->status_id == 4 && $history->jabatan_id == 3  ) {
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
         $data++;
     }
 }
@@ -90,7 +90,7 @@ foreach ($umkms as $umkm) {
         ->where('id', $history->umkm_pembiayaan_id)
         ->get()
         ->first();
-        if ($history->status_id == 5 || $history->status_id == 4){
+    if ($history->status_id == 5 || $history->status_id == 4) {
         $b++;
     }
 }
@@ -106,12 +106,43 @@ foreach ($umkms as $umkm) {
         ->where('id', $history->umkm_pembiayaan_id)
         ->get()
         ->first();
-        if ($history->status_id == 5 && $history->jabatan_id == 2 || $history->status_id == 4 && $history->jabatan_id == 3  ) {
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
         $a++;
     }
 }
 
+$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
 
+$komiteppr = 0;
+foreach ($pprs as $ppr) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_pasar = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 5) {
+        $komiteppr++;
+    }
+}
+$proposalppr = 0;
+foreach ($pprs as $ppr) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_pasar = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+        $proposalppr++;
+    }
+}
 
 @endphp
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
@@ -153,10 +184,9 @@ foreach ($umkms as $umkm) {
                                 data-feather="home"></i><span class="menu-title text-truncate"
                                 data-i18n="home">UMKM</span></a>
                     </li>
-                    <li class="{{ Request::is('analis/skpd/ppr') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/skpd/proposal"><i
-                                data-feather="home"></i><span class="menu-item text-truncate"
-                                data-i18n="Security">PPR</span></a>
+                    <li class="{{ Request::is('analis/ppr/create') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/analis/ppr/create"><i data-feather="home"></i><span
+                                class="menu-title text-truncate" data-i18n="home">PPR</span></a>
                     </li>
                 </ul>
             </li>
@@ -166,7 +196,7 @@ foreach ($umkms as $umkm) {
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">SKPD</span>
-                        @if ($proposalskpd > 0)
+                    @if ($proposalskpd > 0)
                         <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
                     @endif
                 </a>
@@ -182,10 +212,12 @@ foreach ($umkms as $umkm) {
                     </li>
                     <li class="{{ Request::is('analis/skpd/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/skpd/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>            
-                                 @if ($proposalskpd > 0)
-                                <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
-                            @endif</a>
+                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>
+                            @if ($proposalskpd > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -194,12 +226,12 @@ foreach ($umkms as $umkm) {
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/pasar/nasabah') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/pasar/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span> @if ($data > 0)
-                                
+                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span>
+                            @if ($data > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
-                                
-                            @endif</a>
+                            @endif
+                        </a>
                     </li>
                     <li class="{{ Request::is('analis/pasar/komite') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/pasar/komite"><span
@@ -208,24 +240,22 @@ foreach ($umkms as $umkm) {
                     </li>
                     <li class="{{ Request::is('analis/pasar/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/pasar/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span> 
-                                @if ($data > 0)
-                                
+                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>
+                            @if ($data > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
-                                
-                            @endif</a>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>
 
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">UMKM</span>  @if ($a > 0)
-                        
-                        <span
-                            class="badge badge-light-success rounded-pill ms-auto me-1">{{ $a }}</span>
-                        
-                    @endif</a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">UMKM</span>
+                    @if ($a > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $a }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
 
                     <li class="{{ Request::is('analis/umkm/nasabah') ? 'active' : '' }}"><a
@@ -237,23 +267,27 @@ foreach ($umkms as $umkm) {
                             class="d-flex align-items-center" href="/analis/umkm/komite"><i
                                 data-feather="clipboard"></i><span class="menu-item text-truncate"
                                 data-i18n="Security">Komite</span>
-                                <span
-                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $b }}</span></a>
+                            <span
+                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $b }}</span></a>
                     </li>
                     <li class="{{ Request::is('analis/umkm/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/umkm/proposal"><i
                                 data-feather="file-text"></i><span class="menu-item text-truncate"
-                                data-i18n="Security">Proposal</span>  @if ($a > 0)
-                                
+                                data-i18n="Security">Proposal</span>
+                            @if ($a > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $a }}</span>
-                                
-                            @endif</a>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">PPR</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">PPR</span>
+                    @if ($proposalppr > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/ppr/nasabah') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/ppr/nasabah"><span
@@ -261,11 +295,17 @@ foreach ($umkms as $umkm) {
                     </li>
                     <li class="{{ Request::is('analis/ppr/komite') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/ppr/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span></a>
+                                class="menu-item text-truncate" data-i18n="Security">Komite</span><span
+                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteppr }}</span></a>
                     </li>
                     <li class="{{ Request::is('analis/ppr/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/ppr/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span></a>
+                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>
+                            @if ($proposalppr > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>

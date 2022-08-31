@@ -107,12 +107,45 @@ foreach ($umkms as $umkm) {
         ->where('id', $history->umkm_pembiayaan_id)
         ->get()
         ->first();
-        if ($history->status_id == 3 && $history->jabatan_id == 1) {
+    if ($history->status_id == 3 && $history->jabatan_id == 1) {
         $a++;
     }
 }
 
+$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
 
+$komiteppr = 0;
+foreach ($pprs as $ppr) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $komite_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 5 || $history->status_id == 4) {
+        $komiteppr++;
+    }
+}
+$proposalppr = 0;
+foreach ($pprs as $ppr) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 3 && $history->jabatan_id == 1) {
+        $proposalppr++;
+    }
+}
 
 @endphp
 <!-- BEGIN: Main Menu-->
@@ -153,9 +186,9 @@ foreach ($umkms as $umkm) {
                             class="d-flex align-items-center" href="/kabag/umkm/create"><i data-feather="home"></i><span
                                 class="menu-title text-truncate" data-i18n="home">UMKM</span></a>
                     </li>
-                    <li class="{{ Request::is('kabag/skpd/ppr') ? 'active' : '' }}"><a class="d-flex align-items-center"
-                            href="/kabag/skpd/proposal"><i data-feather="home"></i><span class="menu-item text-truncate"
-                                data-i18n="Security">PPR</span></a>
+                    <li class="{{ Request::is('kabag/ppr/create') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/kabag/ppr/create"><i data-feather="home"></i><span
+                                class="menu-title text-truncate" data-i18n="home">PPR</span></a>
                     </li>
                 </ul>
             </li>
@@ -195,17 +228,16 @@ foreach ($umkms as $umkm) {
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">PASAR</span>
-                        @if ($data > 0)
-                        
-                        <span
-                            class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
-                        
-                    @endif</a>
+                    @if ($data > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
 
                     <li class="{{ Request::is('kabag/pasar/nasabah') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/kabag/pasar/nasabah"><i
-                                data-feather="users"></i><span class="menu-item text-truncate" data-i18n="Account">Data
+                                data-feather="users"></i><span class="menu-item text-truncate"
+                                data-i18n="Account">Data
                                 Nasabah</span></a>
                     </li>
                     <li class="{{ Request::is('kabag/pasar/komite') ? 'active' : '' }}"><a
@@ -219,10 +251,8 @@ foreach ($umkms as $umkm) {
                                 data-feather="file-text"></i><span class="menu-item text-truncate"
                                 data-i18n="Security">Proposal</span>
                             @if ($data > 0)
-                                
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
-                                
                             @endif
                         </a>
                     </li>
@@ -230,12 +260,10 @@ foreach ($umkms as $umkm) {
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">UMKM</span>
-                        @if ($a > 0)
-                        
-                        <span
-                            class="badge badge-light-success rounded-pill ms-auto me-1">{{ $a }}</span>
-                        
-                    @endif</a>
+                    @if ($a > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $a }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
 
                     <li class="{{ Request::is('kabag/umkm/nasabah') ? 'active' : '' }}"><a
@@ -253,18 +281,21 @@ foreach ($umkms as $umkm) {
                             class="d-flex align-items-center" href="/kabag/umkm/proposal"><i
                                 data-feather="file-text"></i><span class="menu-item text-truncate"
                                 data-i18n="Security">Proposal</span>
-                                @if ($a > 0)
-                                
+                            @if ($a > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $a }}</span>
-                                
                             @endif
                         </a>
                     </li>
                 </ul>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">PPR</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">PPR</span>
+                    @if ($proposalppr > 0)
+                        {
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>}
+                    @endif
+                </a>
                 <ul class="menu-content">
 
                     <li class="{{ Request::is('kabag/ppr/nasabah') ? 'active' : '' }}"><a
@@ -276,19 +307,23 @@ foreach ($umkms as $umkm) {
                     <li class="{{ Request::is('kabag/ppr/komite') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/kabag/ppr/komite"><i
                                 data-feather="clipboard"></i><span class="menu-item text-truncate"
-                                data-i18n="Security">Komite</span></a>
+                                data-i18n="Security">Komite</span><span
+                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteppr }}</span></a>
                     </li>
                     <li class="{{ Request::is('kabag/ppr/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/kabag/ppr/proposal"><i
                                 data-feather="file-text"></i><span class="menu-item text-truncate"
-                                data-i18n="Security">Proposal</span><span
-                                class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
+                                data-i18n="Security">Proposal</span>
+                            @if ($proposalppr > 0)
+                                {
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>}
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>
 
     </div>
 </div>
-<!-- END: Main Menu-->
-
 <!-- END: Main Menu-->

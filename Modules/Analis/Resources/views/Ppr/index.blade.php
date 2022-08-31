@@ -1,35 +1,41 @@
-@extends('ppr::layouts.main')
-@php
-$proposal1 = Modules\Form\Entities\FormPprPembiayaan::select()
-    ->where('user_id', Auth::user()->id)
-    ->get();
-$diterima = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-    ->where('status_id', 5)
-    ->where('jabatan_id', 4)
-    // ->where('pasar_pembiayaan_id',$proposal1->id)
-    ->get()
-    ->count();
+@extends('analis::layouts.main')
 
-$proposal = Modules\Form\Entities\FormPprPembiayaan::select()
-    ->where('user_id', auth::user()->id)
-    ->whereNull('form_cl')
-    ->orWhereNull('form_score')
-    ->get()
-    ->count();
-
-$ditolak = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-    ->where('status_id', 6)
-    ->where('user_id', auth::user()->id)
-    ->get()
-    ->count();
-
-$review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-    ->where('status_id', 7)
-    ->orderby('created_at', 'desc')
-    ->get()
-    ->count();
-@endphp
 @section('content')
+    @php
+    $diterima = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('status_id', 5)
+        ->where('jabatan_id', 4)
+        ->get()
+        ->count();
+
+    $pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+    $proposalppr = 0;
+    foreach ($pprs as $ppr) {
+        $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+            ->where('form_ppr_pembiayaan_id', $ppr->id)
+            ->orderby('created_at', 'desc')
+            ->get()
+            ->first();
+        $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+            ->where('id', $history->form_ppr_pembiayaan_id)
+            ->get()
+            ->first();
+        if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+            $proposalppr++;
+        }
+    }
+
+    $ditolak = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('status_id', 6)
+        ->get()
+        ->count();
+
+    $revisi = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('status_id', 7)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->count();
+    @endphp
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -41,27 +47,12 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
-                        <!-- Medal Card -->
-                        <div class="col-xl-4 col-md-6 col-12">
-                            <div class="card card-congratulation-medal">
-                                <div class="card-body">
-                                    <h5>{{ Auth::user()->name }}</h5>
-                                    <p class="card-text font-small-3">Kamu Belum Mencapai Target</p>
-                                    <h3 class="mb-75 mt-2 pt-50">
-                                        <a href="#"></a>
-                                    </h3>
-                                    {{-- <button type="button" class="btn btn-primary">View Sales</button> --}}
-                                    <img src="../../../app-assets/images/illustration/badge.svg"
-                                        class="congratulation-medal" alt="Medal Pic" />
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ Medal Card -->
+
                         <!-- Statistics Card -->
-                        <div class="col-xl-8 col-md-6 col-12">
+                        <div class="col-xl-12 col-md-6 col-12">
                             <div class="card card-statistics">
                                 <div class="card-header">
-                                    <h4 class="card-title">Statistik Proposal Anda</h4>
+                                    <h4 class="card-title">Statistik</h4>
                                     <div class="d-flex align-items-center">
                                         <p class="card-text font-small-2 me-25 mb-0"></p>
                                     </div>
@@ -76,7 +67,7 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $proposal }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $proposalppr }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>
@@ -102,7 +93,7 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $review }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $revisi }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Review</p>
                                                 </div>
                                             </div>
@@ -127,7 +118,7 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                         <!--/ Statistics Card -->
                     </div>
 
-                    {{-- <div class="row">
+                    <div class="row">
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
@@ -136,8 +127,8 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Views</p>
+                                    <h2 class="fw-bolder">0</h2>
+                                    <p class="card-text">Pipeline</p>
                                 </div>
                             </div>
                         </div>
@@ -149,8 +140,8 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Views</p>
+                                    <h2 class="fw-bolder">0</h2>
+                                    <p class="card-text">Proposal</p>
                                 </div>
                             </div>
                         </div>
@@ -162,8 +153,8 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Views</p>
+                                    <h2 class="fw-bolder">0</h2>
+                                    <p class="card-text">Komite</p>
                                 </div>
                             </div>
                         </div>
@@ -175,14 +166,14 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Views</p>
+                                    <h2 class="fw-bolder">0</h2>
+                                    <p class="card-text">Disburse</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row match-height">
+                    {{-- <div class="row match-height">
                         <div class="col-lg-4 col-12">
                             <div class="row match-height">
                                 <!-- Bar Chart - Orders -->
@@ -281,9 +272,9 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                             </div>
                         </div>
                         <!--/ Revenue Report Card -->
-                    </div>
-                </section> --}}
-                    <!-- Dashboard Ecommerce ends -->
+                    </div> --}}
+                </section>
+                <!-- Dashboard Ecommerce ends -->
 
             </div>
         </div>

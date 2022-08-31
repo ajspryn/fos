@@ -1,4 +1,4 @@
-@extends('kabag::layouts.main')
+@extends('analis::layouts.main')
 
 @section('content')
     <style>
@@ -16,6 +16,7 @@
             text-align: center;
         }
     </style>
+
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -28,7 +29,7 @@
                             <h2 class="content-header-title float-start mb-0">Data Proposal</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/kabag/ppr">PPR</a>
+                                    <li class="breadcrumb-item"><a href="/ppr">PPR</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Proposal</a>
                                     </li>
@@ -53,11 +54,10 @@
                                         <th class="midCenter" style="vertical-align: middle;">Tanggal Pengajuan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jenis Nasabah</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nama Nasabah</th>
-                                        <th class="midCenter" style="vertical-align: middle;">Nilai yang Dimohon</th>
+                                        <th class="midCenter" style="vertical-align: middle;">Nilai yang Dimohon
+                                        </th>
                                         <th class="midCenter" style="vertical-align: middle;">Peruntukan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jangka Waktu</th>
-                                        <th class="midCenter" style="vertical-align: middle;">Status</th>
-                                        <th class="midCenter" style="vertical-align: middle;">AO yang Menangani</th>
                                         <th class="midCenter" style="vertical-align: middle;">Action</th>
                                     </tr>
                                 </thead>
@@ -71,11 +71,13 @@
 
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                                 ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
-                                                ->orderby('created_at', 'desc')
+                                                ->orderBy('created_at', 'desc')
                                                 ->get()
                                                 ->first();
                                         @endphp
-                                        @if ($history->status_id == 5 || $history->status_id == 4)
+
+                                        @if (($history->status_id == 5 && $history->jabatan_id == 2) ||
+                                            ($history->status_id == 4 && $history->jabatan_id == 3))
                                             <tr>
                                                 <td style="text-align: center">
                                                     <button type="button"
@@ -87,7 +89,7 @@
                                                 <td style="text-align: center">
                                                     {{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
                                                 </td>
-                                                <td>{{ $proposal_ppr->jenis_nasabah }}</td>
+                                                <td style="text-align: center">{{ $proposal_ppr->jenis_nasabah }}</td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
                                                 <td style="text-align: center">
@@ -98,30 +100,10 @@
                                                     {{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
                                                 </td>
                                                 <td style="text-align: center">
-                                                    {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}
-                                                    Bulan
+                                                    {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }} Bulan
                                                 </td>
-                                                <td style="text-align: center"
-                                                    value=" {{ $history->statusHistory->id }}, {{ $history->jabatan->jabatan_id }}">
-                                                    @if ($history->statusHistory->id == 5)
-                                                        <span
-                                                            class="badge rounded-pill badge-light-success">{{ $history->statusHistory->keterangan }}
-                                                            {{ $history->jabatan->keterangan }}</span>
-                                                    @elseif ($history->statusHistory->id == 4)
-                                                        <span
-                                                            class="badge rounded-pill badge-light-info">{{ $history->statusHistory->keterangan }}
-                                                            {{ $history->jabatan->keterangan }}</span>
-                                                    @else
-                                                        <span
-                                                            class="badge rounded-pill badge-light-warning">{{ $history->statusHistory->keterangan }}
-                                                            {{ $history->jabatan->keterangan }}</span>
-                                                    @endif
-                                                </td>
-
-                                                <td style="text-align: center">{{ $proposal_ppr->user->name }}
-                                                </td>
-                                                <td style="text-align: center">
-                                                    <a href="/kabag/ppr/komite/{{ $proposal_ppr->id }}"
+                                                <td>
+                                                    <a href="/analis/ppr/komite/{{ $proposal_ppr->id }}"
                                                         class="btn btn-outline-info round">Detail</a>
                                                 </td>
                                             </tr>

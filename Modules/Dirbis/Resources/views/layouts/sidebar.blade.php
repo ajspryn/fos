@@ -44,7 +44,9 @@ foreach ($pasars as $pasar) {
     }
 }
 
-$umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()->where('status_id', 3)->get();
+$umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+    ->where('status_id', 3)
+    ->get();
 
 $b = 0;
 foreach ($umkms as $umkm) {
@@ -59,8 +61,27 @@ foreach ($umkms as $umkm) {
         ->get()
         ->first();
 
-        if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
         $b++;
+    }
+}
+
+$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+
+$proposalppr = 0;
+foreach ($pprs as $ppr) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+        $proposalppr++;
     }
 }
 
@@ -104,10 +125,9 @@ foreach ($umkms as $umkm) {
                                 data-feather="home"></i><span class="menu-title text-truncate"
                                 data-i18n="home">UMKM</span></a>
                     </li>
-                    <li class="{{ Request::is('dirbis/skpd/ppr') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/skpd/proposal"><i
-                                data-feather="home"></i><span class="menu-item text-truncate"
-                                data-i18n="Security">PPR</span></a>
+                    <li class="{{ Request::is('dirbis/ppr/create') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/dirbis/ppr/create"><i data-feather="home"></i><span
+                                class="menu-title text-truncate" data-i18n="home">PPR</span></a>
                     </li>
                 </ul>
             <li class=" navigation-header"><span data-i18n="Forms &amp; Tables">Pembiayaan</span><i
@@ -193,7 +213,11 @@ foreach ($umkms as $umkm) {
                 </ul>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">PPR</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">PPR</span>
+                    @if ($proposalppr > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('dirbis/ppr/nasabah') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/dirbis/ppr/nasabah"><span
@@ -201,7 +225,12 @@ foreach ($umkms as $umkm) {
                     </li>
                     <li class="{{ Request::is('dirbis/ppr/komite') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/dirbis/ppr/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span></a>
+                                class="menu-item text-truncate" data-i18n="Security">Komite</span>
+                            @if ($proposalppr > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
+                            @endif
+                        </a>
                     </li>
                     <li class="{{ Request::is('dirbis/ppr/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/dirbis/ppr/proposal"><span

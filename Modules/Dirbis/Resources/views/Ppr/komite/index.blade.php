@@ -1,4 +1,4 @@
-@extends('kabag::layouts.main')
+@extends('dirbis::layouts.main')
 
 @section('content')
     <style>
@@ -28,7 +28,7 @@
                             <h2 class="content-header-title float-start mb-0">Data Proposal</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/kabag/ppr">PPR</a>
+                                    <li class="breadcrumb-item"><a href="/dirbis/ppr">PPR</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Proposal</a>
                                     </li>
@@ -62,20 +62,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($proposals as $proposal)
+                                    @foreach ($komites as $komite)
                                         @php
-                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                                                ->where('id', $proposal->form_ppr_pembiayaan_id)
-                                                ->get()
-                                                ->first();
-
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                                                ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
+                                                ->where('form_ppr_pembiayaan_id', $komite->id)
                                                 ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
+
+                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                ->where('id', $history->form_ppr_pembiayaan_id)
+                                                ->get()
+                                                ->first();
                                         @endphp
-                                        @if ($history->status_id == 5 || $history->status_id == 4)
+                                        @if ($history->jabatan_id == 4 || ($history->jabatan_id == 3 && $history->status_id == 5))
                                             <tr>
                                                 <td style="text-align: center">
                                                     <button type="button"
@@ -103,17 +103,17 @@
                                                 </td>
                                                 <td style="text-align: center"
                                                     value=" {{ $history->statusHistory->id }}, {{ $history->jabatan->jabatan_id }}">
-                                                    @if ($history->statusHistory->id == 5)
+                                                    @if ($history->statushistory->id == 5 && $history->jabatan->jabatan_id == 4)
                                                         <span
-                                                            class="badge rounded-pill badge-light-success">{{ $history->statusHistory->keterangan }}
+                                                            class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
                                                             {{ $history->jabatan->keterangan }}</span>
-                                                    @elseif ($history->statusHistory->id == 4)
+                                                    @elseif ($history->statushistory->id == 4)
                                                         <span
-                                                            class="badge rounded-pill badge-light-info">{{ $history->statusHistory->keterangan }}
+                                                            class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
                                                             {{ $history->jabatan->keterangan }}</span>
-                                                    @else
+                                                    @elseif ($history->statushistory->id == 5 && $history->jabatan->jabatan_id == 3)
                                                         <span
-                                                            class="badge rounded-pill badge-light-warning">{{ $history->statusHistory->keterangan }}
+                                                            class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
                                                             {{ $history->jabatan->keterangan }}</span>
                                                     @endif
                                                 </td>
@@ -121,7 +121,7 @@
                                                 <td style="text-align: center">{{ $proposal_ppr->user->name }}
                                                 </td>
                                                 <td style="text-align: center">
-                                                    <a href="/kabag/ppr/komite/{{ $proposal_ppr->id }}"
+                                                    <a href="/dirbis/ppr/komite/{{ $proposal_ppr->id }}"
                                                         class="btn btn-outline-info round">Detail</a>
                                                 </td>
                                             </tr>
