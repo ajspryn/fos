@@ -92,7 +92,7 @@ class UmkmKomiteController extends Controller
     {
         
         $data=UmkmPembiayaan::select()->where('id',$id)->get()->first();
-        $nasabah=UmkmNasabah::select()->where('id',$id)->get()->first();
+        $nasabah=UmkmNasabah::select()->where('id',$data->nasabah_id)->get()->first();
         $usaha=UmkmKeteranganUsaha::select()->where('umkm_pembiayaan_id',$id)->get()->first();
         $jaminanrumah=UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id',$id)->get()->first();
         $jaminanlain=UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get()->first();

@@ -275,7 +275,6 @@ class FormulirPasarController extends Controller
              'tenor'=> $request ->tenor,
              'harga'=> str_replace(",","",$request->harga),
              'luas'=> $request ->luas,
-             'harga'=> $request ->harga,
              'jenis_tempat_usaha'=> $request ->jenis_tempat_usaha,
              'administrasi'=> $request ->administrasi,
              'jumlah'=> $request ->jumlah,

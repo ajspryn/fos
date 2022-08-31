@@ -487,7 +487,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="SHPB"> <small class="text-danger">*
-                                            </small>Upload Jaminan KTB</label>
+                                            </small>Upload Jaminan Utama </label>
                                         <input type="file" name="dokumenktb" id="dokumenktb" rows="3"
                                             class="form-control" required />
                                     </div>

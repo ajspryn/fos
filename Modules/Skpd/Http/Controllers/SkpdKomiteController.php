@@ -102,8 +102,8 @@ class SkpdKomiteController extends Controller
             ]);
         }
 
-        $nasabah=SkpdNasabah::select()->where('id',$id)->get()->first();
         $data=SkpdPembiayaan::select()->where('id',$id)->get()->first();
+        $nasabah=SkpdNasabah::select()->where('id',$data->skpd_nasabah_id)->get()->first();
         $jaminan=SkpdJaminan::select()->where('skpd_pembiayaan_id',$id)->get()->first();
         $nominal_pembiayaan=$data->nominal_pembiayaan;
         $tenor=$data->tenor;
