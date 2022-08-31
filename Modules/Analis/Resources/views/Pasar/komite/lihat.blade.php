@@ -1087,6 +1087,8 @@
                                                                     </div>
                                                                 </li>
                                                             @endforeach
+                                                            <hr class="invoice-spacing" />
+                                                            <p class="fw-bold"> Total SLA = {{ $totalwaktu }}</p>
                                                         </ul>
                                                     </div>
                                                 </div>

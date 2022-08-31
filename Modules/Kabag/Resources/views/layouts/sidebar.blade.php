@@ -165,7 +165,7 @@ foreach ($umkms as $umkm) {
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">SKPD</span>
                     @if ($proposalskpd > 0)
-                        {<span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>}
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
                     @endif
                 </a>
                 <ul class="menu-content">
@@ -186,8 +186,8 @@ foreach ($umkms as $umkm) {
                                 data-feather="file-text"></i><span class="menu-item text-truncate"
                                 data-i18n="Security">Proposal</span>
                             @if ($proposalskpd > 0)
-                                {<span
-                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>}
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
                             @endif
                         </a></a>
                     </li>
@@ -196,10 +196,10 @@ foreach ($umkms as $umkm) {
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">PASAR</span>
                         @if ($data > 0)
-                        {
+                        
                         <span
                             class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
-                        }
+                        
                     @endif</a>
                 <ul class="menu-content">
 
@@ -219,10 +219,10 @@ foreach ($umkms as $umkm) {
                                 data-feather="file-text"></i><span class="menu-item text-truncate"
                                 data-i18n="Security">Proposal</span>
                             @if ($data > 0)
-                                {
+                                
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
-                                }
+                                
                             @endif
                         </a>
                     </li>
@@ -231,10 +231,10 @@ foreach ($umkms as $umkm) {
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">UMKM</span>
                         @if ($a > 0)
-                        {
+                        
                         <span
                             class="badge badge-light-success rounded-pill ms-auto me-1">{{ $a }}</span>
-                        }
+                        
                     @endif</a>
                 <ul class="menu-content">
 
@@ -254,10 +254,10 @@ foreach ($umkms as $umkm) {
                                 data-feather="file-text"></i><span class="menu-item text-truncate"
                                 data-i18n="Security">Proposal</span>
                                 @if ($a > 0)
-                                {
+                                
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $a }}</span>
-                                }
+                                
                             @endif
                         </a>
                     </li>

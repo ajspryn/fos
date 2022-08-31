@@ -1,6 +1,8 @@
 <?php
 
 namespace Modules\Dirbis\Http\Controllers;
+
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -208,7 +210,14 @@ class PasarKomiteController extends Controller
         }
         $score_slik = $prosesslik->rating;
 
+        $waktuawal=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
+        $waktuakhir=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
 
+        $waktumulai=Carbon::parse($waktuawal->created_at);
+        $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+
+
+        $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
 
 
         //    return $harga1;
@@ -283,6 +292,8 @@ class PasarKomiteController extends Controller
             'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
 
 
+             //perhitunganSLA
+             'totalwaktu'=>$totalwaktu,
         ]);
 }
 

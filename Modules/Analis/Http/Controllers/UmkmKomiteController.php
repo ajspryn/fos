@@ -3,6 +3,7 @@
 namespace Modules\Analis\Http\Controllers;
 
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -199,7 +200,18 @@ class UmkmKomiteController extends Controller
             $score_slik = $prosesslik->rating;
     
           
-          
+            //SLA
+            $waktuawal=UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
+            $waktuakhir=UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
+            // $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
+    
+            $waktumulai=Carbon::parse($waktuawal->created_at);
+            $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+            // $selanjutnya=Carbon::parse($next->created_at);
+    
+    
+            $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
+
           
             //    return $harga1;
             return view('analis::umkm.komite.lihat',[
@@ -211,6 +223,10 @@ class UmkmKomiteController extends Controller
                 'nasabah'=>UmkmNasabah::select()->where('id',$id)->get()->first(),
                 'fotos'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->get(),
                 'fototoko'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
+                'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+                'fotoktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
+                'fotodiribersamaktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
+                'fotokk'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
                 'jaminanusahas'=>UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get(),
                 'jaminanlainusahas'=>UmkmJaminanLain::select()->where('umkm_pembiayaan_id',$id)->get(),
                 'usahas'=>UmkmKeteranganUsaha::all(), //udah
@@ -260,6 +276,10 @@ class UmkmKomiteController extends Controller
                 
             'deviasi'=>UmkmDeviasi::select()->where('umkm_pembiayaan_id',$id)->get()->first(),
                  
+
+             //SLA
+             'totalwaktu'=>$totalwaktu
+
                 
             ]);
         

@@ -255,6 +255,11 @@
                                         <input type="file" name="foto[3][foto]" id="fotodiribersamaktp" rows="3" class="form-control" required/>
                                         <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP" rows="3" class="form-control" />
                                     </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotodiri"><small class="text-danger">* </small>Upload Foto  Kartu Keluarga</label>
+                                        <input type="file" name="foto[4][foto]" id="fotokartukeluarga rows="4" class="form-control" required/>
+                                        <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga" rows="3" class="form-control" />
+                                    </div>
                                 </div>
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Data Orang Terdekat</h5>

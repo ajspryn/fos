@@ -151,9 +151,11 @@ class UmkmProposalController extends Controller
             'user_id'=> Auth::user()->id,
         ]);
 
-        foreach ($request->slik as $key => $value) {
+        if ($request->slik[0]['nama_bank']){
 
-       
+            // return $request->slik[0]['nama_bank'];
+            foreach ($request->slik as $key => $value) {
+
 
             // return $value;
             UmkmSlik::create([
@@ -168,7 +170,7 @@ class UmkmProposalController extends Controller
                 'kol'=> $value['kol'],
             ]);
         }
-
+    }
         return redirect('/umkm/komite/'.$id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
 
 }
