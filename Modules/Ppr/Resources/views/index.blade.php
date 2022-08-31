@@ -1,5 +1,34 @@
 @extends('ppr::layouts.main')
+@php
+$proposal1 = Modules\Form\Entities\FormPprPembiayaan::select()
+    ->where('user_id', Auth::user()->id)
+    ->get();
+$diterima = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    ->where('status_id', 5)
+    ->where('jabatan_id', 4)
+    // ->where('pasar_pembiayaan_id',$proposal1->id)
+    ->get()
+    ->count();
 
+$proposal = Modules\Form\Entities\FormPprPembiayaan::select()
+    ->where('user_id', auth::user()->id)
+    ->whereNull('form_cl')
+    ->orWhereNull('form_score')
+    ->get()
+    ->count();
+
+$ditolak = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    ->where('status_id', 6)
+    ->where('user_id', auth::user()->id)
+    ->get()
+    ->count();
+
+$review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    ->where('status_id', 7)
+    ->orderby('created_at', 'desc')
+    ->get()
+    ->count();
+@endphp
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -16,9 +45,8 @@
                         <div class="col-xl-4 col-md-6 col-12">
                             <div class="card card-congratulation-medal">
                                 <div class="card-body">
-                                    <h5>Halo, </h5>
-                                    <h5>{{ Auth::user()->name }}!</h5>
-                                    <p class="card-text font-small-3">Target Belum Tercapai</p>
+                                    <h5>{{ Auth::user()->name }}</h5>
+                                    <p class="card-text font-small-3">Kamu Belum Mencapai Target</p>
                                     <h3 class="mb-75 mt-2 pt-50">
                                         <a href="#"></a>
                                     </h3>
@@ -48,7 +76,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ 0 }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $proposal }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>
@@ -61,7 +89,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">0</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Ditolak</p>
                                                 </div>
                                             </div>
@@ -74,7 +102,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">0</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $review }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Review</p>
                                                 </div>
                                             </div>
@@ -87,7 +115,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">0</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $diterima }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Disetujui</p>
                                                 </div>
                                             </div>
@@ -99,7 +127,7 @@
                         <!--/ Statistics Card -->
                     </div>
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
@@ -109,7 +137,7 @@
                                         </div>
                                     </div>
                                     <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Pipeline</p>
+                                    <p class="card-text">Views</p>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +150,7 @@
                                         </div>
                                     </div>
                                     <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Proposal</p>
+                                    <p class="card-text">Views</p>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +163,7 @@
                                         </div>
                                     </div>
                                     <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Komite</p>
+                                    <p class="card-text">Views</p>
                                 </div>
                             </div>
                         </div>
@@ -148,13 +176,13 @@
                                         </div>
                                     </div>
                                     <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Disburse</p>
+                                    <p class="card-text">Views</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {{-- <div class="row match-height">
+                    <div class="row match-height">
                         <div class="col-lg-4 col-12">
                             <div class="row match-height">
                                 <!-- Bar Chart - Orders -->
@@ -253,9 +281,9 @@
                             </div>
                         </div>
                         <!--/ Revenue Report Card -->
-                    </div> --}}
-                </section>
-                <!-- Dashboard Ecommerce ends -->
+                    </div>
+                </section> --}}
+                    <!-- Dashboard Ecommerce ends -->
 
             </div>
         </div>

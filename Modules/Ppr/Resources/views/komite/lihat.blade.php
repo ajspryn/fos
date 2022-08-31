@@ -1029,6 +1029,11 @@
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
                                                                         </div>
+                                                                        @if ($timeline->catatan)
+                                                                            <p value="{{ $timeline->id }}"> <br>Catatan :
+                                                                                {{ $timeline->catatan }}
+                                                                            <p>
+                                                                        @endif
                                                                         <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}

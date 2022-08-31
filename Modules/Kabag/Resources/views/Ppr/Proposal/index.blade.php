@@ -63,46 +63,53 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($proposals as $proposal)
-                                    @php
+                                        @php
 
-                                        $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                                            ->where('form_ppr_pembiayaan_id', $proposal->id)
-                                            ->orderby('created_at', 'desc')
-                                            ->get()
-                                            ->first();
+                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                                ->where('form_ppr_pembiayaan_id', $proposal->id)
+                                                ->orderBy('created_at', 'desc')
+                                                ->get()
+                                                ->first();
 
-                                        $proposal_ppr = Modules\Ppr\Entities\FormPprPembiayaan::select()
-                                            ->where('id', $history->form_ppr_pembiayaan_id)
-                                            ->get()
-                                            ->first();
-                                    @endphp
-
-                                    @if ($history->status_id == 3 && $history->jabatan_id == 1)
-                                        <tr>
-                                            <td style="text-align: center">
-                                                <button type="button"
-                                                    class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                    <i data-feather="eye"></i>
-                                                </button>
-                                            </td>
-                                            <td style="text-align: center">{{ $loop->iteration }}</td>
-                                            <td style="text-align: center">{{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
-                                            </td>
-                                            <td style="text-align: center">{{ $proposal_ppr->jenis_nasabah }}</td>
-                                            <td style="text-align: center">
-                                                {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
-                                            <td style="text-align: center">
-                                                Rp. {{ number_format($proposal_ppr->form_permohonan_nilai_ppr_dimohon) }}
-                                            </td>
-                                            <td style="text-align: center">{{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
-                                            </td>
-                                            <td style="text-align: center">{{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }} Bulan
-                                            </td>
-                                            <td>
-                                                <a href="/kabag/pasar/komite/{{ $proposal_ppr->id }}"
-                                                    class="btn btn-outline-info round">Detail</a>
-                                            </td>
-                                        </tr>
+                                            if ($history) {
+                                                $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                    ->where('id', $history->form_ppr_pembiayaan_id)
+                                                    ->get()
+                                                    ->first();
+                                            }
+                                        @endphp
+                                        @if ($history)
+                                            @if ($history->status_id == 3 && $history->jabatan_id == 1)
+                                                <tr>
+                                                    <td style="text-align: center">
+                                                        <button type="button"
+                                                            class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                            <i data-feather="eye"></i>
+                                                        </button>
+                                                    </td>
+                                                    <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                    <td style="text-align: center">
+                                                        {{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
+                                                    </td>
+                                                    <td style="text-align: center">{{ $proposal_ppr->jenis_nasabah }}</td>
+                                                    <td style="text-align: center">
+                                                        {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
+                                                    <td style="text-align: center">
+                                                        Rp.
+                                                        {{ number_format($proposal_ppr->form_permohonan_nilai_ppr_dimohon) }}
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        {{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }} Bulan
+                                                    </td>
+                                                    <td>
+                                                        <a href="/kabag/ppr/komite/{{ $proposal_ppr->id }}"
+                                                            class="btn btn-outline-info round">Detail</a>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endif
                                     @endforeach
                                 </tbody>

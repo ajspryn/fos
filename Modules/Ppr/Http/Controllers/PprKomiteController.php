@@ -57,6 +57,9 @@ class PprKomiteController extends Controller
             'divisi_id' => $role->divisi_id,
             'user_id' => Auth::user()->id,
         ]);
+
+        return redirect('/ppr/komite/')->with('success', 'Proposal Anda Berhasil Diajukan');
+
     }
 
     /**

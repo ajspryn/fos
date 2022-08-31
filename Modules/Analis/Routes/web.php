@@ -7,6 +7,9 @@ use Modules\Analis\Http\Controllers\SkpdKomiteController;
 use Modules\Analis\Http\Controllers\SkpdNasabahController;
 use Modules\Analis\Http\Controllers\SkpdProposalController;
 use Modules\Analis\Http\Controllers\UmkmNasabahController;
+use Modules\Analis\Http\Controllers\PprProposalController;
+use Modules\Analis\Http\Controllers\PprKomiteController;
+use Modules\Analis\Http\Controllers\PprNasabahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +44,13 @@ Route::get('/', 'AnalisController@index');
         Route::resource('/proposal', PasarProposalController::class);
         Route::resource('/', PasarProposalController::class);
         Route::resource('/nasabah', PasarNasabahController::class);
+    });
 
+    Route::prefix('ppr')->group(function () {
+        Route::resource('/komite', PprKomiteController::class);
+        Route::resource('/proposal', PprProposalController::class);
+        Route::resource('/', PprProposalController::class);
+        Route::resource('/nasabah', PprNasabahController::class);
     });
 
 });

@@ -1,4 +1,4 @@
-@extends('ppr::layouts.main')
+@extends('kabag::layouts.main')
 
 @section('content')
     <style>
@@ -28,7 +28,7 @@
                             <h2 class="content-header-title float-start mb-0">Data Proposal</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/ppr">PPR</a>
+                                    <li class="breadcrumb-item"><a href="/kabag/ppr">PPR</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Proposal</a>
                                     </li>
@@ -64,58 +64,68 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
+                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                ->where('id', $proposal->form_ppr_pembiayaan_id)
+                                                ->get()
+                                                ->first();
+
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                                                ->where('form_ppr_pembiayaan_id', $proposal->id)
+                                                ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
                                         @endphp
-                                        <tr>
-                                            <td style="text-align: center">
-                                                <button type="button"
-                                                    class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                    <i data-feather="eye"></i>
-                                                </button>
-                                            </td>
-                                            <td style="text-align: center">{{ $loop->iteration }}</td>
-                                            <td style="text-align: center">
-                                                {{ date_format($proposal->created_at, 'd-m-Y') }}
-                                            </td>
-                                            <td>{{ $proposal->jenis_nasabah }}</td>
-                                            <td style="text-align: center">
-                                                {{ $proposal->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
-                                            <td style="text-align: center">
-                                                Rp. {{ number_format($proposal->form_permohonan_nilai_ppr_dimohon) }}
-                                            </td>
-                                            <td style="text-align: center">{{ $proposal->form_permohonan_peruntukan_ppr }}
-                                            </td>
-                                            <td style="text-align: center">{{ $proposal->form_permohonan_jangka_waktu_ppr }}
-                                                Bulan
-                                            </td>
-                                            <td style="text-align: center"
-                                                value=" {{ $history->statusHistory->id }}, {{ $history->jabatan->jabatan_id }}">
-                                                @if ($history->statusHistory->id == 5)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-success">{{ $history->statusHistory->keterangan }}
-                                                        {{ $history->jabatan->keterangan }}</span>
-                                                @elseif ($history->statusHistory->id == 4)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-info">{{ $history->statusHistory->keterangan }}
-                                                        {{ $history->jabatan->keterangan }}</span>
-                                                @else
-                                                    <span
-                                                        class="badge rounded-pill badge-light-warning">{{ $history->statusHistory->keterangan }}
-                                                        {{ $history->jabatan->keterangan }}</span>
-                                                @endif
-                                            </td>
+                                        @if ($history->status_id == 5 || $history->status_id == 4)
+                                            <tr>
+                                                <td style="text-align: center">
+                                                    <button type="button"
+                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                        <i data-feather="eye"></i>
+                                                    </button>
+                                                </td>
+                                                <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                <td style="text-align: center">
+                                                    {{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
+                                                </td>
+                                                <td>{{ $proposal_ppr->jenis_nasabah }}</td>
+                                                <td style="text-align: center">
+                                                    {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
+                                                <td style="text-align: center">
+                                                    Rp.
+                                                    {{ number_format($proposal_ppr->form_permohonan_nilai_ppr_dimohon) }}
+                                                </td>
+                                                <td style="text-align: center">
+                                                    {{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
+                                                </td>
+                                                <td style="text-align: center">
+                                                    {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}
+                                                    Bulan
+                                                </td>
+                                                <td style="text-align: center"
+                                                    value=" {{ $history->statusHistory->id }}, {{ $history->jabatan->jabatan_id }}">
+                                                    @if ($history->statusHistory->id == 5)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-success">{{ $history->statusHistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @elseif ($history->statusHistory->id == 4)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-info">{{ $history->statusHistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @else
+                                                        <span
+                                                            class="badge rounded-pill badge-light-warning">{{ $history->statusHistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @endif
+                                                </td>
 
-                                            <td style="text-align: center">{{ $proposal->user->name }}
-                                            </td>
-                                            <td style="text-align: center">
-                                                <a href="/ppr/komite/{{ $proposal->id }}"
-                                                    class="btn btn-outline-info round">Detail</a>
-                                            </td>
-                                        </tr>
+                                                <td style="text-align: center">{{ $proposal_ppr->user->name }}
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <a href="/kabag/ppr/komite/{{ $proposal_ppr->id }}"
+                                                        class="btn btn-outline-info round">Detail</a>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>

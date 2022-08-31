@@ -1,11 +1,150 @@
-<!-- BEGIN: Main Menu-->
-{{-- @php
-$notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('jabatan_id', 2)
-    ->where('status_id', 5)
+@php
+$proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+    ->where('user_id', Auth::user()->id)
+    ->where('skpd_sektor_ekonomi_id', null)
     ->get()
     ->count();
-@endphp --}}
+
+$proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('status_id', 3)
+    ->get();
+
+$komiteskpd = 0;
+foreach ($proposals as $proposal) {
+    $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+        ->where('id', $proposal->skpd_pembiayaan_id)
+        ->get()
+        ->first();
+    $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+        ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    if ($history->status_id == 5) {
+        $komiteskpd++;
+    }
+}
+
+$proposalskpd = 0;
+foreach ($proposals as $proposal) {
+    $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+        ->where('id', $proposal->skpd_pembiayaan_id)
+        ->get()
+        ->first();
+    $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+        ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+        $proposalskpd++;
+    }
+}
+
+$pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
+
+$komite = 0;
+foreach ($pasars as $pasar) {
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $pasar->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 5) {
+        $komite++;
+    }
+}
+$data = 0;
+foreach ($pasars as $pasar) {
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $pasar->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+        $data++;
+    }
+}
+
+$umkms = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
+
+$b = 0;
+foreach ($umkms as $umkm) {
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $umkm->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $history->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 5 || $history->status_id == 4) {
+        $b++;
+    }
+}
+$a = 0;
+foreach ($umkms as $umkm) {
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $umkm->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $history->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+        $a++;
+    }
+}
+
+$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+
+$komiteppr = 0;
+foreach ($pprs as $ppr) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_pasar = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 5) {
+        $komiteppr++;
+    }
+}
+$proposalppr = 0;
+foreach ($pprs as $ppr) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_pasar = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+        $proposalppr++;
+    }
+}
+
+@endphp
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
@@ -45,10 +184,9 @@ $notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                                 data-feather="home"></i><span class="menu-title text-truncate"
                                 data-i18n="home">UMKM</span></a>
                     </li>
-                    <li class="{{ Request::is('analis/skpd/ppr') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/skpd/proposal"><i
-                                data-feather="home"></i><span class="menu-item text-truncate"
-                                data-i18n="Security">PPR</span></a>
+                    <li class="{{ Request::is('analis/ppr/create') ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="/analis/ppr/create"><i data-feather="home"></i><span
+                                class="menu-title text-truncate" data-i18n="home">PPR</span></a>
                     </li>
                 </ul>
             </li>
@@ -57,7 +195,11 @@ $notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                     data-feather="more-horizontal"></i>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">SKPD</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">SKPD</span>
+                    @if ($proposalskpd > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/skpd/nasabah') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/skpd/nasabah"><span
@@ -65,11 +207,17 @@ $notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                     </li>
                     <li class="{{ Request::is('analis/skpd/komite') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/skpd/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span></a>
+                                class="menu-item text-truncate" data-i18n="Security">Komite</span><span
+                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteskpd }}</span></a>
                     </li>
                     <li class="{{ Request::is('analis/skpd/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/skpd/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span></a>
+                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>
+                            @if ($proposalskpd > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -78,22 +226,36 @@ $notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/pasar/nasabah') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/pasar/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
+                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span>
+                            @if ($data > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
+                            @endif
+                        </a>
                     </li>
                     <li class="{{ Request::is('analis/pasar/komite') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/pasar/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span></a>
+                                class="menu-item text-truncate" data-i18n="Security">Komite</span><span
+                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komite }}</span></a>
                     </li>
                     <li class="{{ Request::is('analis/pasar/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/pasar/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span><span
-                                class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
+                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>
+                            @if ($data > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>
 
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">UMKM</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">UMKM</span>
+                    @if ($a > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $a }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
 
                     <li class="{{ Request::is('analis/umkm/nasabah') ? 'active' : '' }}"><a
@@ -104,18 +266,28 @@ $notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                     <li class="{{ Request::is('analis/umkm/komite') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/umkm/komite"><i
                                 data-feather="clipboard"></i><span class="menu-item text-truncate"
-                                data-i18n="Security">Komite</span></a>
+                                data-i18n="Security">Komite</span>
+                            <span
+                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $b }}</span></a>
                     </li>
                     <li class="{{ Request::is('analis/umkm/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/umkm/proposal"><i
                                 data-feather="file-text"></i><span class="menu-item text-truncate"
-                                data-i18n="Security">Proposal</span><span
-                                class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
+                                data-i18n="Security">Proposal</span>
+                            @if ($a > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $a }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">PPR</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">PPR</span>
+                    @if ($proposalppr > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/ppr/nasabah') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/ppr/nasabah"><span
@@ -123,11 +295,17 @@ $notif_proposal_pasar = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                     </li>
                     <li class="{{ Request::is('analis/ppr/komite') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/ppr/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span></a>
+                                class="menu-item text-truncate" data-i18n="Security">Komite</span><span
+                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteppr }}</span></a>
                     </li>
                     <li class="{{ Request::is('analis/ppr/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/ppr/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span></a>
+                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>
+                            @if ($proposalppr > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>

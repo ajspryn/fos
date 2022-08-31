@@ -5,11 +5,34 @@
     <style>
         .data {
             visibility: hidden;
+            overflow: hidden;
+        }
+
+        #ifJenisAkadLain {
+            width: 50%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifJenisAkadLain.hide {
             height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifAgamaLain {
+            width: 50%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifAgamaLain.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
         }
 
         #ifMenikah {
-            background-size: cover;
             width: 100%;
             height: 300px;
             transition: all 0.5s;
@@ -22,7 +45,6 @@
         }
 
         #ifMenikahHeader {
-            background-size: cover;
             width: 100%;
             height: 60px;
             transition: all 0.5s;
@@ -35,7 +57,6 @@
         }
 
         #ifISM {
-            background-size: cover;
             width: 100%;
             height: 1000px;
             transition: all 0.5s;
@@ -48,13 +69,110 @@
         }
 
         #ifISMHeader {
-            background-size: cover;
             width: 100%;
             height: 40px;
             transition: all 0.5s;
         }
 
         #ifISMHeader.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifDijaminkan {
+            width: 41.5%;
+            height: 75px;
+            transition: all 0.5s;
+        }
+
+        #ifDijaminkan.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifPemohonBidangUsahaLain {
+            width: 50%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifPemohonBidangUsahaLain.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifPemohonJenisPekerjaanLain {
+            width: 50%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifPemohonJenisPekerjaanLain.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifPasanganBidangUsahaLain {
+            width: 50%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifPasanganBidangUsahaLain.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifPasanganJenisPekerjaanLain {
+            width: 50%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifPasanganJenisPekerjaanLain.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifJenisAgunan1Lain {
+            width: 50%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifJenisAgunan1Lain.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifJenisAgunan2Lain {
+            width: 50%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifJenisAgunan2Lain.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifHubunganLainnya {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifHubunganLainnya.hide {
+            margin-top: -15px;
             height: 0;
             opacity: 0;
             overflow: hidden;
@@ -74,7 +192,7 @@
                                 </span>
                                 <span class="bs-stepper-label">
                                     <span class="bs-stepper-title">Permohonan PPR Syariah</span>
-                                    <span class="bs-stepper-subtitle">Isi Data </span>
+                                    <span class="bs-stepper-subtitle">Isi Data Permohonan</span>
                                 </span>
                             </button>
                         </div>
@@ -197,7 +315,7 @@
                                                 class="text-danger">*
                                             </small>Jenis Akad Pembayaran</label>
                                         <select class="select2 w-100" name="form_permohonan_jenis_akad_pembayaran"
-                                            id="form_permohonan_jenis_akad_pembayaran" onChange="changeJenisAkad()">
+                                            id="formPermohonanJenisAkadPembayaran" onChange="changeJenisAkad()">
                                             <option label="form_permohonan_jenis_akad_pembayaran" selected disabled>
                                                 Pilih
                                                 Akad
@@ -205,15 +323,14 @@
                                             <option value="Murabahah">Murabahah</option>
                                             <option value="IMBT">IMBT</option>
                                             <option value="MMQ">MMQ</option>
-                                            <option value="akad_lainnya">Lainnya</option>
+                                            <option value="Akad Lainnya">Lainnya</option>
                                         </select>
                                     </div>
-                                    <div class="mb-1 col-md-6 data" id="AkadLainnya">
-                                        <label class="form-label" for="form_permohonan_jenis_akad_pembayaran_lain"><small
-                                                class="text-danger">*
-                                            </small>Lainnya</label>
+                                    <div class="mb-1 col-md-6 hide" id="ifJenisAkadLain">
+                                        <label class="form-label" for="akadLainnya"><small class="text-danger">*
+                                            </small>Jenis Akad Lainnya</label>
                                         <input type="text" name="form_permohonan_jenis_akad_pembayaran_lain"
-                                            id="form_permohonan_jenis_akad_pembayaran_lain" class="form-control"
+                                            id="akadLainnya" class="form-control"
                                             placeholder="Masukkan Jenis Akad Pembayaran" />
                                     </div>
                                     <hr />
@@ -378,14 +495,14 @@
                                             id="form_pribadi_pemohon_no_ktp" class="form-control"
                                             placeholder="Masukkan Nomor KTP Anda" />
                                     </div>
-                                    <div class="mb-1 col-md-6">
+                                    {{-- <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_no_ktp_berlaku_sd"><small
                                                 class="text-danger">*
                                             </small>Berlaku s/d.</label>
                                         <input type="date" id="form_pribadi_pemohon_no_ktp_berlaku_sd"
                                             class="form-control flatpickr-basic"
                                             name="form_pribadi_pemohon_no_ktp_berlaku_sd" placeholder="DD-MM-YYYY" />
-                                    </div>
+                                    </div> --}}
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_jenis_kelamin"><small
                                                 class="text-danger">*
@@ -448,7 +565,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_agama">Agama</label>
                                         <select class="select2 w-100" name="form_pribadi_pemohon_agama"
-                                            id="form_pribadi_pemohon_agama">
+                                            id="formPribadiAgamaLain" onChange="changeAgama()">
                                             <option label="form_pribadi_pemohon_agama" selected disabled>Pilih Agama
                                             </option>
                                             <option value="Islam">Islam</option>
@@ -459,6 +576,12 @@
                                             <option value="Kong Hu Chu">Kong Hu Chu</option>
                                             <option value="Lainnya">Lainnya</option>
                                         </select>
+                                    </div>
+                                    <div class="mb-1 col-md-6 hide" id="ifAgamaLain">
+                                        <label class="form-label" for="agamaLain"><small class="text-danger">*
+                                            </small>Agama Lainnya</label>
+                                        <input type="text" name="form_pribadi_pemohon_agama_lain" id="agamaLain"
+                                            class="form-control" placeholder="Agama Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_status_pernikahan"><small
@@ -821,7 +944,8 @@
                                                                     Dijaminkan</label>
                                                                 <select class="select2 w-100"
                                                                     name="form_pribadi_pemohon_status_tempat_tinggal_dijaminkan"
-                                                                    id="form_pribadi_pemohon_status_tempat_tinggal_dijaminkan">
+                                                                    id="formPribadiPemohonStatusTempatTinggalDijaminkan"
+                                                                    onChange="changeDijaminkan()">
                                                                     <option
                                                                         label="form_pribadi_pemohon_status_tempat_tinggal_dijaminkan"
                                                                         selected disabled>
@@ -832,16 +956,15 @@
                                                                 </select>
                                                             </div>
 
-                                                            <div class="col-md-5 col-12"
-                                                                id="form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada">
+                                                            <div class="col-md-5 col-12 hide" id="ifDijaminkan">
                                                                 <div class="mb-1">
                                                                     <label class="form-label"
-                                                                        for="form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada">Dijaminkan
+                                                                        for="formPribadiPemohonStatusTempatTinggalDijaminkanYa">Dijaminkan
                                                                         Kepada</label>
                                                                     <input type="text" class="form-control"
                                                                         name="form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada"
-                                                                        id="form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada"
-                                                                        aria-describedby="form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada"
+                                                                        id="formPribadiPemohonStatusTempatTinggalDijaminkanYa"
+                                                                        aria-describedby="formPribadiPemohonStatusTempatTinggalDijaminkanYa"
                                                                         placeholder="Dijaminkan Kepada" />
                                                                 </div>
                                                             </div>
@@ -896,7 +1019,7 @@
                                                     id="form_pribadi_istri_suami_no_ktp" class="form-control"
                                                     placeholder="Masukkan Nomor KTP Istri/Suami Anda" />
                                             </div>
-                                            <div class="mb-1 col-md-6">
+                                            {{-- <div class="mb-1 col-md-6">
                                                 <label class="form-label"
                                                     for="form_pribadi_istri_suami_no_ktp_berlaku_sd">Berlaku
                                                     s/d.</label>
@@ -904,7 +1027,7 @@
                                                     class="form-control flatpickr-basic"
                                                     name="form_pribadi_istri_suami_no_ktp_berlaku_sd"
                                                     placeholder="DD-MM-YYYY" />
-                                            </div>
+                                            </div> --}}
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
                                                     for="form_pribadi_istri_suami_tempat_lahir">Tempat Lahir</label>
@@ -971,7 +1094,8 @@
                                                     </small>Hubungan Dengan Pemohon</label>
                                                 <select class="select2 w-100"
                                                     name="form_pribadi_keluarga_terdekat_hubungan"
-                                                    id="form_pribadi_keluarga_terdekat_hubungan">
+                                                    id="hubunganKeluargaTerdekatLain"
+                                                    onChange="changeHubunganKeluargaTerdekat()">
                                                     <option label="form_pribadi_keluarga_terdekat_hubungan" selected
                                                         disabled>Pilih Hubungan Dengan Pemohon</option>
                                                     <option value="Orangtua">Orangtua</option>
@@ -982,19 +1106,15 @@
                                                     <option value="Sdr. Kandung dari Orangtua">Sdr. Kandung dari Orangtua
                                                     </option>
                                                     <option value="Lainnya">Lainnya</option>
-
-                                                    {{-- if Lainnya is selected, input text ... or create new option (new table) --}}
-
                                                 </select>
                                             </div>
-                                            <div class="mb-1 col-md-6" id=hubunganLainnya>
-                                                <label class="form-label"
-                                                    for="form_pribadi_keluarga_terdekat_hubungan"><small
+                                            <div class="mb-1 col-md-6 hide" id=ifHubunganLainnya>
+                                                <label class="form-label" for="hubunganLainnya"><small
                                                         class="text-danger">*
-                                                    </small>Lainnya</label>
-                                                <input type="text" name="form_pribadi_keluarga_terdekat_hubungan"
-                                                    id="form_pribadi_keluarga_terdekat_hubungan" class="form-control"
-                                                    placeholder="Lainnya" />
+                                                    </small>Hubungan Lainnya</label>
+                                                <input type="text" name="form_pribadi_keluarga_terdekat_hubungan_lain"
+                                                    id="hubunganLainnya" class="form-control"
+                                                    placeholder="Hubungan Lainnya" />
                                             </div>
                                             <div class="row">
                                                 <div class="mb-1 col-md-12">
@@ -1156,7 +1276,7 @@
                                 </div>
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Pemohon PPR Syariah</h5>
-                                    <small class="text-muted">Lengkapi Data Diri.</small>
+                                    <small class="text-muted">Lengkapi Data Pekerjaan Pemohon.</small>
                                 </div>
                                 <div class="row">
                                     <div class="mb-1 col-md-6">
@@ -1240,7 +1360,8 @@
                                                 class="text-danger">*
                                             </small>Bidang Usaha Perusahaan/Instansi</label>
                                         <select class="select2 w-100" name="form_pekerjaan_pemohon_bidang_usaha"
-                                            id="form_pekerjaan_pemohon_bidang_usaha" required>
+                                            id="formPekerjaanPemohonBidangUsaha" onChange="changePemohonBidangUsaha()"
+                                            required>
                                             <option label="form_pekerjaan_pemohon_bidang_usaha" selected disabled>Pilih
                                                 Bidang Usaha Perusahaan</option>
                                             <option value="Pemerintahan">Pemerintahan</option>
@@ -1259,17 +1380,23 @@
                                             <option value="Jasa-Jasa Keuangan dan Perbankan">Jasa-Jasa Keuangan dan
                                                 Perbankan</option>
                                             <option value="Lain-lain">Lain-lain</option>
-
-                                            {{-- if Lain-Lain is selected then ... or add new option --}}
-
                                         </select>
+                                    </div>
+                                    <div class="mb-1 col-md-6 hide" id="ifPemohonBidangUsahaLain">
+                                        <label class="form-label" for="pemohonBidangUsahaLain"><small
+                                                class="text-danger">*
+                                            </small>Bidang Usaha Lainnya</label>
+                                        <input type="text" name="form_pekerjaan_pemohon_bidang_usaha_lain"
+                                            id="pemohonBidangUsahaLain" class="form-control"
+                                            placeholder="Bidang Usaha Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_pemohon_jenis_pekerjaan"><small
                                                 class="text-danger">*
                                             </small>Jenis Pekerjaan</label>
                                         <select class="select2 w-100" name="form_pekerjaan_pemohon_jenis_pekerjaan"
-                                            id="form_pekerjaan_pemohon_jenis_pekerjaan" required>
+                                            id="formPekerjaanPemohonJenisPekerjaan"
+                                            onChange="changePemohonJenisPekerjaan()" required>
                                             <option label="form_pekerjaan_pemohon_jenis_pekerjaan" selected disabled>Pilih
                                                 Jenis Pekerjaan</option>
                                             <option value="Akunting/Keuangan">Akunting/Keuangan</option>
@@ -1291,10 +1418,15 @@
                                             <option value="Wiraswasta">Wiraswasta</option>
                                             <option value="Profesional">Profesional</option>
                                             <option value="Lain-lain">Lain-lain</option>
-
-                                            {{-- if Lain-Lain is selected then ... or add new option --}}
-
                                         </select>
+                                    </div>
+                                    <div class="mb-1 col-md-6 hide" id="ifPemohonJenisPekerjaanLain">
+                                        <label class="form-label" for="pemohonJenisPekerjaanLain"><small
+                                                class="text-danger">*
+                                            </small>Jenis Pekerjaan Lainnya</label>
+                                        <input type="text" name="form_pekerjaan_pemohon_jenis_pekerjaan_lain"
+                                            id="pemohonJenisPekerjaanLain" class="form-control"
+                                            placeholder="Jenis Pekerjaan Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_pemohon_jml_karyawan"><small
@@ -1485,7 +1617,7 @@
                                 {{-- Istri/Suami pemohon --}}
                                 <div class="content-header hide" id="ifISMHeader">
                                     <h5 class="mb-0 mt-2">Istri/Suami Pemohon PPR Syariah</h5>
-                                    <small class="text-muted">Lengkapi Data Pekerjaan, kosongkan bila tidak
+                                    <small class="text-muted">Lengkapi Data Pekerjaan pasangan, kosongkan bila tidak
                                         bekerja.</small>
                                 </div>
                                 <div class="row hide" id="ifISM">
@@ -1564,7 +1696,8 @@
                                         <label class="form-label" for="form_pekerjaan_istri_suami_bidang_usaha">Bidang
                                             Usaha Perusahaan</label>
                                         <select class="select2 w-100" name="form_pekerjaan_istri_suami_bidang_usaha"
-                                            id="form_pekerjaan_istri_suami_bidang_usaha">
+                                            id="formPekerjaanPasanganBidangUsaha"
+                                            onChange="changePasanganBidangUsaha()">
                                             <option label="form_pekerjaan_istri_suami_bidang_usaha" selected disabled>
                                                 Pilih Bidang Usaha
                                                 Perusahaan</option>
@@ -1584,17 +1717,22 @@
                                             <option value="Jasa-Jasa Keuangan dan Perbankan">Jasa-Jasa Keuangan dan
                                                 Perbankan</option>
                                             <option value="Lain-lain">Lain-lain</option>
-
-
-                                            {{-- if Lain-Lain is selected then ... or add new option --}}
-
                                         </select>
+                                    </div>
+                                    <div class="mb-1 col-md-6 hide" id="ifPasanganBidangUsahaLain">
+                                        <label class="form-label" for="pasanganBidangUsahaLain"><small
+                                                class="text-danger">*
+                                            </small>Bidang Usaha Lainnya</label>
+                                        <input type="text" name="form_pekerjaan_istri_suami_bidang_usaha_lain"
+                                            id="pasanganBidangUsahaLain" class="form-control"
+                                            placeholder="Bidang Usaha Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_istri_suami_jenis_pekerjaan">Jenis
                                             Pekerjaan</label>
                                         <select class="select2 w-100" name="form_pekerjaan_istri_suami_jenis_pekerjaan"
-                                            id="form_pekerjaan_istri_suami_jenis_pekerjaan">
+                                            id="formPekerjaanPasanganJenisPekerjaan"
+                                            onChange="changePasanganJenisPekerjaan()">
                                             <option label="form_pekerjaan_istri_suami_jenis_pekerjaan" selected disabled>
                                                 Pilih Jenis
                                                 Pekerjaan</option>
@@ -1617,10 +1755,15 @@
                                             <option value="Wiraswasta">Wiraswasta</option>
                                             <option value="Profesional">Profesional</option>
                                             <option value="Lain-lain">Lain-lain</option>
-
-                                            {{-- if Lain-Lain is selected then ... or add new option --}}
-
                                         </select>
+                                    </div>
+                                    <div class="mb-1 col-md-6 hide" id="ifPasanganJenisPekerjaanLain">
+                                        <label class="form-label" for="pasanganJenisPekerjaanLain"><small
+                                                class="text-danger">*
+                                            </small>Jenis Pekerjaan Lainnya</label>
+                                        <input type="text" name="form_pekerjaan_istri_suami_jenis_pekerjaan_lain"
+                                            id="pasanganJenisPekerjaanLain" class="form-control"
+                                            placeholder="Jenis Pekerjaan Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_istri_suami_jml_karyawan">Jumlah
@@ -1966,8 +2109,8 @@
                                         <label class="form-label" for="form_agunan_1_jenis"><small
                                                 class="text-danger">*
                                             </small>Jenis Agunan</label>
-                                        <select class="select2 w-100" name="form_agunan_1_jenis"
-                                            id="form_agunan_1_jenis">
+                                        <select class="select2 w-100" name="form_agunan_1_jenis" id="formAgunan1Jenis"
+                                            onChange="changeJenisAgunan1()">
                                             <option label="form_agunan_1_jenis" selected disabled>Pilih Jenis Agunan
                                             </option>
                                             <option value="Tanah">Tanah</option>
@@ -1978,10 +2121,13 @@
                                             <option value="Rukan">Rukan</option>
                                             <option value="Kios">Kios</option>
                                             <option value="Lain-lain">Lain-lain</option>
-
-                                            {{-- if Lain-Lain is selected then create new option --}}
-
                                         </select>
+                                    </div>
+                                    <div class="mb-1 col-md-6 hide" id="ifJenisAgunan1Lain">
+                                        <label class="form-label" for="jenisAgunan1Lain"><small class="text-danger">*
+                                            </small>Jenis Agunan Lainnya</label>
+                                        <input type="text" name="form_agunan_1_jenis_lain" id="jenisAgunan1Lain"
+                                            class="form-control" placeholder="Jenis Agunan Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_agunan_1_nilai_harga_jual"><small
@@ -2211,7 +2357,6 @@
                                                         <input type="number" name="form_agunan_1_luas_tanah"
                                                             id="form_agunan_1_luas_tanah" class="form-control"
                                                             placeholder="Masukkan Luas Tanah" />
-
                                                     </div>
                                                     <div class="mb-1 col-md-6">
                                                         <label class="form-label"
@@ -2222,7 +2367,6 @@
                                                             id="form_agunan_1_luas_bangunan" class="form-control"
                                                             placeholder="Masukkan Luas Bangunan" />
                                                     </div>
-
                                                     <div class="mb-1 col-md-6">
                                                         <label class="form-label" for="form_agunan_1_atas_nama"><small
                                                                 class="text-danger">*
@@ -2260,8 +2404,8 @@
                                 <div class="row">
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_agunan_2_jenis">Jenis Agunan</label>
-                                        <select class="select2 w-100" name="form_agunan_2_jenis"
-                                            id="form_agunan_2_jenis">
+                                        <select class="select2 w-100" name="form_agunan_2_jenis" id="formAgunan2Jenis"
+                                            onChange="changeJenisAgunan2()">
                                             <option label="form_agunan_2_jenis">Pilih Jenis Agunan</option>
                                             <option value="Tanah">Tanah</option>
                                             <option value="Rumah Tinggal">Rumah Tinggal</option>
@@ -2271,10 +2415,13 @@
                                             <option value="Rukan">Rukan</option>
                                             <option value="Kios">Kios</option>
                                             <option value="Lain-lain">Lain-lain</option>
-
-                                            {{-- if Lain-Lain is selected then create new option --}}
-
                                         </select>
+                                    </div>
+                                    <div class="mb-1 col-md-6 hide" id="ifJenisAgunan2Lain">
+                                        <label class="form-label" for="jenisAgunan2Lain"><small class="text-danger">*
+                                            </small>Jenis Agunan Lainnya</label>
+                                        <input type="text" name="form_agunan_2_jenis_lain" id="jenisAgunan2Lain"
+                                            class="form-control" placeholder="Jenis Agunan Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_agunan_2_nilai_harga_jual">Nilai/Harga Jual
@@ -2467,7 +2614,7 @@
                                             placeholder="Masukkan Peruntukan Bangunan" />
                                     </div>
                                     <div class="mb-1 col-md-12">
-                                        <div data-repeater-list="form_agunan_1_status_bukti_kepemilikan">
+                                        <div data-repeater-list="form_agunan_2_status_bukti_kepemilikan">
                                             <div data-repeater-item>
                                                 <div class="row d-flex align-items-end">
                                                     <div class="mb-1 col-md-6">
@@ -2598,7 +2745,7 @@
                                                                         <option value="Tabungan">Tabungan</option>
                                                                         <option value="Deposito">Deposito</option>
                                                                         <option value="Giro">Giro</option>
-                                                                        <option value="Lainnya">Lainnya
+                                                                        {{-- <option value="Lainnya">Lainnya --}}
                                                                         </option>
                                                                     </select>
                                                                 </div>
@@ -3093,7 +3240,7 @@
                                                                         name="form_pinjaman_angsuran_per_bulan"
                                                                         id="form_pinjaman_angsuran_per_bulan"
                                                                         aria-describedby="form_pinjaman_angsuran_per_bulan"
-                                                                        placeholder="Angsuran/Bulan" />
+                                                                        placeholder="Angsuran/Bulan (Rp)" />
                                                                 </div>
                                                             </div>
 
@@ -3163,8 +3310,10 @@
                                                             <div class="col-md-2 col-12">
                                                                 <div class="mb-1">
                                                                     <label class="form-label"
-                                                                        for="form_pinjaman_kartu_kredit_plafond">Plafond</label>
-                                                                    <input type="text" class="form-control 27"
+                                                                        for="form_pinjaman_kartu_kredit_plafond">Plafond
+                                                                    </label>
+                                                                    <input type="text"
+                                                                        class="form-control numeral-mask27"
                                                                         name="form_pinjaman_kartu_kredit_plafond"
                                                                         id="form_pinjaman_kartu_kredit_plafond"
                                                                         aria-describedby="form_pinjaman_kartu_kredit_plafond"
@@ -3633,6 +3782,24 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+        function changeJenisAkad() {
+            var jenisAkadPembayaran = document.getElementById("formPermohonanJenisAkadPembayaran");
+            if (jenisAkadPembayaran.value == "Akad Lainnya") {
+                document.getElementById("ifJenisAkadLain").classList.toggle("hide");
+            } else {
+                document.getElementById("ifJenisAkadLain").classList = "hide";
+            }
+        }
+
+        function changeAgama() {
+            var agamaLain = document.getElementById("formPribadiAgamaLain");
+            if (agamaLain.value == "Lainnya") {
+                document.getElementById("ifAgamaLain").classList.toggle("hide");
+            } else {
+                document.getElementById("ifAgamaLain").classList = "hide";
+            }
+        }
+
         function changeStatus() {
             var status = document.getElementById("form_pribadi_pemohon_status_pernikahan");
             if (status.value == "Menikah") {
@@ -3655,14 +3822,75 @@
             }
         }
 
-
-        function changeJenisAkad() {
-            var jenis_akad_pembayaran = document.getElementById("form_permohonan_jenis_akad_pembayaran");
-            if (jenis_akad_pembayaran.value == "akad_lainnya") {
-                document.getElementById("AkadLainnya").style.visibility = "visible";
-
+        function changeHubunganKeluargaTerdekat() {
+            var hubunganLain = document.getElementById("hubunganKeluargaTerdekatLain");
+            if (hubunganLain.value == "Lainnya") {
+                document.getElementById("ifHubunganLainnya").classList.toggle("hide");
             } else {
-                document.getElementById("AkadLainnya").style.visibility = "collapse";
+                document.getElementById("ifHubunganLainnya").classList = "hide";
+            }
+        }
+
+        function changeDijaminkan() {
+            var dijaminkan = document.getElementById("formPribadiPemohonStatusTempatTinggalDijaminkan");
+            if (dijaminkan.value == "Ya") {
+                document.getElementById("ifDijaminkan").classList.toggle("hide");
+            } else {
+                document.getElementById("ifDijaminkan").classList = "hide";
+            }
+        }
+
+        function changePemohonBidangUsaha() {
+            var pemohonBidangUsaha = document.getElementById("formPekerjaanPemohonBidangUsaha");
+            if (pemohonBidangUsaha.value == "Lain-lain") {
+                document.getElementById("ifPemohonBidangUsahaLain").classList.toggle("hide");
+            } else {
+                document.getElementById("ifPemohonBidangUsahaLain").classList = "hide";
+            }
+        }
+
+        function changePemohonJenisPekerjaan() {
+            var pemohonJenisPekerjaan = document.getElementById("formPekerjaanPemohonJenisPekerjaan");
+            if (pemohonJenisPekerjaan.value == "Lain-lain") {
+                document.getElementById("ifPemohonJenisPekerjaanLain").classList.toggle("hide");
+            } else {
+                document.getElementById("ifPemohonJenisPekerjaanLain").classList = "hide";
+            }
+        }
+
+        function changePasanganBidangUsaha() {
+            var pasanganBidangUsaha = document.getElementById("formPekerjaanPasanganBidangUsaha");
+            if (pasanganBidangUsaha.value == "Lain-lain") {
+                document.getElementById("ifPasanganBidangUsahaLain").classList.toggle("hide");
+            } else {
+                document.getElementById("ifPasanganBidangUsahaLain").classList = "hide";
+            }
+        }
+
+        function changePasanganJenisPekerjaan() {
+            var pasanganJenisPekerjaan = document.getElementById("formPekerjaanPasanganJenisPekerjaan");
+            if (pasanganJenisPekerjaan.value == "Lain-lain") {
+                document.getElementById("ifPasanganJenisPekerjaanLain").classList.toggle("hide");
+            } else {
+                document.getElementById("ifPasanganJenisPekerjaanLain").classList = "hide";
+            }
+        }
+
+        function changeJenisAgunan1() {
+            var jenisAgunan1 = document.getElementById("formAgunan1Jenis");
+            if (jenisAgunan1.value == "Lain-lain") {
+                document.getElementById("ifJenisAgunan1Lain").classList.toggle("hide");
+            } else {
+                document.getElementById("ifJenisAgunan1Lain").classList = "hide";
+            }
+        }
+
+        function changeJenisAgunan2() {
+            var jenisAgunan2 = document.getElementById("formAgunan2Jenis");
+            if (jenisAgunan2.value == "Lain-lain") {
+                document.getElementById("ifJenisAgunan2Lain").classList.toggle("hide");
+            } else {
+                document.getElementById("ifJenisAgunan2Lain").classList = "hide";
             }
         }
 

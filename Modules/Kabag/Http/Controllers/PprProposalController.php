@@ -17,9 +17,10 @@ class PprProposalController extends Controller
     {
         $proposal=FormPprPembiayaan::select()->get();
         return view('kabag::ppr.proposal.index',[
-            'title'=>'Data Nasabah',
+            'title'=>'Proposal PPR',
             'proposals'=>$proposal,
         ]);
+        
     }
 
     /**

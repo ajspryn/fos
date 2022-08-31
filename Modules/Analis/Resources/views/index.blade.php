@@ -1,5 +1,88 @@
 @extends('analis::layouts.main')
+@php
+$proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+    ->where('user_id', Auth::user()->id)
+    ->where('skpd_sektor_ekonomi_id', null)
+    ->get()
+    ->count();
 
+$proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('status_id', 3)
+    ->get();
+
+$proposalskpd = 0;
+foreach ($proposals as $proposal) {
+    $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+        ->where('id', $proposal->skpd_pembiayaan_id)
+        ->get()
+        ->first();
+    $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+        ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+        $proposalskpd++;
+    }
+}
+
+$pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
+
+$data = 0;
+foreach ($pasars as $pasar) {
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $pasar->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+        $data++;
+    }
+}
+
+$umkms = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
+
+$a = 0;
+foreach ($umkms as $umkm) {
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $umkm->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $history->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+        $a++;
+    }
+}
+
+$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+
+$proposalppr = 0;
+foreach ($pprs as $ppr) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+        $proposalppr++;
+    }
+}
+
+@endphp
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -12,7 +95,7 @@
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
-                      
+
                         <!-- Statistics Card -->
                         <div class="col-xl-12 col-md-6 col-12">
                             <div class="card card-statistics">
@@ -32,7 +115,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $proposal }}</h4>
+                                                    <h4 class="fw-bolder mb-0">
+                                                        {{ $proposalskpd + $a + $data + $proposalppr }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>
@@ -45,7 +129,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{$tolak  }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $tolak }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Ditolak</p>
                                                 </div>
                                             </div>
