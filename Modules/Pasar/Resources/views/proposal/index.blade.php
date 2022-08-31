@@ -60,7 +60,7 @@
                                                 {{ $proposal->nasabahh->provinsi }}</td>
                                             <td style="text-align: center">{{ $proposal->keteranganusaha->nama_usaha }}</td>
                                             <td style="text-align: center">{{ $proposal->keteranganusaha->no_blok }}</td>
-                                            <td style="text-align: center">{{ $proposal->harga }}</td>
+                                            <td style="text-align: center">Rp.{{number_format ($proposal->harga)}}</td>
                                             <td style="text-align: center">
                                                 <a href="/pasar/proposal/{{ $proposal->id }}"
                                                     class="btn btn-outline-info round">Lengkapi</a>

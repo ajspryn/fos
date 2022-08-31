@@ -31,7 +31,7 @@ class SkpdKomiteController extends Controller
     public function index()
     {
         // $history=SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $proposal->id)->orderby('created_at', 'desc')->get();
-        $proposal=SkpdPembiayaan::select()->where('user_id',Auth::user()->id)->whereNotNull('skpd_sektor_ekonomi_id')->get();
+        $proposal=SkpdPembiayaan::select()->where('user_id',Auth::user()->id)->whereNotNull('skpd_sektor_ekonomi_id')->orderBy('id', 'desc')->get();
         return view('skpd::komite.index',[
             'title'=>'Komite',
             'proposals'=>$proposal,
@@ -76,7 +76,7 @@ class SkpdKomiteController extends Controller
             ]);
         }
 
-
+          return redirect('/skpd/komite');
     }
 
     /**
@@ -192,7 +192,7 @@ class SkpdKomiteController extends Controller
         $waktuakhir=SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
         // $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
 
-        $waktumulai=Carbon::parse($waktuawal->created_at); 
+        $waktumulai=Carbon::parse($waktuawal->created_at);
         $waktuberakhir=Carbon::parse($waktuakhir->created_at);
         // $selanjutnya=Carbon::parse($next->created_at);
 

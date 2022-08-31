@@ -513,8 +513,8 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">6</td>
-                                                                        <td>Konfirmasi Kepala Pasar</td>
-                                                                        <td style="text-align: center"> {{ $kepalapasar->kategori }}</td>
+                                                                        <td >Konfirmasi Kepala Pasar</td>
+                                                                        <td> {{ $kepalapasar->kategori }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $kepalapasar->bobot * 100 }}%
                                                                         </td>
@@ -522,13 +522,6 @@
                                                                             {{ $rating_kepalapasar }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_kepalapasar }}</td>
-                                                                            <td style="text-align: center">
-                                                                                <button type="button"
-                                                                                    class="btn btn-icon btn-icon rounded-circle btn-flat-success"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#kepalapasar">
-                                                                                    <i data-feather="eye"></i>
-                                                                                </button>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">7</td>
@@ -922,26 +915,72 @@
 
                                         <div class="tab-pane" id="identitas-pribadi" role="tabpanel"
                                             aria-labelledby="profile-tab-justified">
-                                            @foreach ($fotos as $foto)
                                                 <!-- post 1 -->
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-start align-items-center mb-1">
                                                             <div>
-                                                                <h6 class="mb-0">{{ $foto->kategori }}</h6>
+                                                                <h6 class="mb-0">{{ $fotodiri->kategori }}</h6>
                                                                 <small class="text-muted">Diupload Pada :
-                                                                    {{ $foto->created_at->diffForhumans() }}</small>
+                                                                    {{ $fotodiri->created_at->diffForhumans() }}</small>
                                                             </div>
                                                         </div>
                                                         <!-- post img -->
                                                         <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $foto->foto) }}"
+                                                            src="{{ asset('storage/' . $fotodiri->foto) }}"
                                                             alt="avatar img" />
                                                         <!--/ post img -->
                                                     </div>
                                                 </div>
-                                                <!--/ post 1 -->
-                                            @endforeach
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-start align-items-center mb-1">
+                                                            <div>
+                                                                <h6 class="mb-0">{{ $fotoktp->kategori }}</h6>
+                                                                <small class="text-muted">Diupload Pada :
+                                                                    {{ $fotoktp->created_at->diffForhumans() }}</small>
+                                                            </div>
+                                                        </div>
+                                                        <!-- post img -->
+                                                        <img class="img-fluid rounded mb-75"
+                                                            src="{{ asset('storage/' . $fotoktp->foto) }}"
+                                                            alt="avatar img" />
+                                                        <!--/ post img -->
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-start align-items-center mb-1">
+                                                            <div>
+                                                                <h6 class="mb-0">{{ $fotodiribersamaktp->kategori }}</h6>
+                                                                <small class="text-muted">Diupload Pada :
+                                                                    {{ $fotodiribersamaktp->created_at->diffForhumans() }}</small>
+                                                            </div>
+                                                        </div>
+                                                        <!-- post img -->
+                                                        <img class="img-fluid rounded mb-75"
+                                                            src="{{ asset('storage/' . $fotodiribersamaktp->foto) }}"
+                                                            alt="avatar img" />
+                                                        <!--/ post img -->
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-start align-items-center mb-1">
+                                                            <div>
+                                                                <h6 class="mb-0">{{ $fotokk->kategori }}</h6>
+                                                                <small class="text-muted">Diupload Pada :
+                                                                    {{ $fotokk->created_at->diffForhumans() }}</small>
+                                                            </div>
+                                                        </div>
+                                                        <!-- post img -->
+                                                        <img class="img-fluid rounded mb-75"
+                                                            src="{{ asset('storage/' . $fotokk->foto) }}"
+                                                            alt="avatar img" />
+                                                        <!--/ post img -->
+                                                    </div>
+                                                </div>
+                                               
                                         </div>
 
                                         <div class="tab-pane" id="legalitas-agunan"
@@ -952,7 +991,10 @@
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-start align-items-center mb-1">
                                                             <div>
-                                                                <h6 class="mb-0">No KTB :
+                                                                <h6 class="mb-0"> Jaminan : 
+                                                                    {{ $jaminans->nama_jaminan }}
+                                                                </h6>
+                                                                <h6 class="mb-0"><br>No KTB :
                                                                     {{ $jaminan->no_ktb }}
                                                                 </h6>
                                                                 <small class="text-muted">Diupload Pada :
@@ -974,16 +1016,13 @@
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-start align-items-center mb-1">
                                                             <div>
-                                                                <h6 class="mb-0">
-                                                                    {{ $jaminans->nama_jaminan }}
-                                                                </h6>
                                                                 <small class="text-muted">Diupload Pada :
                                                                     {{ $jaminanlainnya->created_at->diffForhumans() }}</small>
                                                             </div>
                                                         </div>
                                                         <!-- post img -->
                                                         <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $jaminanlainnya->dokumen_jaminanlain) }}"
+                                                            src="{{ asset('storage/' . $jaminanlainnya->dokumen_jaminan) }}"
                                                             alt="avatar img" />
                                                         <!--/ post img -->
                                                     </div>
@@ -991,6 +1030,30 @@
                                                 <!--/ post 1 -->
                                             @endforeach
                                         </div>
+
+                                        <div class="tab-pane" id="keuangan"
+                                        role="tabpanel"aria-labelledby="messages-tab-justified">
+                                        
+                                            <!-- post 1 -->
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">
+                                                                {{ $nota->kategori }}
+                                                            </h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $nota->created_at->diffForhumans() }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $nota->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
+                                                </div>
+                                            </div>
+                                    </div>
 
                                         <div class="tab-pane" id="legalitas-usaha"
                                             role="tabpanel"aria-labelledby="messages-tab-justified">
@@ -1000,7 +1063,7 @@
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-start align-items-center mb-1">
                                                             <div>
-                                                                <h6 class="mb-0">Foto Kios / Los :
+                                                                <h6 class="mb-0">
                                                                     {{ $fototoko->kategori }}
                                                                 </h6>
                                                                 <small class="text-muted">Diupload Pada :
@@ -1043,8 +1106,10 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
-
+                                                                            <span
+                                                                            class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
                                                                         </div>
+                                                                     
                                                                           @if (isset($timeline->catatan))
 
                                                                         <p value="{{ $timeline->id }}"> <br>Catatan :
@@ -1151,29 +1216,6 @@
                                     <div class="col-md-12 d-flex order-md-2 order-1">
                                         <iframe src="{{ asset('storage/' . $pembiayaan->dokumen_keuangan) }}" class="d-block w-100"
                                             height='500' weight='800'></iframe> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--akhir Slik -->
-                <!-- Slik -->
-                <div class="modal fade" id="kepalapasar" tabindex="-1" aria-labelledby="addNewCardTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body px-sm-12 mx-50 pb-5">
-                                <h3 class="text-center">Konfirmasi Kepala Pasar </h3>
-                                <hr class="invoice-spacing" />
-                                <div class="card-body">
-                                    <div class="col-md-12 d-flex order-md-2 order-1">
-                                        <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
-                                            height='500' weight='800'>
                                     </div>
                                 </div>
                             </div>

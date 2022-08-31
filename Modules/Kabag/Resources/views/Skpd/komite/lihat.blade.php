@@ -353,14 +353,6 @@
                                                                                     {{ $rating_bendahara }}</td>
                                                                                 <td style="text-align: center">
                                                                                     {{ $nilai_bendahara }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#konfirmasibendahara">
-                                                                                        <i data-feather="eye"></i>
-                                                                                    </button>
-                                                                                </td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="text-align: center">2</td>
@@ -877,7 +869,16 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
+                                                                        <span
+                                                                        class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
                                                                         </div>
+                                                                        @if ($timeline->catatan)
+
+                                                                        <p value="{{ $timeline->id }}"> <br>Catatan :
+                                                                            {{ $timeline->catatan }}
+                                                                        <p>
+
+                                                                    @endif
                                                                         <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
@@ -897,62 +898,6 @@
                                 <!-- Justified Tabs ends -->
                             </div>
                 </section>
-                <!-- Idir -->
-                <div class="modal fade" id="dsr" tabindex="-1" aria-labelledby="addNewCardTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body px-sm-5 mx-50 pb-5">
-                                <h3 class="text-center">Nilai DSR </h3>
-                                <hr class="invoice-spacing" />
-                                <div class="card-body">
-                                    <div class="col-md-12 d-flex order-md-2 order-1">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="pe-1">Harga Beli</td>
-                                                    <td><span class="fw-bold">: Rp.
-                                                            {{ number_format($pembiayaan->nominal_pembiayaan) }}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Harga Jual</td>
-                                                    <td>: Rp. {{ number_format($harga_jual) }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Jangka Waktu</td>
-                                                    <td>: {{ $tenor }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Equivalen Rate</td>
-                                                    <td>: {{ $pembiayaan->rate }} %</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Angsuran</td>
-                                                    <td>: Rp. {{ number_format($angsuran1) }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1 mt-1">DSR</td>
-                                                    <td><span class="fw-bold">:
-                                                            {{ $nilai_dsr1 }}
-                                                            %</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--akhir idir -->
 
                 <!-- Idir -->
                 <div class="modal fade" id="dsr" tabindex="-1" aria-labelledby="addNewCardTitle"
@@ -1015,10 +960,10 @@
                 </div>
 
                 <!--akhir idir -->
-                <!-- ideb  -->
+                <!-- LampiranJaminan  -->
                 <div class="modal fade" id="ijazah" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -1034,11 +979,11 @@
                         </div>
                     </div>
                 </div>
-                <!--/ ideb  -->
+                <!--/ LampiranJaminan  -->
                 <!-- ideb  -->
                 <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -1055,50 +1000,5 @@
                     </div>
                 </div>
                 <!--/ ideb  -->
-
-                <!-- ideb  -->
-                <div class="modal fade" id="konfirmasibendahara" tabindex="-1" aria-labelledby="addNewCardTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body px-sm-12 mx-50 pb-5">
-                                <h3 class="text-center">Lampiran Konfirmasi Bendahara</h3>
-                                <div class="card-body">
-                                    <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
-                                        height='500'>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/ ideb  -->
-                    <!-- jaminan  -->
-                    <div class="modal fade" id="iii" tabindex="-1" aria-labelledby="addNewCardTitle"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header bg-transparent">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body px-sm-12 mx-50 pb-5">
-                                    <h3 class="text-center">Lampiran Jaminan</h3>
-                                    <div class="card-body">
-                                        {{-- <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
-                                    height='500'> --}}
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <!-- ideb  -->
-
-                </div>
             </div>
         @endsection

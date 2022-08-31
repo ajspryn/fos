@@ -1,6 +1,8 @@
 <?php
 
 namespace Modules\Dirbis\Http\Controllers;
+
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -38,7 +40,7 @@ class PasarKomiteController extends Controller
      */
     public function index()
     {
-        $komite=PasarPembiayaanHistory::select()->where('status_id', 5 )->get();
+        $komite=PasarPembiayaan::select()->orderby('created_at','desc')->get();
         return view('dirbis::pasar.komite.index',[
             'title'=>'Data Nasabah',
             'komites'=>$komite,
@@ -138,7 +140,7 @@ class PasarKomiteController extends Controller
         $biaya_anak=$nasabah->tanggungan->biaya;
         $biaya_istri=$nasabah->status->biaya;
         $kebutuhan_keluarga=PasarPembiayaan::select()->where('id',$id)->sum('keb_keluarga');
-        $pengeluaranlain=$biaya_anak+$biaya_istri+$cicilan+$kebutuhan_keluarga;
+        $pengeluaranlain=$biaya_anak+$biaya_istri+$kebutuhan_keluarga;
         $total_pengeluaran = ($pengeluaranlain+$cicilan+$angsuran1);
 
         $di=($laba_bersih-$total_pengeluaran);
@@ -208,7 +210,14 @@ class PasarKomiteController extends Controller
         }
         $score_slik = $prosesslik->rating;
 
+        $waktuawal=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
+        $waktuakhir=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
 
+        $waktumulai=Carbon::parse($waktuawal->created_at);
+        $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+
+
+        $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
 
 
         //    return $harga1;
@@ -234,6 +243,7 @@ class PasarKomiteController extends Controller
             'akads'=>PasarAkad::all(),
             'sektors'=>PasarSektorEkonomi::all(),
             'konfirmasi'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Konfirmasi Kepala Pasar')->get()->first(),
+            'nota'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
             'pasars'=>PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first(),
             'lamas'=>PasarLamaBerdagang::select()->where('kode_lamaberdagang',$usaha->lama_usaha)->get()->first(),
             'rumahs'=>PasarJaminanRumahh::select()->where('kode_jaminan',$jaminanrumah->legalitas_kepemilikan_rumah)->get()->first(),
@@ -282,6 +292,8 @@ class PasarKomiteController extends Controller
             'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
 
 
+             //perhitunganSLA
+             'totalwaktu'=>$totalwaktu,
         ]);
 }
 

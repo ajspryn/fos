@@ -32,15 +32,14 @@
                             <table class="datatables-basic table">
                                 <thead>
                                     <tr>
-                                        <th style="text-align: center"></th>
                                         <th style="text-align: center">No</th>
                                         <th style="text-align: center">Nama Nasabah</th>
                                         <th style="text-align: center">Alamat</th>
                                         <th style="text-align: center">Instansi</th>
                                         <th style="text-align: center">Golongan</th>
-                                        <th style="text-align: center">Nominal Pembiayaan</th> 
-                                        <th style="text-align: center">Status</th> 
-                                        <th style="text-align: center">AO yang Menangani</th> 
+                                        <th style="text-align: center">Nominal Pembiayaan</th>
+                                        <th style="text-align: center">Status</th>
+                                        <th style="text-align: center">AO yang Menangani</th>
                                         {{-- <th style="text-align: center">Action</th> --}}
                                     </tr>
                                 </thead>
@@ -64,12 +63,7 @@
                                         @if (($history->jabatan_id == 1 || $history->jabatan_id == 2 || $history->jabatan_id == 0  || $history->jabatan_id == 3 && $history->status_id == 4))
                                         <tr>
                                                 <tr>
-                                                    <td style="text-align: center">
-                                                        <button type="button"
-                                                            class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                            <i data-feather="eye"></i>
-                                                        </button>
-                                                    </td>
+                                                    
                                                     <td style="text-align: center">{{ $loop->iteration }}</td>
                                                     <td>{{ $proposal_skpd->nasabah->nama_nasabah }}</td>
                                                     <td>{{ $proposal_skpd->nasabah->alamat }},
@@ -87,9 +81,9 @@
                                                     </td>
                                                     <td style="text-align: center">Rp.
                                                         {{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
-                                                        <td style="text-align: center"
+                                                    <td style="text-align: center"
                                                         value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
-                                                        @if ($history->statushistory->id == 5 )
+                                                        @if ($history->statushistory->id == 5)
                                                             <span
                                                                 class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
                                                                 {{ $history->jabatan->keterangan }}</span>
@@ -106,9 +100,9 @@
                                                                 class="badge rounded-pill badge-light-danger">{{ $history->statushistory->keterangan }}
                                                                 {{ $history->jabatan->keterangan }}</span>
                                                         @else
-                                                                <span
-                                                                    class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
-                                                                    {{ $history->jabatan->keterangan }}</span>
+                                                            <span
+                                                                class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                                {{ $history->jabatan->keterangan }}</span>
                                                         @endif
                                                     </td>
                                                     <td style="text-align: center">{{ $proposal_skpd->user->name }}</td>

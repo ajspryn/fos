@@ -48,14 +48,13 @@
                                 <tbody>
                                     @foreach ($komites as $komite)
                                         @php
-                                            $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                ->where('id', $komite->umkm_pembiayaan_id)
+                                                 $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+                                                ->where('umkm_pembiayaan_id', $komite->id)
+                                                ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
-
-                                            $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-                                                ->where('umkm_pembiayaan_id', $proposal_umkm->id)
-                                                ->orderby('created_at', 'desc')
+                                            $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                                ->where('id', $history->umkm_pembiayaan_id)
                                                 ->get()
                                                 ->first();
                                         @endphp
@@ -72,7 +71,7 @@
                                             <td>{{ $proposal_umkm->nasabahh->alamat }}
                                             <td style="text-align: center">
                                                 {{ $proposal_umkm->keteranganusaha->nama_usaha }}</td>
-                                            <td style="text-align: center">{{ $proposal_umkm->nominal_pembiayaan }}</td>
+                                            <td style="text-align: center">{{number_format( $proposal_umkm->nominal_pembiayaan )}}</td>
                                             <td style="text-align: center">{{ $proposal_umkm->tgl_pembiayaan }}</td>
                                             <td style="text-align: center"
                                                 value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">

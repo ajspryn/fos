@@ -157,8 +157,10 @@ class PasarProposalController extends Controller
                 'user_id'=> Auth::user()->id,
             ]);
 
-            foreach ($request->slik as $key => $value) {
+            if ($request->slik[0]['nama_bank']){
 
+                // return $request->slik[0]['nama_bank'];
+                foreach ($request->slik as $key => $value) {
 
 
                 // return $value;
@@ -174,22 +176,8 @@ class PasarProposalController extends Controller
                     'kol'=> $value['kol'],
                 ]);
             }
+        }
 
-            $request -> validate([
-                'foto.*.kategori'=> 'required',
-                'foto.*.foto'=> 'required',
-            ]);
-    
-            foreach ($request->foto as $key => $value) {
-                if ($value['foto']){
-                    $foto= $value['foto']->store('foto-pasar-pembiayaan');
-                }
-                PasarFoto::create([
-                    'pasar_pembiayaan_id'=>$id,
-                    'kategori'=> $value['kategori'],
-                    'foto'=> $foto,
-                ]);
-            }
 
             return redirect('/pasar/komite/'.$id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
 

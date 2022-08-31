@@ -388,14 +388,7 @@
                                                                 {{ $rating_jaminanrumah }}</td>
                                                             <td style="text-align: center">
                                                                 {{ $score_jaminanrumah }}</td>
-                                                            <td style="text-align: center">
-                                                                <button type="button"
-                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#">
-                                                                <i data-feather="eye"></i>
-                                                            </button>
-                                                            </td>
+                                                           
                                                         </tr>
                                                         <tr>
                                                             <td style="text-align: center">4</td>
@@ -716,7 +709,6 @@
                                                         <input type="hidden" name="jabatan_id" value=3>
                                                         <input type="hidden" name="user_id"
                                                             value="{{ Auth::user()->id }}">
-
                                                         <div class="col-12 text-center">
                                                             <button type="submit"
                                                                 class="btn btn-primary me-1 mt-1">Submit</button>
@@ -865,28 +857,74 @@
 
                                         <!-- Invoice Actions -->
                                         <div class="tab-pane" id="identitas-pribadi" role="tabpanel"
-                                            aria-labelledby="profile-tab-justified">
-                                            @foreach ($fotos as $foto)
-                                                <!-- post 1 -->
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                                            <div>
-                                                                <h6 class="mb-0">{{ $foto->kategori }}</h6>
-                                                                <small class="text-muted">Diupload Pada :
-                                                                    {{ $foto->created_at->diffForhumans() }}</small>
-                                                            </div>
+                                        aria-labelledby="profile-tab-justified">
+                                            <!-- post 1 -->
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotodiri->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotodiri->created_at->diffForhumans() }}</small>
                                                         </div>
-                                                        <!-- post img -->
-                                                        <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $foto->foto) }}"
-                                                            alt="avatar img" />
-                                                        <!--/ post img -->
                                                     </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotodiri->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
                                                 </div>
-                                                <!--/ post 1 -->
-                                            @endforeach
-                                        </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotoktp->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotoktp->created_at->diffForhumans() }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotoktp->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotodiribersamaktp->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotodiribersamaktp->created_at->diffForhumans() }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotodiribersamaktp->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotokk->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotokk->created_at->diffForhumans() }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotokk->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
+                                                </div>
+                                            </div>
+                                           
+                                    </div>
                                         <div class="tab-pane" id="ideb" role="tabpanel"
                                         aria-labelledby="settings-tab-justified">
                                         {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
@@ -902,7 +940,11 @@
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-start align-items-center mb-1">
                                                             <div>
-                                                                <h6 class="mb-0">No KTB :
+                                                                <h6 class="mb-0"> Jaminan :
+                                                                    {{ $jaminans->nama_jaminan }}
+                                                                </h6>
+
+                                                                <h6 class="mb-0"><br> KTB :
                                                                     {{ $jaminan->no_ktb }}
                                                                 </h6>
                                                                 <small class="text-muted">Diupload Pada :
@@ -924,16 +966,14 @@
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-start align-items-center mb-1">
                                                             <div>
-                                                                <h6 class="mb-0">
-                                                                    {{ $jaminans->nama_jaminan }}
-                                                                </h6>
+                                                               
                                                                 <small class="text-muted">Diupload Pada :
                                                                     {{ $jaminanlainnya->created_at->diffForhumans() }}</small>
                                                             </div>
                                                         </div>
                                                         <!-- post img -->
                                                         <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $jaminanlainnya->dokumen_jaminanlain) }}"
+                                                            src="{{ asset('storage/' . $jaminanlainnya->dokumen_jaminan) }}"
                                                             alt="avatar img" />
                                                         <!--/ post img -->
                                                     </div>
@@ -961,8 +1001,10 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
+                                                                            <span
+                                                                            class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
                                                                         </div>
-                                                                        @if (isset($timeline->catatan))
+                                                                        @if ($timeline->catatan)
                                                                             <p value="{{ $timeline->id }}"> <br>Catatan :
                                                                                 {{ $timeline->catatan }}
                                                                             <p>
@@ -976,7 +1018,8 @@
                                                                     </div>
                                                                 </li>
                                                             @endforeach
-                                                            {{-- <p>Total Waktu : {{ $waktuakhir- $waktuawal}}</p> --}}
+                                                            <hr class="invoice-spacing" />
+                                                            <p class="fw-bold"> Total SLA = {{ $totalwaktu }}</p>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -1044,7 +1087,7 @@
            <!-- Slik -->
            <div class="modal fade" id="fototoko" tabindex="-1" aria-labelledby="addNewCardTitle"
            aria-hidden="true">
-           <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-dialog modal-dialog-centered modal-lg">
                <div class="modal-content">
                    <div class="modal-header bg-transparent">
                        <button type="button" class="btn-close" data-bs-dismiss="modal"

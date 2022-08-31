@@ -33,8 +33,8 @@ class SkpdRevisiController extends Controller
      */
     public function index()
     {
-        $proposal = SkpdPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull('skpd_sektor_ekonomi_id')->get();
-        return view('skpd::Revisi.index', [
+        $proposal = SkpdPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull('skpd_sektor_ekonomi_id')->orderBy('id', 'desc')->get();
+        return view('skpd::revisi.index', [
             'title' => 'Revisi Proposal',
             'proposals' => $proposal,
         ]);
@@ -78,7 +78,7 @@ class SkpdRevisiController extends Controller
     {
         $datafoto = SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->get();
         $foto = $datafoto;
-        return view('skpd::Revisi.lihat', [
+        return view('skpd::revisi.lihat', [
             'title' => 'Detail Calon Nasabah',
             'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
             'nasabah' => SkpdNasabah::select()->where('id', $id)->get()->first(),
@@ -96,6 +96,7 @@ class SkpdRevisiController extends Controller
             'sektors' => SkpdSektorEkonomi::all(), //udah
             'statusperkawinans' => SkpdStatusPerkawinan::all(), //udah
             'tanggungans' => SkpdTanggungan::all(),
+            'idebs'=>SkpdSlik::select()->where('skpd_pembiayaan_id',$id)->get(),
         ]);
     }
 
@@ -219,6 +220,25 @@ class SkpdRevisiController extends Controller
                 ]);
             }
         }
+
+        if ($request->slik[0]['nama_bank']){
+
+            SkpdSlik::select()->where('skpd_pembiayaan_id',$id)->delete();
+        
+            foreach ($request->slik as $key => $value) {
+
+            SkpdSlik::create([
+                'skpd_pembiayaan_id' => $id,
+                'nama_bank' => $value['nama_bank'],
+                'plafond' => $value['plafond'],
+                'outstanding' => $value['outstanding'],
+                'tenor' => $value['tenor'],
+                'margin' => $value['margin'],
+                'angsuran' => $value['angsuran'],
+                'agunan' => $value['agunan'],
+                'kol' => $value['kol'],
+            ]);
+        }}
 
         return redirect('/skpd/komite')->with('success', 'Pengajuan Anda Sedang Di Proses Silahkan Hubungi AO');
     }

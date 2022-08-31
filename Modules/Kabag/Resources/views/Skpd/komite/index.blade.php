@@ -58,45 +58,45 @@
                                                 ->get()
                                                 ->first();
                                         @endphp
-                                         @if($history->status_id== 5 || $history->status_id== 4 )
-                                        <tr>
-                                            <td style="text-align: center">
-                                                <button type="button"
-                                                    class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                    <i data-feather="eye"></i>
-                                                </button>
-                                            </td>
-                                            <td style="text-align: center">{{ $loop->iteration }}</td>
-                                            <td>{{ $proposal_skpd->nasabah->nama_nasabah }}</td>
-                                            <td>{{ $proposal_skpd->nasabah->alamat }}</td>
-                                            <td style="text-align: center">
-                                                {{ $proposal_skpd->instansi->nama_instansi }}
-                                            </td>
-                                            {{-- <td style="text-align: center">{{ $proposal_skpd->golongan->nama_golongan }}</td> --}}
-                                            <td style="text-align: center">
-                                                Rp.{{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
-                                            <td style="text-align: center">
-                                             @if ($history->statushistory->id == 5)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
-                                                        {{ $history->jabatan->keterangan }}</span>
-                                                @elseif ($history->statushistory->id == 4)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
-                                                        {{ $history->jabatan->keterangan }}</span>
-                                                @else
-                                                <span
-                                                class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
-                                                {{ $history->jabatan->keterangan }}</span>
-                                                @endif
-                                            </td>
-                                            <td style="text-align: center">{{ $proposal_skpd->tanggal_pengajuan }}</td>
-                                            <td style="text-align: center">{{ $proposal_skpd->user->name }}</td>
-                                            <td style="text-align: center">
-                                                <a href="/kabag/skpd/komite/{{ $proposal_skpd->id }}"
-                                                    class="btn btn-outline-info round">Detail</a>
-                                            </td>
-                                        </tr>
+                                        @if ($history->status_id == 5 || $history->status_id == 4)
+                                            <tr>
+                                                <td style="text-align: center">
+                                                    <button type="button"
+                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                        <i data-feather="eye"></i>
+                                                    </button>
+                                                </td>
+                                                <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                <td>{{ $proposal_skpd->nasabah->nama_nasabah }}</td>
+                                                <td>{{ $proposal_skpd->nasabah->alamat }}</td>
+                                                <td style="text-align: center">
+                                                    {{ $proposal_skpd->instansi->nama_instansi }}
+                                                </td>
+                                                {{-- <td style="text-align: center">{{ $proposal_skpd->golongan->nama_golongan }}</td> --}}
+                                                <td style="text-align: center">
+                                                    Rp.{{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
+                                                <td style="text-align: center">
+                                                    @if ($history->statushistory->id == 5)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @elseif ($history->statushistory->id == 4)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @else
+                                                        <span
+                                                            class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @endif
+                                                </td>
+                                                <td style="text-align: center">{{ $proposal_skpd->tanggal_pengajuan }}</td>
+                                                <td style="text-align: center">{{ $proposal_skpd->user->name }}</td>
+                                                <td style="text-align: center">
+                                                    <a href="/kabag/skpd/komite/{{ $proposal_skpd->id }}"
+                                                        class="btn btn-outline-info round">Detail</a>
+                                                </td>
+                                            </tr>
                                         @endif
                                     @endforeach
                                 </tbody>

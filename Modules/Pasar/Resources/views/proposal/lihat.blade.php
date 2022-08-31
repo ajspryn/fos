@@ -133,11 +133,20 @@
                                             <label class="form-label" for="tenor"><small class="text-danger">*
                                                 </small>Tenor</label>
                                             <select class="select2 w-100" name="tenor" id="tenor" required>
-                                                <option label="tenor"> Pilih Tenor</option>
+                                                <option label="tenor"></option>
                                                 <option value="3">3 Bulan</option>
+                                                <option value="4">4 Bulan</option>
+                                                <option value="5">5 Bulan</option>
                                                 <option value="6">6 Bulan</option>
+                                                <option value="7">7 Bulan</option>
+                                                <option value="8">8 Bulan</option>
+                                                <option value="9">9 Bulan</option>
+                                                <option value="10">10 Bulan</option>
+                                                <option value="11">11 Bulan</option>
                                                 <option value="12">12 Bulan</option>
+                                                <option value="12">18 Bulan</option>
                                                 <option value="24">24 Bulan</option>
+                                                <option value="36">36 Bulan</option>
                                                 <option value="48">48 Bulan</option>
                                                 <option value="60">60 Bulan</option>
                                             </select>
@@ -718,14 +727,6 @@
                                             <input type="file" name="dokumen_keuangan" id="dokumen_keuangan"
                                                 rows="3"class="form-control" required />
 
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="konfirmasi"><small class="text-danger">*
-                                                </small>Upload Konfirmasi kepala Pasar</label>
-                                            <input type="file" name="foto[1][foto]" id="konfirmasi" rows="3"
-                                                class="form-control">
-                                            <input type="hidden" name="foto[1][kategori]" value="Konfirmasi Kepala Pasar" rows="3"
-                                                class="form-control" />
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-between">

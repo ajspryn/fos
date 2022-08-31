@@ -137,7 +137,7 @@ class PasarKomiteController extends Controller
         $biaya_anak=$nasabah->tanggungan->biaya;
         $biaya_istri=$nasabah->status->biaya;
         $kebutuhan_keluarga=PasarPembiayaan::select()->where('id',$id)->sum('keb_keluarga');
-        $pengeluaranlain=$biaya_anak+$biaya_istri+$cicilan+$kebutuhan_keluarga;
+        $pengeluaranlain=$biaya_anak+$biaya_istri+$kebutuhan_keluarga;
         $total_pengeluaran = ($pengeluaranlain+$cicilan+$angsuran1);
 
         $di=($laba_bersih-$total_pengeluaran);
@@ -242,6 +242,7 @@ class PasarKomiteController extends Controller
             'akads'=>PasarAkad::all(),
             'sektors'=>PasarSektorEkonomi::all(),
             'konfirmasi'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Konfirmasi Kepala Pasar')->get()->first(),
+            'nota'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
             'pasars'=>PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first(),
             'lamas'=>PasarLamaBerdagang::select()->where('kode_lamaberdagang',$usaha->lama_usaha)->get()->first(),
             'rumahs'=>PasarJaminanRumahh::select()->where('kode_jaminan',$jaminanrumah->legalitas_kepemilikan_rumah)->get()->first(),

@@ -353,14 +353,7 @@
                                                                                     {{ $rating_bendahara }}</td>
                                                                                 <td style="text-align: center">
                                                                                     {{ $nilai_bendahara }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#konfirmasibendahara">
-                                                                                        <i data-feather="eye"></i>
-                                                                                    </button>
-                                                                                </td>
+                                                    
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="text-align: center">2</td>
@@ -451,7 +444,7 @@
                                                                                     <button type="button"
                                                                                         class="btn btn-icon btn-icon rounded-circle btn-flat-success"
                                                                                         data-bs-toggle="modal"
-                                                                                        data-bs-target="#jaminan">
+                                                                                        data-bs-target="#ijazah">
                                                                                         <i data-feather="eye"></i>
                                                                                     </button>
                                                                                 </td>
@@ -638,7 +631,7 @@
                                                                     <!-- form -->
                                                                     <form id="addNewCardValidation"
                                                                         class="row gy-1 gx-2 mt-75" method="POST"
-                                                                        action="/analis/skpd/komite">
+                                                                        action="/analis/skpd/komite" enctype="multipart/form-data">
                                                                         @csrf
 
                                                                         <div class="col-md-12">
@@ -648,10 +641,16 @@
                                                                         </div>
                                                                         <input type="hidden" name="skpd_pembiayaan_id"
                                                                             value="{{ $pembiayaan->id }}">
-                                                                        <input type="hidden" name="status" value=5>
+                                                                        <input type="hidden" name="status_id" value=5>
                                                                         <input type="hidden" name="user_id"
                                                                             value="{{ Auth::user()->id }}">
-
+                                                                            <label class="form-label"
+                                                                            for="fotokk"><small
+                                                                                class="text-danger">*
+                                                                            </small>Upload Konfirmasi Bendahara</label>
+                                                                        <input type="file" name="foto"
+                                                                            id="foto" rows="3"
+                                                                            class="form-control" required />
                                                                         <div class="col-12 text-center">
                                                                             <button type="submit"
                                                                                 class="btn btn-primary me-1 mt-1">Submit</button>
@@ -877,7 +876,16 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
+                                                                            <span
+                                                                            class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
                                                                         </div>
+                                                                        @if ($timeline->catatan)
+
+                                                                        <p value="{{ $timeline->id }}"> <br>Catatan :
+                                                                            {{ $timeline->catatan }}
+                                                                        <p>
+
+                                                                    @endif
                                                                         <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
@@ -887,6 +895,8 @@
                                                                     </div>
                                                                 </li>
                                                             @endforeach
+                                                            <hr class="invoice-spacing" />
+                                                            <p class="fw-bold"> Total SLA = {{ $totalwaktu }}</p>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -957,7 +967,7 @@
                 <!-- ideb  -->
                 <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -966,8 +976,8 @@
                             <div class="modal-body px-sm-12 mx-50 pb-5">
                                 <h3 class="text-center">Lampiran IDEB</h3>
                                 <div class="card-body">
-                                    {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
-                                        height='500' weight='800'></iframe> --}}
+                                    <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
+                                        height='500' weight='800'></iframe>
                                 </div>
                             </div>
                         </div>
@@ -975,63 +985,26 @@
                 </div>
                 <!--/ ideb  -->
 
-                <!-- ideb  -->
-                <div class="modal fade" id="konfirmasibendahara" tabindex="-1" aria-labelledby="addNewCardTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body px-sm-12 mx-50 pb-5">
-                                <h3 class="text-center">Lampiran Konfirmasi Bendahara</h3>
-                                <div class="card-body">
-                                    <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
-                                        height='500'>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/ ideb  -->
+                     <!-- LampiranJaminan  -->
+                     <div class="modal fade" id="ijazah" tabindex="-1" aria-labelledby="addNewCardTitle"
+                     aria-hidden="true">
+                     <div class="modal-dialog modal-dialog-centered modal-lg">
+                         <div class="modal-content">
+                             <div class="modal-header bg-transparent">
+                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                     aria-label="Close"></button>
+                             </div>
+                             <div class="modal-body px-sm-12 mx-50 pb-5">
+                                 <h3 class="text-center">Lampiran Jaminan</h3>
+                                 <div class="card-body">
+                                     <iframe src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
+                                         class="d-block w-100" height='500' weight='800'></iframe>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <!--/ LampiranJaminan  -->
 
-                    <!-- ideb  -->
-                    <div class="modal fade" id="jaminan" tabindex="-1" aria-labelledby="addNewCardTitle"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header bg-transparent">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body px-sm-12 mx-50 pb-5">
-                                    @foreach ($jaminans as $jaminan)
-                                        <!-- post 1 -->
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-start align-items-center mb-1">
-                                                    <div>
-                                                        <h6 class="mb-0">
-                                                            {{ $jaminan->jenis_jaminan->nama_jaminan }}
-                                                        </h6>
-                                                        <small class="text-muted">Diupload Pada :
-                                                            {{ $jaminan->created_at->diffForhumans() }}</small>
-                                                    </div>
-                                                </div>
-                                                <!-- post img -->
-                                                <img class="img-fluid rounded mb-75"
-                                                    src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
-                                                    alt="avatar img" />
-                                                <!--/ post img -->
-                                            </div>
-                                        </div>
-                                        <!--/ post 1 -->
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ ideb  -->
-                    </div>
-                </div>
             </div>
         @endsection

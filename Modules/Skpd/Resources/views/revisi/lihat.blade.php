@@ -542,6 +542,66 @@
                                         <h5 class="mb-0">Data Pengeluaran Anda</h5>
                                         <small>Data Pengeluaran Nasabah Anda</small>
                                     </div>
+                                    
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center; width: 5%;"
+                                                        class="py-1">No</th>
+                                                    <th style="text-align: center" class="py-1">Nama
+                                                        Bank</th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Plafond
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Outstanding</th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Tenor
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Margin
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Angsuran
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Agunan
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">Kol
+                                                        Tertinggi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($idebs as $ideb)
+                                                    <tr>
+                                                        <td style="text-align: center">
+                                                            {{ $loop->iteration }}</td>
+                                                        <td>{{ $ideb->nama_bank }}</td>
+                                                        <td>Rp. {{ number_format($ideb->plafond) }}
+                                                        </td>
+                                                        <td>Rp. {{ number_format($ideb->outstanding) }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ $ideb->tenor }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ number_format($ideb->margin) }}%
+                                                        </td>
+                                                        <td>Rp. {{ number_format($ideb->angsuran) }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ $ideb->agunan }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ $ideb->kol }}</td>
+                                                    </tr>
+                                                @endforeach
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     <section id="form-repeater">
                                         <div class="row">
                                             <div class="mb-1 col-md-12">
@@ -679,14 +739,6 @@
                                             class="form-control" required />
                                         <input type="hidden" name="kategori" value="IDEB" rows="3"
                                             class="form-control" />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="ideb"><small class="text-danger">*
-                                            </small>Upload Konfirmasi Bendahara</label>
-                                        <input type="file" name="foto" id="ideb" rows="3"
-                                            class="form-control">
-                                        <input type="hidden" name="kategori" value="Konfirmasi Bendahara"
-                                            rows="3" class="form-control" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting">Pengeluaran Lainnya (Per

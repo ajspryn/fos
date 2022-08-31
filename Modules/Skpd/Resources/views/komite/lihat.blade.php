@@ -352,14 +352,7 @@
                                                                                     {{ $rating_bendahara }}</td>
                                                                                 <td style="text-align: center">
                                                                                     {{ $nilai_bendahara }}</td>
-                                                                                <td style="text-align: center">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#konfirmasibendahara">
-                                                                                        <i data-feather="eye"></i>
-                                                                                    </button>
-                                                                                </td>
+
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="text-align: center">2</td>
@@ -500,8 +493,8 @@
                                                                                     <tr>
                                                                                         <td class="pe-1">Status</td>
                                                                                         <td>:
-                                                                                            @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0 && $total_score > 3)
-                                                                                                @if ($nilai_dsr1 >= 40 && $total_score > 3 )
+                                                                                            @if ($nilai_dsr1 >= 40 || ($nilai_dsr1 < 0 && $total_score > 3))
+                                                                                                @if ($nilai_dsr1 >= 40 && $total_score > 3)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
@@ -517,13 +510,13 @@
                                                                                                         : Pengeluaran
                                                                                                         >
                                                                                                         Pendapatan</small>
-                                                                                                        @elseif($total_score > 2 || $total_score > 3)
-                                                                                                        <span
-                                                                                                            class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                                            Ulang</span>
-                                                                                                    @else
-                                                                                                        <span
-                                                                                                            class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                @elseif($total_score > 2 || $total_score > 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                        Ulang</span>
+                                                                                                @else
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
                                                                                                 @endif
                                                                                             @else
                                                                                                 @if ($total_score > 3)
@@ -592,11 +585,10 @@
                                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
                                                                 @if ($history->status_id == 2)
                                                                     <div class="card-body">
-                                                                        <button class="btn btn-warning w-100 mb-75"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#edit_proposal">
+                                                                        <a class="btn btn-warning w-100 mb-75"
+                                                                            href="skpd/revisi/{{ $pembiayaan->id }}/edit">
                                                                             Edit Proposal
-                                                                        </button>
+                                                                        </a>
                                                                     </div>
                                                                     <div class="card-body">
                                                                         <button class="btn btn-success w-100 mb-75"
@@ -613,19 +605,17 @@
                                                                             </button>
                                                                         </div>
                                                                         <div class="card-body">
-                                                                            <button class="btn btn-warning w-100 mb-75"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#edit_proposal">
-                                                                                Edit Proposal
-                                                                            </button>
+                                                                            <a class="btn btn-warning w-100 mb-75"
+                                                                            href="skpd/revisi/{{ $pembiayaan->id }}/edit">
+                                                                            Edit Proposal
+                                                                        </a>
                                                                         </div>
                                                                     @elseif ($total_score > 2 || $total_score > 3)
                                                                         <div class="card-body">
-                                                                            <button class="btn btn-warning w-100 mb-75"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#edit_proposal">
-                                                                                Edit Proposal
-                                                                            </button>
+                                                                            <a class="btn btn-warning w-100 mb-75"
+                                                                            href="skpd/revisi/{{ $pembiayaan->id }}/edit">
+                                                                            Edit Proposal
+                                                                        </a>
                                                                         </div>
                                                                     @else
                                                                         <div class="card-body">
@@ -751,54 +741,57 @@
                                                     </div>
                                                     <!--/ add new card modal  -->
 
-                                                     <!-- Invoice Note ends -->
+                                                    <!-- Invoice Note ends -->
 
-                                            <div class="modal fade" id="ditolak" tabindex="-1"
-                                            aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header bg-transparent">
-                                                        <button type="button" class="btn-close"
-                                                            data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body px-sm-5 mx-50 pb-5">
-                                                        <h1 class="text-center mb-1" id="addNewCardTitle">
-                                                            Apakah Anda Yakin Untuk Menolak Proposal Ini ?
-                                                        </h1>
-                                                        <p class="text-center"></p>
+                                                    <div class="modal fade" id="ditolak" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                        Apakah Anda Yakin Untuk Menolak Proposal Ini ?
+                                                                    </h1>
+                                                                    <p class="text-center"></p>
 
-                                                        <!-- form -->
-                                                        <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"
-                                                            method="POST" action="/skpd/komite">
-                                                            @csrf
+                                                                    <!-- form -->
+                                                                    <form id="addNewCardValidation"
+                                                                        class="row gy-1 gx-2 mt-75" method="POST"
+                                                                        action="/skpd/komite">
+                                                                        @csrf
 
-                                                            <div class="col-md-12">
-                                                                <label class="form-label"
-                                                                    for="catatan">Catatan</label>
-                                                                <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
+                                                                        <div class="col-md-12">
+                                                                            <label class="form-label"
+                                                                                for="catatan">Catatan</label>
+                                                                            <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
+                                                                        </div>
+                                                                        <input type="hidden" name="skpd_pembiayaan_id"
+                                                                            value="{{ $pembiayaan->id }}">
+                                                                        <input type="hidden" name="status_id" value=6>
+                                                                        <input type="hidden" name="jabatan_id" value=1>
+                                                                        <input type="hidden" name="user_id"
+                                                                            value="{{ Auth::user()->id }}">
+
+                                                                        <div class="col-12 text-center">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary me-1 mt-1">Submit</button>
+                                                                            <button type="reset"
+                                                                                class="btn btn-outline-secondary mt-1"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                                Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                            <input type="hidden" name="skpd_pembiayaan_id"
-                                                                value="{{ $pembiayaan->id }}">
-                                                            <input type="hidden" name="status_id" value=6>
-                                                            <input type="hidden" name="jabatan_id" value=1>
-                                                            <input type="hidden" name="user_id"
-                                                                value="{{ Auth::user()->id }}">
-
-                                                            <div class="col-12 text-center">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary me-1 mt-1">Submit</button>
-                                                                <button type="reset"
-                                                                    class="btn btn-outline-secondary mt-1"
-                                                                    data-bs-dismiss="modal" aria-label="Close">
-                                                                    Cancel
-                                                                </button>
-                                                            </div>
-                                                        </form>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /Invoice Actions -->
+                                                    <!-- /Invoice Actions -->
 
                                                 </div>
                                             </div>
@@ -935,7 +928,14 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
+                                                                            <span
+                                                                                class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
                                                                         </div>
+                                                                        @if ($timeline->catatan)
+                                                                            <p value="{{ $timeline->id }}"> <br>Catatan :
+                                                                                {{ $timeline->catatan }}
+                                                                            <p>
+                                                                        @endif
                                                                         <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}

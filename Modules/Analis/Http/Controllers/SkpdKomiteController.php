@@ -3,6 +3,7 @@
 namespace Modules\Analis\Http\Controllers;
 
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Contracts\Support\Renderable;
@@ -29,7 +30,7 @@ class SkpdKomiteController extends Controller
      */
     public function index()
     {
-        $proposal=SkpdPembiayaanHistory::select()->where('status_id', 5 )->where('user_id',auth::user()->id)->get();
+        $proposal=SkpdPembiayaanHistory::select()->where('status_id',5 )->where('user_id',auth::user()->id)->orderby('created_at','desc')->get();
         return view('analis::skpd.komite.index',[
             'title'=>'Data Komite Nasabah',
             'proposals'=>$proposal,
@@ -52,18 +53,27 @@ class SkpdKomiteController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         SkpdPembiayaanHistory::create([
             'skpd_pembiayaan_id'=>$request->skpd_pembiayaan_id,
             'catatan'=>$request->catatan,
-            'status_id'=>5,
+            'status_id'=>$request->status_id,
             'user_id'=>Auth::user()->id,
             'jabatan_id'=>3,
             'divisi_id'=>null,
         ]);
 
+        if($request->file('foto')){
+            $foto=$request->file('foto')->store('foto-skpd-pembiayaan');
+            SkpdFoto::create([
+                'skpd_pembiayaan_id'=>$request->skpd_pembiayaan_id,
+                'kategori'=> 'Konfirmasi Bendahara',
+                'foto'=> $foto,
+            ]);
+        }           
         
 
-        return redirect('/analis/analis/komite');
+        return redirect('/analis/skpd/komite');
 
 }
 
@@ -179,6 +189,18 @@ class SkpdKomiteController extends Controller
         if($rating_slik){
                 $nilai_slik = $rating_slik*$proses_slik->bobot;
         }
+
+        $waktuawal=SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
+        $waktuakhir=SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
+        // $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
+
+        $waktumulai=Carbon::parse($waktuawal->created_at);
+        $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+        // $selanjutnya=Carbon::parse($next->created_at);
+
+
+        $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
+
         // return $proses_dsr;
         return view('analis::skpd.komite.lihat',[
             'title'=>'Detail Proposal',
@@ -227,6 +249,9 @@ class SkpdKomiteController extends Controller
 
             //history
             'history'=>SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
+        
+            //SLA
+            'totalwaktu'=>$totalwaktu
         ]);
     }
 

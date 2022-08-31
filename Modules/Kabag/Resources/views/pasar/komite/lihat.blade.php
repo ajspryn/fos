@@ -532,13 +532,6 @@
                                                                             {{ $rating_kepalapasar }}</td>
                                                                         <td style="text-align: center">
                                                                             {{ $score_kepalapasar }}</td>
-                                                                        <td style="text-align: center">
-                                                                            <button type="button"
-                                                                                class="btn btn-icon btn-icon rounded-circle btn-flat-success"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#kepalapasar">
-                                                                                <i data-feather="eye"></i>
-                                                                            </button>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-align: center">7</td>
@@ -651,39 +644,39 @@
                                                                                 <td class="pe-1">Status</td>
                                                                                 <td>:
                                                                                     @if ($nilai_idir >= 80 || $nilai_idir < 0)
-                                                                                    @if ($nilai_idir >= 80 && $total_score > 3)
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                        <small
-                                                                                            class="text-danger">*IDIR
-                                                                                            > 80%</small>
-                                                                                    @elseif($nilai_idir < 0 && $total_score > 3)
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                        <small
-                                                                                            class="text-danger">*Pengeluaran
-                                                                                            >
-                                                                                            Pendapatan</small>
-                                                                                            @elseif($total_score > 2 || $total_score > 3)
+                                                                                        @if ($nilai_idir >= 80 && $total_score > 3)
+                                                                                            <span
+                                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                            <small
+                                                                                                class="text-danger">*IDIR
+                                                                                                > 80%</small>
+                                                                                        @elseif($nilai_idir < 0 && $total_score > 3)
+                                                                                            <span
+                                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                            <small
+                                                                                                class="text-danger">*Pengeluaran
+                                                                                                >
+                                                                                                Pendapatan</small>
+                                                                                        @elseif($total_score > 2 || $total_score > 3)
                                                                                             <span
                                                                                                 class="badge rounded-pill badge-glow bg-warning">Tinjau
                                                                                                 Ulang</span>
                                                                                         @else
                                                                                             <span
                                                                                                 class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                    @endif
-                                                                                @else
-                                                                                    @if ($total_score > 3)
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                    @elseif($total_score > 2 || $total_score > 3)
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                            Ulang</span>
+                                                                                        @endif
                                                                                     @else
-                                                                                        <span
-                                                                                            class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                    @endif
+                                                                                        @if ($total_score > 3)
+                                                                                            <span
+                                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                        @elseif($total_score > 2 || $total_score > 3)
+                                                                                            <span
+                                                                                                class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                Ulang</span>
+                                                                                        @else
+                                                                                            <span
+                                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                        @endif
                                                                                     @endif
                                                                                 </td>
                                                                             </tr>
@@ -834,73 +827,74 @@
                                         <!-- Invoice Note ends -->
                                         <div class="tab-pane" id="identitas-pribadi" role="tabpanel"
                                             aria-labelledby="profile-tab-justified">
-                                                <!-- post 1 -->
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                                            <div>
-                                                                <h6 class="mb-0">{{ $fotodiri->kategori }}</h6>
-                                                                <small class="text-muted">Diupload Pada :
-                                                                    {{ $fotodiri->created_at->diffForhumans() }}</small>
-                                                            </div>
+                                            <!-- post 1 -->
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotodiri->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotodiri->created_at->diffForhumans() }}</small>
                                                         </div>
-                                                        <!-- post img -->
-                                                        <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $fotodiri->foto) }}"
-                                                            alt="avatar img" />
-                                                        <!--/ post img -->
                                                     </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotodiri->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
                                                 </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                                            <div>
-                                                                <h6 class="mb-0">{{ $fotoktp->kategori }}</h6>
-                                                                <small class="text-muted">Diupload Pada :
-                                                                    {{ $fotoktp->created_at->diffForhumans() }}</small>
-                                                            </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotoktp->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotoktp->created_at->diffForhumans() }}</small>
                                                         </div>
-                                                        <!-- post img -->
-                                                        <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $fotoktp->foto) }}"
-                                                            alt="avatar img" />
-                                                        <!--/ post img -->
                                                     </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotoktp->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
                                                 </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                                            <div>
-                                                                <h6 class="mb-0">{{ $fotodiribersamaktp->kategori }}</h6>
-                                                                <small class="text-muted">Diupload Pada :
-                                                                    {{ $fotodiribersamaktp->created_at->diffForhumans() }}</small>
-                                                            </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotodiribersamaktp->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotodiribersamaktp->created_at->diffForhumans() }}</small>
                                                         </div>
-                                                        <!-- post img -->
-                                                        <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $fotodiribersamaktp->foto) }}"
-                                                            alt="avatar img" />
-                                                        <!--/ post img -->
                                                     </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotodiribersamaktp->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
                                                 </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                                            <div>
-                                                                <h6 class="mb-0">{{ $fotokk->kategori }}</h6>
-                                                                <small class="text-muted">Diupload Pada :
-                                                                    {{ $fotokk->created_at->diffForhumans() }}</small>
-                                                            </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">{{ $fotokk->kategori }}</h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $fotokk->created_at->diffForhumans() }}</small>
                                                         </div>
-                                                        <!-- post img -->
-                                                        <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $fotokk->foto) }}"
-                                                            alt="avatar img" />
-                                                        <!--/ post img -->
                                                     </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $fotokk->foto) }}"
+                                                        alt="avatar img" />
+                                                    <!--/ post img -->
                                                 </div>
-                                               
+                                            </div>
+
                                         </div>
+
 
                                         <div class="tab-pane" id="legalitas-agunan"
                                             role="tabpanel"aria-labelledby="messages-tab-justified">
@@ -910,7 +904,10 @@
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-start align-items-center mb-1">
                                                             <div>
-                                                                <h6 class="mb-0">No KTB :
+                                                                <h6 class="mb-0"> Jaminan :
+                                                                    {{ $jaminans->nama_jaminan }}
+                                                                </h6>
+                                                                <h6 class="mb-0"><br>No KTB :
                                                                     {{ $jaminan->no_ktb }}
                                                                 </h6>
                                                                 <small class="text-muted">Diupload Pada :
@@ -932,22 +929,42 @@
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-start align-items-center mb-1">
                                                             <div>
-                                                                <h6 class="mb-0"> Jaminan Lain : 
-                                                                    {{ $jaminans->nama_jaminan }}
-                                                                </h6><br>
                                                                 <small class="text-muted">Diupload Pada :
                                                                     {{ $jaminanlainnya->created_at->diffForhumans() }}</small>
                                                             </div>
                                                         </div>
                                                         <!-- post img -->
                                                         <img class="img-fluid rounded mb-75"
-                                                            src="{{ asset('storage/' . $jaminanlainnya->dokumen_jaminanlain) }}"
+                                                            src="{{ asset('storage/' . $jaminanlainnya->dokumen_jaminan) }}"
                                                             alt="avatar img" />
                                                         <!--/ post img -->
                                                     </div>
                                                 </div>
                                                 <!--/ post 1 -->
                                             @endforeach
+                                        </div>
+
+                                        <div class="tab-pane" id="keuangan"
+                                            role="tabpanel"aria-labelledby="messages-tab-justified">
+
+                                            <!-- post 1 -->
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                                        <div>
+                                                            <h6 class="mb-0">
+                                                                {{ $nota->kategori }}
+                                                            </h6>
+                                                            <small class="text-muted">Diupload Pada :
+                                                                {{ $nota->created_at->diffForhumans() }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <!-- post img -->
+                                                    <img class="img-fluid rounded mb-75"
+                                                        src="{{ asset('storage/' . $nota->foto) }}" alt="avatar img" />
+                                                    <!--/ post img -->
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="tab-pane" id="legalitas-usaha"
@@ -981,7 +998,7 @@
                                             <iframe src="{{ asset('storage/' . $pembiayaan->dokumen_keuangan) }}"
                                                 class="d-block w-100" height='500' weight='800'></iframe>
                                         </div>
-                                        
+
                                         <div class="tab-pane" id="timeline" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
                                             <div class="col-xl-12 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
@@ -1001,7 +1018,8 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
-
+                                                                        <span
+                                                                        class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
                                                                         </div>
                                                                         @if (isset($timeline->catatan))
                                                                             <p value="{{ $timeline->id }}"> <br>Catatan :
@@ -1098,7 +1116,7 @@
                 <!-- Slik -->
                 <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -1111,29 +1129,6 @@
                                     <div class="col-md-12 d-flex order-md-2 order-1">
                                         <iframe src="{{ asset('storage/' . $pembiayaan->dokumen_keuangan) }}"
                                             class="d-block w-100" height='500' weight='800'></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--akhir Slik -->
-                <!-- Slik -->
-                <div class="modal fade" id="kepalapasar" tabindex="-1" aria-labelledby="addNewCardTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body px-sm-12 mx-50 pb-5">
-                                <h3 class="text-center">Konfirmasi Kepala Pasar </h3>
-                                <hr class="invoice-spacing" />
-                                <div class="card-body">
-                                    <div class="col-md-12 d-flex order-md-2 order-1">
-                                        <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
-                                            height='500' weight='800'>
                                     </div>
                                 </div>
                             </div>
@@ -1167,7 +1162,7 @@
                 <!-- Slik -->
                 <div class="modal fade" id="jaminankios" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"

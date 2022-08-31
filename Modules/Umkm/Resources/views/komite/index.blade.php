@@ -64,7 +64,7 @@
                                     <td>{{ $komite->nasabahh->nama_nasabah }}</td>
                                     <td>{{ $komite->nasabahh->alamat }}</td>
                                     <td style="text-align: center">{{ $komite->keteranganusaha->nama_usaha}}</td>
-                                    <td style="text-align: center">{{ $komite->nominal_pembiayaan }}</td>
+                                    <td style="text-align: center">{{ number_format($komite->nominal_pembiayaan)}}</td>
                                     <td style="text-align: center">{{ $komite->tgl_pembiayaan }}</td>
                                     <td style="text-align: center">
                                         @if ($history->statushistory->id == 5)

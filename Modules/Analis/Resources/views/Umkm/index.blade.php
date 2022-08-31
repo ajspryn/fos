@@ -6,10 +6,27 @@
     ->get()
     ->count();
 
-    $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
-    ->where('akad_id',null)
-    ->get()
-    ->count();
+    $umkms = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
+
+
+$proposal = 0;
+foreach ($umkms as $umkm) {
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $umkm->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $history->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+        if ($history->status_id == 5 && $history->jabatan_id == 2 || $history->status_id == 4 && $history->jabatan_id == 3  ) {
+        $proposal++;
+    }
+}
+
+
 
     $ditolak = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
     ->where('status_id',6)

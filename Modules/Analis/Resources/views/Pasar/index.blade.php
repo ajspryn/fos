@@ -6,11 +6,24 @@
     ->get()
     ->count();
 
-    $proposal = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('status_id',3)
-    ->orderby('created_at','desc')
-    ->get()
-    ->count();
+    $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
+
+$proposal = 0;
+foreach ($pasars as $pasar) {
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $pasar->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+        if ($history->status_id == 5 && $history->jabatan_id == 2 || $history->status_id == 4 && $history->jabatan_id == 3  ) {
+        $proposal++;
+    }
+}
 
     $ditolak = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
     ->where('status_id',6)

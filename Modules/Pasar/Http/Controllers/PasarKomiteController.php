@@ -136,7 +136,7 @@ class PasarKomiteController extends Controller
         $biaya_anak=$nasabah->tanggungan->biaya;
         $biaya_istri=$nasabah->status->biaya;
         $kebutuhan_keluarga=PasarPembiayaan::select()->where('id',$id)->sum('keb_keluarga');
-        $pengeluaranlain=$biaya_anak+$biaya_istri+$cicilan+$kebutuhan_keluarga;
+        $pengeluaranlain=$biaya_anak+$biaya_istri+$kebutuhan_keluarga;
         $total_pengeluaran = ($pengeluaranlain+$cicilan+$angsuran1);
 
         $di=($laba_bersih-$total_pengeluaran);
@@ -230,7 +230,11 @@ class PasarKomiteController extends Controller
             'nasabah'=>PasarNasabahh::select()->where('id',$id)->get()->first(),
             'fotos'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->get(),
             'fototoko'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
-            'konfirmasi'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Konfirmasi Kepala Pasar')->get()->first(),
+            'fotodiri'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+            'fotoktp'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotodiribersamaktp'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
+            'fotokk'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'nota'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
             'jaminanusahas'=>PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get(),
             'jaminanlainusahas'=>PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get(),
             'usahas'=>PasarKeteranganUsaha::all(), //udah

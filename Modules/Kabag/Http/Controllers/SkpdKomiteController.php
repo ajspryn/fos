@@ -59,6 +59,8 @@ class SkpdKomiteController extends Controller
             'user_id'=>Auth::user()->id,
             'jabatan_id'=>2
         ]);
+
+        return redirect('/kabag/skpd/komite');
     }
 
     /**
