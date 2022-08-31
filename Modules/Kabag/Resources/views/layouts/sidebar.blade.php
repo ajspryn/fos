@@ -6,7 +6,7 @@ $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
     ->get()
     ->count();
 
-$proposal = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+$proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
     ->where('status_id', 3)
     ->get();
 

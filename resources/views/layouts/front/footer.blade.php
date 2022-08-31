@@ -19,6 +19,7 @@
     <!-- BEGIN: Page Vendor JS-->
     <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="../../../app-assets/vendors/js/charts/apexcharts.min.js"></script>
+    <script src="../../../app-assets/vendors/js/file-uploaders/dropzone.min.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -32,6 +33,7 @@
 
     <!-- BEGIN: Page JS-->
     <script src="../../../app-assets/js/scripts/pages/dashboard-ecommerce.min.js"></script>
+    <script src="../../../app-assets/js/scripts/forms/form-file-uploader.min.js"></script>
     <!-- END: Page JS-->
 
     <script>

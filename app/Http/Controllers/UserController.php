@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Modules\Form\Entities\SkpdPembiayaan;
 
 class UserController extends Controller
 {
@@ -16,9 +20,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('profile',[
-            'role'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
-            'user'=>User::select()->where('id',Auth::user()->id)->get()->first(),
+        $data_debitur = SkpdPembiayaan::select(DB::raw('count(skpd_instansi_id) as instansi, skpd_instansi_id,sum(nominal_pembiayaan) as plafond,count(skpd_nasabah_id) as noa'))->join('skpd_instansis', 'skpd_pembiayaans.skpd_instansi_id', '=', 'skpd_instansis.id')->where('user_id', Auth::user()->id)->groupBy('skpd_instansi_id')->orderBy('plafond', 'desc')->get();
+        // return $data_debitur;
+        return view('profile', [
+            'role' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
+            'user' => User::select()->where('id', Auth::user()->id)->get()->first(),
+            'data_debiturs' => $data_debitur,
         ]);
     }
 
@@ -74,7 +81,34 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->code == 1) {
+            User::where('id', $id)
+                ->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                ]);
+            return redirect()->back()->with('success', 'Data Diri Berhasil Di Ubah');
+        } elseif ($request->code == 2) {
+            User::where('id', $id)
+                ->update([
+                    'password' => Hash::make($request->password_baru)
+                ]);
+            return redirect()->back()->with('success', 'Password Berhasil Di Ubah');
+        } elseif ($request->code == 3) {
+            // ddd($request->file('foto'));
+            // return $request;
+            if ($request->file('foto')) {
+                if ($request->foto_lama) {
+                    Storage::delete($request->foto_lama);
+                }
+                $input = $request->file('foto')->store('foto-profile');
+                User::where('id', $id)
+                    ->update([
+                        'foto' => $input,
+                    ]);
+            }
+            return redirect()->back()->with('success', 'Foto Berhasil Di Ubah');
+        }
     }
 
     /**

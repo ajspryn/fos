@@ -28,7 +28,7 @@ class SkpdPembiayaan extends Model
 
     public function instansi()
     {
-        return $this->belongsTo(SkpdInstansi::class,'skpd_instansi_id', 'id');
+        return $this->belongsToMany(SkpdInstansi::class,'skpd_instansi_id', 'id');
     }
 
     public function golongan()
@@ -75,5 +75,5 @@ class SkpdPembiayaan extends Model
         return $this->belongsTo(User::class);
     }
 
- 
+
 }
