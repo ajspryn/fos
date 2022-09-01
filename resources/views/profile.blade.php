@@ -342,12 +342,12 @@
                                     <div class="col-12 col-md-6">
                                         <label class="form-label" for="modalEditUserFirstName">Password
                                             Lama</label>
-                                        <input type="text" id="modalEditUserFirstName" name="password_lama"
+                                        <input type="password" id="modalEditUserFirstName" name="password_lama"
                                             class="form-control" data-msg="Masukan Password Lama" required />
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label class="form-label" for="modalEditUserLastName">Password Baru</label>
-                                        <input type="text" id="modalEditUserLastName" name="password_baru"
+                                        <input type="password" id="modalEditUserLastName" name="password_baru"
                                             class="form-control" data-msg="Masukan Password Baru" required />
                                     </div>
                                     <div class="col-12 text-center mt-2 pt-50">

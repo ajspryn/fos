@@ -20,12 +20,11 @@ class SkpdNasabahController extends Controller
     public function index()
     {
         // 'proposals'=>SkpdPembiayaan::select()->get();
-        return view('skpd::nasabah.index',[
-            'title'=>'Data Nasabah',
-            'proposals'=>SkpdNasabah::select()->get(),
+        return view('skpd::nasabah.index', [
+            'title' => 'Data Nasabah',
+            'proposals' => SkpdNasabah::select()->orderBy('nama_nasabah', 'asc')->get(),
             // 'nasabah'=>SkpdNasabah::select()->where('skpd_pembiayaan_id',$proposal->id)
         ]);
-        
     }
 
     /**
@@ -53,31 +52,31 @@ class SkpdNasabahController extends Controller
      * @return Renderable
      */
     public function show($id)
-    {   
-        $data=SkpdPembiayaan::select()->where('skpd_nasabah_id',$id)->get()->first();
-        
-        $nasabah=SkpdNasabah::select()->where('id',$id)->get()->first();
+    {
+        $data = SkpdPembiayaan::select()->where('skpd_nasabah_id', $id)->get()->first();
 
-        $tenor=$data->tenor;
-        $harga=$data->nominal_pembiayaan;
-        $rate=$data->rate;
-        $margin=($rate*$tenor)/100;
+        $nasabah = SkpdNasabah::select()->where('id', $id)->get()->first();
 
-        $harga1=$harga*$margin;
-        $harga_jual=$harga1+$harga;
+        $tenor = $data->tenor;
+        $harga = $data->nominal_pembiayaan;
+        $rate = $data->rate;
+        $margin = ($rate * $tenor) / 100;
 
-        $angsuran1=(int)($harga_jual/$tenor);
-        $jaminanlain=SkpdJaminan::select()->where('skpd_pembiayaan_id',$data->id)->get()->first();
-        return view('skpd::nasabah.lihat',[
-        'title'=>'Nasabah',
-        'pembiayaan'=>SkpdPembiayaan::select()->where('skpd_nasabah_id',$id)->get()->first(),
-        'nasabah'=>$nasabah,
-        'datas'=>SkpdPembiayaan::select()->where('skpd_nasabah_id',$id)->get(),
-        'historys'=>SkpdPembiayaan::select()->where('skpd_nasabah_id',$id)->get(),
-        'fotodiri'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
-        'angsuran'=>$angsuran1,
-        'jaminans'=>SkpdJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
-    ]);
+        $harga1 = $harga * $margin;
+        $harga_jual = $harga1 + $harga;
+
+        $angsuran1 = (int)($harga_jual / $tenor);
+        $jaminanlain = SkpdJaminan::select()->where('skpd_pembiayaan_id', $data->id)->get()->first();
+        return view('skpd::nasabah.lihat', [
+            'title' => 'Nasabah',
+            'pembiayaan' => SkpdPembiayaan::select()->where('skpd_nasabah_id', $id)->get()->first(),
+            'nasabah' => $nasabah,
+            'datas' => SkpdPembiayaan::select()->where('skpd_nasabah_id', $id)->get(),
+            'historys' => SkpdPembiayaan::select()->where('skpd_nasabah_id', $id)->get(),
+            'fotodiri' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Foto Diri')->get()->first(),
+            'angsuran' => $angsuran1,
+            'jaminans' => SkpdJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->get()->first(),
+        ]);
     }
 
     /**
