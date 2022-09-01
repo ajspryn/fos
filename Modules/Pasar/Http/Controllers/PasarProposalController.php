@@ -70,7 +70,7 @@ class PasarProposalController extends Controller
      */
     public function show($id)
     {
-
+        $data=PasarPembiayaan::select()->where('id',$id)->get()->first();
         $datafoto=PasarFoto::select()->where('pasar_pembiayaan_id',$id)->get();
         $foto=$datafoto;
         return view('pasar::proposal.lihat',[

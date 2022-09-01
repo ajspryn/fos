@@ -270,8 +270,8 @@
                                             </small>Kepemilikan Rumah</label>
                                         <select class="select2 w-100" name="kepemilikan_rumah" id="kep_rumah"
                                             disabled>
-                                            <option value="{{ $pembiayaan->rumah->id }}">
-                                                {{ $pembiayaan->rumah->kepemilikan_rumah }}</option>
+                                            <option>
+                                                {{ $rumah->kepemilikan_rumah }}</option>
                                         </select>
                                     </div>
                                     <div class="mb-1 col-md-6">
@@ -279,8 +279,8 @@
                                             </small>Legalitas Kepemilikan Rumah</label>
                                         <select class="select2 w-100" name="legalitas_kepemilikan_rumah"
                                             id="leg_rumah" disabled>
-                                            <option value="{{ $pembiayaan->rumah->legalitasrumah->id }}">
-                                                {{ $pembiayaan->rumah->legalitasrumah->nama_jaminan }}</option>
+                                            <option>
+                                                {{ $rumah->legalitasrumah->nama_jaminan }}</option>
                                         </select>
                                     </div>
                                     <div class="mb-1 col-md-6">

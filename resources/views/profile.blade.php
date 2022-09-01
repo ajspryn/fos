@@ -108,7 +108,6 @@
                                                             ->first();
                                                     } elseif ($role->divisi_id == 2) {
                                                         $proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                            ->where('id', $value->pasar_pembiayaan_id)
                                                             ->where('user_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()
@@ -120,7 +119,6 @@
                                                             ->first();
                                                     } elseif ($role->divisi_id == 3) {
                                                         $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                            ->where('id', $value->skpd_pembiayaan_id)
                                                             ->where('user_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()

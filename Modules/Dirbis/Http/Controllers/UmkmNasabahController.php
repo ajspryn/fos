@@ -64,7 +64,7 @@ class UmkmNasabahController extends Controller
 
         $angsuran1=(int)($harga_jual/$tenor);
 
-        return view('kabag::umkm.nasabah.lihat',[
+        return view('dirbis::umkm.nasabah.lihat',[
             'title'=>'Nasabah',
             'pembiayaan'=>UmkmPembiayaan::select()->where('nasabah_id',$id)->get()->first(),
             'nasabah'=>$nasabah,

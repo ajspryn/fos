@@ -67,7 +67,7 @@
                             <div class="ms-75">
                                 <h5 class="mb-0"value="{{ $pembiayaan->keteranganusaha->dagang->id }}">
                                     {{ $pembiayaan->keteranganusaha->dagang->nama_jenisdagang }}</h5>
-                                    <small>{{ $pembiayaan->keteranganusaha->alamatusaha}}</small>
+                                <small>{{ $pembiayaan->keteranganusaha->alamatusaha }}</small>
                             </div>
                         </div>
                     </div>
@@ -115,9 +115,9 @@
                                     </li>
                                     <li class="mb-75">
                                         <span class="fw-bolder me-25">Nama Usaha : </span>
-                                        <span >{{ $pembiayaan->keteranganusaha->nama_usaha }}</span>
+                                        <span>{{ $pembiayaan->keteranganusaha->nama_usaha }}</span>
                                     </li>
-                                     <li class="mb-75">
+                                    <li class="mb-75">
                                         <span class="fw-bolder me-25">Lama Usaha : </span>
                                         <span value="{{ $pembiayaan->keteranganusaha->lamadagang->id }}">
                                             {{ $pembiayaan->keteranganusaha->lamadagang->nama_lamaberdagang }}</span>
@@ -125,15 +125,14 @@
                                     <li class="mb-75">
                                         <span class="fw-bolder me-25">Omset Perbulan :</span>
                                         <span>
-                                            Rp. {{ number_format( $pembiayaan->omset)}}</span>
+                                            Rp. {{ number_format($pembiayaan->omset) }}</span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center pt-2">
-                        <a href="/" class="btn btn-primary me-1" data-bs-target="#ajukan"
-                            data-bs-toggle="modal">
+                        <a href="/" class="btn btn-primary me-1" data-bs-target="#ajukan" data-bs-toggle="modal">
                             Ajukan Pembiayaan Baru
                         </a>
                     </div>
@@ -141,114 +140,106 @@
             </div>
         </div>
         <!-- /User Card -->
-   <!-- Plan Card -->
-   <div class="card border-primary">
-    <div class="card-body">
-        <div class="d-flex justify-content-between align-items-start">
-            <h5 class="badge bg-light-primary">History Pembiayaan Nasabah</h5>
-            <div class="d-flex justify-content-center">
+        <!-- Plan Card -->
+        <div class="card border-primary">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <h5 class="badge bg-light-primary">History Pembiayaan Nasabah</h5>
+                    <div class="d-flex justify-content-center">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center; width: 5%;" class="py-1">No</th>
+                                <th style="text-align: center" class="py-1">Tanggal Pembiayaan</th>
+                                <th style="text-align: center" class="py-1">
+                                    Plafond
+                                </th>
+                                <th style="text-align: center" class="py-1">
+                                    Tenor
+                                </th>
+                                <th style="text-align: center" class="py-1">
+                                    Margin
+                                </th>
+                                <th style="text-align: center" class="py-1">
+                                    Angsuran
+                                </th>
+                                <th style="text-align: center" class="py-1">
+                                    Agunan
+                                </th>
+                                <th style="text-align: center" class="py-1">
+                                    Detail
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($datas as $data)
+                                @php
+                                    $tenor = $data->tenor;
+                                    $harga = $data->nominal_pembiayaan;
+                                    $rate = $data->rate;
+                                    $margin = ($rate * $tenor) / 100;
+                                    
+                                    $harga1 = $harga * $margin;
+                                    $harga_jual = $harga1 + $harga;
+                                    
+                                    $angsuran1 = (int) ($harga_jual / $tenor);
+                                @endphp
+                                <tr>
+                                    <td style="text-align: center">
+                                        {{ $loop->iteration }}</td>
+                                    <td style="text-align: center">{{ $data->tgl_pembiayaan }} </td>
+                                    <td style="text-align: center">Rp. {{ number_format($data->nominal_pembiayaan) }}
+                                    </td>
+                                    <td style="text-align: center">{{ $data->tenor }} Bulan
+                                    </td>
+                                    <td style="text-align: center">
+                                        {{ $data->rate }} %
+                                    </td>
+                                    <td style="text-align: center">Rp. {{ number_format($angsuran1) }}
+                                    </td>
+                                    <td style="text-align: center">
+                                        {{ $jaminans->nama_jaminan }}
+                                    </td>
+                                    <td style="text-align: center">
+                                        <a href="/umkm/komite/{{ $data->id }}"
+                                            class="btn btn-outline-info round">Detail</a>
+                                    </td>
+                            @endforeach
+
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="text-align: center; width: 5%;" class="py-1">No</th>
-                        <th style="text-align: center" class="py-1">Tanggal Pembiayaan</th>
-                        <th style="text-align: center" class="py-1">
-                            Plafond
-                        </th>
-                        <th style="text-align: center" class="py-1">
-                            Tenor
-                        </th>
-                        <th style="text-align: center" class="py-1">
-                            Margin
-                        </th>
-                        <th style="text-align: center" class="py-1">
-                            Angsuran
-                        </th>
-                        <th style="text-align: center" class="py-1">
-                            Agunan
-                        </th>
-                        <th style="text-align: center" class="py-1">
-                            Detail
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($datas as $data)
-                        @php
-                            $tenor = $data->tenor;
-                            $harga = $data->nominal_pembiayaan;
-                            $rate = $data->rate;
-                            $margin = ($rate * $tenor) / 100;
-                            
-                            $harga1 = $harga * $margin;
-                            $harga_jual = $harga1 + $harga;
-                            
-                            $angsuran1 = (int) ($harga_jual / $tenor);
-                        @endphp
-                        <tr>
-                            <td style="text-align: center">
-                                {{ $loop->iteration }}</td>
-                            <td style="text-align: center">{{ $data->tgl_pembiayaan }} </td>
-                            <td style="text-align: center">Rp. {{ number_format($data->nominal_pembiayaan) }}
-                            </td>
-                            <td style="text-align: center">{{ $data->tenor }} Bulan
-                            </td>
-                            <td style="text-align: center">
-                                {{ $data->rate }} %
-                            </td>
-                            <td style="text-align: center">Rp. {{ number_format($angsuran1) }}
-                            </td>
-                            <td style="text-align: center">
-                                {{ $jaminans->nama_jaminan }}
-                            </td>
-                            <td style="text-align: center">
-                                <a href="/umkm/komite/{{ $data->id }}"
-                                    class="btn btn-outline-info round">Detail</a>
-                            </td>
-                    @endforeach
-
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<!-- /Plan Card -->
-        <div class="modal fade" id="ajukan" tabindex="-1"
-        aria-labelledby="addNewCardTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-transparent">
-                    <button type="button" class="btn-close"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body px-sm-5 mx-50 pb-5">
-                    <h1 class="text-center mb-1" id="addNewCardTitle">
-                        Apakah Anda Yakin Untuk Mengajukan Pembiayaan Baru ?
-                    </h1>
-                    <p class="text-center"></p>
-
-                    <!-- form -->
-                    <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"
-                        method="POST" action="/pasar/komite">
-                        @csrf
+        <!-- /Plan Card -->
+        <div class="modal fade" id="ajukan" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                        <h1 class="text-center mb-1" id="addNewCardTitle">
+                            Apakah Anda Yakin Untuk Mengajukan Pembiayaan Baru ?
+                        </h1>
+                        <p class="text-center"></p>
                         <div class="col-12 text-center">
-                            <button type="submit"
-                                class="btn btn-primary me-1 mt-1">Yes</button>
-                            <button type="reset"
-                                class="btn btn-outline-secondary mt-1"
-                                data-bs-dismiss="modal" aria-label="Close">
+                            <a href="/form/umkm/{{ $pembiayaan->id }}/edit " type="submit"
+                                class="btn btn-primary me-1 mt-1">Yes</a>
+                            <a type="reset" class="btn btn-outline-secondary mt-1" data-bs-dismiss="modal"
+                                aria-label="Close">
                                 Cancel
-                            </button>
+                            </a>
                         </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!--/ User Sidebar -->
 

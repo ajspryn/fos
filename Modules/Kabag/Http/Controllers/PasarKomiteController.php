@@ -40,7 +40,7 @@ class PasarKomiteController extends Controller
      */
     public function index()
     {
-         $komite=PasarPembiayaanHistory::select()->where('status_id', 3 )->get();
+         $komite=PasarPembiayaanHistory::select()->where('status_id', 3 )->orderby('created_at','desc')->get();
             return view('kabag::pasar.komite.index',[
             'title'=>'Data Nasabah',
             'komites'=>$komite,
