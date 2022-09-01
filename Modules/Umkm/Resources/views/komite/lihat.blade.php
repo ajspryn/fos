@@ -503,163 +503,153 @@
                                             @php
                                                 $total_score = $score_idir + $score_slik + $score_cashpick + $score_jaminanrumah  + $score_lamadagang + $score_jenisnasabah + $score_jenisdagang + $score_sukubangsa ;
                                             @endphp
-                                                   <div class="card-body invoice-padding pt-0">
-                                                    <div class="row invoice-spacing">
-                                                        <div class="col-xl-8 p-0">
-                                                            <table>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="pe-1"><br>Total Nilai
-                                                                        </td>
-                                                                        <td><br>: {{ $total_score }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="pe-1">Status</td>
-                                                                        <td>:
-                                                                            @if ($nilai_idir >= 80 || $nilai_idir < 0)
-                                                                                @if ($nilai_idir >= 80)
-                                                                                    <span
-                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                    <small
-                                                                                        class="text-danger">*IDIR
-                                                                                        > 80%</small>
-                                                                                @elseif($nilai_idir < 0)
-                                                                                    <span
-                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                    <small
-                                                                                        class="text-danger">*Pengeluaran
-                                                                                        >
-                                                                                        Pendapatan</small>
-                                                                                @endif
-                                                                            @else
-                                                                                @if ($total_score > 3)
-                                                                                    <span
-                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                @elseif($total_score > 2 || $total_score > 3)
-                                                                                    <span
-                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                        Ulang</span>
-                                                                                @else
-                                                                                    <span
-                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                @endif
-                                                                            @endif
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
+                                                              <div class="card-body invoice-padding pt-0">
+                                                                <div class="row invoice-spacing">
+                                                                    <div class="col-xl-8 p-0">
+                                                                        <table>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="pe-1"><br>Total Nilai
+                                                                                    </td>
+                                                                                    <td><br>: {{ $total_score }}</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="pe-1">Status</td>
+                                                                                    <td>:
+                                                                                        @if ($nilai_idir >= 80 || $nilai_idir < 0)
+                                                                                            @if ($nilai_idir >= 80 && $total_score > 3)
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                                <small
+                                                                                                    class="text-danger">*IDIR
+                                                                                                    > 80%</small>
+                                                                                            @elseif($nilai_idir < 0 && $total_score > 3)
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                                <small
+                                                                                                    class="text-danger">*Pengeluaran
+                                                                                                    >
+                                                                                                    Pendapatan</small>
+                                                                                                    @elseif($total_score > 2 || $total_score > 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                        Ulang</span>
+                                                                                                @else
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            @if ($total_score > 3)
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                            @elseif($total_score > 2 || $total_score > 3)
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                    Ulang</span>
+                                                                                            @else
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                            @endif
+                                                                                        @endif
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div class="col-xl-4 p-10 mt-xl-0 mt-2">
+                                                                        <p class="mb-1 fw-bold"><br>Note :</p>
+                                                                        <table>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="pe-1 mb-2">Nilai < 2 </td>
+                                                                                    <td>: <span class="fw-bold"><span
+                                                                                                class="badge rounded-pill badge-glow bg-danger">Ditolak</span></span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="pe-1 mb-2"><br>Nilai > 2
+                                                                                        - 3
+                                                                                    </td>
+                                                                                    <td><br>: <span class="fw-bold"><span
+                                                                                                class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                Ulang</span></span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="pe-1 mb-2"><br>Nilai > 3
+                                                                                    </td>
+                                                                                    <td><br>: <span class="fw-bold"><span
+                                                                                                class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-xl-4 p-10 mt-xl-0 mt-2">
-                                                            <p class="mb-1 fw-bold"><br>Note :</p>
-                                                            <table>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="pe-1 mb-2">Nilai < 2 </td>
-                                                                        <td>: <span class="fw-bold"><span
-                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span></span>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="pe-1 mb-2"><br>Nilai > 2
-                                                                            - 3
-                                                                        </td>
-                                                                        <td><br>: <span class="fw-bold"><span
-                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                    Ulang</span></span>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="pe-1 mb-2"><br>Nilai > 3
-                                                                        </td>
-                                                                        <td><br>: <span class="fw-bold"><span
-                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
+                                                    </div>
+                                                    <!-- Header ends -->
+                                                </div>
+    
+                                                <hr class="invoice-spacing" />
+    
+                                                <div class="card-body invoice-padding pt-0">
+                                                    <div class="row invoice-spacing">
+                                                        <div class="col-xl-3 p-0">
+                                                        </div>
+                                                        <div class="col-xl-5 p-0 mt-xl-0 mt-2">
+                                                            @if ($history->status_id == 2)
+                                                                <div class="card-body">
+                                                                    <button class="btn btn-warning w-100 mb-75"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#edit_proposal">
+                                                                        Edit Proposal
+                                                                    </button>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <button class="btn btn-success w-100 mb-75"
+                                                                        data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                                        Lanjut Komite
+                                                                    </button>
+                                                                </div>
+                                                            @else
+                                                                @if ($total_score > 3)
+                                                                    <div class="card-body">
+                                                                        <button class="btn btn-success w-100 mb-75"
+                                                                            data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                                            Lanjut Komite
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <button class="btn btn-warning w-100 mb-75"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#edit_proposal">
+                                                                            Edit Proposal
+                                                                        </button>
+                                                                    </div>
+                                                                @elseif ($total_score > 2 || $total_score > 3)
+                                                                    <div class="card-body">
+                                                                        <button class="btn btn-warning w-100 mb-75"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#edit_proposal">
+                                                                            Edit Proposal
+                                                                        </button>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="card-body">
+                                                                        <button class="btn btn-warning w-100 mb-75"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#ditolak">
+                                                                            Ditolak
+                                                                        </button>
+                                                                    </div>
+                                                                @endif
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <!-- Header ends -->
-                                    </div>
-
-                                    <hr class="invoice-spacing" />
-
-                                    <div class="card-body invoice-padding pt-0">
-                                        <div class="row invoice-spacing">
-                                            <div class="col-xl-3 p-0">
-                                            </div>
-                                            <div class="col-xl-5 p-0 mt-xl-0 mt-2">
-                                                @if ($history->status_id == 2)
-                                                    @if ($nilai_idir >= 80 || $nilai_idir < 0)
-                                                        <div class="card-body">
-                                                            <button class="btn btn-warning w-100 mb-75"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#edit_proposal">
-                                                                Edit Proposal
-                                                            </button>
-                                                        </div>
-                                                         <div class="card-body">
-                                                            <button class="btn btn-danger w-100 mb-75"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#ditolak">
-                                                                Ditolak
-                                                            </button>
-                                                        </div>
-                                                    @else
-                                                        @if ($total_score > 3)
-                                                            <div class="card-body">
-                                                                <button class="btn btn-success w-100 mb-75"
-                                                                    data-bs-toggle="modal"data-bs-target="#lanjut_komite">
-                                                                    Lanjut Komite
-                                                                </button>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <button class="btn btn-warning w-100 mb-75"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#edit_proposal">
-                                                                    Edit Proposal
-                                                                </button>
-                                                            </div>
-                                                        @elseif ($total_score > 2 || $total_score > 3)
-                                                            <div class="card-body">
-                                                                <button class="btn btn-warning w-100 mb-75"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#edit_proposal">
-                                                                    Edit Proposal
-                                                                </button>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <button class="btn btn-danger w-100 mb-75"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#ditolak">
-                                                                    Ditolak
-                                                                </button>
-                                                            </div>
-                                                        @else
-                                                            <div class="card-body">
-                                                                <button class="btn btn-warning w-100 mb-75"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#edit_proposal">
-                                                                    Edit Proposal
-                                                                </button>
-                                                            </div>
-                                                             <div class="card-body">
-                                                                <button class="btn btn-danger w-100 mb-75"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#ditolak">
-                                                                    Tolak
-                                                                </button>
-                                                            </div>
-                                                        @endif
-                                                    @endif
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Invoice Note ends -->
+                                                <!-- Invoice Note ends -->
 
                                     <div class="modal fade" id="lanjut_komite" tabindex="-1"
                                         aria-labelledby="addNewCardTitle" aria-hidden="true">

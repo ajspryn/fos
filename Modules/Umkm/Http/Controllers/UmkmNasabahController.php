@@ -22,7 +22,7 @@ class UmkmNasabahController extends Controller
     {
         return view('umkm::nasabah.index',[
             'title'=>'Nasabah',
-            'proposals'=>UmkmPembiayaan::select()->get(),]);
+            'proposals'=>UmkmNasabah::select()->get(),]);
     }
 
     /**

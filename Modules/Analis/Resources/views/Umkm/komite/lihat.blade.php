@@ -612,6 +612,12 @@
                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
                                                 @if ($history->status_id == 4 && $history->jabatan_id == 3)
                                                     @if ($nilai_idir >= 80 || $nilai_idir < 0)
+                                                    <div class="card-body">
+                                                        <button class="btn btn-success w-100 mb-75"
+                                                            data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                            Disetujui
+                                                        </button>
+                                                    </div>
                                                         <div class="card-body">
                                                             <button class="btn btn-warning w-100 mb-75"
                                                                 data-bs-toggle="modal"
@@ -626,12 +632,13 @@
                                                                 Ditolak
                                                             </button>
                                                         </div>
+                                                        
                                                     @else
                                                         @if ($total_score > 3)
                                                             <div class="card-body">
                                                                 <button class="btn btn-success w-100 mb-75"
                                                                     data-bs-toggle="modal"data-bs-target="#lanjut_komite">
-                                                                    Lanjut Komite
+                                                                    Disetujui
                                                                 </button>
                                                             </div>
                                                             <div class="card-body">
@@ -826,7 +833,7 @@
                                     @if($deviasi)
                                                     <div class="modal fade" id="dokumendeviasi" tabindex="-1"
                                                         aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                        <div class="modal-dialog modal-dialog-centered modal-xl">
                                                             <div class="modal-content">
                                                                 <div class="modal-header bg-transparent">
                                                                     <button type="button" class="btn-close"

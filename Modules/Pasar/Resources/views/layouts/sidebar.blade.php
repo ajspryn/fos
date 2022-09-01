@@ -5,6 +5,12 @@ $notif_proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
     ->where('sektor_id', null)
     ->get()
     ->count();
+$notif_revisi = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('user_id', Auth::user()->id)
+    ->where('status_id', 7)
+    ->orderby('created_at', 'desc')
+    ->get()
+    ->count();
 @endphp
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
@@ -39,28 +45,34 @@ $notif_proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
                         data-i18n="home">Komite</span></a>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="clipboard"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span>
+                    @if ($notif_proposal + $notif_revisi > 0)
+                        <span
+                            class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal + $notif_revisi }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('pasar/proposal*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/pasar/proposal"><i
                                 data-feather="clipboard"></i><span class="menu-title text-truncate"
-                                data-i18n="home">Proposal</span><span
-                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal }}</span></a>
+                                data-i18n="home">Proposal</span>
+                            @if ($notif_proposal > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal }}</span>
+                            @endif
+                        </a>
                     </li>
-                     <li class="{{ Request::is('pasar/revisi*') ? 'active' : 'nav-item' }} "><a
-                            class="d-flex align-items-center" href="/pasar/revisi"><i
-                                data-feather="circle"></i><span class="menu-title text-truncate"
-                                data-i18n="home">Revisi Proposal</span><span
-                                class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
+                    <li class="{{ Request::is('pasar/revisi*') ? 'active' : 'nav-item' }} "><a
+                            class="d-flex align-items-center" href="/pasar/revisi"><i data-feather="circle"></i><span
+                                class="menu-title text-truncate" data-i18n="home">Revisi Proposal</span>
+                            @if ($notif_revisi > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_revisi }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>
-
-            {{-- <li class="{{ Request::is('pasar/proposal*') ? 'active' : 'nav-item' }} "><a
-                    class="d-flex align-items-center" href="/pasar/proposal"><i data-feather="clipboard"></i><span
-                        class="menu-title text-truncate" data-i18n="home">Revisi Proposal</span><span
-                        class="badge badge-light-success rounded-pill ms-auto me-1"></span></a>
-            </li> --}}
         </ul>
     </div>
 </div>

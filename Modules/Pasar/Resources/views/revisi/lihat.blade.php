@@ -89,7 +89,7 @@
                                             <label class="form-label" for="jenispenggunaan"><small class="text-danger">*
                                                 </small>Jenis Penggunaan</label>
                                             <select class="select2 w-100" name="penggunaan_id" id="jenispenggunaan">
-                                                <option value="{{ $pembiayaan->id }}">{{ $pembiayaan->penggunaan_id }}
+                                                <option>{{ $pembiayaan->penggunaan_id }}
                                                 <option label="jenispenggunaan">Pilih Jenis Penggunaan</option>
                                                 <option>Kesehatan</option>
                                                 <option>Kepemilikan Kendaraan Bermotor</option>
@@ -431,38 +431,38 @@
                                             ->get()
                                             ->first();
                                     @endphp --}}
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="foto"><small class="text-danger">*
-                                                </small>Upload Foto Diri</label>
-                                            <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
-                                                class="form-control" value="{{ $fotodiri->foto }}" >
-                                            <input type="hidden" name="foto[1][kategori]" value="Foto Diri"
-                                                rows="3" class="form-control" />
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="fotodiri"><small class="text-danger">*
-                                                </small>Upload Foto KTP</label>
-                                            <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
-                                                class="form-control" required />
-                                            <input type="hidden" name="foto[2][kategori]" value="Foto KTP"
-                                                rows="3" class="form-control" />
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="fotodiri"><small class="text-danger">*
-                                                </small>Upload Foto Diri Bersama KTP</label>
-                                            <input type="file" name="foto[3][foto]" id="fotodiribersamaktp"
-                                                rows="3" class="form-control" required />
-                                            <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
-                                                rows="3" class="form-control" />
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="fotokk"><small
-                                                    class="text-danger">*</small>Upload Foto Kartu Keluarga</label>
-                                            <input type="file" name="foto[4][foto]" id="fotokk"
-                                                rows="3"class="form-control" required />
-                                            <input type="hidden" name="foto[4][kategori]"
-                                                value="Foto Kartu Keluarga"rows="3" class="form-control" />
-                                        </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="foto"><small class="text-danger">*
+                                            </small>Upload Foto Diri</label>
+                                        <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
+                                            class="form-control" required />
+                                        <input type="hidden" name="foto[1][kategori]" value="Foto Diri" rows="3"
+                                            class="form-control" />
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotodiri"><small class="text-danger">*
+                                            </small>Upload Foto KTP</label>
+                                        <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
+                                            class="form-control" required />
+                                        <input type="hidden" name="foto[2][kategori]" value="Foto KTP" rows="3"
+                                            class="form-control" />
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotodiri"><small class="text-danger">*
+                                            </small>Upload Foto Diri Bersama KTP</label>
+                                        <input type="file" name="foto[3][foto]" id="fotodiribersamaktp"
+                                            rows="3" class="form-control" required />
+                                        <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
+                                            rows="3" class="form-control" />
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotokk"><small
+                                                class="text-danger">*</small>Upload Foto Kartu Keluarga</label>
+                                        <input type="file" name="foto[4][foto]" id="fotokk"
+                                            rows="3"class="form-control" required />
+                                        <input type="hidden" name="foto[4][kategori]"
+                                            value="Foto Kartu Keluarga"rows="3" class="form-control" />
+                                    </div>
                                     </div>
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Orang Terdekat</h5>
@@ -668,6 +668,14 @@
                                                 Kios</label>
                                             <input type="text" class="form-control numeral-mask4" placeholder="Rp."
                                                 name="sewa" id="sewa" value="{{ $pembiayaan->sewa }}">
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="fotonota"><small class="text-danger">*
+                                                </small>Upload Nota Pembelanjaan</label>
+                                            <input type="file" name="foto[6][foto]" id="fotonota" rows="3"
+                                                class="form-control" required />
+                                            <input type="hidden" name="foto[6][kategori]" value="Foto Nota Pembelanjaan" rows="3"
+                                                class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="content-header">

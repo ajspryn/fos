@@ -43,13 +43,13 @@
                                                             ->count();
                                                     } elseif ($role->divisi_id == 2) {
                                                         $proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                            ->where('user_id', $user->id)
+                                                            ->where('AO_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()
                                                             ->count();
                                                     } elseif ($role->divisi_id == 3) {
                                                         $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                            ->where('user_id', $user->id)
+                                                            ->where('AO_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()
                                                             ->count();

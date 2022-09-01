@@ -9,7 +9,7 @@ class UmkmDeviasi extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $guarded = ['created_at'];
     
     protected static function newFactory()
     {
