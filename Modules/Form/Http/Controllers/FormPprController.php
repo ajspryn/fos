@@ -20,6 +20,7 @@ use Modules\Form\Entities\FormPprDataPinjaman;
 use Modules\Form\Entities\FormPprDataPinjamanKartuKredit;
 use Modules\Form\Entities\FormPprDataPinjamanLainnya;
 use Modules\Form\Entities\FormPprDataPribadi;
+use Modules\Form\Entities\FormPprFoto;
 use Modules\Form\Entities\FormPprPembiayaan;
 use Modules\Form\Entities\FormPprPermohonan;
 use Modules\Ppr\Entities\PprAbilityToRepayFixedIncome;
@@ -355,6 +356,7 @@ class FormPprController extends Controller
             'form_pribadi_pemohon_status_tempat_tinggal_dijaminkan' => request('form_pribadi_pemohon_status_tempat_tinggal_dijaminkan'),
             'form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada' => request('form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada'),
             'form_pribadi_pemohon_alamat_korespondensi' => request('form_pribadi_pemohon_alamat_korespondensi'),
+            'foto_id' => $id,
 
             //Istri/suami pemohon
             'form_pribadi_istri_suami_nama_lengkap' => request('form_pribadi_istri_suami_nama_lengkap'),
@@ -440,6 +442,22 @@ class FormPprController extends Controller
             'form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_bulan' => request('form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_bulan')
         ]);
 
+        // $request->validate([
+        //     'foto.*kategori'=> 'required',
+        //     'foto.*.foto' => 'required',
+        // ]);
+
+        foreach ($request->foto as $key => $value) {
+            if ($value['foto']) {
+                $foto = $value['foto']->store('foto-ppr-pembiayaan');
+            }
+
+            FormPprFoto::create([
+                'form_ppr_pembiayaan_id' => $id,
+                'kategori' => $value['kategori'],
+                'foto' => $foto,
+            ]);
+        }
 
         FormPprDataAgunan::create([
             //Agunan I
@@ -586,7 +604,7 @@ class FormPprController extends Controller
             ]);
         }
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Pengajuan PPR Anda Berhasil Ditambahkan');
     }
 
     /**

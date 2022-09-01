@@ -81,7 +81,9 @@
                                             </td>
                                             <td style="text-align: center">{{ $proposal->form_permohonan_peruntukan_ppr }}
                                             </td>
-                                            <td style="text-align: center">{{ $proposal->form_permohonan_jangka_waktu_ppr }} Bulan
+                                            <td style="text-align: center">{{ $proposal->form_permohonan_jangka_waktu_ppr }}
+                                                <br />
+                                                ({{ $proposal->form_permohonan_jml_bulan }} Bulan)
                                             </td>
                                             <td style="text-align: center">
                                                 @if ($proposal->form_cl == '' && $proposal->form_score == '')
