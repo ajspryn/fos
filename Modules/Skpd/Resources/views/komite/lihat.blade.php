@@ -1089,7 +1089,7 @@
                 </div>
                 <!--/ ideb  -->
 
-                @if($konfirmasi->count() > 0)
+                @if($konfirmasi->count())
                 <!-- ideb  -->
                 <div class="modal fade" id="konfirmasibendahara" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
