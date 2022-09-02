@@ -252,7 +252,9 @@ class SkpdKomiteController extends Controller
             'history'=>SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
         
             //SLA
-            'totalwaktu'=>$totalwaktu
+            'totalwaktu'=>$totalwaktu,
+            'arr'=>-2,
+            'banyak_history'=>SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->count(),
         ]);
     }
 

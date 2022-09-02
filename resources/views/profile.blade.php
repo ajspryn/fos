@@ -25,15 +25,15 @@
                                             </a>
                                             <div class="user-info text-center">
                                                 <h4>{{ $user->name }}</h4>
-                                                @if ($role->divisi_id == 0)
+                                                @if ($role->jabatan_id == 0)
                                                     <span class="badge bg-light-secondary">Admin</span>
-                                                @elseif ($role->divisi_id == 1)
+                                                @elseif ($role->jabatan_id == 1)
                                                     <span class="badge bg-light-secondary">AO</span>
-                                                @elseif ($role->divisi_id == 2)
+                                                @elseif ($role->jabatan_id == 2)
                                                     <span class="badge bg-light-secondary">Kabag</span>
-                                                @elseif ($role->divisi_id == 3)
+                                                @elseif ($role->jabatan_id == 3)
                                                     <span class="badge bg-light-secondary">Analis</span>
-                                                @elseif ($role->divisi_id == 4)
+                                                @elseif ($role->jabatan_id == 4)
                                                     <span class="badge bg-light-secondary">Direktur Bisnis</span>
                                                 @endif
                                                 {{-- <span class="badge bg-light-secondary">{{ $user->email }}</span> --}}
@@ -51,12 +51,12 @@
                                                         ->get();
                                                 } elseif ($role->divisi_id == 2) {
                                                     $proposal_diajukan = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                        ->where('user_id', $user->id)
+                                                        ->where('AO_id', $user->id)
                                                         ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                         ->get();
                                                 } elseif ($role->divisi_id == 3) {
                                                     $proposal_diajukan = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                        ->where('user_id', $user->id)
+                                                        ->where('AO_id', $user->id)
                                                         ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                         ->get();
                                                 } elseif ($role->divisi_id == 4) {
@@ -65,7 +65,7 @@
                                                         ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                         ->get();
                                                 }
-
+                                                
                                                 if ($role->divisi_id == 1) {
                                                     $proposal_disetujuis = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
                                                         ->where('status_id', 3)
@@ -91,7 +91,7 @@
                                                         ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                         ->get();
                                                 }
-
+                                                
                                                 $i = 0;
                                                 foreach ($proposal_disetujuis as $proposal_disetujui) {
                                                     if ($role->divisi_id == 1) {
@@ -108,22 +108,22 @@
                                                             ->first();
                                                     } elseif ($role->divisi_id == 2) {
                                                         $proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                            ->where('user_id', $user->id)
+                                                            ->where('AO_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()
                                                             ->first();
-                                                        $history = Modules\Skpd\Entities\PasarPembiayaanHistory::select()
+                                                        $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                                                             ->where('pasar_pembiayaan_id', $proposal->id)
                                                             ->orderby('created_at', 'desc')
                                                             ->get()
                                                             ->first();
                                                     } elseif ($role->divisi_id == 3) {
                                                         $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                            ->where('user_id', $user->id)
+                                                            ->where('AO_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()
                                                             ->first();
-                                                        $history = Modules\Skpd\Entities\UmkmPembiayaanHistory::select()
+                                                        $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
                                                             ->where('umkm_pembiayaan_id', $proposal->id)
                                                             ->orderby('created_at', 'desc')
                                                             ->get()
@@ -141,7 +141,7 @@
                                                             ->get()
                                                             ->first();
                                                     }
-
+                                                
                                                     if ($history->status_id == 5 || $history->jabatan_id == 4) {
                                                         $i++;
                                                     }
@@ -207,15 +207,15 @@
                                             </li>
                                             <li class="mb-75">
                                                 <span class="fw-bolder me-25">Jabatan:</span>
-                                                @if ($role->divisi_id == 0)
+                                                @if ($role->jabatan_id == 0)
                                                     <span>Admin</span>
-                                                @elseif ($role->divisi_id == 1)
+                                                @elseif ($role->jabatan_id == 1)
                                                     <span>AO</span>
-                                                @elseif ($role->divisi_id == 2)
+                                                @elseif ($role->jabatan_id == 2)
                                                     <span>Kabag</span>
-                                                @elseif ($role->divisi_id == 3)
+                                                @elseif ($role->jabatan_id == 3)
                                                     <span>Analis</span>
-                                                @elseif ($role->divisi_id == 4)
+                                                @elseif ($role->jabatan_id == 4)
                                                     <span>Direktur Bisnis</span>
                                                 @endif
                                             </li>
@@ -237,7 +237,7 @@
 
                         <!-- User Content -->
                         <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
-                            @if ($role->jabatan_id == 1 || $role->divisi_id == 1)
+                            @if ($role->jabatan_id == 1 && $role->divisi_id == 1)
                                 <!-- Project table -->
                                 <div class="card">
                                     <h4 class="card-header">Data Debitur</h4>
@@ -265,6 +265,45 @@
                                                         <td>{{ $instansi->nama_instansi }}</td>
                                                         <td style="text-align: center">{{ $data_debitur->noa }}</td>
                                                         <td>Rp. {{ number_format($data_debitur->plafond) }}</td>
+                                                        <td style="text-align: center"></td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /Project table -->
+                            @endif
+
+                            @if ($role->jabatan_id == 1 && $role->divisi_id == 2)
+                                <!-- Project table -->
+                                <div class="card">
+                                    <h4 class="card-header">Data Debitur</h4>
+                                    <div class="table-responsive">
+                                        <table class="table datatable-project">
+                                            <thead>
+
+                                                <tr>
+                                                    <th style="text-align: center">Peringkat</th>
+                                                    <th style="text-align: center">Nama Passar</th>
+                                                    <th class="text-nowrap" style="text-align: center">NOA</th>
+                                                    <th style="text-align: center">Plafond</th>
+                                                    <th style="text-align: center"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($data_debitur_pasars as $data_debitur_pasar)
+                                                    @php
+                                                        $pasar = Modules\Admin\Entities\PasarJenisPasar::select()
+                                                            ->where('id', $data_debitur_pasar->jenispasar_id)
+                                                            ->get()
+                                                            ->first();
+                                                    @endphp
+                                                    <tr>
+                                                        <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                        <td>{{ $pasar->nama_pasar }}</td>
+                                                        <td style="text-align: center">{{ $data_debitur_pasar->noa }}</td>
+                                                        <td style="text-align: center">Rp. {{ number_format($data_debitur_pasar->plafond) }}</td>
                                                         <td style="text-align: center"></td>
                                                     </tr>
                                                 @endforeach

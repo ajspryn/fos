@@ -294,6 +294,8 @@ class PasarKomiteController extends Controller
 
              //perhitunganSLA
              'totalwaktu'=>$totalwaktu,
+             'arr'=>-2,
+             'banyak_history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->count(),
         ]);
 }
 

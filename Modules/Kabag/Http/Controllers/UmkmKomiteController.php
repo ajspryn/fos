@@ -19,6 +19,7 @@ use Modules\Admin\Entities\PasarScoreSlik;
 use Modules\Admin\Entities\PasarSektorEkonomi;
 use Modules\Admin\Entities\PasarSukuBangsa;
 use Modules\Admin\Entities\UmkmScoreIdir;
+use Modules\Pasar\Entities\PasarPembiayaanHistory;
 use Modules\Umkm\Entities\UmkmDeviasi;
 use Modules\Umkm\Entities\UmkmFoto;
 use Modules\Umkm\Entities\UmkmJaminan;
@@ -273,7 +274,9 @@ class UmkmKomiteController extends Controller
                 'deviasi'=>UmkmDeviasi::select()->where('umkm_pembiayaan_id',$id)->get()->first(),
 
                 //SLA
-                'totalwaktu'=>$totalwaktu
+                'totalwaktu'=>$totalwaktu,
+                'arr'=> -2 , 
+                'banyak_history'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->count(),
 
 
             ]);

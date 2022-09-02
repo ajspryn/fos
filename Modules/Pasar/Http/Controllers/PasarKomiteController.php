@@ -289,6 +289,8 @@ class PasarKomiteController extends Controller
 
             //SLA
             'totalwaktu'=>$totalwaktu,
+            'arr'=> -2,
+            'banyak_history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->count(),
 
 
         ]);

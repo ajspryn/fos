@@ -555,6 +555,16 @@
                                     <div class="row">
                                         <small>Jaminan Utama</small>
                                         <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="jaminanlain"><small class="text-danger">*
+                                            </small>Pilih Jaminan</label>
+                                            <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
+                                                @foreach ($jaminans as $jaminan)
+                                                    <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="lamausaha"></small>No KTB</label>
                                             <input type="text" name="no_ktb" id="lamausaha" class="form-control"
                                                 placeholder="Masukan No KTB"
@@ -562,22 +572,11 @@
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="SHPB"> <small class="text-danger">*
-                                                </small>Upload Jaminan KTB</label>
+                                                </small>Upload Jaminan Utama</label>
                                             <input type="file" name="dokumenktb" id="dokumenktb" rows="3"
                                                 class="form-control" required />
                                         </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="jaminanlain"><small class="text-danger">*
-                                            </small>Jaminan Lainnya</label>
-                                            <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
-
-                                                <option label="jaminanlain">Pilih Jaminan</option>
-                                                @foreach ($jaminans as $jaminan)
-                                                    <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                       
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="dokumen_jaminan"><small class="text-danger">*
                                             </small>Upload Jaminan Lainnya</label>
