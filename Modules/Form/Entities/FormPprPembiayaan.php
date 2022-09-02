@@ -16,8 +16,6 @@ use Modules\Form\Entities\FormPprDataKekayaanLainnya;
 use Modules\Form\Entities\FormPprDataPinjaman;
 use Modules\Form\Entities\FormPprDataPinjamanKartuKredit;
 use Modules\Form\Entities\FormPprDataPinjamanLainnya;
-use Modules\Ppr\Entities\PprAbilityToRepayFixedIncome;
-use Modules\Ppr\Entities\PprAbilityToRepayNonFixedIncome;
 use Modules\Ppr\Entities\PprCapacity;
 use Modules\Ppr\Entities\PprCapacityNonFixed;
 use Modules\Ppr\Entities\PprCapital;
@@ -33,8 +31,6 @@ use Modules\Ppr\Entities\PprScoringAtrFixedIncome;
 use Modules\Ppr\Entities\PprScoringAtrNonFixedIncome;
 use Modules\Ppr\Entities\PprScoringCollateralFixedIncome;
 use Modules\Ppr\Entities\PprScoringCollateralNonFixedIncome;
-use Modules\Ppr\Entities\PprScoringFixedIncome;
-use Modules\Ppr\Entities\PprScoringNonFixedIncome;
 use Modules\Ppr\Entities\PprScoringWtrFixedIncome;
 use Modules\Ppr\Entities\PprScoringWtrNonFixedIncome;
 

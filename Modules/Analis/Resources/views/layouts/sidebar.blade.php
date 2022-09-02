@@ -121,7 +121,7 @@ foreach ($pprs as $ppr) {
         ->orderBy('created_at', 'desc')
         ->get()
         ->first();
-    $proposal_pasar = Modules\Form\Entities\FormPprPembiayaan::select()
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
         ->where('id', $history->form_ppr_pembiayaan_id)
         ->get()
         ->first();
@@ -136,7 +136,7 @@ foreach ($pprs as $ppr) {
         ->orderBy('created_at', 'desc')
         ->get()
         ->first();
-    $proposal_pasar = Modules\Form\Entities\FormPprPembiayaan::select()
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
         ->where('id', $history->form_ppr_pembiayaan_id)
         ->get()
         ->first();

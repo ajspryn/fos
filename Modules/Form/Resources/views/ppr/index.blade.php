@@ -46,7 +46,7 @@
 
         #ifMenikahHeader {
             width: 100%;
-            height: 60px;
+            height: 40px;
             transition: all 0.5s;
         }
 
@@ -403,6 +403,18 @@
                                         </select>
                                     </div>
 
+                                    <div class="mb-1 col-md-6 row">
+                                        <div class="col-md-11">
+                                            <label class="form-label" for="formPermohonanJumlahBulan">Jumlah Bulan</label>
+                                            <input type="number" name="form_permohonan_jml_bulan"
+                                                id="formPermohonanJumlahBulan" class="form-control"
+                                                placeholder="Jumlah Bulan" />
+                                        </div>
+                                        <div class="col-auto" style="margin-top: 32px;">
+                                            <span class="form-text-beside">Bulan</span>
+                                        </div>
+                                    </div>
+
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_permohonan_peruntukan_ppr"><small
                                                 class="text-danger">*
@@ -437,12 +449,6 @@
                                         <input type="text" name="form_permohonan_jml_bagi_hasil"
                                             id="form_permohonan_jml_bagi_hasil" class="form-control numeral-mask6"
                                             placeholder="Masukkan Jumlah Bagi" />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="formPermohonanJumlahBulan">Jumlah Bulan</label>
-                                        <input type="number" name="form_permohonan_jml_bulan"
-                                            id="formPermohonanJumlahBulan" class="form-control"
-                                            placeholder="Jumlah Bulan" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_permohonan_sistem_pembayaran_angsuran"><small
@@ -648,7 +654,7 @@
                                             id="form_pribadi_pemohon_nama_gadis_ibu_kandung" class="form-control"
                                             placeholder="Nama Gadis Ibu Kandung" />
                                     </div>
-                                    <div class="row">
+                                    <div>
                                         <div class="mb-1 col-md-12">
                                             <div data-repeater-list="form_pribadi_pemohon_alamat_ktp">
                                                 <div data-repeater-item>
@@ -1018,6 +1024,13 @@
                                                     <option value="Alamat Agunan">Alamat Agunan</option>
                                                 </select>
                                             </div>
+
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="fotoPemohon">Foto Terbaru Pemohon</label>
+                                                <input type="file" class="form-control" name="foto[1][foto]"
+                                                    id="fotoPemohon" aria-describedby="fotoPemohon" />
+                                                <input type="hidden" name="foto[1][kategori]" value="Foto Pemohon">
+                                            </div>
                                         </div>
                                         <!-- Data Pemohon end -->
 
@@ -1097,6 +1110,16 @@
                                                     <option value="S3">S3</option>
                                                 </select>
                                             </div>
+
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="fotoPasanganPemohon">Foto Terbaru
+                                                    Istri/Suami Pemohon</label>
+                                                <input type="file" class="form-control" name="foto[2][foto]"
+                                                    id="fotoPasanganPemohon" aria-describedby="fotoPasanganPemohon"
+                                                    disabled />
+                                                <input type="hidden" name="foto[2][kategori]"
+                                                    id="kategoriPasanganPemohon" value="Foto Pasangan Pemohon" disabled>
+                                            </div>
                                         </div>
                                         <!-- Istri/Suami end -->
 
@@ -1106,7 +1129,7 @@
                                             <small class="text-muted">Untuk keperluan mendadak (keluarga dekat tidak
                                                 serumah).</small>
                                         </div>
-                                        <div class="row">
+                                        <div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
                                                     for="form_pribadi_keluarga_terdekat_nama_lengkap"><small
@@ -1514,14 +1537,12 @@
                                                                 id="form_pekerjaan_pemohon_mulai_bekerja"
                                                                 name="form_pekerjaan_pemohon_mulai_bekerja"
                                                                 aria-describedby="form_pekerjaan_pemohon_mulai_bekerja"
-                                                                placeholder="DD-MM-YYYY"
-                                                                value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_mulai_bekerja }}"
-                                                                required />
+                                                                placeholder="DD-MM-YYYY" required />
                                                         </div>
                                                     </div>
 
-                                                    <div class="row col-auto" style="margin-bottom: 15px;">
-                                                        <div class="col-auto">
+                                                    <div class="row col-auto col-md-3" style="margin-bottom: 15px;">
+                                                        <div class="col-auto col-md-6">
                                                             <label class="form-label"
                                                                 for="form_pekerjaan_pemohon_usia_pensiun"><small
                                                                     class="text-danger">*
@@ -1530,16 +1551,15 @@
                                                                 name="form_pekerjaan_pemohon_usia_pensiun"
                                                                 id="form_pekerjaan_pemohon_usia_pensiun"
                                                                 aria-describedby="form_pekerjaan_pemohon_usia_pensiun"
-                                                                placeholder="Usia Pensiun"
-                                                                value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_usia_pensiun }}"
-                                                                required />
+                                                                placeholder="Usia Pensiun" required />
                                                         </div>
                                                         <div class="col-auto" style="margin-top: 32px;">
                                                             <span class="form-text-beside">Tahun</span>
                                                         </div>
                                                     </div>
 
-                                                    <div class="row col-auto" style="margin-bottom: 15px;">
+                                                    <div class="row col-auto"
+                                                        style="margin-bottom: 15px; margin-left: -100px">
                                                         <div class="col-auto">
                                                             <label class="form-label"
                                                                 for="form_pekerjaan_pemohon_masa_kerja"><small
@@ -1550,9 +1570,7 @@
                                                                 name="form_pekerjaan_pemohon_masa_kerja"
                                                                 id="form_pekerjaan_pemohon_masa_kerja"
                                                                 aria-describedby="form_pekerjaan_pemohon_masa_kerja"
-                                                                placeholder="Masa Kerja"
-                                                                value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_masa_kerja }}"
-                                                                required />
+                                                                placeholder="Masa Kerja" required />
                                                         </div>
                                                         <div class="col-auto" style="margin-top: 32px;">
                                                             <span class="form-text-beside">Tahun</span>
@@ -1605,7 +1623,7 @@
                                                     <h6>Pengalaman
                                                         Kerja
                                                         Terakhir</h6>
-                                                    <div class="col-md-4 col-12">
+                                                    <div class="col-auto col-md-4">
                                                         <div class="mb-1">
                                                             <label class="form-label"
                                                                 for="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_perusahaan">Perusahaan</label>
@@ -1617,7 +1635,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-4 col-12">
+                                                    <div class="col-auto col-md-2">
                                                         <div class="mb-1">
                                                             <label class="form-label"
                                                                 for="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_jabatan">Jabatan</label>
@@ -1629,8 +1647,8 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-1 col-12">
-                                                        <div class="mb-1">
+                                                    <div class="row col-auto" style="margin-bottom: 15px;">
+                                                        <div class="col-auto col-md-6">
                                                             <label class="form-label"
                                                                 for="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_tahun">Lama
                                                                 Kerja</label>
@@ -1640,16 +1658,91 @@
                                                                 aria-describedby="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_tahun"
                                                                 placeholder="Tahun" />
                                                         </div>
+                                                        <div class="col-auto" style="margin-top: 32px;">
+                                                            <span class="form-text-beside">Tahun</span>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-1 col-12">
-                                                        <div class="mb-1">
+                                                    <div class="row col-auto"
+                                                        style="margin-bottom: 17px; margin-left:-100px;">
+                                                        <div class="col-auto col-md-6">
+                                                            <label class="form-label"
+                                                                for="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_bulan">
+                                                            </label>
                                                             <input type="number" class="form-control"
                                                                 name="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_bulan"
                                                                 id="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_bulan"
                                                                 aria-describedby="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_bulan"
                                                                 placeholder="Bulan" />
                                                         </div>
+                                                        <div class="col-auto" style="margin-top: 29px;">
+                                                            <span class="form-text-beside">Bulan</span>
+                                                        </div>
                                                     </div>
+                                                    {{-- <div class="mb-1 col-md-12">
+                                                        <div data-repeater-list="form_pekerjaan_pemohon_mulai_bekerja">
+                                                            <div data-repeater-item>
+                                                                <div class="row d-flex align-items-end">
+                                                                    <div class="col-auto col-md-4">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="form_pekerjaan_pemohon_mulai_bekerja"><small
+                                                                                    class="text-danger">*
+                                                                                </small>Mulai Bekerja</label>
+                                                                            <input type="date"
+                                                                                class="form-control flatpickr-basic"
+                                                                                id="form_pekerjaan_pemohon_mulai_bekerja"
+                                                                                name="form_pekerjaan_pemohon_mulai_bekerja"
+                                                                                aria-describedby="form_pekerjaan_pemohon_mulai_bekerja"
+                                                                                placeholder="DD-MM-YYYY"
+                                                                                value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_mulai_bekerja }}"
+                                                                                required />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row col-auto" style="margin-bottom: 15px;">
+                                                                        <div class="col-auto">
+                                                                            <label class="form-label"
+                                                                                for="form_pekerjaan_pemohon_usia_pensiun"><small
+                                                                                    class="text-danger">*
+                                                                                </small>Usia Pensiun</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="form_pekerjaan_pemohon_usia_pensiun"
+                                                                                id="form_pekerjaan_pemohon_usia_pensiun"
+                                                                                aria-describedby="form_pekerjaan_pemohon_usia_pensiun"
+                                                                                placeholder="Usia Pensiun"
+                                                                                value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_usia_pensiun }}"
+                                                                                required />
+                                                                        </div>
+                                                                        <div class="col-auto" style="margin-top: 32px;">
+                                                                            <span class="form-text-beside">Tahun</span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row col-auto" style="margin-bottom: 15px;">
+                                                                        <div class="col-auto">
+                                                                            <label class="form-label"
+                                                                                for="form_pekerjaan_pemohon_masa_kerja"><small
+                                                                                    class="text-danger">*
+                                                                                </small>Masa Kerja
+                                                                                (termasuk sebelumnya)</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="form_pekerjaan_pemohon_masa_kerja"
+                                                                                id="form_pekerjaan_pemohon_masa_kerja"
+                                                                                aria-describedby="form_pekerjaan_pemohon_masa_kerja"
+                                                                                placeholder="Masa Kerja"
+                                                                                value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_masa_kerja }}"
+                                                                                required />
+                                                                        </div>
+                                                                        <div class="col-auto" style="margin-top: 32px;">
+                                                                            <span class="form-text-beside">Tahun</span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> --}}
+
                                                 </div>
                                             </div>
                                         </div>
@@ -1851,7 +1944,7 @@
                                         <div data-repeater-list="form_pekerjaan_istri_suami_mulai_bekerja">
                                             <div data-repeater-item>
                                                 <div class="row d-flex align-items-end">
-                                                    <div class="col-md-4 col-12">
+                                                    <div class="col-auto col-md-4">
                                                         <div class="mb-1">
                                                             <label class="form-label"
                                                                 for="form_pekerjaan_istri_suami_mulai_bekerja">Mulai
@@ -1864,8 +1957,8 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-4 col-12">
-                                                        <div class="mb-1">
+                                                    <div class="row col-auto col-md-3" style="margin-bottom: 15px;">
+                                                        <div class="col-auto col-md-6">
                                                             <label class="form-label"
                                                                 for="form_pekerjaan_istri_suami_usia_pensiun">Usia
                                                                 Pensiun</label>
@@ -1875,10 +1968,14 @@
                                                                 aria-describedby="form_pekerjaan_istri_suami_usia_pensiun"
                                                                 placeholder="Usia Pensiun" />
                                                         </div>
+                                                        <div class="col-auto" style="margin-top: 32px;">
+                                                            <span class="form-text-beside">Tahun</span>
+                                                        </div>
                                                     </div>
 
-                                                    <div class="col-md-4 col-12">
-                                                        <div class="mb-1">
+                                                    <div class="row col-auto"
+                                                        style="margin-bottom: 15px; margin-left: -100px">
+                                                        <div class="col-auto">
                                                             <label class="form-label"
                                                                 for="form_pekerjaan_istri_suami_masa_kerja">Masa Kerja
                                                                 (termasuk sebelumnya)</label>
@@ -1888,11 +1985,15 @@
                                                                 aria-describedby="form_pekerjaan_istri_suami_masa_kerja"
                                                                 placeholder="Masa Kerja" />
                                                         </div>
+                                                        <div class="col-auto" style="margin-top: 32px;">
+                                                            <span class="form-text-beside">Tahun</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label"
@@ -1927,54 +2028,71 @@
                                             placeholder="Group Afiliasi Perusahaan" />
                                     </div>
 
-                                    <div class="row d-flex align-items-end">
-                                        <h6>Pengalaman
-                                            Kerja Terakhir</h6>
-                                        <div class="col-md-4 col-12">
-                                            <div class="mb-1">
-                                                <label class="form-label"
-                                                    for="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_perusahaan">Perusahaan</label>
-                                                <input type="text" class="form-control"
-                                                    name="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_perusahaan"
-                                                    id="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_perusahaan"
-                                                    aria-describedby="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_perusahaan"
-                                                    placeholder="Nama Perusahaan" />
-                                            </div>
-                                        </div>
+                                    <div class="mb-1 col-md-12">
+                                        <div data-repeater-list="form_pekerjaan_pemohon_pengalaman_kerja_terakhir">
+                                            <div data-repeater-item>
+                                                <div class="row d-flex align-items-end">
+                                                    <h6>Pengalaman
+                                                        Kerja
+                                                        Terakhir</h6>
+                                                    <div class="col-auto col-md-4">
+                                                        <div class="mb-1">
+                                                            <label class="form-label"
+                                                                for="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_perusahaan">Perusahaan</label>
+                                                            <input type="text" class="form-control"
+                                                                name="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_perusahaan"
+                                                                id="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_perusahaan"
+                                                                aria-describedby="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_perusahaan"
+                                                                placeholder="Nama Perusahaan" />
+                                                        </div>
+                                                    </div>
 
-                                        <div class="col-md-4 col-12">
-                                            <div class="mb-1">
-                                                <label class="form-label"
-                                                    for="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_jabatan">Jabatan</label>
-                                                <input type="text" class="form-control"
-                                                    name="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_jabatan"
-                                                    id="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_jabatan"
-                                                    aria-describedby="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_jabatan"
-                                                    placeholder="Jabatan" />
-                                            </div>
-                                        </div>
+                                                    <div class="col-auto col-md-2">
+                                                        <div class="mb-1">
+                                                            <label class="form-label"
+                                                                for="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_jabatan">Jabatan</label>
+                                                            <input type="text" class="form-control"
+                                                                name="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_jabatan"
+                                                                id="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_jabatan"
+                                                                aria-describedby="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_jabatan"
+                                                                placeholder="Jabatan" />
+                                                        </div>
+                                                    </div>
 
-                                        <div class="col-md-1 col-12">
-                                            <div class="mb-1">
-                                                <label class="form-label"
-                                                    for="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_tahun">Lama
-                                                    Kerja</label>
-                                                <input type="number" class="form-control"
-                                                    name="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_tahun"
-                                                    id="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_tahun"
-                                                    aria-describedby="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_tahun"
-                                                    placeholder="Tahun" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1 col-12">
-                                            <div class="mb-1">
-                                                <input type="number" class="form-control"
-                                                    name="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_bulan"
-                                                    id="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_bulan"
-                                                    aria-describedby="form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_bulan"
-                                                    placeholder="Bulan" />
-                                            </div>
+                                                    <div class="row col-auto" style="margin-bottom: 15px;">
+                                                        <div class="col-auto col-md-6">
+                                                            <label class="form-label"
+                                                                for="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_tahun">Lama
+                                                                Kerja</label>
+                                                            <input type="number" class="form-control"
+                                                                name="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_tahun"
+                                                                id="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_tahun"
+                                                                aria-describedby="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_tahun"
+                                                                placeholder="Tahun" />
+                                                        </div>
+                                                        <div class="col-auto" style="margin-top: 32px;">
+                                                            <span class="form-text-beside">Tahun</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row col-auto"
+                                                        style="margin-bottom: 17px; margin-left:-100px;">
+                                                        <div class="col-auto col-md-6">
+                                                            <label class="form-label"
+                                                                for="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_bulan">
+                                                            </label>
+                                                            <input type="number" class="form-control"
+                                                                name="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_bulan"
+                                                                id="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_bulan"
+                                                                aria-describedby="form_pekerjaan_pemohon_pengalaman_kerja_terakhir_bulan"
+                                                                placeholder="Bulan" />
+                                                        </div>
+                                                        <div class="col-auto" style="margin-top: 29px;">
+                                                            <span class="form-text-beside">Bulan</span>
+                                                        </div>
+                                                    </div>
 
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -3898,6 +4016,8 @@
 
                     document.getElementById("ifMenikah").classList.toggle("hide"),
                     ifMenikah.classList.add("row"),
+                    document.getElementById("fotoPasanganPemohon").removeAttribute("disabled"),
+                    document.getElementById("kategoriPasanganPemohon").removeAttribute("disabled"),
 
                     document.getElementById("ifISMHeader").classList.toggle("hide"),
                     ifISMHeader.classList.add("content-header"),
@@ -3907,6 +4027,8 @@
             } else {
                 document.getElementById("ifMenikahHeader").classList = "hide",
                     document.getElementById("ifMenikah").classList = "hide",
+                    document.getElementById("fotoPasanganPemohon").setAttribute("disabled", "disabled"),
+                    document.getElementById("kategoriPasanganPemohon").setAttribute("disabled", "disabled"),
                     document.getElementById("ifISMHeader").classList = "hide",
                     document.getElementById("ifISM").classList = "hide";
             }
