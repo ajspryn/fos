@@ -933,12 +933,12 @@
                                                             $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
                                                             $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                             }
-                                                            
+
                                                             // $waktu_mulai=Carbon\Carbon::parse($timelines[$arr]->created_at);
                                                             // $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
                                                             // $selisih=$waktu_mulai->diffAsCarbonInterval($waktu_selesai);
 
-                                                            
+
 
                                                             // ddd($selisih);
                                                             @endphp
@@ -954,7 +954,7 @@
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
                                                                             <span
-                                                                                class="timeline-event-time" style="text-align: right">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }} 
+                                                                                class="timeline-event-time" style="text-align: right">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}
                                                                                 <br>{{ $timeline->created_at->isoformat('HH:mm:ss') }}
                                                                             </span>
                                                                         </div>
@@ -1089,6 +1089,7 @@
                 </div>
                 <!--/ ideb  -->
 
+                @if($konfirmasi)
                 <!-- ideb  -->
                 <div class="modal fade" id="konfirmasibendahara" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
@@ -1108,6 +1109,7 @@
                         </div>
                     </div>
                     <!--/ ideb  -->
+                    @endif
                     <!-- jaminan  -->
                     <div class="modal fade" id="iii" tabindex="-1" aria-labelledby="addNewCardTitle"
                         aria-hidden="true">
