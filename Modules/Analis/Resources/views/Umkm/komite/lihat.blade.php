@@ -1034,7 +1034,9 @@
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
                                                                             <span
-                                                                            class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
+                                                                            class="timeline-event-time" style="text-align: right">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }} 
+                                                                            <br>{{ $timeline->created_at->isoformat('HH:mm:ss') }}
+                                                                        </span>
                                                                         </div>
                                                                         @if ($timeline->catatan)
                                                                             <p value="{{ $timeline->id }}"> <br>Catatan :

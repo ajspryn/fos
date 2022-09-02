@@ -69,7 +69,6 @@ class UmkmKomiteController extends Controller
             'user_id'=>Auth::user()->id,
             'jabatan_id'=>4,
             'divisi_id'=>null,
-
         ]);
 
         return redirect('/dirbis/umkm/komite')->with('success', 'Pengajuan Berhasil Diproses');

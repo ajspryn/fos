@@ -222,6 +222,9 @@ class PprKomiteController extends Controller
 
             //SLA
             'totalwaktu' => $totalwaktu,
+            'arr'=>-2,
+            'banyak_history'=>PprPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->count(),
+
         ]);
 
         return redirect('/analis/ppr/komite/')->with('success', 'Proposal Berhasil Disetujui');
