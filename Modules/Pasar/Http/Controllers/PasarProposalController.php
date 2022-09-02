@@ -145,6 +145,7 @@ class PasarProposalController extends Controller
                 'suku_bangsa_id'=>$request->suku_bangsa_id,
                 'kepala_pasar_id'=>$request->kepala_pasar_id,
 
+
             ]);
 
             $role=role::select()->where('user_id', Auth::user()->id)->get()->first();

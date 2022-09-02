@@ -601,12 +601,16 @@
                                                 </small>Upload Jaminan Utama</label>
                                             <input type="file" name="dokumenktb" id="dokumenktb" rows="3"
                                                 class="form-control" required />
+                                            <input type="hidden" id="EditUserFirstName" name="dokumenlama"
+                                                value="{{ $jaminanutama->dokumenktb }}" class="form-control" />   
                                         </div>
                                         
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="dokumen_jaminan">Upload Jaminan Lainnya</label>
                                             <input type="file" name="dokumen_jaminan" id="dokumen_jaminan"
                                                 rows="3" class="form-control">
+                                                <input type="hidden" id="EditUserFirstName" name="dokumenjaminanlama"
+                                                value="{{ $jaminanlain->dokumen_jaminan }}" class="form-control" /> 
                                         </div>
 
                                     </div>
@@ -899,8 +903,9 @@
                                             <label class="form-label" for="dokumen_keuangan"><small
                                                     class="text-danger">*</small>Upload IDEB</label>
                                             <input type="file" name="dokumen_keuangan" id="dokumen_keuangan"
-                                                rows="3"class="form-control" required />
-
+                                                rows="3"class="form-control">
+                                                <input type="hidden" id="EditUserFirstName" name="dokumen_keuangan_lama"
+                                                value="{{ $pembiayaan->dokumen_keuangan }}" class="form-control" />
                                         </div>
 
                                     </div>

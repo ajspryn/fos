@@ -10,7 +10,6 @@ $notif_proposal = Modules\Skpd\Entities\SkpdPembiayaan::select()
     ->get()
     ->count();
 $revisi = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-
     ->where('status_id', 7)
     ->get()
     ->count();

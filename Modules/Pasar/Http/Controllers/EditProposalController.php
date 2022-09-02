@@ -95,6 +95,8 @@ class EditProposalController extends Controller
             'fotokk' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
             'fototoko' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto toko')->get()->first(),
             'usahas' => PasarKeteranganUsaha::all(), //udah
+            'jaminanutama' => PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first(), //udah
+            'jaminanlain' => PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get()->first(), //udah
             'akads' => PasarAkad::all(),
             'sektors' => PasarSektorEkonomi::all(),
             'pasars' => PasarJenisPasar::all(),
@@ -160,6 +162,16 @@ class EditProposalController extends Controller
                 'aset' => $request->aset,
             ]);
 
+            if ($request->file('dokumen_keuangan')) {
+                if ($request->dokumen_keuangan_lama) {
+                    Storage::delete($request->dokumen_keuangan_lama);
+                }
+                $dokumen_keuangan=$request->file('dokumen_keuangan')->store('pasar-dokumen-keuangan');
+                PasarPembiayaan::where('id',$id)->update([
+                        'dokumen_keuangan' => $dokumen_keuangan,
+                    ]);
+            }
+
             PasarNasabahh::where('id',$id)->update([
                 'id' => $id,
                 'nama_nasabah' => $request->nama_nasabah,
@@ -191,17 +203,28 @@ class EditProposalController extends Controller
             ]);
 
 
-            $dokumenktb = $request->file('dokumenktb')->store('pasar-dokumen-ktb');
-
             PasarJaminan::where('pasar_pembiayaan_id',$id)->update([
                 'pasar_pembiayaan_id'=> $id,
-                'no_ktb'=> $request ->no_ktb,
-                'dokumenktb'=> $dokumenktb,   
+                'no_ktb'=> $request ->no_ktb,  
                 'jaminanlain'=> $request ->jaminanlain,
             ]);
 
+            if ($request->file('dokumenktb')) {
+                if ($request->dokumenlama) {
+                    Storage::delete($request->dokumenlama);
+                }
+                $dokumenktb = $request->file('dokumenktb')->store('pasar-dokumen-ktb');
 
-            if($request->file('dokumen_jaminan')){
+                PasarJaminan::where('pasar_pembiayaan_id',$id)->update([
+                    'dokumenktb'=> $dokumenktb,
+                ]);
+            }
+           
+            if ($request->file('dokumen_jaminan')) {
+                if ($request->dokumenjaminanlama) {
+                    Storage::delete($request->dokumenjaminanlama);
+                }
+
                 $dokumen_jaminan=$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminan');
                 PasarJaminanLain::create([
                     'pasar_pembiayaan_id'=> $id,

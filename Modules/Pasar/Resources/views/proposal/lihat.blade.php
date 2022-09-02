@@ -443,7 +443,7 @@
                                             <label class="form-label" for="keptoko"><small class="text-danger">*
                                                 </small>Kepemilikan Kios / Los</label>
                                             <select class="select2 w-100" name="kep_toko_id" id="keptoko" disabled>
-                                                <option value="{{ $pembiayaan->keteranganusaha->id }}">
+                                                <option>
                                                     {{ $pembiayaan->keteranganusaha->kep_toko_id }}</option>
                                             </select>
                                         </div>

@@ -5,12 +5,30 @@ $notif_proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
     ->where('sektor_id', null)
     ->get()
     ->count();
-$notif_revisi = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('user_id', Auth::user()->id)
-    ->where('status_id', 7)
+// $notif_revisi = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+//     ->where('user_id', Auth::user()->id)
+//     ->where('status_id', 7)
+//     ->get()
+//     ->count();
+
+$komites = Modules\Pasar\Entities\PasarPembiayaanHistory::select()->where('status_id', 7)->get();
+$notif_revisi=0;
+foreach ($komites as $komite) {
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+    ->where('id', $komite->pasar_pembiayaan_id)
+    ->get()
+    ->first();
+
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    ->where('pasar_pembiayaan_id', $proposal_pasar->id)
     ->orderby('created_at', 'desc')
     ->get()
-    ->count();
+    ->first();
+    if ($history->status_id ==7) {
+        $notif_revisi++;
+    }
+}
+
 @endphp
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
