@@ -80,7 +80,7 @@ class UmkmKomiteController extends Controller
         }
 
 
-        return redirect('/umkm/komite')->with('success', 'Pengajuan Diproses AO');
+        return redirect('/umkm/komite')->with('success', 'Pengajuan Berhasil Diproses AO');
     }
 
     /**
@@ -202,7 +202,7 @@ class UmkmKomiteController extends Controller
             'timelines'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->get(),
             'history'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
             'pembiayaan'=>UmkmPembiayaan::select()->where('id',$id)->get()->first(),
-            'nasabah'=>UmkmNasabah::select()->where('id',$id)->get()->first(),
+            'nasabah'=>UmkmNasabah::select()->where('id',$data->nasabah_id)->get()->first(),
             'fotos'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->get(),
             'fototoko'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
             'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
@@ -255,6 +255,9 @@ class UmkmKomiteController extends Controller
             'score_idir'=>$score_idir *$proses_idir->bobot,
             'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
              
+
+            'arr'=>-2,
+            'banyak_history'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->count(),
             
         ]);
     }

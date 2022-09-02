@@ -122,10 +122,10 @@ class UmkmRevisiController extends Controller
         UmkmPembiayaan::where('id',$id)->update([
             'id'=>$id,
             'tgl_pembiayaan'=> $request ->tgl_pembiayaan,
-            'nasabah_id'=> $id,
             'AO_id'=>$request->AO_id,
             'penggunaan_id'=> $request ->penggunaan_id,
             'tenor'=> $request ->tenor,
+            'rate'=> $request ->rate,
             'nominal_pembiayaan'=>str_replace(",","", $request ->nominal_pembiayaan),
             'jaminan_id'=> $id,
             'jaminanlain_id'=> $id,
@@ -145,7 +145,6 @@ class UmkmRevisiController extends Controller
         ]);
 
         UmkmNasabah::where('id',$id)->update([
-            'id'=>$id,
             'nama_nasabah'=> $request ->nama_nasabah,
             'no_ktp'=> $request ->no_ktp,
             'tmp_lahir'=> $request ->tmp_lahir,
@@ -203,7 +202,7 @@ class UmkmRevisiController extends Controller
 
         UmkmPembiayaanHistory::create([
                 'umkm_pembiayaan_id'=> $id,
-                'status_id'=> 7,
+                'status_id'=> 2,
                 'user_id'=> null,
                 'jabatan_id'=>1,
                 'divisi_id'=>null
@@ -221,10 +220,10 @@ class UmkmRevisiController extends Controller
             'foto_id'=>$id,
         ]);
 
-        $request->validate([
-            'foto.*.kategori'=>'required',
-            'foto.*.foto'=>'required',
-        ]);
+        // $request->validate([
+        //     'foto.*.kategori'=>'required',
+        //     'foto.*.foto'=>'required',
+        // ]);
         
         foreach($request->foto as $key => $value){
             if($value['foto']){
@@ -237,21 +236,29 @@ class UmkmRevisiController extends Controller
             ]);
         }
 
-          // return $value;
-          UmkmSlik::where('umkm_pembiayaan_id',$id)->update([
-            'pasar_pembiayaan_id' => $id,
-            'nama_bank' => $value['nama_bank'],
-            'plafond' => $value['plafond'],
-            'outstanding' => $value['outstanding'],
-            'tenor' => $value['tenor'],
-            'margin' => $value['margin'],
-            'angsuran' => $value['angsuran'],
-            'agunan' => $value['agunan'],
-            'kol' => $value['kol'],
-        ]);
+        if ($request->slik[0]['nama_bank']){
+
+            // return $request->slik[0]['nama_bank'];
+            foreach ($request->slik as $key => $value) {
+
+
+            // return $value;
+            UmkmSlik::where('id',$id)->update([
+                'umkm_pembiayaan_id'=>$id,
+                'nama_bank'=> $value['nama_bank'],
+                'plafond'=> $value['plafond'],
+                'outstanding'=> $value['outstanding'],
+                'tenor'=> $value['tenor'],
+                'margin'=> $value['margin'],
+                'angsuran'=> $value['angsuran'],
+                'agunan'=> $value['agunan'],
+                'kol'=> $value['kol'],
+            ]);
+        }
+    }
     
         
-        return redirect('/')->with('success', 'Data Umkm Berhasil Ditambahkan');
+        return redirect('/umkm/komite/'.$id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
     }
 
     /**

@@ -278,7 +278,9 @@ class UmkmKomiteController extends Controller
                  
 
              //SLA
-             'totalwaktu'=>$totalwaktu
+             'totalwaktu'=>$totalwaktu,
+             'arr'=>-2,
+             'banyak_history'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->count(),
 
                 
             ]);

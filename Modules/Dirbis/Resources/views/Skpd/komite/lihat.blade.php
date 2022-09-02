@@ -815,6 +815,24 @@
                                                     <div class="card-body">
                                                         <ul class="timeline">
                                                             @foreach ($timelines as $timeline)
+                                                            @php
+
+                                                            $arr=$loop->iteration;
+                                                            if ($arr== -2) {
+                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
+                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
+                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                            }elseif ($arr== $banyak_history) {
+                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
+                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
+                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                            }elseif ($arr>=0) {
+                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[$arr]->created_at);
+                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
+                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                            }
+                                 
+                                                            @endphp
                                                                 <li class="timeline-item">
                                                                     <span
                                                                         class="timeline-point timeline-point-success timeline-point-indicator"></span>
@@ -836,8 +854,12 @@
                                                                         <p>
 
                                                                     @endif
-                                                                        <span
-                                                                            class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
+                                                                    @if($arr==-1)
+                                                                                @else
+                                                                                <span class="timeline-event-time" >Waktu Diproses : {{ $selisih }}</span>
+                                                                        @endif
+                                                                        {{-- <span
+                                                                            class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span> --}}
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
                                                                         <div class="d-flex flex-row align-items-center">
 

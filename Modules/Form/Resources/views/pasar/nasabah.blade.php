@@ -102,7 +102,7 @@
                                         <label class="form-label" for="numeral-formatting"><small class="text-danger">*
                                             </small>Nominal Pembiayaan</label>
                                         <input type="text" class="form-control numeral-mask1" placeholder="Rp."
-                                            name="harga" id="harga">
+                                            name="harga" id="harga" required/>
                                     </div>
                                 </div>
                                 <div class="content-header">

@@ -40,7 +40,7 @@ class PasarKomiteController extends Controller
      */
     public function index()
     {
-        $komite=PasarPembiayaan::select()->orderby('created_at','desc')->get();
+        $komite=PasarPembiayaan::select()->orderby('updated_at','desc')->get();
         return view('dirbis::pasar.komite.index',[
             'title'=>'Data Nasabah',
             'komites'=>$komite,
@@ -294,6 +294,8 @@ class PasarKomiteController extends Controller
 
              //perhitunganSLA
              'totalwaktu'=>$totalwaktu,
+             'arr'=>-2,
+             'banyak_history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->count(),
         ]);
 }
 

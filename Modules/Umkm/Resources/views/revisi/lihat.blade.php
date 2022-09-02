@@ -101,8 +101,10 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="akad">Sektor Ekonomi</label>
+                                            <label class="form-label" for="akad"><small
+                                                class="text-danger">* </small> Sektor Ekonomi</label>
                                             <select class="select2 w-100" name="sektor_id" id="sektor_id" required>
+                                                <option >{{ $pembiayaan->sektor->nama_sektor_ekonomi }}</option>
                                                 <option label="akad">Pilih Sektor</option>
                                                 @foreach ($sektors as $sektor)
                                                     <option value="{{ $sektor->kode_sektor_ekonomi }}">
@@ -111,8 +113,10 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="akad">Akad</label>
+                                            <label class="form-label" for="akad"><small
+                                                class="text-danger">* </small> Akad</label>
                                             <select class="select2 w-100" name="akad_id" id="akad" required>
+                                                <option >{{ $pembiayaan->akad->nama_akad }}</option>
                                                 <option label="akad">Pilih Jenis Akad</option>
                                                 @foreach ($akads as $akad)
                                                     <option value="{{ $akad->kode_akad }}">{{ $akad->nama_akad }}
@@ -121,21 +125,30 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="harga"><small class="text-danger">*
+                                            <label class="form-label" for="numeral-formatting"><small class="text-danger">*
                                                 </small>Nominal Pembiayaan</label>
-                                            <input type="text" name="harga" class="form-control numeral-mask4"
-                                                placeholder="Rp." id="harga" value="{{ $pembiayaan->harga }}"
-                                                required />
+                                            <input type="text" class="form-control numeral-mask3" placeholder="Rp."
+                                                name="nominal_pembiayaan" id="omset" value="{{ number_format( $pembiayaan->nominal_pembiayaan) }}" required>
                                         </div>
                                         <div class="mb-1 col-md-4">
                                             <label class="form-label" for="tenor"><small class="text-danger">*
                                                 </small>Tenor</label>
                                             <select class="select2 w-100" name="tenor" id="tenor" required>
-                                                <option label="tenor"> Pilih Tenor</option>
+                                                <option >{{ $pembiayaan->tenor }}</option>
+                                                <option label="tenor"></option>
                                                 <option value="3">3 Bulan</option>
+                                                <option value="4">4 Bulan</option>
+                                                <option value="5">5 Bulan</option>
                                                 <option value="6">6 Bulan</option>
+                                                <option value="7">7 Bulan</option>
+                                                <option value="8">8 Bulan</option>
+                                                <option value="9">9 Bulan</option>
+                                                <option value="10">10 Bulan</option>
+                                                <option value="11">11 Bulan</option>
                                                 <option value="12">12 Bulan</option>
+                                                <option value="12">18 Bulan</option>
                                                 <option value="24">24 Bulan</option>
+                                                <option value="36">36 Bulan</option>
                                                 <option value="48">48 Bulan</option>
                                                 <option value="60">60 Bulan</option>
                                             </select>
@@ -144,7 +157,7 @@
                                             <label class="form-label" for="harga"><small class="text-danger">*
                                                 </small>Equivalen Rate</label>
                                             <input type="text" name="rate" class="form-control numeral-mask4"
-                                                placeholder="%" id="rate" required />
+                                                placeholder="%" id="rate"  value ="{{ $pembiayaan->rate }}"required />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="akad">Cash Pick Up</label>
@@ -160,6 +173,7 @@
                                             <label class="form-label" for="nasabah"><small class="text-danger">*
                                                 </small>Nasabah</label>
                                             <select class="select2 w-100" name="nasabah" id="nasabah">
+                                                <option>{{ $pembiayaan->jenisnasabah->nama_jenisnasabah }}</option>
                                                 <option label="akad">Pilih Jenis Nasabah</option>
                                                 @foreach ($nasabahs as $nasabah)
                                                     <option value="{{ $nasabah->kode_jenisnasabah }}">
@@ -285,7 +299,7 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="kep_rumah"><small class="text-danger">*
                                                 </small>Kepemilikan Rumah</label>
-                                            <select class="select2 w-100" name="kepemilikan_rumah" id="kep_rumah"
+                                            <select class="select2 w-100" name="kepemilikan_rumah" id="kep_rumah" name="kep_toko_id"
                                                 required>
                                                 <option label="kep_rumah">Pilih Kepemilikan Rumah</option>
                                                 <option>Milik Sendiri</option>
@@ -510,9 +524,9 @@
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="lamausaha"> </small>Alamat Usaha</label>
-                                            <input type="text" name="alamat" id="alamat" class="form-control"
+                                            <input type="text" name="alamatusaha" id="alamat" class="form-control"
                                                 placeholder="Alamat Usaha"
-                                                value="{{ $pembiayaan->keteranganusaha->alamat }}" required>
+                                                value="{{ $pembiayaan->keteranganusaha->alamatusaha }}" required>
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="legalitastoko"><small class="text-danger">*
@@ -541,6 +555,16 @@
                                     <div class="row">
                                         <small>Jaminan Utama</small>
                                         <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="jaminanlain"><small class="text-danger">*
+                                            </small>Pilih Jaminan</label>
+                                            <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
+                                                @foreach ($jaminans as $jaminan)
+                                                    <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="lamausaha"></small>No KTB</label>
                                             <input type="text" name="no_ktb" id="lamausaha" class="form-control"
                                                 placeholder="Masukan No KTB"
@@ -548,22 +572,11 @@
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="SHPB"> <small class="text-danger">*
-                                                </small>Upload Jaminan KTB</label>
+                                                </small>Upload Jaminan Utama</label>
                                             <input type="file" name="dokumenktb" id="dokumenktb" rows="3"
                                                 class="form-control" required />
                                         </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="jaminanlain"><small class="text-danger">*
-                                            </small>Jaminan Lainnya</label>
-                                            <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
-
-                                                <option label="jaminanlain">Pilih Jaminan</option>
-                                                @foreach ($jaminans as $jaminan)
-                                                    <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                       
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="dokumen_jaminan"><small class="text-danger">*
                                             </small>Upload Jaminan Lainnya</label>
@@ -777,12 +790,7 @@
                                                 id="kebkeluarga" value="{{ $pembiayaan->keterangan_keb_keluarga }}"
                                                 required>
                                         </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="aset">Aset / Harta Benda</label>
-                                            <input type="text" name="aset" id="aset" class="form-control"
-                                                placeholder="Masukan Kepemilikkan Aset" value="{{ $pembiayaan->aset }}"
-                                                required>
-                                        </div>
+                                       
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"><small
                                                     class="text-danger">*</small>Kesanggupan Angsuran</label>

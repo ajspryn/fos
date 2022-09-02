@@ -57,6 +57,7 @@ return new class extends Migration
             $table->string('form_pribadi_pemohon_status_tempat_tinggal_dijaminkan')->nullable();
             $table->string('form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada')->nullable();
             $table->string('form_pribadi_pemohon_alamat_korespondensi')->nullable();
+            $table->string('foto_id')->nullable();
 
             //Istri/suami pemohon
             $table->string('form_pribadi_istri_suami_nama_lengkap')->nullable();

@@ -62,7 +62,7 @@ return new class extends Migration
             $table->integer('form_permohonan_uang_muka_dana_sendiri');
             $table->integer('form_permohonan_nilai_hpp')->nullable();
             $table->integer('form_permohonan_harga_jual')->nullable();
-            $table->integer('form_permohonan_jangka_waktu_ppr');
+            $table->string('form_permohonan_jangka_waktu_ppr');
             $table->string('form_permohonan_peruntukan_ppr');
             $table->integer('form_permohonan_jml_margin')->nullable();
             $table->integer('form_permohonan_jml_sewa')->nullable();

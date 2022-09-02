@@ -5,10 +5,16 @@ $proposal = Modules\Form\Entities\FormPprPembiayaan::select()
     ->get()
     ->first();
 
-$notif_proposal = Modules\Form\Entities\FormPprPembiayaan::select()
+$proposalppr = Modules\Form\Entities\FormPprPembiayaan::select()
     ->where('user_id', Auth::user()->id)
     ->whereNull('form_cl')
     ->orWhereNull('form_score')
+    ->get()
+    ->count();
+
+$komiteppr = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    ->where('user_id', Auth::user()->id)
+    ->where('status_id', 2)
     ->get()
     ->count();
 
@@ -16,21 +22,6 @@ $notif_proposal = Modules\Form\Entities\FormPprPembiayaan::select()
 //     ->where('id', $id)
 //     ->get()
 //     ->first();
-
-$komite = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-    ->where('status_id', 3)
-    ->get();
-
-// $notif_komite = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-//     ->where(['form_ppr_pembiayaan_id', $pembiayaan], ['status_id', 3])
-//     ->count();
-
-$notif_komite = Modules\Ppr\Entities\PprPembiayaanHistory::groupBy('form_ppr_pembiayaan_id')
-    ->latest()
-    ->where('user_id', Auth::user()->id)
-    ->having('status_id', 2)
-    ->get()
-    ->count();
 
 // $notif_komite = DB::table('ppr_pembiayaan_histories')
 //     ->groupBy('form_ppr_pembiayaan_id')
@@ -102,21 +93,32 @@ $revisi = Modules\Ppr\Entities\PprPembiayaanHistory::select()
             </li>
             <li class="{{ Request::is('ppr/komite*') ? 'active' : 'nav-item' }} "><a class="d-flex align-items-center"
                     href="/ppr/komite"><i data-feather="file-text"></i><span class="menu-title text-truncate"
-                        data-i18n="home">Komite</span><span
-                        class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_komite }}</span></a>
+                        data-i18n="home">Komite</span>
+                    @if ($komiteppr > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteppr }}</span>
+                    @endif
+                </a>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="clipboard"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span></a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('ppr/proposal*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/ppr/proposal"><i data-feather="clipboard"></i><span
-                                class="menu-title text-truncate" data-i18n="home">Proposal</span><span
-                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal }}</span></a>
+                                class="menu-title text-truncate" data-i18n="home">Proposal</span>
+                            @if ($proposalppr > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
+                            @endif
+                        </a>
                     </li>
                     <li class="{{ Request::is('ppr/revisi*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/ppr/revisi"><i data-feather="circle"></i><span
-                                class="menu-title text-truncate" data-i18n="home">Revisi Proposal</span><span
-                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $revisi }}</span></a>
+                                class="menu-title text-truncate" data-i18n="home">Revisi Proposal</span>
+                            @if ($revisi > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $revisi }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>

@@ -16,7 +16,7 @@
                                 <div class="card-body">
                                     <h2>Berkah, Tumbuh dan Berkelanjutan</h2>
                                     <p class="card-text mb-2">
-                                        <span>Silahkan Pilih Jenis Pinjaman Anda</span>
+                                        <span>Silahkan Pilih Jenis Pembiayaan Anda</span>
                                     </p>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                                     <div class="card-body text-center">
                                         <h4>PPR</h4>
                                         <p class="text-body mt-1 mb-0">
-                                            Deskripsi
+                                            Pembiayaan Pemilikan Rumah
                                         </p>
                                     </div>
                                 </a>

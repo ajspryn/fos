@@ -94,6 +94,7 @@ foreach ($umkms as $umkm) {
         $b++;
     }
 }
+
 $a = 0;
 foreach ($umkms as $umkm) {
     $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
@@ -120,7 +121,7 @@ foreach ($pprs as $ppr) {
         ->orderBy('created_at', 'desc')
         ->get()
         ->first();
-    $proposal_pasar = Modules\Form\Entities\FormPprPembiayaan::select()
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
         ->where('id', $history->form_ppr_pembiayaan_id)
         ->get()
         ->first();
@@ -135,7 +136,7 @@ foreach ($pprs as $ppr) {
         ->orderBy('created_at', 'desc')
         ->get()
         ->first();
-    $proposal_pasar = Modules\Form\Entities\FormPprPembiayaan::select()
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
         ->where('id', $history->form_ppr_pembiayaan_id)
         ->get()
         ->first();
@@ -222,15 +223,16 @@ foreach ($pprs as $ppr) {
                 </ul>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">PASAR</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">PASAR</span>
+                    @if ($data > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/pasar/nasabah') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/pasar/nasabah"><span
                                 class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span>
-                            @if ($data > 0)
-                                <span
-                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
-                            @endif
+
                         </a>
                     </li>
                     <li class="{{ Request::is('analis/pasar/komite') ? 'active' : '' }}"><a

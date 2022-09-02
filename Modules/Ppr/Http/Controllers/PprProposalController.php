@@ -284,6 +284,7 @@ class PprProposalController extends Controller
             ->update([
                 'form_cl' => $request->form_cl,
                 'form_score' => $request->form_score,
+                'form_permohonan_nilai_ppr_dimohon' => $request->form_permohonan_nilai_ppr_dimohon,
                 // 'form_permohonan_jenis_akad_pembayaran' => $request->form_permohonan_jenis_akad_pembayaran,
             ]);
 

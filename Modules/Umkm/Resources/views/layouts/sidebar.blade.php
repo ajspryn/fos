@@ -1,7 +1,31 @@
 <!-- BEGIN: Main Menu-->
-{{-- @php
-    $notif_proposal=Modules\umkm\Entities\pasarPembiayaan::select()->where('user_id',Auth::user()->id)->where('pasar_sektor_ekonomi_id',null)->get()->count();
-@endphp --}}
+@php
+$notif_proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
+    ->where('AO_id', Auth::user()->id)
+    ->where('sektor_id', null)
+    ->get()
+    ->count();
+
+$komites = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+    ->where('status_id', 7)
+    ->get();
+$notif_revisi = 0;
+foreach ($komites as $komite) {
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $komite->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $proposal_umkm->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    if ($history->status_id == 7) {
+        $notif_revisi++;
+    }
+}
+@endphp
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
@@ -35,16 +59,31 @@
                         data-i18n="home">Komite</span></a>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="clipboard"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span>
+                    @if ($notif_proposal + $notif_revisi > 0)
+                        <span
+                            class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal + $notif_revisi }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('umkm/proposal*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/umkm/proposal"><i
                                 data-feather="clipboard"></i><span class="menu-title text-truncate"
-                                data-i18n="home">Proposal</span></a>
+                                data-i18n="home">Proposal</span>
+                            @if ($notif_proposal > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal }}</span>
+                            @endif
+                        </a>
                     </li>
                     <li class="{{ Request::is('umkm/revisi*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/umkm/revisi"><i data-feather="circle"></i><span
-                                class="menu-title text-truncate" data-i18n="home">Revisi Proposal</span></a>
+                                class="menu-title text-truncate" data-i18n="home">Revisi Proposal</span>
+                            @if ($notif_revisi > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_revisi }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>

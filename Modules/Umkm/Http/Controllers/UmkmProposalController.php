@@ -22,6 +22,7 @@ use Modules\Admin\Entities\PasarSukuBangsa;
 use Modules\Admin\Entities\PasarTanggungan;
 use Modules\Umkm\Entities\UmkmFoto;
 use Modules\Umkm\Entities\UmkmKeteranganUsaha;
+use Modules\Umkm\Entities\UmkmLegalitasRumah;
 use Modules\Umkm\Entities\UmkmNasabah;
 use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 use Modules\Umkm\Entities\UmkmSlik;
@@ -86,15 +87,12 @@ class UmkmProposalController extends Controller
             'jaminans'=>PasarJenisJaminan::all(),
             'nasabahs'=>PasarJenisNasabah::all(),
             'sukus'=>PasarSukuBangsa::all(),
-            'sektors'=>PasarSektorEkonomi::all(),
             'pasars'=>PasarJenisPasar::all(),
-            'lamas'=>PasarLamaBerdagang::all(),
-            'rumahs'=>PasarJaminanRumahh::all(),
             'dagangs'=>PasarJenisDagang::all(),
             'aos'=>Role::select()->where('jabatan_id',1)->get(),
             'tanggungans'=>PasarTanggungan::all(),
             'statuss'=>PasarStatusPerkawinan::all(),
-            'jaminans'=>PasarJenisJaminan::all(),
+            'rumah'=>UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id',$pembiayaan->umkm_legalitas_rumah_id)->get()->first(),
         ]);
     }
 
@@ -128,7 +126,7 @@ class UmkmProposalController extends Controller
                             'nominal_pembiayaan'=>str_replace(",","",$request->nominal_pembiayaan),
                             'cashpickup'=>$request->cashpickup,
                             'nasabah'=>$request->nasabah,
-                            'rate'=>$request->nasabah,
+                            'rate'=>$request->rate,
                             'dokumen_keuangan'=>$dokumen_keuangan,
                         ]);
         UmkmNasabah::where('id',$id)

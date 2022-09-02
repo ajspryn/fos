@@ -16,6 +16,7 @@ use Modules\Admin\Entities\PasarPenggunaan;
 use Modules\Admin\Entities\PasarSektorEkonomi;
 use Modules\Admin\Entities\PasarStatusPerkawinan;
 use Modules\Admin\Entities\PasarTanggungan;
+use Modules\Pasar\Entities\PasarKeteranganUsaha;
 use Modules\Umkm\Entities\UmkmFoto;
 use Modules\Umkm\Entities\UmkmJaminan;
 use Modules\Umkm\Entities\UmkmJaminanLain;
@@ -209,9 +210,18 @@ class FormulirUmkmController extends Controller
      * @return Renderable
      */
     public function edit($id)
-    {
+    {   $pembiayaan=UmkmPembiayaan::select()->where('id',$id)->get()->first();
         return view('form::umkm.nasabah',[
-            
+            'title'=>'Form Pasar',
+            'pembiayaan'=>UmkmPembiayaan::select()->where('id',$id)->get()->first(),
+            'nasabah'=>UmkmNasabah::select()->where('id',$pembiayaan->id)->get()->first(),
+            'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+            'fotoktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotodiribersamaktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
+            'fotokk'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'fototoko'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
+            'usahas'=>PasarKeteranganUsaha::all(), //udah
+            'aos'=>Role::select()->where('jabatan_id',1)->get(),
             'akads'=>PasarAkad::all(),
             'penggunaans'=>PasarPenggunaan::all(),
             'sektors'=>PasarSektorEkonomi::all(),
@@ -262,7 +272,7 @@ class FormulirUmkmController extends Controller
             'keterangan_keb_keluarga'=>$request->keterangan_keb_keluarga,
         ]);
 
-        UmkmNasabah::create([
+        UmkmNasabah::where('id', $id)->update([
             'id'=>$id,
             'nama_nasabah'=> $request ->nama_nasabah,
             'no_ktp'=> $request ->no_ktp,

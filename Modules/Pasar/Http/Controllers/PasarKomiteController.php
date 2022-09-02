@@ -227,7 +227,7 @@ class PasarKomiteController extends Controller
             'timelines'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->get(),
             'history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
             'pembiayaan'=>PasarPembiayaan::select()->where('id',$id)->get()->first(),
-            'nasabah'=>PasarNasabahh::select()->where('id',$id)->get()->first(),
+            'nasabah'=>PasarNasabahh::select()->where('id',$data->nasabah_id)->get()->first(),
             'fotos'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->get(),
             'fototoko'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
             'fotodiri'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
@@ -289,6 +289,8 @@ class PasarKomiteController extends Controller
 
             //SLA
             'totalwaktu'=>$totalwaktu,
+            'arr'=> -2,
+            'banyak_history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->count(),
 
 
         ]);

@@ -612,6 +612,12 @@
                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
                                                 @if ($history->status_id == 4 && $history->jabatan_id == 4)
                                                     @if ($nilai_idir >= 80 || $nilai_idir < 0)
+                                                    <div class="card-body">
+                                                        <button class="btn btn-success w-100 mb-75"
+                                                            data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                            Disetujui
+                                                        </button>
+                                                    </div>
                                                         <div class="card-body">
                                                             <button class="btn btn-warning w-100 mb-75"
                                                                 data-bs-toggle="modal"
@@ -631,7 +637,7 @@
                                                             <div class="card-body">
                                                                 <button class="btn btn-success w-100 mb-75"
                                                                     data-bs-toggle="modal"data-bs-target="#lanjut_komite">
-                                                                    Lanjut Komite
+                                                                    Disetujui
                                                                 </button>
                                                             </div>
                                                             <div class="card-body">
@@ -991,6 +997,24 @@
                                                     <div class="card-body">
                                                         <ul class="timeline">
                                                             @foreach ($timelines as $timeline)
+                                                            @php
+
+                                                            $arr=$loop->iteration;
+                                                            if ($arr== -2) {
+                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
+                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
+                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                            }elseif ($arr== $banyak_history) {
+                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
+                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
+                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                            }elseif ($arr>=0) {
+                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[$arr]->created_at);
+                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
+                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                            }
+                           
+                                                            @endphp
                                                                 <li class="timeline-item">
                                                                     <span
                                                                         class="timeline-point timeline-point-success timeline-point-indicator"></span>
@@ -1010,8 +1034,12 @@
                                                                                 {{ $timeline->catatan }}
                                                                             <p>
                                                                         @endif
-                                                                        <span
-                                                                            class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
+                                                                        @if($arr==-1)
+                                                                        @else
+                                                                        <span class="timeline-event-time" >Waktu Diproses : {{ $selisih }}</span>
+                                                                @endif
+                                                                        {{-- <span
+                                                                            class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span> --}}
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
                                                                         <div class="d-flex flex-row align-items-center">
 
