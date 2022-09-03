@@ -1,6 +1,6 @@
 @extends('analis::layouts.main')
 @php
-    $diterima = Modules\UMKM\Entities\UmkmPembiayaanHistory::select()
+    $diterima = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
     ->where('status_id',5)
     ->where('jabatan_id', 4)
     ->get()
@@ -120,7 +120,7 @@ foreach ($umkms as $umkm) {
                         </div>
                         <!--/ Statistics Card -->
                     </div>
-{{-- 
+{{--
                     <div class="row">
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
