@@ -82,7 +82,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jenispenggunaan"><small class="text-danger">* </small>Jenis Penggunaan</label>
                                         <select class="select2 w-100" name="penggunaan_id" id="jenispenggunaan" disabled>
-                                            <option value="{{ $pembiayaan->id }}">{{ $pembiayaan->penggunaan_id}}</option>
+                                            <option >{{ $pembiayaan->penggunaan_id}}</option>
                                         </select>
                                     </div>
                                     <div class="mb-1 col-md-6">
@@ -417,8 +417,9 @@
                                         </select>
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="alamatusaha"> </small>Alamat Usaha</label>
-                                        <input type="text" name="alamatusaha" id="alamatusaha" class="form-control" placeholder="Masukan Alamat Usaha" >
+                                        <label class="form-label" for="alamatusaha"><small class="text-danger">*
+                                        </small> Alamat Usaha</label>
+                                        <input type="text" name="alamatusaha" id="alamatusaha" class="form-control" placeholder="Masukan Alamat Usaha" required/>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="legalitastoko"><small class="text-danger">* </small>Legalitas Kepemilikan Kios / Los</label>
@@ -648,6 +649,131 @@
                                         </div>
                                     </div>
                             </section>
+                             <small><br> Informasi Debitur Pasangan</small>
+                                    <section id="form-repeater">
+                                        <div class="row">
+                                            <div class="mb-1 col-md-12">
+                                                <div class="repeater-default">
+                                                    <div data-repeater-list="slikpasangan">
+                                                        <div data-repeater-item>
+                                                            <div class="row d-flex align-items-end">
+                                                                <div class="col-md-2 col-12">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="nama_bank">Nama
+                                                                            Bank</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="nama_bank" id="nama_bank"
+                                                                            aria-describedby="nama_bank"
+                                                                            placeholder="Nama Bank" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-2 col-12">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="plafond">Plafond</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="plafond" id="plafond"
+                                                                            aria-describedby="itemcost"
+                                                                            placeholder="Rp." />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-2 col-12">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="outstanding">Outstanding</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="outstanding" id="outstanding"
+                                                                            aria-describedby="outstanding"
+                                                                            placeholder="Rp." />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-1 col-8">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="tenor">Tenor</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="tenor" id="tenor"
+                                                                            aria-describedby="tenor"
+                                                                            placeholder="tenor" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-1 col-8">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="margin">Margin</label>
+                                                                        <input type="number" class="form-control persen"
+                                                                            name="margin" id="margin"
+                                                                            aria-describedby="margin" placeholder="%" />
+                                                                    </div>
+                                                                </div>
+
+                                                                {{-- <div class="col-md-1 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label" for="itemquantity">Angsuran</label>
+                                                                    <input type="number" class="form-control" name="angsuran" id="angsuran" aria-describedby="itemquantity" placeholder="1"/>
+                                                                </div>
+                                                            </div> --}}
+
+                                                                <div class="col-md-1 col-8">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="itemquantity">Agunan</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="agunan" id="agunan"
+                                                                            aria-describedby="itemquantity" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-2 col-12">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="angsuran">Angsuran</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="angsuran" id="angsuran"
+                                                                            aria-describedby="angsuran"
+                                                                            placeholder="Rp." />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-1 col-2">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="angsuran">Kol</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="kol" id="kol"
+                                                                            aria-describedby="angsuran"
+                                                                            placeholder="Rp." />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-1 col-12 mb-25">
+                                                                    <div class="mb-1">
+                                                                        <button
+                                                                            class="btn btn-outline-danger text-nowrap px-1"
+                                                                            data-repeater-delete type="button">
+                                                                            <i data-feather="x" class="me-25"></i>
+                                                                            {{-- <span>Delete</span> --}}
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1 col-12">
+                                                        <a data-repeater-create class="btn btn-icon btn-primary"
+                                                            type="button">
+                                                            <i data-feather="plus" class="me-30"></i>
+                                                            <span>Tambah</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </section>
                             <div class="row">
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"><small
@@ -682,6 +808,7 @@
                                     <input type="file" name="dokumen_keuangan" id="dokumen_keuangan" rows="3"class="form-control" required />
                                 
                                 </div>
+
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button class="btn btn-primary btn-prev">

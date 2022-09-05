@@ -340,8 +340,8 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="fototoko"><small class="text-danger">* </small>Upload Foto Usaha</label>
-                                        <input type="file" name="foto[4][foto]" id="fototoko" rows="3" class="form-control" required/>
-                                        <input type="hidden" name="foto[4][kategori]" value="Foto toko" rows="3" class="form-control" />
+                                        <input type="file" name="foto[5][foto]" id="fototoko" rows="3" class="form-control" required/>
+                                        <input type="hidden" name="foto[5][kategori]" value="Foto toko" rows="3" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="content-header">
@@ -421,6 +421,11 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"> </small>Biaya Sewa Kios</label>
                                         <input type="text" class="form-control numeral-mask4" placeholder="Rp."  name ="sewa" id="sewa" required/>
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fototoko"> <small class="text-danger">*</small>Upload Nota Pembelanjaan</label>
+                                        <input type="file" name="foto[6][foto]" id="fototoko" rows="3" class="form-control" />
+                                        <input type="hidden" name="foto[6][kategori]" value="Foto Nota Pembelanjaan" rows="3" class="form-control" required/>
                                     </div>
                                     </div>
                                 <div class="content-header">

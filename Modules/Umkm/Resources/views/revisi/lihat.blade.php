@@ -288,8 +288,7 @@
                                             <label class="form-label" for="lamatinggal"><small class="text-danger">*
                                                 </small>Lama Tinggal Di Alamat Rumah</label>
                                             <select class="select2 w-100" name="lama_tinggal" id="lama_tinggal" required>
-                                                <option label="{{ $pembiayaan->nasabahh->id }}">
-                                                    {{ $pembiayaan->nasabahh->lama_tinggal }}</option>
+                                                <option ></option>
                                                 <option>< 1 Tahun</option>
                                                 <option>1 - 3 Tahun</option>
                                                 <option>3 - 4 Tahun</option>
@@ -325,8 +324,7 @@
                                             <label class="form-label" for="Pendidikan_id"><small class="text-danger">*
                                                 </small>Pendidikan Terakhir</label>
                                             <select class="select2 w-100" name="pendidikan" id="pendidikan_id" required>
-                                                <option value="{{ $pembiayaan->nasabahh->id }}">
-                                                    {{ $pembiayaan->nasabahh->pendidikan }}</option>
+                                               
                                                 <option label="Pendidikan">Pilih Pendidikan Terakhir</option>
                                                 <option>Tidak Sekolah</option>
                                                 <option>SD</option>
@@ -342,8 +340,7 @@
                                             <label class="form-label" for="agama"><small class="text-danger">*
                                                 </small>Agama</label>
                                             <select class="select2 w-100" name="agama_id" id="agama_id" required>
-                                                <option value="{{ $pembiayaan->nasabahh->id }}">
-                                                    {{ $pembiayaan->nasabahh->agama_id }}</option>
+                                               
                                                 <option label="Agama">Pilih Agama</option>
                                                 <option>Islam</option>
                                                 <option>Kristen</option>
@@ -408,47 +405,87 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        {{-- @php
-                                        $fotodiri = Modules\Skpd\Entities\SkpdFoto::Select()
-                                            ->where('skpd_pembiayaan_id', $pembiayaan->id)
+                                        @php
+                                        $fotodiri = Modules\Umkm\Entities\UmkmFoto::Select()
+                                            ->where('umkm_pembiayaan_id', $pembiayaan->id)
                                             ->where('kategori', 'Foto Diri')
                                             ->get()
                                             ->first();
-                                    @endphp --}}
-                                        <div class="mb-1 col-md-6">
-                                            <input type="hidden" name="foto[1][foto_lama]"
-                                            value="{{ $fotodiri->foto }}">
-                                            <label class="form-label" for="foto"><small class="text-danger">*
-                                                </small>Upload Foto Diri</label>
-                                            <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
-                                                class="form-control" value="{{ $fotodiri->foto }}" >
-                                            <input type="hidden" name="foto[1][kategori]" value="Foto Diri"
-                                                rows="3" class="form-control" />
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="fotodiri"><small class="text-danger">*
-                                                </small>Upload Foto KTP</label>
-                                            <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
-                                                class="form-control" required />
-                                            <input type="hidden" name="foto[2][kategori]" value="Foto KTP"
-                                                rows="3" class="form-control" />
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="fotodiri"><small class="text-danger">*
-                                                </small>Upload Foto Diri Bersama KTP</label>
-                                            <input type="file" name="foto[3][foto]" id="fotodiribersamaktp"
-                                                rows="3" class="form-control" required />
-                                            <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
-                                                rows="3" class="form-control" />
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="fotokk"><small
-                                                    class="text-danger">*</small>Upload Foto Kartu Keluarga</label>
-                                            <input type="file" name="foto[4][foto]" id="fotokk"
-                                                rows="3"class="form-control" required />
-                                            <input type="hidden" name="foto[4][kategori]"
-                                                value="Foto Kartu Keluarga"rows="3" class="form-control" />
-                                        </div>
+                                        $fotodiriktp = Modules\Umkm\Entities\UmkmFoto::Select()
+                                            ->where('umkm_pembiayaan_id', $pembiayaan->id)
+                                            ->where('kategori', 'Foto Diri Bersama KTP')
+                                            ->get()
+                                            ->first();
+                                        $fotoktp = Modules\Umkm\Entities\UmkmFoto::Select()
+                                            ->where('umkm_pembiayaan_id', $pembiayaan->id)
+                                            ->where('kategori', 'Foto KTP')
+                                            ->get()
+                                            ->first();
+                                        $fotokk = Modules\Umkm\Entities\UmkmFoto::Select()
+                                            ->where('umkm_pembiayaan_id', $pembiayaan->id)
+                                            ->where('kategori', 'Foto Kartu Keluarga')
+                                            ->get()
+                                            ->first();
+                                        $fototoko = Modules\Umkm\Entities\UmkmFoto::Select()
+                                            ->where('umkm_pembiayaan_id', $pembiayaan->id)
+                                            ->where('kategori', 'Foto toko')
+                                            ->get()
+                                            ->first();
+                                        $fotonota = Modules\Umkm\Entities\UmkmFoto::Select()
+                                            ->where('umkm_pembiayaan_id', $pembiayaan->id)
+                                            ->where('kategori', 'Foto Nota Pembelanjaan')
+                                            ->get()
+                                            ->first();
+                                    @endphp
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotoktp"><small class="text-danger">*
+                                            </small>Upload Foto Diri</label>
+                                        <input type="hidden" name="foto[1][foto_lama]"
+                                            value="{{ old('foto', $fotodiri->foto) }}">
+                                        <input type="hidden" name="foto[1][id]" rows="3" class="form-control"
+                                            value="{{ $fotodiri->id }}">
+                                        <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
+                                            class="form-control">
+                                        <input type="hidden" name="foto[1][kategori]" value="Foto Diri"
+                                            rows="3" class="form-control" />
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotoktp"><small class="text-danger">*
+                                            </small>Upload Foto KTP</label>
+                                        <input type="hidden" name="foto[2][foto_lama]"
+                                            value="{{ old('foto', $fotoktp->foto) }}">
+                                        <input type="hidden" name="foto[2][id]" rows="3" class="form-control"
+                                            value="{{ $fotoktp->id }}">
+                                        <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
+                                            class="form-control">
+                                        <input type="hidden" name="foto[2][kategori]" value="Foto KTP"
+                                            rows="3" class="form-control" />
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotodiriktp"><small class="text-danger">*
+                                            </small>Upload Foto Diri Bersama KTP</label>
+                                        <input type="hidden" name="foto[3][foto_lama]"
+                                            value="{{ old('foto', $fotodiriktp->foto) }}">
+                                        <input type="hidden" name="foto[3][id]" rows="3" class="form-control"
+                                            value="{{ $fotodiriktp->id }}">
+                                        <input type="file" name="foto[3][foto]" id="fotodiriktp" rows="3"
+                                            class="form-control">
+                                        <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
+                                            rows="3" class="form-control" />
+
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="fotokk"><small class="text-danger">*
+                                            </small>Upload Foto Kartu Keluarga</label>
+                                        <input type="hidden" name="foto[4][foto_lama]"
+                                            value="{{ old('foto', $fotokk->foto) }}">
+                                        <input type="hidden" name="foto[4][id]" rows="3" class="form-control"
+                                            value="{{ $fotokk->id }}">
+                                        <input type="file" name="foto[4][foto]" id="fotokk" rows="3"
+                                            class="form-control">
+                                        <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga"
+                                            rows="3" class="form-control" />
+                                    </div>
                                     </div>
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Orang Terdekat</h5>
@@ -505,8 +542,10 @@
                                             <label class="form-label" for="keptoko"><small class="text-danger">*
                                                 </small>Kepemilikan Usaha</label>
                                             <select class="select2 w-100" name="kep_toko_id" id="keptoko" required>
-                                                <option value="{{ $pembiayaan->keteranganusaha->id }}">
-                                                    {{ $pembiayaan->keteranganusaha->kep_toko_id }}</option>
+                                                <option label="kep_rumah">Pilih Kepemilikan Usaha</option>
+                                                <option>Milik Sendiri</option>
+                                                <option>Milik Keluarga</option>
+                                                <option>Sewa Atau Kontrak</option>
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -523,7 +562,8 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="lamausaha"> </small>Alamat Usaha</label>
+                                            <label class="form-label" for="lamausaha"><small class="text-danger">*
+                                            </small>Alamat Usaha</label>
                                             <input type="text" name="alamatusaha" id="alamat" class="form-control"
                                                 placeholder="Alamat Usaha"
                                                 value="{{ $pembiayaan->keteranganusaha->alamatusaha }}" required>
@@ -540,10 +580,14 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="fototoko"><small class="text-danger">*
-                                                </small>Upload Foto Kios / Los</label>
-                                            <input type="file" name="foto[5][foto]" id="fototoko" rows="3"
-                                                class="form-control" required />
+                                            <label class="form-label" for="fotoktp"><small class="text-danger">*
+                                                </small>Upload Usaha</label>
+                                            <input type="hidden" name="foto[5][foto_lama]"
+                                                value="{{ old('foto', $fototoko->foto) }}">
+                                            <input type="hidden" name="foto[5][id]" rows="3" class="form-control"
+                                                value="{{ $fototoko->id }}">
+                                            <input type="file" name="foto[5][foto]" id="fotodiri" rows="3"
+                                                class="form-control">
                                             <input type="hidden" name="foto[5][kategori]" value="Foto toko"
                                                 rows="3" class="form-control" />
                                         </div>
@@ -573,15 +617,18 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="SHPB"> <small class="text-danger">*
                                                 </small>Upload Jaminan Utama</label>
-                                            <input type="file" name="dokumenktb" id="dokumenktb" rows="3"
+                                                <input type="file" name="dokumenktb" id="dokumenktb" rows="3"
                                                 class="form-control" required />
+                                            <input type="hidden" id="EditUserFirstName" name="dokumenlama"
+                                                value="{{ $jaminanutama->dokumenktb }}" class="form-control" />
                                         </div>
                                        
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="dokumen_jaminan"><small class="text-danger">*
-                                            </small>Upload Jaminan Lainnya</label>
+                                            <label class="form-label" for="dokumen_jaminan">Upload Jaminan Lainnya</label>
                                             <input type="file" name="dokumen_jaminan" id="dokumen_jaminan"
-                                                rows="3" class="form-control"required/>
+                                                rows="3" class="form-control">
+                                            <input type="hidden" id="EditUserFirstName" name="dokumenjaminanlama"
+                                                value="{{ $jaminanlain->dokumen_jaminan }}" class="form-control" />
                                         </div>
 
                                     </div>
@@ -644,10 +691,82 @@
                                             <input type="text" class="form-control numeral-mask4" placeholder="Rp."
                                                 name="sewa" id="sewa" value="{{ $pembiayaan->sewa }}">
                                         </div>
+                                        @if($fotonota)
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="fotoktp"><small class="text-danger">*
+                                                </small>Upload Nota Pembelanjaan</label>
+                                            <input type="hidden" name="foto[6][foto_lama]"
+                                                value="{{ old('foto', $fotonota->foto) }}">
+                                            <input type="hidden" name="foto[6][id]" rows="3" class="form-control"
+                                                value="{{ $fotonota->id }}">
+                                            <input type="file" name="foto[6][foto]" id="fotodiri" rows="3"
+                                                class="form-control">
+                                            <input type="hidden" name="foto[6][kategori]" value="Foto Nota Pembelanjaan"
+                                                rows="3" class="form-control" />
+                                        </div>
+                                        @endif
                                     </div>
                                     <div class="content-header">
                                         <h5 class="mb-0">Data Pengeluaran Anda</h5>
                                         <small>Data Pengeluaran Nasabah Anda</small>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center; width: 5%;" class="py-1">No</th>
+                                                    <th style="text-align: center" class="py-1">Nama
+                                                        Bank</th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Plafond
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Outstanding</th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Tenor
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Margin
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Angsuran
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Agunan
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">Kol
+                                                        Tertinggi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($idebs as $ideb)
+                                                    <tr>
+                                                        <td style="text-align: center">
+                                                            {{ $loop->iteration }}</td>
+                                                        <td>{{ $ideb->nama_bank }}</td>
+                                                        <td>Rp. {{ number_format($ideb->plafond) }}
+                                                        </td>
+                                                        <td>Rp. {{ number_format($ideb->outstanding) }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ $ideb->tenor }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ number_format($ideb->margin) }}%
+                                                        </td>
+                                                        <td>Rp. {{ number_format($ideb->angsuran) }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ $ideb->agunan }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ $ideb->kol }}</td>
+                                                    </tr>
+                                                @endforeach
+
+
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <small>Cicilan Bank</small>
                                     <section id="form-repeater">
@@ -655,6 +774,190 @@
                                             <div class="mb-1 col-md-12">
                                                 <div class="repeater-default">
                                                     <div data-repeater-list="slik">
+                                                        <div data-repeater-item>
+                                                            <div class="row d-flex align-items-end">
+                                                                <div class="col-md-2 col-12">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="nama_bank">Nama
+                                                                            Bank</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="nama_bank" id="nama_bank"
+                                                                            aria-describedby="nama_bank"
+                                                                            placeholder="Nama Bank" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-2 col-12">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="plafond">Plafond</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="plafond" id="plafond"
+                                                                            aria-describedby="itemcost"
+                                                                            placeholder="Rp." />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-2 col-12">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="outstanding">Outstanding</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="outstanding" id="outstanding"
+                                                                            aria-describedby="outstanding"
+                                                                            placeholder="Rp." />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-1 col-8">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="tenor">Tenor</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="tenor" id="tenor"
+                                                                            aria-describedby="tenor"
+                                                                            placeholder="tenor" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-1 col-8">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="margin">Margin</label>
+                                                                        <input type="number" class="form-control persen"
+                                                                            name="margin" id="margin"
+                                                                            aria-describedby="margin" placeholder="%" />
+                                                                    </div>
+                                                                </div>
+
+                                                                {{-- <div class="col-md-1 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label" for="itemquantity">Angsuran</label>
+                                                                    <input type="number" class="form-control" name="angsuran" id="angsuran" aria-describedby="itemquantity" placeholder="1"/>
+                                                                </div>
+                                                            </div> --}}
+
+                                                                <div class="col-md-1 col-8">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="itemquantity">Agunan</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="agunan" id="agunan"
+                                                                            aria-describedby="itemquantity" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-2 col-12">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="angsuran">Angsuran</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="angsuran" id="angsuran"
+                                                                            aria-describedby="angsuran"
+                                                                            placeholder="Rp." />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-1 col-2">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label"
+                                                                            for="angsuran">Kol</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="kol" id="kol"
+                                                                            aria-describedby="angsuran"
+                                                                            placeholder="Rp." />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-1 col-12 mb-25">
+                                                                    <div class="mb-1">
+                                                                        <button
+                                                                            class="btn btn-outline-danger text-nowrap px-1"
+                                                                            data-repeater-delete type="button">
+                                                                            <i data-feather="x" class="me-25"></i>
+                                                                            {{-- <span>Delete</span> --}}
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1 col-12">
+                                                        <a data-repeater-create class="btn btn-icon btn-primary"
+                                                            type="button">
+                                                            <i data-feather="plus" class="me-30"></i>
+                                                            <span>Tambah</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </section>
+                                    <div class="table-responsive">
+                                        <small>Informasi Debitur Pasangan</small>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center; width: 5%;" class="py-1">No</th>
+                                                    <th style="text-align: center" class="py-1">Nama
+                                                        Bank</th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Plafond
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Outstanding</th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Tenor
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Margin
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Angsuran
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">
+                                                        Agunan
+                                                    </th>
+                                                    <th style="text-align: center" class="py-1">Kol
+                                                        Tertinggi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($idebpasangans as $idebpasangan)
+                                                    <tr>
+                                                        <td style="text-align: center">
+                                                            {{ $loop->iteration }}</td>
+                                                        <td>{{ $idebpasangan->nama_bank }}</td>
+                                                        <td>Rp. {{ number_format($idebpasangan->plafond) }}
+                                                        </td>
+                                                        <td>Rp. {{ number_format($idebpasangan->outstanding) }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ $idebpasangan->tenor }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ number_format($idebpasangan->margin) }}%
+                                                        </td>
+                                                        <td>Rp. {{ number_format($idebpasangan->angsuran) }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ $idebpasangan->agunan }}
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            {{ $idebpasangan->kol }}</td>
+                                                    </tr>
+                                                @endforeach
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <small>Informasi Debitur Pasangan</small>
+                                    <section id="form-repeater">
+                                        <div class="row">
+                                            <div class="mb-1 col-md-12">
+                                                <div class="repeater-default">
+                                                    <div data-repeater-list="slikpasangan">
                                                         <div data-repeater-item>
                                                             <div class="row d-flex align-items-end">
                                                                 <div class="col-md-2 col-12">
@@ -802,10 +1105,10 @@
                                             <label class="form-label" for="dokumen_keuangan"><small
                                                     class="text-danger">*</small>Upload IDEB</label>
                                             <input type="file" name="dokumen_keuangan" id="dokumen_keuangan"
-                                                rows="3"class="form-control" required />
-
+                                                rows="3"class="form-control">
+                                            <input type="hidden" id="EditUserFirstName" name="dokumen_keuangan_lama"
+                                                value="{{ $pembiayaan->dokumen_keuangan }}" class="form-control" />
                                         </div>
-
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <button class="btn btn-primary btn-prev">

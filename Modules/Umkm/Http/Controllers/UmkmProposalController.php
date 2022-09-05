@@ -26,6 +26,7 @@ use Modules\Umkm\Entities\UmkmLegalitasRumah;
 use Modules\Umkm\Entities\UmkmNasabah;
 use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 use Modules\Umkm\Entities\UmkmSlik;
+use Modules\Umkm\Entities\UmkmSlikPasangan;
 
 class UmkmProposalController extends Controller
 {
@@ -35,9 +36,9 @@ class UmkmProposalController extends Controller
      */
     public function index()
     {
-        return view('umkm::proposal.index',[
-            'title'=>'Data Nasabah',
-            'proposals'=>UmkmPembiayaan::select()->where('AO_id',Auth::user()->id)->where('sektor_id',null)->get(),
+        return view('umkm::proposal.index', [
+            'title' => 'Data Nasabah',
+            'proposals' => UmkmPembiayaan::select()->where('AO_id', Auth::user()->id)->where('sektor_id', null)->get(),
         ]);
     }
 
@@ -66,33 +67,33 @@ class UmkmProposalController extends Controller
      * @return Renderable
      */
     public function show($id)
-    {   
-        $pembiayaan=UmkmPembiayaan::select()->where('id',$id)->get()->first();
-        return view('umkm::proposal.lihat',[
-            'title'=>'Detail Calon Nasabah',
-            'pembiayaan'=>UmkmPembiayaan::select()->where('id',$id)->get()->first(),
-            'nasabah'=>UmkmNasabah::select()->where('id',$id)->get()->first(),
-            'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
-            'fotoktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
-            'fotodiribersamaktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
-            'fototoko'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
-            'usahas'=>UmkmKeteranganUsaha::all(), //udah
-            'akads'=>PasarAkad::all(),
-            'sektors'=>PasarSektorEkonomi::all(),
-            'lamas'=>PasarLamaBerdagang::all(),
-            'rumahs'=>PasarJaminanRumahh::all(),
-            'dagangs'=>PasarJenisDagang::all(),
-            'aos'=>Role::select()->where('user_id', $pembiayaan->AO_id)->get(),
-            'cashs'=>PasarCashPick::all(),
-            'jaminans'=>PasarJenisJaminan::all(),
-            'nasabahs'=>PasarJenisNasabah::all(),
-            'sukus'=>PasarSukuBangsa::all(),
-            'pasars'=>PasarJenisPasar::all(),
-            'dagangs'=>PasarJenisDagang::all(),
-            'aos'=>Role::select()->where('jabatan_id',1)->get(),
-            'tanggungans'=>PasarTanggungan::all(),
-            'statuss'=>PasarStatusPerkawinan::all(),
-            'rumah'=>UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id',$pembiayaan->umkm_legalitas_rumah_id)->get()->first(),
+    {
+        $pembiayaan = UmkmPembiayaan::select()->where('id', $id)->get()->first();
+        return view('umkm::proposal.lihat', [
+            'title' => 'Detail Calon Nasabah',
+            'pembiayaan' => UmkmPembiayaan::select()->where('id', $id)->get()->first(),
+            'nasabah' => UmkmNasabah::select()->where('id', $id)->get()->first(),
+            'fotodiri' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Diri')->get()->first(),
+            'fotoktp' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotodiribersamaktp' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
+            'fototoko' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto toko')->get()->first(),
+            'usahas' => UmkmKeteranganUsaha::all(), //udah
+            'akads' => PasarAkad::all(),
+            'sektors' => PasarSektorEkonomi::all(),
+            'lamas' => PasarLamaBerdagang::all(),
+            'rumahs' => PasarJaminanRumahh::all(),
+            'dagangs' => PasarJenisDagang::all(),
+            'aos' => Role::select()->where('user_id', $pembiayaan->AO_id)->get(),
+            'cashs' => PasarCashPick::all(),
+            'jaminans' => PasarJenisJaminan::all(),
+            'nasabahs' => PasarJenisNasabah::all(),
+            'sukus' => PasarSukuBangsa::all(),
+            'pasars' => PasarJenisPasar::all(),
+            'dagangs' => PasarJenisDagang::all(),
+            'aos' => Role::select()->where('jabatan_id', 1)->get(),
+            'tanggungans' => PasarTanggungan::all(),
+            'statuss' => PasarStatusPerkawinan::all(),
+            'rumah' => UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id', $pembiayaan->umkm_legalitas_rumah_id)->get()->first(),
         ]);
     }
 
@@ -113,65 +114,95 @@ class UmkmProposalController extends Controller
      * @return Renderable
      */
     public function update(Request $request, $id)
-    {  {
-        // return $request;
-        
-        $dokumen_keuangan=$request->file('dokumen_keuangan')->store('umkm-dokumen-keuangan');
+    { 
+            // return $request;
 
-        UmkmPembiayaan::where('id',$id)
-                        ->update([
-                            'sektor_id'=>$request->sektor_id,
-                            'akad_id'=>$request->akad_id,
-                            'tenor'=>$request->tenor,
-                            'nominal_pembiayaan'=>str_replace(",","",$request->nominal_pembiayaan),
-                            'cashpickup'=>$request->cashpickup,
-                            'nasabah'=>$request->nasabah,
-                            'rate'=>$request->rate,
-                            'dokumen_keuangan'=>$dokumen_keuangan,
-                        ]);
-        UmkmNasabah::where('id',$id)
-                    ->update([
-                        'alamat_domisili'=>$request->alamat_domisili,
-                        'npwp'=>$request->npwp,
-                    ]);
-        
-        UmkmKeteranganUsaha::where('id',$id)
-        ->update([
-            'suku_bangsa_id'=>$request->suku_bangsa_id,
-    
-        ]);
+            $dokumen_keuangan = $request->file('dokumen_keuangan')->store('umkm-dokumen-keuangan');
 
-        UmkmPembiayaanHistory::create([
-            'umkm_pembiayaan_id'=> $id,
-            'status_id'=> 2,
-            'jabatan_id'=> 1 , 
-            'divisi_id'=> 3 , 
-            'user_id'=> Auth::user()->id,
-        ]);
+            UmkmPembiayaan::where('id', $id)
+                ->update([
+                    'sektor_id' => $request->sektor_id,
+                    'akad_id' => $request->akad_id,
+                    'tenor' => $request->tenor,
+                    'nominal_pembiayaan' => str_replace(",", "", $request->nominal_pembiayaan),
+                    'cashpickup' => $request->cashpickup,
+                    'nasabah' => $request->nasabah,
+                    'rate' => $request->rate,
+                    'dokumen_keuangan' => $dokumen_keuangan,
+                ]);
+            UmkmNasabah::where('id', $id)
+                ->update([
+                    'alamat_domisili' => $request->alamat_domisili,
+                    'npwp' => $request->npwp,
+                ]);
 
-        if ($request->slik[0]['nama_bank']){
+            UmkmKeteranganUsaha::where('id', $id)
+                ->update([
+                    'suku_bangsa_id' => $request->suku_bangsa_id,
 
-            // return $request->slik[0]['nama_bank'];
-            foreach ($request->slik as $key => $value) {
+                ]);
 
+            // foreach ($request->foto as $key => $value) {
+            //     if ($value['foto']) {
+            //         $foto = $value['foto']->store('foto-umkm-pembiayaan');
+            //     }
+            //     UmkmFoto::create([
+            //         'umkm_pembiayaan_id' => $id,
+            //         'kategori' => $value['kategori'],
+            //         'foto' => $foto,
+            //     ]);
+            // }
 
-            // return $value;
-            UmkmSlik::create([
-                'umkm_pembiayaan_id'=>$id,
-                'nama_bank'=> $value['nama_bank'],
-                'plafond'=> $value['plafond'],
-                'outstanding'=> $value['outstanding'],
-                'tenor'=> $value['tenor'],
-                'margin'=> $value['margin'],
-                'angsuran'=> $value['angsuran'],
-                'agunan'=> $value['agunan'],
-                'kol'=> $value['kol'],
+            UmkmPembiayaanHistory::create([
+                'umkm_pembiayaan_id' => $id,
+                'status_id' => 2,
+                'jabatan_id' => 1,
+                'divisi_id' => 3,
+                'user_id' => Auth::user()->id,
             ]);
-        }
-    }
-        return redirect('/umkm/komite/'.$id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
 
-}
+            if ($request->slik[0]['nama_bank']) {
+
+                // return $request->slik[0]['nama_bank'];
+                foreach ($request->slik as $key => $value) {
+
+
+                    // return $value;
+                    UmkmSlik::create([
+                        'umkm_pembiayaan_id' => $id,
+                        'nama_bank' => $value['nama_bank'],
+                        'plafond' => $value['plafond'],
+                        'outstanding' => $value['outstanding'],
+                        'tenor' => $value['tenor'],
+                        'margin' => $value['margin'],
+                        'angsuran' => $value['angsuran'],
+                        'agunan' => $value['agunan'],
+                        'kol' => $value['kol'],
+                    ]);
+                }
+            }
+            // if ($request->slikpasangan[0]['nama_bank']) {
+
+            //     // return $request->slik[0]['nama_bank'];
+            //     foreach ($request->slik as $key => $value) {
+
+
+            //         // return $value;
+            //         UmkmSlikPasangan::create([
+            //             'umkm_pembiayaan_id' => $id,
+            //             'nama_bank' => $value['nama_bank'],
+            //             'plafond' => $value['plafond'],
+            //             'outstanding' => $value['outstanding'],
+            //             'tenor' => $value['tenor'],
+            //             'margin' => $value['margin'],
+            //             'angsuran' => $value['angsuran'],
+            //             'agunan' => $value['agunan'],
+            //             'kol' => $value['kol'],
+            //         ]);
+            //     }
+            // }
+            return redirect('/umkm/komite/' . $id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
+        
     }
 
     /**

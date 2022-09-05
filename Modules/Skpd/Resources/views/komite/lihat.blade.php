@@ -183,7 +183,7 @@
                                                                             <td class="pe-1 mt-1">Total Pengeluaran
                                                                             </td>
                                                                             <td><span class="fw-bold">: Rp.
-                                                                                    {{ number_format($cicilan + $pembiayaan->potongan_lainnya + $biayakeluarga) }}</span>
+                                                                                    {{ number_format($total_pengeluaran) }}</span>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -199,6 +199,7 @@
 
                                                     <!-- Invoice Description starts -->
                                                     <div class="table-responsive">
+                                                        <small>Informasi Debitur Nasabah</small>
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
@@ -230,11 +231,11 @@
                                                             <tbody>
                                                                 @foreach ($ideps as $idep)
                                                                     @php
-                                                                        if ($idep) {
-                                                                            $margin = $idep->margin / 12 / 100;
-                                                                            $plafond = $idep->plafond * $margin * $idep->tenor + $idep->plafond;
-                                                                            $angsuran = $plafond / $idep->tenor;
-                                                                        }
+                                                                        // if ($idep) {
+                                                                        //     $margin = $idep->margin / 12 / 100;
+                                                                        //     $plafond = $idep->plafond * $margin * $idep->tenor + $idep->plafond;
+                                                                        //     $angsuran = $plafond / $idep->tenor;
+                                                                        // }
                                                                     @endphp
                                                                     <tr>
                                                                         <td style="text-align: center">
@@ -264,7 +265,78 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
+                                                    @if ($cekcicilanpasangan > 0)
+                                                        <br>
+                                                        <div class="table-responsive">
+                                                            <small>Informasi Debitur Pasangan Nasabah</small>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="text-align: center; width: 5%;"
+                                                                            class="py-1">No</th>
+                                                                        <th style="text-align: center" class="py-1">Nama
+                                                                            Bank</th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Plafond
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Outstanding</th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Tenor
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Margin
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Angsuran
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Agunan
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">Kol
+                                                                            Tertinggi</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($ideppasangans as $ideppasangan)
+                                                                        @php
+                                                                            // if ($ideppasangan) {
+                                                                            //     $margin = $ideppasangan->margin / 12 / 100;
+                                                                            //     $plafond = $ideppasangan->plafond * $margin * $ideppasangan->tenor + $ideppasangan->plafond;
+                                                                            //     $angsuran = $plafond / $ideppasangan->tenor;
+                                                                            // }
+                                                                        @endphp
+                                                                        <tr>
+                                                                            <td style="text-align: center">
+                                                                                {{ $loop->iteration }}</td>
+                                                                            <td>{{ $ideppasangan->nama_bank }}</td>
+                                                                            <td>Rp.
+                                                                                {{ number_format($ideppasangan->plafond) }}
+                                                                            </td>
+                                                                            <td>Rp.
+                                                                                {{ number_format($ideppasangan->outstanding) }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ $ideppasangan->tenor }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ number_format($ideppasangan->margin) }}%
+                                                                            </td>
+                                                                            <td>Rp.
+                                                                                {{ number_format($ideppasangan->angsuran) }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ $ideppasangan->agunan }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ $ideppasangan->kol_tertinggi }}</td>
+                                                                        </tr>
+                                                                    @endforeach
 
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    @endif
                                                     <div class="card-body invoice-padding pb-0">
                                                         <div class="row invoice-sales-total-wrapper">
                                                             <div class="col-md-8 order-md-1 order-2 mt-md-0 mt-3">
@@ -584,20 +656,7 @@
                                                             </div>
                                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
                                                                 @if ($history->status_id == 2)
-                                                                    <div class="card-body">
-                                                                        <a class="btn btn-warning w-100 mb-75"
-                                                                            href="skpd/revisi/{{ $pembiayaan->id }}/edit">
-                                                                            Edit Proposal
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="card-body">
-                                                                        <button class="btn btn-success w-100 mb-75"
-                                                                            data-bs-toggle="modal"data-bs-target="#lanjut_komite">
-                                                                            Lanjut Komite
-                                                                        </button>
-                                                                    </div>
-                                                                @else
-                                                                    @if ($total_score > 3)
+                                                                    @if ($total_score > 2 || $total_score < 3)
                                                                         <div class="card-body">
                                                                             <button class="btn btn-success w-100 mb-75"
                                                                                 data-bs-toggle="modal"data-bs-target="#lanjut_komite">
@@ -605,21 +664,43 @@
                                                                             </button>
                                                                         </div>
                                                                         <div class="card-body">
-                                                                            <a class="btn btn-warning w-100 mb-75"
-                                                                            href="skpd/revisi/{{ $pembiayaan->id }}/edit">
-                                                                            Edit Proposal
-                                                                        </a>
+                                                                            <button class="btn btn-warning w-100 mb-75"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#edit_proposal">
+                                                                                Edit Proposal
+                                                                            </button>
                                                                         </div>
-                                                                    @elseif ($total_score > 2 || $total_score > 3)
                                                                         <div class="card-body">
-                                                                            <a class="btn btn-warning w-100 mb-75"
-                                                                            href="skpd/revisi/{{ $pembiayaan->id }}/edit">
-                                                                            Edit Proposal
-                                                                        </a>
+                                                                            <button class="btn btn-danger w-100 mb-75"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#ditolak">
+                                                                                Ditolak
+                                                                            </button>
                                                                         </div>
-                                                                    @else
+                                                                    @elseif($total_score > 3)
+                                                                        <div class="card-body">
+                                                                            <button class="btn btn-success w-100 mb-75"
+                                                                                data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                                                Lanjut Komite
+                                                                            </button>
+                                                                        </div>
                                                                         <div class="card-body">
                                                                             <button class="btn btn-warning w-100 mb-75"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#edit_proposal">
+                                                                                Edit Proposal
+                                                                            </button>
+                                                                        </div>
+                                                                    @elseif ($total_score > 0 || $total_score < 2)
+                                                                        <div class="card-body">
+                                                                            <button class="btn btn-warning w-100 mb-75"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#edit_proposal">
+                                                                                Edit Proposal
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <button class="btn btn-danger w-100 mb-75"
                                                                                 data-bs-toggle="modal"
                                                                                 data-bs-target="#ditolak">
                                                                                 Ditolak
@@ -917,31 +998,30 @@
                                                     <div class="card-body">
                                                         <ul class="timeline">
                                                             @foreach ($timelines as $timeline)
-                                                            @php
-
-                                                            $arr=$loop->iteration;
-                                                            if ($arr== -2) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }elseif ($arr== $banyak_history) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }elseif ($arr>=0) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[$arr]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }
-
-                                                            // $waktu_mulai=Carbon\Carbon::parse($timelines[$arr]->created_at);
-                                                            // $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            // $selisih=$waktu_mulai->diffAsCarbonInterval($waktu_selesai);
-
-
-
-                                                            // ddd($selisih);
-                                                            @endphp
+                                                                @php
+                                                                    
+                                                                    $arr = $loop->iteration;
+                                                                    if ($arr == -2) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr == $banyak_history) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr >= 0) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[$arr]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    }
+                                                                    
+                                                                    // $waktu_mulai=Carbon\Carbon::parse($timelines[$arr]->created_at);
+                                                                    // $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
+                                                                    // $selisih=$waktu_mulai->diffAsCarbonInterval($waktu_selesai);
+                                                                    
+                                                                    // ddd($selisih);
+                                                                    
+                                                                @endphp
                                                                 <li class="timeline-item">
                                                                     <span
                                                                         class="timeline-point timeline-point-success timeline-point-indicator"></span>
@@ -953,8 +1033,8 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
-                                                                            <span
-                                                                                class="timeline-event-time" style="text-align: right">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}
+                                                                            <span class="timeline-event-time"
+                                                                                style="text-align: right">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}
                                                                                 <br>{{ $timeline->created_at->isoformat('HH:mm:ss') }}
                                                                             </span>
                                                                         </div>
@@ -963,9 +1043,10 @@
                                                                                 {{ $timeline->catatan }}
                                                                             <p>
                                                                         @endif
-                                                                        @if($arr==-1)
-                                                                                @else
-                                                                                <span class="timeline-event-time" >Waktu Diproses : {{ $selisih }}</span>
+                                                                        @if ($arr == -1)
+                                                                        @else
+                                                                            <span class="timeline-event-time">Waktu
+                                                                                Diproses : {{ $selisih }}</span>
                                                                         @endif
                                                                         {{-- <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span> --}}
@@ -1089,29 +1170,9 @@
                 </div>
                 <!--/ ideb  -->
 
-                @if($konfirmasi)
-                <!-- ideb  -->
-                <div class="modal fade" id="konfirmasibendahara" tabindex="-1" aria-labelledby="addNewCardTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body px-sm-12 mx-50 pb-5">
-                                <h3 class="text-center">Lampiran Konfirmasi Bendahara</h3>
-                                <div class="card-body">
-                                    <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
-                                        height='500'>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/ ideb  -->
-                    @endif
-                    <!-- jaminan  -->
-                    <div class="modal fade" id="iii" tabindex="-1" aria-labelledby="addNewCardTitle"
+                @if ($konfirmasi)
+                    <!-- ideb  -->
+                    <div class="modal fade" id="konfirmasibendahara" tabindex="-1" aria-labelledby="addNewCardTitle"
                         aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -1120,17 +1181,37 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body px-sm-12 mx-50 pb-5">
-                                    <h3 class="text-center">Lampiran Jaminan</h3>
+                                    <h3 class="text-center">Lampiran Konfirmasi Bendahara</h3>
                                     <div class="card-body">
-                                        {{-- <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
-                                    height='500'> --}}
-
+                                        <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
+                                            height='500'>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!--/ ideb  -->
+                @endif
+                <!-- jaminan  -->
+                <div class="modal fade" id="iii" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">Lampiran Jaminan</h3>
+                                <div class="card-body">
+                                    {{-- <img src="{{ asset('storage/' .$jaminan->dokumen_jaminan) }}" class="d-block w-100"
+                                    height='500'> --}}
 
-
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+
                 </div>
-            @endsection
+            </div>
+        @endsection

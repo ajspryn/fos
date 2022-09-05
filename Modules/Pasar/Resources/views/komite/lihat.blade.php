@@ -283,7 +283,9 @@
                                                     <!-- Address and Contact ends -->
 
                                                     <!-- Invoice Description starts -->
+                                                   
                                                     <div class="table-responsive">
+                                                        <small>Informasi Debitur Nasabah</small>
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
@@ -313,35 +315,114 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach ($idebs as $ideb)
+                                                                @foreach ($idebs as $idep)
+                                                                    @php
+                                                                        // if ($idep) {
+                                                                        //     $margin = $idep->margin / 12 / 100;
+                                                                        //     $plafond = $idep->plafond * $margin * $idep->tenor + $idep->plafond;
+                                                                        //     $angsuran = $plafond / $idep->tenor;
+                                                                        // }
+                                                                    @endphp
                                                                     <tr>
                                                                         <td style="text-align: center">
                                                                             {{ $loop->iteration }}</td>
-                                                                        <td>{{ $ideb->nama_bank }}</td>
-                                                                        <td>Rp. {{ number_format($ideb->plafond) }}
+                                                                        <td>{{ $idep->nama_bank }}</td>
+                                                                        <td>Rp. {{ number_format($idep->plafond) }}
                                                                         </td>
-                                                                        <td>Rp. {{ number_format($ideb->outstanding) }}
-                                                                        </td>
-                                                                        <td style="text-align: center">
-                                                                            {{ $ideb->tenor }}
+                                                                        <td>Rp.
+                                                                            {{ number_format($idep->outstanding) }}
                                                                         </td>
                                                                         <td style="text-align: center">
-                                                                            {{ number_format($ideb->margin) }}%
-                                                                        </td>
-                                                                        <td>Rp. {{ number_format($ideb->angsuran) }}
+                                                                            {{ $idep->tenor }}
                                                                         </td>
                                                                         <td style="text-align: center">
-                                                                            {{ $ideb->agunan }}
+                                                                            {{ number_format($idep->margin) }}%
+                                                                        </td>
+                                                                        <td>Rp. {{ number_format($idep->angsuran) }}
                                                                         </td>
                                                                         <td style="text-align: center">
-                                                                            {{ $ideb->kol }}</td>
+                                                                            {{ $idep->agunan }}
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $idep->kol_tertinggi }}</td>
                                                                     </tr>
                                                                 @endforeach
-
 
                                                             </tbody>
                                                         </table>
                                                     </div>
+                                                    @if ($cekcicilanpasangan > 0)
+                                                        <br>
+                                                        <div class="table-responsive">
+                                                            <small>Informasi Debitur Pasangan Nasabah</small>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="text-align: center; width: 5%;"
+                                                                            class="py-1">No</th>
+                                                                        <th style="text-align: center" class="py-1">Nama
+                                                                            Bank</th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Plafond
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Outstanding</th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Tenor
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Margin
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Angsuran
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Agunan
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">Kol
+                                                                            Tertinggi</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($cicilanpasangans as $ideppasangan)
+                                                                        @php
+                                                                            // if ($ideppasangan) {
+                                                                            //     $margin = $ideppasangan->margin / 12 / 100;
+                                                                            //     $plafond = $ideppasangan->plafond * $margin * $ideppasangan->tenor + $ideppasangan->plafond;
+                                                                            //     $angsuran = $plafond / $ideppasangan->tenor;
+                                                                            // }
+                                                                        @endphp
+                                                                        <tr>
+                                                                            <td style="text-align: center">
+                                                                                {{ $loop->iteration }}</td>
+                                                                            <td>{{ $ideppasangan->nama_bank }}</td>
+                                                                            <td>Rp.
+                                                                                {{ number_format($ideppasangan->plafond) }}
+                                                                            </td>
+                                                                            <td>Rp.
+                                                                                {{ number_format($ideppasangan->outstanding) }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ $ideppasangan->tenor }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ number_format($ideppasangan->margin) }}%
+                                                                            </td>
+                                                                            <td>Rp.
+                                                                                {{ number_format($ideppasangan->angsuran) }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ $ideppasangan->agunan }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ $ideppasangan->kol_tertinggi }}</td>
+                                                                        </tr>
+                                                                    @endforeach
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    @endif
 
                                                     <hr class="invoice-spacing" />
 
@@ -707,6 +788,13 @@
                                                     </div>
                                                     <div class="col-xl-5 p-0 mt-xl-0 mt-2">
                                                         @if ($history->status_id == 2)
+                                                        @if ($total_score > 2 || $total_score < 3)
+                                                            <div class="card-body">
+                                                                <button class="btn btn-success w-100 mb-75"
+                                                                    data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                                    Lanjut Komite
+                                                                </button>
+                                                            </div>
                                                             <div class="card-body">
                                                                 <button class="btn btn-warning w-100 mb-75"
                                                                     data-bs-toggle="modal"
@@ -715,44 +803,43 @@
                                                                 </button>
                                                             </div>
                                                             <div class="card-body">
+                                                                <button class="btn btn-danger w-100 mb-75"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#ditolak">
+                                                                    Ditolak
+                                                                </button>
+                                                            </div>
+                                                        @elseif($total_score > 3)
+                                                            <div class="card-body">
                                                                 <button class="btn btn-success w-100 mb-75"
                                                                     data-bs-toggle="modal"data-bs-target="#lanjut_komite">
                                                                     Lanjut Komite
                                                                 </button>
                                                             </div>
-                                                        @else
-                                                            @if ($total_score > 3)
-                                                                <div class="card-body">
-                                                                    <button class="btn btn-success w-100 mb-75"
-                                                                        data-bs-toggle="modal"data-bs-target="#lanjut_komite">
-                                                                        Lanjut Komite
-                                                                    </button>
-                                                                </div>
-                                                                <div class="card-body">
-                                                                    <button class="btn btn-warning w-100 mb-75"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#edit_proposal">
-                                                                        Edit Proposal
-                                                                    </button>
-                                                                </div>
-                                                            @elseif ($total_score > 2 || $total_score > 3)
-                                                                <div class="card-body">
-                                                                    <button class="btn btn-warning w-100 mb-75"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#edit_proposal">
-                                                                        Edit Proposal
-                                                                    </button>
-                                                                </div>
-                                                            @else
-                                                                <div class="card-body">
-                                                                    <button class="btn btn-warning w-100 mb-75"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#ditolak">
-                                                                        Ditolak
-                                                                    </button>
-                                                                </div>
-                                                            @endif
+                                                            <div class="card-body">
+                                                                <button class="btn btn-warning w-100 mb-75"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#edit_proposal">
+                                                                    Edit Proposal
+                                                                </button>
+                                                            </div>
+                                                        @elseif ($total_score > 0 || $total_score < 2)
+                                                            <div class="card-body">
+                                                                <button class="btn btn-warning w-100 mb-75"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#edit_proposal">
+                                                                    Edit Proposal
+                                                                </button>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <button class="btn btn-danger w-100 mb-75"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#ditolak">
+                                                                    Ditolak
+                                                                </button>
+                                                            </div>
                                                         @endif
+                                                    @endif
                                                     </div>
                                                 </div>
                                             </div>
