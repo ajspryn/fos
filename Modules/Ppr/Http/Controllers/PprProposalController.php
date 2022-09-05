@@ -280,6 +280,10 @@ class PprProposalController extends Controller
         // dd($request);
 
         $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
+        // dd($request);
+        // $hitungDataKekayaanSimpanan = FormPprDataKekayaanSimpanan::select()->where('id', $pembiayaan->kekayaan_simpanan[0]['id'])->get()->first();
+        // $idDataKekayaanSimpanan = $hitungDataKekayaanSimpanan;
+
         FormPprPembiayaan::where('id', $id)
             ->update([
                 'dilengkapi_ao' => $request->dilengkapi_ao,
@@ -502,16 +506,20 @@ class PprProposalController extends Controller
 
                 // FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
                 foreach ($request->repeater_kekayaan_simpanan as $key => $value) {
-                    FormPprDataKekayaanSimpanan::updateOrCreate([
-                        //Kekayaan simpanan
-                        'form_ppr_pembiayaan_id' => $id,
-                        'form_kekayaan_simpanan_nama_bank' => $value['form_kekayaan_simpanan_nama_bank'],
-                        'form_kekayaan_simpanan_jenis' => $value['form_kekayaan_simpanan_jenis'],
-                        'form_kekayaan_simpanan_sejak_tahun' => $value['form_kekayaan_simpanan_sejak_tahun'],
-                        'form_kekayaan_simpanan_saldo_per_tanggal' => $value['form_kekayaan_simpanan_saldo_per_tanggal'],
-                        'form_kekayaan_simpanan_saldo' => str_replace(",", "", $value['form_kekayaan_simpanan_saldo']),
-
-                    ]);
+                    //Kekayaan simpanan
+                    FormPprDataKekayaanSimpanan::updateOrCreate(
+                        [
+                            'id' => $value['id'],
+                        ],
+                        [
+                            'form_ppr_pembiayaan_id' => $id,
+                            'form_kekayaan_simpanan_nama_bank' => $value['form_kekayaan_simpanan_nama_bank'],
+                            'form_kekayaan_simpanan_jenis' => $value['form_kekayaan_simpanan_jenis'],
+                            'form_kekayaan_simpanan_sejak_tahun' => $value['form_kekayaan_simpanan_sejak_tahun'],
+                            'form_kekayaan_simpanan_saldo_per_tanggal' => $value['form_kekayaan_simpanan_saldo_per_tanggal'],
+                            'form_kekayaan_simpanan_saldo' => str_replace(",", "", $value['form_kekayaan_simpanan_saldo']),
+                        ]
+                    );
                 }
             } else {
             }
