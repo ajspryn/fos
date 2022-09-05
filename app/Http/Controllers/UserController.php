@@ -94,13 +94,13 @@ class UserController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                 ]);
-            return redirect()->back()->with('success', 'Data Diri Berhasil Di Ubah');
+            return redirect()->back()->with('success', 'Data Diri Berhasil Diubah');
         } elseif ($request->code == 2) {
             User::where('id', $id)
                 ->update([
                     'password' => Hash::make($request->password_baru)
                 ]);
-            return redirect()->back()->with('success', 'Password Berhasil Di Ubah');
+            return redirect()->back()->with('success', 'Password Berhasil Diubah');
         } elseif ($request->code == 3) {
             // ddd($request->file('foto'));
             // return $request;
@@ -114,7 +114,7 @@ class UserController extends Controller
                         'foto' => $input,
                     ]);
             }
-            return redirect()->back()->with('success', 'Foto Berhasil Di Ubah');
+            return redirect()->back()->with('success', 'Foto Berhasil Diubah');
         }
     }
 
