@@ -211,8 +211,8 @@ class PprKomiteController extends Controller
 
             //perhitunganSLA
             'totalwaktu' => $totalwaktu,
-            'next' => $next,
-            'waktumulai' => $waktumulai->diffAsCarbonInterval($selanjutnya)
+            'arr'=>-2,
+            'banyak_history'=>PprPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->count(),
         ]);
     }
 

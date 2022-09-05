@@ -80,7 +80,7 @@ class UmkmKomiteController extends Controller
         }
 
 
-        return redirect('/umkm/komite')->with('success', 'Pengajuan Diproses AO');
+        return redirect('/umkm/komite')->with('success', 'Pengajuan Berhasil Diproses AO');
     }
 
     /**
@@ -255,6 +255,9 @@ class UmkmKomiteController extends Controller
             'score_idir'=>$score_idir *$proses_idir->bobot,
             'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
              
+
+            'arr'=>-2,
+            'banyak_history'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->count(),
             
         ]);
     }

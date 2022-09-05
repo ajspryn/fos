@@ -201,6 +201,8 @@ class SkpdKomiteController extends Controller
         // return $proses_dsr;
         return view('skpd::komite.lihat',[
             'title'=>'Detail Proposal',
+            'arr'=>-2,
+            'banyak_history'=>SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->count(),
             'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
             'pembiayaan'=>SkpdPembiayaan::select()->where('id',$id)->get()->first(),
             'timelines'=>SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id',$id)->get(),

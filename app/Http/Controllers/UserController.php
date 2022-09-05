@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Modules\Form\Entities\SkpdPembiayaan;
+use Modules\Pasar\Entities\PasarPembiayaan;
 
 class UserController extends Controller
 {
@@ -21,11 +22,13 @@ class UserController extends Controller
     public function index()
     {
         $data_debitur = SkpdPembiayaan::select(DB::raw('count(skpd_instansi_id) as instansi, skpd_instansi_id,sum(nominal_pembiayaan) as plafond,count(skpd_nasabah_id) as noa'))->join('skpd_instansis', 'skpd_pembiayaans.skpd_instansi_id', '=', 'skpd_instansis.id')->where('user_id', Auth::user()->id)->groupBy('skpd_instansi_id')->orderBy('plafond', 'desc')->get();
-        // return $data_debitur;
+        $data_debitur_pasar = PasarPembiayaan::join('pasar_keterangan_usahas', 'pasar_pembiayaans.id', '=', 'pasar_keterangan_usahas.pasar_pembiayaan_id')->select(DB::raw('count(jenispasar_id) as pasar, jenispasar_id, sum(harga) as plafond,count(nasabah_id) as noa'))->join('pasar_jenis_pasars', 'pasar_keterangan_usahas.jenispasar_id', '=', 'pasar_jenis_pasars.id')->where('AO_id', Auth::user()->id)->groupBy('jenispasar_id')->orderBy('plafond', 'desc')->get();
+        // return $data_debitur_pasar;
         return view('profile', [
             'role' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
             'user' => User::select()->where('id', Auth::user()->id)->get()->first(),
             'data_debiturs' => $data_debitur,
+            'data_debitur_pasars' => $data_debitur_pasar,
         ]);
     }
 

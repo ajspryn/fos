@@ -69,7 +69,6 @@ class UmkmKomiteController extends Controller
             'user_id'=>Auth::user()->id,
             'jabatan_id'=>4,
             'divisi_id'=>null,
-
         ]);
 
         return redirect('/dirbis/umkm/komite')->with('success', 'Pengajuan Berhasil Diproses');
@@ -276,7 +275,9 @@ class UmkmKomiteController extends Controller
                 'deviasi'=>UmkmDeviasi::select()->where('umkm_pembiayaan_id',$id)->get()->first(),
                  
                  //SLA
-                 'totalwaktu'=>$totalwaktu
+                 'totalwaktu'=>$totalwaktu,
+                 'arr'=>-2,
+                 'banyak_history'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->count(),
 
                 
             ]);

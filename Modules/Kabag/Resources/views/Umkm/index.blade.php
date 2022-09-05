@@ -1,6 +1,6 @@
 @extends('kabag::layouts.main')
 @php
-$diterima = Modules\UMKM\Entities\UmkmPembiayaanHistory::select()
+$diterima = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
     ->where('status_id', 5)
     ->where('jabatan_id', 4)
     ->get()
