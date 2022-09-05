@@ -51,21 +51,21 @@
                                                         ->get();
                                                 } elseif ($role->divisi_id == 2) {
                                                     $proposal_diajukan = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                        ->where('AO_id', $user->id)
+                                                        ->where('user_id', $user->id)
                                                         ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                         ->get();
                                                 } elseif ($role->divisi_id == 3) {
                                                     $proposal_diajukan = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                        ->where('AO_id', $user->id)
+                                                        ->where('user_id', $user->id)
                                                         ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                         ->get();
                                                 } elseif ($role->divisi_id == 4) {
-                                                    $proposal_diajukan = Modules\Ppr\Entities\PprPembiayaan::select()
+                                                    $proposal_diajukan = Modules\Form\Entities\FormPprPembiayaan::select()
                                                         ->where('user_id', $user->id)
                                                         ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                         ->get();
                                                 }
-                                                
+
                                                 if ($role->divisi_id == 1) {
                                                     $proposal_disetujuis = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
                                                         ->where('status_id', 3)
@@ -91,7 +91,7 @@
                                                         ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                         ->get();
                                                 }
-                                                
+
                                                 $i = 0;
                                                 foreach ($proposal_disetujuis as $proposal_disetujui) {
                                                     if ($role->divisi_id == 1) {
@@ -108,45 +108,44 @@
                                                             ->first();
                                                     } elseif ($role->divisi_id == 2) {
                                                         $proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                            ->where('AO_id', $user->id)
+                                                            ->where('user_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()
                                                             ->first();
-                                                        $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+                                                        $history = Modules\Skpd\Entities\PasarPembiayaanHistory::select()
                                                             ->where('pasar_pembiayaan_id', $proposal->id)
                                                             ->orderby('created_at', 'desc')
                                                             ->get()
                                                             ->first();
                                                     } elseif ($role->divisi_id == 3) {
                                                         $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                            ->where('AO_id', $user->id)
+                                                            ->where('user_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()
                                                             ->first();
-                                                        $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+                                                        $history = Modules\Skpd\Entities\UmkmPembiayaanHistory::select()
                                                             ->where('umkm_pembiayaan_id', $proposal->id)
                                                             ->orderby('created_at', 'desc')
                                                             ->get()
                                                             ->first();
                                                     } elseif ($role->divisi_id == 4) {
-                                                        $proposal = Modules\Ppr\Entities\PprPembiayaan::select()
-                                                            ->where('id', $value->skpd_pembiayaan_id)
+                                                        $proposal = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                            ->where('id', $value->form_ppr_pembiayaan_id)
                                                             ->where('user_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()
                                                             ->first();
-                                                        $history = Modules\Skpd\Entities\PprPembiayaanHistory::select()
-                                                            ->where('ppr_pembiayaan_id', $proposal->id)
+                                                        $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                                            ->where('form_ppr_pembiayaan_id', $proposal->id)
                                                             ->orderby('created_at', 'desc')
                                                             ->get()
                                                             ->first();
                                                     }
-                                                
+
                                                     if ($history->status_id == 5 || $history->jabatan_id == 4) {
                                                         $i++;
                                                     }
                                                 }
-                                                // return $proposal_umkm;
                                             @endphp
                                             <div class="d-flex align-items-start me-2">
                                                 <span class="badge bg-light-primary p-75 rounded">
@@ -303,7 +302,8 @@
                                                         <td style="text-align: center">{{ $loop->iteration }}</td>
                                                         <td>{{ $pasar->nama_pasar }}</td>
                                                         <td style="text-align: center">{{ $data_debitur_pasar->noa }}</td>
-                                                        <td style="text-align: center">Rp. {{ number_format($data_debitur_pasar->plafond) }}</td>
+                                                        <td style="text-align: center">Rp.
+                                                            {{ number_format($data_debitur_pasar->plafond) }}</td>
                                                         <td style="text-align: center"></td>
                                                     </tr>
                                                 @endforeach
@@ -313,6 +313,46 @@
                                 </div>
                                 <!-- /Project table -->
                             @endif
+
+                            @if ($role->jabatan_id == 1 && $role->divisi_id == 4)
+                                <!-- Project table -->
+                                <div class="card">
+                                    <h4 class="card-header">Data Nasabah PPR</h4>
+                                    <div class="table-responsive">
+                                        <table class="table datatable-project">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center">Peringkat</th>
+                                                    <th style="text-align: center">Nama Proyek Perumahan</th>
+                                                    <th class="text-nowrap" style="text-align: center">NOA</th>
+                                                    <th style="text-align: center">Plafond</th>
+                                                    <th style="text-align: center"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($dataNasabahPprs as $dataNasabahPpr)
+                                                    @php
+                                                        $proyekPerumahan = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                            ->where('id', $dataNasabahPpr->proyek_perumahan)
+                                                            ->get()
+                                                            ->first();
+                                                    @endphp
+                                                    <tr>
+                                                        <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                        <td>{{ $dataNasabahPpr->form_agunan_1_nama_proyek_perumahan }}
+                                                        </td>
+                                                        <td style="text-align: center">{{ $dataNasabahPpr->noa }}</td>
+                                                        <td>Rp. {{ number_format($dataNasabahPpr->plafond) }}</td>
+                                                        <td style="text-align: center"></td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /Project table -->
+                            @endif
+
                         </div>
                         <!--/ User Content -->
                     </div>
