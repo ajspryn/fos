@@ -20,14 +20,14 @@ return new class extends Migration
             $table->integer('form_ppr_data_pribadi_id');
             $table->integer('form_ppr_data_pekerjaan_id');
             $table->integer('form_ppr_data_agunan_id');
-            $table->integer('form_ppr_data_kekayaan_simpanan_id');
-            $table->integer('form_ppr_data_kekayaan_tanah_bangunan_id');
-            $table->integer('form_ppr_data_kekayaan_kendaraan_id');
-            $table->integer('form_ppr_data_kekayaan_saham_id');
-            $table->integer('form_ppr_data_kekayaan_lainnya_id');
-            $table->integer('form_ppr_data_pinjaman_id');
-            $table->integer('form_ppr_data_pinjaman_kartu_kredit_id');
-            $table->integer('form_ppr_data_pinjaman_lainnya_id');
+            // $table->integer('form_ppr_data_kekayaan_simpanan_id');
+            // $table->integer('form_ppr_data_kekayaan_tanah_bangunan_id');
+            // $table->integer('form_ppr_data_kekayaan_kendaraan_id');
+            // $table->integer('form_ppr_data_kekayaan_saham_id');
+            // $table->integer('form_ppr_data_kekayaan_lainnya_id');
+            // $table->integer('form_ppr_data_pinjaman_id');
+            // $table->integer('form_ppr_data_pinjaman_kartu_kredit_id');
+            // $table->integer('form_ppr_data_pinjaman_lainnya_id');
             $table->integer('user_id');
 
             //Check List
@@ -41,6 +41,7 @@ return new class extends Migration
             $table->integer('ppr_cl_dokumen_id')->nullable();
             $table->integer('ppr_scoring_id')->nullable();
 
+            $table->string('dilengkapi_ao')->nullable();
             $table->string('form_cl')->nullable();
             $table->string('form_score')->nullable();
             //Scoring
@@ -62,7 +63,7 @@ return new class extends Migration
             $table->integer('form_permohonan_uang_muka_dana_sendiri');
             $table->integer('form_permohonan_nilai_hpp')->nullable();
             $table->integer('form_permohonan_harga_jual')->nullable();
-            $table->string('form_permohonan_jangka_waktu_ppr');
+            $table->integer('form_permohonan_jangka_waktu_ppr');
             $table->string('form_permohonan_peruntukan_ppr');
             $table->integer('form_permohonan_jml_margin')->nullable();
             $table->integer('form_permohonan_jml_sewa')->nullable();

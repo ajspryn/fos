@@ -912,25 +912,40 @@
                                                                     @if ($score >= 3.5)
                                                                         <div class="card-body">
                                                                             <button class="btn btn-success w-100 mb-75"
-                                                                                data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#lanjutKomite">
                                                                                 Lanjut Komite
                                                                             </button>
+                                                                            {{-- <form action="/ppr/komite">
+                                                                            </form> --}}
                                                                         </div>
                                                                     @elseif ($score >= 2.9 && $score < 3.5)
                                                                         <div class="card-body">
                                                                             <button class="btn btn-warning w-100 mb-75"
                                                                                 data-bs-toggle="modal"
-                                                                                data-bs-target="#edit_proposal">
+                                                                                data-bs-target="#editProposal">
                                                                                 Edit Proposal
                                                                             </button>
+                                                                            {{-- <form action="/ppr/komite">
+                                                                                <input type="hidden" name="form_cl"
+                                                                                    value="Butuh Revisi">
+                                                                                <input type="hidden" name="form_score"
+                                                                                    value="Butuh Revisi">
+                                                                            </form> --}}
                                                                         </div>
                                                                     @else
                                                                         <div class="card-body">
-                                                                            <button class="btn btn-warning w-100 mb-75"
+                                                                            <button class="btn btn-danger w-100 mb-75"
                                                                                 data-bs-toggle="modal"
-                                                                                data-bs-target="#edit_proposal">
-                                                                                Edit Proposal
+                                                                                data-bs-target="#ditolak">
+                                                                                Ditolak
                                                                             </button>
+                                                                            {{-- <form action="/ppr/komite">
+                                                                                <input type="hidden" name="form_cl"
+                                                                                    value="Butuh Revisi">
+                                                                                <input type="hidden" name="form_score"
+                                                                                    value="Butuh Revisi">
+                                                                            </form> --}}
                                                                         </div>
                                                                     @endif
                                                                 @endif
@@ -938,8 +953,8 @@
                                                         </div>
                                                     </div>
                                                     <!-- Invoice Note ends -->
-                                                    <!-- add new card modal  -->
-                                                    <div class="modal fade" id="lanjut_komite" tabindex="-1"
+                                                    <!-- Lanjut Koimte  -->
+                                                    <div class="modal fade" id="lanjutKomite" tabindex="-1"
                                                         aria-labelledby="addNewCardTitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
@@ -987,7 +1002,112 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!--/ add new card modal  -->
+                                                    <!--/ Lanjut Komite  -->
+
+                                                    <!-- Edit Proposal -->
+                                                    <div class="modal fade" id="editProposal" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                        Revisi Proposal ?
+                                                                    </h1>
+                                                                    <p class="text-center"></p>
+
+                                                                    <!-- form -->
+                                                                    <form id="formEditProposal"
+                                                                        class="row gy-1 gx-2 mt-75" method="POST"
+                                                                        action="/ppr/komite">
+                                                                        @csrf
+                                                                        {{-- <input type="hidden" name="revisi"
+                                                                            value="Ya"> --}}
+                                                                        <div class="col-md-12">
+                                                                            <label class="form-label"
+                                                                                for="catatan">Catatan</label>
+                                                                            <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
+                                                                        </div>
+                                                                        <input type="hidden"
+                                                                            name="form_ppr_pembiayaan_id"
+                                                                            value="{{ $pembiayaan->id }}">
+                                                                        <input type="hidden" name="status_id" value=7>
+                                                                        <input type="hidden" name="jabatan_id" value=1>
+                                                                        <input type="hidden" name="user_id"
+                                                                            value="{{ Auth::user()->id }}">
+
+                                                                        <div class="col-12 text-center">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary me-1 mt-1">Submit</button>
+                                                                            <button type="reset"
+                                                                                class="btn btn-outline-secondary mt-1"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                                Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ Edit Proposal -->
+
+                                                    <!-- Ditolak -->
+                                                    <div class="modal fade" id="ditolak" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                        Apakah Anda Yakin Untuk Menolak Proposal Ini ?
+                                                                    </h1>
+                                                                    <p class="text-center"></p>
+
+                                                                    <!-- form -->
+                                                                    <form id="addNewCardValidation"
+                                                                        class="row gy-1 gx-2 mt-75" method="POST"
+                                                                        action="/ppr/komite">
+                                                                        @csrf
+
+                                                                        <div class="col-md-12">
+                                                                            <label class="form-label"
+                                                                                for="catatan">Catatan</label>
+                                                                            <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
+                                                                        </div>
+                                                                        <input type="hidden"
+                                                                            name="form_ppr_pembiayaan_id"
+                                                                            value="{{ $pembiayaan->id }}">
+                                                                        <input type="hidden" name="status_id" value=6>
+                                                                        <input type="hidden" name="jabatan_id" value=1>
+                                                                        <input type="hidden" name="user_id"
+                                                                            value="{{ Auth::user()->id }}">
+
+                                                                        <div class="col-12 text-center">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary me-1 mt-1">Submit</button>
+                                                                            <button type="reset"
+                                                                                class="btn btn-outline-secondary mt-1"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                                Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ Ditolak -->
                                                 </div>
                                             </div>
                                             <!-- /proposal -->
@@ -996,7 +1116,23 @@
                                         <div class="tab-pane" id="ftv" role="tabpanel" aria-labelledby="ftv-tab">
                                             <div class="col-xl-12 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
                                                 <div class="card">
+                                                    <div class="card-body invoice-padding pb-0">
+                                                        <!-- Header starts -->
+                                                        <div
+                                                            class="d-flex justify-content-center  flex-column invoice-spacing mt-0 col-xl-12 col-md-8 col-12">
+                                                            <div>
+                                                                <h4>Financing To Value (FTV) </h4>
+                                                                <hr>
+                                                                <div class="table-responsive mt-1">
 
+                                                                </div>
+                                                                <br />
+
+                                                                <!-- Invoice Note ends -->
+                                                            </div>
+                                                        </div>
+                                                        <!-- Header ends -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1017,6 +1153,24 @@
                                                     <div class="card-body">
                                                         <ul class="timeline">
                                                             @foreach ($timelines as $timeline)
+                                                                @php
+                                                                    $arr = $loop->iteration;
+                                                                    if ($arr == -2) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr == $banyak_history) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr >= 0) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[$arr]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    }
+
+                                                                @endphp
+
                                                                 <li class="timeline-item">
                                                                     <span
                                                                         class="timeline-point timeline-point-success timeline-point-indicator"></span>
@@ -1028,14 +1182,24 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
+                                                                            <span class="timeline-event-time"
+                                                                                style="text-align: right">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}
+                                                                                <br>{{ $timeline->created_at->isoformat('HH:mm:ss') }}
+                                                                            </span>
                                                                         </div>
+
                                                                         @if ($timeline->catatan)
                                                                             <p value="{{ $timeline->id }}"> <br>Catatan :
                                                                                 {{ $timeline->catatan }}
                                                                             <p>
                                                                         @endif
-                                                                        <span
-                                                                            class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
+                                                                        @if ($arr == -1)
+                                                                        @else
+                                                                            <span class="timeline-event-time">Waktu
+                                                                                Diproses : {{ $selisih }}</span>
+                                                                        @endif
+                                                                        {{-- <span
+                                                                            class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span> --}}
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
                                                                         <div class="d-flex flex-row align-items-center">
 
@@ -1043,6 +1207,8 @@
                                                                     </div>
                                                                 </li>
                                                             @endforeach
+
+                                                            <p class="fw-bold"> Total SLA : {{ $totalwaktu }}</p>
                                                         </ul>
                                                     </div>
                                                 </div>

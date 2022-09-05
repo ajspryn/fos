@@ -5,6 +5,9 @@ namespace Modules\Dirbis\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Form\Entities\FormPprDataPekerjaan;
+use Modules\Form\Entities\FormPprDataPribadi;
+use Modules\Form\Entities\FormPprPembiayaan;
 
 class PprNasabahController extends Controller
 {
@@ -14,7 +17,10 @@ class PprNasabahController extends Controller
      */
     public function index()
     {
-        return view('dirbis::index');
+        return view('dirbis::ppr.nasabah.index', [
+            'title' => 'Nasabah',
+            'proposals' => FormPprDataPribadi::select()->get(),
+        ]);
     }
 
     /**
@@ -43,7 +49,19 @@ class PprNasabahController extends Controller
      */
     public function show($id)
     {
-        return view('dirbis::show');
+        $data = FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
+
+        $nasabah = FormPprDataPribadi::select()->where('id', $id)->get()->first();
+        $pekerjaan_nasabah = FormPprDataPekerjaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
+
+        return view('kabag::ppr.nasabah.lihat', [
+            'title' => 'Nasabah',
+            'pembiayaan' => FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first(),
+            'nasabah' => $nasabah,
+            'pekerjaan_nasabah' => $pekerjaan_nasabah,
+            'datas' => FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get(),
+            'histories' => FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get(),
+        ]);
     }
 
     /**

@@ -23,8 +23,10 @@ return new class extends Migration
             $table->string('form_kekayaan_simpanan_sejak_tahun')->nullable();
             $table->date('form_kekayaan_simpanan_saldo_per_tanggal')->nullable();
             $table->string('form_kekayaan_simpanan_saldo')->nullable();
+            // $table->string('is_deleted')->nullable()->default('No');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

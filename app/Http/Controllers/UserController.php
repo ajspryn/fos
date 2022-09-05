@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Modules\Form\Entities\FormPprPembiayaan;
 use Modules\Form\Entities\SkpdPembiayaan;
 use Modules\Pasar\Entities\PasarPembiayaan;
 
@@ -23,12 +24,15 @@ class UserController extends Controller
     {
         $data_debitur = SkpdPembiayaan::select(DB::raw('count(skpd_instansi_id) as instansi, skpd_instansi_id,sum(nominal_pembiayaan) as plafond,count(skpd_nasabah_id) as noa'))->join('skpd_instansis', 'skpd_pembiayaans.skpd_instansi_id', '=', 'skpd_instansis.id')->where('user_id', Auth::user()->id)->groupBy('skpd_instansi_id')->orderBy('plafond', 'desc')->get();
         $data_debitur_pasar = PasarPembiayaan::join('pasar_keterangan_usahas', 'pasar_pembiayaans.id', '=', 'pasar_keterangan_usahas.pasar_pembiayaan_id')->select(DB::raw('count(jenispasar_id) as pasar, jenispasar_id, sum(harga) as plafond,count(nasabah_id) as noa'))->join('pasar_jenis_pasars', 'pasar_keterangan_usahas.jenispasar_id', '=', 'pasar_jenis_pasars.id')->where('AO_id', Auth::user()->id)->groupBy('jenispasar_id')->orderBy('plafond', 'desc')->get();
+        $dataNasabahPpr = FormPprPembiayaan::join('form_ppr_data_agunans', 'form_ppr_pembiayaans.id', '=', 'form_ppr_data_agunans.form_ppr_pembiayaan_id')->select(DB::raw('count(form_agunan_1_nama_proyek_perumahan) as proyek_perumahan, form_agunan_1_nama_proyek_perumahan,sum(form_permohonan_nilai_ppr_dimohon) as plafond,count(form_ppr_data_pribadi_id) as noa'))->where('user_id', Auth::user()->id)->groupBy('form_agunan_1_nama_proyek_perumahan')->orderBy('plafond', 'desc')->get();
+
         // return $data_debitur_pasar;
         return view('profile', [
             'role' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
             'user' => User::select()->where('id', Auth::user()->id)->get()->first(),
             'data_debiturs' => $data_debitur,
             'data_debitur_pasars' => $data_debitur_pasar,
+            'dataNasabahPprs' => $dataNasabahPpr,
         ]);
     }
 
@@ -90,13 +94,13 @@ class UserController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                 ]);
-            return redirect()->back()->with('success', 'Data Diri Berhasil Di Ubah');
+            return redirect()->back()->with('success', 'Data Diri Berhasil Diubah');
         } elseif ($request->code == 2) {
             User::where('id', $id)
                 ->update([
                     'password' => Hash::make($request->password_baru)
                 ]);
-            return redirect()->back()->with('success', 'Password Berhasil Di Ubah');
+            return redirect()->back()->with('success', 'Password Berhasil Diubah');
         } elseif ($request->code == 3) {
             // ddd($request->file('foto'));
             // return $request;
@@ -110,7 +114,7 @@ class UserController extends Controller
                         'foto' => $input,
                     ]);
             }
-            return redirect()->back()->with('success', 'Foto Berhasil Di Ubah');
+            return redirect()->back()->with('success', 'Foto Berhasil Diubah');
         }
     }
 

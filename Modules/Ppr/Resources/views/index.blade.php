@@ -126,22 +126,17 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                         </div>
                         <!--/ Statistics Card -->
                     </div>
-
-                    {{-- <div class="row">
+                    <div class="row">
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <div class="avatar bg-light-info p-50 mb-1">
-                                        <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Views</p>
+
+                                    <canvas id="myChart" width="400" height="400"></canvas>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
+                        {{-- <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-info p-50 mb-1">
@@ -283,10 +278,52 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                         <!--/ Revenue Report Card -->
                     </div>
                 </section> --}}
-                    <!-- Dashboard Ecommerce ends -->
+                        <!-- Dashboard Ecommerce ends -->
 
+                    </div>
             </div>
         </div>
-    </div>
-    <!-- END: Content-->
-@endsection
+        <!-- END: Content-->
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+        <script type="text/javascript">
+            var _ydata = JSON.parse('{!! json_encode($bulans) !!}');
+            var _xdata = JSON.parse('{!! json_encode($hitungBulan) !!}');
+
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: _ydata,
+                    datasets: [{
+                        label: "Proposal Per Bulan",
+                        data: _xdata,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    @endsection

@@ -7,14 +7,15 @@ $proposal = Modules\Form\Entities\FormPprPembiayaan::select()
 
 $proposalppr = Modules\Form\Entities\FormPprPembiayaan::select()
     ->where('user_id', Auth::user()->id)
-    ->whereNull('form_cl')
+    ->whereNull('dilengkapi_ao')
+    ->orWhereNull('form_cl')
     ->orWhereNull('form_score')
     ->get()
     ->count();
 
-$komiteppr = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+$komiteppr = Modules\Form\Entities\FormPprPembiayaan::select()
     ->where('user_id', Auth::user()->id)
-    ->where('status_id', 2)
+    ->whereNotNull(['dilengkapi_ao', 'form_cl', 'form_score'])
     ->get()
     ->count();
 
