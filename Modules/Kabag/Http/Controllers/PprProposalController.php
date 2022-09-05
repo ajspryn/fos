@@ -15,12 +15,11 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        $proposal=FormPprPembiayaan::select()->get();
-        return view('kabag::ppr.proposal.index',[
-            'title'=>'Proposal PPR',
-            'proposals'=>$proposal,
+        $proposal = FormPprPembiayaan::select()->get();
+        return view('kabag::ppr.proposal.index', [
+            'title' => 'Proposal PPR',
+            'proposals' => $proposal,
         ]);
-        
     }
 
     /**
@@ -29,7 +28,10 @@ class PprProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::create');
+        return view('kabag::ppr.index', [
+            'title' => 'Dashboard Kabag',
+
+        ]);
     }
 
     /**

@@ -268,26 +268,11 @@
                                 href="#form-pembiayaan" role="tab" aria-controls="form-pembiayaan"
                                 aria-selected="true">Form Pembiayaan</a>
                         </li>
-                        @if ($pembiayaan->dilengkapi_ao != 'Telah dilengkapi')
-                            <li class="nav-item li-disabled">
-                                <a class="nav-link" id="check-list-justified" data-bs-toggle="tab" href="#check-list"
-                                    role="tab" aria-controls="check-list" aria-selected="true">Check List <br /><small
-                                        class="text-danger">* Silakan lengkapi Proposal terlebih dahulu</small></a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" id="check-list-justified" data-bs-toggle="tab" href="#check-list"
-                                    role="tab" aria-controls="check-list" aria-selected="true">Check List</a>
-                            </li>
-                        @endif
-                        @if ($pembiayaan->dilengkapi_ao != 'Telah dilengkapi' && $pembiayaan->form_cl != 'Telah diisi')
-                            <li class="nav-item li-disabled">
-                                <a class="nav-link" id="scoring-justified" data-bs-toggle="tab" href="#scoring"
-                                    role="tab" aria-controls="scoring" aria-selected="false">Scoring <br /><small
-                                        class="text-danger">* Silakan lengkapi Proposal dan isi Check List terlebih
-                                        dahulu</small></a>
-                            </li>
-                        @elseif ($pembiayaan->dilengkapi_ao == 'Telah dilengkapi' && $pembiayaan->form_cl != 'Telah diisi')
+                        <li class="nav-item">
+                            <a class="nav-link" id="check-list-justified" data-bs-toggle="tab" href="#check-list"
+                                role="tab" aria-controls="check-list" aria-selected="true">Check List</a>
+                        </li>
+                        @if ($pembiayaan->form_cl != 'Telah diisi')
                             <li class="nav-item li-disabled">
                                 <a class="nav-link" id="scoring-justified" data-bs-toggle="tab" href="#scoring"
                                     role="tab" aria-controls="scoring" aria-selected="false">Scoring <br /><small
@@ -416,15 +401,6 @@
                                     enctype="multipart/form-data">
                                     @method('PUT')
                                     @csrf
-                                    @if ($pembiayaan->form_cl == 'Telah diisi')
-                                        <input type="hidden" name="dilengkapi_ao" value="Telah dilengkapi" />
-                                        <input type="hidden" name="form_cl" value="Telah diisi" />
-                                    @elseif ($pembiayaan->form_score == 'Telah dinilai')
-                                        <input type="hidden" name="dilengkapi_ao" value="Telah dilengkapi" />
-                                        <input type="hidden" name="form_score" value="Telah dinilai" />
-                                    @else
-                                        <input type="hidden" name="dilengkapi_ao" value="Telah dilengkapi" />
-                                    @endif
                                     <!-- Form Permohonan -->
                                     <div id="formPermohonan" class="content" role="tabpanel"
                                         aria-labelledby="permohonan-trigger">
@@ -1262,7 +1238,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1272,7 +1248,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1616,8 +1592,7 @@
                                                                                     for="form_pribadi_keluarga_terdekat_alamat"><small
                                                                                         class="text-danger">*
                                                                                     </small>Alamat Tempat Tinggal</label>
-                                                                                <input type="text"
-                                                                                    class="form-control"
+                                                                                <input type="text" class="form-control"
                                                                                     name="form_pribadi_keluarga_terdekat_alamat"
                                                                                     id="form_pribadi_keluarga_terdekat_alamat"
                                                                                     aria-describedby="form_pribadi_keluarga_terdekat_alamat"
@@ -1633,8 +1608,7 @@
                                                                                     for="form_pribadi_keluarga_terdekat_alamat_rt"><small
                                                                                         class="text-danger">*
                                                                                     </small>RT</label>
-                                                                                <input type="number"
-                                                                                    class="form-control"
+                                                                                <input type="number" class="form-control"
                                                                                     name="form_pribadi_keluarga_terdekat_alamat_rt"
                                                                                     id="form_pribadi_keluarga_terdekat_alamat_rt"
                                                                                     aria-describedby="form_pribadi_keluarga_terdekat_alamat_rt"
@@ -1650,8 +1624,7 @@
                                                                                     for="form_pribadi_keluarga_terdekat_alamat_rw"><small
                                                                                         class="text-danger">*
                                                                                     </small>RW</label>
-                                                                                <input type="number"
-                                                                                    class="form-control"
+                                                                                <input type="number" class="form-control"
                                                                                     name="form_pribadi_keluarga_terdekat_alamat_rw"
                                                                                     id="form_pribadi_keluarga_terdekat_alamat_rw"
                                                                                     aria-describedby="form_pribadi_keluarga_terdekat_alamat_rw"
@@ -2898,8 +2871,7 @@
                                                     disabled />
                                                 <input type="hidden"
                                                     name="form_penghasilan_pengeluaran_total_pengeluaran"
-                                                    id="form_penghasilan_pengeluaran_total_pengeluaran"
-                                                    value="{{ $pembiayaan->form_penghasilan_pengeluaran_total_pengeluaran }}" />
+                                                    id="form_penghasilan_pengeluaran_total_pengeluaran" />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -2926,8 +2898,7 @@
                                                     disabled />
                                                 <input type="hidden"
                                                     name="form_penghasilan_pengeluaran_sisa_penghasilan"
-                                                    id="form_penghasilan_pengeluaran_sisa_penghasilan"
-                                                    value="{{ $pembiayaan->form_penghasilan_pengeluaran_sisa_penghasilan }}" />
+                                                    id="form_penghasilan_pengeluaran_sisa_penghasilan" />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -2941,8 +2912,7 @@
                                                     disabled />
                                                 <input type="hidden"
                                                     name="form_penghasilan_pengeluaran_total_penghasilan"
-                                                    id="form_penghasilan_pengeluaran_total_penghasilan"
-                                                    value="{{ $pembiayaan->form_penghasilan_pengeluaran_total_penghasilan }}" />
+                                                    id="form_penghasilan_pengeluaran_total_penghasilan" />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -3821,7 +3791,7 @@
                                                                                     <i data-feather="x"
                                                                                         class="me-25"></i>
                                                                                 </button>
-                                                                                {{-- <label class="form-label" for="is_deleted">Hapus</label>
+                                                                                    {{-- <label class="form-label" for="is_deleted">Hapus</label>
                                                                                     <div>
                                                                                         &ensp;
                                                                                         <input type="radio" name="is_deleted"
@@ -5016,14 +4986,10 @@
                                     enctype="multipart/form-data">
                                     @method('PUT')
                                     @csrf
-                                    @if ($pembiayaan->dilengkapi_ao == 'Telah dilengkapi')
-                                        <input type="hidden" name="dilengkapi_ao" value="Telah dilengkapi" />
+                                    @if ($pembiayaan->form_score == 'Telah dinilai')
                                         <input type="hidden" name="form_cl" value="Telah diisi" />
-                                    @elseif ($pembiayaan->form_score == 'Telah dinilai')
-                                        <input type="hidden" name="dilengkapi_ao" value="Telah dilengkapi" />
                                         <input type="hidden" name="form_score" value="Telah dinilai" />
                                     @else
-                                        <input type="hidden" name="dilengkapi_ao" value="Telah dilengkapi" />
                                         <input type="hidden" name="form_cl" value="Telah diisi" />
                                     @endif
                                     {{-- <input type="hidden" name="form_cl" value="{{ request('form_cl')}}" /> --}}
@@ -7709,13 +7675,10 @@
                                 <form action="/ppr/proposal/{{ $pembiayaan->id }}" method="POST">
                                     @method('PUT')
                                     @csrf
-                                    @if ($pembiayaan->dilengkapi_ao == 'Telah dilengkapi' && $pembiayaan->form_cl == 'Telah diisi')
-                                        <input type="hidden" name="dilengkapi_ao" value="Telah dilengkapi" />
+                                    @if ($pembiayaan->form_cl == 'Telah diisi')
                                         <input type="hidden" name="form_cl" value="Telah diisi" />
                                         <input type="hidden" name="form_score" value="Telah dinilai" />
                                     @else
-                                        <input type="hidden" name="dilengkapi_ao" value="Telah dilengkapi" />
-                                        <input type="hidden" name="form_cl" value="Telah diisi" />
                                         <input type="hidden" name="form_score" value="Telah dinilai" />
                                     @endif
                                     <!-- Form Analisa Character -->

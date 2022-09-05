@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Ppr\Http\Controllers\PprEditProposalController;
 use Modules\Ppr\Http\Controllers\PprNasabahController;
 use Modules\Ppr\Http\Controllers\PprProposalController;
 
@@ -32,4 +33,5 @@ Route::prefix('ppr')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:
     Route::resource('/proposal', PprProposalController::class);
     Route::resource('/komite', PprKomiteController::class);
     Route::resource('/nasabah', PprNasabahController::class);
+    Route::resource('/revisi', PprEditProposalController::class);
 });

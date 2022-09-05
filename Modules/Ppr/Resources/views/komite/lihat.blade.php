@@ -912,25 +912,40 @@
                                                                     @if ($score >= 3.5)
                                                                         <div class="card-body">
                                                                             <button class="btn btn-success w-100 mb-75"
-                                                                                data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#lanjutKomite">
                                                                                 Lanjut Komite
                                                                             </button>
+                                                                            {{-- <form action="/ppr/komite">
+                                                                            </form> --}}
                                                                         </div>
                                                                     @elseif ($score >= 2.9 && $score < 3.5)
                                                                         <div class="card-body">
                                                                             <button class="btn btn-warning w-100 mb-75"
                                                                                 data-bs-toggle="modal"
-                                                                                data-bs-target="#edit_proposal">
+                                                                                data-bs-target="#editProposal">
                                                                                 Edit Proposal
                                                                             </button>
+                                                                            {{-- <form action="/ppr/komite">
+                                                                                <input type="hidden" name="form_cl"
+                                                                                    value="Butuh Revisi">
+                                                                                <input type="hidden" name="form_score"
+                                                                                    value="Butuh Revisi">
+                                                                            </form> --}}
                                                                         </div>
                                                                     @else
                                                                         <div class="card-body">
-                                                                            <button class="btn btn-warning w-100 mb-75"
+                                                                            <button class="btn btn-danger w-100 mb-75"
                                                                                 data-bs-toggle="modal"
-                                                                                data-bs-target="#edit_proposal">
-                                                                                Edit Proposal
+                                                                                data-bs-target="#ditolak">
+                                                                                Ditolak
                                                                             </button>
+                                                                            {{-- <form action="/ppr/komite">
+                                                                                <input type="hidden" name="form_cl"
+                                                                                    value="Butuh Revisi">
+                                                                                <input type="hidden" name="form_score"
+                                                                                    value="Butuh Revisi">
+                                                                            </form> --}}
                                                                         </div>
                                                                     @endif
                                                                 @endif
@@ -938,8 +953,8 @@
                                                         </div>
                                                     </div>
                                                     <!-- Invoice Note ends -->
-                                                    <!-- add new card modal  -->
-                                                    <div class="modal fade" id="lanjut_komite" tabindex="-1"
+                                                    <!-- Lanjut Koimte  -->
+                                                    <div class="modal fade" id="lanjutKomite" tabindex="-1"
                                                         aria-labelledby="addNewCardTitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
@@ -987,7 +1002,112 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!--/ add new card modal  -->
+                                                    <!--/ Lanjut Komite  -->
+
+                                                    <!-- Edit Proposal -->
+                                                    <div class="modal fade" id="editProposal" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                        Revisi Proposal ?
+                                                                    </h1>
+                                                                    <p class="text-center"></p>
+
+                                                                    <!-- form -->
+                                                                    <form id="formEditProposal"
+                                                                        class="row gy-1 gx-2 mt-75" method="POST"
+                                                                        action="/ppr/komite">
+                                                                        @csrf
+                                                                        {{-- <input type="hidden" name="revisi"
+                                                                            value="Ya"> --}}
+                                                                        <div class="col-md-12">
+                                                                            <label class="form-label"
+                                                                                for="catatan">Catatan</label>
+                                                                            <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
+                                                                        </div>
+                                                                        <input type="hidden"
+                                                                            name="form_ppr_pembiayaan_id"
+                                                                            value="{{ $pembiayaan->id }}">
+                                                                        <input type="hidden" name="status_id" value=7>
+                                                                        <input type="hidden" name="jabatan_id" value=1>
+                                                                        <input type="hidden" name="user_id"
+                                                                            value="{{ Auth::user()->id }}">
+
+                                                                        <div class="col-12 text-center">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary me-1 mt-1">Submit</button>
+                                                                            <button type="reset"
+                                                                                class="btn btn-outline-secondary mt-1"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                                Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ Edit Proposal -->
+
+                                                    <!-- Ditolak -->
+                                                    <div class="modal fade" id="ditolak" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                        Apakah Anda Yakin Untuk Menolak Proposal Ini ?
+                                                                    </h1>
+                                                                    <p class="text-center"></p>
+
+                                                                    <!-- form -->
+                                                                    <form id="addNewCardValidation"
+                                                                        class="row gy-1 gx-2 mt-75" method="POST"
+                                                                        action="/ppr/komite">
+                                                                        @csrf
+
+                                                                        <div class="col-md-12">
+                                                                            <label class="form-label"
+                                                                                for="catatan">Catatan</label>
+                                                                            <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
+                                                                        </div>
+                                                                        <input type="hidden"
+                                                                            name="form_ppr_pembiayaan_id"
+                                                                            value="{{ $pembiayaan->id }}">
+                                                                        <input type="hidden" name="status_id" value=6>
+                                                                        <input type="hidden" name="jabatan_id" value=1>
+                                                                        <input type="hidden" name="user_id"
+                                                                            value="{{ Auth::user()->id }}">
+
+                                                                        <div class="col-12 text-center">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary me-1 mt-1">Submit</button>
+                                                                            <button type="reset"
+                                                                                class="btn btn-outline-secondary mt-1"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                                Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ Ditolak -->
                                                 </div>
                                             </div>
                                             <!-- /proposal -->
@@ -996,7 +1116,427 @@
                                         <div class="tab-pane" id="ftv" role="tabpanel" aria-labelledby="ftv-tab">
                                             <div class="col-xl-12 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
                                                 <div class="card">
+                                                    <div class="card-body invoice-padding pb-0">
+                                                        <!-- Header starts -->
+                                                        <div
+                                                            class="d-flex justify-content-center  flex-column invoice-spacing mt-0 col-xl-12 col-md-8 col-12">
+                                                            <div>
+                                                                <h4>Financing To Value (FTV) </h4>
+                                                                <hr>
+                                                                <div class="table-responsive mt-1">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="text-align: center"
+                                                                                    width="2%">No
+                                                                                </th>
+                                                                                <th style="text-align: center">
+                                                                                    Parameter
+                                                                                </th>
+                                                                                <th style="text-align: center">% Bobot
+                                                                                </th>
+                                                                                <th style="text-align: center">Bobot Bersih
+                                                                                </th>
+                                                                                <th style="text-align: center">Keterangan
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="text-align: center">
+                                                                                    <strong>1</strong>
+                                                                                </td>
+                                                                                <td style="vertical-align: middle;">
+                                                                                    <strong>Ability To Repay</strong>
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    <strong>50%</strong>
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    <strong>
+                                                                                        {{ $scoring->scoringAtrFixedIncome->atr_fixed_score }}
+                                                                                    </strong>
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    @if ($scoring->scoringAtrFixedIncome->atr_fixed_score >= 1.7)
+                                                                                        <strong>Sangat Baik</strong>
+                                                                                    @elseif($scoring->scoringAtrFixedIncome->atr_fixed_score >= 1.4 &&
+                                                                                        $scoring->scoringAtrFixedIncome->atr_fixed_score < 1.7)
+                                                                                        <strong>Cukup Baik</strong>
+                                                                                    @else
+                                                                                        <strong>Kurang</strong>
+                                                                                    @endif
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Pekerjaan
+                                                                                </td>
+                                                                                <td style="text-align: center">8%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringAtrFixedIncome->atr_fixed_pekerjaan }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Pengalaman/Riwayat
+                                                                                    Pembiayaan
+                                                                                </td>
+                                                                                <td style="text-align: center">8%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringAtrFixedIncome->atr_fixed_pengalaman_riwayat_pembiayaan }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Keamanan
+                                                                                    Bisnis/Pekerjaan
+                                                                                </td>
+                                                                                <td style="text-align: center">12%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringAtrFixedIncome->atr_fixed_keamanan_bisnis_pekerjaan }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Potensi Pertumbuhan
+                                                                                    Hasil
+                                                                                </td>
+                                                                                <td style="text-align: center">15%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringAtrFixedIncome->atr_fixed_potensi_pertumbuhan_hasil }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Pengalaman Kerja
+                                                                                </td>
+                                                                                <td style="text-align: center">5%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringAtrFixedIncome->atr_fixed_pengalaman_kerja }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Pendidikan
+                                                                                </td>
+                                                                                <td style="text-align: center">9%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringAtrFixedIncome->atr_fixed_pendidikan }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Usia
+                                                                                </td>
+                                                                                <td style="text-align: center">6%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringAtrFixedIncome->atr_fixed_usia }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Sumber Pendapatan
+                                                                                </td>
+                                                                                <td style="text-align: center">10%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringAtrFixedIncome->atr_fixed_sumber_pendapatan }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Pendapatan Bersih
+                                                                                </td>
+                                                                                <td style="text-align: center">20%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringAtrFixedIncome->atr_fixed_pendapatan_gaji_bersih }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Jumlah Tanggungan
+                                                                                    Keluarga
+                                                                                </td>
+                                                                                <td style="text-align: center">7%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringAtrFixedIncome->atr_fixed_jml_tanggungan_keluarga }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td style="text-align: center"> Total
+                                                                                </td>
+                                                                                <td style="text-align: center">100%
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringAtrFixedIncome->atr_fixed_total_bobot_bersih }}
+                                                                                </td>
+                                                                            </tr>
 
+                                                                            <tr>
+                                                                                <td style="text-align: center">
+                                                                                    <strong>2</strong>
+                                                                                </td>
+                                                                                <td class="pe-1">
+                                                                                    <strong>Willingness To
+                                                                                        Repay</strong>
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    <strong>25%</strong>
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    <strong>
+                                                                                        {{ $scoring->scoringWtrFixedIncome->wtr_fixed_score }}
+                                                                                    </strong>
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    @if ($scoring->scoringWtrFixedIncome->wtr_fixed_score >= 0.9)
+                                                                                        <strong>Sangat Baik</strong>
+                                                                                    @elseif($scoring->scoringWtrFixedIncome->wtr_fixed_score >= 0.75 &&
+                                                                                        $scoring->scoringWtrFixedIncome->wtr_fixed_score < 0.9)
+                                                                                        <strong>Cukup Baik</strong>
+                                                                                    @else
+                                                                                        <strong>Kurang</strong>
+                                                                                    @endif
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Tempat Bekerja
+                                                                                </td>
+                                                                                <td style="text-align: center">13%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringWtrFixedIncome->wtr_fixed_tempat_bekerja }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Konsistensi
+                                                                                </td>
+                                                                                <td style="text-align: center">12%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringWtrFixedIncome->wtr_fixed_konsistensi }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Kelengkapan dan
+                                                                                    Validitas Data
+                                                                                </td>
+                                                                                <td style="text-align: center">15%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringWtrFixedIncome->wtr_fixed_kelengkapan_validitas_data }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Pembayaran Angsuran
+                                                                                    Kolektif
+                                                                                </td>
+                                                                                <td style="text-align: center">20%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringWtrFixedIncome->wtr_fixed_pembayaran_angsuran_kolektif }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Pengalaman
+                                                                                    Pembiayaan
+                                                                                </td>
+                                                                                <td style="text-align: center">10%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringWtrFixedIncome->wtr_fixed_pengalaman_pembiayaan }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Motivasi
+                                                                                </td>
+                                                                                <td style="text-align: center">20%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringWtrFixedIncome->wtr_fixed_motivasi }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Referensi
+                                                                                </td>
+                                                                                <td style="text-align: center">10%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringWtrFixedIncome->wtr_fixed_referensi }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td style="text-align: center"> Total
+                                                                                </td>
+                                                                                <td style="text-align: center">100%
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringWtrFixedIncome->wtr_fixed_total_bobot_bersih }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align: center">
+                                                                                    <strong>3</strong>
+                                                                                </td>
+                                                                                <td class="pe-1">
+                                                                                    <strong>Collateral Coverage</strong>
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    <strong>25%</strong>
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    <strong>
+                                                                                        {{ $scoring->scoringCollateralFixedIncome->cc_fixed_score }}
+                                                                                    </strong>
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    @if ($scoring->scoringCollateralFixedIncome->cc_fixed_score >= 0.9)
+                                                                                        <strong>Sangat Baik</strong>
+                                                                                    @elseif($scoring->scoringCollateralFixedIncome->cc_fixed_score >= 0.75 &&
+                                                                                        $scoring->scoringCollateralFixedIncome->cc_fixed_score < 0.9)
+                                                                                        <strong>Cukup Baik</strong>
+                                                                                    @else
+                                                                                        <strong>Kurang</strong>
+                                                                                    @endif
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Marketabilitas
+                                                                                </td>
+                                                                                <td style="text-align: center">13%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringCollateralFixedIncome->cc_marketabilitas }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Kontribusi Pemohon
+                                                                                    (FTV)
+                                                                                </td>
+                                                                                <td style="text-align: center">13%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringCollateralFixedIncome->cc_kontribusi_pemohon_ftv }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Pertumbuhan Agunan
+                                                                                </td>
+                                                                                <td style="text-align: center">13%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringCollateralFixedIncome->cc_pertumbuhan_agunan }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Daya Tarik Agunan
+                                                                                </td>
+                                                                                <td style="text-align: center">13%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringCollateralFixedIncome->cc_daya_tarik_agunan }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="pe-1">Jangka Waktu
+                                                                                    Likuidasi
+                                                                                </td>
+                                                                                <td style="text-align: center">13%</td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringCollateralFixedIncome->cc_jangka_waktu_likuidasi }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td style="text-align: center"> Total
+                                                                                </td>
+                                                                                <td style="text-align: center">100%
+                                                                                </td>
+                                                                                <td style="text-align: center">
+                                                                                    {{ $scoring->scoringCollateralFixedIncome->cc_fixed_total_bobot_bersih }}
+                                                                                </td>
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <br />
+                                                                @php
+                                                                    $score = $pembiayaan->scoring->ppr_total_score;
+                                                                @endphp
+                                                                <div class="card-body invoice-padding pt-0">
+                                                                    <div class="row invoice-spacing">
+                                                                        <div class="col-xl-7 p-0">
+                                                                            <table>
+                                                                                <tbody>
+
+                                                                                    <tr>
+                                                                                        <td class="pe-1">Total Nilai
+                                                                                        </td>
+                                                                                        <td>: {{ $score }}</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="pe-1">Status</td>
+                                                                                        <td>:
+                                                                                            @if ($score >= 3.5)
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                            @elseif($score >= 2.9 && $score < 3.5)
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                    Ulang</span>
+                                                                                            @else
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                            @endif
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="col-xl-5 p-0 mt-xl-0 mt-2">
+                                                                            <p class="mb-1 fw-bold">Note :</p>
+                                                                            <table>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="pe-1 mb-2">Nilai < 2.9
+                                                                                                </td>
+                                                                                        <td>: <span class="fw-bold"><span
+                                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span></span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="pe-1 mb-2"><br>Nilai >=
+                                                                                            2.9
+                                                                                            dan < 3.5 </td>
+                                                                                        <td><br>: <span
+                                                                                                class="fw-bold"><span
+                                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                    Ulang</span></span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="pe-1 mb-2"><br>Nilai >=
+                                                                                            3.5
+                                                                                        </td>
+                                                                                        <td><br>: <span
+                                                                                                class="fw-bold"><span
+                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span></span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Invoice Note ends -->
+                                                            </div>
+                                                        </div>
+                                                        <!-- Header ends -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1017,6 +1557,24 @@
                                                     <div class="card-body">
                                                         <ul class="timeline">
                                                             @foreach ($timelines as $timeline)
+                                                                @php
+                                                                    $arr = $loop->iteration;
+                                                                    if ($arr == -2) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr == $banyak_history) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr >= 0) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[$arr]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    }
+
+                                                                @endphp
+
                                                                 <li class="timeline-item">
                                                                     <span
                                                                         class="timeline-point timeline-point-success timeline-point-indicator"></span>
@@ -1028,14 +1586,24 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
+                                                                            <span class="timeline-event-time"
+                                                                                style="text-align: right">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}
+                                                                                <br>{{ $timeline->created_at->isoformat('HH:mm:ss') }}
+                                                                            </span>
                                                                         </div>
+
                                                                         @if ($timeline->catatan)
                                                                             <p value="{{ $timeline->id }}"> <br>Catatan :
                                                                                 {{ $timeline->catatan }}
                                                                             <p>
                                                                         @endif
-                                                                        <span
-                                                                            class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
+                                                                        @if ($arr == -1)
+                                                                        @else
+                                                                            <span class="timeline-event-time">Waktu
+                                                                                Diproses : {{ $selisih }}</span>
+                                                                        @endif
+                                                                        {{-- <span
+                                                                            class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span> --}}
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
                                                                         <div class="d-flex flex-row align-items-center">
 
@@ -1043,6 +1611,8 @@
                                                                     </div>
                                                                 </li>
                                                             @endforeach
+
+                                                            <p class="fw-bold"> Total SLA : {{ $totalwaktu }}</p>
                                                         </ul>
                                                     </div>
                                                 </div>

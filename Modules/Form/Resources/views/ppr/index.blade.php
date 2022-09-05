@@ -2875,7 +2875,7 @@
                                     <div class="row">
                                         <div class="mb-1 col-md-12">
                                             <div class="repeater-default">
-                                                <div data-repeater-list="kekayaan_simpanan">
+                                                <div data-repeater-list="repeater_kekayaan_simpanan">
                                                     <h6>Simpanan</h6>
                                                     <div data-repeater-item>
                                                         <div class="row d-flex align-items-end">
@@ -2953,7 +2953,7 @@
                                                                         data-repeater-delete type="button">
                                                                         <i data-feather="x" class="me-25"></i>
                                                                     </button>
-                                                                </div>
+                                                                                                                                    </div>
                                                             </div>
                                                         </div>
                                                     </div>

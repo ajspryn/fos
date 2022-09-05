@@ -3,6 +3,8 @@
 namespace Modules\Ppr\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\Status;
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -22,7 +24,7 @@ class PprKomiteController extends Controller
      */
     public function index()
     {
-        $proposal = FormPprPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull(['form_cl', 'form_score'])->get();
+        $proposal = FormPprPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull(['dilengkapi_ao', 'form_cl', 'form_score'])->get();
         return view('ppr::komite.index', [
             'title' => 'Komite PPR',
             'proposals' => $proposal,
@@ -47,19 +49,24 @@ class PprKomiteController extends Controller
      */
     public function store(Request $request)
     {
+        // $data = PprScoring::select()->where('', id)->get()->first();
+        // $score = $data->scoring->ppr_total_score;
         $role = Role::select()->where('user_id', Auth::user()->id)->get()->first();
 
         PprPembiayaanHistory::create([
             'form_ppr_pembiayaan_id' => $request->form_ppr_pembiayaan_id,
-            'status_id' => 3,
+            'status_id' => $request->status_id,
             'catatan' => $request->catatan,
             'jabatan_id' => $role->jabatan_id,
             'divisi_id' => $role->divisi_id,
             'user_id' => Auth::user()->id,
         ]);
 
-        return redirect('/ppr/komite/')->with('success', 'Proposal Anda Berhasil Diajukan');
+        //         if (request('revisi') == 'Ya') {
+        // FormPprPembiayaan::update
+        //         }
 
+        return redirect('/ppr/komite/')->with('success', 'Proposal Berhasil Diajukan');
     }
 
     /**
@@ -84,6 +91,22 @@ class PprKomiteController extends Controller
                 'user_id' => Auth::user()->$id,
             ]);
         }
+
+        $timeline = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderBy('created_at', 'desc')->get()->first();
+        $statushistory = Status::select()->where('id', $timeline->status_id)->get();
+
+
+        $waktuawal = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderBy('created_at', 'asc')->get()->first();
+        $waktuakhir = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderBy('created_at', 'desc')->get()->first();
+        $next = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->where('id', '>', $waktuawal->id)->orderby('id')->first();
+
+        $waktumulai = Carbon::parse($waktuawal->created_at);
+        $waktuberakhir = Carbon::parse($waktuakhir->created_at);
+        $selanjutnya = Carbon::parse($next->created_at);
+
+
+        $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
+
         return view('ppr::komite.lihat', [
             'title' => 'Detail Proposal',
             'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
@@ -93,6 +116,10 @@ class PprKomiteController extends Controller
 
             //History
             'history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
+            //SLA
+            'totalwaktu' => $totalwaktu,
+            'arr' => -2,
+            'banyak_history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->count(),
 
         ]);
     }
