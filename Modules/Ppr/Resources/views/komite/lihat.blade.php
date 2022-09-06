@@ -992,7 +992,7 @@
                                                                         <input type="hidden"
                                                                             name="form_ppr_pembiayaan_id"
                                                                             value="{{ $pembiayaan->id }}">
-                                                                        <input type="hidden" name="status_id" value=5>
+                                                                        <input type="hidden" name="status_id" value=3>
                                                                         <input type="hidden" name="user_id"
                                                                             value="{{ Auth::user()->id }}">
 
@@ -1289,7 +1289,7 @@
                                                                         $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                         $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                     }
-                                                                    
+
                                                                 @endphp
 
                                                                 <li class="timeline-item">

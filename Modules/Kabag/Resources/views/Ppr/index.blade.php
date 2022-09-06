@@ -7,30 +7,33 @@
             ->where('jabatan_id', 4)
             ->get()
             ->count();
-        
-        $pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+
+        $pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+            ->where('status_id', 3)
+            ->get();
         $proposalppr = 0;
         foreach ($pprs as $ppr) {
-            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                ->where('form_ppr_pembiayaan_id', $ppr->id)
-                ->orderBy('created_at', 'desc')
+            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                ->where('id', $ppr->form_ppr_pembiayaan_id)
                 ->get()
                 ->first();
-            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                ->where('id', $history->form_ppr_pembiayaan_id)
+
+            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
+                ->orderBy('created_at', 'desc')
                 ->get()
                 ->first();
             if ($history->status_id == 3 && $history->jabatan_id == 1) {
                 $proposalppr++;
             }
         }
-        
+
         $ditolak = Modules\Ppr\Entities\PprPembiayaanHistory::select()
             ->where('status_id', 6)
             ->get()
             ->count();
-        
-        $revisi = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+
+        $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
             ->where('status_id', 7)
             ->orderby('created_at', 'desc')
             ->get()
@@ -93,7 +96,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $revisi }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $review }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Review</p>
                                                 </div>
                                             </div>

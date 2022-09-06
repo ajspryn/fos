@@ -66,25 +66,26 @@ foreach ($umkms as $umkm) {
     }
 }
 
-$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+$pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    ->where('status_id', 3)
+    ->get();
 
 $proposalppr = 0;
 foreach ($pprs as $ppr) {
-    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('form_ppr_pembiayaan_id', $ppr->id)
-        ->orderBy('created_at', 'desc')
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $ppr->form_ppr_pembiayaan_id)
         ->get()
         ->first();
 
-    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-        ->where('id', $history->form_ppr_pembiayaan_id)
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
+        ->orderBy('created_at', 'desc')
         ->get()
         ->first();
     if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
         $proposalppr++;
     }
 }
-
 @endphp
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
