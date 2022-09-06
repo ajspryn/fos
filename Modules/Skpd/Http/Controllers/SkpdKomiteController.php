@@ -21,6 +21,7 @@ use Modules\Admin\Entities\SkpdJenisJaminan;
 use Modules\Skpd\Entities\SkpdDeviasi;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
+use Modules\Skpd\Entities\SkpdSlikPasangan;
 
 class SkpdKomiteController extends Controller
 {
@@ -118,7 +119,15 @@ class SkpdKomiteController extends Controller
         $biaya_istri=$nasabah->status_perkawinan->biaya;
         $cicilan=SkpdSlik::select()->where('skpd_pembiayaan_id',$id)->sum('angsuran');
         $pengeluaran_lainnya=SkpdPembiayaan::select()->where('id',$id)->sum('pengeluaran_lainnya');
+        $cekcicilanpasangan=SkpdSlikPasangan::select()->where('skpd_pembiayaan_id',$id)->get()->count();
         $total_pengeluaran=$biaya_anak+$biaya_istri+$cicilan+$pengeluaran_lainnya;
+
+        // if($cekcicilanpasangan>0){
+        //     $cicilanpasangan =   $cekcicilanpasangan=SkpdSlikPasangan::select()->where('skpd_pembiayaan_id',$id)->sum('angsuran');
+
+        //     $total_pengeluaran=$biaya_anak+$biaya_istri+$cicilan+$pengeluaran_lainnya+$cicilanpasangan;
+        //     $cicilan =  $cicilan+$cicilanpasangan;
+        // }
 
         //pemasukan
         $gaji_pokok=$data->gaji_pokok;
@@ -198,7 +207,7 @@ class SkpdKomiteController extends Controller
 
 
         $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
-        // return $proses_dsr;
+        // return $total_pengeluaran;
         return view('skpd::komite.lihat',[
             'title'=>'Detail Proposal',
             'arr'=>-2,
@@ -210,12 +219,15 @@ class SkpdKomiteController extends Controller
             'biayakeluarga'=>$biaya_anak+$biaya_istri,
             'pendapatan_bersih'=>$pendapatan_bersih,
             'ideps'=>SkpdSlik::select()->where('skpd_pembiayaan_id',$id)->get(),
+            'ideppasangans'=>SkpdSlikPasangan::select()->where('skpd_pembiayaan_id',$id)->get(),
             'harga_jual'=>$harga_jual,
             'tenor'=>$tenor,
             'angsuran1'=>$angsuran,
             'nilai_dsr'=>$dsr,
             'nilai_dsr1'=>$dsr,
             'total_pendapatan'=>$data->pendapatan_lainnya + $data->gaji_pokok + $data->pendapatan_lainnya,
+            'total_pengeluaran'=>$total_pengeluaran,
+            'cekcicilanpasangan'=>$cekcicilanpasangan,
 
             'bendahara'=>$proses_bendahara,
             'dsr'=>$proses_dsr,

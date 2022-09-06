@@ -20,6 +20,7 @@ use Modules\Admin\Entities\SkpdSektorEkonomi;
 use Modules\Admin\Entities\SkpdJenisPenggunaan;
 use Modules\Admin\Entities\SkpdStatusPerkawinan;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
+use Modules\Skpd\Entities\SkpdSlikPasangan;
 
 class SkpdProposalController extends Controller
 {
@@ -156,6 +157,31 @@ class SkpdProposalController extends Controller
 
                     // return $value;
                     SkpdSlik::create([
+                        'skpd_pembiayaan_id'=>$id,
+                        'nama_bank'=> $value['nama_bank'],
+                        'plafond'=> $value['plafond'],
+                        'outstanding'=> $value['outstanding'],
+                        'tenor'=> $value['tenor'],
+                        'margin'=> $value['margin'],
+                        'angsuran'=> $value['angsuran'],
+                        'agunan'=> $value['agunan'],
+                        'kol_tertinggi'=> $value['kol_tertinggi'],
+                    ]);
+            }
+        }
+
+            if ($request->slikpasangan[0]['nama_bank']){
+
+                // return $request->slik[0]['nama_bank'];
+                foreach ($request->slikpasangan as $key => $value) {
+
+                    // $plafond=$value['plafond'];
+                    // $margin=$value['margin']/100;
+                    // $tenor=$value['tenor'];
+                    // $angsuran=$plafond*$margin*$tenor/$plafond;
+
+                    // return $value;
+                    SkpdSlikPasangan::create([
                         'skpd_pembiayaan_id'=>$id,
                         'nama_bank'=> $value['nama_bank'],
                         'plafond'=> $value['plafond'],

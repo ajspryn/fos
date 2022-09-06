@@ -31,6 +31,7 @@ use Modules\Pasar\Entities\PasarNasabahh;
 use Modules\Pasar\Entities\PasarPembiayaan;
 use Modules\Pasar\Entities\PasarPembiayaanHistory;
 use Modules\Pasar\Entities\PasarSlik;
+use Modules\Pasar\Entities\PasarSlikPasangan;
 
 class EditProposalController extends Controller
 {
@@ -120,6 +121,7 @@ class EditProposalController extends Controller
             'statuss'=>PasarStatusPerkawinan::all(),
             'jaminans'=>PasarJenisJaminan::all(),
             'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
+            'idebpasangans'=>PasarSlikPasangan::select()->where('pasar_pembiayaan_id',$id)->get(),
         ]);
 
     }
@@ -137,7 +139,6 @@ class EditProposalController extends Controller
             PasarPembiayaan::where('id',$id)->update([
                 'id' => $id,
                 'tgl_pembiayaan' => $request->tgl_pembiayaan,
-                'nasabah_id' => $id,
                 'AO_id' => $request->AO_id,
                 'penggunaan_id' => $request->penggunaan_id,
                 'pesanan_blok' => $request->pesanan_blok,
@@ -173,7 +174,6 @@ class EditProposalController extends Controller
             }
 
             PasarNasabahh::where('id',$id)->update([
-                'id' => $id,
                 'nama_nasabah' => $request->nama_nasabah,
                 'no_ktp' => $request->no_ktp,
                 'tmp_lahir' => $request->tmp_lahir,
@@ -263,15 +263,24 @@ class EditProposalController extends Controller
             //     'foto.*.kategori' => 'required',
             //     'foto.*.foto' => 'required',
             // ]);
-            foreach($request->foto as $key => $value){
-                if($value['foto']){
-                    $foto=$value['foto']->store('foto-pasar-pembiayaan');
+          
+    
+            $request->validate([
+                'foto.*.kategori' => 'required',
+                'foto.*.foto' => 'required',
+            ]);
+    
+            foreach ($request->foto as $key => $value) {
+                if ($value['foto']) {
+                    Storage::delete($value['foto_lama']);
+                    $foto = $value['foto']->store('foto-pasar-pembiayaan');
+    
+                    PasarFoto::where('pasar_pembiayaan_id', $id)->where('id',$value['id'])->update([
+                        'pasar_pembiayaan_id' => $id,
+                        'kategori' => $value['kategori'],
+                        'foto' => $foto,
+                    ]);
                 }
-                PasarFoto::create([
-                    'pasar_pembiayaan_id'=>$id,
-                    'kategori'=>$value['kategori'],
-                    'foto'=>$foto,
-                ]);
             }
 
             if ($request->slik[0]['nama_bank']){
@@ -291,11 +300,39 @@ class EditProposalController extends Controller
                     'agunan' => $value['agunan'],
                     'kol' => $value['kol'],
                 ]);
-            }}
-
+            }
+        }
             else{
 
             }
+
+            
+            if ($request->slikpasangan[0]['nama_bank']){
+
+                PasarSlikPasangan::select()->where('pasar_pembiayaan_id',$id)->delete();
+                foreach ($request->slikpasangan as $key => $value) {
+
+
+                // return $value;
+                PasarSlikPasangan::create([
+                    'pasar_pembiayaan_id'=>$id,
+                    'nama_bank'=> $value['nama_bank'],
+                    'plafond'=> $value['plafond'],
+                    'outstanding'=> $value['outstanding'],
+                    'tenor'=> $value['tenor'],
+                    'margin'=> $value['margin'],
+                    'angsuran'=> $value['angsuran'],
+                    'agunan'=> $value['agunan'],
+                    'kol'=> $value['kol'],
+                ]);
+            }
+        }
+
+        else{
+                
+        }
+
+
             
             
 

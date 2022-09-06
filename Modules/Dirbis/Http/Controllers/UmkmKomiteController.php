@@ -29,7 +29,7 @@ use Modules\Umkm\Entities\UmkmNasabah;
 use Modules\Umkm\Entities\UmkmPembiayaan;
 use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 use Modules\Umkm\Entities\UmkmSlik;
-
+use Modules\Umkm\Entities\UmkmSlikPasangan;
 
 class UmkmKomiteController extends Controller
 {
@@ -134,6 +134,14 @@ class UmkmKomiteController extends Controller
             $kebutuhan_keluarga=UmkmPembiayaan::select()->where('id',$id)->sum('keb_keluarga');
             $pengeluaranlain=$biaya_anak+$biaya_istri+$kebutuhan_keluarga;
             $total_pengeluaran = ($pengeluaranlain+$cicilan+$angsuran1);
+            $cekcicilanpasangan=UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->get()->count();
+    
+            if($cekcicilanpasangan > 0){
+                $cicilanpasangan =   $cekcicilanpasangan=UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->sum('angsuran');
+    
+                $total_pengeluaran = $pengeluaranlain+$cicilan+$angsuran1+$cicilanpasangan;
+                $cicilan =  $cicilan+$cicilanpasangan;
+            }
     
             $di=($laba_bersih-$total_pengeluaran);
     
@@ -230,6 +238,7 @@ class UmkmKomiteController extends Controller
                 'jaminanlainusahas'=>UmkmJaminanLain::select()->where('umkm_pembiayaan_id',$id)->get(),
                 'usahas'=>UmkmKeteranganUsaha::all(), //udah
                 'akads'=>PasarAkad::all(),
+                'nota'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
                 'sektors'=>PasarSektorEkonomi::all(),
                 'lamas'=>PasarLamaBerdagang::select()->where('kode_lamaberdagang',$usaha->lama_usaha)->get()->first(),
                 'rumahs'=>PasarJaminanRumahh::select()->where('kode_jaminan',$jaminanrumah->legalitas_kepemilikan_rumah)->get()->first(),
@@ -240,9 +249,11 @@ class UmkmKomiteController extends Controller
                 'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
                 // 'slik'=>$prosesslik,
                 'idebs'=>UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get(),
+                'cicilanpasangans'=>UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->get(),
                 'ideb'=>UmkmPembiayaan::select()->where('id',$id)->get(),
                 'laba_bersih'=>$laba_bersih,
                 'cicilan'=>$cicilan,
+                'cekcicilanpasangan'=>$cekcicilanpasangan,
                 'pengeluaran_lain'=>$pengeluaranlain,
                 'total_pengeluaran'=>$total_pengeluaran,
                 'angsuran'=>$angsuran1,
