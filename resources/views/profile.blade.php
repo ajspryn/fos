@@ -130,7 +130,6 @@
                                                             ->first();
                                                     } elseif ($role->divisi_id == 4) {
                                                         $proposal = Modules\Form\Entities\FormPprPembiayaan::select()
-                                                            ->where('id', $value->form_ppr_pembiayaan_id)
                                                             ->where('user_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()
