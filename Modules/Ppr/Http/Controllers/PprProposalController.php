@@ -7,6 +7,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Modules\Admin\Entities\PprCapacityGajiBersih;
 use Modules\Admin\Entities\PprCapacityJmlTanggunganKeluarga;
 use Modules\Admin\Entities\PprCapacityKeamananBisnisPekerjaan;
@@ -386,6 +387,19 @@ class PprProposalController extends Controller
                     'form_pribadi_keluarga_terdekat_alamat_kode_pos' => $request->form_pribadi_keluarga_terdekat_alamat_kode_pos,
                     'form_pribadi_keluarga_terdekat_no_telp' => $request->form_pribadi_keluarga_terdekat_no_telp,
                 ]);
+
+            foreach ($request->foto as $key => $value) {
+                if ($value['foto']) {
+                    Storage::delete($value['foto_lama']);
+                    $foto = $value['foto']->store('foto-ppr-pembiayaan');
+
+                    FormPprFoto::where('form_ppr_pembiayaan_id', $id)->where('id', $value['id'])->update([
+                        'form_ppr_pembiayaan_id' => $id,
+                        'kategori' => $value['kategori'],
+                        'foto' => $foto,
+                    ]);
+                }
+            }
 
             FormPprDataPekerjaan::where('form_ppr_data_pribadi_id', $id)
                 ->update([
