@@ -110,7 +110,7 @@ class PprKomiteController extends Controller
      */
     public function index()
     {
-        $komite = FormPprPembiayaan::select()->orderby('created_at', 'desc')->get();
+        $komite = FormPprPembiayaan::select()->orderBy('created_at', 'desc')->get();
         return view('dirbis::ppr.komite.index', [
             'title' => 'Data Komite PPR',
             'komites' => $komite,
@@ -185,15 +185,33 @@ class PprKomiteController extends Controller
         $waktumulai = Carbon::parse($waktuawal->created_at);
         $waktuberakhir = Carbon::parse($waktuakhir->created_at);
 
+        $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
+
+        //Angsuran & Plafond
+        $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
+        $margin = $pembiayaan->form_permohonan_jml_margin / 100;
+        $tenor = $pembiayaan->form_permohonan_jml_bulan;
+
+        //Angsuran
+        $angsuran = ($plafond * $margin) / (1 - (1 / (1 + $margin)) ** $tenor);
+
+        //Plafond
+        $plafondMaks = ($angsuran / $margin) * (1 - (1 / (1 + $margin)) ** $tenor);
+
+        //Usia Nasabah
+        $usiaNasabah = Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir)->age;
 
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
         return view('dirbis::ppr.komite.lihat', [
             'title' => 'Detail Proposal',
             'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
             'pembiayaan' => FormPprPembiayaan::select()->where('id', $id)->get()->first(),
-            'scoring' => PprScoring::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            'timelines' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->get(),
             'nasabah' => FormPprDataPribadi::select()->where('id', $id)->get()->first(),
+            'usiaNasabah' => $usiaNasabah,
+            'scoring' => PprScoring::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'angsuran' => $angsuran,
+            'plafondMaks' => $plafondMaks,
+            'timelines' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->get(),
 
             'aos' => Role::select()->where('jabatan_id', 1)->get(),
             'pekerjaans' => FormPprDataPekerjaan::all(),
@@ -211,8 +229,8 @@ class PprKomiteController extends Controller
 
             //perhitunganSLA
             'totalwaktu' => $totalwaktu,
-            'arr'=>-2,
-            'banyak_history'=>PprPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->count(),
+            'arr' => -2,
+            'banyak_history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->count(),
         ]);
     }
 
