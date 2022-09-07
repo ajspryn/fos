@@ -598,7 +598,7 @@
                                                                                                 @if ($total_score > 3)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                                @elseif($total_score > 2 || $total_score > 3)
+                                                                                                @elseif($total_score > 2 || $total_score < 3)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-warning">Tinjau
                                                                                                         Ulang</span>
@@ -947,7 +947,7 @@
                                                             $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
                                                             $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                             }
-                                                            
+
                                                             @endphp
                                                                 <li class="timeline-item">
                                                                     <span
