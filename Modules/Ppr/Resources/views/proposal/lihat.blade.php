@@ -1262,7 +1262,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1272,7 +1272,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1575,12 +1575,12 @@
                                                     <div class="mb-1 col-md-6">
                                                         <label class="form-label" for="fotoPasanganPemohon">Foto Terbaru
                                                             Istri/Suami Pemohon</label>
-                                                        <input type="hidden" name="foto[2][foto_lama]"
+                                                        {{-- <input type="hidden" name="foto[2][foto_lama]"
                                                             value="{{ old('foto', $fotoPasanganPemohon->foto) }}"
                                                             id="fotoOldPasanganPemohon" disabled>
                                                         <input type="hidden" name="foto[2][id]" class="form-control"
                                                             value="{{ $fotoPasanganPemohon->id }}"
-                                                            id="kategoriOldPasanganPemohon" disabled>
+                                                            id="kategoriOldPasanganPemohon" disabled> --}}
                                                         <input type="file" class="form-control" name="foto[2][foto]"
                                                             id="fotoPasanganPemohon"
                                                             aria-describedby="fotoPasanganPemohon" disabled />
@@ -3911,128 +3911,136 @@
                                             <div class="row">
                                                 <div class="mb-1 col-md-12">
                                                     <div class="repeater-default">
-                                                        <div data-repeater-list="kekayaan_tanah_bangunan">
+                                                        <div data-repeater-list="repeater_kekayaan_tanah_bangunan">
                                                             <h6>Tanah dan
                                                                 Bangunan</h6>
-                                                            <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_tanah_bangunan_luas_tanah">Luas
-                                                                                Tanah</label>
-                                                                            <input type="number" class="form-control"
-                                                                                name="form_kekayaan_tanah_bangunan_luas_tanah"
-                                                                                id="form_kekayaan_tanah_bangunan_luas_tanah"
-                                                                                aria-describedby="form_kekayaan_tanah_bangunan_luas_tanah"
-                                                                                placeholder="Luas Tanah"
-                                                                                value="{{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_luas_tanah }}" />
+                                                            @foreach ($kekayaan_tanah_bangunans as $kekayaan_tanah_bangunan)
+                                                                <div data-repeater-item>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_tanah_bangunan_luas_tanah">Luas
+                                                                                    Tanah</label>
+                                                                                    <input type="hidden" name="id"
+                                                                                    value="{{ $kekayaan_tanah_bangunan->id }}" />
+                                                                                <input type="number"
+                                                                                    class="form-control"
+                                                                                    name="form_kekayaan_tanah_bangunan_luas_tanah"
+                                                                                    id="form_kekayaan_tanah_bangunan_luas_tanah"
+                                                                                    aria-describedby="form_kekayaan_tanah_bangunan_luas_tanah"
+                                                                                    placeholder="Luas Tanah"
+                                                                                    value="{{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_luas_tanah }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_tanah_bangunan_luas_bangunan">Luas
-                                                                                Bangunan</label>
-                                                                            <input type="number" class="form-control"
-                                                                                name="form_kekayaan_tanah_bangunan_luas_bangunan"
-                                                                                id="form_kekayaan_tanah_bangunan_luas_bangunan"
-                                                                                aria-describedby="form_kekayaan_tanah_bangunan_luas_bangunan"
-                                                                                placeholder="Luas Bangunan"
-                                                                                value="{{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_luas_tanah }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_tanah_bangunan_luas_bangunan">Luas
+                                                                                    Bangunan</label>
+                                                                                <input type="number"
+                                                                                    class="form-control"
+                                                                                    name="form_kekayaan_tanah_bangunan_luas_bangunan"
+                                                                                    id="form_kekayaan_tanah_bangunan_luas_bangunan"
+                                                                                    aria-describedby="form_kekayaan_tanah_bangunan_luas_bangunan"
+                                                                                    placeholder="Luas Bangunan"
+                                                                                    value="{{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_luas_tanah }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_tanah_bangunan_jenis">Jenis
-                                                                                Tanah/Bangunan</label>
-                                                                            <select class="form-control w-100"
-                                                                                name="form_kekayaan_tanah_bangunan_jenis"
-                                                                                id="form_kekayaan_tanah_bangunan_jenis">
-                                                                                <option
-                                                                                    label="Pilih
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_tanah_bangunan_jenis">Jenis
+                                                                                    Tanah/Bangunan</label>
+                                                                                <select class="form-control w-100"
+                                                                                    name="form_kekayaan_tanah_bangunan_jenis"
+                                                                                    id="form_kekayaan_tanah_bangunan_jenis">
+                                                                                    <option
+                                                                                        label="Pilih
                                                                                 Tanah/Bangunan">
-                                                                                    Pilih
-                                                                                    Tanah/Bangunan
-                                                                                </option>
-                                                                                <option
-                                                                                    {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Tanah' ? 'selected' : '' }}
-                                                                                    value="Tanah">Tanah</option>
-                                                                                <option
-                                                                                    {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Rumah Tinggal' ? 'selected' : '' }}
-                                                                                    value="Rumah Tinggal">Rumah
-                                                                                    Tinggal
-                                                                                </option>
-                                                                                <option
-                                                                                    {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Apartemen' ? 'selected' : '' }}
-                                                                                    value="Apartemen">Apartemen
-                                                                                </option>
-                                                                                <option
-                                                                                    {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Rusun' ? 'selected' : '' }}
-                                                                                    value="Rusun">Rusun</option>
-                                                                                <option
-                                                                                    {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Ruko' ? 'selected' : '' }}
-                                                                                    value="Ruko">Ruko</option>
-                                                                                <option
-                                                                                    {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Rukan' ? 'selected' : '' }}
-                                                                                    value="Rukan">Rukan</option>
-                                                                                <option
-                                                                                    {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Kios' ? 'selected' : '' }}
-                                                                                    value="Kios">Kios</option>
-                                                                                <option
-                                                                                    {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Lain-lain' ? 'selected' : '' }}
-                                                                                    value="Lain-lain">Lain-lain
-                                                                                </option>
+                                                                                        Pilih
+                                                                                        Tanah/Bangunan
+                                                                                    </option>
+                                                                                    <option
+                                                                                        {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Tanah' ? 'selected' : '' }}
+                                                                                        value="Tanah">Tanah</option>
+                                                                                    <option
+                                                                                        {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Rumah Tinggal' ? 'selected' : '' }}
+                                                                                        value="Rumah Tinggal">Rumah
+                                                                                        Tinggal
+                                                                                    </option>
+                                                                                    <option
+                                                                                        {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Apartemen' ? 'selected' : '' }}
+                                                                                        value="Apartemen">Apartemen
+                                                                                    </option>
+                                                                                    <option
+                                                                                        {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Rusun' ? 'selected' : '' }}
+                                                                                        value="Rusun">Rusun</option>
+                                                                                    <option
+                                                                                        {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Ruko' ? 'selected' : '' }}
+                                                                                        value="Ruko">Ruko</option>
+                                                                                    <option
+                                                                                        {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Rukan' ? 'selected' : '' }}
+                                                                                        value="Rukan">Rukan</option>
+                                                                                    <option
+                                                                                        {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Kios' ? 'selected' : '' }}
+                                                                                        value="Kios">Kios</option>
+                                                                                    <option
+                                                                                        {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Lain-lain' ? 'selected' : '' }}
+                                                                                        value="Lain-lain">Lain-lain
+                                                                                    </option>
 
-                                                                                {{-- n create new option --}}
+                                                                                    {{-- n create new option --}}
 
-                                                                            </select>
+                                                                                </select>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_tanah_bangunan_atas_nama">Atas
-                                                                                Nama</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_kekayaan_tanah_bangunan_atas_nama"
-                                                                                id="form_kekayaan_tanah_bangunan_atas_nama"
-                                                                                aria-describedby="itemquantity"
-                                                                                placeholder="Atas Nama"
-                                                                                value="{{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_atas_nama }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_tanah_bangunan_atas_nama">Atas
+                                                                                    Nama</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_kekayaan_tanah_bangunan_atas_nama"
+                                                                                    id="form_kekayaan_tanah_bangunan_atas_nama"
+                                                                                    aria-describedby="itemquantity"
+                                                                                    placeholder="Atas Nama"
+                                                                                    value="{{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_atas_nama }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_tanah_bangunan_taksasi_pasar_wajar">Taksasi
-                                                                                Harga
-                                                                                Pasar</label>
-                                                                            <input type="text"
-                                                                                class="form-control numeral-mask21"
-                                                                                name="form_kekayaan_tanah_bangunan_taksasi_pasar_wajar"
-                                                                                id="form_kekayaan_tanah_bangunan_taksasi_pasar_wajar"
-                                                                                aria-describedby="form_kekayaan_tanah_bangunan_taksasi_pasar_wajar"
-                                                                                placeholder="Taksasi Harga Pasar (Rp)"
-                                                                                value="{{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_taksasi_pasar_wajar }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_tanah_bangunan_taksasi_pasar_wajar">Taksasi
+                                                                                    Harga
+                                                                                    Pasar</label>
+                                                                                <input type="text"
+                                                                                    class="form-control numeral-mask21"
+                                                                                    name="form_kekayaan_tanah_bangunan_taksasi_pasar_wajar"
+                                                                                    id="form_kekayaan_tanah_bangunan_taksasi_pasar_wajar"
+                                                                                    aria-describedby="form_kekayaan_tanah_bangunan_taksasi_pasar_wajar"
+                                                                                    placeholder="Taksasi Harga Pasar (Rp)"
+                                                                                    value="{{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_taksasi_pasar_wajar }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            @endforeach
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12">
@@ -4053,14 +4061,17 @@
                                             <div class="row">
                                                 <div class="mb-1 col-md-12">
                                                     <div class="repeater-default">
-                                                        <div data-repeater-list="kekayaan_kendaraan">
+                                                        <div data-repeater-list="repeater_kekayaan_kendaraan">
                                                             <h6>Kendaraan</h6>
+                                                            @foreach ($kekayaan_kendaraans as $kekayaan_kendaraan)
                                                             <div data-repeater-item>
                                                                 <div class="row d-flex align-items-end">
                                                                     <div class="col-md-2 col-12">
                                                                         <div class="mb-1">
                                                                             <label class="form-label"
                                                                                 for="form_kekayaan_kendaraan_jenis_merk">Jenis/Merk</label>
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $kekayaan_kendaraan->id }}" />
                                                                             <input type="text" class="form-control"
                                                                                 name="form_kekayaan_kendaraan_jenis_merk"
                                                                                 id="form_kekayaan_kendaraan_jenis_merk"
@@ -4123,6 +4134,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @endforeach
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12">
@@ -4143,14 +4155,17 @@
                                             <div class="row">
                                                 <div class="mb-1 col-md-12">
                                                     <div class="repeater-default">
-                                                        <div data-repeater-list="kekayaan_saham">
+                                                        <div data-repeater-list="repeater_kekayaan_saham">
                                                             <h6>Saham</h6>
+                                                            @foreach ($kekayaan_sahams as $kekayaan_saham)
                                                             <div data-repeater-item>
                                                                 <div class="row d-flex align-items-end">
                                                                     <div class="col-md-2 col-12">
                                                                         <div class="mb-1">
                                                                             <label class="form-label"
                                                                                 for="form_kekayaan_saham_penerbit">Penerbit</label>
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $kekayaan_saham->id }}" />
                                                                             <input type="text" class="form-control"
                                                                                 name="form_kekayaan_saham_penerbit"
                                                                                 id="form_kekayaan_saham_penerbit"
@@ -4194,6 +4209,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @endforeach
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12">
@@ -4214,13 +4230,16 @@
                                             <div class="row">
                                                 <div class="mb-1 col-md-12">
                                                     <div class="repeater-default">
-                                                        <div data-repeater-list="kekayaan_lainnya">
+                                                        <div data-repeater-list="repeater_kekayaan_lainnya">
+                                                            @foreach ($kekayaan_lainnyas as $kekayaan_lainnya)
                                                             <div data-repeater-item>
                                                                 <div class="row d-flex align-items-end">
                                                                     <div class="col-md-2 col-12">
                                                                         <div class="mb-1">
                                                                             <label class="form-label"
                                                                                 for="form_kekayaan_lainnya">Lainnya</label>
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $kekayaan_lainnya->id }}" />
                                                                             <input type="text" class="form-control"
                                                                                 name="form_kekayaan_lainnya"
                                                                                 id="form_kekayaan_lainnya"
@@ -4253,6 +4272,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @endforeach
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12">
@@ -4280,10 +4300,11 @@
                                             <div class="row">
                                                 <div class="mb-1 col-md-12">
                                                     <div class="repeater-default">
-                                                        <div data-repeater-list="pinjaman">
+                                                        <div data-repeater-list="repeater_pinjaman">
                                                             <h6>
                                                                 Pinjaman
                                                             </h6>
+                                                            @foreach ($pinjamans as $pinjaman)
                                                             <div data-repeater-item>
                                                                 <div class="row d-flex align-items-end">
                                                                     <div class="col-md-2 col-6">
@@ -4292,6 +4313,8 @@
                                                                             <label class="form-label"
                                                                                 for="form_pinjaman_nama_bank">Nama
                                                                                 Bank</label>
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $pinjaman->id }}" />
                                                                             <input type="text" class="form-control"
                                                                                 name="form_pinjaman_nama_bank"
                                                                                 id="form_pinjaman_nama_bank"
@@ -4396,6 +4419,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @endforeach
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12">
@@ -4417,16 +4441,19 @@
                                             <div class="row">
                                                 <div class="mb-1 col-md-12">
                                                     <div class="repeater-default">
-                                                        <div data-repeater-list="pinjaman_kartu_kredit">
+                                                        <div data-repeater-list="repeater_pinjaman_kartu_kredit">
                                                             <h6>Kartu
                                                                 Kredit</h6>
-                                                            <div data-repeater-item>
+                                                                @foreach ($pinjaman_kartu_kredits as $pinjaman_kartu_kredit)
+                                                                <div data-repeater-item>
                                                                 <div class="row d-flex align-items-end">
                                                                     <div class="col-md-2 col-12">
                                                                         <div class="mb-1">
                                                                             <label class="form-label"
                                                                                 for="form_pinjaman_kartu_kredit_nama_bank">Nama
                                                                                 Bank</label>
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $pinjaman_kartu_kredit->id }}" />
                                                                             <input type="text" class="form-control"
                                                                                 name="form_pinjaman_kartu_kredit_nama_bank"
                                                                                 id="form_pinjaman_kartu_kredit_nama_bank"
@@ -4476,6 +4503,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @endforeach
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12">
@@ -4496,13 +4524,16 @@
                                             <div class="row">
                                                 <div class="mb-1 col-md-12">
                                                     <div class="repeater-default">
-                                                        <div data-repeater-list="pinjaman_lainnya">
+                                                        <div data-repeater-list="repeater_pinjaman_lainnya">
+                                                            @foreach ($pinjaman_lainnyas as $pinjaman_lainnya)
                                                             <div data-repeater-item>
                                                                 <div class="row d-flex align-items-end">
                                                                     <div class="col-md-2 col-12">
                                                                         <div class="mb-1">
                                                                             <label class="form-label"
                                                                                 for="form_pinjaman_lainnya">Lainnya</label>
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $pinjaman_lainnya->id }}" />
                                                                             <input type="text" class="form-control"
                                                                                 name="form_pinjaman_lainnya"
                                                                                 id="form_pinjaman_lainnya"
@@ -4535,6 +4566,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @endforeach
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12">
