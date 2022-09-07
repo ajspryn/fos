@@ -5,6 +5,11 @@ namespace Modules\Akad\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Form\Entities\FormPprPembiayaan;
+use Modules\Pasar\Entities\PasarPembiayaan;
+use Modules\Pasar\Entities\PasarPembiayaanHistory;
+use Modules\Skpd\Entities\SkpdPembiayaanHistory;
+use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 
 class ProposalAkadController extends Controller
 {
@@ -13,8 +18,18 @@ class ProposalAkadController extends Controller
      * @return Renderable
      */
     public function index()
-    {
-        return view('akad::index');
+    {   
+        $proposalpasar=PasarPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id',4)->get();
+        $proposalppr = FormPprPembiayaan::select()->get();
+        $proposalskpd=SkpdPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id',4)->get();
+        $proposalumkm=UmkmPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id',4)->get();
+        // return $pasar;
+        return view('akad::proposal.index',[
+            'title'=>'Dashboard Staff',
+            'proposalpasars'=>$proposalpasar,
+            'proposalskpds'=>$proposalskpd,
+            'proposalumkms'=>$proposalumkm,
+        ]);
     }
 
     /**

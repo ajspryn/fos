@@ -14,7 +14,9 @@ class AkadController extends Controller
      */
     public function index()
     {
-        return view('akad::index');
+        return view('akad::index',[
+            'title'=>'Dashboard Staff',
+        ]);
     }
 
     /**

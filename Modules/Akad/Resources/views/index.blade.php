@@ -1,12 +1,6 @@
 
-@extends('dirbis::layouts.main')
+@extends('akad::layouts.main')
 @php
-$proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-    ->where('user_id', Auth::user()->id)
-    ->where('skpd_sektor_ekonomi_id', null)
-    ->get()
-    ->count();
-
 $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
     ->where('status_id', 3)
     ->get();
@@ -22,14 +16,15 @@ foreach ($proposals as $proposal) {
         ->orderby('created_at', 'desc')
         ->get()
         ->first();
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+    if (($history->jabatan_id == 4 && $history->status_id == 5)){
         $proposalskpd++;
     }
 }
 
+
 $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
 
-$data = 0;
+$proposalpasar = 0;
 foreach ($pasars as $pasar) {
     $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
         ->where('pasar_pembiayaan_id', $pasar->id)
@@ -41,8 +36,8 @@ foreach ($pasars as $pasar) {
         ->where('id', $history->pasar_pembiayaan_id)
         ->get()
         ->first();
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
-        $data++;
+        if (($history->jabatan_id == 4 && $history->status_id == 5)){
+        $proposalpasar++;
     }
 }
 
@@ -50,7 +45,7 @@ $umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
     ->where('status_id', 3)
     ->get();
 
-$b = 0;
+$proposalumkm = 0;
 foreach ($umkms as $umkm) {
     $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
         ->where('id', $umkm->umkm_pembiayaan_id)
@@ -63,8 +58,8 @@ foreach ($umkms as $umkm) {
         ->get()
         ->first();
 
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
-        $b++;
+    if (($history->jabatan_id == 4 && $history->status_id == 5)) {
+        $proposalumkm++;
     }
 }
 
@@ -84,11 +79,10 @@ foreach ($pprs as $ppr) {
         ->orderBy('created_at', 'desc')
         ->get()
         ->first();
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+        if (($history->jabatan_id == 4 && $history->status_id == 5)) {
         $proposalppr++;
     }
 }
-
 @endphp
 @section('content')
     <!-- BEGIN: Content-->
@@ -101,7 +95,7 @@ foreach ($pprs as $ppr) {
             <div class="content-body">
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
-                    <div class="row match-height">>
+                    {{-- <div class="row match-height">>
                         <!-- Statistics Card -->
                         <div class="col-xl-12 col-md-6 col-12">
                             <div class="card card-statistics">
@@ -171,36 +165,36 @@ foreach ($pprs as $ppr) {
                             </div>
                         </div>
                         <!--/ Statistics Card -->
-                    </div>
+                    </div> --}}
 
                     <div class="row">
-                        <div class="col-xl-3 col-md-4 col-sm-6">
+                        <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-info p-50 mb-1">
                                         <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
+                                            <i data-feather="clipboard" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Pipeline</p>
+                                    <h2 class="fw-bolder">{{ $proposalskpd+$proposalpasar+$proposalumkm+  $proposalppr}}</h2>
+                                    <p class="card-text">Proposal Akad</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
+                        <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <div class="avatar bg-light-info p-50 mb-1">
+                                    <div class="avatar bg-light-success p-50 mb-1">
                                         <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
+                                            <i data-feather="check-circle" class="font-medium-5"></i>
                                         </div>
                                     </div>
                                     <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Proposal</p>
+                                    <p class="card-text">AKad Selesai</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
+                        {{-- <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-info p-50 mb-1">
@@ -225,7 +219,7 @@ foreach ($pprs as $ppr) {
                                     <p class="card-text">Disburse</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                 </section>

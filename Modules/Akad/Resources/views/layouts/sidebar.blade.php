@@ -1,9 +1,4 @@
 @php
-$proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-    ->where('user_id', Auth::user()->id)
-    ->where('skpd_sektor_ekonomi_id', null)
-    ->get()
-    ->count();
 
 $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
     ->where('status_id', 3)
@@ -20,10 +15,11 @@ foreach ($proposals as $proposal) {
         ->orderby('created_at', 'desc')
         ->get()
         ->first();
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+    if (($history->jabatan_id == 4 && $history->status_id == 5)){
         $proposalskpd++;
     }
 }
+
 
 $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
 
@@ -39,7 +35,7 @@ foreach ($pasars as $pasar) {
         ->where('id', $history->pasar_pembiayaan_id)
         ->get()
         ->first();
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+        if (($history->jabatan_id == 4 && $history->status_id == 5)){
         $data++;
     }
 }
@@ -61,7 +57,7 @@ foreach ($umkms as $umkm) {
         ->get()
         ->first();
 
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+    if (($history->jabatan_id == 4 && $history->status_id == 5)) {
         $b++;
     }
 }
@@ -82,7 +78,7 @@ foreach ($pprs as $ppr) {
         ->orderBy('created_at', 'desc')
         ->get()
         ->first();
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+        if (($history->jabatan_id == 4 && $history->status_id == 5)) {
         $proposalppr++;
     }
 }
@@ -104,118 +100,24 @@ foreach ($pprs as $ppr) {
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="{{ Request::is('admin') ? 'active' : '' }} "><a class="d-flex align-items-center"
-                href="/admin"><i data-feather="home"></i><span class="menu-title text-truncate"
-                    data-i18n="home">Dashboard</span></a>
-        </li>
-            <li class=" navigation-header"><span data-i18n="Forms &amp; Tables">Pembiayaan</span><i
+            <li class="{{ Request::is('staff') ? 'active' : '' }} "><a class="d-flex align-items-center"
+                    href="/staff"><i data-feather="home"></i><span class="menu-title text-truncate"
+                        data-i18n="home">Dashboard</span></a>
+            </li>
+            <li class=" navigation-header"><span data-i18n="Forms &amp; Tables">Akad</span><i
                     data-feather="more-horizontal"></i>
             </li>
-            <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">SKPD</span>
-                    @if ($proposalskpd > 0)
-                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
-                    @endif
-                </a>
-                <ul class="menu-content">
-                    <li class="{{ Request::is('dirbis/skpd/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/skpd/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
-                    </li>
-                    <li class="{{ Request::is('dirbis/skpd/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/skpd/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span>
-                            @if ($proposalskpd > 0)
-                                <span
-                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
-                            @endif
-                        </a>
-                    </li>
-                    <li class="{{ Request::is('dirbis/skpd/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/skpd/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span> </a>
-                    </li>
-                </ul>
+            <li class="{{ Request::is('staff/proposal') ? 'active' : '' }} "><a class="d-flex align-items-center"
+                href="/staff/proposal"><i
+                        data-feather="clipboard"></i><span class="menu-title text-truncate"
+                        data-i18n="Pages">Proposal Akad</span></a>
             </li>
-            <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">PASAR</span>
-                    @if ($data > 0)
-                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
-                    @endif
-                </a>
-                <ul class="menu-content">
-                    <li class="{{ Request::is('dirbis/pasar/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/pasar/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
-                    </li>
-                    <li class="{{ Request::is('dirbis/pasar/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/pasar/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span>
-
-                            @if ($data > 0)
-                                <span
-                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
-                            @endif
-                        </a>
-                    </li>
-                    <li class="{{ Request::is('dirbis/pasar/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/pasar/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span></a>
-                    </li>
-                </ul>
+            <li class="{{ Request::is('staff/selesai') ? 'active' : '' }} "><a class="d-flex align-items-center"
+                href="/staff/selesai"><i
+                        data-feather="check-circle"></i><span class="menu-title text-truncate"
+                        data-i18n="Pages">Data Selesai </span></a>
             </li>
-            <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">UMKM</span>
-                    @if ($b > 0)
-                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $b }}</span>
-                    @endif
-                </a>
-                <ul class="menu-content">
-                    <li class="{{ Request::is('dirbis/umkm/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/umkm/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
-                    </li>
-                    <li class="{{ Request::is('dirbis/umkm/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/umkm/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span>
-                            @if ($b > 0)
-                                <span
-                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $b }}</span>
-                            @endif
-                        </a>
-                    </li>
-                    <li class="{{ Request::is('dirbis/umkm/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/umkm/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span></a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">PPR</span>
-                    @if ($proposalppr > 0)
-                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
-                    @endif
-                </a>
-                <ul class="menu-content">
-                    <li class="{{ Request::is('dirbis/ppr/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/ppr/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
-                    </li>
-                    <li class="{{ Request::is('dirbis/ppr/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/ppr/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span>
-                            @if ($proposalppr > 0)
-                                <span
-                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
-                            @endif
-                        </a>
-                    </li>
-                    <li class="{{ Request::is('dirbis/ppr/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/ppr/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span></a>
-                    </li>
-                </ul>
-            </li>
+                
 
     </div>
 </div>
