@@ -112,34 +112,37 @@ foreach ($umkms as $umkm) {
     }
 }
 
-$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+$pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    ->where('status_id', 3)
+    ->get();
 
 $komiteppr = 0;
 foreach ($pprs as $ppr) {
-    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('form_ppr_pembiayaan_id', $ppr->id)
-        ->orderBy('created_at', 'desc')
+    $komite_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $ppr->form_ppr_pembiayaan_id)
         ->get()
         ->first();
 
-    $komite_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-        ->where('id', $history->form_ppr_pembiayaan_id)
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $komite_ppr->id)
+        ->orderBy('created_at', 'desc')
         ->get()
         ->first();
     if ($history->status_id == 5 || $history->status_id == 4) {
         $komiteppr++;
     }
 }
+
 $proposalppr = 0;
 foreach ($pprs as $ppr) {
-    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('form_ppr_pembiayaan_id', $ppr->id)
-        ->orderBy('created_at', 'desc')
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $ppr->form_ppr_pembiayaan_id)
         ->get()
         ->first();
 
-    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-        ->where('id', $history->form_ppr_pembiayaan_id)
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
+        ->orderBy('created_at', 'desc')
         ->get()
         ->first();
     if ($history->status_id == 3 && $history->jabatan_id == 1) {
@@ -292,8 +295,7 @@ foreach ($pprs as $ppr) {
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">PPR</span>
                     @if ($proposalppr > 0)
-                        {
-                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>}
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
                     @endif
                 </a>
                 <ul class="menu-content">
@@ -315,9 +317,8 @@ foreach ($pprs as $ppr) {
                                 data-feather="file-text"></i><span class="menu-item text-truncate"
                                 data-i18n="Security">Proposal</span>
                             @if ($proposalppr > 0)
-                                {
                                 <span
-                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>}
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
                             @endif
                         </a>
                     </li>

@@ -2,39 +2,42 @@
 
 @section('content')
     @php
-    $diterima = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('status_id', 5)
-        ->where('jabatan_id', 4)
-        ->get()
-        ->count();
+        $diterima = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+            ->where('status_id', 5)
+            ->where('jabatan_id', 4)
+            ->get()
+            ->count();
 
-    $pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
-    $proposalppr = 0;
-    foreach ($pprs as $ppr) {
-        $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-            ->where('form_ppr_pembiayaan_id', $ppr->id)
-            ->orderVy('created_at', 'desc')
-            ->get()
-            ->first();
-        $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-            ->where('id', $history->form_ppr_pembiayaan_id)
-            ->get()
-            ->first();
-        if ($history->status_id == 3 && $history->jabatan_id == 1) {
-            $proposalppr++;
+        $pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+            ->where('status_id', 3)
+            ->get();
+        $proposalppr = 0;
+        foreach ($pprs as $ppr) {
+            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                ->where('id', $ppr->form_ppr_pembiayaan_id)
+                ->get()
+                ->first();
+
+            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
+                ->orderBy('created_at', 'desc')
+                ->get()
+                ->first();
+            if ($history->status_id == 3 && $history->jabatan_id == 1) {
+                $proposalppr++;
+            }
         }
-    }
 
-    $ditolak = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('status_id', 6)
-        ->get()
-        ->count();
+        $ditolak = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+            ->where('status_id', 6)
+            ->get()
+            ->count();
 
-    $revisi = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('status_id', 7)
-        ->orderby('created_at', 'desc')
-        ->get()
-        ->count();
+        $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+            ->where('status_id', 7)
+            ->orderby('created_at', 'desc')
+            ->get()
+            ->count();
     @endphp
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -93,7 +96,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $revisi }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $review }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Review</p>
                                                 </div>
                                             </div>

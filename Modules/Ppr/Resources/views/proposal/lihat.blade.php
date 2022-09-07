@@ -1262,7 +1262,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1272,7 +1272,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1374,15 +1374,61 @@
                                                                 value="Alamat Agunan">Alamat Agunan</option>
                                                         </select>
                                                     </div>
-
+                                                    @php
+                                                        $fotoPemohon = Modules\Form\Entities\FormPprFoto::Select()
+                                                            ->where('form_ppr_pembiayaan_id', $pembiayaan->id)
+                                                            ->where('kategori', 'Foto Pemohon')
+                                                            ->get()
+                                                            ->first();
+                                                        $fotoPasanganPemohon = Modules\Form\Entities\FormPprFoto::Select()
+                                                            ->where('form_ppr_pembiayaan_id', $pembiayaan->id)
+                                                            ->where('kategori', 'Foto Pasangan Pemohon')
+                                                            ->get()
+                                                            ->first();
+                                                    @endphp
                                                     <div class="mb-1 col-md-6">
                                                         <label class="form-label" for="fotoPemohon">Foto Terbaru
                                                             Pemohon</label>
+                                                        <input type="hidden" name="foto[1][foto_lama]"
+                                                            value="{{ old('foto', $fotoPemohon->foto) }}">
+                                                        <input type="hidden" name="foto[1][id]" class="form-control"
+                                                            value="{{ $fotoPemohon->id }}">
                                                         <input type="file" class="form-control" name="foto[1][foto]"
                                                             id="fotoPemohon" aria-describedby="fotoPemohon" />
                                                         <input type="hidden" name="foto[1][kategori]"
                                                             value="Foto Pemohon">
+                                                        <button type="button"
+                                                            class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                            data-bs-toggle="modal" data-bs-target="#fotoPemohon">
+                                                            <i data-feather="eye"></i>
+                                                        </button>
                                                     </div>
+
+                                                    <!-- Foto Pemohon -->
+                                                    <div class="modal fade" id="fotoPemohon" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-12 mx-50 pb-5">
+                                                                    <h3 class="text-center">Foto Pemohon</h3>
+                                                                    <hr class="invoice-spacing" />
+                                                                    <div class="card-body">
+                                                                        <div class="col-md-12 d-flex order-md-2 order-1">
+                                                                            <img src="{{ asset('storage/' . $fotoPemohon->foto) }}"
+                                                                                class="d-block w-100" height='500'
+                                                                                weight='800'>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--End Foto Pemohon -->
 
                                                     {{-- <div class="mb-0 mt-1 col-md-2">
                                                         <button type="button" class="btn btn-primary"
@@ -1529,6 +1575,12 @@
                                                     <div class="mb-1 col-md-6">
                                                         <label class="form-label" for="fotoPasanganPemohon">Foto Terbaru
                                                             Istri/Suami Pemohon</label>
+                                                        <input type="hidden" name="foto[2][foto_lama]"
+                                                            value="{{ old('foto', $fotoPasanganPemohon->foto) }}"
+                                                            id="fotoOldPasanganPemohon" disabled>
+                                                        <input type="hidden" name="foto[2][id]" class="form-control"
+                                                            value="{{ $fotoPasanganPemohon->id }}"
+                                                            id="kategoriOldPasanganPemohon" disabled>
                                                         <input type="file" class="form-control" name="foto[2][foto]"
                                                             id="fotoPasanganPemohon"
                                                             aria-describedby="fotoPasanganPemohon" disabled />
@@ -2959,7 +3011,7 @@
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between mt-3">
-                                            <button class="btn btn-primary btn-prev">
+                                            <button class="btn btn-primary btn-prev" type="button">
                                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>
@@ -3700,7 +3752,7 @@
 
                                         </div>
                                         <div class="d-flex justify-content-between mt-3">
-                                            <button class="btn btn-primary btn-prev">
+                                            <button class="btn btn-primary btn-prev" type="button">
                                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>
@@ -7361,11 +7413,11 @@
                                             </div>
 
                                             <div class="d-flex justify-content-between mt-3">
-                                                <button class="btn btn-primary btn-prev">
+                                                <button class="btn btn-primary btn-prev" type="button">
                                                     <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                                     <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                                 </button>
-                                                <button class="btn btn-primary btn-next">
+                                                <button class="btn btn-primary btn-next" type="button">
                                                     <span class="align-middle d-sm-inline-block d-none">Next</span>
                                                     <i data-feather="arrow-right"
                                                         class="align-middle ms-sm-25 ms-0"></i>
@@ -8401,11 +8453,11 @@
                                         </div>
 
                                         <div class="d-flex justify-content-between mt-3">
-                                            <button class="btn btn-primary btn-prev">
+                                            <button class="btn btn-primary btn-prev" type="button">
                                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>
-                                            <button class="btn btn-primary btn-next">
+                                            <button class="btn btn-primary btn-next" type="button">
                                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                             </button>
@@ -8890,11 +8942,11 @@
                                         </div>
 
                                         <div class="d-flex justify-content-between mt-3">
-                                            <button class="btn btn-primary btn-prev">
+                                            <button class="btn btn-primary btn-prev" type="button">
                                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>
-                                            <button class="btn btn-primary btn-next">
+                                            <button class="btn btn-primary btn-next" type="button">
                                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                             </button>
@@ -9343,11 +9395,11 @@
                                         </div>
 
                                         <div class="d-flex justify-content-between mt-3">
-                                            <button class="btn btn-primary btn-prev">
+                                            <button class="btn btn-primary btn-prev" type="button">
                                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>
-                                            <button class="btn btn-primary btn-next">
+                                            <button class="btn btn-primary btn-next" type="button">
                                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                             </button>
@@ -9874,7 +9926,9 @@
                 document.getElementById("ifMenikahHeader").classList = "hide",
                     document.getElementById("ifMenikah").classList = "hide",
                     document.getElementById("fotoPasanganPemohon").setAttribute("disabled", "disabled"),
+                    document.getElementById("fotoOldPasanganPemohon").setAttribute("disabled", "disabled"),
                     document.getElementById("kategoriPasanganPemohon").setAttribute("disabled", "disabled"),
+                    document.getElementById("kategoriOldPasanganPemohon").setAttribute("disabled", "disabled"),
                     document.getElementById("ifISMHeader").classList = "hide",
                     document.getElementById("ifISM").classList = "hide";
             }
