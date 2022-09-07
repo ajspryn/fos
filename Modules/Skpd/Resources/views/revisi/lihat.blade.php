@@ -998,7 +998,7 @@
                                             <input type="hidden" name="foto[6][kategori]" value="Foto Diri"
                                                 rows="3" class="form-control" />
                                         </div>
-                                    </div>
+                               
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting">Pengeluaran Lainnya (Per
                                             Bulan)</label>
@@ -1022,6 +1022,7 @@
                                     </div>
                                 </div>
                         </div>
+                    </div>
                         </form>
                     </div>
             </div>
