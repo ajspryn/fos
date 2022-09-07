@@ -1026,7 +1026,8 @@
                                             </div>
 
                                             <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="fotoPemohon">Foto Terbaru Pemohon</label>
+                                                <label class="form-label" for="fotoPemohon"><small class="text-danger">*
+                                                    </small>Foto Terbaru Pemohon</label>
                                                 <input type="file" class="form-control" name="foto[1][foto]"
                                                     id="fotoPemohon" aria-describedby="fotoPemohon" />
                                                 <input type="hidden" name="foto[1][kategori]" value="Foto Pemohon">
@@ -1112,7 +1113,9 @@
                                             </div>
 
                                             <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="fotoPasanganPemohon">Foto Terbaru
+                                                <label class="form-label" for="fotoPasanganPemohon"><small
+                                                        class="text-danger">*
+                                                    </small>Foto Terbaru
                                                     Istri/Suami Pemohon</label>
                                                 <input type="file" class="form-control" name="foto[2][foto]"
                                                     id="fotoPasanganPemohon" aria-describedby="fotoPasanganPemohon"
@@ -2953,7 +2956,7 @@
                                                                         data-repeater-delete type="button">
                                                                         <i data-feather="x" class="me-25"></i>
                                                                     </button>
-                                                                                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
