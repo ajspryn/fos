@@ -279,9 +279,6 @@
                                                 value="{{ $pembiayaan->nasabah->no_telp }}" required />
                                         </div>
 
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="fotodiri"><small class="text-danger">*
-                                                </small>Upload Foto Diri</label>
                                             @php
                                                 $fotodiri = Modules\Skpd\Entities\SkpdFoto::Select()
                                                     ->where('skpd_pembiayaan_id', $pembiayaan->id)
