@@ -26,31 +26,9 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span
                         class="menu-title text-truncate" data-i18n="User">User</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="app-user-list.html"><i
+                    <li><a class="d-flex align-items-center" href="/admin/user"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="List">List</span></a>
-                    </li>
-                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate" data-i18n="View">View</span></a>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="app-user-view-account.html"><span
-                                        class="menu-item text-truncate" data-i18n="Account">Account</span></a>
-                            </li>
-                            <li><a class="d-flex align-items-center" href="app-user-view-security.html"><span
-                                        class="menu-item text-truncate" data-i18n="Security">Security</span></a>
-                            </li>
-                            <li><a class="d-flex align-items-center" href="app-user-view-billing.html"><span
-                                        class="menu-item text-truncate" data-i18n="Billing &amp; Plans">Billing &amp;
-                                        Plans</span></a>
-                            </li>
-                            <li><a class="d-flex align-items-center" href="app-user-view-notifications.html"><span
-                                        class="menu-item text-truncate"
-                                        data-i18n="Notifications">Notifications</span></a>
-                            </li>
-                            <li><a class="d-flex align-items-center" href="app-user-view-connections.html"><span
-                                        class="menu-item text-truncate" data-i18n="Connections">Connections</span></a>
-                            </li>
-                        </ul>
+                                data-i18n="List">Data User</span></a>
                     </li>
                 </ul>
             </li>
