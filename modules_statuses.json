@@ -12,5 +12,7 @@
     "Simulasi": true,
     "Ppr": true,
     "ModelM": true,
-    "SkpdSlikPasangan": true
+    "SkpdSlikPasangan": true,
+    "Modul": true,
+    "Akad": true
 }

@@ -714,75 +714,20 @@
                                             </div>
                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
                                                 @if ($history->status_id == 4 && $history->jabatan_id == 2)
-                                                    @if ($nilai_idir >= 80 || $nilai_idir < 0)
-                                                    <div class="card-body">
-                                                        <button class="btn btn-success w-100 mb-75"
-                                                            data-bs-toggle="modal"data-bs-target="#lanjut_komite">
-                                                            Disetujui
-                                                        </button>
-                                                    </div>
-                                                        <div class="card-body">
-                                                            <button class="btn btn-warning w-100 mb-75"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#edit_proposal">
-                                                                Edit Proposal
-                                                            </button>
-                                                        </div>
-                                                         <div class="card-body">
-                                                            <button class="btn btn-danger w-100 mb-75"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#ditolak">
-                                                                Ditolak
-                                                            </button>
-                                                        </div>
-                                                        
-                                                    @else
-                                                        @if ($total_score > 3)
-                                                            <div class="card-body">
-                                                                <button class="btn btn-success w-100 mb-75"
-                                                                    data-bs-toggle="modal"data-bs-target="#lanjut_komite">
-                                                                    Disetujui
-                                                                </button>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <button class="btn btn-warning w-100 mb-75"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#edit_proposal">
-                                                                    Edit Proposal
-                                                                </button>
-                                                            </div>
-                                                        @elseif ($total_score > 2 || $total_score > 3)
-                                                            <div class="card-body">
-                                                                <button class="btn btn-warning w-100 mb-75"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#edit_proposal">
-                                                                    Edit Proposal
-                                                                </button>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <button class="btn btn-danger w-100 mb-75"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#ditolak">
-                                                                    Ditolak
-                                                                </button>
-                                                            </div>
-                                                        @else
-                                                            <div class="card-body">
-                                                                <button class="btn btn-warning w-100 mb-75"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#edit_proposal">
-                                                                    Edit Proposal
-                                                                </button>
-                                                            </div>
-                                                             <div class="card-body">
-                                                                <button class="btn btn-danger w-100 mb-75"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#ditolak">
-                                                                    Tolak
-                                                                </button>
-                                                            </div>
-                                                        @endif
-                                                    @endif
+                                                <div class="card-body">
+                                                    <button class="btn btn-success w-100"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#lanjut_komite">
+                                                        Disetujui
+                                                    </button>
+                                                </div>
+                                                <div class="card-body">
+                                                    <button class="btn btn-warning w-100"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#edit_proposal">
+                                                        Rekomendasi Revisi
+                                                    </button>
+                                                </div>
                                                 @endif
                                             </div>
                                         </div>

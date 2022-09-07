@@ -33,6 +33,9 @@ class HomeController extends Controller
                 if ($role->jabatan_id==0){
                     $url='/admin';
                 }
+                elseif ($role->jabatan_id==1){
+                    $url='/staff';
+                }
                 elseif ($role->jabatan_id==2){
                     $url='/kabag';
                 }
@@ -57,6 +60,9 @@ class HomeController extends Controller
             }
             elseif ($role->divisi_id==4) {
                     $url='/ppr';
+            }
+            elseif ($role->divisi_id==5) {
+                    $url='/staff';
             }
             else{
                     $url='/';
