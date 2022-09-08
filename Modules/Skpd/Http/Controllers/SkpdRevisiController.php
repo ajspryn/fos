@@ -138,7 +138,7 @@ class SkpdRevisiController extends Controller
             'keterangan_pengeluaran_lainnya' => $request->keterangan_pengeluaran_lainnya,
         ]);
 
-        
+
         if ($request->file('dokumen_keuangan')) {
             if ($request->dokumen_keuangan_lama) {
                 Storage::delete($request->dokumen_keuangan_lama);
@@ -212,7 +212,7 @@ class SkpdRevisiController extends Controller
                 'dokumen_jaminan' => $dokumen_jaminan,
             ]);
         }
-       
+
 
         SkpdPembiayaanHistory::where('skpd_pembiayaan_id', $id)->update([
             'skpd_pembiayaan_id' => $id,
@@ -237,7 +237,7 @@ class SkpdRevisiController extends Controller
         ]);
 
         foreach ($request->foto as $key => $value) {
-            if ($value['foto']) {
+            if ($value['foto'] != null) {
                 Storage::delete($value['foto_lama']);
                 $foto = $value['foto']->store('foto-skpd-pembiayaan');
 
@@ -264,7 +264,7 @@ class SkpdRevisiController extends Controller
         if ($request->slik[0]['nama_bank']){
 
             SkpdSlik::select()->where('skpd_pembiayaan_id',$id)->delete();
-        
+
             foreach ($request->slik as $key => $value) {
 
             SkpdSlik::create([
@@ -286,7 +286,7 @@ class SkpdRevisiController extends Controller
         if ($request->slikpasangan[0]['nama_bank']){
 
             SkpdSlikPasangan::select()->where('skpd_pembiayaan_id',$id)->delete();
-        
+
             foreach ($request->slik as $key => $value) {
 
             SkpdSlikPasangan::create([
@@ -303,7 +303,7 @@ class SkpdRevisiController extends Controller
         }}
 
         else{
-        
+
         }
 
         return redirect('/skpd/komite')->with('success', 'Pengajuan Anda Sedang Di Proses Silahkan Hubungi AO');
