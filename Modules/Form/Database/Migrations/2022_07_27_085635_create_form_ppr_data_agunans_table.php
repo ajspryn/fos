@@ -31,8 +31,8 @@ return new class extends Migration
             $table->string('form_agunan_1_alamat_provinsi');
             $table->integer('form_agunan_1_alamat_kode_pos');
             $table->string('form_agunan_1_status_bukti_kepemilikan');
-            $table->date('form_agunan_1_status_bukti_kepemilikan_tgl_berakhir');
-            $table->string('form_agunan_1_status_bukti_kepemilikan_hak');
+            $table->date('form_agunan_1_status_bukti_kepemilikan_tgl_berakhir')->nullable();
+            $table->string('form_agunan_1_status_bukti_kepemilikan_hak')->nullable();
             $table->string('form_agunan_1_no_sertifikat');
             $table->date('form_agunan_1_no_sertifikat_tgl_penerbitan');
             $table->string('form_agunan_1_no_imb');

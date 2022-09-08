@@ -1213,9 +1213,8 @@
                                                                 class="text-danger">*
                                                             </small>No. Telepon</label>
                                                         <input type="text" name="form_pribadi_pemohon_no_telp"
-                                                            id="form_pribadi_pemohon_no_telp"
-                                                            class="form-control prefix-mask"
-                                                            placeholder="Masukkan Nomor Telepon Anda"
+                                                            id="form_pribadi_pemohon_no_telp" class="form-control"
+                                                            placeholder="Masukkan Nomor Telepon Pemohon"
                                                             value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_no_telp }}" />
                                                     </div>
                                                     <div class="mb-1 col-md-6">
@@ -1224,9 +1223,8 @@
                                                                 class="text-danger">*
                                                             </small>Handphone</label>
                                                         <input type="text" name="form_pribadi_pemohon_no_handphone"
-                                                            id="form_pribadi_pemohon_no_handphone"
-                                                            class="form-control prefix-mask1"
-                                                            placeholder="Masukkan Nomor Handphone Anda"
+                                                            id="form_pribadi_pemohon_no_handphone" class="form-control"
+                                                            placeholder="Masukkan Nomor Handphone Pemohon"
                                                             value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_no_handphone }}" />
                                                     </div>
                                                     <div class="mb-1 col-md-12">
@@ -1262,7 +1260,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1272,7 +1270,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1810,7 +1808,7 @@
                                                             <input type="text"
                                                                 name="form_pribadi_keluarga_terdekat_no_telp"
                                                                 id="form_pribadi_keluarga_terdekat_no_telp"
-                                                                class="form-control prefix-mask2"
+                                                                class="form-control"
                                                                 placeholder="Masukkan Nomor Telepon Keluarga Terdekat"
                                                                 value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_no_telp }}"
                                                                 required />
@@ -1936,8 +1934,7 @@
                                                         class="text-danger">*
                                                     </small>Nomor Telp. Kantor</label>
                                                 <input type="text" name="form_pekerjaan_pemohon_no_telp"
-                                                    id="form_pekerjaan_pemohon_no_telp"
-                                                    class="form-control prefix-mask3"
+                                                    id="form_pekerjaan_pemohon_no_telp" class="form-control"
                                                     placeholder="Masukkan Nomor Telepon Kantor"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_no_telp }}"
                                                     required />
@@ -2252,7 +2249,7 @@
                                                 <input type="text"
                                                     name="form_pekerjaan_pemohon_no_telp_atasan_langsung"
                                                     id="form_pekerjaan_pemohon_no_telp_atasan_langsung"
-                                                    class="form-control prefix-mask4"
+                                                    class="form-control"
                                                     placeholder="Masukkan Nomor Telp. Atasan Langsung"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_no_telp_atasan_langsung }}"
                                                     required />
@@ -2437,8 +2434,7 @@
                                                     Telp.
                                                     Kantor</label>
                                                 <input type="text" name="form_pekerjaan_istri_suami_no_telp"
-                                                    id="form_pekerjaan_istri_suami_no_telp"
-                                                    class="form-control prefix-mask5"
+                                                    id="form_pekerjaan_istri_suami_no_telp" class="form-control"
                                                     placeholder="Masukkan Nomor Telepon Kantor"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_no_telp }}" />
                                             </div>
@@ -2751,7 +2747,7 @@
                                                 <input type="text"
                                                     name="form_pekerjaan_istri_suami_no_telp_atasan_langsung"
                                                     id="form_pekerjaan_istri_suami_no_telp_atasan_langsung"
-                                                    class="form-control prefix-mask6"
+                                                    class="form-control"
                                                     placeholder="Masukkan Nomor Telp. Atasan Langsung"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_no_telp_atasan_langsung }}" />
                                             </div>
@@ -3922,7 +3918,7 @@
                                                                                 <label class="form-label"
                                                                                     for="form_kekayaan_tanah_bangunan_luas_tanah">Luas
                                                                                     Tanah</label>
-                                                                                    <input type="hidden" name="id"
+                                                                                <input type="hidden" name="id"
                                                                                     value="{{ $kekayaan_tanah_bangunan->id }}" />
                                                                                 <input type="number"
                                                                                     class="form-control"
@@ -4064,76 +4060,79 @@
                                                         <div data-repeater-list="repeater_kekayaan_kendaraan">
                                                             <h6>Kendaraan</h6>
                                                             @foreach ($kekayaan_kendaraans as $kekayaan_kendaraan)
-                                                            <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_kendaraan_jenis_merk">Jenis/Merk</label>
+                                                                <div data-repeater-item>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_kendaraan_jenis_merk">Jenis/Merk</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $kekayaan_kendaraan->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_kekayaan_kendaraan_jenis_merk"
-                                                                                id="form_kekayaan_kendaraan_jenis_merk"
-                                                                                aria-describedby="form_kekayaan_kendaraan_jenis_merk"
-                                                                                placeholder="Jenis/Merk"
-                                                                                value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_jenis_merk }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_kekayaan_kendaraan_jenis_merk"
+                                                                                    id="form_kekayaan_kendaraan_jenis_merk"
+                                                                                    aria-describedby="form_kekayaan_kendaraan_jenis_merk"
+                                                                                    placeholder="Jenis/Merk"
+                                                                                    value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_jenis_merk }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="mb-1 col-md-2">
-                                                                        <label class="form-label"
-                                                                            for="form_kekayaan_kendaraan_tahun_dikeluarkan">Tahun
-                                                                            Dikeluarkan</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="form_kekayaan_kendaraan_tahun_dikeluarkan"
-                                                                            id="form_kekayaan_kendaraan_tahun_dikeluarkan"
-                                                                            aria-describedby="form_kekayaan_kendaraan_tahun_dikeluarkan"
-                                                                            placeholder="Tahun Dikeluarkan"
-                                                                            value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_tahun_dikeluarkan }}" />
-                                                                    </div>
-
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
+                                                                        <div class="mb-1 col-md-2">
                                                                             <label class="form-label"
-                                                                                for="form_kekayaan_kendaraan_atas_nama">Atas
-                                                                                Nama</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_kekayaan_kendaraan_atas_nama"
-                                                                                id="form_kekayaan_kendaraan_atas_nama"
-                                                                                aria-describedby="form_kekayaan_kendaraan_atas_nama"
-                                                                                placeholder="Atas Nama"
-                                                                                value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_atas_nama }}" />
+                                                                                for="form_kekayaan_kendaraan_tahun_dikeluarkan">Tahun
+                                                                                Dikeluarkan</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="form_kekayaan_kendaraan_tahun_dikeluarkan"
+                                                                                id="form_kekayaan_kendaraan_tahun_dikeluarkan"
+                                                                                aria-describedby="form_kekayaan_kendaraan_tahun_dikeluarkan"
+                                                                                placeholder="Tahun Dikeluarkan"
+                                                                                value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_tahun_dikeluarkan }}" />
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_kendaraan_taksasi_harga_jual">Taksasi
-                                                                                Harga
-                                                                                Jual</label>
-                                                                            <input type="text"
-                                                                                class="form-control numeral-mask22"
-                                                                                name="form_kekayaan_kendaraan_taksasi_harga_jual"
-                                                                                id="form_kekayaan_kendaraan_taksasi_harga_jual"
-                                                                                aria-describedby="form_kekayaan_kendaraan_taksasi_harga_jual"
-                                                                                placeholder="Taksasi Harga Jual"
-                                                                                value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_taksasi_harga_jual }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_kendaraan_atas_nama">Atas
+                                                                                    Nama</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_kekayaan_kendaraan_atas_nama"
+                                                                                    id="form_kekayaan_kendaraan_atas_nama"
+                                                                                    aria-describedby="form_kekayaan_kendaraan_atas_nama"
+                                                                                    placeholder="Atas Nama"
+                                                                                    value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_atas_nama }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_kendaraan_taksasi_harga_jual">Taksasi
+                                                                                    Harga
+                                                                                    Jual</label>
+                                                                                <input type="text"
+                                                                                    class="form-control numeral-mask22"
+                                                                                    name="form_kekayaan_kendaraan_taksasi_harga_jual"
+                                                                                    id="form_kekayaan_kendaraan_taksasi_harga_jual"
+                                                                                    aria-describedby="form_kekayaan_kendaraan_taksasi_harga_jual"
+                                                                                    placeholder="Taksasi Harga Jual"
+                                                                                    value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_taksasi_harga_jual }}" />
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
@@ -4158,57 +4157,59 @@
                                                         <div data-repeater-list="repeater_kekayaan_saham">
                                                             <h6>Saham</h6>
                                                             @foreach ($kekayaan_sahams as $kekayaan_saham)
-                                                            <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_saham_penerbit">Penerbit</label>
+                                                                <div data-repeater-item>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_saham_penerbit">Penerbit</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $kekayaan_saham->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_kekayaan_saham_penerbit"
-                                                                                id="form_kekayaan_saham_penerbit"
-                                                                                aria-describedby="form_kekayaan_saham_penerbit"
-                                                                                placeholder="Penerbit"
-                                                                                value="{{ $kekayaan_saham->form_kekayaan_saham_penerbit }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_kekayaan_saham_penerbit"
+                                                                                    id="form_kekayaan_saham_penerbit"
+                                                                                    aria-describedby="form_kekayaan_saham_penerbit"
+                                                                                    placeholder="Penerbit"
+                                                                                    value="{{ $kekayaan_saham->form_kekayaan_saham_penerbit }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="mb-1 col-md-2">
-                                                                        <label class="form-label"
-                                                                            for="form_kekayaan_saham_per_tanggal">Rupiah
-                                                                            Per
-                                                                            Tanggal</label>
-                                                                        <input type="date"
-                                                                            id="form_kekayaan_saham_per_tanggal"
-                                                                            class="form-control"
-                                                                            name="form_kekayaan_saham_per_tanggal"
-                                                                            placeholder="DD-MM-YYYY"
-                                                                            value="{{ $kekayaan_saham->form_kekayaan_saham_per_tanggal }}" />
-                                                                    </div>
+                                                                        <div class="mb-1 col-md-2">
+                                                                            <label class="form-label"
+                                                                                for="form_kekayaan_saham_per_tanggal">Rupiah
+                                                                                Per
+                                                                                Tanggal</label>
+                                                                            <input type="date"
+                                                                                id="form_kekayaan_saham_per_tanggal"
+                                                                                class="form-control"
+                                                                                name="form_kekayaan_saham_per_tanggal"
+                                                                                placeholder="DD-MM-YYYY"
+                                                                                value="{{ $kekayaan_saham->form_kekayaan_saham_per_tanggal }}" />
+                                                                        </div>
 
-                                                                    <div class="mb-1 col-md-3">
-                                                                        <input type="text"
-                                                                            class="form-control numeral-mask23"
-                                                                            name="form_kekayaan_saham_rp"
-                                                                            id="form_kekayaan_saham_rp"
-                                                                            aria-describedby="form_kekayaan_saham_rp"
-                                                                            placeholder="Rupiah Per Tanggal"
-                                                                            value="{{ $kekayaan_saham->form_kekayaan_saham_rp }}" />
-                                                                    </div>
+                                                                        <div class="mb-1 col-md-3">
+                                                                            <input type="text"
+                                                                                class="form-control numeral-mask23"
+                                                                                name="form_kekayaan_saham_rp"
+                                                                                id="form_kekayaan_saham_rp"
+                                                                                aria-describedby="form_kekayaan_saham_rp"
+                                                                                placeholder="Rupiah Per Tanggal"
+                                                                                value="{{ $kekayaan_saham->form_kekayaan_saham_rp }}" />
+                                                                        </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
@@ -4232,46 +4233,48 @@
                                                     <div class="repeater-default">
                                                         <div data-repeater-list="repeater_kekayaan_lainnya">
                                                             @foreach ($kekayaan_lainnyas as $kekayaan_lainnya)
-                                                            <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_lainnya">Lainnya</label>
+                                                                <div data-repeater-item>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_lainnya">Lainnya</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $kekayaan_lainnya->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_kekayaan_lainnya"
-                                                                                id="form_kekayaan_lainnya"
-                                                                                aria-describedby="form_kekayaan_lainnya"
-                                                                                placeholder="Lainnya"
-                                                                                value="{{ $kekayaan_lainnya->form_kekayaan_lainnya }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_kekayaan_lainnya"
+                                                                                    id="form_kekayaan_lainnya"
+                                                                                    aria-describedby="form_kekayaan_lainnya"
+                                                                                    placeholder="Lainnya"
+                                                                                    value="{{ $kekayaan_lainnya->form_kekayaan_lainnya }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="mb-1 col-md-3">
-                                                                        <label class="form-label"
-                                                                            for="form_kekayaan_lainnya_rp">Rupiah</label>
-                                                                        <input type="text"
-                                                                            class="form-control numeral-mask24"
-                                                                            name="form_kekayaan_lainnya_rp"
-                                                                            id="form_kekayaan_lainnya_rp"
-                                                                            aria-describedby="form_kekayaan_lainnya_rp"
-                                                                            placeholder="Rp"
-                                                                            value="{{ $kekayaan_lainnya->form_kekayaan_lainnya_rp }}" />
-                                                                    </div>
+                                                                        <div class="mb-1 col-md-3">
+                                                                            <label class="form-label"
+                                                                                for="form_kekayaan_lainnya_rp">Rupiah</label>
+                                                                            <input type="text"
+                                                                                class="form-control numeral-mask24"
+                                                                                name="form_kekayaan_lainnya_rp"
+                                                                                id="form_kekayaan_lainnya_rp"
+                                                                                aria-describedby="form_kekayaan_lainnya_rp"
+                                                                                placeholder="Rp"
+                                                                                value="{{ $kekayaan_lainnya->form_kekayaan_lainnya_rp }}" />
+                                                                        </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
@@ -4305,120 +4308,125 @@
                                                                 Pinjaman
                                                             </h6>
                                                             @foreach ($pinjamans as $pinjaman)
-                                                            <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-6">
+                                                                <div data-repeater-item>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-6">
 
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_nama_bank">Nama
-                                                                                Bank</label>
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_nama_bank">Nama
+                                                                                    Bank</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $pinjaman->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_pinjaman_nama_bank"
-                                                                                id="form_pinjaman_nama_bank"
-                                                                                aria-describedby="form_pinjaman_nama_bank"
-                                                                                placeholder="Nama Bank"
-                                                                                value="{{ $pinjaman->form_pinjaman_nama_bank }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_nama_bank"
+                                                                                    id="form_pinjaman_nama_bank"
+                                                                                    aria-describedby="form_pinjaman_nama_bank"
+                                                                                    placeholder="Nama Bank"
+                                                                                    value="{{ $pinjaman->form_pinjaman_nama_bank }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_jenis">Jenis
-                                                                                Pinjaman</label>
-                                                                            <select class="form-control w-100"
-                                                                                name="form_pinjaman_jenis"
-                                                                                id="form_pinjaman_jenis">
-                                                                                <option label="Pilih Jenis Pinjaman">Pilih
-                                                                                    Jenis
-                                                                                    Pinjaman
-                                                                                </option>
-                                                                                <option
-                                                                                    {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Modal Kerja' ? 'selected' : '' }}
-                                                                                    value="Modal Kerja">Modal Kerja
-                                                                                </option>
-                                                                                <option
-                                                                                    {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Investasi' ? 'selected' : '' }}
-                                                                                    value="Investasi">Investasi
-                                                                                </option>
-                                                                                <option
-                                                                                    {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Konsumtif' ? 'selected' : '' }}
-                                                                                    value="Konsumtif">Konsumtif
-                                                                                </option>
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_jenis">Jenis
+                                                                                    Pinjaman</label>
+                                                                                <select class="form-control w-100"
+                                                                                    name="form_pinjaman_jenis"
+                                                                                    id="form_pinjaman_jenis">
+                                                                                    <option label="Pilih Jenis Pinjaman">
+                                                                                        Pilih
+                                                                                        Jenis
+                                                                                        Pinjaman
+                                                                                    </option>
+                                                                                    <option
+                                                                                        {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Modal Kerja' ? 'selected' : '' }}
+                                                                                        value="Modal Kerja">Modal Kerja
+                                                                                    </option>
+                                                                                    <option
+                                                                                        {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Investasi' ? 'selected' : '' }}
+                                                                                        value="Investasi">Investasi
+                                                                                    </option>
+                                                                                    <option
+                                                                                        {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Konsumtif' ? 'selected' : '' }}
+                                                                                        value="Konsumtif">Konsumtif
+                                                                                    </option>
 
-                                                                            </select>
+                                                                                </select>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_sejak_tahun">Sejak
-                                                                                Tahun</label>
-                                                                            <input type="number" class="form-control"
-                                                                                name="form_pinjaman_sejak_tahun"
-                                                                                id="form_pinjaman_sejak_tahun"
-                                                                                aria-describedby="form_pinjaman_sejak_tahun"
-                                                                                placeholder="Tahun"
-                                                                                value="{{ $pinjaman->form_pinjaman_sejak_tahun }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_sejak_tahun">Sejak
+                                                                                    Tahun</label>
+                                                                                <input type="number"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_sejak_tahun"
+                                                                                    id="form_pinjaman_sejak_tahun"
+                                                                                    aria-describedby="form_pinjaman_sejak_tahun"
+                                                                                    placeholder="Tahun"
+                                                                                    value="{{ $pinjaman->form_pinjaman_sejak_tahun }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_jangka_waktu_bulan">Jangka
-                                                                                Waktu (Bulan)</label>
-                                                                            <input type="number" class="form-control"
-                                                                                name="form_pinjaman_jangka_waktu_bulan"
-                                                                                id="form_pinjaman_jangka_waktu_bulan"
-                                                                                aria-describedby="form_pinjaman_jangka_waktu_bulan"
-                                                                                placeholder="Jangka Waktu (Bulan)"
-                                                                                value="{{ $pinjaman->form_pinjaman_jangka_waktu_bulan }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_jangka_waktu_bulan">Jangka
+                                                                                    Waktu (Bulan)</label>
+                                                                                <input type="number"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_jangka_waktu_bulan"
+                                                                                    id="form_pinjaman_jangka_waktu_bulan"
+                                                                                    aria-describedby="form_pinjaman_jangka_waktu_bulan"
+                                                                                    placeholder="Jangka Waktu (Bulan)"
+                                                                                    value="{{ $pinjaman->form_pinjaman_jangka_waktu_bulan }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_plafond">Plafond</label>
-                                                                            <input type="text"
-                                                                                class="form-control numeral-mask25"
-                                                                                name="form_pinjaman_plafond"
-                                                                                id="form_pinjaman_plafond"
-                                                                                aria-describedby="form_pinjaman_plafond"
-                                                                                placeholder="Plafond (Rp)"
-                                                                                value="{{ $pinjaman->form_pinjaman_plafond }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_plafond">Plafond</label>
+                                                                                <input type="text"
+                                                                                    class="form-control numeral-mask25"
+                                                                                    name="form_pinjaman_plafond"
+                                                                                    id="form_pinjaman_plafond"
+                                                                                    aria-describedby="form_pinjaman_plafond"
+                                                                                    placeholder="Plafond (Rp)"
+                                                                                    value="{{ $pinjaman->form_pinjaman_plafond }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-8">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_angsuran_per_bulan">Angsuran/Bulan</label>
-                                                                            <input type="text"
-                                                                                class="form-control numeral-mask26"
-                                                                                name="form_pinjaman_angsuran_per_bulan"
-                                                                                id="form_pinjaman_angsuran_per_bulan"
-                                                                                aria-describedby="form_pinjaman_angsuran_per_bulan"
-                                                                                placeholder="Angsuran/Bulan (Rp)"
-                                                                                value="{{ $pinjaman->form_pinjaman_angsuran_per_bulan }}" />
+                                                                        <div class="col-md-2 col-8">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_angsuran_per_bulan">Angsuran/Bulan</label>
+                                                                                <input type="text"
+                                                                                    class="form-control numeral-mask26"
+                                                                                    name="form_pinjaman_angsuran_per_bulan"
+                                                                                    id="form_pinjaman_angsuran_per_bulan"
+                                                                                    aria-describedby="form_pinjaman_angsuran_per_bulan"
+                                                                                    placeholder="Angsuran/Bulan (Rp)"
+                                                                                    value="{{ $pinjaman->form_pinjaman_angsuran_per_bulan }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
@@ -4444,65 +4452,68 @@
                                                         <div data-repeater-list="repeater_pinjaman_kartu_kredit">
                                                             <h6>Kartu
                                                                 Kredit</h6>
-                                                                @foreach ($pinjaman_kartu_kredits as $pinjaman_kartu_kredit)
+                                                            @foreach ($pinjaman_kartu_kredits as $pinjaman_kartu_kredit)
                                                                 <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_kartu_kredit_nama_bank">Nama
-                                                                                Bank</label>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_kartu_kredit_nama_bank">Nama
+                                                                                    Bank</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $pinjaman_kartu_kredit->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_pinjaman_kartu_kredit_nama_bank"
-                                                                                id="form_pinjaman_kartu_kredit_nama_bank"
-                                                                                aria-describedby="form_pinjaman_kartu_kredit_nama_bank"
-                                                                                placeholder="Nama Bank"
-                                                                                value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_nama_bank }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_kartu_kredit_nama_bank"
+                                                                                    id="form_pinjaman_kartu_kredit_nama_bank"
+                                                                                    aria-describedby="form_pinjaman_kartu_kredit_nama_bank"
+                                                                                    placeholder="Nama Bank"
+                                                                                    value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_nama_bank }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_kartu_kredit_sejak_tahun">Sejak
-                                                                                Tahun</label>
-                                                                            <input type="number" class="form-control"
-                                                                                name="form_pinjaman_kartu_kredit_sejak_tahun"
-                                                                                id="form_pinjaman_kartu_kredit_sejak_tahun"
-                                                                                aria-describedby="form_pinjaman_kartu_kredit_sejak_tahun"
-                                                                                placeholder="Tahun"
-                                                                                value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_sejak_tahun }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_kartu_kredit_sejak_tahun">Sejak
+                                                                                    Tahun</label>
+                                                                                <input type="number"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_kartu_kredit_sejak_tahun"
+                                                                                    id="form_pinjaman_kartu_kredit_sejak_tahun"
+                                                                                    aria-describedby="form_pinjaman_kartu_kredit_sejak_tahun"
+                                                                                    placeholder="Tahun"
+                                                                                    value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_sejak_tahun }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_kartu_kredit_plafond">Plafond
-                                                                            </label>
-                                                                            <input type="text"
-                                                                                class="form-control numeral-mask27"
-                                                                                name="form_pinjaman_kartu_kredit_plafond"
-                                                                                id="form_pinjaman_kartu_kredit_plafond"
-                                                                                aria-describedby="form_pinjaman_kartu_kredit_plafond"
-                                                                                placeholder="Plafond (Rp)"
-                                                                                value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_plafond }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_kartu_kredit_plafond">Plafond
+                                                                                </label>
+                                                                                <input type="text"
+                                                                                    class="form-control numeral-mask27"
+                                                                                    name="form_pinjaman_kartu_kredit_plafond"
+                                                                                    id="form_pinjaman_kartu_kredit_plafond"
+                                                                                    aria-describedby="form_pinjaman_kartu_kredit_plafond"
+                                                                                    placeholder="Plafond (Rp)"
+                                                                                    value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_plafond }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
@@ -4526,46 +4537,48 @@
                                                     <div class="repeater-default">
                                                         <div data-repeater-list="repeater_pinjaman_lainnya">
                                                             @foreach ($pinjaman_lainnyas as $pinjaman_lainnya)
-                                                            <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_lainnya">Lainnya</label>
+                                                                <div data-repeater-item>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_lainnya">Lainnya</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $pinjaman_lainnya->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_pinjaman_lainnya"
-                                                                                id="form_pinjaman_lainnya"
-                                                                                aria-describedby="form_pinjaman_lainnya"
-                                                                                placeholder="Lainnya"
-                                                                                value="{{ $pinjaman_lainnya->form_pinjaman_lainnya }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_lainnya"
+                                                                                    id="form_pinjaman_lainnya"
+                                                                                    aria-describedby="form_pinjaman_lainnya"
+                                                                                    placeholder="Lainnya"
+                                                                                    value="{{ $pinjaman_lainnya->form_pinjaman_lainnya }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="mb-1 col-md-3">
-                                                                        <label class="form-label"
-                                                                            for="form_pinjaman_lainnya_rp">Rupiah</label>
-                                                                        <input type="text"
-                                                                            class="form-control numeral-mask28"
-                                                                            name="form_pinjaman_lainnya_rp"
-                                                                            id="form_pinjaman_lainnya_rp"
-                                                                            aria-describedby="form_pinjaman_lainnya_rp"
-                                                                            placeholder="Rupiah"
-                                                                            value="{{ $pinjaman_lainnya->form_pinjaman_lainnya_rp }}" />
-                                                                    </div>
+                                                                        <div class="mb-1 col-md-3">
+                                                                            <label class="form-label"
+                                                                                for="form_pinjaman_lainnya_rp">Rupiah</label>
+                                                                            <input type="text"
+                                                                                class="form-control numeral-mask28"
+                                                                                name="form_pinjaman_lainnya_rp"
+                                                                                id="form_pinjaman_lainnya_rp"
+                                                                                aria-describedby="form_pinjaman_lainnya_rp"
+                                                                                placeholder="Rupiah"
+                                                                                value="{{ $pinjaman_lainnya->form_pinjaman_lainnya_rp }}" />
+                                                                        </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
