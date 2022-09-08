@@ -1,0 +1,115 @@
+@extends('akad::layouts.main')
+
+@section('content')
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper container-xxl p-0">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h2 class="content-header-title float-start mb-0">Data Proposal Akad</h2>
+                            <div class="breadcrumb-wrapper">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/staff">Staff</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="#">Proposal</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Proposal Akad
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">
+                <!-- Examples -->
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <table class="datatables-basic table">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center">No</th>
+                                            <th style="text-align: center">Nama Nasabah</th>
+                                            <th style="text-align: center">Nominal Pembiayaan</th>
+                                            <th style="text-align: center">Tanggal Pengajuan</th>
+                                            <th style="text-align: center">AO Yang Menangani</th>
+                                            <th style="text-align: center">Actionn</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proposalpasars as $proposalpasar)
+                                        @php
+                                            $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+                                                ->where('id', $proposalpasar->pasar_pembiayaan_id)
+                                                ->get()
+                                                ->first();
+                                        @endphp
+    
+                                            <tr>
+                                                <td style="text-align: center">
+                                                    <button type="button"
+                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                        <i data-feather="eye"></i>
+                                                    </button>
+                                                </td>
+                                                <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                <td>{{ $proposal_pasar->nasabahh->nama_nasabah }}</td>
+                                                <td>{{ $proposal_pasar->nasabahh->alamat }}
+                                                <td style="text-align: center">
+                                                    {{ $proposal_pasar->keteranganusaha->nama_usaha }}</td>
+                                                <td style="text-align: center"
+                                                    value="{{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}">
+                                                    {{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}</td>
+                                                <td style="text-align: center">Rp.{{ number_format($proposal_pasar->harga) }}</td>
+                                                <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
+                                                <td style="text-align: center"
+                                                    value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
+                                                    @if ($history->statushistory->id == 5 )
+                                                        <span
+                                                            class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @elseif ($history->statushistory->id == 4)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @elseif ($history->statushistory->id == 7)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @elseif ($history->statushistory->id == 6)
+                                                        <span
+                                                            class="badge rounded-pill badge-light-danger">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @else
+                                                            <span
+                                                                class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                                {{ $history->jabatan->keterangan }}</span>
+                                                    @endif
+                                                </td>
+                                                <td style="text-align: center">{{ $proposal_pasar->user->name }}</td>
+                                                {{-- <td>
+                                                    <a href="/dirbis/pasar/komite/{{ $proposal_pasar->id }}"
+                                                        class="btn btn-outline-info round">Detail</a>
+                                                </td> --}}
+                                            </tr>
+                                        @endif
+                      @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ Basic table -->
+            </div>
+        </div>
+    </div>
+@endsection
+<

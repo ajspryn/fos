@@ -170,20 +170,19 @@ class PprEditProposalController extends Controller
 
             'nasabah' => FormPprDataPribadi::select()->where('id', $id)->get()->first(),
             'fotoPemohon' => FormPprFoto::select()->where('form_ppr_pembiayaan_id', $id)->where('kategori', 'Foto Pemohon')->get()->first(),
+            'fotoPasanganPemohon' => FormPprFoto::select()->where('form_ppr_pembiayaan_id', $id)->where('kategori', 'Foto Pasangan Pemohon')->get()->first(),
             'aos' => Role::select()->where('jabatan_id', 1)->get(),
             'pekerjaans' => FormPprDataPekerjaan::all(),
             'agunans' => FormPprDataAgunan::all(),
 
             'kekayaan_simpanans' => FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->get(),
-            // 'kekayaan_simpanan' => FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            'kekayaan_tanah_bangunan' => FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            'kekayaan_kendaraan' => FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            'kekayaan_saham' => FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            'kekayaan_lainnya' => FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            'pinjaman' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            'pinjaman_kartu_kredit' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            'pinjaman_lainnya' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            // 'persyaratans' => PprClPersyaratan::all(),
+            'kekayaan_tanah_bangunans' => FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'kekayaan_kendaraans' => FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'kekayaan_sahams' => FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'kekayaan_lainnyas' => FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'pinjamans' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'pinjaman_kartu_kredits' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'pinjaman_lainnyas' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
 
             //Kategori Scoring Fixed Income
             'character_tempat_bekerjas' => PprCharacterTempatBekerja::all(),
@@ -489,137 +488,175 @@ class PprEditProposalController extends Controller
 
 
 
+        //Kekayaan simpanan
         if ($request->repeater_kekayaan_simpanan[0]['form_kekayaan_simpanan_nama_bank']) {
 
+            // FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
             foreach ($request->repeater_kekayaan_simpanan as $key => $value) {
-                FormPprDataKekayaanSimpanan::updateOrCreate([
-                    //Kekayaan simpanan
-                    'form_ppr_pembiayaan_id' => $id,
-                    'form_kekayaan_simpanan_nama_bank' => $value['form_kekayaan_simpanan_nama_bank'],
-                    'form_kekayaan_simpanan_jenis' => $value['form_kekayaan_simpanan_jenis'],
-                    'form_kekayaan_simpanan_sejak_tahun' => $value['form_kekayaan_simpanan_sejak_tahun'],
-                    'form_kekayaan_simpanan_saldo_per_tanggal' => $value['form_kekayaan_simpanan_saldo_per_tanggal'],
-                    'form_kekayaan_simpanan_saldo' => str_replace(",", "", $value['form_kekayaan_simpanan_saldo']),
-
-                ]);
-            }
-
-            FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->where('is_deleted', 'Yes')->delete();
-        } else {
-        }
-
-        if ($request->kekayaan_tanah_bangunan[0]['form_kekayaan_tanah_bangunan_luas_tanah']) {
-
-            FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
-
-            foreach ($request->kekayaan_tanah_bangunan as $key => $value) {
-                FormPprDataKekayaanTanahBangunan::create([
-                    //Kekayaan tanah dan bangunan
-                    'form_ppr_pembiayaan_id' => $id,
-                    'form_kekayaan_tanah_bangunan_luas_tanah' => $value['form_kekayaan_tanah_bangunan_luas_tanah'],
-                    'form_kekayaan_tanah_bangunan_luas_bangunan' => $value['form_kekayaan_tanah_bangunan_luas_bangunan'],
-                    'form_kekayaan_tanah_bangunan_jenis' => $value['form_kekayaan_tanah_bangunan_jenis'],
-                    'form_kekayaan_tanah_bangunan_atas_nama' => $value['form_kekayaan_tanah_bangunan_atas_nama'],
-                    'form_kekayaan_tanah_bangunan_taksasi_pasar_wajar' => str_replace(",", "", $value['form_kekayaan_tanah_bangunan_taksasi_pasar_wajar']),
-                ]);
+                FormPprDataKekayaanSimpanan::updateOrCreate(
+                    [
+                        'id' => $value['id'],
+                    ],
+                    [
+                        'form_ppr_pembiayaan_id' => $id,
+                        'form_kekayaan_simpanan_nama_bank' => $value['form_kekayaan_simpanan_nama_bank'],
+                        'form_kekayaan_simpanan_jenis' => $value['form_kekayaan_simpanan_jenis'],
+                        'form_kekayaan_simpanan_sejak_tahun' => $value['form_kekayaan_simpanan_sejak_tahun'],
+                        'form_kekayaan_simpanan_saldo_per_tanggal' => $value['form_kekayaan_simpanan_saldo_per_tanggal'],
+                        'form_kekayaan_simpanan_saldo' => str_replace(",", "", $value['form_kekayaan_simpanan_saldo']),
+                    ]
+                );
             }
         } else {
         }
 
-        if ($request->kekayaan_kendaraan[0]['form_kekayaan_kendaraan_jenis_merk']) {
+        //Kekayaan tanah dan bangunan
+        if ($request->repeater_kekayaan_tanah_bangunan[0]['form_kekayaan_tanah_bangunan_luas_tanah']) {
 
-            FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            // FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
 
-            foreach ($request->kekayaan_kendaraan as $key => $value) {
-                FormPprDataKekayaanKendaraan::create([
-                    //Kekayaan kendaraan
-                    'form_ppr_pembiayaan_id' => $id,
-                    'form_kekayaan_kendaraan_jenis_merk' => $value['form_kekayaan_kendaraan_jenis_merk'],
-                    'form_kekayaan_kendaraan_tahun_dikeluarkan' => $value['form_kekayaan_kendaraan_tahun_dikeluarkan'],
-                    'form_kekayaan_kendaraan_atas_nama' => $value['form_kekayaan_kendaraan_atas_nama'],
-                    'form_kekayaan_kendaraan_taksasi_harga_jual' => str_replace(",", "", $value['form_kekayaan_kendaraan_taksasi_harga_jual']),
-                ]);
+            foreach ($request->repeater_kekayaan_tanah_bangunan as $key => $value) {
+                FormPprDataKekayaanTanahBangunan::updateOrCreate(
+                    [
+                        'id' => $value['id'],
+                    ],
+                    [
+                        'form_ppr_pembiayaan_id' => $id,
+                        'form_kekayaan_tanah_bangunan_luas_tanah' => $value['form_kekayaan_tanah_bangunan_luas_tanah'],
+                        'form_kekayaan_tanah_bangunan_luas_bangunan' => $value['form_kekayaan_tanah_bangunan_luas_bangunan'],
+                        'form_kekayaan_tanah_bangunan_jenis' => $value['form_kekayaan_tanah_bangunan_jenis'],
+                        'form_kekayaan_tanah_bangunan_atas_nama' => $value['form_kekayaan_tanah_bangunan_atas_nama'],
+                        'form_kekayaan_tanah_bangunan_taksasi_pasar_wajar' => str_replace(",", "", $value['form_kekayaan_tanah_bangunan_taksasi_pasar_wajar']),
+                    ]
+                );
             }
         } else {
         }
 
-        if ($request->kekayaan_saham[0]['form_kekayaan_saham_penerbit']) {
+        //Kekayaan kendaraan
+        if ($request->repeater_kekayaan_kendaraan[0]['form_kekayaan_kendaraan_jenis_merk']) {
 
-            FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            // FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
 
-            foreach ($request->kekayaan_saham as $key => $value) {
-                FormPprDataKekayaanSaham::create([
-                    //Kekayaan saham
-                    'form_ppr_pembiayaan_id' => $id,
-                    'form_kekayaan_saham_penerbit' => $value['form_kekayaan_saham_penerbit'],
-                    'form_kekayaan_saham_per_tanggal' => $value['form_kekayaan_saham_per_tanggal'],
-                    'form_kekayaan_saham_rp' => str_replace(",", "", $value['form_kekayaan_saham_rp']),
-                ]);
+            foreach ($request->repeater_kekayaan_kendaraan as $key => $value) {
+                FormPprDataKekayaanKendaraan::updateOrCreate(
+                    [
+                        'id' => $value['id'],
+                    ],
+                    [
+                        'form_ppr_pembiayaan_id' => $id,
+                        'form_kekayaan_kendaraan_jenis_merk' => $value['form_kekayaan_kendaraan_jenis_merk'],
+                        'form_kekayaan_kendaraan_tahun_dikeluarkan' => $value['form_kekayaan_kendaraan_tahun_dikeluarkan'],
+                        'form_kekayaan_kendaraan_atas_nama' => $value['form_kekayaan_kendaraan_atas_nama'],
+                        'form_kekayaan_kendaraan_taksasi_harga_jual' => str_replace(",", "", $value['form_kekayaan_kendaraan_taksasi_harga_jual']),
+                    ]
+                );
             }
         } else {
         }
 
-        if ($request->kekayaan_lainnya[0]['form_kekayaan_lainnya']) {
+        //Kekayaan saham
+        if ($request->repeater_kekayaan_saham[0]['form_kekayaan_saham_penerbit']) {
 
-            FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            // FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->delete();
 
-            foreach ($request->kekayaan_lainnya as $key => $value) {
-                FormPprDataKekayaanLainnya::create([
-                    //Kekayaan lainnya
-                    'form_ppr_pembiayaan_id' => $id,
-                    'form_kekayaan_lainnya' => $value['form_kekayaan_lainnya'],
-                    'form_kekayaan_lainnya_rp' => str_replace(",", "", $value['form_kekayaan_lainnya_rp']),
-                ]);
+            foreach ($request->repeater_kekayaan_saham as $key => $value) {
+                FormPprDataKekayaanSaham::updateOrCreate(
+                    [
+                        'id' => $value['id'],
+                    ],
+                    [
+                        'form_ppr_pembiayaan_id' => $id,
+                        'form_kekayaan_saham_penerbit' => $value['form_kekayaan_saham_penerbit'],
+                        'form_kekayaan_saham_per_tanggal' => $value['form_kekayaan_saham_per_tanggal'],
+                        'form_kekayaan_saham_rp' => str_replace(",", "", $value['form_kekayaan_saham_rp']),
+                    ]
+                );
             }
         } else {
         }
 
-        if ($request->pinjaman[0]['form_pinjaman_nama_bank']) {
+        //Kekayaan lainnya
+        if ($request->repeater_kekayaan_lainnya[0]['form_kekayaan_lainnya']) {
 
-            FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            // FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->delete();
 
-            foreach ($request->pinjaman as $key => $value) {
-                FormPprDataPinjaman::create([
-                    //Pinjaman
-                    'form_ppr_pembiayaan_id' => $id,
-                    'form_pinjaman_nama_bank' => $value['form_pinjaman_nama_bank'],
-                    'form_pinjaman_jenis' => $value['form_pinjaman_jenis'],
-                    'form_pinjaman_sejak_tahun' => $value['form_pinjaman_sejak_tahun'],
-                    'form_pinjaman_jangka_waktu_bulan' => $value['form_pinjaman_jangka_waktu_bulan'],
-                    'form_pinjaman_plafond' => str_replace(",", "", $value['form_pinjaman_plafond']),
-                    'form_pinjaman_angsuran_per_bulan' => str_replace(",", "", $value['form_pinjaman_angsuran_per_bulan']),
-                ]);
+            foreach ($request->repeater_kekayaan_lainnya as $key => $value) {
+                FormPprDataKekayaanLainnya::updateOrCreate(
+                    [
+                        'id' => $value['id'],
+                    ],
+                    [
+                        'form_ppr_pembiayaan_id' => $id,
+                        'form_kekayaan_lainnya' => $value['form_kekayaan_lainnya'],
+                        'form_kekayaan_lainnya_rp' => str_replace(",", "", $value['form_kekayaan_lainnya_rp']),
+                    ]
+                );
             }
         } else {
         }
 
-        if ($request->pinjaman_kartu_kredit[0]['form_pinjaman_kartu_kredit_nama_bank']) {
+        //Pinjaman
+        if ($request->repeater_pinjaman[0]['form_pinjaman_nama_bank']) {
 
-            FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            // FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->delete();
 
-            foreach ($request->pinjaman_kartu_kredit as $key => $value) {
-                FormPprDataPinjamanKartuKredit::create([
-                    //Pinjaman kartu kredit
-                    'form_ppr_pembiayaan_id' => $id,
-                    'form_pinjaman_kartu_kredit_nama_bank' => $value['form_pinjaman_kartu_kredit_nama_bank'],
-                    'form_pinjaman_kartu_kredit_sejak_tahun' => $value['form_pinjaman_kartu_kredit_sejak_tahun'],
-                    'form_pinjaman_kartu_kredit_plafond' => str_replace(",", "", $value['form_pinjaman_kartu_kredit_plafond']),
-                ]);
+            foreach ($request->repeater_pinjaman as $key => $value) {
+                FormPprDataPinjaman::updateOrCreate(
+                    [
+                        'id' => $value['id'],
+                    ],
+                    [
+                        'form_ppr_pembiayaan_id' => $id,
+                        'form_pinjaman_nama_bank' => $value['form_pinjaman_nama_bank'],
+                        'form_pinjaman_jenis' => $value['form_pinjaman_jenis'],
+                        'form_pinjaman_sejak_tahun' => $value['form_pinjaman_sejak_tahun'],
+                        'form_pinjaman_jangka_waktu_bulan' => $value['form_pinjaman_jangka_waktu_bulan'],
+                        'form_pinjaman_plafond' => str_replace(",", "", $value['form_pinjaman_plafond']),
+                        'form_pinjaman_angsuran_per_bulan' => str_replace(",", "", $value['form_pinjaman_angsuran_per_bulan']),
+                    ]
+                );
             }
         } else {
         }
 
-        if ($request->pinjaman_lainnya[0]['form_pinjaman_lainnya']) {
+        //Pinjaman kartu kredit
+        if ($request->repeater_pinjaman_kartu_kredit[0]['form_pinjaman_kartu_kredit_nama_bank']) {
 
-            FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            // FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->delete();
 
-            foreach ($request->pinjaman_lainnya as $key => $value) {
-                FormPprDataPinjamanLainnya::create([
-                    //Pinjaman lainnya
-                    'form_ppr_pembiayaan_id' => $id,
-                    'form_pinjaman_lainnya' => $value['form_pinjaman_lainnya'],
-                    'form_pinjaman_lainnya_rp' => str_replace(",", "", $value['form_pinjaman_lainnya_rp']),
-                ]);
+            foreach ($request->repeater_pinjaman_kartu_kredit as $key => $value) {
+                FormPprDataPinjamanKartuKredit::updateOrCreate(
+                    [
+                        'id' => $value['id'],
+                    ],
+                    [
+                        'form_ppr_pembiayaan_id' => $id,
+                        'form_pinjaman_kartu_kredit_nama_bank' => $value['form_pinjaman_kartu_kredit_nama_bank'],
+                        'form_pinjaman_kartu_kredit_sejak_tahun' => $value['form_pinjaman_kartu_kredit_sejak_tahun'],
+                        'form_pinjaman_kartu_kredit_plafond' => str_replace(",", "", $value['form_pinjaman_kartu_kredit_plafond']),
+                    ]
+                );
+            }
+        } else {
+        }
+
+        //Pinjaman lainnya
+        if ($request->repeater_pinjaman_lainnya[0]['form_pinjaman_lainnya']) {
+
+            // FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+
+            foreach ($request->repeater_pinjaman_lainnya as $key => $value) {
+                FormPprDataPinjamanLainnya::updateOrCreate(
+                    [
+                        'id' => $value['id'],
+                    ],
+                    [
+                        'form_ppr_pembiayaan_id' => $id,
+                        'form_pinjaman_lainnya' => $value['form_pinjaman_lainnya'],
+                        'form_pinjaman_lainnya_rp' => str_replace(",", "", $value['form_pinjaman_lainnya_rp']),
+                    ]
+                );
             }
         } else {
         }
