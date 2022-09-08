@@ -237,8 +237,10 @@ class SkpdRevisiController extends Controller
         ]);
 
         foreach ($request->foto as $key => $value) {
-            if ($value['foto'] != null) {
-                Storage::delete($value['foto_lama']);
+            if ($value['foto']) {
+                if ($value['foto_lama']){
+                    Storage::delete($value['foto_lama']);
+                }
                 $foto = $value['foto']->store('foto-skpd-pembiayaan');
 
                 SkpdFoto::where('skpd_pembiayaan_id', $id)->where('id',$value['id'])->update([
