@@ -278,7 +278,7 @@ class SkpdRevisiController extends Controller
                     'margin' => $value['margin'],
                     'angsuran' => $value['angsuran'],
                     'agunan' => $value['agunan'],
-                    'kol' => $value['kol'],
+                    'kol_tertinggi' => $value['kol_tertinggi'],
                 ]);
             }
         } else {
@@ -299,7 +299,7 @@ class SkpdRevisiController extends Controller
                     'margin' => $value['margin'],
                     'angsuran' => $value['angsuran'],
                     'agunan' => $value['agunan'],
-                    'kol' => $value['kol'],
+                    'kol_tertinggi' => $value['kol_tertinggi'],
                 ]);
             }
         } else {
