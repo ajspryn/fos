@@ -3,6 +3,7 @@
 namespace Modules\Form\Http\Controllers;
 
 use App\Models\Role;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -80,26 +81,26 @@ class FormPprController extends Controller
      */
     public function store(Request $request)
     {
-        $hitung = FormPprPembiayaan::select()->get()->count();
-        $id = $hitung + 1;
+        $hitung = FormPprPembiayaan::select()->orderBy('id', 'DESC')->get()->first();
+        $id = $hitung->id + 1;
 
-        $hitungIdScoringAtrFixed = PprScoringAtrFixedIncome::select()->get()->count();
-        $idScoringAtrFixed = $hitungIdScoringAtrFixed + 1;
+        $hitungIdScoringAtrFixed = PprScoringAtrFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringAtrFixed = $hitungIdScoringAtrFixed->id + 1;
 
-        $hitungIdScoringWtrFixed = PprScoringWtrFixedIncome::select()->get()->count();
-        $idScoringWtrFixed = $hitungIdScoringWtrFixed + 1;
+        $hitungIdScoringWtrFixed = PprScoringWtrFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringWtrFixed = $hitungIdScoringWtrFixed->id + 1;
 
-        $hitungIdScoringCcFixed = PprScoringCollateralFixedIncome::select()->get()->count();
-        $idScoringCcFixed = $hitungIdScoringCcFixed + 1;
+        $hitungIdScoringCcFixed = PprScoringCollateralFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringCcFixed = $hitungIdScoringCcFixed->id + 1;
 
-        $hitungIdScoringAtrNonFixed = PprScoringAtrNonFixedIncome::select()->get()->count();
-        $idScoringAtrNonFixed = $hitungIdScoringAtrNonFixed + 1;
+        $hitungIdScoringAtrNonFixed = PprScoringAtrNonFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringAtrNonFixed = $hitungIdScoringAtrNonFixed->id + 1;
 
-        $hitungIdScoringWtrNonFixed = PprScoringWtrNonFixedIncome::select()->get()->count();
-        $idScoringWtrNonFixed = $hitungIdScoringWtrNonFixed + 1;
+        $hitungIdScoringWtrNonFixed = PprScoringWtrNonFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringWtrNonFixed = $hitungIdScoringWtrNonFixed->id + 1;
 
-        $hitungIdScoringCcNonFixed = PprScoringCollateralNonFixedIncome::select()->get()->count();
-        $idScoringCcNonFixed = $hitungIdScoringCcNonFixed + 1;
+        $hitungIdScoringCcNonFixed = PprScoringCollateralNonFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringCcNonFixed = $hitungIdScoringCcNonFixed->id + 1;
 
         FormPprPembiayaan::create([
             'id' => $id,
@@ -634,26 +635,26 @@ class FormPprController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $hitung = FormPprPembiayaan::select()->get()->count();
-        $number = $hitung + 1;
+        $hitung = FormPprPembiayaan::select()->orderBy('id', 'DESC')->get()->first();
+        $number = $hitung->id + 1;
 
-        $hitungIdScoringAtrFixed = PprScoringAtrFixedIncome::select()->get()->count();
-        $idScoringAtrFixed = $hitungIdScoringAtrFixed + 1;
+        $hitungIdScoringAtrFixed = PprScoringAtrFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringAtrFixed = $hitungIdScoringAtrFixed->id + 1;
 
-        $hitungIdScoringWtrFixed = PprScoringWtrFixedIncome::select()->get()->count();
-        $idScoringWtrFixed = $hitungIdScoringWtrFixed + 1;
+        $hitungIdScoringWtrFixed = PprScoringWtrFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringWtrFixed = $hitungIdScoringWtrFixed->id + 1;
 
-        $hitungIdScoringCcFixed = PprScoringCollateralFixedIncome::select()->get()->count();
-        $idScoringCcFixed = $hitungIdScoringCcFixed + 1;
+        $hitungIdScoringCcFixed = PprScoringCollateralFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringCcFixed = $hitungIdScoringCcFixed->id + 1;
 
-        $hitungIdScoringAtrNonFixed = PprScoringAtrNonFixedIncome::select()->get()->count();
-        $idScoringAtrNonFixed = $hitungIdScoringAtrNonFixed + 1;
+        $hitungIdScoringAtrNonFixed = PprScoringAtrNonFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringAtrNonFixed = $hitungIdScoringAtrNonFixed->id + 1;
 
-        $hitungIdScoringWtrNonFixed = PprScoringWtrNonFixedIncome::select()->get()->count();
-        $idScoringWtrNonFixed = $hitungIdScoringWtrNonFixed + 1;
+        $hitungIdScoringWtrNonFixed = PprScoringWtrNonFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringWtrNonFixed = $hitungIdScoringWtrNonFixed->id + 1;
 
-        $hitungIdScoringCcNonFixed = PprScoringCollateralNonFixedIncome::select()->get()->count();
-        $idScoringCcNonFixed = $hitungIdScoringCcNonFixed + 1;
+        $hitungIdScoringCcNonFixed = PprScoringCollateralNonFixedIncome::select()->orderBy('id', 'DESC')->get()->first();
+        $idScoringCcNonFixed = $hitungIdScoringCcNonFixed->id + 1;
 
         FormPprPembiayaan::create([
             'id' => $number,
@@ -825,13 +826,6 @@ class FormPprController extends Controller
                 'form_ppr_pembiayaan_id' => $number,
                 'ppr_scoring_id' => $number,
             ]);
-
-            // PprScoringNonFixedIncome::create([
-            //     'form_ppr_pembiayaan_id' => $id,
-            //     'ppr_scoring_atr_non_fixed_income_id' => $id,
-            //     'ppr_scoring_wtr_non_fixed_income_id' => $id,
-            //     'ppr_scoring_collateral_non_fixed_income_id' => $id,
-            // ]);
         }
 
         PprClPersyaratan::create([
@@ -993,6 +987,7 @@ class FormPprController extends Controller
             ]);
         }
 
+
         FormPprDataAgunan::create([
             //Agunan I
             'form_ppr_pembiayaan_id' => $number,
@@ -1138,6 +1133,13 @@ class FormPprController extends Controller
         }
 
         return redirect('/')->with('success', 'Pengajuan PPR Anda Berhasil Diajukan!');
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'form_permohonan_nilai_ppr_dimohon' => ['required', 'integer', 'max:255'],
+        ]);
     }
 
     /**

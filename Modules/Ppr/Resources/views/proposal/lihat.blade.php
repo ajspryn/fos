@@ -53,6 +53,13 @@
             margin-left: -15px;
         }
 
+        .col-fixed-width {
+            /* column-width: initial; */
+            max-width: 200px;
+            word-wrap: break-word;
+
+        }
+
         #ifJenisAkadLain {
             width: 50%;
             height: 40px;
@@ -197,6 +204,34 @@
             overflow: hidden;
         }
 
+        #ifShgbAgunan1Expired {
+            width: 25%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan1Expired.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifShgbAgunan1Hak {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan1Hak.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
         #ifJenisAgunan2Lain {
             width: 50%;
             height: 40px;
@@ -204,6 +239,34 @@
         }
 
         #ifJenisAgunan2Lain.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifShgbAgunan2Expired {
+            width: 25%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan2Expired.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifShgbAgunan2Hak {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan2Hak.hide {
+            margin-top: -15px;
             height: 0;
             opacity: 0;
             overflow: hidden;
@@ -221,12 +284,6 @@
             height: 0;
             opacity: 0;
             overflow: hidden;
-        }
-
-        .form-text-beside {
-            color: #5e5873;
-            font-size: 12px;
-            margin-left: -15px;
         }
     </style>
     <!-- BEGIN: Content-->
@@ -815,7 +872,7 @@
                                                 <small class="text-danger">*
                                                 </small> <label class="form-label" for="form_pribadi_pemohon_npwp">No.
                                                     NPWP</label>
-                                                <input type="number" name="form_pribadi_pemohon_npwp"
+                                                <input type="text" name="form_pribadi_pemohon_npwp"
                                                     id="form_pribadi_pemohon_npwp" class="form-control"
                                                     placeholder="Masukkan Nomor NPWP Anda"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_npwp }}" />
@@ -1213,9 +1270,8 @@
                                                                 class="text-danger">*
                                                             </small>No. Telepon</label>
                                                         <input type="text" name="form_pribadi_pemohon_no_telp"
-                                                            id="form_pribadi_pemohon_no_telp"
-                                                            class="form-control prefix-mask"
-                                                            placeholder="Masukkan Nomor Telepon Anda"
+                                                            id="form_pribadi_pemohon_no_telp" class="form-control"
+                                                            placeholder="Masukkan Nomor Telepon Pemohon"
                                                             value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_no_telp }}" />
                                                     </div>
                                                     <div class="mb-1 col-md-6">
@@ -1224,9 +1280,8 @@
                                                                 class="text-danger">*
                                                             </small>Handphone</label>
                                                         <input type="text" name="form_pribadi_pemohon_no_handphone"
-                                                            id="form_pribadi_pemohon_no_handphone"
-                                                            class="form-control prefix-mask1"
-                                                            placeholder="Masukkan Nomor Handphone Anda"
+                                                            id="form_pribadi_pemohon_no_handphone" class="form-control"
+                                                            placeholder="Masukkan Nomor Handphone Pemohon"
                                                             value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_no_handphone }}" />
                                                     </div>
                                                     <div class="mb-1 col-md-12">
@@ -1262,7 +1317,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1272,7 +1327,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1529,7 +1584,7 @@
                                                     <div class="mb-1 col-md-6">
                                                         <label class="form-label" for="form_pribadi_istri_suami_npwp">No.
                                                             NPWP</label>
-                                                        <input type="number" name="form_pribadi_istri_suami_npwp"
+                                                        <input type="text" name="form_pribadi_istri_suami_npwp"
                                                             id="form_pribadi_istri_suami_npwp" class="form-control"
                                                             placeholder="Masukkan Nomor NPWP Anda"
                                                             value="{{ $pembiayaan->pemohon->form_pribadi_istri_suami_npwp }}" />
@@ -1810,7 +1865,7 @@
                                                             <input type="text"
                                                                 name="form_pribadi_keluarga_terdekat_no_telp"
                                                                 id="form_pribadi_keluarga_terdekat_no_telp"
-                                                                class="form-control prefix-mask2"
+                                                                class="form-control"
                                                                 placeholder="Masukkan Nomor Telepon Keluarga Terdekat"
                                                                 value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_no_telp }}"
                                                                 required />
@@ -1936,8 +1991,7 @@
                                                         class="text-danger">*
                                                     </small>Nomor Telp. Kantor</label>
                                                 <input type="text" name="form_pekerjaan_pemohon_no_telp"
-                                                    id="form_pekerjaan_pemohon_no_telp"
-                                                    class="form-control prefix-mask3"
+                                                    id="form_pekerjaan_pemohon_no_telp" class="form-control"
                                                     placeholder="Masukkan Nomor Telepon Kantor"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_no_telp }}"
                                                     required />
@@ -1962,7 +2016,7 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_pekerjaan_pemohon_npwp">Nomor NPWP
                                                     Perusahaan/Instansi</label>
-                                                <input type="number" name="form_pekerjaan_pemohon_npwp"
+                                                <input type="text" name="form_pekerjaan_pemohon_npwp"
                                                     id="form_pekerjaan_pemohon_npwp" class="form-control"
                                                     placeholder="Nomor NPWP Perusahaan/Instansi"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_npwp }}" />
@@ -2252,7 +2306,7 @@
                                                 <input type="text"
                                                     name="form_pekerjaan_pemohon_no_telp_atasan_langsung"
                                                     id="form_pekerjaan_pemohon_no_telp_atasan_langsung"
-                                                    class="form-control prefix-mask4"
+                                                    class="form-control"
                                                     placeholder="Masukkan Nomor Telp. Atasan Langsung"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_no_telp_atasan_langsung }}"
                                                     required />
@@ -2437,8 +2491,7 @@
                                                     Telp.
                                                     Kantor</label>
                                                 <input type="text" name="form_pekerjaan_istri_suami_no_telp"
-                                                    id="form_pekerjaan_istri_suami_no_telp"
-                                                    class="form-control prefix-mask5"
+                                                    id="form_pekerjaan_istri_suami_no_telp" class="form-control"
                                                     placeholder="Masukkan Nomor Telepon Kantor"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_no_telp }}" />
                                             </div>
@@ -2463,8 +2516,8 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_pekerjaan_istri_suami_npwp">Nomor
                                                     NPWP
-                                                    Perusahaan</label>
-                                                <input type="number" name="form_pekerjaan_istri_suami_npwp"
+                                                    Perusahaan/Instansi</label>
+                                                <input type="text" name="form_pekerjaan_istri_suami_npwp"
                                                     id="form_pekerjaan_istri_suami_npwp" class="form-control"
                                                     placeholder="Nomor NPWP Perusahaan"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_npwp }}" />
@@ -2751,7 +2804,7 @@
                                                 <input type="text"
                                                     name="form_pekerjaan_istri_suami_no_telp_atasan_langsung"
                                                     id="form_pekerjaan_istri_suami_no_telp_atasan_langsung"
-                                                    class="form-control prefix-mask6"
+                                                    class="form-control"
                                                     placeholder="Masukkan Nomor Telp. Atasan Langsung"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_no_telp_atasan_langsung }}" />
                                             </div>
@@ -3235,7 +3288,8 @@
                                                                     </small>Status/Bukti Kepemilikan</label>
                                                                 <select class="select2 w-100"
                                                                     name="form_agunan_1_status_bukti_kepemilikan"
-                                                                    id="form_agunan_1_status_bukti_kepemilikan">
+                                                                    id="formAgunan1StatusBuktiKepemilikan"
+                                                                    onChange="changeShgbAgunan1()">
                                                                     <option label="form_agunan_1_status_bukti_kepemilikan"
                                                                         selected disabled>Pilih
                                                                         Bukti Kepemilikan
@@ -3249,7 +3303,8 @@
                                                                 </select>
                                                             </div>
 
-                                                            <div class="mb-1 col-md-3">
+                                                            <div class="mb-1 col-md-3 {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan == 'SHGB' ? 'show' : 'hide' }}"
+                                                                id="ifShgbAgunan1Expired">
                                                                 <label class="form-label"
                                                                     for="form_agunan_1_status_bukti_kepemilikan_tgl_berakhir"><small
                                                                         class="text-danger">*
@@ -3262,7 +3317,8 @@
                                                                     value="{{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan_tgl_berakhir }}" />
                                                             </div>
 
-                                                            <div class="mb-1 col-md-3">
+                                                            <div class="mb-1 col-md-3 {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan == 'SHGB' ? 'show' : 'hide' }}"
+                                                                id="ifShgbAgunan1Hak">
                                                                 <label class="form-label"
                                                                     for="form_agunan_1_status_bukti_kepemilikan_hak"><small
                                                                         class="text-danger">*
@@ -3275,9 +3331,6 @@
                                                                         selected disabled>
                                                                         Pilih Hak Kepemilikan
                                                                     </option>
-                                                                    <option
-                                                                        {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan_hak == 'Hak Milik' ? 'selected' : '' }}
-                                                                        value="Hak Milik">Hak Milik</option>
                                                                     <option
                                                                         {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan_hak == 'Hak Pakai' ? 'selected' : '' }}
                                                                         value="Hak Pakai">Hak Pakai</option>
@@ -3295,7 +3348,7 @@
                                                 <label class="form-label" for="form_agunan_1_no_sertifikat"><small
                                                         class="text-danger">*
                                                     </small>Nomor Sertifikat</label>
-                                                <input type="number" name="form_agunan_1_no_sertifikat"
+                                                <input type="text" name="form_agunan_1_no_sertifikat"
                                                     id="form_agunan_1_no_sertifikat" class="form-control"
                                                     placeholder="Masukkan Nomor Sertifikat"
                                                     value="{{ $pembiayaan->agunan->form_agunan_1_no_sertifikat }}" />
@@ -3315,7 +3368,7 @@
                                                 <label class="form-label" for="form_agunan_1_no_imb"><small
                                                         class="text-danger">*
                                                     </small>Nomor IMB</label>
-                                                <input type="number" name="form_agunan_1_no_imb"
+                                                <input type="text" name="form_agunan_1_no_imb"
                                                     id="form_agunan_1_no_imb" class="form-control"
                                                     placeholder="Masukkan Nomor IMB"
                                                     value="{{ $pembiayaan->agunan->form_agunan_1_no_imb }}" />
@@ -3573,7 +3626,8 @@
                                                                     Kepemilikan</label>
                                                                 <select class="select2 w-100"
                                                                     name="form_agunan_2_status_bukti_kepemilikan"
-                                                                    id="form_agunan_2_status_bukti_kepemilikan">
+                                                                    id="formAgunan2StatusBuktiKepemilikan"
+                                                                    onChange="changeShgbAgunan2()">
                                                                     <option
                                                                         label="form_agunan_2_status_bukti_kepemilikan">
                                                                         Pilih
@@ -3588,7 +3642,8 @@
                                                                 </select>
                                                             </div>
 
-                                                            <div class="mb-1 col-md-3">
+                                                            <div class="mb-1 col-md-3 {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan == 'SHGB' ? 'show' : 'hide' }}"
+                                                                id="ifShgbAgunan2Expired">
                                                                 <label class="form-label"
                                                                     for="form_agunan_2_status_bukti_kepemilikan_tgl_berakhir">Tanggal
                                                                     Berakhir</label>
@@ -3600,7 +3655,8 @@
                                                                     value="{{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan_tgl_berakhir }}" />
                                                             </div>
 
-                                                            <div class="mb-1 col-md-3">
+                                                            <div class="mb-1 col-md-3 {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan == 'SHGB' ? 'show' : 'hide' }}"
+                                                                id="ifShgbAgunan2Hak">
                                                                 <label class="form-label"
                                                                     for="form_agunan_2_status_bukti_kepemilikan_hak">Hak</label>
                                                                 <select class="select2 w-100"
@@ -3610,9 +3666,6 @@
                                                                         label="form_agunan_2_status_bukti_kepemilikan_hak">
                                                                         Pilih Bukti Kepemilikan
                                                                     </option>
-                                                                    <option
-                                                                        {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan_hak == 'Hak Milik' ? 'selected' : '' }}
-                                                                        value="Hak Milik">Hak Milik</option>
                                                                     <option
                                                                         {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan_hak == 'Hak Pakai' ? 'selected' : '' }}
                                                                         value="Hak Pakai">Hak Pakai</option>
@@ -3629,7 +3682,7 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_agunan_2_no_sertifikat">Nomor
                                                     Sertifikat</label>
-                                                <input type="number" name="form_agunan_2_no_sertifikat"
+                                                <input type="text" name="form_agunan_2_no_sertifikat"
                                                     id="form_agunan_2_no_sertifikat" class="form-control"
                                                     placeholder="Masukkan Nomor Sertifikat"
                                                     value="{{ $pembiayaan->agunan->form_agunan_2_no_sertifikat }}" />
@@ -3646,7 +3699,7 @@
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_agunan_2_no_imb">Nomor IMB</label>
-                                                <input type="number" name="form_agunan_2_no_imb"
+                                                <input type="text" name="form_agunan_2_no_imb"
                                                     id="form_agunan_2_no_imb" class="form-control"
                                                     placeholder="Masukkan Nomor IMB"
                                                     value="{{ $pembiayaan->agunan->form_agunan_2_no_imb }}" />
@@ -3922,7 +3975,7 @@
                                                                                 <label class="form-label"
                                                                                     for="form_kekayaan_tanah_bangunan_luas_tanah">Luas
                                                                                     Tanah</label>
-                                                                                    <input type="hidden" name="id"
+                                                                                <input type="hidden" name="id"
                                                                                     value="{{ $kekayaan_tanah_bangunan->id }}" />
                                                                                 <input type="number"
                                                                                     class="form-control"
@@ -4064,76 +4117,79 @@
                                                         <div data-repeater-list="repeater_kekayaan_kendaraan">
                                                             <h6>Kendaraan</h6>
                                                             @foreach ($kekayaan_kendaraans as $kekayaan_kendaraan)
-                                                            <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_kendaraan_jenis_merk">Jenis/Merk</label>
+                                                                <div data-repeater-item>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_kendaraan_jenis_merk">Jenis/Merk</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $kekayaan_kendaraan->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_kekayaan_kendaraan_jenis_merk"
-                                                                                id="form_kekayaan_kendaraan_jenis_merk"
-                                                                                aria-describedby="form_kekayaan_kendaraan_jenis_merk"
-                                                                                placeholder="Jenis/Merk"
-                                                                                value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_jenis_merk }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_kekayaan_kendaraan_jenis_merk"
+                                                                                    id="form_kekayaan_kendaraan_jenis_merk"
+                                                                                    aria-describedby="form_kekayaan_kendaraan_jenis_merk"
+                                                                                    placeholder="Jenis/Merk"
+                                                                                    value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_jenis_merk }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="mb-1 col-md-2">
-                                                                        <label class="form-label"
-                                                                            for="form_kekayaan_kendaraan_tahun_dikeluarkan">Tahun
-                                                                            Dikeluarkan</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="form_kekayaan_kendaraan_tahun_dikeluarkan"
-                                                                            id="form_kekayaan_kendaraan_tahun_dikeluarkan"
-                                                                            aria-describedby="form_kekayaan_kendaraan_tahun_dikeluarkan"
-                                                                            placeholder="Tahun Dikeluarkan"
-                                                                            value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_tahun_dikeluarkan }}" />
-                                                                    </div>
-
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
+                                                                        <div class="mb-1 col-md-2">
                                                                             <label class="form-label"
-                                                                                for="form_kekayaan_kendaraan_atas_nama">Atas
-                                                                                Nama</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_kekayaan_kendaraan_atas_nama"
-                                                                                id="form_kekayaan_kendaraan_atas_nama"
-                                                                                aria-describedby="form_kekayaan_kendaraan_atas_nama"
-                                                                                placeholder="Atas Nama"
-                                                                                value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_atas_nama }}" />
+                                                                                for="form_kekayaan_kendaraan_tahun_dikeluarkan">Tahun
+                                                                                Dikeluarkan</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="form_kekayaan_kendaraan_tahun_dikeluarkan"
+                                                                                id="form_kekayaan_kendaraan_tahun_dikeluarkan"
+                                                                                aria-describedby="form_kekayaan_kendaraan_tahun_dikeluarkan"
+                                                                                placeholder="Tahun Dikeluarkan"
+                                                                                value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_tahun_dikeluarkan }}" />
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_kendaraan_taksasi_harga_jual">Taksasi
-                                                                                Harga
-                                                                                Jual</label>
-                                                                            <input type="text"
-                                                                                class="form-control numeral-mask22"
-                                                                                name="form_kekayaan_kendaraan_taksasi_harga_jual"
-                                                                                id="form_kekayaan_kendaraan_taksasi_harga_jual"
-                                                                                aria-describedby="form_kekayaan_kendaraan_taksasi_harga_jual"
-                                                                                placeholder="Taksasi Harga Jual"
-                                                                                value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_taksasi_harga_jual }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_kendaraan_atas_nama">Atas
+                                                                                    Nama</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_kekayaan_kendaraan_atas_nama"
+                                                                                    id="form_kekayaan_kendaraan_atas_nama"
+                                                                                    aria-describedby="form_kekayaan_kendaraan_atas_nama"
+                                                                                    placeholder="Atas Nama"
+                                                                                    value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_atas_nama }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_kendaraan_taksasi_harga_jual">Taksasi
+                                                                                    Harga
+                                                                                    Jual</label>
+                                                                                <input type="text"
+                                                                                    class="form-control numeral-mask22"
+                                                                                    name="form_kekayaan_kendaraan_taksasi_harga_jual"
+                                                                                    id="form_kekayaan_kendaraan_taksasi_harga_jual"
+                                                                                    aria-describedby="form_kekayaan_kendaraan_taksasi_harga_jual"
+                                                                                    placeholder="Taksasi Harga Jual"
+                                                                                    value="{{ $kekayaan_kendaraan->form_kekayaan_kendaraan_taksasi_harga_jual }}" />
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
@@ -4158,57 +4214,59 @@
                                                         <div data-repeater-list="repeater_kekayaan_saham">
                                                             <h6>Saham</h6>
                                                             @foreach ($kekayaan_sahams as $kekayaan_saham)
-                                                            <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_saham_penerbit">Penerbit</label>
+                                                                <div data-repeater-item>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_saham_penerbit">Penerbit</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $kekayaan_saham->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_kekayaan_saham_penerbit"
-                                                                                id="form_kekayaan_saham_penerbit"
-                                                                                aria-describedby="form_kekayaan_saham_penerbit"
-                                                                                placeholder="Penerbit"
-                                                                                value="{{ $kekayaan_saham->form_kekayaan_saham_penerbit }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_kekayaan_saham_penerbit"
+                                                                                    id="form_kekayaan_saham_penerbit"
+                                                                                    aria-describedby="form_kekayaan_saham_penerbit"
+                                                                                    placeholder="Penerbit"
+                                                                                    value="{{ $kekayaan_saham->form_kekayaan_saham_penerbit }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="mb-1 col-md-2">
-                                                                        <label class="form-label"
-                                                                            for="form_kekayaan_saham_per_tanggal">Rupiah
-                                                                            Per
-                                                                            Tanggal</label>
-                                                                        <input type="date"
-                                                                            id="form_kekayaan_saham_per_tanggal"
-                                                                            class="form-control"
-                                                                            name="form_kekayaan_saham_per_tanggal"
-                                                                            placeholder="DD-MM-YYYY"
-                                                                            value="{{ $kekayaan_saham->form_kekayaan_saham_per_tanggal }}" />
-                                                                    </div>
+                                                                        <div class="mb-1 col-md-2">
+                                                                            <label class="form-label"
+                                                                                for="form_kekayaan_saham_per_tanggal">Rupiah
+                                                                                Per
+                                                                                Tanggal</label>
+                                                                            <input type="date"
+                                                                                id="form_kekayaan_saham_per_tanggal"
+                                                                                class="form-control"
+                                                                                name="form_kekayaan_saham_per_tanggal"
+                                                                                placeholder="DD-MM-YYYY"
+                                                                                value="{{ $kekayaan_saham->form_kekayaan_saham_per_tanggal }}" />
+                                                                        </div>
 
-                                                                    <div class="mb-1 col-md-3">
-                                                                        <input type="text"
-                                                                            class="form-control numeral-mask23"
-                                                                            name="form_kekayaan_saham_rp"
-                                                                            id="form_kekayaan_saham_rp"
-                                                                            aria-describedby="form_kekayaan_saham_rp"
-                                                                            placeholder="Rupiah Per Tanggal"
-                                                                            value="{{ $kekayaan_saham->form_kekayaan_saham_rp }}" />
-                                                                    </div>
+                                                                        <div class="mb-1 col-md-3">
+                                                                            <input type="text"
+                                                                                class="form-control numeral-mask23"
+                                                                                name="form_kekayaan_saham_rp"
+                                                                                id="form_kekayaan_saham_rp"
+                                                                                aria-describedby="form_kekayaan_saham_rp"
+                                                                                placeholder="Rupiah Per Tanggal"
+                                                                                value="{{ $kekayaan_saham->form_kekayaan_saham_rp }}" />
+                                                                        </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
@@ -4232,46 +4290,48 @@
                                                     <div class="repeater-default">
                                                         <div data-repeater-list="repeater_kekayaan_lainnya">
                                                             @foreach ($kekayaan_lainnyas as $kekayaan_lainnya)
-                                                            <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_kekayaan_lainnya">Lainnya</label>
+                                                                <div data-repeater-item>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_kekayaan_lainnya">Lainnya</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $kekayaan_lainnya->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_kekayaan_lainnya"
-                                                                                id="form_kekayaan_lainnya"
-                                                                                aria-describedby="form_kekayaan_lainnya"
-                                                                                placeholder="Lainnya"
-                                                                                value="{{ $kekayaan_lainnya->form_kekayaan_lainnya }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_kekayaan_lainnya"
+                                                                                    id="form_kekayaan_lainnya"
+                                                                                    aria-describedby="form_kekayaan_lainnya"
+                                                                                    placeholder="Lainnya"
+                                                                                    value="{{ $kekayaan_lainnya->form_kekayaan_lainnya }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="mb-1 col-md-3">
-                                                                        <label class="form-label"
-                                                                            for="form_kekayaan_lainnya_rp">Rupiah</label>
-                                                                        <input type="text"
-                                                                            class="form-control numeral-mask24"
-                                                                            name="form_kekayaan_lainnya_rp"
-                                                                            id="form_kekayaan_lainnya_rp"
-                                                                            aria-describedby="form_kekayaan_lainnya_rp"
-                                                                            placeholder="Rp"
-                                                                            value="{{ $kekayaan_lainnya->form_kekayaan_lainnya_rp }}" />
-                                                                    </div>
+                                                                        <div class="mb-1 col-md-3">
+                                                                            <label class="form-label"
+                                                                                for="form_kekayaan_lainnya_rp">Rupiah</label>
+                                                                            <input type="text"
+                                                                                class="form-control numeral-mask24"
+                                                                                name="form_kekayaan_lainnya_rp"
+                                                                                id="form_kekayaan_lainnya_rp"
+                                                                                aria-describedby="form_kekayaan_lainnya_rp"
+                                                                                placeholder="Rp"
+                                                                                value="{{ $kekayaan_lainnya->form_kekayaan_lainnya_rp }}" />
+                                                                        </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
@@ -4305,120 +4365,125 @@
                                                                 Pinjaman
                                                             </h6>
                                                             @foreach ($pinjamans as $pinjaman)
-                                                            <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-6">
+                                                                <div data-repeater-item>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-6">
 
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_nama_bank">Nama
-                                                                                Bank</label>
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_nama_bank">Nama
+                                                                                    Bank</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $pinjaman->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_pinjaman_nama_bank"
-                                                                                id="form_pinjaman_nama_bank"
-                                                                                aria-describedby="form_pinjaman_nama_bank"
-                                                                                placeholder="Nama Bank"
-                                                                                value="{{ $pinjaman->form_pinjaman_nama_bank }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_nama_bank"
+                                                                                    id="form_pinjaman_nama_bank"
+                                                                                    aria-describedby="form_pinjaman_nama_bank"
+                                                                                    placeholder="Nama Bank"
+                                                                                    value="{{ $pinjaman->form_pinjaman_nama_bank }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_jenis">Jenis
-                                                                                Pinjaman</label>
-                                                                            <select class="form-control w-100"
-                                                                                name="form_pinjaman_jenis"
-                                                                                id="form_pinjaman_jenis">
-                                                                                <option label="Pilih Jenis Pinjaman">Pilih
-                                                                                    Jenis
-                                                                                    Pinjaman
-                                                                                </option>
-                                                                                <option
-                                                                                    {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Modal Kerja' ? 'selected' : '' }}
-                                                                                    value="Modal Kerja">Modal Kerja
-                                                                                </option>
-                                                                                <option
-                                                                                    {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Investasi' ? 'selected' : '' }}
-                                                                                    value="Investasi">Investasi
-                                                                                </option>
-                                                                                <option
-                                                                                    {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Konsumtif' ? 'selected' : '' }}
-                                                                                    value="Konsumtif">Konsumtif
-                                                                                </option>
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_jenis">Jenis
+                                                                                    Pinjaman</label>
+                                                                                <select class="form-control w-100"
+                                                                                    name="form_pinjaman_jenis"
+                                                                                    id="form_pinjaman_jenis">
+                                                                                    <option label="Pilih Jenis Pinjaman">
+                                                                                        Pilih
+                                                                                        Jenis
+                                                                                        Pinjaman
+                                                                                    </option>
+                                                                                    <option
+                                                                                        {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Modal Kerja' ? 'selected' : '' }}
+                                                                                        value="Modal Kerja">Modal Kerja
+                                                                                    </option>
+                                                                                    <option
+                                                                                        {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Investasi' ? 'selected' : '' }}
+                                                                                        value="Investasi">Investasi
+                                                                                    </option>
+                                                                                    <option
+                                                                                        {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Konsumtif' ? 'selected' : '' }}
+                                                                                        value="Konsumtif">Konsumtif
+                                                                                    </option>
 
-                                                                            </select>
+                                                                                </select>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_sejak_tahun">Sejak
-                                                                                Tahun</label>
-                                                                            <input type="number" class="form-control"
-                                                                                name="form_pinjaman_sejak_tahun"
-                                                                                id="form_pinjaman_sejak_tahun"
-                                                                                aria-describedby="form_pinjaman_sejak_tahun"
-                                                                                placeholder="Tahun"
-                                                                                value="{{ $pinjaman->form_pinjaman_sejak_tahun }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_sejak_tahun">Sejak
+                                                                                    Tahun</label>
+                                                                                <input type="number"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_sejak_tahun"
+                                                                                    id="form_pinjaman_sejak_tahun"
+                                                                                    aria-describedby="form_pinjaman_sejak_tahun"
+                                                                                    placeholder="Tahun"
+                                                                                    value="{{ $pinjaman->form_pinjaman_sejak_tahun }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_jangka_waktu_bulan">Jangka
-                                                                                Waktu (Bulan)</label>
-                                                                            <input type="number" class="form-control"
-                                                                                name="form_pinjaman_jangka_waktu_bulan"
-                                                                                id="form_pinjaman_jangka_waktu_bulan"
-                                                                                aria-describedby="form_pinjaman_jangka_waktu_bulan"
-                                                                                placeholder="Jangka Waktu (Bulan)"
-                                                                                value="{{ $pinjaman->form_pinjaman_jangka_waktu_bulan }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_jangka_waktu_bulan">Jangka
+                                                                                    Waktu (Bulan)</label>
+                                                                                <input type="number"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_jangka_waktu_bulan"
+                                                                                    id="form_pinjaman_jangka_waktu_bulan"
+                                                                                    aria-describedby="form_pinjaman_jangka_waktu_bulan"
+                                                                                    placeholder="Jangka Waktu (Bulan)"
+                                                                                    value="{{ $pinjaman->form_pinjaman_jangka_waktu_bulan }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_plafond">Plafond</label>
-                                                                            <input type="text"
-                                                                                class="form-control numeral-mask25"
-                                                                                name="form_pinjaman_plafond"
-                                                                                id="form_pinjaman_plafond"
-                                                                                aria-describedby="form_pinjaman_plafond"
-                                                                                placeholder="Plafond (Rp)"
-                                                                                value="{{ $pinjaman->form_pinjaman_plafond }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_plafond">Plafond</label>
+                                                                                <input type="text"
+                                                                                    class="form-control numeral-mask25"
+                                                                                    name="form_pinjaman_plafond"
+                                                                                    id="form_pinjaman_plafond"
+                                                                                    aria-describedby="form_pinjaman_plafond"
+                                                                                    placeholder="Plafond (Rp)"
+                                                                                    value="{{ $pinjaman->form_pinjaman_plafond }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-8">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_angsuran_per_bulan">Angsuran/Bulan</label>
-                                                                            <input type="text"
-                                                                                class="form-control numeral-mask26"
-                                                                                name="form_pinjaman_angsuran_per_bulan"
-                                                                                id="form_pinjaman_angsuran_per_bulan"
-                                                                                aria-describedby="form_pinjaman_angsuran_per_bulan"
-                                                                                placeholder="Angsuran/Bulan (Rp)"
-                                                                                value="{{ $pinjaman->form_pinjaman_angsuran_per_bulan }}" />
+                                                                        <div class="col-md-2 col-8">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_angsuran_per_bulan">Angsuran/Bulan</label>
+                                                                                <input type="text"
+                                                                                    class="form-control numeral-mask26"
+                                                                                    name="form_pinjaman_angsuran_per_bulan"
+                                                                                    id="form_pinjaman_angsuran_per_bulan"
+                                                                                    aria-describedby="form_pinjaman_angsuran_per_bulan"
+                                                                                    placeholder="Angsuran/Bulan (Rp)"
+                                                                                    value="{{ $pinjaman->form_pinjaman_angsuran_per_bulan }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
@@ -4444,65 +4509,68 @@
                                                         <div data-repeater-list="repeater_pinjaman_kartu_kredit">
                                                             <h6>Kartu
                                                                 Kredit</h6>
-                                                                @foreach ($pinjaman_kartu_kredits as $pinjaman_kartu_kredit)
+                                                            @foreach ($pinjaman_kartu_kredits as $pinjaman_kartu_kredit)
                                                                 <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_kartu_kredit_nama_bank">Nama
-                                                                                Bank</label>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_kartu_kredit_nama_bank">Nama
+                                                                                    Bank</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $pinjaman_kartu_kredit->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_pinjaman_kartu_kredit_nama_bank"
-                                                                                id="form_pinjaman_kartu_kredit_nama_bank"
-                                                                                aria-describedby="form_pinjaman_kartu_kredit_nama_bank"
-                                                                                placeholder="Nama Bank"
-                                                                                value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_nama_bank }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_kartu_kredit_nama_bank"
+                                                                                    id="form_pinjaman_kartu_kredit_nama_bank"
+                                                                                    aria-describedby="form_pinjaman_kartu_kredit_nama_bank"
+                                                                                    placeholder="Nama Bank"
+                                                                                    value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_nama_bank }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_kartu_kredit_sejak_tahun">Sejak
-                                                                                Tahun</label>
-                                                                            <input type="number" class="form-control"
-                                                                                name="form_pinjaman_kartu_kredit_sejak_tahun"
-                                                                                id="form_pinjaman_kartu_kredit_sejak_tahun"
-                                                                                aria-describedby="form_pinjaman_kartu_kredit_sejak_tahun"
-                                                                                placeholder="Tahun"
-                                                                                value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_sejak_tahun }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_kartu_kredit_sejak_tahun">Sejak
+                                                                                    Tahun</label>
+                                                                                <input type="number"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_kartu_kredit_sejak_tahun"
+                                                                                    id="form_pinjaman_kartu_kredit_sejak_tahun"
+                                                                                    aria-describedby="form_pinjaman_kartu_kredit_sejak_tahun"
+                                                                                    placeholder="Tahun"
+                                                                                    value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_sejak_tahun }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_kartu_kredit_plafond">Plafond
-                                                                            </label>
-                                                                            <input type="text"
-                                                                                class="form-control numeral-mask27"
-                                                                                name="form_pinjaman_kartu_kredit_plafond"
-                                                                                id="form_pinjaman_kartu_kredit_plafond"
-                                                                                aria-describedby="form_pinjaman_kartu_kredit_plafond"
-                                                                                placeholder="Plafond (Rp)"
-                                                                                value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_plafond }}" />
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_kartu_kredit_plafond">Plafond
+                                                                                </label>
+                                                                                <input type="text"
+                                                                                    class="form-control numeral-mask27"
+                                                                                    name="form_pinjaman_kartu_kredit_plafond"
+                                                                                    id="form_pinjaman_kartu_kredit_plafond"
+                                                                                    aria-describedby="form_pinjaman_kartu_kredit_plafond"
+                                                                                    placeholder="Plafond (Rp)"
+                                                                                    value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_plafond }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
@@ -4526,46 +4594,48 @@
                                                     <div class="repeater-default">
                                                         <div data-repeater-list="repeater_pinjaman_lainnya">
                                                             @foreach ($pinjaman_lainnyas as $pinjaman_lainnya)
-                                                            <div data-repeater-item>
-                                                                <div class="row d-flex align-items-end">
-                                                                    <div class="col-md-2 col-12">
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="form_pinjaman_lainnya">Lainnya</label>
+                                                                <div data-repeater-item>
+                                                                    <div class="row d-flex align-items-end">
+                                                                        <div class="col-md-2 col-12">
+                                                                            <div class="mb-1">
+                                                                                <label class="form-label"
+                                                                                    for="form_pinjaman_lainnya">Lainnya</label>
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $pinjaman_lainnya->id }}" />
-                                                                            <input type="text" class="form-control"
-                                                                                name="form_pinjaman_lainnya"
-                                                                                id="form_pinjaman_lainnya"
-                                                                                aria-describedby="form_pinjaman_lainnya"
-                                                                                placeholder="Lainnya"
-                                                                                value="{{ $pinjaman_lainnya->form_pinjaman_lainnya }}" />
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="form_pinjaman_lainnya"
+                                                                                    id="form_pinjaman_lainnya"
+                                                                                    aria-describedby="form_pinjaman_lainnya"
+                                                                                    placeholder="Lainnya"
+                                                                                    value="{{ $pinjaman_lainnya->form_pinjaman_lainnya }}" />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="mb-1 col-md-3">
-                                                                        <label class="form-label"
-                                                                            for="form_pinjaman_lainnya_rp">Rupiah</label>
-                                                                        <input type="text"
-                                                                            class="form-control numeral-mask28"
-                                                                            name="form_pinjaman_lainnya_rp"
-                                                                            id="form_pinjaman_lainnya_rp"
-                                                                            aria-describedby="form_pinjaman_lainnya_rp"
-                                                                            placeholder="Rupiah"
-                                                                            value="{{ $pinjaman_lainnya->form_pinjaman_lainnya_rp }}" />
-                                                                    </div>
+                                                                        <div class="mb-1 col-md-3">
+                                                                            <label class="form-label"
+                                                                                for="form_pinjaman_lainnya_rp">Rupiah</label>
+                                                                            <input type="text"
+                                                                                class="form-control numeral-mask28"
+                                                                                name="form_pinjaman_lainnya_rp"
+                                                                                id="form_pinjaman_lainnya_rp"
+                                                                                aria-describedby="form_pinjaman_lainnya_rp"
+                                                                                placeholder="Rupiah"
+                                                                                value="{{ $pinjaman_lainnya->form_pinjaman_lainnya_rp }}" />
+                                                                        </div>
 
-                                                                    <div class="col-md-1 col-12">
-                                                                        <div class="mb-1">
-                                                                            <button
-                                                                                class="btn btn-outline-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
-                                                                                <i data-feather="x" class="me-25"></i>
-                                                                            </button>
+                                                                        <div class="col-md-1 col-12">
+                                                                            <div class="mb-1">
+                                                                                <button
+                                                                                    class="btn btn-outline-danger text-nowrap px-1"
+                                                                                    data-repeater-delete type="button">
+                                                                                    <i data-feather="x"
+                                                                                        class="me-25"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             @endforeach
                                                         </div>
                                                         <div class="row">
@@ -7912,7 +7982,7 @@
                                                             <td class="midJustify">
                                                                 Tempat Bekerja
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_tempat_bekerja"
                                                                     id="character_tempat_bekerja">
@@ -7935,7 +8005,7 @@
                                                             <td class="midJustify">
                                                                 Konsistensi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_konsistensi"
                                                                     id="character_konsistensi">
@@ -7957,14 +8027,15 @@
                                                             <td class="midCenter">
                                                                 c.
                                                             </td>
-                                                            <td class="midJustify">
+                                                            <td class="midJustify col-fixed-width">
                                                                 Kelengkapan & Validitas Data
                                                             </td>
-                                                            <td class="midCenter">
-                                                                <select class="form-control w-100"
+                                                            <td class="midCenter col-fixed-width">
+                                                                <select class="select2 w-100"
                                                                     name="character_kelengkapan_validitas_data"
                                                                     id="character_kelengkapan_validitas_data">
-                                                                    <option label="Pilih" selected disabled>
+                                                                    <option label="character_kelengkapan_validitas_data"
+                                                                        selected disabled> Pilih
                                                                     </option>
                                                                     @foreach ($character_kelengkapan_validitas_datas as $character_kelengkapan_validitas_data)
                                                                         <option
@@ -7982,7 +8053,7 @@
                                                             <td class="midJustify">
                                                                 Pembayaran Angsuran & Kolektif
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_pembayaran_angsuran_kolektif"
                                                                     id="character_pembayaran_angsuran_kolektif">
@@ -8005,7 +8076,7 @@
                                                             <td class="midJustify">
                                                                 Pengalaman Pembiayaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_pengalaman_pembiayaan"
                                                                     id="character_pengalaman_pembiayaan">
@@ -8028,7 +8099,7 @@
                                                             <td class="midJustify">
                                                                 Motivasi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="character_motivasi"
                                                                     id="character_motivasi">
                                                                     <option label="character_motivasi" selected disabled>
@@ -8050,7 +8121,7 @@
                                                             <td class="midJustify">
                                                                 Referensi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="character_referensi"
                                                                     id="character_referensi">
                                                                     <option label="character_referensi" selected disabled>
@@ -8073,7 +8144,7 @@
                                                             <td class="midJustify">
                                                                 Tingkat Kepercayaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_nf_tingkat_kepercayaan"
                                                                     id="character_nf_tingkat_kepercayaan">
@@ -8095,7 +8166,7 @@
                                                             <td class="midJustify">
                                                                 Pengelolaan Rekening Bank
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_nf_pengelolaan_rekening"
                                                                     id="character_nf_pengelolaan_rekening">
@@ -8119,7 +8190,7 @@
                                                             <td class="midJustify">
                                                                 Reputasi Bisnis
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="form-control w-100"
                                                                     name="character_nf_reputasi_bisnis"
                                                                     id="character_nf_reputasi_bisnis">
@@ -8141,7 +8212,7 @@
                                                             <td class="midJustify">
                                                                 Perilaku Pribadi Debitur
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_nf_perilaku_pribadi"
                                                                     id="character_nf_perilaku_pribadi">
@@ -8327,7 +8398,7 @@
                                                         <td class="midJustify">
                                                             Pekerjaan
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100" name="capital_pekerjaan"
                                                                 id="capital_pekerjaan">
                                                                 <option label="capital_pekerjaan" selected disabled>Pilih
@@ -8348,7 +8419,7 @@
                                                         <td class="midJustify">
                                                             Pengalaman Riwayat Pembiayaan
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_pengalaman_riwayat_pembiayaan"
                                                                 id="capital_pengalaman_riwayat_pembiayaan">
@@ -8371,7 +8442,7 @@
                                                         <td class="midJustify">
                                                             Keamanan Bisnis/Pekerjaan
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_keamanan_bisnis_pekerjaan"
                                                                 id="capital_keamanan_bisnis_pekerjaan">
@@ -8394,7 +8465,7 @@
                                                         <td class="midJustify">
                                                             Potensi Pertumbuhan Hasil
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_potensi_pertumbuhan_hasil"
                                                                 id="capital_potensi_pertumbuhan_hasil">
@@ -8417,7 +8488,7 @@
                                                         <td class="midJustify">
                                                             Sumber Pendapatan
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_sumber_pendapatan"
                                                                 id="capital_sumber_pendapatan">
@@ -8440,7 +8511,7 @@
                                                         <td class="midJustify">
                                                             Pendapatan/Gaji Bersih
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_pendapatan_gaji_bersih"
                                                                 id="capital_pendapatan_gaji_bersih">
@@ -8463,7 +8534,7 @@
                                                         <td class="midJustify">
                                                             Jumlah Tanggungan Keluarga
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_jml_tanggungan_keluarga"
                                                                 id="capital_jml_tanggungan_keluarga">
@@ -8660,7 +8731,7 @@
                                                             <td class="midJustify">
                                                                 Pekerjaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="capacity_pekerjaan"
                                                                     id="capacity_pekerjaan">
                                                                     <option label="capacity_pekerjaan" selected disabled>
@@ -8682,7 +8753,7 @@
                                                             <td class="midJustify">
                                                                 Pengalaman Riwayat Pembiayaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_pengalaman_riwayat_pembiayaan"
                                                                     id="capacity_pengalaman_riwayat_pembiayaan">
@@ -8704,7 +8775,7 @@
                                                             <td class="midJustify">
                                                                 Keamanan Bisnis/Pekerjaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_keamanan_bisnis_pekerjaan"
                                                                     id="capacity_keamanan_bisnis_pekerjaan">
@@ -8727,7 +8798,7 @@
                                                             <td class="midJustify">
                                                                 Potensi Pertumbuhan Hasil
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_potensi_pertumbuhan_hasil"
                                                                     id="capacity_potensi_pertumbuhan_hasil">
@@ -8750,7 +8821,7 @@
                                                             <td class="midJustify">
                                                                 Pengalaman Kerja
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_pengalaman_kerja"
                                                                     id="capacity_pengalaman_kerja">
@@ -8773,7 +8844,7 @@
                                                             <td class="midJustify">
                                                                 Pendidikan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="capacity_pendidikan"
                                                                     id="capacity_pendidikan">
                                                                     <option label="capacity_pendidikan" selected disabled>
@@ -8795,7 +8866,7 @@
                                                             <td class="midJustify">
                                                                 Usia
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="capacity_usia"
                                                                     id="capacity_usia">
                                                                     <option label="capacity_usia" selected disabled>Pilih
@@ -8816,7 +8887,7 @@
                                                             <td class="midJustify">
                                                                 Sumber Pendapatan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_sumber_pendapatan"
                                                                     id="capacity_sumber_pendapatan">
@@ -8839,7 +8910,7 @@
                                                             <td class="midJustify">
                                                                 Pendapatan/Gaji Bersih
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_pendapatan_gaji_bersih"
                                                                     id="capacity_pendapatan_gaji_bersih">
@@ -8862,7 +8933,7 @@
                                                             <td class="midJustify">
                                                                 Jumlah Tanggungan Keluarga
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_jml_tanggungan_keluarga"
                                                                     id="capacity_jml_tanggungan_keluarga">
@@ -8886,7 +8957,7 @@
                                                             <td class="midJustify">
                                                                 Situasi Pasar dan Persaingan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_nf_situasi_persaingan"
                                                                     id="capacity_nf_situasi_persaingan">
@@ -8908,7 +8979,7 @@
                                                             <td class="midJustify">
                                                                 Kaderisasi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_nf_kaderisasi"
                                                                     id="capacity_nf_kaderisasi">
@@ -8930,7 +9001,7 @@
                                                             <td class="midJustify">
                                                                 Kualifikasi Komersial
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_nf_kualifikasi_komersial"
                                                                     id="capacity_nf_kualifikasi_komersial">
@@ -8952,7 +9023,7 @@
                                                             <td class="midJustify">
                                                                 Kualifikasi Teknis
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_nf_kualifikasi_teknis"
                                                                     id="capacity_nf_kualifikasi_teknis">
@@ -9131,7 +9202,7 @@
                                                             <td class="midJustify">
                                                                 Pekerjaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="condition_pekerjaan"
                                                                     id="condition_pekerjaan">
                                                                     <option label="condition_pekerjaan" selected disabled>
@@ -9153,7 +9224,7 @@
                                                             <td class="midJustify">
                                                                 Pengalaman Riwayat Pembiayaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_pengalaman_riwayat_pembiayaan"
                                                                     id="condition_pengalaman_riwayat_pembiayaan">
@@ -9177,7 +9248,7 @@
                                                             <td class="midJustify">
                                                                 Keamanan Bisnis/Pekerjaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_keamanan_bisnis_pekerjaan"
                                                                     id="condition_keamanan_bisnis_pekerjaan">
@@ -9200,7 +9271,7 @@
                                                             <td class="midJustify">
                                                                 Potensi Pertumbuhan Hasil
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_potensi_pertumbuhan_hasil"
                                                                     id="condition_potensi_pertumbuhan_hasil">
@@ -9223,7 +9294,7 @@
                                                             <td class="midJustify">
                                                                 Pengalaman Kerja
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_pengalaman_kerja"
                                                                     id="condition_pengalaman_kerja">
@@ -9246,7 +9317,7 @@
                                                             <td class="midJustify">
                                                                 Pendidikan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_pendidikan"
                                                                     id="condition_pendidikan">
@@ -9270,7 +9341,7 @@
                                                             <td class="midJustify">
                                                                 Usia
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="condition_usia"
                                                                     id="condition_usia">
                                                                     <option label="condition_usia" selected disabled>Pilih
@@ -9291,7 +9362,7 @@
                                                             <td class="midJustify">
                                                                 Sumber Pendapatan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_sumber_pendapatan"
                                                                     id="condition_sumber_pendapatan">
@@ -9314,7 +9385,7 @@
                                                             <td class="midJustify">
                                                                 Pendapatan/Gaji Bersih
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_pendapatan_gaji_bersih"
                                                                     id="condition_pendapatan_gaji_bersih">
@@ -9337,7 +9408,7 @@
                                                             <td class="midJustify">
                                                                 Jumlah Tanggungan Keluarga
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_jml_tanggungan_keluarga"
                                                                     id="condition_jml_tanggungan_keluarga">
@@ -9361,7 +9432,7 @@
                                                             <td class="midJustify">
                                                                 Kualitas Produk dan Jasa
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_nf_kualitas_produk_jasa"
                                                                     id="condition_nf_kualitas_produk_jasa">
@@ -9383,7 +9454,7 @@
                                                             <td class="midJustify">
                                                                 Sistem Pembayaran
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_nf_sistem_pembayaran"
                                                                     id="condition_nf_sistem_pembayaran">
@@ -9405,7 +9476,7 @@
                                                             <td class="midJustify">
                                                                 Lokasi Usaha
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_nf_lokasi_usaha"
                                                                     id="condition_nf_lokasi_usaha">
@@ -9615,7 +9686,7 @@
                                                             <td class="midJustify">
                                                                 Marketabilitas
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_marketabilitas"
                                                                     id="collateral_marketabilitas">
@@ -9638,7 +9709,7 @@
                                                             <td class="midJustify">
                                                                 Kontribusi Pemohon = FTV
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_kontribusi_pemohon_ftv"
                                                                     id="collateral_kontribusi_pemohon_ftv">
@@ -9661,7 +9732,7 @@
                                                             <td class="midJustify">
                                                                 Pertumbuhan Agunan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_pertumbuhan_agunan"
                                                                     id="collateral_pertumbuhan_agunan">
@@ -9684,7 +9755,7 @@
                                                             <td class="midJustify">
                                                                 Daya Tarik Agunan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_daya_tarik_agunan"
                                                                     id="collateral_daya_tarik_agunan">
@@ -9707,7 +9778,7 @@
                                                             <td class="midJustify">
                                                                 Jangka Waktu Likuidasi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_jangka_waktu_likuidasi"
                                                                     id="collateral_jangka_waktu_likuidasi">
@@ -9731,7 +9802,7 @@
                                                             <td class="midJustify">
                                                                 Marketabilitas
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_nf_marketabilitas"
                                                                     id="collateral_nf_marketabilitas">
@@ -9753,7 +9824,7 @@
                                                             <td class="midJustify">
                                                                 Kontribusi Pemohon = FTV
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_nf_kontribusi_pemohon_ftv"
                                                                     id="collateral_nf_kontribusi_pemohon_ftv">
@@ -9775,7 +9846,7 @@
                                                             <td class="midJustify">
                                                                 Pertumbuhan Agunan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_nf_pertumbuhan_agunan"
                                                                     id="collateral_nf_pertumbuhan_agunan">
@@ -9797,7 +9868,7 @@
                                                             <td class="midJustify">
                                                                 Daya Tarik Agunan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_nf_daya_tarik_agunan"
                                                                     id="collateral_nf_daya_tarik_agunan">
@@ -9819,7 +9890,7 @@
                                                             <td class="midJustify">
                                                                 Jangka Waktu Likuidasi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_nf_jangka_waktu_likuidasi"
                                                                     id="collateral_nf_jangka_waktu_likuidasi">
@@ -10029,12 +10100,34 @@
             }
         }
 
+        function changeShgbAgunan1() {
+            var shgbAgunan1 = document.getElementById("formAgunan1StatusBuktiKepemilikan");
+            if (shgbAgunan1.value == "SHGB") {
+                document.getElementById("ifShgbAgunan1Expired").classList.toggle("hide");
+                document.getElementById("ifShgbAgunan1Hak").classList.toggle("hide");
+            } else {
+                document.getElementById("ifShgbAgunan1Expired").classList = "hide";
+                document.getElementById("ifShgbAgunan1Hak").classList = "hide";
+            }
+        }
+
         function changeJenisAgunan2() {
             var jenisAgunan2 = document.getElementById("formAgunan2Jenis");
             if (jenisAgunan2.value == "Lain-lain") {
                 document.getElementById("ifJenisAgunan2Lain").classList.toggle("hide");
             } else {
                 document.getElementById("ifJenisAgunan2Lain").classList = "hide";
+            }
+        }
+
+        function changeShgbAgunan2() {
+            var shgbAgunan2 = document.getElementById("formAgunan2StatusBuktiKepemilikan");
+            if (shgbAgunan2.value == "SHGB") {
+                document.getElementById("ifShgbAgunan2Expired").classList.toggle("hide");
+                document.getElementById("ifShgbAgunan2Hak").classList.toggle("hide");
+            } else {
+                document.getElementById("ifShgbAgunan2Expired").classList = "hide";
+                document.getElementById("ifShgbAgunan2Hak").classList = "hide";
             }
         }
 
