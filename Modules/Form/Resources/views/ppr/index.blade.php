@@ -180,6 +180,18 @@
             overflow: hidden;
         }
 
+        #ifJenisAgunan2Lain {
+            width: 50%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifJenisAgunan2Lain.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
         #ifShgbAgunan2Expired {
             width: 25%;
             height: 63px;
@@ -208,17 +220,6 @@
             overflow: hidden;
         }
 
-        #ifJenisAgunan2Lain {
-            width: 50%;
-            height: 40px;
-            transition: all 0.5s;
-        }
-
-        #ifJenisAgunan2Lain.hide {
-            height: 0;
-            opacity: 0;
-            overflow: hidden;
-        }
 
         #ifHubunganLainnya {
             width: 50%;
@@ -406,8 +407,14 @@
                                             </small>Nilai PPR Syariah
                                             Dimohon</label>
                                         <input type="text" name="form_permohonan_nilai_ppr_dimohon"
-                                            id="form_permohonan_nilai_ppr_dimohon" class="form-control numeral-mask"
-                                            placeholder="Nilai PPR Syariah Dimohon" />
+                                            id="form_permohonan_nilai_ppr_dimohon"
+                                            class="form-control numeral-mask @error('form_permohonan_nilai_ppr_dimohon') is-invalid @enderror"
+                                            placeholder="Nilai PPR Syariah Dimohon" required />
+                                        @error('form_permohonan_nilai_ppr_dimohon')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_permohonan_uang_muka_dana_sendiri"><small
@@ -1138,7 +1145,7 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_pribadi_istri_suami_npwp">No.
                                                     NPWP</label>
-                                                <input type="string" name="form_pribadi_istri_suami_npwp"
+                                                <input type="text" name="form_pribadi_istri_suami_npwp"
                                                     id="form_pribadi_istri_suami_npwp" class="form-control"
                                                     placeholder="Masukkan Nomor NPWP Anda" />
                                             </div>
@@ -1455,7 +1462,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_pemohon_npwp">Nomor NPWP
                                             Perusahaan/Instansi</label>
-                                        <input type="number" name="form_pekerjaan_pemohon_npwp"
+                                        <input type="text" name="form_pekerjaan_pemohon_npwp"
                                             id="form_pekerjaan_pemohon_npwp" class="form-control"
                                             placeholder="Nomor NPWP Perusahaan/Instansi" />
                                     </div>
@@ -1874,8 +1881,8 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_istri_suami_npwp">Nomor NPWP
-                                            Perusahaan</label>
-                                        <input type="number" name="form_pekerjaan_istri_suami_npwp"
+                                            Perusahaan/Instansi</label>
+                                        <input type="text" name="form_pekerjaan_istri_suami_npwp"
                                             id="form_pekerjaan_istri_suami_npwp" class="form-control"
                                             placeholder="Nomor NPWP Perusahaan" />
                                     </div>

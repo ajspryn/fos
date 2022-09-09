@@ -152,6 +152,34 @@
             overflow: hidden;
         }
 
+        #ifShgbAgunan1Expired {
+            width: 25%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan1Expired.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifShgbAgunan1Hak {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan1Hak.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
         #ifJenisAgunan2Lain {
             width: 50%;
             height: 40px;
@@ -159,6 +187,34 @@
         }
 
         #ifJenisAgunan2Lain.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifShgbAgunan2Expired {
+            width: 25%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan2Expired.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifShgbAgunan2Hak {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan2Hak.hide {
+            margin-top: -15px;
             height: 0;
             opacity: 0;
             overflow: hidden;
@@ -1018,7 +1074,7 @@
                                                                     <option
                                                                         {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                         'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Orangtua/Keluarga'
                                                                             ? 'selected'
                                                                             : '' }}
                                                                         value="Milik
@@ -1028,7 +1084,7 @@
                                                                     <option
                                                                         {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                         'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Perusahaan/Instansi/Dinas'
                                                                             ? 'selected'
                                                                             : '' }}
                                                                         value="Milik
@@ -2636,7 +2692,8 @@
                                                             </small>Status/Bukti Kepemilikan</label>
                                                         <select class="select2 w-100"
                                                             name="form_agunan_1_status_bukti_kepemilikan"
-                                                            id="form_agunan_1_status_bukti_kepemilikan">
+                                                            id="formAgunan1StatusBuktiKepemilikan"
+                                                            onChange="changeShgbAgunan1()">
                                                             <option label="form_agunan_1_status_bukti_kepemilikan"
                                                                 selected disabled>Pilih
                                                                 Bukti Kepemilikan
@@ -2646,7 +2703,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="mb-1 col-md-3">
+                                                    <div class="mb-1 col-md-3 hide" id="ifShgbAgunan1Expired">
                                                         <label class="form-label"
                                                             for="form_agunan_1_status_bukti_kepemilikan_tgl_berakhir"><small
                                                                 class="text-danger">*
@@ -2658,7 +2715,7 @@
                                                             placeholder="DD-MM-YYYY" />
                                                     </div>
 
-                                                    <div class="mb-1 col-md-3">
+                                                    <div class="mb-1 col-md-3 hide" id="ifShgbAgunan1Hak">
                                                         <label class="form-label"
                                                             for="form_agunan_1_status_bukti_kepemilikan_hak"><small
                                                                 class="text-danger">*
@@ -2914,7 +2971,8 @@
                                                             Kepemilikan</label>
                                                         <select class="select2 w-100"
                                                             name="form_agunan_2_status_bukti_kepemilikan"
-                                                            id="form_agunan_2_status_bukti_kepemilikan">
+                                                            id="formAgunan2StatusBuktiKepemilikan"
+                                                            onChange="changeShgbAgunan2()">
                                                             <option label="form_agunan_2_status_bukti_kepemilikan">Pilih
                                                                 Bukti Kepemilikan
                                                             </option>
@@ -2923,7 +2981,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="mb-1 col-md-3">
+                                                    <div class="mb-1 col-md-3 hide" id="ifShgbAgunan2Expired">
                                                         <label class="form-label"
                                                             for="form_agunan_2_status_bukti_kepemilikan_tgl_berakhir">Tanggal
                                                             Berakhir</label>
@@ -2934,7 +2992,7 @@
                                                             placeholder="DD-MM-YYYY" />
                                                     </div>
 
-                                                    <div class="mb-1 col-md-3">
+                                                    <div class="mb-1 col-md-3 hide" id="ifShgbAgunan2Hak">
                                                         <label class="form-label"
                                                             for="form_agunan_2_status_bukti_kepemilikan_hak">Hak</label>
                                                         <select class="select2 w-100"
@@ -4303,12 +4361,34 @@
             }
         }
 
+        function changeShgbAgunan1() {
+            var shgbAgunan1 = document.getElementById("formAgunan1StatusBuktiKepemilikan");
+            if (shgbAgunan1.value == "SHGB") {
+                document.getElementById("ifShgbAgunan1Expired").classList.toggle("hide");
+                document.getElementById("ifShgbAgunan1Hak").classList.toggle("hide");
+            } else {
+                document.getElementById("ifShgbAgunan1Expired").classList = "hide";
+                document.getElementById("ifShgbAgunan1Hak").classList = "hide";
+            }
+        }
+
         function changeJenisAgunan2() {
             var jenisAgunan2 = document.getElementById("formAgunan2Jenis");
             if (jenisAgunan2.value == "Lain-lain") {
                 document.getElementById("ifJenisAgunan2Lain").classList.toggle("hide");
             } else {
                 document.getElementById("ifJenisAgunan2Lain").classList = "hide";
+            }
+        }
+
+        function changeShgbAgunan2() {
+            var shgbAgunan2 = document.getElementById("formAgunan2StatusBuktiKepemilikan");
+            if (shgbAgunan2.value == "SHGB") {
+                document.getElementById("ifShgbAgunan2Expired").classList.toggle("hide");
+                document.getElementById("ifShgbAgunan2Hak").classList.toggle("hide");
+            } else {
+                document.getElementById("ifShgbAgunan2Expired").classList = "hide";
+                document.getElementById("ifShgbAgunan2Hak").classList = "hide";
             }
         }
 
