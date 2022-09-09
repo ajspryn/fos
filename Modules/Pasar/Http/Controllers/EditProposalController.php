@@ -41,7 +41,7 @@ class EditProposalController extends Controller
      */
     public function index()
     {
-        $komite = PasarPembiayaanHistory::select()->where('status_id', 7)->get();
+        $komite = PasarPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->orderby('updated_at','desc')->get();
         return view('pasar::Revisi.index', [
             'title' => 'Data  Revisi Proposal Nasabah',
             'komites' => $komite,
@@ -269,7 +269,8 @@ class EditProposalController extends Controller
                 'foto.*.kategori' => 'required',
                 'foto.*.foto' => 'required',
             ]);
-    
+            
+           
             foreach ($request->foto as $key => $value) {
                 if ($value['foto']) {
                     Storage::delete($value['foto_lama']);

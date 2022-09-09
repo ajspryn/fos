@@ -51,12 +51,12 @@
                                                         ->get();
                                                 } elseif ($role->divisi_id == 2) {
                                                     $proposal_diajukan = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                        ->where('user_id', $user->id)
+                                                        ->where('AO_id', $user->id)
                                                         ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                         ->get();
                                                 } elseif ($role->divisi_id == 3) {
                                                     $proposal_diajukan = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                        ->where('user_id', $user->id)
+                                                        ->where('AO_id', $user->id)
                                                         ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                         ->get();
                                                 } elseif ($role->divisi_id == 4) {
@@ -108,22 +108,22 @@
                                                             ->first();
                                                     } elseif ($role->divisi_id == 2) {
                                                         $proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                            ->where('user_id', $user->id)
+                                                            ->where('AO_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()
                                                             ->first();
-                                                        $history = Modules\Skpd\Entities\PasarPembiayaanHistory::select()
+                                                        $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                                                             ->where('pasar_pembiayaan_id', $proposal->id)
                                                             ->orderby('created_at', 'desc')
                                                             ->get()
                                                             ->first();
                                                     } elseif ($role->divisi_id == 3) {
                                                         $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                            ->where('user_id', $user->id)
+                                                            ->where('AO_id', $user->id)
                                                             ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
                                                             ->get()
                                                             ->first();
-                                                        $history = Modules\Skpd\Entities\UmkmPembiayaanHistory::select()
+                                                        $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
                                                             ->where('umkm_pembiayaan_id', $proposal->id)
                                                             ->orderby('created_at', 'desc')
                                                             ->get()
@@ -283,7 +283,7 @@
 
                                                 <tr>
                                                     <th style="text-align: center">Peringkat</th>
-                                                    <th style="text-align: center">Nama Passar</th>
+                                                    <th style="text-align: center">Nama Pasar</th>
                                                     <th class="text-nowrap" style="text-align: center">NOA</th>
                                                     <th style="text-align: center">Plafond</th>
                                                     <th style="text-align: center"></th>
@@ -303,6 +303,40 @@
                                                         <td style="text-align: center">{{ $data_debitur_pasar->noa }}</td>
                                                         <td style="text-align: center">Rp.
                                                             {{ number_format($data_debitur_pasar->plafond) }}</td>
+                                                        <td style="text-align: center"></td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /Project table -->
+                            @endif
+                            @if ($role->jabatan_id == 1 && $role->divisi_id == 3)
+                                <!-- Project table -->
+                                <div class="card">
+                                    <h4 class="card-header">Data Debitur</h4>
+                                    <div class="table-responsive">
+                                        <table class="table datatable-project">
+                                            <thead>
+
+                                                <tr>
+                                                    <th style="text-align: center">Peringkat</th>
+                                                    <th style="text-align: center">Jenis Penggunaan</th>
+                                                    <th class="text-nowrap" style="text-align: center">NOA</th>
+                                                    <th style="text-align: center">Plafond</th>
+                                                    <th style="text-align: center"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($data_debiturumkms as $data_debiturumkm)
+                                                    
+                                                    <tr>
+                                                        <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                        <td style="text-align: center">{{ $data_debiturumkm->penggunaan_id }}</td>
+                                                        <td style="text-align: center">{{ $data_debiturumkm->noa }}</td>
+                                                        <td style="text-align: center">Rp.
+                                                            {{ number_format($data_debiturumkm->plafond) }}</td>
                                                         <td style="text-align: center"></td>
                                                     </tr>
                                                 @endforeach

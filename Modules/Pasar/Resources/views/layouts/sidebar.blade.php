@@ -5,26 +5,24 @@ $notif_proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
     ->where('sektor_id', null)
     ->get()
     ->count();
-// $notif_revisi = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-//     ->where('user_id', Auth::user()->id)
-//     ->where('status_id', 7)
-//     ->get()
-//     ->count();
 
-$komites = Modules\Pasar\Entities\PasarPembiayaanHistory::select()->where('status_id', 7)->get();
-$notif_revisi=0;
+$komites = Modules\Pasar\Entities\PasarPembiayaan::select()
+    ->where('AO_id', Auth::user()->id)
+    ->whereNotNull('sektor_id')
+    ->orderby('updated_at', 'desc')
+    ->get();
+$notif_revisi = 0;
 foreach ($komites as $komite) {
-    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
-    ->where('id', $komite->pasar_pembiayaan_id)
-    ->get()
-    ->first();
-
     $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('pasar_pembiayaan_id', $proposal_pasar->id)
-    ->orderby('created_at', 'desc')
-    ->get()
-    ->first();
-    if ($history->status_id ==7) {
+        ->where('pasar_pembiayaan_id', $komite->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 7) {
         $notif_revisi++;
     }
 }

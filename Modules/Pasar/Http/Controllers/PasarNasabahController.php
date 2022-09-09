@@ -75,7 +75,7 @@ class PasarNasabahController extends Controller
             'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
             'fotodiri'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
             'angsuran'=>$angsuran1,
-            'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
+            // 'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
         ]);
     }
 

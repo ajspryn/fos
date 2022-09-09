@@ -22,11 +22,32 @@
     ->get()
     ->count();
 
-    $review = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('status_id',7)
-    ->orderby('created_at','desc')
-    ->get()
-    ->count();
+    // $review = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+    // ->where('status_id',7)
+    // ->orderby('created_at','desc')
+    // ->get()
+    // ->count();
+
+    $komites = Modules\Pasar\Entities\PasarPembiayaan::select()
+    ->where('AO_id', Auth::user()->id)
+    ->whereNotNull('sektor_id')
+    ->orderby('updated_at', 'desc')
+    ->get();
+$review = 0;
+foreach ($komites as $komite) {
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $komite->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 7) {
+        $review++;
+    }
+}
 @endphp
 @section('content')
     <!-- BEGIN: Content-->

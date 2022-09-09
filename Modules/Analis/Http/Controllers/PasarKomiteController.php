@@ -242,7 +242,7 @@ class PasarKomiteController extends Controller
         return view('analis::pasar.komite.lihat',[
             'title'=>'Detail Calon Nasabah',
             // 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
-            'deviasi'=>PasarDeviasi::select()->where('pasar_pembiayaan_id',$id)->get()->first(),
+            'deviasi'=>PasarDeviasi::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
             'timelines'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->get(),
             'history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
             'waktuawal'=>PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->last(),

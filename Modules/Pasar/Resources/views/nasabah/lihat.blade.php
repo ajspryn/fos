@@ -197,6 +197,15 @@
                                     $harga_jual = $harga1 + $harga;
                                     
                                     $angsuran1 = (int) ($harga_jual / $tenor);
+
+                                    $jaminanlain= Modules\Pasar\Entities\PasarJaminan::select()
+                                    ->where('pasar_pembiayaan_id',$data->id)
+                                    ->get()
+                                    ->first();
+                                    $jaminans= Modules\Admin\Entities\PasarJenisJaminan::select()
+                                    ->where('kode_jaminan',$jaminanlain->jaminanlain)
+                                    ->get()
+                                    ->first();
                                 @endphp
                                 <tr>
                                     <td style="text-align: center">

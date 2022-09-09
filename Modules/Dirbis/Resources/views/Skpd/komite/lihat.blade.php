@@ -585,35 +585,42 @@
                                                                                     <tr>
                                                                                         <td class="pe-1">Status</td>
                                                                                         <td>:
-                                                                                            @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
-                                                                                                @if ($nilai_dsr1 >= 40)
+                                                                                            @if ($nilai_dsr >= 40 || $nilai_dsr < 0)
+                                                                                            @if ($nilai_dsr >= 40 && $total_score > 3)
                                                                                                 <span
-                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                                    <small
-                                                                                                        class="text-danger">*Catatan : DSR
-                                                                                                        >
-                                                                                                        40%</small>
-                                                                                                @elseif($nilai_dsr1 < 0)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                                    <small
-                                                                                                        class="text-danger">*catatan : Pengeluaran
-                                                                                                        >
-                                                                                                        Pendapatan</small>
-                                                                                                @endif
+                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                                <small
+                                                                                                    class="text-danger">*DSR
+                                                                                                    > 80%</small>
+                                                                                            @elseif($nilai_dsr < 0 && $total_score > 3)
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                                <small
+                                                                                                    class="text-danger">*Pengeluaran
+                                                                                                    >
+                                                                                                    Pendapatan</small>
+                                                                                            @elseif($total_score > 2 || $total_score < 3)
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                    Ulang</span>
                                                                                             @else
-                                                                                                @if ($total_score > 3)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                                @elseif($total_score > 2 || $total_score > 3)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                                        Ulang</span>
-                                                                                                @else
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                                @endif
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
                                                                                             @endif
+                                                                                        @else
+                                                                                            @if ($total_score > 3)
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                            @elseif($total_score > 2 || $total_score > 3)
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                    Ulang</span>
+                                                                                            @else
+                                                                                                <span
+                                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                            @endif
+                                                                                        @endif
+                                                                                            
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
