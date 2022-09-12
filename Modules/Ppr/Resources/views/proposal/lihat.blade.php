@@ -144,6 +144,46 @@
             overflow: hidden;
         }
 
+        #ifPerbaruiFotoPemohon {
+            width: 50%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifPerbaruiFotoPemohon.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifPerbaruiFotoPasanganPemohon {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifPerbaruiFotoPasanganPemohon.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifHubunganLainnya {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifHubunganLainnya.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
         #ifPemohonBidangUsahaLain {
             width: 50%;
             height: 40px;
@@ -266,20 +306,6 @@
         }
 
         #ifShgbAgunan2Hak.hide {
-            margin-top: -15px;
-            height: 0;
-            opacity: 0;
-            overflow: hidden;
-        }
-
-        #ifHubunganLainnya {
-            width: 50%;
-            height: 63px;
-            margin-bottom: 13px;
-            transition: all 0.5s;
-        }
-
-        #ifHubunganLainnya.hide {
             margin-top: -15px;
             height: 0;
             opacity: 0;
@@ -1317,7 +1343,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1327,7 +1353,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1441,7 +1467,35 @@
                                                             ->get()
                                                             ->first();
                                                     @endphp
+                                                    <div class="mb-1 col-md-6" style="margin-top:23px;">
+                                                        <button type="button" class="btn btn-md btn-primary"
+                                                            data-bs-toggle="modal" data-bs-target="#modalFotoPemohon">
+                                                            Foto Pemohon
+                                                        </button>
+                                                        @if ($pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan == 'Menikah')
+                                                            <button type="button" class="btn btn-md btn-primary"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#modalFotoPasanganPemohon">
+                                                                Foto Pasangan Pemohon
+                                                            </button>
+                                                        @endif
+                                                    </div>
                                                     <div class="mb-1 col-md-6">
+                                                        <label class="form-label" for="perbaruiFotoPemohon">Perbarui Foto
+                                                            Pemohon
+                                                            @if ($pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan == 'Menikah')
+                                                                dan Pasangan
+                                                            @endif
+                                                        </label>
+                                                        <select class="select2 w-100" name="perbarui_foto_pemohon"
+                                                            id="perbaruiFotoPemohon"
+                                                            onChange="changePerbaruiFotoPemohon()">
+                                                            <option value="Ya">Ya</option>
+                                                            <option value="Tidak" selected>Tidak
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-1 col-md-6 hide" id="ifPerbaruiFotoPemohon">
                                                         <label class="form-label" for="fotoPemohon">Foto Terbaru
                                                             Pemohon</label>
                                                         <input type="hidden" name="foto[1][foto_lama]"
@@ -1452,12 +1506,7 @@
                                                             id="fotoPemohon" aria-describedby="fotoPemohon" />
                                                         <input type="hidden" name="foto[1][kategori]"
                                                             value="Foto Pemohon">
-                                                        <div class="mb-0 mt-1 col-md-2">
-                                                            <button type="button" class="btn btn-md btn-primary"
-                                                                data-bs-toggle="modal" data-bs-target="#modalFotoPemohon">
-                                                                Foto Pemohon
-                                                            </button>
-                                                        </div>
+
                                                     </div>
 
                                                     <!-- Foto Pemohon -->
@@ -1626,24 +1675,57 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="mb-1 col-md-6">
-                                                        <label class="form-label" for="fotoPasanganPemohon">Foto Terbaru
-                                                            Istri/Suami Pemohon</label>
-                                                        {{-- <input type="hidden" name="foto[2][foto_lama]"
-                                                            value="{{ old('foto', $fotoPasanganPemohon->foto) }}"
-                                                            id="fotoOldPasanganPemohon" disabled>
-                                                        <input type="hidden" name="foto[2][id]" class="form-control"
-                                                            value="{{ $fotoPasanganPemohon->id }}"
-                                                            id="kategoriOldPasanganPemohon" disabled> --}}
-                                                        <input type="file" class="form-control" name="foto[2][foto]"
-                                                            id="fotoPasanganPemohon"
-                                                            aria-describedby="fotoPasanganPemohon" disabled />
-                                                        <input type="hidden" name="foto[2][kategori]"
-                                                            id="kategoriPasanganPemohon" value="Foto Pasangan Pemohon"
-                                                            disabled>
-                                                    </div>
+                                                    @if ($pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan == 'Menikah')
+                                                        <div class="mb-1 col-md-6 hide"
+                                                            id="ifPerbaruiFotoPasanganPemohon">
+                                                            <label class="form-label" for="fotoPasanganPemohon">Foto
+                                                                Terbaru
+                                                                Istri/Suami Pemohon</label>
+                                                            <input type="hidden" name="foto[2][foto_lama]"
+                                                                value="{{ old('foto', $fotoPasanganPemohon->foto) }}"
+                                                                id="fotoOldPasanganPemohon">
+                                                            <input type="hidden" name="foto[2][id]"
+                                                                class="form-control"
+                                                                value="{{ $fotoPasanganPemohon->id }}"
+                                                                id="kategoriOldPasanganPemohon">
+                                                            <input type="file" class="form-control"
+                                                                name="foto[2][foto]" id="fotoPasanganPemohon"
+                                                                aria-describedby="fotoPasanganPemohon" />
+                                                            <input type="hidden" name="foto[2][kategori]"
+                                                                id="kategoriPasanganPemohon"
+                                                                value="Foto Pasangan Pemohon">
+                                                        </div>
+
+                                                        <!-- Foto Pasangan Pemohon -->
+                                                        <div class="modal fade" id="modalFotoPasanganPemohon"
+                                                            tabindex="-1" aria-labelledby="addNewCardTitle"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header bg-transparent">
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                        <h1 class="text-center mb-1"
+                                                                            id="addNewCardTitle">
+                                                                            {{ $fotoPasanganPemohon->kategori }}</h1>
+                                                                        <p class="text-center">Foto Pasangan Pemohon</p>
+                                                                        <div class="card-body">
+                                                                            <img src="{{ asset('storage/' . $fotoPasanganPemohon->foto) }}"
+                                                                                class="d-block w-100" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+
                                                 </div>
+                                                <!--End Foto Pasangan Pemohon -->
                                                 <!-- Istri/Suami end -->
+
 
                                                 <!-- Keluarga Terdekat start -->
                                                 <div class="content-header">
@@ -6346,7 +6428,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Gaji 1"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji1_gaji_kotor) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji1_gaji_kotor }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="gajiKotor2"
@@ -6355,7 +6437,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Gaji 2"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji2_gaji_kotor) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji2_gaji_kotor }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="gajiKotorP"
@@ -6364,7 +6446,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Gaji Suami/Istri"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji_pasangan_gaji_kotor) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji_pasangan_gaji_kotor }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6378,7 +6460,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan THT"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji1_potongan_tht) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji1_potongan_tht }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="thtGaji2"
@@ -6387,7 +6469,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan THT"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji2_potongan_tht) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji2_potongan_tht }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="thtGajiP"
@@ -6396,7 +6478,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan THT"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji_pasangan_potongan_tht) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji_pasangan_potongan_tht }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6410,7 +6492,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan Jamsostek"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji1_potongan_jamsostek) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji1_potongan_jamsostek }}" />
                                                             </td>
                                                             <td
                                                                 style="vertical-align:
@@ -6421,7 +6503,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan Jamsostek"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji2_potongan_jamsostek) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji2_potongan_jamsostek }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="jamsostekGajiP"
@@ -6430,7 +6512,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan Jamsostek"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji_pasangan_potongan_jamsostek) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji_pasangan_potongan_jamsostek }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6444,7 +6526,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan Koperasi"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji1_potongan_koperasi) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji1_potongan_koperasi }}" />
                                                             </td>
                                                             <td
                                                                 style="vertical-align:
@@ -6455,7 +6537,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan Koperasi"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji2_potongan_koperasi) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji2_potongan_koperasi }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="koperasiGajiP"
@@ -6464,7 +6546,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan Koperasi"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji_pasangan_potongan_koperasi) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji_pasangan_potongan_koperasi }}" />
                                                             </td>
                                                         </tr>
 
@@ -6479,7 +6561,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan lain-lain"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji1_potongan_lain) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji1_potongan_lain }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="lainGaji2"
@@ -6488,7 +6570,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan lain-lain"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji2_potongan_lain) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji2_potongan_lain }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="lainGajiP"
@@ -6497,7 +6579,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Potongan lain-lain"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji_pasangan_potongan_lain) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji_pasangan_potongan_lain }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6508,28 +6590,28 @@
                                                                 <input type="text" id="gajiBersih1Dummy"
                                                                     class="form-control" placeholder="Gaji Bersih 1"
                                                                     disabled
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji1_gaji_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji1_gaji_bersih }}" />
                                                                 <input type="hidden" id="gajiBersih1"
                                                                     name="gaji1_gaji_bersih"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji1_gaji_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji1_gaji_bersih }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="gajiBersih2Dummy"
                                                                     class="form-control" placeholder="Gaji Bersih 2"
                                                                     disabled
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji2_gaji_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji2_gaji_bersih }}" />
                                                                 <input type="hidden" id="gajiBersih2"
                                                                     name="gaji2_gaji_bersih"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji2_gaji_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji2_gaji_bersih }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="gajiBersihPDummy"
                                                                     class="form-control"
                                                                     placeholder="Gaji Bersih Suami/Istri" disabled
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji_pasangan_gaji_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji_pasangan_gaji_bersih }}" />
                                                                 <input type="hidden" id="gajiBersihP"
                                                                     name="gaji_pasangan_gaji_bersih"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->gaji_pasangan_gaji_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->gaji_pasangan_gaji_bersih }}" />
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -6564,7 +6646,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Angsuran Pembiayaan Rumah"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->angsuran_rumah) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->angsuran_rumah }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6578,7 +6660,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Angsuran Pembiayaan Mobil"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->angsuran_mobil) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->angsuran_mobil }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6591,7 +6673,7 @@
                                                                     name="angsuran_lain" onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Angsuran Pembiayaan Lainnya"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->angsuran_lain) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->angsuran_lain }}" />
                                                         </tr>
 
                                                         <tr>
@@ -6602,10 +6684,10 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="totalKewajibanRutinDummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->total_angsuran) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->total_angsuran }}" />
                                                                 <input type="hidden" id="totalKewajibanRutin"
                                                                     name="total_angsuran"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->total_angsuran) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->total_angsuran }}" />
                                                             </td>
                                                         </tr>
                                                         <tr></tr>
@@ -6624,7 +6706,7 @@
                                                                     name="biaya_pangan" onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Biaya Pangan"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->biaya_pangan) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->biaya_pangan }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6637,7 +6719,7 @@
                                                                     name="biaya_sandang" onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Biaya Sandang"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->biaya_sandang) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->biaya_sandang }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6651,7 +6733,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Biaya Transportasi"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->biaya_transportasi) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->biaya_transportasi }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6664,7 +6746,7 @@
                                                                     name="biaya_listrik" onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Biaya Listrik"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->biaya_listrik) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->biaya_listrik }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6677,7 +6759,7 @@
                                                                     name="biaya_telepon" onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Biaya Telepon"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->biaya_telepon) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->biaya_telepon }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6690,7 +6772,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Biaya Gas"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->biaya_gas) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->biaya_gas }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6703,7 +6785,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Biaya Air"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->biaya_air) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->biaya_air }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6717,7 +6799,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Biaya Pendidikan"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->biaya_pendidikan) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->biaya_pendidikan }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6731,7 +6813,7 @@
                                                                     onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Biaya Kesehatan"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->biaya_kesehatan) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->biaya_kesehatan }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6744,7 +6826,7 @@
                                                                     name="biaya_lain" onkeyup="sumFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
                                                                     placeholder="Biaya Lain-lain"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->biaya_lain) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->biaya_lain }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6754,10 +6836,10 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="totalBiayaHidupDummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->total_biaya_per_bulan) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->total_biaya_per_bulan }}" />
                                                                 <input type="hidden" id="totalBiayaHidup"
                                                                     name="total_biaya_per_bulan"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->total_biaya_per_bulan) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->total_biaya_per_bulan }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6769,10 +6851,10 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="totalPenghasilanBersihDummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->total_penghasilan_bersih_per_bulan) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->total_penghasilan_bersih_per_bulan }}" />
                                                                 <input type="hidden" id="totalPenghasilanBersih"
                                                                     name="total_penghasilan_bersih_per_bulan"
-                                                                    value="{{ number_format($dokumen->AtrFixedIncome->total_penghasilan_bersih_per_bulan) }}" />
+                                                                    value="{{ $dokumen->AtrFixedIncome->total_penghasilan_bersih_per_bulan }}" />
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -6843,7 +6925,7 @@
                                                                     name="usaha1_penjualan" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_penjualan }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="penjualanNF2"
@@ -6851,7 +6933,7 @@
                                                                     name="usaha2_penjualan" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_penjualan }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="penjualanNFP"
@@ -6860,7 +6942,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_penjualan }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6873,7 +6955,7 @@
                                                                     name="usaha1_diskon" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_diskon) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_diskon }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="diskonNF2"
@@ -6881,7 +6963,7 @@
                                                                     name="usaha2_diskon" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_diskon) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_diskon }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="diskonNFP"
@@ -6889,7 +6971,7 @@
                                                                     name="usaha_pasangan_diskon" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_diskon) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_diskon }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6902,7 +6984,7 @@
                                                                     name="usaha1_retur" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_retur) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_retur }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="returNF2"
@@ -6910,7 +6992,7 @@
                                                                     name="usaha2_retur" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_retur) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_retur }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="returNFP"
@@ -6918,7 +7000,7 @@
                                                                     name="usaha_pasangan_retur" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_retur) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_retur }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -6928,27 +7010,27 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="penjualanBersihNF1Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_penjualan_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_penjualan_bersih }}" />
                                                                 <input type="hidden" id="penjualanBersihNF1"
                                                                     class="form-control" name="usaha1_penjualan_bersih"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_penjualan_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_penjualan_bersih }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="penjualanBersihNF2Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_penjualan_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_penjualan_bersih }}" />
                                                                 <input type="hidden" id="penjualanBersihNF2"
                                                                     class="form-control" name="usaha2_penjualan_bersih"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_penjualan_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_penjualan_bersih }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="penjualanBersihNFPDummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_penjualan_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_penjualan_bersih }}" />
                                                                 <input type="hidden" id="penjualanBersihNFP"
                                                                     class="form-control"
                                                                     name="usaha_pasangan_penjualan_bersih"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_penjualan_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_penjualan_bersih }}" />
                                                             </td>
                                                         </tr>
                                                         <tr style="height: 25px"></tr>
@@ -6968,7 +7050,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_persediaan_barang_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_persediaan_barang_langsung }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="persediaanBarangNF2"
@@ -6977,7 +7059,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_persediaan_barang_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_persediaan_barang_langsung }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="persediaanBarangNFP"
@@ -6986,7 +7068,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_persediaan_barang_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_persediaan_barang_langsung }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7000,7 +7082,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_pembelian_bahan_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_pembelian_bahan_langsung }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="pembelianBahanNF2"
@@ -7009,7 +7091,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_pembelian_bahan_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_pembelian_bahan_langsung }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="pembelianBahanNFP"
@@ -7018,7 +7100,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_pembelian_bahan_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_pembelian_bahan_langsung }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7031,7 +7113,7 @@
                                                                     name="usaha1_upah_langsung" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_upah_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_upah_langsung }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="upahLangsungNF2"
@@ -7039,7 +7121,7 @@
                                                                     name="usaha2_upah_langsung" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_upah_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_upah_langsung }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="upahLangsungNFP"
@@ -7048,7 +7130,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_upah_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_upah_langsung }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7058,26 +7140,26 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="totalBohNF1Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_total_boh) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_total_boh }}" />
                                                                 <input type="hidden" id="totalBohNF1"
                                                                     class="form-control" name="usaha1_total_boh"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_total_boh) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_total_boh }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="totalBohNF2Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_total_boh) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_total_boh }}" />
                                                                 <input type="hidden" id="totalBohNF2"
                                                                     class="form-control" name="usaha2_total_boh"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_total_boh) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_total_boh }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="totalBohNFPDummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_total_boh) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_total_boh }}" />
                                                                 <input type="hidden" id="totalBohNFP"
                                                                     class="form-control" name="usaha_pasangan_total_boh"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_total_boh) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_total_boh }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7091,7 +7173,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_upah_tidak_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_upah_tidak_langsung }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="upahTidakLangsungNF2"
@@ -7100,7 +7182,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_upah_tidak_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_upah_tidak_langsung }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="upahTidakLangsungNFP"
@@ -7109,7 +7191,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_upah_tidak_langsung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_upah_tidak_langsung }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7123,7 +7205,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_biaya_penyusutan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_biaya_penyusutan }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="penyusutanNF2"
@@ -7132,7 +7214,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_biaya_penyusutan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_biaya_penyusutan }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="penyusutanNFP"
@@ -7141,7 +7223,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_penyusutan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_penyusutan }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7154,7 +7236,7 @@
                                                                     name="usaha1_boh_lain" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_boh_lain) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_boh_lain }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="bohLainNF2"
@@ -7162,7 +7244,7 @@
                                                                     name="usaha2_boh_lain" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_boh_lain) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_boh_lain }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="bohLainNFP"
@@ -7171,7 +7253,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_boh_lain) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_boh_lain }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7182,31 +7264,31 @@
                                                                 <input type="text"
                                                                     id="jmlHargaPokokPenjualanNF1Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_jumlah_harga_pokok_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_jumlah_harga_pokok_penjualan }}" />
                                                                 <input type="hidden" id="jmlHargaPokokPenjualanNF1"
                                                                     class="form-control"
                                                                     name="usaha1_jumlah_harga_pokok_penjualan"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_jumlah_harga_pokok_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_jumlah_harga_pokok_penjualan }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text"
                                                                     id="jmlHargaPokokPenjualanNF2Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_jumlah_harga_pokok_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_jumlah_harga_pokok_penjualan }}" />
                                                                 <input type="hidden" id="jmlHargaPokokPenjualanNF2"
                                                                     class="form-control"
                                                                     name="usaha2_jumlah_harga_pokok_penjualan"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_jumlah_harga_pokok_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_jumlah_harga_pokok_penjualan }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text"
                                                                     id="jmlHargaPokokPenjualanNFPDummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_jumlah_harga_pokok_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_jumlah_harga_pokok_penjualan }}" />
                                                                 <input type="hidden" id="jmlHargaPokokPenjualanNFP"
                                                                     class="form-control"
                                                                     name="usaha_pasangan_jumlah_harga_pokok_penjualan"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_jumlah_harga_pokok_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_jumlah_harga_pokok_penjualan }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7216,27 +7298,27 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="labaKotorNF1Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_laba_kotor) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_laba_kotor }}" />
                                                                 <input type="hidden" id="labaKotorNF1"
                                                                     class="form-control" name="usaha1_laba_kotor"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_laba_kotor) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_laba_kotor }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="labaKotorNF2Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_laba_kotor) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_laba_kotor }}" />
                                                                 <input type="hidden" id="labaKotorNF2"
                                                                     class="form-control" name="usaha2_laba_kotor"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_laba_kotor) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_laba_kotor }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="labaKotorNFPDummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_laba_kotor) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_laba_kotor }}" />
                                                                 <input type="hidden" id="labaKotorNFP"
                                                                     class="form-control"
                                                                     name="usaha_pasangan_laba_kotor"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_laba_kotor) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_laba_kotor }}" />
                                                             </td>
                                                         </tr>
                                                         <tr style="height: 25px"></tr>
@@ -7256,7 +7338,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_biaya_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_biaya_penjualan }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaPenjualanNF2"
@@ -7265,7 +7347,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_biaya_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_biaya_penjualan }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaPenjualanNFP"
@@ -7274,7 +7356,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_penjualan) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_penjualan }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7288,7 +7370,7 @@
                                                                     name="usaha1_biaya_gaji_kds" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_biaya_gaji_kds) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_biaya_gaji_kds }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text"
@@ -7297,7 +7379,7 @@
                                                                     name="usaha2_biaya_gaji_kds" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_biaya_gaji_kds) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_biaya_gaji_kds }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text"
@@ -7307,7 +7389,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_gaji_kds) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_gaji_kds }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7321,7 +7403,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_biaya_lisrik_telp_air) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_biaya_lisrik_telp_air }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaListrikTeleponAirNF2"
@@ -7330,7 +7412,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_biaya_lisrik_telp_air) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_biaya_lisrik_telp_air }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaListrikTeleponAirNFP"
@@ -7339,7 +7421,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_lisrik_telp_air) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_lisrik_telp_air }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7353,7 +7435,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_biaya_perawatan_gedung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_biaya_perawatan_gedung }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaPerawatanGedungNF2"
@@ -7362,7 +7444,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_biaya_perawatan_gedung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_biaya_perawatan_gedung }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaPerawatanGedungNFP"
@@ -7371,7 +7453,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_perawatan_gedung) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_perawatan_gedung }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7385,7 +7467,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_biaya_bagi_hasil_sewa_margin) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_biaya_bagi_hasil_sewa_margin }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaBagiHasilSewaMarginNF2"
@@ -7394,7 +7476,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_biaya_bagi_hasil_sewa_margin) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_biaya_bagi_hasil_sewa_margin }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaBagiHasilSewaMarginNFP"
@@ -7403,7 +7485,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_bagi_hasil_sewa_margin) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_bagi_hasil_sewa_margin }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7416,7 +7498,7 @@
                                                                     name="usaha1_jml_biaya_adm" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_jml_biaya_adm) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_jml_biaya_adm }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaAdmLainNF2"
@@ -7424,7 +7506,7 @@
                                                                     name="usaha2_jml_biaya_adm" placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_jml_biaya_adm) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_jml_biaya_adm }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="biayaAdmLainNFP"
@@ -7433,7 +7515,7 @@
                                                                     placeholder="Sub Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_adm_lain) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_biaya_adm_lain }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7443,27 +7525,27 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="jmlBiayaAdmNF1Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_jml_biaya_adm) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_jml_biaya_adm }}" />
                                                                 <input type="hidden" id="jmlBiayaAdmNF1"
                                                                     class="form-control" name="usaha1_jml_biaya_adm"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_jml_biaya_adm) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_jml_biaya_adm }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="jmlBiayaAdmNF2Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_jml_biaya_adm) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_jml_biaya_adm }}" />
                                                                 <input type="hidden" id="jmlBiayaAdmNF2"
                                                                     class="form-control" name="usaha2_jml_biaya_adm"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_jml_biaya_adm) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_jml_biaya_adm }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="jmlBiayaAdmNFPDummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_jml_biaya_adm) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_jml_biaya_adm }}" />
                                                                 <input type="hidden" id="jmlBiayaAdmNFP"
                                                                     class="form-control"
                                                                     name="usaha_pasangan_jml_biaya_adm"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_jml_biaya_adm) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_jml_biaya_adm }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7474,29 +7556,29 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="labaSebelumPajakNF1Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_laba_sebelum_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_laba_sebelum_pajak }}" />
                                                                 <input type="hidden" id="labaSebelumPajakNF1"
                                                                     class="form-control"
                                                                     name="usaha1_laba_sebelum_pajak"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_laba_sebelum_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_laba_sebelum_pajak }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="labaSebelumPajakNF2Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_laba_sebelum_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_laba_sebelum_pajak }}" />
                                                                 <input type="hidden" id="labaSebelumPajakNF2"
                                                                     class="form-control"
                                                                     name="usaha2_laba_sebelum_pajak"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_laba_sebelum_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_laba_sebelum_pajak }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="labaSebelumPajakNFPDummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_laba_sebelum_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_laba_sebelum_pajak }}" />
                                                                 <input type="hidden" id="labaSebelumPajakNFP"
                                                                     class="form-control"
                                                                     name="usaha_pasangan_laba_sebelum_pajak"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_laba_sebelum_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_laba_sebelum_pajak }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7510,7 +7592,7 @@
                                                                     name="usaha1_pajak_zakat" placeholder="Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_pajak_zakat) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_pajak_zakat }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="pajakZakatNF2"
@@ -7518,7 +7600,7 @@
                                                                     name="usaha2_pajak_zakat" placeholder="Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_pajak_zakat) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_pajak_zakat }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="pajakZakatNFP"
@@ -7527,7 +7609,7 @@
                                                                     placeholder="Total"
                                                                     onkeyup="sumNonFixed(this.value);"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_pajak_zakat) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_pajak_zakat }}" />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -7538,29 +7620,29 @@
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="labaSetelahPajakNF1Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_laba_setelah_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_laba_setelah_pajak }}" />
                                                                 <input type="hidden" id="labaSetelahPajakNF1"
                                                                     class="form-control"
                                                                     name="usaha1_laba_setelah_pajak"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha1_laba_setelah_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha1_laba_setelah_pajak }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="labaSetelahPajakNF2Dummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_laba_setelah_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_laba_setelah_pajak }}" />
                                                                 <input type="hidden" id="labaSetelahPajakNF2"
                                                                     class="form-control"
                                                                     name="usaha2_laba_setelah_pajak"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha2_laba_setelah_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha2_laba_setelah_pajak }}" />
                                                             </td>
                                                             <td style="vertical-align: middle;">
                                                                 <input type="text" id="labaSetelahPajakNFPDummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_laba_setelah_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_laba_setelah_pajak }}" />
                                                                 <input type="hidden" id="labaSetelahPajakNFP"
                                                                     class="form-control"
                                                                     name="usaha_pasangan_laba_setelah_pajak"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->usaha_pasangan_laba_setelah_pajak) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->usaha_pasangan_laba_setelah_pajak }}" />
                                                             </td>
                                                         </tr>
                                                         <tr></tr>
@@ -7572,11 +7654,11 @@
                                                                 <input type="text"
                                                                     id="totalPenghasilanBersihPerBulanDummy"
                                                                     class="form-control" placeholder="Total" disabled
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->total_penghasilan_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->total_penghasilan_bersih }}" />
                                                                 <input type="hidden"
                                                                     id="totalPenghasilanBersihPerBulan"
                                                                     class="form-control" name="total_penghasilan_bersih"
-                                                                    value="{{ number_format($dokumen->AtrNonFixedIncome->total_penghasilan_bersih) }}" />
+                                                                    value="{{ $dokumen->AtrNonFixedIncome->total_penghasilan_bersih }}" />
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -10086,8 +10168,8 @@
 
                     document.getElementById("ifMenikah").classList.toggle("hide"),
                     ifMenikah.classList.add("row"),
-                    document.getElementById("fotoPasanganPemohon").removeAttribute("disabled"),
-                    document.getElementById("kategoriPasanganPemohon").removeAttribute("disabled"),
+                    // document.getElementById("fotoPasanganPemohon").removeAttribute("disabled"),
+                    // document.getElementById("kategoriPasanganPemohon").removeAttribute("disabled"),
 
                     document.getElementById("ifISMHeader").classList.toggle("hide"),
                     ifISMHeader.classList.add("content-header"),
@@ -10097,12 +10179,23 @@
             } else {
                 document.getElementById("ifMenikahHeader").classList = "hide",
                     document.getElementById("ifMenikah").classList = "hide",
-                    document.getElementById("fotoPasanganPemohon").setAttribute("disabled", "disabled"),
-                    document.getElementById("fotoOldPasanganPemohon").setAttribute("disabled", "disabled"),
-                    document.getElementById("kategoriPasanganPemohon").setAttribute("disabled", "disabled"),
-                    document.getElementById("kategoriOldPasanganPemohon").setAttribute("disabled", "disabled"),
+                    // document.getElementById("fotoPasanganPemohon").setAttribute("disabled", "disabled"),
+                    // document.getElementById("fotoOldPasanganPemohon").setAttribute("disabled", "disabled"),
+                    // document.getElementById("kategoriPasanganPemohon").setAttribute("disabled", "disabled"),
+                    // document.getElementById("kategoriOldPasanganPemohon").setAttribute("disabled", "disabled"),
                     document.getElementById("ifISMHeader").classList = "hide",
                     document.getElementById("ifISM").classList = "hide";
+            }
+        }
+
+        function changePerbaruiFotoPemohon() {
+            var perbaruiFotoPemohon = document.getElementById("perbaruiFotoPemohon");
+            if (perbaruiFotoPemohon.value == "Ya") {
+                document.getElementById("ifPerbaruiFotoPemohon").classList.toggle("hide");
+                document.getElementById("ifPerbaruiFotoPasanganPemohon").classList.toggle("hide");
+            } else {
+                document.getElementById("ifPerbaruiFotoPemohon").classList = "hide";
+                document.getElementById("ifPerbaruiFotoPasanganPemohon").classList = "hide";
             }
         }
 
