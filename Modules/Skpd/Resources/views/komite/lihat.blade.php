@@ -656,20 +656,7 @@
                                                             </div>
                                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
                                                                 @if ($history->status_id == 2)
-                                                                    @if ($total_score > 2 || $total_score < 3)
-                                                                        <div class="card-body">
-                                                                            <button class="btn btn-success w-100 mb-75"
-                                                                                data-bs-toggle="modal"data-bs-target="#lanjut_komite">
-                                                                                Lanjut Komite
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            <button class="btn btn-warning w-100 mb-75"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#edit_proposal">
-                                                                                Edit Proposal
-                                                                            </button>
-                                                                        </div>
+                                                                    @if ($total_score < 3)
                                                                         <div class="card-body">
                                                                             <button class="btn btn-danger w-100 mb-75"
                                                                                 data-bs-toggle="modal"
@@ -677,36 +664,21 @@
                                                                                 Ditolak
                                                                             </button>
                                                                         </div>
-                                                                    @elseif($total_score > 3)
+                                                                    @else
                                                                         <div class="card-body">
                                                                             <button class="btn btn-success w-100 mb-75"
                                                                                 data-bs-toggle="modal"data-bs-target="#lanjut_komite">
                                                                                 Lanjut Komite
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            <button class="btn btn-warning w-100 mb-75"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#edit_proposal">
-                                                                                Edit Proposal
-                                                                            </button>
-                                                                        </div>
-                                                                    @elseif ($total_score > 0 || $total_score < 2)
-                                                                        <div class="card-body">
-                                                                            <button class="btn btn-warning w-100 mb-75"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#edit_proposal">
-                                                                                Edit Proposal
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            <button class="btn btn-danger w-100 mb-75"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#ditolak">
-                                                                                Ditolak
                                                                             </button>
                                                                         </div>
                                                                     @endif
+                                                                    <div class="card-body">
+                                                                        <button class="btn btn-warning w-100 mb-75"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#edit_proposal">
+                                                                            Edit Proposal
+                                                                        </button>
+                                                                    </div>
                                                                 @endif
                                                             </div>
                                                         </div>

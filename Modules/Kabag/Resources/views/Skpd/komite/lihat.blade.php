@@ -199,8 +199,8 @@
                                                     <!-- Address and Contact ends -->
 
                                                     <!-- Invoice Description starts -->
-                                                     <!-- Invoice Description starts -->
-                                                     <div class="table-responsive">
+                                                    <!-- Invoice Description starts -->
+                                                    <div class="table-responsive">
                                                         <small>Informasi Debitur Nasabah</small>
                                                         <table class="table">
                                                             <thead>
@@ -576,28 +576,21 @@
                                                                                     <tr>
                                                                                         <td class="pe-1">Status</td>
                                                                                         <td>:
-                                                                                            @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
-                                                                                                @if ($nilai_dsr1 >= 40)
+                                                                                            
+                                                                                            @if ($nilai_dsr >= 40 || $nilai_dsr < 0)
+                                                                                                @if ($nilai_dsr >= 40 && $total_score > 3)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
-                                                                                                        class="text-danger">*Catatan
-                                                                                                        : DSR
-                                                                                                        >
-                                                                                                        40%</small>
-                                                                                                @elseif($nilai_dsr1 < 0)
+                                                                                                        class="text-danger">*DSR
+                                                                                                        > 80%</small>
+                                                                                                @elseif($nilai_dsr < 0 && $total_score > 3)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
-                                                                                                        class="text-danger">*catatan
-                                                                                                        : Pengeluaran
+                                                                                                        class="text-danger">*Pengeluaran
                                                                                                         >
                                                                                                         Pendapatan</small>
-                                                                                                @endif
-                                                                                            @else
-                                                                                                @if ($total_score > 3)
-                                                                                                    <span
-                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                 @elseif($total_score > 2 || $total_score < 3)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-warning">Tinjau
@@ -606,7 +599,20 @@
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
                                                                                                 @endif
+                                                                                            @else
+                                                                                                @if ($total_score > 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                                @elseif($total_score > 2 || $total_score > 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                        Ulang</span>
+                                                                                                @else
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                @endif
                                                                                             @endif
+                                                                                                
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
@@ -786,26 +792,29 @@
                                                     </div>
                                                     <!--/ add new card modal  -->
 
-                                                    @if($deviasi)
-                                                    <div class="modal fade" id="dokumendeviasi" tabindex="-1"
-                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header bg-transparent">
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
-                                                                    <h3 class="text-center">Lampiran Dokumen Deviasi</h3>
-                                                                    <div class="card-body">
-                                                                        <iframe src="{{ asset('storage/' . $deviasi->dokumen_deviasi) }}" class="d-block w-100"
-                                                                          height="500"  weight='900'></iframe>
+                                                    @if ($deviasi)
+                                                        <div class="modal fade" id="dokumendeviasi" tabindex="-1"
+                                                            aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header bg-transparent">
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                        <h3 class="text-center">Lampiran Dokumen Deviasi
+                                                                        </h3>
+                                                                        <div class="card-body">
+                                                                            <iframe
+                                                                                src="{{ asset('storage/' . $deviasi->dokumen_deviasi) }}"
+                                                                                class="d-block w-100" height="500"
+                                                                                weight='900'></iframe>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     @endif
                                                 </div>
                                             </div>
@@ -931,24 +940,24 @@
                                                     <div class="card-body">
                                                         <ul class="timeline">
                                                             @foreach ($timelines as $timeline)
-                                                            @php
-
-                                                            $arr=$loop->iteration;
-                                                            if ($arr== -2) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }elseif ($arr== $banyak_history) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }elseif ($arr>=0) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[$arr]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }
-
-                                                            @endphp
+                                                                @php
+                                                                    
+                                                                    $arr = $loop->iteration;
+                                                                    if ($arr == -2) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr == $banyak_history) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr >= 0) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[$arr]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    }
+                                                                    
+                                                                @endphp
                                                                 <li class="timeline-item">
                                                                     <span
                                                                         class="timeline-point timeline-point-success timeline-point-indicator"></span>
@@ -960,20 +969,19 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
-                                                                        <span
-                                                                        class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
+                                                                            <span
+                                                                                class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
                                                                         </div>
                                                                         @if ($timeline->catatan)
-
-                                                                        <p value="{{ $timeline->id }}"> <br>Catatan :
-                                                                            {{ $timeline->catatan }}
-                                                                        <p>
-
-                                                                    @endif
-                                                                    @if($arr==-1)
-                                                                    @else
-                                                                    <span class="timeline-event-time" >Waktu Diproses : {{ $selisih }}</span>
-                                                            @endif
+                                                                            <p value="{{ $timeline->id }}"> <br>Catatan :
+                                                                                {{ $timeline->catatan }}
+                                                                            <p>
+                                                                        @endif
+                                                                        @if ($arr == -1)
+                                                                        @else
+                                                                            <span class="timeline-event-time">Waktu
+                                                                                Diproses : {{ $selisih }}</span>
+                                                                        @endif
                                                                         {{-- <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span> --}}
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
@@ -982,10 +990,10 @@
                                                                         </div>
                                                                     </div>
                                                                 </li>
-                                                                @endforeach
-                                                                <hr class="invoice-spacing" />
-                                                                <p class="fw-bold"> Total SLA = {{ $totalwaktu }}</p>
-                                                            </ul>
+                                                            @endforeach
+                                                            <hr class="invoice-spacing" />
+                                                            <p class="fw-bold"> Total SLA = {{ $totalwaktu }}</p>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>

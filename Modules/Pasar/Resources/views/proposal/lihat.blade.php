@@ -295,7 +295,7 @@
                                                 </small>Kepemilikan Rumah</label>
                                             <select class="select2 w-100" name="kepemilikan_rumah" id="kep_rumah"
                                                 disabled>
-                                                <option value="{{ $pembiayaan->rumah->id }}">
+                                                <option>
                                                     {{ $pembiayaan->rumah->kepemilikan_rumah }}</option>
                                             </select>
                                         </div>
@@ -466,7 +466,7 @@
                                             <label class="form-label" for="legalitastoko"><small class="text-danger">*
                                                 </small>Legalitas Kepemilikan Kios / Los</label>
                                             <select class="select2 w-100" name="leg_toko_id" id="legalitastoko" disabled>
-                                                <option value="{{ $pembiayaan->keteranganusaha->id }}">
+                                                <option >
                                                     {{ $pembiayaan->keteranganusaha->leg_toko_id }}</option>
                                             </select>
                                         </div>
@@ -789,7 +789,7 @@
                                                                         <input type="number" class="form-control"
                                                                             name="kol" id="kol"
                                                                             aria-describedby="angsuran"
-                                                                            placeholder="Rp." />
+                                                                           >
                                                                     </div>
                                                                 </div>
 

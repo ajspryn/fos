@@ -186,6 +186,15 @@
                                     $harga_jual = $harga1 + $harga;
                                     
                                     $angsuran1 = (int) ($harga_jual / $tenor);
+
+                                    $jaminanlain= Modules\Umkm\Entities\UmkmJaminan::select()
+                                    ->where('umkm_pembiayaan_id',$data->id)
+                                    ->get()
+                                    ->first();
+                                    $jaminans= Modules\Admin\Entities\PasarJenisJaminan::select()
+                                    ->where('kode_jaminan',$jaminanlain->jaminanlain)
+                                    ->get()
+                                    ->first();
                                 @endphp
                                 <tr>
                                     <td style="text-align: center">

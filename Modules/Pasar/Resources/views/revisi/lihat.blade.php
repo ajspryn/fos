@@ -89,8 +89,7 @@
                                             <label class="form-label" for="jenispenggunaan"><small class="text-danger">*
                                                 </small>Jenis Penggunaan</label>
                                             <select class="select2 w-100" name="penggunaan_id" id="jenispenggunaan">
-                                                <option>{{ $pembiayaan->penggunaan_id }}
-                                                <option label="jenispenggunaan">Pilih Jenis Penggunaan</option>
+                                                <option>{{ $pembiayaan->penggunaan_id }}</option>
                                                 <option>Kesehatan</option>
                                                 <option>Kepemilikan Kendaraan Bermotor</option>
                                                 <option>Perbaikan Rumah</option>
@@ -462,7 +461,7 @@
                                             <input type="hidden" name="foto[1][id]" rows="3" class="form-control"
                                                 value="{{ $fotodiri->id }}">
                                             <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
-                                                class="form-control">
+                                                class="form-control" required />
                                             <input type="hidden" name="foto[1][kategori]" value="Foto Diri"
                                                 rows="3" class="form-control" />
                                         </div>
@@ -474,7 +473,7 @@
                                             <input type="hidden" name="foto[2][id]" rows="3" class="form-control"
                                                 value="{{ $fotoktp->id }}">
                                             <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
-                                                class="form-control">
+                                                class="form-control" required />
                                             <input type="hidden" name="foto[2][kategori]" value="Foto KTP"
                                                 rows="3" class="form-control" />
                                         </div>
@@ -486,7 +485,7 @@
                                             <input type="hidden" name="foto[3][id]" rows="3" class="form-control"
                                                 value="{{ $fotodiriktp->id }}">
                                             <input type="file" name="foto[3][foto]" id="fotodiriktp" rows="3"
-                                                class="form-control">
+                                                class="form-control" required />
                                             <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
                                                 rows="3" class="form-control" />
 
@@ -499,7 +498,7 @@
                                             <input type="hidden" name="foto[4][id]" rows="3" class="form-control"
                                                 value="{{ $fotokk->id }}">
                                             <input type="file" name="foto[4][foto]" id="fotokk" rows="3"
-                                                class="form-control">
+                                                class="form-control" required />
                                             <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga"
                                                 rows="3" class="form-control" />
                                         </div>
@@ -612,7 +611,7 @@
                                             <input type="hidden" name="foto[5][id]" rows="3" class="form-control"
                                                 value="{{ $fototoko->id }}">
                                             <input type="file" name="foto[5][foto]" id="fotokk" rows="3"
-                                                class="form-control">
+                                                class="form-control" required />
                                             <input type="hidden" name="foto[5][kategori]" value="Foto Toko"
                                                 rows="3" class="form-control" />
                                         </div>
@@ -626,8 +625,7 @@
                                             <label class="form-label" for="jaminanlain"><small class="text-danger">*
                                                 </small>Jaminan</label>
                                             <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
-
-                                                <option label="jaminanlain">Pilih Jaminan</option>
+                                                <option label="jaminanlain">Pilih Jaminan Utama</option>
                                                 @foreach ($jaminans as $jaminan)
                                                     <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}
                                                     </option>
@@ -653,8 +651,10 @@
                                             <label class="form-label" for="dokumen_jaminan">Upload Jaminan Lainnya</label>
                                             <input type="file" name="dokumen_jaminan" id="dokumen_jaminan"
                                                 rows="3" class="form-control">
-                                            <input type="hidden" id="EditUserFirstName" name="dokumenjaminanlama"
-                                                value="{{ $jaminanlain->dokumen_jaminan }}" class="form-control" />
+                                                @if($jaminanlain)
+                                                <input type="hidden" id="EditUserFirstName" name="dokumenjaminanlama"
+                                                    value="{{ $jaminanlain->dokumen_jaminan }}" class="form-control" />
+                                                    @endif
                                         </div>
 
                                     </div>
@@ -678,7 +678,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small class="text-danger">*
                                             </small>Omset Per Bulan</label>
-                                        <input type="text" class="form-control numeral-mask1" placeholder="Rp."
+                                        <input type="text" class="form-control numeral-mask9" placeholder="Rp."
                                             name="omset" id="omset" value="{{ $pembiayaan->omset }}" required>
                                     </div>
                                     <div class="row">
@@ -725,7 +725,7 @@
                                             <input type="hidden" name="foto[6][id]" rows="3" class="form-control"
                                                 value="{{ $fotonota->id }}">
                                             <input type="file" name="foto[6][foto]" id="fotokk" rows="3"
-                                                class="form-control">
+                                                class="form-control" required />
                                             <input type="hidden" name="foto[6][kategori]" value="Foto Nota Pembelanjaan"
                                                 rows="3" class="form-control" />
                                         </div>

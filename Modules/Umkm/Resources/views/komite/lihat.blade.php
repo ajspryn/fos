@@ -279,36 +279,30 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach ($idebs as $idep)
-                                                                    @php
-                                                                        // if ($ideppasangan) {
-                                                                        //     $margin = $ideppasangan->margin / 12 / 100;
-                                                                        //     $plafond = $ideppasangan->plafond * $margin * $ideppasangan->tenor + $ideppasangan->plafond;
-                                                                        //     $angsuran = $plafond / $ideppasangan->tenor;
-                                                                        // }
-                                                                    @endphp
+                                                                @foreach ($ideps as $sliknasabah)
+                                                                   
                                                                     <tr>
                                                                         <td style="text-align: center">
                                                                             {{ $loop->iteration }}</td>
-                                                                        <td>{{ $ideb->nama_bank }}</td>
-                                                                        <td>Rp. {{ number_format($ideb->plafond) }}
+                                                                        <td>{{ $sliknasabah->nama_bank }}</td>
+                                                                        <td>Rp. {{ number_format($sliknasabah->plafond) }}
                                                                         </td>
                                                                         <td>Rp.
-                                                                            {{ number_format($ideb->outstanding) }}
+                                                                            {{ number_format($sliknasabah->outstanding) }}
                                                                         </td>
                                                                         <td style="text-align: center">i
-                                                                            {{ $ideb->tenor }}
+                                                                            {{ $sliknasabah->tenor }}
                                                                         </td>
                                                                         <td style="text-align: center">
-                                                                            {{ number_format($ideb->margin) }}%
+                                                                            {{ number_format($sliknasabah->margin) }}%
                                                                         </td>
-                                                                        <td>Rp. {{ number_format($ideb->angsuran) }}
-                                                                        </td>
-                                                                        <td style="text-align: center">
-                                                                            {{ $ideb->agunan }}
+                                                                        <td>Rp. {{ number_format($sliknasabah->angsuran) }}
                                                                         </td>
                                                                         <td style="text-align: center">
-                                                                            {{ $ideb->kol_tertinggi }}</td>
+                                                                            {{ $sliknasabah->agunan }}
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $sliknasabah->kol_tertinggi }}</td>
                                                                     </tr>
                                                                 @endforeach
 
@@ -657,7 +651,7 @@
                                                                                                         class="text-danger">*Pengeluaran
                                                                                                         >
                                                                                                         Pendapatan</small>
-                                                                                                @elseif($total_score > 2 || $total_score > 3)
+                                                                                                @elseif($total_score > 2 || $total_score < 3)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-warning">Tinjau
                                                                                                         Ulang</span>
@@ -730,51 +724,27 @@
                                                             </div>
                                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
                                                                 @if ($history->status_id == 2)
-                                                                    <div class="card-body">
-                                                                        <button class="btn btn-warning w-100 mb-75"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#edit_proposal">
-                                                                            Edit Proposal
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="card-body">
-                                                                        <button class="btn btn-success w-100 mb-75"
-                                                                            data-bs-toggle="modal"data-bs-target="#lanjut_komite">
-                                                                            Lanjut Komite
-                                                                        </button>
-                                                                    </div>
-                                                                @else
-                                                                    @if ($total_score > 3)
-                                                                        <div class="card-body">
-                                                                            <button class="btn btn-success w-100 mb-75"
-                                                                                data-bs-toggle="modal"data-bs-target="#lanjut_komite">
-                                                                                Lanjut Komite
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            <button class="btn btn-warning w-100 mb-75"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#edit_proposal">
-                                                                                Edit Proposal
-                                                                            </button>
-                                                                        </div>
-                                                                    @elseif ($total_score > 2 || $total_score > 3)
-                                                                        <div class="card-body">
-                                                                            <button class="btn btn-warning w-100 mb-75"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#edit_proposal">
-                                                                                Edit Proposal
-                                                                            </button>
-                                                                        </div>
-                                                                    @else
-                                                                        <div class="card-body">
-                                                                            <button class="btn btn-warning w-100 mb-75"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#ditolak">
-                                                                                Ditolak
-                                                                            </button>
-                                                                        </div>
-                                                                    @endif
+                                                                @if ( $total_score < 3)
+                                                                <div class="card-body">
+                                                                    <button class="btn btn-danger w-100 mb-75"
+                                                                        data-bs-toggle="modal" data-bs-target="#ditolak">
+                                                                        Ditolak
+                                                                    </button>
+                                                                </div>
+                                                            @else
+                                                                <div class="card-body">
+                                                                    <button class="btn btn-success w-100 mb-75"
+                                                                        data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                                        Lanjut Komite
+                                                                    </button>
+                                                                </div>
+                                                            @endif
+                                                            <div class="card-body">
+                                                                <button class="btn btn-warning w-100 mb-75"
+                                                                    data-bs-toggle="modal" data-bs-target="#edit_proposal">
+                                                                    Edit Proposal
+                                                                </button>
+                                                            </div>
                                                                 @endif
                                                             </div>
                                                         </div>

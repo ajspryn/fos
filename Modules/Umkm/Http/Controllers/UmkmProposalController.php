@@ -181,26 +181,27 @@ class UmkmProposalController extends Controller
                     ]);
                 }
             }
-            // if ($request->slikpasangan[0]['nama_bank']) {
 
-            //     // return $request->slik[0]['nama_bank'];
-            //     foreach ($request->slik as $key => $value) {
+            if ($request->slikpasangan[0]['nama_bank']){
+
+                // return $request->slikpasangan[0]['nama_bank'];
+                foreach ($request->slikpasangan as $key => $value) {
 
 
-            //         // return $value;
-            //         UmkmSlikPasangan::create([
-            //             'umkm_pembiayaan_id' => $id,
-            //             'nama_bank' => $value['nama_bank'],
-            //             'plafond' => $value['plafond'],
-            //             'outstanding' => $value['outstanding'],
-            //             'tenor' => $value['tenor'],
-            //             'margin' => $value['margin'],
-            //             'angsuran' => $value['angsuran'],
-            //             'agunan' => $value['agunan'],
-            //             'kol' => $value['kol'],
-            //         ]);
-            //     }
-            // }
+                // return $value;
+                UmkmSlikPasangan::create([
+                    'umkm_pembiayaan_id'=>$id,
+                    'nama_bank'=> $value['nama_bank'],
+                    'plafond'=> $value['plafond'],
+                    'outstanding'=> $value['outstanding'],
+                    'tenor'=> $value['tenor'],
+                    'margin'=> $value['margin'],
+                    'angsuran'=> $value['angsuran'],
+                    'agunan'=> $value['agunan'],
+                    'kol'=> $value['kol'],
+                ]);
+            }
+        }
             return redirect('/umkm/komite/' . $id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
         
     }

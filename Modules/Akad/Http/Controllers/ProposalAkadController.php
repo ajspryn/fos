@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Form\Entities\FormPprPembiayaan;
 use Modules\Pasar\Entities\PasarPembiayaan;
 use Modules\Pasar\Entities\PasarPembiayaanHistory;
+use Modules\Ppr\Entities\PprPembiayaanHistory;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
 use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 
@@ -20,7 +21,7 @@ class ProposalAkadController extends Controller
     public function index()
     {   
         $proposalpasar=PasarPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id',4)->get();
-        $proposalppr = FormPprPembiayaan::select()->get();
+        $proposalppr = PprPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id',4)->get();
         $proposalskpd=SkpdPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id',4)->get();
         $proposalumkm=UmkmPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id',4)->get();
         // return $pasar;
@@ -29,6 +30,7 @@ class ProposalAkadController extends Controller
             'proposalpasars'=>$proposalpasar,
             'proposalskpds'=>$proposalskpd,
             'proposalumkms'=>$proposalumkm,
+            'proposalpprs'=>$proposalppr,
         ]);
     }
 

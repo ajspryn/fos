@@ -26,7 +26,8 @@
                 </div>
             </div>
             <div class="content-body">
-                <!-- Examples -->
+                <!-- Basic table -->
+                <h4 class="card-title">SKPD</h4>
                 <section id="basic-datatable">
                     <div class="row">
                         <div class="col-12">
@@ -34,78 +35,172 @@
                                 <table class="datatables-basic table">
                                     <thead>
                                         <tr>
-                                            <th style="text-align: center"></th>
                                             <th style="text-align: center">No</th>
-                                            <th style="text-align: center">Nama Nasabah</th>
-                                            <th style="text-align: center">Nominal Pembiayaan</th>
                                             <th style="text-align: center">Tanggal Pengajuan</th>
-                                            <th style="text-align: center">AO Yang Menangani</th>
+                                            <th style="text-align: center">Nama Nasabah</th>
                                             <th style="text-align: center">Actionn</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($proposalpasars as $proposalpasar)
-                                        @php
-                                            $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                ->where('id', $proposalpasar->pasar_pembiayaan_id)
-                                                ->get()
-                                                ->first();
-                                        @endphp
-    
+                                        @foreach ($proposalskpds as $proposalskpd)
+                                            @php
+                                                $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                                    ->where('id', $proposalskpd->skpd_pembiayaan_id)
+                                                    ->get()
+                                                    ->first();
+                                            @endphp
+
                                             <tr>
-                                                <td style="text-align: center">
-                                                    <button type="button"
-                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success">
-                                                        <i data-feather="eye"></i>
-                                                    </button>
-                                                </td>
+
                                                 <td style="text-align: center">{{ $loop->iteration }}</td>
-                                                <td>{{ $proposal_pasar->nasabahh->nama_nasabah }}</td>
-                                                <td>{{ $proposal_pasar->nasabahh->alamat }}
-                                                <td style="text-align: center">
-                                                    {{ $proposal_pasar->keteranganusaha->nama_usaha }}</td>
-                                                <td style="text-align: center"
-                                                    value="{{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}">
-                                                    {{ $proposal_pasar->keteranganusaha->jenispasar->nama_pasar }}</td>
-                                                <td style="text-align: center">Rp.{{ number_format($proposal_pasar->harga) }}</td>
-                                                <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
-                                                <td style="text-align: center"
-                                                    value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
-                                                    @if ($history->statushistory->id == 5 )
-                                                        <span
-                                                            class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
-                                                            {{ $history->jabatan->keterangan }}</span>
-                                                    @elseif ($history->statushistory->id == 4)
-                                                        <span
-                                                            class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
-                                                            {{ $history->jabatan->keterangan }}</span>
-                                                    @elseif ($history->statushistory->id == 7)
-                                                        <span
-                                                            class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
-                                                            {{ $history->jabatan->keterangan }}</span>
-                                                    @elseif ($history->statushistory->id == 6)
-                                                        <span
-                                                            class="badge rounded-pill badge-light-danger">{{ $history->statushistory->keterangan }}
-                                                            {{ $history->jabatan->keterangan }}</span>
-                                                    @else
-                                                            <span
-                                                                class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
-                                                                {{ $history->jabatan->keterangan }}</span>
-                                                    @endif
+                                                <td style="text-align: center">{{ $proposal_skpd->tanggal_pengajuan }}
                                                 </td>
-                                                <td style="text-align: center">{{ $proposal_pasar->user->name }}</td>
-                                                {{-- <td>
-                                                    <a href="/dirbis/pasar/komite/{{ $proposal_pasar->id }}"
-                                                        class="btn btn-outline-info round">Detail</a>
-                                                </td> --}}
+                                                <td style="text-align: center">
+                                                    {{ $proposal_skpd->nasabah->nama_nasabah }}</td>
+                                                <td style="text-align: center">
+                                                    <a href="/" class="btn btn-outline-info round">Detail</a>
+                                                </td>
                                             </tr>
-                                        @endif
-                      @endforeach
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+
+                </section>
+                <!--/ Basic table -->
+                <h4 class="card-title">PASAR</h4>
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <table class="datatables-basic table">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center">No</th>
+                                            <th style="text-align: center">Tanggal Pengajuan</th>
+                                            <th style="text-align: center">Nama Nasabah</th>
+                                            <th style="text-align: center">Actionn</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proposalpasars as $proposalpasar)
+                                            @php
+                                                $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+                                                    ->where('id', $proposalpasar->pasar_pembiayaan_id)
+                                                    ->get()
+                                                    ->first();
+                                            @endphp
+
+                                            <tr>
+
+                                                <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}
+                                                </td>
+                                                <td style="text-align: center">
+                                                    {{ $proposal_pasar->nasabahh->nama_nasabah }}</td>
+                                                <td style="text-align: center">
+                                                    <a href="/" class="btn btn-outline-info round">Detail</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!--/ Basic table -->
+                <!--/ Basic table -->
+                <h4 class="card-title">UMKM</h4>
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <table class="datatables-basic table">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center">No</th>
+                                            <th style="text-align: center">Tanggal Pengajuan</th>
+                                            <th style="text-align: center">Nama Nasabah</th>
+                                            <th style="text-align: center">Actionn</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proposalumkms as $proposalumkm)
+                                            @php
+                                                $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                                    ->where('id', $proposalumkm->umkm_pembiayaan_id)
+                                                    ->get()
+                                                    ->first();
+                                            @endphp
+
+                                            <tr>
+
+                                                <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                <td style="text-align: center">{{ $proposal_umkm->tgl_pembiayaan }}
+                                                </td>
+                                                <td style="text-align: center">
+                                                    {{ $proposal_umkm->nasabahh->nama_nasabah }}</td>
+                                                <td style="text-align: center">
+                                                    <a href="/" class="btn btn-outline-info round">Detail</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!--/ Basic table -->
+
+                <!--/ Basic table -->
+                <h4 class="card-title">PPR</h4>
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <table class="datatables-basic table">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center">No</th>
+                                            <th style="text-align: center">Tanggal Pengajuan</th>
+                                            <th style="text-align: center">Nama Nasabah</th>
+                                            <th style="text-align: center">Actionn</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proposalpprs as $proposalppr)
+                                            @php
+                                                $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                    ->where('id', $proposalppr->form_ppr_pembiayaan_id)
+                                                    ->get()
+                                                    ->first();
+                                            @endphp
+
+                                            <tr>
+
+                                                <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                <td style="text-align: center">
+                                                    {{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
+                                                </td>
+                                                <td style="text-align: center">
+                                                    {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
+                                                <td style="text-align: center">
+                                                    <a href="/" class="btn btn-outline-info round">Detail</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                 </section>
                 <!--/ Basic table -->
             </div>

@@ -284,7 +284,7 @@ class UmkmKomiteController extends Controller
                 'score_idir'=>$score_idir *$proses_idir->bobot,
                 'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
 
-                'deviasi'=>UmkmDeviasi::select()->where('umkm_pembiayaan_id',$id)->get()->first(),
+                'deviasi'=>UmkmDeviasi::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
 
                 //SLA
                 'totalwaktu'=>$totalwaktu,

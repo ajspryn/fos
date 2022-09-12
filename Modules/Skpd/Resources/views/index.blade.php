@@ -1,30 +1,29 @@
 @extends('skpd::layouts.main')
 @php
- $proposal1 = Modules\Skpd\Entities\SkpdPembiayaan::select()
-->where('user_id',Auth::user()->id)
-->get();
-    $diterima = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-    ->where('status_id',5)
+$proposal1 = Modules\Skpd\Entities\SkpdPembiayaan::select()
+    ->where('user_id', Auth::user()->id)
+    ->get();
+$diterima = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('status_id', 5)
     ->where('jabatan_id', 4)
-    // ->where('Skpd_pembiayaan_id',$proposal1->id)
     ->get()
     ->count();
 
-    $proposal = Modules\Skpd\Entities\SkpdPembiayaan::select()
-    ->where('skpd_akad_id',null)
-    ->where('user_id',auth::user()->id)
+$proposal = Modules\Skpd\Entities\SkpdPembiayaan::select()
+    ->where('skpd_akad_id', null)
+    ->where('user_id', auth::user()->id)
     ->get()
     ->count();
 
-    $ditolak = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-    ->where('status_id',6)
-    ->where('user_id',auth::user()->id)
+$ditolak = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('status_id', 6)
+    ->where('user_id', auth::user()->id)
     ->get()
     ->count();
 
-    $review = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-    ->where('status_id',7)
-    ->orderby('created_at','desc')
+$review = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('status_id', 7)
+    ->orderby('created_at', 'desc')
     ->get()
     ->count();
 @endphp

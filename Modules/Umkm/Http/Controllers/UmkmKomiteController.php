@@ -38,7 +38,7 @@ class UmkmKomiteController extends Controller
      */
     public function index()
     {
-        $komite=UmkmPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->get();
+        $komite=UmkmPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->orderby('created_at','desc')->get();
     
 
         return view('umkm::komite.index',[
@@ -204,8 +204,8 @@ class UmkmKomiteController extends Controller
 
       
       
-      
-        //    return $harga1;
+        // $ideps=UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get();
+        //    return $ideps;
         return view('umkm::komite.lihat',[
             'title'=>'Detail Calon Nasabah',
             'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
@@ -233,7 +233,7 @@ class UmkmKomiteController extends Controller
             'sukus'=>PasarSukuBangsa::select()->where('kode_suku',$usaha->suku_bangsa_id)->get()->first(),
             'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
             // 'slik'=>$prosesslik,
-            'idebs'=>UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get(),
+            'ideps'=>UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get(),
             'ideppasangans'=>UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->get(),
             'ideb'=>UmkmPembiayaan::select()->where('id',$id)->get(),
             'cekcicilanpasangan'=>$cekcicilanpasangan,
