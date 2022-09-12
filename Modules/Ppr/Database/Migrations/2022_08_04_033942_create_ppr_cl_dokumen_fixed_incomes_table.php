@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('ppr_cl_dokumen_fixed_incomes', function (Blueprint $table) {
             $table->id();
 
+            $table->integer('form_ppr_pembiayaan_id');
             $table->integer('ppr_cl_dokumen_id');
             $table->string('aplikasi_permohonan')->nullable();
             $table->string('copy_ktp')->nullable();

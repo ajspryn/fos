@@ -114,7 +114,15 @@ class PprProposalController extends Controller
         // return $test;
         return view('ppr::proposal.index', [
             'title' => 'Proposal PPR',
-            'proposals' => FormPprPembiayaan::select()->where('user_id', Auth::user()->id)->whereNull('dilengkapi_ao')->orWhereNull('form_cl')->orWhereNull('form_score')->get(),
+            'proposals' => FormPprPembiayaan::select()
+                ->where('user_id', Auth::user()->id)
+                ->where(function ($query) {
+                    $query
+                        ->whereNull('dilengkapi_ao')
+                        ->orWhereNull('form_cl')
+                        ->orWhereNull('form_score');
+                })
+                ->get(),
         ]);
     }
 
@@ -149,13 +157,13 @@ class PprProposalController extends Controller
             'pembiayaan' => FormPprPembiayaan::select()->where('id', $id)->get()->first(),
             'dokumen' => PprClDokumen::select()->where('id', $id)->get()->first(),
 
-            'clPersyaratan' => PprClPersyaratan::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'dokFixedIncome' => PprClDokumenFixedIncome::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'dokNonFixedIncome' => PprClDokumenNonFixedIncome::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'dokAgunan' => PprClDokumenAgunan::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'AtrFixedIncome' => PprAbilityToRepayFixedIncome::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'AtrNonFixedIncome' => PprAbilityToRepayNonFixedIncome::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'pemberkasanMemo' => PprPemberkasanMemo::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
+            'clPersyaratan' => PprClPersyaratan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'dokFixedIncome' => PprClDokumenFixedIncome::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'dokNonFixedIncome' => PprClDokumenNonFixedIncome::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'dokAgunan' => PprClDokumenAgunan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'AtrFixedIncome' => PprAbilityToRepayFixedIncome::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'AtrNonFixedIncome' => PprAbilityToRepayNonFixedIncome::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'pemberkasanMemo' => PprPemberkasanMemo::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
 
             'nasabah' => FormPprDataPribadi::select()->where('id', $id)->get()->first(),
             'fotoPemohon' => FormPprFoto::select()->where('form_ppr_pembiayaan_id', $id)->where('kategori', 'Foto Pemohon')->get()->first(),
@@ -698,7 +706,7 @@ class PprProposalController extends Controller
             }
         } elseif ($pembiayaan->form_cl != 'Telah diisi' && $pembiayaan->dilengkapi_ao == 'Telah dilengkapi') {
             //Check List
-            PprClPersyaratan::where('id', $id)
+            PprClPersyaratan::where('form_ppr_pembiayaan_id', $id)
                 ->update([
                     'wni' => $request->wni,
                     'usia_cukup' => $request->usia_cukup,
@@ -711,7 +719,7 @@ class PprProposalController extends Controller
                 ]);
 
             if ($pembiayaan->jenis_nasabah == 'Fixed Income') {
-                PprClDokumenFixedIncome::where('ppr_cl_dokumen_id', $id)
+                PprClDokumenFixedIncome::where('form_ppr_pembiayaan_id', $id)
                     ->update([
                         'aplikasi_permohonan' => $request->aplikasi_permohonan,
                         'copy_ktp' => $request->copy_ktp,
@@ -725,7 +733,7 @@ class PprProposalController extends Controller
                         'npwp' => $request->npwp,
                     ]);
 
-                PprAbilityToRepayFixedIncome::where('ppr_cl_dokumen_id', $id)
+                PprAbilityToRepayFixedIncome::where('form_ppr_pembiayaan_id', $id)
                     ->update([
                         'gaji1_gaji_kotor' => str_replace(",", "", $request->gaji1_gaji_kotor),
                         'gaji1_potongan_tht' => str_replace(",", "", $request->gaji1_potongan_tht),
@@ -763,7 +771,7 @@ class PprProposalController extends Controller
                         'total_penghasilan_bersih_per_bulan' => str_replace(",", "", $request->total_penghasilan_bersih_per_bulan),
                     ]);
             } else {
-                PprClDokumenNonFixedIncome::where('ppr_cl_dokumen_id', $id)
+                PprClDokumenNonFixedIncome::where('form_ppr_pembiayaan_id', $id)
                     ->update([
                         'aplikasi_permohonan' => $request->aplikasi_permohonan,
                         'copy_ktp' => $request->copy_ktp,
@@ -778,7 +786,7 @@ class PprProposalController extends Controller
                         'laporan_keuangan_perusahaan' => $request->laporan_keuangan_perusahaan,
                     ]);
 
-                PprAbilityToRepayNonFixedIncome::where('ppr_cl_dokumen_id', $id)
+                PprAbilityToRepayNonFixedIncome::where('form_ppr_pembiayaan_id', $id)
                     ->update([
                         //Usaha 1
                         'usaha1_penjualan' => str_replace(",", "", $request->usaha1_penjualan),
@@ -858,7 +866,7 @@ class PprProposalController extends Controller
                     ]);
             }
 
-            PprClDokumenAgunan::where('id', $id)
+            PprClDokumenAgunan::where('form_ppr_pembiayaan_id', $id)
                 ->update([
                     'copy_shgb_shm' => $request->copy_shgb_shm,
                     'copy_shgb_proses' => $request->copy_shgb_proses,
@@ -866,7 +874,7 @@ class PprProposalController extends Controller
                     'copy_imb_proses' => $request->copy_imb_proses,
                 ]);
 
-            PprPemberkasanMemo::where('id', $id)
+            PprPemberkasanMemo::where('form_ppr_pembiayaan_id', $id)
                 ->update([
                     'cl_persyaratan' => $request->cl_persyaratan,
                     'cl_dokumen' => $request->cl_dokumen,

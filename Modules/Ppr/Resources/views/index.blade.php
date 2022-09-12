@@ -11,9 +11,13 @@ $diterima = Modules\Ppr\Entities\PprPembiayaanHistory::select()
     ->count();
 
 $proposal = Modules\Form\Entities\FormPprPembiayaan::select()
-    ->where('user_id', auth::user()->id)
-    ->whereNull('form_cl')
-    ->orWhereNull('form_score')
+    ->where('user_id', Auth::user()->id)
+    ->where(function ($query) {
+        $query
+            ->whereNull('dilengkapi_ao')
+            ->orWhereNull('form_cl')
+            ->orWhereNull('form_score');
+    })
     ->get()
     ->count();
 
