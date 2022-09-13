@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('form_kekayaan_saham_rp')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

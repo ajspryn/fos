@@ -173,13 +173,28 @@ class PprProposalController extends Controller
             'agunans' => FormPprDataAgunan::all(),
 
             'kekayaan_simpanans' => FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_kekayaan_simpanan' => FormPprDataKekayaanSimpanan::select('deleted_at')->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
             'kekayaan_tanah_bangunans' => FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_kekayaan_tanah_bangunan' => FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
             'kekayaan_kendaraans' => FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_kekayaan_kendaraan' => FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
             'kekayaan_sahams' => FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_kekayaan_saham' => FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
             'kekayaan_lainnyas' => FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_kekayaan_lainnya' => FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
             'pinjamans' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_pinjaman' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
             'pinjaman_kartu_kredits' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_pinjaman_kartu_kredit' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
             'pinjaman_lainnyas' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_pinjaman_lainnya' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
 
             // 'kekayaan_simpanan' => FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
             // 'kekayaan_tanah_bangunan' => FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
@@ -406,19 +421,50 @@ class PprProposalController extends Controller
                 ]);
 
             if (request('perbarui_foto_pemohon') == 'Ya') {
-                foreach ($request->foto as $key => $value) {
-                    if ($value['foto']) {
-                        Storage::delete($value['foto_lama']);
-                        $foto = $value['foto']->store('foto-ppr-pembiayaan');
+                if ($pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan == 'Menikah') {
+                    foreach ($request->foto as $key => $value) {
+                        if ($value['foto']) {
+                            Storage::delete($value['foto_lama']);
+                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
 
-                        FormPprFoto::where('form_ppr_pembiayaan_id', $id)->where('id', $value['id'])->update([
+                            FormPprFoto::where('form_ppr_pembiayaan_id', $id)->where('id', $value['id'])->update([
+                                'form_ppr_pembiayaan_id' => $id,
+                                'kategori' => $value['kategori'],
+                                'foto' => $foto,
+                            ]);
+                        } else {
+                        }
+                    }
+                } elseif (request('form_pribadi_pemohon_status_pernikahan') == 'Menikah') {
+                    foreach ($request->foto as $key => $value) {
+                        if ($value['foto']) {
+                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
+                        } else {
+                        }
+
+                        FormPprFoto::create([
                             'form_ppr_pembiayaan_id' => $id,
                             'kategori' => $value['kategori'],
                             'foto' => $foto,
                         ]);
                     }
+                } else {
                 }
             } else {
+                if (request('form_pribadi_pemohon_status_pernikahan') == 'Menikah') {
+                    foreach ($request->foto as $key => $value) {
+                        if ($value['foto']) {
+                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
+                        }
+
+                        FormPprFoto::create([
+                            'form_ppr_pembiayaan_id' => $id,
+                            'kategori' => $value['kategori'],
+                            'foto' => $foto,
+                        ]);
+                    }
+                } else {
+                }
             }
 
 
@@ -1150,6 +1196,37 @@ class PprProposalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (request('delete_repeater') == 'Hapus Kekayaan Simpanan') {
+            FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Kekayaan Simpanan Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Kekayaan Tanah & Bangunan') {
+            FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Kekayaan Tanah & Bangunan Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Kekayaan Kendaraan') {
+            FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Kekayaan Kendaraan Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Kekayaan Saham') {
+            FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Kekayaan Saham Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Kekayaan Lainnya') {
+            FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Kekayaan Lainnya Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Pinjaman') {
+            FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Pinjaman Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Pinjaman Kartu Kredit') {
+            FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Pinjaman Kartu Kredit Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Pinjaman Lainnya') {
+            FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Pinjaman Lainnya Berhasil Dihapus!');
+        } else {
+        }
+        // FormPprDataKekayaanSimpanan::find($id)->delete($id);
+
+        // return response()->json([
+        //     'success' => 'Record deleted successfully!'
+        // ]);
+        // dd($id);
     }
 }

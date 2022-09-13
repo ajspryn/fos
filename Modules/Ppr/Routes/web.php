@@ -30,8 +30,19 @@ use Modules\Ppr\Http\Controllers\PprProposalController;
 
 Route::prefix('ppr')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:4', 'jabatan:1'])->group(function () {
     Route::get('/', 'PprController@index');
+    // Route::prefix('/proposal')->group(function () {
+    //     Route::get('/{id}', 'PprProposalController@show');
+    //     Route::post('/post/{id}', [PprProposalController::class, 'store']);
+    //     Route::delete('/delete/{id}', 'PprProposalController@destroy')->name('proposal.deleting');
+    //     Route::resource('/', 'PprProposalController');
+    // });
+    // Route::prefix('/ppr')->group(function () {
+    //     Route::resource('/scoring', FormPprScoring5CController::class);
+    // });
     Route::resource('/proposal', PprProposalController::class);
+
     Route::resource('/komite', PprKomiteController::class);
     Route::resource('/nasabah', PprNasabahController::class);
     Route::resource('/revisi', PprEditProposalController::class);
+    // Route::delete('/proposal/delete/{id}', [PprProposalController::class, 'destroy']);
 });
