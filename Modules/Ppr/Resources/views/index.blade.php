@@ -130,13 +130,37 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                         </div>
                         <!--/ Statistics Card -->
                     </div>
-                    <div class="row">
+                    <div class="row match-height">
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
-
-                                    <canvas id="myChart" width="400" height="400"></canvas>
-
+                                    <h5>Proposal Per Bulan</h5>
+                                    <canvas id="chartProposal" width="300" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5>Plafond Per Bulan</h5>
+                                    <canvas id="chartPlafond" width="300" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5>Jenis Nasabah</h5>
+                                    <canvas id="chartJenisNasabah" width="300" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5>NOA Proyek Perumahan</h5>
+                                    <canvas id="chartNoaProyekPerumahan" width="300" height="300"
+                                        style="margin-top:20px;"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -283,51 +307,215 @@ $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                     </div>
                 </section> --}}
                         <!-- Dashboard Ecommerce ends -->
-
-                    </div>
+                </section>
             </div>
         </div>
-        <!-- END: Content-->
+    </div>
+    <!-- END: Content-->
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-        <script type="text/javascript">
-            var _ydata = JSON.parse('{!! json_encode($bulans) !!}');
-            var _xdata = JSON.parse('{!! json_encode($hitungBulan) !!}');
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-            var ctx = document.getElementById('myChart');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: _ydata,
-                    datasets: [{
-                        label: "Proposal Per Bulan",
-                        data: _xdata,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
+    <!-- Charts Script -->
+    <!-- Chart Proposal -->
+    <script>
+        var labelProposal = JSON.parse('{!! json_encode($bulans) !!}');
+        var dataProposal = JSON.parse('{!! json_encode($hitungPerBulan) !!}');
+
+        var ctx = document.getElementById('chartProposal');
+        var chartProposal = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labelProposal,
+                datasets: [{
+                    label: "Proposal Per Bulan",
+                    data: dataProposal,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
+                scales: {
+                    y: {
+                        ticks: {
+                            precision: 0,
+                            beginAtZero: true,
+                            callback: (yValue) => {
+                                return Math.floor(yValue);
+                            }
                         }
                     }
                 }
-            });
-        </script>
-    @endsection
+            }
+        });
+    </script>
+    <!-- End Chart Proposal -->
+
+    <!-- Chart Plafond -->
+    <script>
+        var labelPlafond = JSON.parse('{!! json_encode($labelPlafond) !!}');
+        var dataPlafond = JSON.parse('{!! json_encode($dataPlafond) !!}');
+
+        var ctx = document.getElementById('chartPlafond');
+        var chartPlafond = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labelPlafond,
+                datasets: [{
+                    label: "Plafond Per Bulan",
+                    data: dataPlafond,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- End Chart Plafond -->
+
+    <!-- Chart Jenis Nasabah -->
+    <script>
+        var jenisNasabah = JSON.parse('{!! json_encode($jenisNasabah) !!}');
+
+        var ctx = document.getElementById('chartJenisNasabah');
+        var chartJenisNasabah = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Fixed Income', 'Non Fixed Income'],
+                datasets: [{
+                    label: "Jenis Nasabah",
+                    data: jenisNasabah,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        align: 'start',
+                        labels: {
+                            boxWidth: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- End Chart Jenis Nasabah -->
+
+    <!-- Chart NOA Proyek Perumahan -->
+    <script>
+        var dataNoaProyekPerumahan = JSON.parse('{!! json_encode($dataNoaProyekPerumahan) !!}');
+        var labelNoaProyekPerumahan = JSON.parse('{!! json_encode($labelNoaProyekPerumahan) !!}');
+
+        var ctx = document.getElementById('chartNoaProyekPerumahan');
+        var chartNoaProyekPerumahan = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labelNoaProyekPerumahan,
+                datasets: [{
+                    label: "NOA Proyek Perumahan",
+                    data: dataNoaProyekPerumahan,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false,
+                        position: 'right',
+                        align: 'start',
+                        labels: {
+                            boxWidth: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- End Chart NOA Proyek Perumahan -->
+    <!-- End Charts Script -->
+@endsection
