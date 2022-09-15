@@ -84,7 +84,7 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1">Nama Nasabah</td>
-                                                                            <td><span class="fw-bold">:
+                                                                            <td>:<span class="fw-bold">
                                                                                     {{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_lengkap }}</span>
                                                                             </td>
                                                                         </tr>
@@ -143,7 +143,7 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td class="pe-1">Penghasilan Utama</td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_penghasilan_utama_pemohon) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -156,7 +156,7 @@
                                                                         <tr>
                                                                             <td class="pe-1">Penghasilan Utama Pasangan
                                                                             </td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_penghasilan_utama_istri_suami) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -175,7 +175,7 @@
                                                                         </tr> --}}
                                                                         <tr>
                                                                             <td class="pe-1 mt-2">Total Penghasilan</td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_total_penghasilan) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -194,14 +194,14 @@
 
                                                                         <tr>
                                                                             <td class="pe-1">Kewajiban Angsuran</td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_kewajiban_angsuran) }}</span>
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1 mt-1">Total Pengeluaran
                                                                             </td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_total_pengeluaran) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -848,7 +848,9 @@
                                                                                     <tr>
                                                                                         <td class="pe-1">Total Nilai
                                                                                         </td>
-                                                                                        <td>: {{ $score }}</td>
+                                                                                        <td>:
+                                                                                            <strong>{{ $score }}</strong>
+                                                                                        </td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td class="pe-1">Status</td>
@@ -1117,8 +1119,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Margin</td>
-                                                                                <td>{{ $pembiayaan->form_permohonan_jml_margin }}
-                                                                                    %
+                                                                                <td>0.9 %
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -1157,8 +1158,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Margin</td>
-                                                                                <td>{{ $pembiayaan->form_permohonan_jml_margin }}
-                                                                                    %
+                                                                                <td>0.9 %
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -1279,48 +1279,6 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            {{-- <div class="modal-body px-sm-5 mx-50 pb-5">
-                                <h3 class="text-center">Nilai DSR </h3>
-                                <hr class="invoice-spacing" />
-                                <div class="card-body">
-                                    <div class="col-md-12 d-flex order-md-2 order-1">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="pe-1">Harga Beli</td>
-                                                    <td><span class="fw-bold">: Rp.
-                                                            {{ number_format($pembiayaan->nominal_pembiayaan) }}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Harga Jual</td>
-                                                    <td>: Rp. {{ number_format($harga_jual) }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Jangka Waktu</td>
-                                                    <td>: {{ $tenor }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Equivalen Rate</td>
-                                                    <td>: {{ $pembiayaan->rate }} %</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Angsuran</td>
-                                                    <td>: Rp. {{ number_format($angsuran1) }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1 mt-1">DSR</td>
-                                                    <td><span class="fw-bold">:
-                                                            {{ $nilai_dsr1 }}
-                                                            %</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>

@@ -62,6 +62,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $i = 1;
+                                    @endphp
                                     @foreach ($komites as $komite)
                                         @php
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
@@ -87,7 +90,8 @@
                                                             <i data-feather="eye"></i>
                                                         </button>
                                                     </td>
-                                                    <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                    {{-- <td style="text-align: center">{{ $loop->iteration }}</td> --}}
+                                                    <td style="text-align: center">{{ $i }}</td>
                                                     <td style="text-align: center">
                                                         {{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
                                                     </td>
@@ -131,6 +135,9 @@
                                                 </tr>
                                             @endif
                                         @endif
+                                        @php
+                                            $i++;
+                                        @endphp
                                     @endforeach
                                 </tbody>
                             </table>

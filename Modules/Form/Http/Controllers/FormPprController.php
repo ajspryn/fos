@@ -1322,12 +1322,12 @@ class FormPprController extends Controller
         return redirect('/')->with('success', 'Pengajuan PPR Anda Berhasil Diajukan!');
     }
 
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'form_permohonan_nilai_ppr_dimohon' => ['required', 'integer', 'max:255'],
-        ]);
-    }
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'form_permohonan_nilai_ppr_dimohon' => ['required', 'integer', 'max:255'],
+    //     ]);
+    // }
 
     /**
      * Remove the specified resource from storage.

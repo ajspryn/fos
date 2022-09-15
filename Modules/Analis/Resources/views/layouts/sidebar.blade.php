@@ -129,7 +129,7 @@ foreach ($pprs as $ppr) {
         ->get()
         ->first();
     if ($history->status_id == 5) {
-        $komite++;
+        $komiteppr++;
     }
 }
 

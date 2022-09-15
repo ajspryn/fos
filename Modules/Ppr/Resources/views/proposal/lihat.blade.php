@@ -1343,7 +1343,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1353,7 +1353,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -4824,118 +4824,116 @@
                         <h6>
                             Pinjaman
                         </h6>
-                            @if ($if_pinjaman != null)
-                        @foreach ($pinjamans as $pinjaman)
-                            <div data-repeater-item>
-                                <div class="row d-flex align-items-end">
-                                    <div class="col-md-2 col-6">
+                        @if ($if_pinjaman != null)
+                            @foreach ($pinjamans as $pinjaman)
+                                <div data-repeater-item>
+                                    <div class="row d-flex align-items-end">
+                                        <div class="col-md-2 col-6">
 
-                                        <div class="mb-1">
-                                            <label class="form-label" for="form_pinjaman_nama_bank">Nama
-                                                Bank</label>
-                                            <input type="hidden" name="id" value="{{ $pinjaman->id }}" />
-                                            <input type="text" class="form-control" name="form_pinjaman_nama_bank"
-                                                id="form_pinjaman_nama_bank" aria-describedby="form_pinjaman_nama_bank"
-                                                placeholder="Nama Bank"
-                                                value="{{ $pinjaman->form_pinjaman_nama_bank }}" />
+                                            <div class="mb-1">
+                                                <label class="form-label" for="form_pinjaman_nama_bank">Nama
+                                                    Bank</label>
+                                                <input type="hidden" name="id" value="{{ $pinjaman->id }}" />
+                                                <input type="text" class="form-control"
+                                                    name="form_pinjaman_nama_bank" id="form_pinjaman_nama_bank"
+                                                    aria-describedby="form_pinjaman_nama_bank" placeholder="Nama Bank"
+                                                    value="{{ $pinjaman->form_pinjaman_nama_bank }}" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-2 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="form_pinjaman_jenis">Jenis
-                                                Pinjaman</label>
-                                            <select class="form-control w-100" name="form_pinjaman_jenis"
-                                                id="form_pinjaman_jenis">
-                                                <option label="Pilih Jenis Pinjaman">
-                                                    Pilih
-                                                    Jenis
-                                                    Pinjaman
-                                                </option>
-                                                <option
-                                                    {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Modal Kerja' ? 'selected' : '' }}
-                                                    value="Modal Kerja">Modal Kerja
-                                                </option>
-                                                <option
-                                                    {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Investasi' ? 'selected' : '' }}
-                                                    value="Investasi">Investasi
-                                                </option>
-                                                <option
-                                                    {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Konsumtif' ? 'selected' : '' }}
-                                                    value="Konsumtif">Konsumtif
-                                                </option>
+                                        <div class="col-md-2 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label" for="form_pinjaman_jenis">Jenis
+                                                    Pinjaman</label>
+                                                <select class="form-control w-100" name="form_pinjaman_jenis"
+                                                    id="form_pinjaman_jenis">
+                                                    <option label="Pilih Jenis Pinjaman">
+                                                        Pilih
+                                                        Jenis
+                                                        Pinjaman
+                                                    </option>
+                                                    <option
+                                                        {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Modal Kerja' ? 'selected' : '' }}
+                                                        value="Modal Kerja">Modal Kerja
+                                                    </option>
+                                                    <option
+                                                        {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Investasi' ? 'selected' : '' }}
+                                                        value="Investasi">Investasi
+                                                    </option>
+                                                    <option
+                                                        {{ $pinjaman->form_kekayaan_tanah_bangunan_jenis == 'Konsumtif' ? 'selected' : '' }}
+                                                        value="Konsumtif">Konsumtif
+                                                    </option>
 
-                                            </select>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-2 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="form_pinjaman_sejak_tahun">Sejak
-                                                Tahun</label>
-                                            <input type="number" class="form-control"
-                                                name="form_pinjaman_sejak_tahun" id="form_pinjaman_sejak_tahun"
-                                                aria-describedby="form_pinjaman_sejak_tahun" placeholder="Tahun"
-                                                value="{{ $pinjaman->form_pinjaman_sejak_tahun }}" />
+                                        <div class="col-md-2 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label" for="form_pinjaman_sejak_tahun">Sejak
+                                                    Tahun</label>
+                                                <input type="number" class="form-control"
+                                                    name="form_pinjaman_sejak_tahun" id="form_pinjaman_sejak_tahun"
+                                                    aria-describedby="form_pinjaman_sejak_tahun" placeholder="Tahun"
+                                                    value="{{ $pinjaman->form_pinjaman_sejak_tahun }}" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-2 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="form_pinjaman_jangka_waktu_bulan">Jangka
-                                                Waktu (Bulan)</label>
-                                            <input type="number" class="form-control"
-                                                name="form_pinjaman_jangka_waktu_bulan"
-                                                id="form_pinjaman_jangka_waktu_bulan"
-                                                aria-describedby="form_pinjaman_jangka_waktu_bulan"
-                                                placeholder="Jangka Waktu (Bulan)"
-                                                value="{{ $pinjaman->form_pinjaman_jangka_waktu_bulan }}" />
+                                        <div class="col-md-2 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label" for="form_pinjaman_jangka_waktu_bulan">Jangka
+                                                    Waktu (Bulan)</label>
+                                                <input type="number" class="form-control"
+                                                    name="form_pinjaman_jangka_waktu_bulan"
+                                                    id="form_pinjaman_jangka_waktu_bulan"
+                                                    aria-describedby="form_pinjaman_jangka_waktu_bulan"
+                                                    placeholder="Jangka Waktu (Bulan)"
+                                                    value="{{ $pinjaman->form_pinjaman_jangka_waktu_bulan }}" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-2 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="form_pinjaman_plafond">Plafond</label>
-                                            <input type="text" class="form-control numeral-mask25"
-                                                name="form_pinjaman_plafond" id="form_pinjaman_plafond"
-                                                aria-describedby="form_pinjaman_plafond" placeholder="Plafond (Rp)"
-                                                value="{{ $pinjaman->form_pinjaman_plafond }}" />
+                                        <div class="col-md-2 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label" for="form_pinjaman_plafond">Plafond</label>
+                                                <input type="text" class="form-control numeral-mask25"
+                                                    name="form_pinjaman_plafond" id="form_pinjaman_plafond"
+                                                    aria-describedby="form_pinjaman_plafond" placeholder="Plafond (Rp)"
+                                                    value="{{ $pinjaman->form_pinjaman_plafond }}" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-2 col-8">
-                                        <div class="mb-1">
-                                            <label class="form-label"
-                                                for="form_pinjaman_angsuran_per_bulan">Angsuran/Bulan</label>
-                                            <input type="text" class="form-control numeral-mask26"
-                                                name="form_pinjaman_angsuran_per_bulan"
-                                                id="form_pinjaman_angsuran_per_bulan"
-                                                aria-describedby="form_pinjaman_angsuran_per_bulan"
-                                                placeholder="Angsuran/Bulan (Rp)"
-                                                value="{{ $pinjaman->form_pinjaman_angsuran_per_bulan }}" />
+                                        <div class="col-md-2 col-8">
+                                            <div class="mb-1">
+                                                <label class="form-label"
+                                                    for="form_pinjaman_angsuran_per_bulan">Angsuran/Bulan</label>
+                                                <input type="text" class="form-control numeral-mask26"
+                                                    name="form_pinjaman_angsuran_per_bulan"
+                                                    id="form_pinjaman_angsuran_per_bulan"
+                                                    aria-describedby="form_pinjaman_angsuran_per_bulan"
+                                                    placeholder="Angsuran/Bulan (Rp)"
+                                                    value="{{ $pinjaman->form_pinjaman_angsuran_per_bulan }}" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-1 col-12">
-                                        <div class="mb-1">
-                                            <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete
-                                                type="button">
-                                                <i data-feather="x" class="me-25"></i>
-                                            </button>
+                                        <div class="col-md-1 col-12">
+                                            <div class="mb-1">
+                                                <button class="btn btn-outline-danger text-nowrap px-1"
+                                                    data-repeater-delete type="button">
+                                                    <i data-feather="x" class="me-25"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-icon btn-primary" type="button"
-                                data-repeater-create>
+                            <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
                                 <i data-feather="plus" class="me-25"></i>
                                 <span>Tambah</span>
                             </button> &ensp;
-                            <button class="btn btn-icon btn-danger" type="button"
-                                data-bs-toggle="modal"
+                            <button class="btn btn-icon btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#modalHapusPinjaman">
                                 <i data-feather="x" class="me-25"></i>
                                 <span>Hapus Semua</span>
@@ -4943,115 +4941,104 @@
                         </div>
                     </div>
                 @else
-                <div data-repeater-item>
-                    <div class="row d-flex align-items-end">
-                        <div class="col-md-2 col-6">
+                    <div data-repeater-item>
+                        <div class="row d-flex align-items-end">
+                            <div class="col-md-2 col-6">
 
-                            <div class="mb-1">
-                                <label class="form-label" for="form_pinjaman_nama_bank">Nama
-                                    Bank</label>
-                                <input type="hidden" name="id" />
-                                <input type="text" class="form-control"
-                                    name="form_pinjaman_nama_bank"
-                                    id="form_pinjaman_nama_bank"
-                                    aria-describedby="form_pinjaman_nama_bank"
-                                    placeholder="Nama Bank" />
+                                <div class="mb-1">
+                                    <label class="form-label" for="form_pinjaman_nama_bank">Nama
+                                        Bank</label>
+                                    <input type="hidden" name="id" />
+                                    <input type="text" class="form-control" name="form_pinjaman_nama_bank"
+                                        id="form_pinjaman_nama_bank" aria-describedby="form_pinjaman_nama_bank"
+                                        placeholder="Nama Bank" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2 col-12">
-                            <div class="mb-1">
-                                <label class="form-label" for="form_pinjaman_jenis">Jenis
-                                    Pinjaman</label>
-                                <select class="form-control w-100"
-                                    name="form_pinjaman_jenis" id="form_pinjaman_jenis">
-                                    <option label="Pilih Jenis Pinjaman">
-                                        Pilih
-                                        Jenis
-                                        Pinjaman
-                                    </option>
-                                    <option value="Modal Kerja">Modal Kerja
-                                    </option>
-                                    <option value="Investasi">Investasi
-                                    </option>
-                                    <option value="Konsumtif">Konsumtif
-                                    </option>
-                                </select>
+                            <div class="col-md-2 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="form_pinjaman_jenis">Jenis
+                                        Pinjaman</label>
+                                    <select class="form-control w-100" name="form_pinjaman_jenis"
+                                        id="form_pinjaman_jenis">
+                                        <option label="Pilih Jenis Pinjaman">
+                                            Pilih
+                                            Jenis
+                                            Pinjaman
+                                        </option>
+                                        <option value="Modal Kerja">Modal Kerja
+                                        </option>
+                                        <option value="Investasi">Investasi
+                                        </option>
+                                        <option value="Konsumtif">Konsumtif
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-2 col-12">
-                            <div class="mb-1">
-                                <label class="form-label"
-                                    for="form_pinjaman_sejak_tahun">Sejak
-                                    Tahun</label>
-                                <input type="number" class="form-control"
-                                    name="form_pinjaman_sejak_tahun"
-                                    id="form_pinjaman_sejak_tahun"
-                                    aria-describedby="form_pinjaman_sejak_tahun"
-                                    placeholder="Tahun" />
+                            <div class="col-md-2 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="form_pinjaman_sejak_tahun">Sejak
+                                        Tahun</label>
+                                    <input type="number" class="form-control" name="form_pinjaman_sejak_tahun"
+                                        id="form_pinjaman_sejak_tahun" aria-describedby="form_pinjaman_sejak_tahun"
+                                        placeholder="Tahun" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-2 col-12">
-                            <div class="mb-1">
-                                <label class="form-label"
-                                    for="form_pinjaman_jangka_waktu_bulan">Jangka
-                                    Waktu (Bulan)</label>
-                                <input type="number" class="form-control"
-                                    name="form_pinjaman_jangka_waktu_bulan"
-                                    id="form_pinjaman_jangka_waktu_bulan"
-                                    aria-describedby="form_pinjaman_jangka_waktu_bulan"
-                                    placeholder="Jangka Waktu (Bulan)" />
+                            <div class="col-md-2 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="form_pinjaman_jangka_waktu_bulan">Jangka
+                                        Waktu (Bulan)</label>
+                                    <input type="number" class="form-control" name="form_pinjaman_jangka_waktu_bulan"
+                                        id="form_pinjaman_jangka_waktu_bulan"
+                                        aria-describedby="form_pinjaman_jangka_waktu_bulan"
+                                        placeholder="Jangka Waktu (Bulan)" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-2 col-12">
-                            <div class="mb-1">
-                                <label class="form-label"
-                                    for="form_pinjaman_plafond">Plafond</label>
-                                <input type="text" class="form-control numeral-mask25"
-                                    name="form_pinjaman_plafond" id="form_pinjaman_plafond"
-                                    aria-describedby="form_pinjaman_plafond"
-                                    placeholder="Plafond (Rp)" />
+                            <div class="col-md-2 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="form_pinjaman_plafond">Plafond</label>
+                                    <input type="text" class="form-control numeral-mask25"
+                                        name="form_pinjaman_plafond" id="form_pinjaman_plafond"
+                                        aria-describedby="form_pinjaman_plafond" placeholder="Plafond (Rp)" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-2 col-8">
-                            <div class="mb-1">
-                                <label class="form-label"
-                                    for="form_pinjaman_angsuran_per_bulan">Angsuran/Bulan</label>
-                                <input type="text" class="form-control numeral-mask26"
-                                    name="form_pinjaman_angsuran_per_bulan"
-                                    id="form_pinjaman_angsuran_per_bulan"
-                                    aria-describedby="form_pinjaman_angsuran_per_bulan"
-                                    placeholder="Angsuran/Bulan (Rp)" />
+                            <div class="col-md-2 col-8">
+                                <div class="mb-1">
+                                    <label class="form-label"
+                                        for="form_pinjaman_angsuran_per_bulan">Angsuran/Bulan</label>
+                                    <input type="text" class="form-control numeral-mask26"
+                                        name="form_pinjaman_angsuran_per_bulan" id="form_pinjaman_angsuran_per_bulan"
+                                        aria-describedby="form_pinjaman_angsuran_per_bulan"
+                                        placeholder="Angsuran/Bulan (Rp)" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-1 col-12">
-                            <div class="mb-1">
-                                <button class="btn btn-outline-danger text-nowrap px-1"
-                                    data-repeater-delete type="button">
-                                    <i data-feather="x" class="me-25"></i>
-                                </button>
+                            <div class="col-md-1 col-12">
+                                <div class="mb-1">
+                                    <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete
+                                        type="button">
+                                        <i data-feather="x" class="me-25"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <button class="btn btn-icon btn-primary" type="button"
-                        data-repeater-create>
-                        <i data-feather="plus" class="me-25"></i>
-                        <span>Tambah</span>
-                    </button>
+                <div class="row">
+                    <div class="col-12">
+                        <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
+                            <i data-feather="plus" class="me-25"></i>
+                            <span>Tambah</span>
+                        </button>
+                    </div>
                 </div>
+                @endif
+                <br />
             </div>
-            @endif
-                    <br />
-                </div>
-            </div>
+        </div>
         </div>
     </section>
 
@@ -5063,72 +5050,73 @@
                     <div data-repeater-list="repeater_pinjaman_kartu_kredit">
                         <h6>Kartu
                             Kredit</h6>
-                            @if ($if_pinjaman_kartu_kredit != null)
-                        @foreach ($pinjaman_kartu_kredits as $pinjaman_kartu_kredit)
-                            <div data-repeater-item>
-                                <div class="row d-flex align-items-end">
-                                    <div class="col-md-2 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="form_pinjaman_kartu_kredit_nama_bank">Nama
-                                                Bank</label>
-                                            <input type="hidden" name="id"
-                                                value="{{ $pinjaman_kartu_kredit->id }}" />
-                                            <input type="text" class="form-control"
-                                                name="form_pinjaman_kartu_kredit_nama_bank"
-                                                id="form_pinjaman_kartu_kredit_nama_bank"
-                                                aria-describedby="form_pinjaman_kartu_kredit_nama_bank"
-                                                placeholder="Nama Bank"
-                                                value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_nama_bank }}" />
+                        @if ($if_pinjaman_kartu_kredit != null)
+                            @foreach ($pinjaman_kartu_kredits as $pinjaman_kartu_kredit)
+                                <div data-repeater-item>
+                                    <div class="row d-flex align-items-end">
+                                        <div class="col-md-2 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label"
+                                                    for="form_pinjaman_kartu_kredit_nama_bank">Nama
+                                                    Bank</label>
+                                                <input type="hidden" name="id"
+                                                    value="{{ $pinjaman_kartu_kredit->id }}" />
+                                                <input type="text" class="form-control"
+                                                    name="form_pinjaman_kartu_kredit_nama_bank"
+                                                    id="form_pinjaman_kartu_kredit_nama_bank"
+                                                    aria-describedby="form_pinjaman_kartu_kredit_nama_bank"
+                                                    placeholder="Nama Bank"
+                                                    value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_nama_bank }}" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-2 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="form_pinjaman_kartu_kredit_sejak_tahun">Sejak
-                                                Tahun</label>
-                                            <input type="number" class="form-control"
-                                                name="form_pinjaman_kartu_kredit_sejak_tahun"
-                                                id="form_pinjaman_kartu_kredit_sejak_tahun"
-                                                aria-describedby="form_pinjaman_kartu_kredit_sejak_tahun"
-                                                placeholder="Tahun"
-                                                value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_sejak_tahun }}" />
+                                        <div class="col-md-2 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label"
+                                                    for="form_pinjaman_kartu_kredit_sejak_tahun">Sejak
+                                                    Tahun</label>
+                                                <input type="number" class="form-control"
+                                                    name="form_pinjaman_kartu_kredit_sejak_tahun"
+                                                    id="form_pinjaman_kartu_kredit_sejak_tahun"
+                                                    aria-describedby="form_pinjaman_kartu_kredit_sejak_tahun"
+                                                    placeholder="Tahun"
+                                                    value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_sejak_tahun }}" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-2 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="form_pinjaman_kartu_kredit_plafond">Plafond
-                                            </label>
-                                            <input type="text" class="form-control numeral-mask27"
-                                                name="form_pinjaman_kartu_kredit_plafond"
-                                                id="form_pinjaman_kartu_kredit_plafond"
-                                                aria-describedby="form_pinjaman_kartu_kredit_plafond"
-                                                placeholder="Plafond (Rp)"
-                                                value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_plafond }}" />
+                                        <div class="col-md-2 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label"
+                                                    for="form_pinjaman_kartu_kredit_plafond">Plafond
+                                                </label>
+                                                <input type="text" class="form-control numeral-mask27"
+                                                    name="form_pinjaman_kartu_kredit_plafond"
+                                                    id="form_pinjaman_kartu_kredit_plafond"
+                                                    aria-describedby="form_pinjaman_kartu_kredit_plafond"
+                                                    placeholder="Plafond (Rp)"
+                                                    value="{{ $pinjaman_kartu_kredit->form_pinjaman_kartu_kredit_plafond }}" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-1 col-12">
-                                        <div class="mb-1">
-                                            <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete
-                                                type="button">
-                                                <i data-feather="x" class="me-25"></i>
-                                            </button>
+                                        <div class="col-md-1 col-12">
+                                            <div class="mb-1">
+                                                <button class="btn btn-outline-danger text-nowrap px-1"
+                                                    data-repeater-delete type="button">
+                                                    <i data-feather="x" class="me-25"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-icon btn-primary" type="button"
-                                data-repeater-create>
+                            <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
                                 <i data-feather="plus" class="me-25"></i>
                                 <span>Tambah</span>
                             </button> &ensp;
-                            <button class="btn btn-icon btn-danger" type="button"
-                                data-bs-toggle="modal"
+                            <button class="btn btn-icon btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#modalHapusPinjamanKartuKredit">
                                 <i data-feather="x" class="me-25"></i>
                                 <span>Hapus Semua</span>
@@ -5136,72 +5124,67 @@
                         </div>
                     </div>
                 @else
-                <div data-repeater-item>
-                    <div class="row d-flex align-items-end">
-                        <div class="col-md-2 col-12">
-                            <div class="mb-1">
-                                <label class="form-label"
-                                    for="form_pinjaman_kartu_kredit_nama_bank">Nama
-                                    Bank</label>
-                                <input type="hidden" name="id" />
-                                <input type="text" class="form-control"
-                                    name="form_pinjaman_kartu_kredit_nama_bank"
-                                    id="form_pinjaman_kartu_kredit_nama_bank"
-                                    aria-describedby="form_pinjaman_kartu_kredit_nama_bank"
-                                    placeholder="Nama Bank" />
+                    <div data-repeater-item>
+                        <div class="row d-flex align-items-end">
+                            <div class="col-md-2 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="form_pinjaman_kartu_kredit_nama_bank">Nama
+                                        Bank</label>
+                                    <input type="hidden" name="id" />
+                                    <input type="text" class="form-control"
+                                        name="form_pinjaman_kartu_kredit_nama_bank"
+                                        id="form_pinjaman_kartu_kredit_nama_bank"
+                                        aria-describedby="form_pinjaman_kartu_kredit_nama_bank"
+                                        placeholder="Nama Bank" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-2 col-12">
-                            <div class="mb-1">
-                                <label class="form-label"
-                                    for="form_pinjaman_kartu_kredit_sejak_tahun">Sejak
-                                    Tahun</label>
-                                <input type="number" class="form-control"
-                                    name="form_pinjaman_kartu_kredit_sejak_tahun"
-                                    id="form_pinjaman_kartu_kredit_sejak_tahun"
-                                    aria-describedby="form_pinjaman_kartu_kredit_sejak_tahun"
-                                    placeholder="Tahun" />
+                            <div class="col-md-2 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="form_pinjaman_kartu_kredit_sejak_tahun">Sejak
+                                        Tahun</label>
+                                    <input type="number" class="form-control"
+                                        name="form_pinjaman_kartu_kredit_sejak_tahun"
+                                        id="form_pinjaman_kartu_kredit_sejak_tahun"
+                                        aria-describedby="form_pinjaman_kartu_kredit_sejak_tahun" placeholder="Tahun" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-2 col-12">
-                            <div class="mb-1">
-                                <label class="form-label"
-                                    for="form_pinjaman_kartu_kredit_plafond">Plafond
-                                </label>
-                                <input type="text" class="form-control numeral-mask27"
-                                    name="form_pinjaman_kartu_kredit_plafond"
-                                    id="form_pinjaman_kartu_kredit_plafond"
-                                    aria-describedby="form_pinjaman_kartu_kredit_plafond"
-                                    placeholder="Plafond (Rp)" />
+                            <div class="col-md-2 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="form_pinjaman_kartu_kredit_plafond">Plafond
+                                    </label>
+                                    <input type="text" class="form-control numeral-mask27"
+                                        name="form_pinjaman_kartu_kredit_plafond"
+                                        id="form_pinjaman_kartu_kredit_plafond"
+                                        aria-describedby="form_pinjaman_kartu_kredit_plafond"
+                                        placeholder="Plafond (Rp)" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-1 col-12">
-                            <div class="mb-1">
-                                <button class="btn btn-outline-danger text-nowrap px-1"
-                                    data-repeater-delete type="button">
-                                    <i data-feather="x" class="me-25"></i>
-                                </button>
+                            <div class="col-md-1 col-12">
+                                <div class="mb-1">
+                                    <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete
+                                        type="button">
+                                        <i data-feather="x" class="me-25"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
                 <div class="row">
                     <div class="col-12">
-                        <button class="btn btn-icon btn-primary" type="button"
-                            data-repeater-create>
+                        <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
                             <i data-feather="plus" class="me-25"></i>
                             <span>Tambah</span>
                         </button>
                     </div>
                 </div>
                 @endif
-                    <br />
-                </div>
+                <br />
             </div>
+        </div>
         </div>
     </section>
 
@@ -5210,51 +5193,49 @@
             <div class="mb-1 col-md-12">
                 <div class="repeater-default">
                     <div data-repeater-list="repeater_pinjaman_lainnya">
-                                                            @if ($if_pinjaman_lainnya != null)
-                                                            @foreach ($pinjaman_lainnyas as $pinjaman_lainnya)
-                            <div data-repeater-item>
-                                <div class="row d-flex align-items-end">
-                                    <div class="col-md-2 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="form_pinjaman_lainnya">Lainnya</label>
-                                            <input type="hidden" name="id"
-                                                value="{{ $pinjaman_lainnya->id }}" />
-                                            <input type="text" class="form-control" name="form_pinjaman_lainnya"
-                                                id="form_pinjaman_lainnya" aria-describedby="form_pinjaman_lainnya"
-                                                placeholder="Lainnya"
-                                                value="{{ $pinjaman_lainnya->form_pinjaman_lainnya }}" />
+                        @if ($if_pinjaman_lainnya != null)
+                            @foreach ($pinjaman_lainnyas as $pinjaman_lainnya)
+                                <div data-repeater-item>
+                                    <div class="row d-flex align-items-end">
+                                        <div class="col-md-2 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label" for="form_pinjaman_lainnya">Lainnya</label>
+                                                <input type="hidden" name="id"
+                                                    value="{{ $pinjaman_lainnya->id }}" />
+                                                <input type="text" class="form-control"
+                                                    name="form_pinjaman_lainnya" id="form_pinjaman_lainnya"
+                                                    aria-describedby="form_pinjaman_lainnya" placeholder="Lainnya"
+                                                    value="{{ $pinjaman_lainnya->form_pinjaman_lainnya }}" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="mb-1 col-md-3">
-                                        <label class="form-label" for="form_pinjaman_lainnya_rp">Rupiah</label>
-                                        <input type="text" class="form-control numeral-mask28"
-                                            name="form_pinjaman_lainnya_rp" id="form_pinjaman_lainnya_rp"
-                                            aria-describedby="form_pinjaman_lainnya_rp" placeholder="Rupiah"
-                                            value="{{ $pinjaman_lainnya->form_pinjaman_lainnya_rp }}" />
-                                    </div>
+                                        <div class="mb-1 col-md-3">
+                                            <label class="form-label" for="form_pinjaman_lainnya_rp">Rupiah</label>
+                                            <input type="text" class="form-control numeral-mask28"
+                                                name="form_pinjaman_lainnya_rp" id="form_pinjaman_lainnya_rp"
+                                                aria-describedby="form_pinjaman_lainnya_rp" placeholder="Rupiah"
+                                                value="{{ $pinjaman_lainnya->form_pinjaman_lainnya_rp }}" />
+                                        </div>
 
-                                    <div class="col-md-1 col-12">
-                                        <div class="mb-1">
-                                            <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete
-                                                type="button">
-                                                <i data-feather="x" class="me-25"></i>
-                                            </button>
+                                        <div class="col-md-1 col-12">
+                                            <div class="mb-1">
+                                                <button class="btn btn-outline-danger text-nowrap px-1"
+                                                    data-repeater-delete type="button">
+                                                    <i data-feather="x" class="me-25"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-icon btn-primary" type="button"
-                                data-repeater-create>
+                            <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
                                 <i data-feather="plus" class="me-25"></i>
                                 <span>Tambah</span>
                             </button> &ensp;
-                            <button class="btn btn-icon btn-danger" type="button"
-                                data-bs-toggle="modal"
+                            <button class="btn btn-icon btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#modalHapusPinjamanLainnya">
                                 <i data-feather="x" class="me-25"></i>
                                 <span>Hapus Semua</span>
@@ -5262,45 +5243,39 @@
                         </div>
                     </div>
                 @else
-                <div data-repeater-item>
-                    <div class="row d-flex align-items-end">
-                        <div class="col-md-2 col-12">
-                            <div class="mb-1">
-                                <label class="form-label"
-                                    for="form_pinjaman_lainnya">Lainnya</label>
-                                <input type="hidden" name="id" />
-                                <input type="text" class="form-control"
-                                    name="form_pinjaman_lainnya" id="form_pinjaman_lainnya"
-                                    aria-describedby="form_pinjaman_lainnya"
-                                    placeholder="Lainnya" />
+                    <div data-repeater-item>
+                        <div class="row d-flex align-items-end">
+                            <div class="col-md-2 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="form_pinjaman_lainnya">Lainnya</label>
+                                    <input type="hidden" name="id" />
+                                    <input type="text" class="form-control" name="form_pinjaman_lainnya"
+                                        id="form_pinjaman_lainnya" aria-describedby="form_pinjaman_lainnya"
+                                        placeholder="Lainnya" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="mb-1 col-md-3">
-                            <label class="form-label"
-                                for="form_pinjaman_lainnya_rp">Rupiah</label>
-                            <input type="text" class="form-control numeral-mask28"
-                                name="form_pinjaman_lainnya_rp"
-                                id="form_pinjaman_lainnya_rp"
-                                aria-describedby="form_pinjaman_lainnya_rp"
-                                placeholder="Rupiah" />
-                        </div>
+                            <div class="mb-1 col-md-3">
+                                <label class="form-label" for="form_pinjaman_lainnya_rp">Rupiah</label>
+                                <input type="text" class="form-control numeral-mask28"
+                                    name="form_pinjaman_lainnya_rp" id="form_pinjaman_lainnya_rp"
+                                    aria-describedby="form_pinjaman_lainnya_rp" placeholder="Rupiah" />
+                            </div>
 
-                        <div class="col-md-1 col-12">
-                            <div class="mb-1">
-                                <button class="btn btn-outline-danger text-nowrap px-1"
-                                    data-repeater-delete type="button">
-                                    <i data-feather="x" class="me-25"></i>
-                                </button>
+                            <div class="col-md-1 col-12">
+                                <div class="mb-1">
+                                    <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete
+                                        type="button">
+                                        <i data-feather="x" class="me-25"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
                 <div class="row">
                     <div class="col-12">
-                        <button class="btn btn-icon btn-primary" type="button"
-                            data-repeater-create>
+                        <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
                             <i data-feather="plus" class="me-25"></i>
                             <span>Tambah</span>
                         </button>
@@ -5309,7 +5284,7 @@
                 @endif
             </div>
         </div>
-    </div>
+        </div>
     </section>
 
 
@@ -8757,10 +8732,10 @@
                                                     Reputasi Bisnis
                                                 </td>
                                                 <td class="midCenter col-fixed-width">
-                                                    <select class="form-control w-100"
-                                                        name="character_nf_reputasi_bisnis"
+                                                    <select class="select2 w-100" name="character_nf_reputasi_bisnis"
                                                         id="character_nf_reputasi_bisnis">
-                                                        <option label="Pilih" selected disabled>
+                                                        <option label="character_nf_reputasi_bisnis" selected disabled>
+                                                            Pilih
                                                         </option>
                                                         @foreach ($character_nf_reputasi_bisnises as $character_nf_reputasi_bisnis)
                                                             <option
