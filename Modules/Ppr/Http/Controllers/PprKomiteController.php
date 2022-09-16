@@ -66,8 +66,14 @@ class PprKomiteController extends Controller
         //         if (request('revisi') == 'Ya') {
         // FormPprPembiayaan::update
         //         }
-
-        return redirect('/ppr/komite/')->with('success', 'Proposal Berhasil Diajukan');
+        if ($request->status_id == 3) {
+            return redirect('/ppr/komite/')->with('success', 'Proposal Berhasil Diajukan!');
+        } elseif ($request->status_id == 6) {
+            return redirect('/ppr/komite/')->with('success', 'Proposal Berhasil Ditolak!');
+        } elseif ($request->status_id == 7) {
+            return redirect('/ppr/komite/')->with('success', 'Proposal Diajukan Untuk Revisi!');
+        } else {
+        }
     }
 
     /**

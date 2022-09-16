@@ -32,7 +32,10 @@ class PprKomiteController extends Controller
      */
     public function index()
     {
-        $komite = PprPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get();
+        $komite = PprPembiayaanHistory::select()
+            ->where('status_id', 3)
+            ->orderby('created_at', 'desc')
+            ->get();
 
         return view('kabag::ppr.komite.index', [
             'title' => 'Data Komite PPR',
@@ -66,7 +69,7 @@ class PprKomiteController extends Controller
 
         ]);
 
-        return redirect('/kabag/ppr/komite/')->with('success', 'Proposal Berhasil Disetujui');
+        return redirect('/kabag/ppr/komite/')->with('success', 'Proposal Berhasil Disetujui!');
     }
 
     /**

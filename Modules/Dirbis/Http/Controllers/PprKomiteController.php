@@ -31,7 +31,10 @@ class PprKomiteController extends Controller
      */
     public function index()
     {
-        $komite = FormPprPembiayaan::select()->orderBy('created_at', 'asc')->get();
+        $komite = PprPembiayaanHistory::select()
+            ->where('status_id', 3)
+            ->orderby('created_at', 'desc')
+            ->get();
         return view('dirbis::ppr.komite.index', [
             'title' => 'Data Komite PPR',
             'komites' => $komite,

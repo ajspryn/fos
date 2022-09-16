@@ -145,7 +145,7 @@ foreach ($pprs as $ppr) {
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">0</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $review }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Review</p>
                                                 </div>
                                             </div>

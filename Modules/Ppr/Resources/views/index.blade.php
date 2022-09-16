@@ -1,14 +1,5 @@
 @extends('ppr::layouts.main')
 @php
-$proposal1 = Modules\Form\Entities\FormPprPembiayaan::select()
-    ->where('user_id', Auth::user()->id)
-    ->get();
-$diterima = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-    ->where('status_id', 5)
-    ->where('jabatan_id', 4)
-    // ->where('pasar_pembiayaan_id',$proposal1->id)
-    ->get()
-    ->count();
 
 $proposal = Modules\Form\Entities\FormPprPembiayaan::select()
     ->where('user_id', Auth::user()->id)
@@ -22,14 +13,21 @@ $proposal = Modules\Form\Entities\FormPprPembiayaan::select()
     ->count();
 
 $ditolak = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    ->where('user_id', Auth::user()->id)
     ->where('status_id', 6)
-    ->where('user_id', auth::user()->id)
     ->get()
     ->count();
 
 $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    ->where('user_id', Auth::user()->id)
     ->where('status_id', 7)
     ->orderby('created_at', 'desc')
+    ->get()
+    ->count();
+
+$diterima = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    ->where('user_id', Auth::user()->id)
+    ->where('status_id', 3)
     ->get()
     ->count();
 @endphp
