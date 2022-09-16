@@ -2,6 +2,30 @@
 
 @section('content')
     <!-- BEGIN: Content-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-validation.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/authentication.css">
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.min.css">
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-validation.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/authentication.css">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+    <!-- END: Custom CSS-->
     <style>
         .data {
             visibility: hidden;
@@ -409,7 +433,8 @@
                                         <input type="text" name="form_permohonan_nilai_ppr_dimohon"
                                             id="form_permohonan_nilai_ppr_dimohon"
                                             class="form-control numeral-mask @error('form_permohonan_nilai_ppr_dimohon') is-invalid @enderror"
-                                            placeholder="Nilai PPR Syariah Dimohon" required />
+                                            placeholder="Nilai PPR Syariah Dimohon" required
+                                            autocomplete="form_permohonan_nilai_ppr_dimohon" autofocus />
                                         @error('form_permohonan_nilai_ppr_dimohon')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -1368,7 +1393,8 @@
                                                 </button>
                                                 <button class="btn btn-primary btn-next" type="button">
                                                     <span class="align-middle d-sm-inline-block d-none">Next</span>
-                                                    <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                                    <i data-feather="arrow-right"
+                                                        class="align-middle ms-sm-25 ms-0"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -3999,7 +4025,33 @@
             <!-- /Modern Horizontal Wizard -->
         </div>
     </div>
+    <!-- BEGIN: Vendor JS-->
+    <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="../../../app-assets/js/core/app-menu.min.js"></script>
+    <script src="../../../app-assets/js/core/app.min.js"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="../../../app-assets/js/scripts/pages/auth-login.js"></script>
+    <!-- END: Page JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(window).on('load', function() {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
+            }
+        })
+    </script>
     <script>
         function changeJenisAkad() {
             var jenisAkadPembayaran = document.getElementById("formPermohonanJenisAkadPembayaran");
