@@ -110,7 +110,7 @@ class PprEditProposalController extends Controller
      */
     public function index()
     {
-        $proposal = PprPembiayaanHistory::select()->where('status_id', 7)->get();
+        $proposal = PprPembiayaanHistory::select()->where('user_id', Auth::user()->id)->where('status_id', 7)->get();
         return view('ppr::revisi.index', [
             'title' => 'Revisi Proposal PPR',
             'proposals' => $proposal,
