@@ -120,6 +120,7 @@ foreach ($umkms as $umkm) {
                         </div>
                         <!--/ Statistics Card -->
                     </div>
+<<<<<<< HEAD
                     @php
                     $cair = 0;
                     foreach ($target1 as $target) {
@@ -134,6 +135,9 @@ foreach ($umkms as $umkm) {
                         $cair = $cair + $harga_jual;
                     }
                 @endphp
+=======
+{{--
+>>>>>>> origin/deploy
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">

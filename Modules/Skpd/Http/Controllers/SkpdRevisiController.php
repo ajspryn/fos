@@ -92,15 +92,15 @@ class SkpdRevisiController extends Controller
             'aos' => Role::select()->where('jabatan_id', 1)->get(),
             'akads' => SkpdAkad::all(), //udah
             'golongans' => SkpdGolongan::all(), //udah
-            'skpd_jaminan'=>SkpdJaminan::select()->where('skpd_pembiayaan_id',$id)->get()->first(),
+            'skpd_jaminan' => SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->get()->first(),
             'instansis' => SkpdInstansi::all(), //udah
             'jaminans' => SkpdJenisJaminan::all(), //udah
             'penggunaans' => SkpdJenisPenggunaan::all(), //udah
             'sektors' => SkpdSektorEkonomi::all(), //udah
             'statusperkawinans' => SkpdStatusPerkawinan::all(), //udah
             'tanggungans' => SkpdTanggungan::all(),
-            'idebs'=>SkpdSlik::select()->where('skpd_pembiayaan_id',$id)->get(),
-            'idebpasangans'=>SkpdSlikPasangan::select()->where('skpd_pembiayaan_id',$id)->get(),
+            'idebs' => SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->get(),
+            'idebpasangans' => SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->get(),
         ]);
     }
 
@@ -138,15 +138,15 @@ class SkpdRevisiController extends Controller
             'keterangan_pengeluaran_lainnya' => $request->keterangan_pengeluaran_lainnya,
         ]);
 
-        
+
         if ($request->file('dokumen_keuangan')) {
             if ($request->dokumen_keuangan_lama) {
                 Storage::delete($request->dokumen_keuangan_lama);
             }
             $dokumen_keuangan = $request->file('dokumen_keuangan')->store('skpd-dokumen_keuangan');
-            SkpdPembiayaan::where('id',$id)->update([
-                    'dokumen_keuangan' => $dokumen_keuangan,
-                ]);
+            SkpdPembiayaan::where('id', $id)->update([
+                'dokumen_keuangan' => $dokumen_keuangan,
+            ]);
         }
 
         if ($request->file('dokumen_slip_gaji')) {
@@ -154,18 +154,18 @@ class SkpdRevisiController extends Controller
                 Storage::delete($request->dokumen_slip_gaji_lama);
             }
             $dokumen_slip_gaji = $request->file('dokumen_slip_gaji')->store('skpd-dokumen_slip_gaji');
-            SkpdPembiayaan::where('id',$id)->update([
+            SkpdPembiayaan::where('id', $id)->update([
                 'dokumen_slip_gaji' => $dokumen_slip_gaji,
-                ]);
+            ]);
         }
         if ($request->file('sk_pengangkatan')) {
             if ($request->sk_pengangkatan_lama) {
                 Storage::delete($request->sk_pengangkatan_lama);
             }
             $sk_pengangkatan = $request->file('sk_pengangkatan')->store('skpd-sk_pengangkatan');
-            SkpdPembiayaan::where('id',$id)->update([
+            SkpdPembiayaan::where('id', $id)->update([
                 'sk_pengangkatan' => $sk_pengangkatan,
-                ]);
+            ]);
         }
 
         SkpdNasabah::where('id', $id)->update([
@@ -212,7 +212,7 @@ class SkpdRevisiController extends Controller
                 'dokumen_jaminan' => $dokumen_jaminan,
             ]);
         }
-       
+
 
         SkpdPembiayaanHistory::where('skpd_pembiayaan_id', $id)->update([
             'skpd_pembiayaan_id' => $id,
@@ -237,11 +237,13 @@ class SkpdRevisiController extends Controller
         ]);
 
         foreach ($request->foto as $key => $value) {
-            if ($value['foto']) {
-                Storage::delete($value['foto_lama']);
+            if ($value['foto'] != null) {
+                if ($value['foto_lama']) {
+                    Storage::delete($value['foto_lama']);
+                }
                 $foto = $value['foto']->store('foto-skpd-pembiayaan');
 
-                SkpdFoto::where('skpd_pembiayaan_id', $id)->where('id',$value['id'])->update([
+                SkpdFoto::where('skpd_pembiayaan_id', $id)->where('id', $value['id'])->update([
                     'skpd_pembiayaan_id' => $id,
                     'kategori' => $value['kategori'],
                     'foto' => $foto,
@@ -261,49 +263,46 @@ class SkpdRevisiController extends Controller
         //     ]);
         // }
 
-        if ($request->slik[0]['nama_bank']){
+        if ($request->slik[0]['nama_bank']) {
 
-            SkpdSlik::select()->where('skpd_pembiayaan_id',$id)->delete();
-        
+            SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->delete();
+
             foreach ($request->slik as $key => $value) {
 
-            SkpdSlik::create([
-                'skpd_pembiayaan_id' => $id,
-                'nama_bank' => $value['nama_bank'],
-                'plafond' => $value['plafond'],
-                'outstanding' => $value['outstanding'],
-                'tenor' => $value['tenor'],
-                'margin' => $value['margin'],
-                'angsuran' => $value['angsuran'],
-                'agunan' => $value['agunan'],
-                'kol' => $value['kol'],
-            ]);
+                SkpdSlik::create([
+                    'skpd_pembiayaan_id' => $id,
+                    'nama_bank' => $value['nama_bank'],
+                    'plafond' => $value['plafond'],
+                    'outstanding' => $value['outstanding'],
+                    'tenor' => $value['tenor'],
+                    'margin' => $value['margin'],
+                    'angsuran' => $value['angsuran'],
+                    'agunan' => $value['agunan'],
+                    'kol_tertinggi' => $value['kol_tertinggi'],
+                ]);
+            }
+        } else {
         }
-    } else{
 
-    }
+        if ($request->slikpasangan[0]['nama_bank']) {
 
-        if ($request->slikpasangan[0]['nama_bank']){
+            SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->delete();
 
-            SkpdSlikPasangan::select()->where('skpd_pembiayaan_id',$id)->delete();
-        
             foreach ($request->slik as $key => $value) {
 
-            SkpdSlikPasangan::create([
-                'skpd_pembiayaan_id' => $id,
-                'nama_bank' => $value['nama_bank'],
-                'plafond' => $value['plafond'],
-                'outstanding' => $value['outstanding'],
-                'tenor' => $value['tenor'],
-                'margin' => $value['margin'],
-                'angsuran' => $value['angsuran'],
-                'agunan' => $value['agunan'],
-                'kol' => $value['kol'],
-            ]);
-        }}
-
-        else{
-        
+                SkpdSlikPasangan::create([
+                    'skpd_pembiayaan_id' => $id,
+                    'nama_bank' => $value['nama_bank'],
+                    'plafond' => $value['plafond'],
+                    'outstanding' => $value['outstanding'],
+                    'tenor' => $value['tenor'],
+                    'margin' => $value['margin'],
+                    'angsuran' => $value['angsuran'],
+                    'agunan' => $value['agunan'],
+                    'kol_tertinggi' => $value['kol_tertinggi'],
+                ]);
+            }
+        } else {
         }
 
         return redirect('/skpd/komite')->with('success', 'Pengajuan Anda Sedang Di Proses Silahkan Hubungi AO');
