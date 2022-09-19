@@ -55,7 +55,7 @@
                         <div class="col-xl-12 col-md-6 col-12">
                             <div class="card card-statistics">
                                 <div class="card-header">
-                                    <h4 class="card-title">Statistik Proposal Anda</h4>
+                                    <h4 class="card-title">Statistik PPR</h4>
                                     <div class="d-flex align-items-center">
                                         <p class="card-text font-small-2 me-25 mb-0"></p>
                                     </div>
@@ -125,159 +125,247 @@
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <div class="avatar bg-light-info p-50 mb-1">
-                                        <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Views</p>
+                                    <h5>Total Proposal Per Bulan</h5>
+                                    <canvas id="chartProposal" width="100" height="100"></canvas>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <div class="avatar bg-light-info p-50 mb-1">
-                                        <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Views</p>
+                                    <h5>Plafond Per Bulan</h5>
+                                    <canvas id="chartPlafond" width="100" height="100"></canvas>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <div class="avatar bg-light-info p-50 mb-1">
-                                        <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Views</p>
+                                    <h5>Jenis Nasabah</h5>
+                                    <canvas id="chartJenisNasabah" width="100" height="100"></canvas>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <div class="avatar bg-light-info p-50 mb-1">
-                                        <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="fw-bolder">36.9k</h2>
-                                    <p class="card-text">Views</p>
+                                    <h5>NOA Proyek Perumahan</h5>
+                                    <canvas id="chartNoaProyekPerumahan" width="100" height="100"
+                                        style="margin-top:20px;"></canvas>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    {{-- <div class="row match-height">
-                        <div class="col-lg-4 col-12">
-                            <div class="row match-height">
-                                <!-- Bar Chart - Orders -->
-                                <div class="col-lg-6 col-md-3 col-6">
-                                    <div class="card">
-                                        <div class="card-body pb-50">
-                                            <h6>Orders</h6>
-                                            <h2 class="fw-bolder mb-1">2,76k</h2>
-                                            <div id="statistics-order-chart"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/ Bar Chart - Orders -->
-                                <!-- Line Chart - Profit -->
-                                <div class="col-lg-6 col-md-3 col-6">
-                                    <div class="card card-tiny-line-stats">
-                                        <div class="card-body pb-50">
-                                            <h6>Profit</h6>
-                                            <h2 class="fw-bolder mb-1">6,24k</h2>
-                                            <div id="statistics-profit-chart"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/ Line Chart - Profit -->
-                                <!-- Earnings Card -->
-                                <div class="col-lg-12 col-md-6 col-12">
-                                    <div class="card earnings-card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <h4 class="card-title mb-1">Earnings</h4>
-                                                    <div class="font-small-2">This Month</div>
-                                                    <h5 class="mb-1">$4055.56</h5>
-                                                    <p class="card-text text-muted font-small-2">
-                                                        <span class="fw-bolder">68.2%</span><span> more earnings than last
-                                                            month.</span>
-                                                    </p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div id="earnings-chart"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/ Earnings Card -->
-                            </div>
-                        </div>
-                        <!-- Revenue Report Card -->
-                        <div class="col-lg-8 col-12">
-                            <div class="card card-revenue-budget">
-                                <div class="row mx-0">
-                                    <div class="col-md-8 col-12 revenue-report-wrapper">
-                                        <div class="d-sm-flex justify-content-between align-items-center mb-3">
-                                            <h4 class="card-title mb-50 mb-sm-0">Revenue Report</h4>
-                                            <div class="d-flex align-items-center">
-                                                <div class="d-flex align-items-center me-2">
-                                                    <span
-                                                        class="bullet bullet-primary font-small-3 me-50 cursor-pointer"></span>
-                                                    <span>Earning</span>
-                                                </div>
-                                                <div class="d-flex align-items-center ms-75">
-                                                    <span
-                                                        class="bullet bullet-warning font-small-3 me-50 cursor-pointer"></span>
-                                                    <span>Expense</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="revenue-report-chart"></div>
-                                    </div>
-                                    <div class="col-md-4 col-12 budget-wrapper">
-                                        <div class="btn-group">
-                                            <button type="button"
-                                                class="btn btn-outline-primary btn-sm dropdown-toggle budget-dropdown"
-                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                2020
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">2020</a>
-                                                <a class="dropdown-item" href="#">2019</a>
-                                                <a class="dropdown-item" href="#">2018</a>
-                                            </div>
-                                        </div>
-                                        <h2 class="mb-25">$25,852</h2>
-                                        <div class="d-flex justify-content-center">
-                                            <span class="fw-bolder me-25">Budget:</span>
-                                            <span>56,800</span>
-                                        </div>
-                                        <div id="budget-chart"></div>
-                                        <button type="button" class="btn btn-primary">Increase Budget</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ Revenue Report Card -->
-                    </div> --}}
+
                 </section>
-                <!-- Dashboard Ecommerce ends -->
-
             </div>
         </div>
     </div>
     <!-- END: Content-->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+    <!-- Charts Script -->
+    <!-- Chart Proposal -->
+    <script>
+        var labelProposal = JSON.parse('{!! json_encode($bulans) !!}');
+        var dataProposal = JSON.parse('{!! json_encode($hitungPerBulan) !!}');
+
+        var ctx = document.getElementById('chartProposal');
+        var chartProposal = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labelProposal,
+                datasets: [{
+                    label: "Proposal Per Bulan",
+                    data: dataProposal,
+                    backgroundColor: [
+                        'rgba(203, 38, 33, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(203, 38, 33, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: {
+                            precision: 0,
+                            beginAtZero: true,
+                            callback: (yValue) => {
+                                return Math.floor(yValue);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- End Chart Proposal -->
+
+    <!-- Chart Plafond -->
+    <script>
+        var labelPlafond = JSON.parse('{!! json_encode($labelPlafond) !!}');
+        var dataPlafond = JSON.parse('{!! json_encode($dataPlafond) !!}');
+
+        var ctx = document.getElementById('chartPlafond');
+        var chartPlafond = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labelPlafond,
+                datasets: [{
+                    label: "Plafond Per Bulan",
+                    data: dataPlafond,
+                    backgroundColor: [
+                        'rgba(203, 38, 33, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(203, 38, 33, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- End Chart Plafond -->
+
+    <!-- Chart Jenis Nasabah -->
+    <script>
+        var jenisNasabah = JSON.parse('{!! json_encode($jenisNasabah) !!}');
+
+        var ctx = document.getElementById('chartJenisNasabah');
+        var chartJenisNasabah = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Fixed Income', 'Non Fixed Income'],
+                datasets: [{
+                    label: "Jenis Nasabah",
+                    data: jenisNasabah,
+                    backgroundColor: [
+                        'rgba(203, 38, 33, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(203, 38, 33, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        align: 'start',
+                        labels: {
+                            boxWidth: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- End Chart Jenis Nasabah -->
+
+    <!-- Chart NOA Proyek Perumahan -->
+    <script>
+        var dataNoaProyekPerumahan = JSON.parse('{!! json_encode($dataNoaProyekPerumahan) !!}');
+        var labelNoaProyekPerumahan = JSON.parse('{!! json_encode($labelNoaProyekPerumahan) !!}');
+
+        var ctx = document.getElementById('chartNoaProyekPerumahan');
+        var chartNoaProyekPerumahan = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labelNoaProyekPerumahan,
+                datasets: [{
+                    label: "NOA Proyek Perumahan",
+                    data: dataNoaProyekPerumahan,
+                    backgroundColor: [
+                        'rgba(203, 38, 33, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(203, 38, 33, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false,
+                        position: 'right',
+                        align: 'start',
+                        labels: {
+                            boxWidth: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- End Chart NOA Proyek Perumahan -->
+    <!-- End Charts Script -->
 @endsection

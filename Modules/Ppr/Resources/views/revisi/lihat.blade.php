@@ -197,6 +197,34 @@
             overflow: hidden;
         }
 
+        #ifShgbAgunan1Expired {
+            width: 25%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan1Expired.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifShgbAgunan1Hak {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan1Hak.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
         #ifJenisAgunan2Lain {
             width: 50%;
             height: 40px;
@@ -204,6 +232,34 @@
         }
 
         #ifJenisAgunan2Lain.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifShgbAgunan2Expired {
+            width: 25%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan2Expired.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifShgbAgunan2Hak {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan2Hak.hide {
+            margin-top: -15px;
             height: 0;
             opacity: 0;
             overflow: hidden;
@@ -791,7 +847,7 @@
                                                 <small class="text-danger">*
                                                 </small> <label class="form-label" for="form_pribadi_pemohon_npwp">No.
                                                     NPWP</label>
-                                                <input type="number" name="form_pribadi_pemohon_npwp"
+                                                <input type="text" name="form_pribadi_pemohon_npwp"
                                                     id="form_pribadi_pemohon_npwp" class="form-control"
                                                     placeholder="Masukkan Nomor NPWP Anda"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_npwp }}" />
@@ -1238,7 +1294,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1248,7 +1304,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1459,7 +1515,7 @@
                                                     <div class="mb-1 col-md-6">
                                                         <label class="form-label" for="form_pribadi_istri_suami_npwp">No.
                                                             NPWP</label>
-                                                        <input type="number" name="form_pribadi_istri_suami_npwp"
+                                                        <input type="text" name="form_pribadi_istri_suami_npwp"
                                                             id="form_pribadi_istri_suami_npwp" class="form-control"
                                                             placeholder="Masukkan Nomor NPWP Anda"
                                                             value="{{ $pembiayaan->pemohon->form_pribadi_istri_suami_npwp }}" />
@@ -1883,7 +1939,7 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_pekerjaan_pemohon_npwp">Nomor NPWP
                                                     Perusahaan/Instansi</label>
-                                                <input type="number" name="form_pekerjaan_pemohon_npwp"
+                                                <input type="text" name="form_pekerjaan_pemohon_npwp"
                                                     id="form_pekerjaan_pemohon_npwp" class="form-control"
                                                     placeholder="Nomor NPWP Perusahaan/Instansi"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_npwp }}" />
@@ -2384,8 +2440,8 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_pekerjaan_istri_suami_npwp">Nomor
                                                     NPWP
-                                                    Perusahaan</label>
-                                                <input type="number" name="form_pekerjaan_istri_suami_npwp"
+                                                    Perusahaan/Instansi</label>
+                                                <input type="text" name="form_pekerjaan_istri_suami_npwp"
                                                     id="form_pekerjaan_istri_suami_npwp" class="form-control"
                                                     placeholder="Nomor NPWP Perusahaan"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_npwp }}" />
@@ -3153,7 +3209,8 @@
                                                                     </small>Status/Bukti Kepemilikan</label>
                                                                 <select class="select2 w-100"
                                                                     name="form_agunan_1_status_bukti_kepemilikan"
-                                                                    id="form_agunan_1_status_bukti_kepemilikan">
+                                                                    id="formAgunan1StatusBuktiKepemilikan"
+                                                                    onChange="changeShgbAgunan1()">
                                                                     <option label="form_agunan_1_status_bukti_kepemilikan"
                                                                         selected disabled>Pilih
                                                                         Bukti Kepemilikan
@@ -3167,7 +3224,8 @@
                                                                 </select>
                                                             </div>
 
-                                                            <div class="mb-1 col-md-3">
+                                                            <div class="mb-1 col-md-3 {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan == 'SHGB' ? 'show' : 'hide' }}"
+                                                                id="ifShgbAgunan1Expired">
                                                                 <label class="form-label"
                                                                     for="form_agunan_1_status_bukti_kepemilikan_tgl_berakhir"><small
                                                                         class="text-danger">*
@@ -3180,7 +3238,8 @@
                                                                     value="{{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan_tgl_berakhir }}" />
                                                             </div>
 
-                                                            <div class="mb-1 col-md-3">
+                                                            <div class="mb-1 col-md-3 {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan == 'SHGB' ? 'show' : 'hide' }}"
+                                                                id="ifShgbAgunan1Hak">
                                                                 <label class="form-label"
                                                                     for="form_agunan_1_status_bukti_kepemilikan_hak"><small
                                                                         class="text-danger">*
@@ -3193,9 +3252,6 @@
                                                                         selected disabled>
                                                                         Pilih Hak Kepemilikan
                                                                     </option>
-                                                                    <option
-                                                                        {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan_hak == 'Hak Milik' ? 'selected' : '' }}
-                                                                        value="Hak Milik">Hak Milik</option>
                                                                     <option
                                                                         {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan_hak == 'Hak Pakai' ? 'selected' : '' }}
                                                                         value="Hak Pakai">Hak Pakai</option>
@@ -3491,7 +3547,8 @@
                                                                     Kepemilikan</label>
                                                                 <select class="select2 w-100"
                                                                     name="form_agunan_2_status_bukti_kepemilikan"
-                                                                    id="form_agunan_2_status_bukti_kepemilikan">
+                                                                    id="formAgunan2StatusBuktiKepemilikan"
+                                                                    onChange="changeShgbAgunan2()">
                                                                     <option
                                                                         label="form_agunan_2_status_bukti_kepemilikan">
                                                                         Pilih
@@ -3506,7 +3563,8 @@
                                                                 </select>
                                                             </div>
 
-                                                            <div class="mb-1 col-md-3">
+                                                            <div class="mb-1 col-md-3 {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan == 'SHGB' ? 'show' : 'hide' }}"
+                                                                id="ifShgbAgunan2Expired">
                                                                 <label class="form-label"
                                                                     for="form_agunan_2_status_bukti_kepemilikan_tgl_berakhir">Tanggal
                                                                     Berakhir</label>
@@ -3518,7 +3576,8 @@
                                                                     value="{{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan_tgl_berakhir }}" />
                                                             </div>
 
-                                                            <div class="mb-1 col-md-3">
+                                                            <div class="mb-1 col-md-3 {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan == 'SHGB' ? 'show' : 'hide' }}"
+                                                                id="ifShgbAgunan2Hak">
                                                                 <label class="form-label"
                                                                     for="form_agunan_2_status_bukti_kepemilikan_hak">Hak</label>
                                                                 <select class="select2 w-100"
@@ -7840,7 +7899,7 @@
                                                             <td class="midJustify">
                                                                 Tempat Bekerja
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_tempat_bekerja"
                                                                     id="character_tempat_bekerja">
@@ -7863,7 +7922,7 @@
                                                             <td class="midJustify">
                                                                 Konsistensi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_konsistensi"
                                                                     id="character_konsistensi">
@@ -7885,14 +7944,15 @@
                                                             <td class="midCenter">
                                                                 c.
                                                             </td>
-                                                            <td class="midJustify">
+                                                            <td class="midJustify col-fixed-width">
                                                                 Kelengkapan & Validitas Data
                                                             </td>
-                                                            <td class="midCenter">
-                                                                <select class="form-control w-100"
+                                                            <td class="midCenter col-fixed-width">
+                                                                <select class="select2 w-100"
                                                                     name="character_kelengkapan_validitas_data"
                                                                     id="character_kelengkapan_validitas_data">
-                                                                    <option label="Pilih" selected disabled>
+                                                                    <option label="character_kelengkapan_validitas_data"
+                                                                        selected disabled> Pilih
                                                                     </option>
                                                                     @foreach ($character_kelengkapan_validitas_datas as $character_kelengkapan_validitas_data)
                                                                         <option
@@ -7910,7 +7970,7 @@
                                                             <td class="midJustify">
                                                                 Pembayaran Angsuran & Kolektif
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_pembayaran_angsuran_kolektif"
                                                                     id="character_pembayaran_angsuran_kolektif">
@@ -7933,7 +7993,7 @@
                                                             <td class="midJustify">
                                                                 Pengalaman Pembiayaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_pengalaman_pembiayaan"
                                                                     id="character_pengalaman_pembiayaan">
@@ -7956,7 +8016,7 @@
                                                             <td class="midJustify">
                                                                 Motivasi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="character_motivasi"
                                                                     id="character_motivasi">
                                                                     <option label="character_motivasi" selected disabled>
@@ -7978,7 +8038,7 @@
                                                             <td class="midJustify">
                                                                 Referensi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="character_referensi"
                                                                     id="character_referensi">
                                                                     <option label="character_referensi" selected disabled>
@@ -8001,7 +8061,7 @@
                                                             <td class="midJustify">
                                                                 Tingkat Kepercayaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_nf_tingkat_kepercayaan"
                                                                     id="character_nf_tingkat_kepercayaan">
@@ -8023,7 +8083,7 @@
                                                             <td class="midJustify">
                                                                 Pengelolaan Rekening Bank
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_nf_pengelolaan_rekening"
                                                                     id="character_nf_pengelolaan_rekening">
@@ -8047,7 +8107,7 @@
                                                             <td class="midJustify">
                                                                 Reputasi Bisnis
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="form-control w-100"
                                                                     name="character_nf_reputasi_bisnis"
                                                                     id="character_nf_reputasi_bisnis">
@@ -8069,7 +8129,7 @@
                                                             <td class="midJustify">
                                                                 Perilaku Pribadi Debitur
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="character_nf_perilaku_pribadi"
                                                                     id="character_nf_perilaku_pribadi">
@@ -8255,7 +8315,7 @@
                                                         <td class="midJustify">
                                                             Pekerjaan
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100" name="capital_pekerjaan"
                                                                 id="capital_pekerjaan">
                                                                 <option label="capital_pekerjaan" selected disabled>Pilih
@@ -8276,7 +8336,7 @@
                                                         <td class="midJustify">
                                                             Pengalaman Riwayat Pembiayaan
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_pengalaman_riwayat_pembiayaan"
                                                                 id="capital_pengalaman_riwayat_pembiayaan">
@@ -8299,7 +8359,7 @@
                                                         <td class="midJustify">
                                                             Keamanan Bisnis/Pekerjaan
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_keamanan_bisnis_pekerjaan"
                                                                 id="capital_keamanan_bisnis_pekerjaan">
@@ -8322,7 +8382,7 @@
                                                         <td class="midJustify">
                                                             Potensi Pertumbuhan Hasil
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_potensi_pertumbuhan_hasil"
                                                                 id="capital_potensi_pertumbuhan_hasil">
@@ -8345,7 +8405,7 @@
                                                         <td class="midJustify">
                                                             Sumber Pendapatan
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_sumber_pendapatan"
                                                                 id="capital_sumber_pendapatan">
@@ -8368,7 +8428,7 @@
                                                         <td class="midJustify">
                                                             Pendapatan/Gaji Bersih
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_pendapatan_gaji_bersih"
                                                                 id="capital_pendapatan_gaji_bersih">
@@ -8391,7 +8451,7 @@
                                                         <td class="midJustify">
                                                             Jumlah Tanggungan Keluarga
                                                         </td>
-                                                        <td class="midCenter">
+                                                        <td class="midCenter col-fixed-width">
                                                             <select class="select2 w-100"
                                                                 name="capital_jml_tanggungan_keluarga"
                                                                 id="capital_jml_tanggungan_keluarga">
@@ -8413,11 +8473,11 @@
                                         </div>
 
                                         <div class="d-flex justify-content-between mt-3">
-                                            <button class="btn btn-primary btn-prev">
+                                            <button class="btn btn-primary btn-prev" type="button">
                                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>
-                                            <button class="btn btn-primary btn-next">
+                                            <button class="btn btn-primary btn-next" type="button">
                                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                             </button>
@@ -8588,7 +8648,7 @@
                                                             <td class="midJustify">
                                                                 Pekerjaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="capacity_pekerjaan"
                                                                     id="capacity_pekerjaan">
                                                                     <option label="capacity_pekerjaan" selected disabled>
@@ -8610,7 +8670,7 @@
                                                             <td class="midJustify">
                                                                 Pengalaman Riwayat Pembiayaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_pengalaman_riwayat_pembiayaan"
                                                                     id="capacity_pengalaman_riwayat_pembiayaan">
@@ -8632,7 +8692,7 @@
                                                             <td class="midJustify">
                                                                 Keamanan Bisnis/Pekerjaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_keamanan_bisnis_pekerjaan"
                                                                     id="capacity_keamanan_bisnis_pekerjaan">
@@ -8655,7 +8715,7 @@
                                                             <td class="midJustify">
                                                                 Potensi Pertumbuhan Hasil
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_potensi_pertumbuhan_hasil"
                                                                     id="capacity_potensi_pertumbuhan_hasil">
@@ -8678,7 +8738,7 @@
                                                             <td class="midJustify">
                                                                 Pengalaman Kerja
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_pengalaman_kerja"
                                                                     id="capacity_pengalaman_kerja">
@@ -8701,7 +8761,7 @@
                                                             <td class="midJustify">
                                                                 Pendidikan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="capacity_pendidikan"
                                                                     id="capacity_pendidikan">
                                                                     <option label="capacity_pendidikan" selected disabled>
@@ -8723,7 +8783,7 @@
                                                             <td class="midJustify">
                                                                 Usia
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="capacity_usia"
                                                                     id="capacity_usia">
                                                                     <option label="capacity_usia" selected disabled>Pilih
@@ -8744,7 +8804,7 @@
                                                             <td class="midJustify">
                                                                 Sumber Pendapatan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_sumber_pendapatan"
                                                                     id="capacity_sumber_pendapatan">
@@ -8767,7 +8827,7 @@
                                                             <td class="midJustify">
                                                                 Pendapatan/Gaji Bersih
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_pendapatan_gaji_bersih"
                                                                     id="capacity_pendapatan_gaji_bersih">
@@ -8790,7 +8850,7 @@
                                                             <td class="midJustify">
                                                                 Jumlah Tanggungan Keluarga
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_jml_tanggungan_keluarga"
                                                                     id="capacity_jml_tanggungan_keluarga">
@@ -8814,7 +8874,7 @@
                                                             <td class="midJustify">
                                                                 Situasi Pasar dan Persaingan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_nf_situasi_persaingan"
                                                                     id="capacity_nf_situasi_persaingan">
@@ -8836,7 +8896,7 @@
                                                             <td class="midJustify">
                                                                 Kaderisasi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_nf_kaderisasi"
                                                                     id="capacity_nf_kaderisasi">
@@ -8858,7 +8918,7 @@
                                                             <td class="midJustify">
                                                                 Kualifikasi Komersial
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_nf_kualifikasi_komersial"
                                                                     id="capacity_nf_kualifikasi_komersial">
@@ -8880,7 +8940,7 @@
                                                             <td class="midJustify">
                                                                 Kualifikasi Teknis
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="capacity_nf_kualifikasi_teknis"
                                                                     id="capacity_nf_kualifikasi_teknis">
@@ -8902,11 +8962,11 @@
                                         </div>
 
                                         <div class="d-flex justify-content-between mt-3">
-                                            <button class="btn btn-primary btn-prev">
+                                            <button class="btn btn-primary btn-prev" type="button">
                                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>
-                                            <button class="btn btn-primary btn-next">
+                                            <button class="btn btn-primary btn-next" type="button">
                                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                             </button>
@@ -9059,7 +9119,7 @@
                                                             <td class="midJustify">
                                                                 Pekerjaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="condition_pekerjaan"
                                                                     id="condition_pekerjaan">
                                                                     <option label="condition_pekerjaan" selected disabled>
@@ -9081,7 +9141,7 @@
                                                             <td class="midJustify">
                                                                 Pengalaman Riwayat Pembiayaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_pengalaman_riwayat_pembiayaan"
                                                                     id="condition_pengalaman_riwayat_pembiayaan">
@@ -9105,7 +9165,7 @@
                                                             <td class="midJustify">
                                                                 Keamanan Bisnis/Pekerjaan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_keamanan_bisnis_pekerjaan"
                                                                     id="condition_keamanan_bisnis_pekerjaan">
@@ -9128,7 +9188,7 @@
                                                             <td class="midJustify">
                                                                 Potensi Pertumbuhan Hasil
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_potensi_pertumbuhan_hasil"
                                                                     id="condition_potensi_pertumbuhan_hasil">
@@ -9151,7 +9211,7 @@
                                                             <td class="midJustify">
                                                                 Pengalaman Kerja
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_pengalaman_kerja"
                                                                     id="condition_pengalaman_kerja">
@@ -9174,7 +9234,7 @@
                                                             <td class="midJustify">
                                                                 Pendidikan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_pendidikan"
                                                                     id="condition_pendidikan">
@@ -9198,7 +9258,7 @@
                                                             <td class="midJustify">
                                                                 Usia
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100" name="condition_usia"
                                                                     id="condition_usia">
                                                                     <option label="condition_usia" selected disabled>Pilih
@@ -9219,7 +9279,7 @@
                                                             <td class="midJustify">
                                                                 Sumber Pendapatan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_sumber_pendapatan"
                                                                     id="condition_sumber_pendapatan">
@@ -9242,7 +9302,7 @@
                                                             <td class="midJustify">
                                                                 Pendapatan/Gaji Bersih
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_pendapatan_gaji_bersih"
                                                                     id="condition_pendapatan_gaji_bersih">
@@ -9265,7 +9325,7 @@
                                                             <td class="midJustify">
                                                                 Jumlah Tanggungan Keluarga
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_jml_tanggungan_keluarga"
                                                                     id="condition_jml_tanggungan_keluarga">
@@ -9289,7 +9349,7 @@
                                                             <td class="midJustify">
                                                                 Kualitas Produk dan Jasa
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_nf_kualitas_produk_jasa"
                                                                     id="condition_nf_kualitas_produk_jasa">
@@ -9311,7 +9371,7 @@
                                                             <td class="midJustify">
                                                                 Sistem Pembayaran
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_nf_sistem_pembayaran"
                                                                     id="condition_nf_sistem_pembayaran">
@@ -9333,7 +9393,7 @@
                                                             <td class="midJustify">
                                                                 Lokasi Usaha
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="condition_nf_lokasi_usaha"
                                                                     id="condition_nf_lokasi_usaha">
@@ -9355,11 +9415,11 @@
                                         </div>
 
                                         <div class="d-flex justify-content-between mt-3">
-                                            <button class="btn btn-primary btn-prev">
+                                            <button class="btn btn-primary btn-prev" type="button">
                                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>
-                                            <button class="btn btn-primary btn-next">
+                                            <button class="btn btn-primary btn-next" type="button">
                                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                             </button>
@@ -9543,7 +9603,7 @@
                                                             <td class="midJustify">
                                                                 Marketabilitas
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_marketabilitas"
                                                                     id="collateral_marketabilitas">
@@ -9566,7 +9626,7 @@
                                                             <td class="midJustify">
                                                                 Kontribusi Pemohon = FTV
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_kontribusi_pemohon_ftv"
                                                                     id="collateral_kontribusi_pemohon_ftv">
@@ -9589,7 +9649,7 @@
                                                             <td class="midJustify">
                                                                 Pertumbuhan Agunan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_pertumbuhan_agunan"
                                                                     id="collateral_pertumbuhan_agunan">
@@ -9612,7 +9672,7 @@
                                                             <td class="midJustify">
                                                                 Daya Tarik Agunan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_daya_tarik_agunan"
                                                                     id="collateral_daya_tarik_agunan">
@@ -9635,7 +9695,7 @@
                                                             <td class="midJustify">
                                                                 Jangka Waktu Likuidasi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_jangka_waktu_likuidasi"
                                                                     id="collateral_jangka_waktu_likuidasi">
@@ -9659,7 +9719,7 @@
                                                             <td class="midJustify">
                                                                 Marketabilitas
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_nf_marketabilitas"
                                                                     id="collateral_nf_marketabilitas">
@@ -9681,7 +9741,7 @@
                                                             <td class="midJustify">
                                                                 Kontribusi Pemohon = FTV
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_nf_kontribusi_pemohon_ftv"
                                                                     id="collateral_nf_kontribusi_pemohon_ftv">
@@ -9703,7 +9763,7 @@
                                                             <td class="midJustify">
                                                                 Pertumbuhan Agunan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_nf_pertumbuhan_agunan"
                                                                     id="collateral_nf_pertumbuhan_agunan">
@@ -9725,7 +9785,7 @@
                                                             <td class="midJustify">
                                                                 Daya Tarik Agunan
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_nf_daya_tarik_agunan"
                                                                     id="collateral_nf_daya_tarik_agunan">
@@ -9747,7 +9807,7 @@
                                                             <td class="midJustify">
                                                                 Jangka Waktu Likuidasi
                                                             </td>
-                                                            <td class="midCenter">
+                                                            <td class="midCenter col-fixed-width">
                                                                 <select class="select2 w-100"
                                                                     name="collateral_nf_jangka_waktu_likuidasi"
                                                                     id="collateral_nf_jangka_waktu_likuidasi">
@@ -9955,6 +10015,17 @@
             }
         }
 
+        function changeShgbAgunan1() {
+            var shgbAgunan1 = document.getElementById("formAgunan1StatusBuktiKepemilikan");
+            if (shgbAgunan1.value == "SHGB") {
+                document.getElementById("ifShgbAgunan1Expired").classList.toggle("hide");
+                document.getElementById("ifShgbAgunan1Hak").classList.toggle("hide");
+            } else {
+                document.getElementById("ifShgbAgunan1Expired").classList = "hide";
+                document.getElementById("ifShgbAgunan1Hak").classList = "hide";
+            }
+        }
+
         function changeJenisAgunan2() {
             var jenisAgunan2 = document.getElementById("formAgunan2Jenis");
             if (jenisAgunan2.value == "Lain-lain") {
@@ -9964,13 +10035,14 @@
             }
         }
 
-        function tampilAkadLain() {
-            var jenis_akad_pembayaran = document.getElementById("jenis_akad_pembayaran");
-            if (jenis_akad_pembayaran.value != "murabahah" || "imbt" || "mmq") {
-                document.getElementById("AkadLainnya").style.visibility = "visible";
-
+        function changeShgbAgunan2() {
+            var shgbAgunan2 = document.getElementById("formAgunan2StatusBuktiKepemilikan");
+            if (shgbAgunan2.value == "SHGB") {
+                document.getElementById("ifShgbAgunan2Expired").classList.toggle("hide");
+                document.getElementById("ifShgbAgunan2Hak").classList.toggle("hide");
             } else {
-                document.getElementById("AkadLainnya").style.visibility = "collapse";
+                document.getElementById("ifShgbAgunan2Expired").classList = "hide";
+                document.getElementById("ifShgbAgunan2Hak").classList = "hide";
             }
         }
 

@@ -74,51 +74,56 @@
 
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-    <!-- BEGIN: Head-->
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Login</title>
-        <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
-        <link rel="shortcut icon" type="image/x-icon" href="../../../faviconBTB.png">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+<!-- BEGIN: Head-->
 
-        <!-- BEGIN: Vendor CSS-->
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
-        <!-- END: Vendor CSS-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../faviconBTB.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+        rel="stylesheet">
 
-        <!-- BEGIN: Theme CSS-->
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.min.css">
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
+    <!-- END: Vendor CSS-->
 
-        <!-- BEGIN: Page CSS-->
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-validation.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/authentication.css">
-        <!-- END: Page CSS-->
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.min.css">
 
-        <!-- BEGIN: Custom CSS-->
-        <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
-        <!-- END: Custom CSS-->
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-validation.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/authentication.css">
+    <!-- END: Page CSS-->
 
-    </head>
-    <!-- END: Head-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+    <!-- END: Custom CSS-->
 
-    <!-- BEGIN: Body-->
-    <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
-        <!-- BEGIN: Content-->
-        <div class="app-content content ">
-            <div class="content-overlay"></div>
-            <div class="header-navbar-shadow"></div>
-            <div class="content-wrapper">
-                <div class="content-header row">
-                </div>
-                <div class="content-body"><div class="auth-wrapper auth-basic px-2">
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click"
+    data-menu="vertical-menu-modern" data-col="blank-page">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <div class="auth-wrapper auth-basic px-2">
                     <div class="auth-inner my-2">
                         <!-- Login basic -->
                         <div class="card mb-0">
@@ -128,13 +133,16 @@
                                 </a>
 
                                 <h4 class="card-title mb-1">Selamat Datang! 👋</h4>
-                                <p class="card-text mb-2">Silahkan Masukan Email dan Password Anda</p>
+                                <p class="card-text mb-2">Silakan Masukan Email dan Password Anda</p>
 
-                                <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}" >
+                                <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="mb-1">
-                                        <label for="login-email" class="form-label">Email</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="login-email" placeholder="nama@domain.com" aria-describedby="login-email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus tabindex="1" autofocus />
+                                        <label for="login-email" class="form-label">E-mail</label>
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                            id="login-email" placeholder="nama@domain.com"
+                                            aria-describedby="login-email" name="email" value="{{ old('email') }}"
+                                            required autocomplete="email" autofocus tabindex="1" autofocus />
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -152,17 +160,26 @@
                                             @enderror
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input type="password" class="form-control @error('password') is-invalid @enderror form-control-merge" id="login-password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" name="password" required autocomplete="current-password" />
-                                            <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                                            <input type="password"
+                                                class="form-control @error('password') is-invalid @enderror form-control-merge"
+                                                id="login-password" tabindex="2"
+                                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                                aria-describedby="login-password" name="password" required
+                                                autocomplete="current-password" />
+                                            <span class="input-group-text cursor-pointer"><i
+                                                    data-feather="eye"></i></span>
                                         </div>
                                     </div>
                                     <div class="mb-1">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="remember-me" tabindex="3" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
+                                            <input class="form-check-input" type="checkbox" id="remember-me"
+                                                tabindex="3" name="remember" id="remember"
+                                                {{ old('remember') ? 'checked' : '' }} />
                                             <label class="form-check-label" for="remember-me"> Ingatkan Saya </label>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary w-100" tabindex="4">Sign in</button>
+                                    <button type="submit" class="btn btn-primary w-100" tabindex="4">Sign
+                                        in</button>
                                 </form>
                             </div>
                         </div>
@@ -194,12 +211,16 @@
     <!-- END: Page JS-->
 
     <script>
-        $(window).on('load',  function(){
+        $(window).on('load', function() {
             if (feather) {
-                feather.replace({ width: 14, height: 14 });
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
             }
         })
-        </script>
-  </body>
-  <!-- END: Body-->
-  </html>
+    </script>
+</body>
+<!-- END: Body-->
+
+</html>

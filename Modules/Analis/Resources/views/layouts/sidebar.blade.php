@@ -128,8 +128,8 @@ foreach ($pprs as $ppr) {
         ->orderBy('created_at', 'desc')
         ->get()
         ->first();
-    if ($history->status_id == 5) {
-        $komite++;
+    if ($history->status_id == 5 && $history->jabatan_id == 3) {
+        $komiteppr++;
     }
 }
 

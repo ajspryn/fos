@@ -84,7 +84,8 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1">Nama Nasabah</td>
-                                                                            <td><span class="fw-bold">:
+                                                                            <td>:
+                                                                                <span class="fw-bold">
                                                                                     {{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_lengkap }}</span>
                                                                             </td>
                                                                         </tr>
@@ -143,7 +144,7 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td class="pe-1">Penghasilan Utama</td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_penghasilan_utama_pemohon) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -156,7 +157,7 @@
                                                                         <tr>
                                                                             <td class="pe-1">Penghasilan Utama Pasangan
                                                                             </td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_penghasilan_utama_istri_suami) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -175,7 +176,7 @@
                                                                         </tr> --}}
                                                                         <tr>
                                                                             <td class="pe-1 mt-2">Total Penghasilan</td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_total_penghasilan) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -194,14 +195,14 @@
 
                                                                         <tr>
                                                                             <td class="pe-1">Kewajiban Angsuran</td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_kewajiban_angsuran) }}</span>
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1 mt-1">Total Pengeluaran
                                                                             </td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_total_pengeluaran) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -848,7 +849,9 @@
                                                                                     <tr>
                                                                                         <td class="pe-1">Total Nilai
                                                                                         </td>
-                                                                                        <td>: {{ $score }}</td>
+                                                                                        <td>:
+                                                                                            <strong>{{ $score }}</strong>
+                                                                                        </td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td class="pe-1">Status</td>
@@ -1116,8 +1119,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Margin</td>
-                                                                                <td>{{ $pembiayaan->form_permohonan_jml_margin }}
-                                                                                    %
+                                                                                <td>0.9 %
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -1156,8 +1158,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Margin</td>
-                                                                                <td>{{ $pembiayaan->form_permohonan_jml_margin }}
-                                                                                    %
+                                                                                <td>0.9 %
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>

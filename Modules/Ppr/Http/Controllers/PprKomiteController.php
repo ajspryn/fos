@@ -66,8 +66,14 @@ class PprKomiteController extends Controller
         //         if (request('revisi') == 'Ya') {
         // FormPprPembiayaan::update
         //         }
-
-        return redirect('/ppr/komite/')->with('success', 'Proposal Berhasil Diajukan');
+        if ($request->status_id == 3) {
+            return redirect('/ppr/komite/')->with('success', 'Proposal Berhasil Diajukan!');
+        } elseif ($request->status_id == 6) {
+            return redirect('/ppr/komite/')->with('success', 'Proposal Berhasil Ditolak!');
+        } elseif ($request->status_id == 7) {
+            return redirect('/ppr/komite/')->with('success', 'Proposal Diajukan Untuk Revisi!');
+        } else {
+        }
     }
 
     /**
@@ -95,24 +101,20 @@ class PprKomiteController extends Controller
         $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
 
         //SLA & Timeline
-        $timeline = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderBy('created_at', 'desc')->get()->first();
-        $statushistory = Status::select()->where('id', $timeline->status_id)->get();
-
-
-        $waktuawal = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderBy('created_at', 'asc')->get()->first();
-        $waktuakhir = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderBy('created_at', 'desc')->get()->first();
-        $next = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->where('id', '>', $waktuawal->id)->orderby('id')->first();
+        //Timeline
+        $waktuawal = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();
+        $waktuakhir = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first();
 
         $waktumulai = Carbon::parse($waktuawal->created_at);
         $waktuberakhir = Carbon::parse($waktuakhir->created_at);
-        $selanjutnya = Carbon::parse($next->created_at);
 
 
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
 
         //Angsuran & Plafond
         $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
-        $margin = $pembiayaan->form_permohonan_jml_margin / 100;
+        // $margin = $pembiayaan->form_permohonan_jml_margin / 100;
+        $margin = 0.9 / 100;
         $tenor = $pembiayaan->form_permohonan_jml_bulan;
 
         //Angsuran

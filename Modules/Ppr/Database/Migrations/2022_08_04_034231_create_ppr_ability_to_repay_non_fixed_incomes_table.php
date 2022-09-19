@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('ppr_ability_to_repay_non_fixed_incomes', function (Blueprint $table) {
             $table->id();
 
+            $table->integer('form_ppr_pembiayaan_id');
             $table->integer('ppr_cl_dokumen_id');
 
             //Usaha 1

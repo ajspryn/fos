@@ -8,61 +8,6 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Modules\Admin\Entities\PprCapacityGajiBersih;
-use Modules\Admin\Entities\PprCapacityJmlTanggunganKeluarga;
-use Modules\Admin\Entities\PprCapacityKeamananBisnisPekerjaan;
-use Modules\Admin\Entities\PprCapacityPekerjaan;
-use Modules\Admin\Entities\PprCapacityPendidikan;
-use Modules\Admin\Entities\PprCapacityPengalamanKerja;
-use Modules\Admin\Entities\PprCapacityPengalamanPembiayaan;
-use Modules\Admin\Entities\PprCapacityPotensiPertumbuhanHasil;
-use Modules\Admin\Entities\PprCapacitySumberPendapatan;
-use Modules\Admin\Entities\PprCapacityNfSituasiPersaingan;
-use Modules\Admin\Entities\PprCapacityNfKaderisasi;
-use Modules\Admin\Entities\PprCapacityNfKualifikasiKomersial;
-use Modules\Admin\Entities\PprCapacityNfKualifikasiTeknis;
-use Modules\Admin\Entities\PprCapacityUsia;
-use Modules\Admin\Entities\PprCapitalGajiBersih;
-use Modules\Admin\Entities\PprCapitalJmlTanggunganKeluarga;
-use Modules\Admin\Entities\PprCapitalKeamananBisnisPekerjaan;
-use Modules\Admin\Entities\PprCapitalPekerjaan;
-use Modules\Admin\Entities\PprCapitalPengalamanPembiayaan;
-use Modules\Admin\Entities\PprCapitalPotensiPertumbuhanHasil;
-use Modules\Admin\Entities\PprCapitalSumberPendapatan;
-use Modules\Admin\Entities\PprCharacterAngsuranKolektif;
-use Modules\Admin\Entities\PprCharacterKelengkapanValiditas;
-use Modules\Admin\Entities\PprCharacterKonsistensi;
-use Modules\Admin\Entities\PprCharacterMotivasi;
-use Modules\Admin\Entities\PprCharacterPengalamanPembiayaan;
-use Modules\Admin\Entities\PprCharacterReferensi;
-use Modules\Admin\Entities\PprCharacterTempatBekerja;
-use Modules\Admin\Entities\PprCharacterNfTingkatKepercayaan;
-use Modules\Admin\Entities\PprCharacterNfPengelolaanRekening;
-use Modules\Admin\Entities\PprCharacterNfReputasiBisnis;
-use Modules\Admin\Entities\PprCharacterNfPerilakuPribadi;
-use Modules\Admin\Entities\PprCollateralDayaTarikAgunan;
-use Modules\Admin\Entities\PprCollateralJangkaWaktuLikuidasi;
-use Modules\Admin\Entities\PprCollateralKontribusiPemohon;
-use Modules\Admin\Entities\PprCollateralMarketabilitas;
-use Modules\Admin\Entities\PprCollateralPertumbuhanAgunan;
-use Modules\Admin\Entities\PprCollateralNfMarketabilitas;
-use Modules\Admin\Entities\PprCollateralNfKontribusiPemohon;
-use Modules\Admin\Entities\PprCollateralNfPertumbuhanAgunan;
-use Modules\Admin\Entities\PprCollateralNfDayaTarikAgunan;
-use Modules\Admin\Entities\PprCollateralNfJangkaWaktuLikuidasi;
-use Modules\Admin\Entities\PprConditionShariaGajiBersih;
-use Modules\Admin\Entities\PprConditionShariaJmlTanggunganKeluarga;
-use Modules\Admin\Entities\PprConditionShariaKeamananBisnisPekerjaan;
-use Modules\Admin\Entities\PprConditionShariaPekerjaan;
-use Modules\Admin\Entities\PprConditionShariaPendidikan;
-use Modules\Admin\Entities\PprConditionShariaPengalamanKerja;
-use Modules\Admin\Entities\PprConditionShariaPengalamanPembiayaan;
-use Modules\Admin\Entities\PprConditionShariaPotensiPertumbuhanHasil;
-use Modules\Admin\Entities\PprConditionShariaSumberPendapatan;
-use Modules\Admin\Entities\PprConditionShariaUsia;
-use Modules\Admin\Entities\PprConditionShariaNfKualitasProdukJasa;
-use Modules\Admin\Entities\PprConditionShariaNfSistemPembayaran;
-use Modules\Admin\Entities\PprConditionShariaNfLokasiUsaha;
 use Modules\Form\Entities\FormPprDataAgunan;
 use Modules\Form\Entities\FormPprDataKekayaanKendaraan;
 use Modules\Form\Entities\FormPprDataKekayaanLainnya;
@@ -75,32 +20,7 @@ use Modules\Form\Entities\FormPprDataPinjamanKartuKredit;
 use Modules\Form\Entities\FormPprDataPinjamanLainnya;
 use Modules\Form\Entities\FormPprDataPribadi;
 use Modules\Form\Entities\FormPprPembiayaan;
-use Modules\Ppr\Entities\PprAbilityToRepayFixedIncome;
-use Modules\Ppr\Entities\PprAbilityToRepayNonFixedIncome;
-use Modules\Ppr\Entities\PprCapacity;
-use Modules\Ppr\Entities\PprCapacityNonFixed;
-use Modules\Ppr\Entities\PprCapital;
-use Modules\Ppr\Entities\PprCharacter;
-use Modules\Ppr\Entities\PprCharacterNonFixed;
-use Modules\Ppr\Entities\PprClDokumen;
-use Modules\Ppr\Entities\PprClDokumenAgunan;
-use Modules\Ppr\Entities\PprClDokumenFixedIncome;
-use Modules\Ppr\Entities\PprClDokumenNonFixedIncome;
-use Modules\Ppr\Entities\PprClPersyaratan;
-use Modules\Ppr\Entities\PprCollateral;
-use Modules\Ppr\Entities\PprCollateralNonFixed;
-use Modules\Ppr\Entities\PprCondition;
-use Modules\Ppr\Entities\PprConditionNonFixed;
-use Modules\Ppr\Entities\PprPemberkasanMemo;
 use Modules\Ppr\Entities\PprPembiayaanHistory;
-use Modules\Ppr\Entities\PprScoringAtrFixedIncome;
-use Modules\Ppr\Entities\PprScoringAtrNonFixedIncome;
-use Modules\Ppr\Entities\PprScoringCollateralFixedIncome;
-use Modules\Ppr\Entities\PprScoringCollateralNonFixedIncome;
-use Modules\Ppr\Entities\PprScoringFixedIncome;
-use Modules\Ppr\Entities\PprScoringNonFixedIncome;
-use Modules\Ppr\Entities\PprScoringWtrFixedIncome;
-use Modules\Ppr\Entities\PprScoringWtrNonFixedIncome;
 use Modules\Ppr\Entities\PprScoring;
 
 
@@ -112,7 +32,10 @@ class PprKomiteController extends Controller
      */
     public function index()
     {
-        $komite = PprPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get();
+        $komite = PprPembiayaanHistory::select()
+            ->where('status_id', 3)
+            ->orderby('created_at', 'desc')
+            ->get();
 
         return view('kabag::ppr.komite.index', [
             'title' => 'Data Komite PPR',
@@ -146,7 +69,7 @@ class PprKomiteController extends Controller
 
         ]);
 
-        return redirect('/kabag/ppr/komite/')->with('success', 'Proposal Berhasil Disetujui');
+        return redirect('/kabag/ppr/komite/')->with('success', 'Proposal Berhasil Disetujui!');
     }
 
     /**
@@ -193,7 +116,7 @@ class PprKomiteController extends Controller
 
         //Angsuran & Plafond
         $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
-        $margin = $pembiayaan->form_permohonan_jml_margin / 100;
+        $margin = 0.9 / 100;
         $tenor = $pembiayaan->form_permohonan_jml_bulan;
 
         //Angsuran

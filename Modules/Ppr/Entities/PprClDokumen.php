@@ -46,7 +46,7 @@ class PprClDokumen extends Model
 
     public function AtrNonFixedIncome()
     {
-        return $this->belongsTo(PprAbilityToRepayNonFixedIncome::class, 'ppr_ability_to_repay_fixed_income_id', 'id');
+        return $this->belongsTo(PprAbilityToRepayNonFixedIncome::class, 'ppr_ability_to_repay_non_fixed_income_id', 'id');
     }
 
     public function pemberkasanMemo()

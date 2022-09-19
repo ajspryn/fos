@@ -30,12 +30,16 @@ class DirbisController extends Controller
         $skpdditolak = SkpdPembiayaanHistory::select()->where('status_id', 6)->get()->count();
         $umkmditolak = UmkmPembiayaanHistory::select()->where('status_id', 6)->get()->count();
         $pprditolak = PprPembiayaanHistory::select()->where('status_id', 6)->get()->count();
-        $review = PasarPembiayaanHistory::select()->where('status_id', 7)->orderby('created_at', 'desc')->get()->count();
+        $pasarreview = PasarPembiayaanHistory::select()->where('status_id', 7)->orderby('created_at', 'desc')->get()->count();
+        $skpdreview = SkpdPembiayaanHistory::select()->where('status_id', 7)->orderby('created_at', 'desc')->get()->count();
+        $umkmreview = UmkmPembiayaanHistory::select()->where('status_id', 7)->orderby('created_at', 'desc')->get()->count();
+        $pprreview = PprPembiayaanHistory::select()->where('status_id', 7)->orderby('created_at', 'desc')->get()->count();
         return view('dirbis::index', [
             'title' => 'Dasboard Direksi',
+            'proposal' => $pasarproposal + $skpdproposal + $umkmproposal + $pprproposal,
             'diterima' => $pasarditerima + $skpdditerima + $umkmditerima + $pprditerima,
             'tolak' => $pasarditolak + $skpdditolak + $umkmditolak + $pprditolak,
-            'proposal' => $pasarproposal + $skpdproposal + $umkmproposal + $pprproposal,
+            'review' => $pasarreview + $skpdreview + $umkmreview + $pprreview,
         ]);
     }
 

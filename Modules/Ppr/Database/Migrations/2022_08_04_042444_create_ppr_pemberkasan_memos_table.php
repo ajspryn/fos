@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('ppr_pemberkasan_memos', function (Blueprint $table) {
             $table->id();
 
+            $table->integer('form_ppr_pembiayaan_id');
             $table->integer('ppr_cl_dokumen_id');
             $table->string('cl_persyaratan')->nullable();
             $table->string('cl_dokumen')->nullable();
