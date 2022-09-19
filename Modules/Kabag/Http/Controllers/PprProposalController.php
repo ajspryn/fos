@@ -72,6 +72,7 @@ class PprProposalController extends Controller
         $labelNoaProyekPerumahan = $noaProyekPerumahan->keys();
         $dataNoaProyekPerumahan = $noaProyekPerumahan->values();
 
+
         return view('kabag::ppr.index', [
             'title' => 'Dashboard Kabag',
         ], compact(

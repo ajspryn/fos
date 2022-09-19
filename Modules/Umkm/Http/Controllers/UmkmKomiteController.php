@@ -3,6 +3,7 @@
 namespace Modules\Umkm\Http\Controllers;
 
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -202,7 +203,17 @@ class UmkmKomiteController extends Controller
         }
         $score_slik = $prosesslik->rating;
 
-      
+        $waktuawal=UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
+        $waktuakhir=UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
+        // $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
+
+        $waktumulai=Carbon::parse($waktuawal->created_at);
+        $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+        // $selanjutnya=Carbon::parse($next->created_at);
+
+
+        $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
+
       
         // $ideps=UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get();
         //    return $ideps;
@@ -271,7 +282,7 @@ class UmkmKomiteController extends Controller
 
             'arr'=>-2,
             'banyak_history'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->count(),
-            
+            'totalwaktu'=>$totalwaktu,
         ]);
     }
 

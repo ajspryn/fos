@@ -2,9 +2,12 @@
 
 namespace Modules\Analis\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Modules\Umkm\Entities\UmkmPembiayaan;
 use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 
@@ -29,9 +32,53 @@ class UmkmProposalController extends Controller
      */
     public function create()
     {
-        return view('analis::umkm.index',[
-            'title' => 'Dasboard Analis',
-            
+        
+
+        $data = UmkmPembiayaan::select('id', 'created_at')->where('AO_id', Auth::user()->id)->get()->groupBy(function ($data) {
+            return Carbon::parse($data->created_at)->format('M');
+        });
+
+        $bulans = [];
+        $hitungBulan = [];
+        foreach ($data as $bulan => $values) {
+            $bulans[] = $bulan;
+            $hitungBulan[] = count($values);
+        }
+
+        $plafonds = UmkmPembiayaan::join('umkm_pembiayaan_histories','umkm_pembiayaans.id','=','umkm_pembiayaan_histories.umkm_pembiayaan_id')
+        ->select(DB::raw("MONTHNAME(umkm_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
+        ->where('umkm_pembiayaan_histories.jabatan_id', 4)
+        ->where('umkm_pembiayaan_histories.status_id', 5)
+        ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
+        ->groupBy(DB::raw("nama_bulan"))
+        ->orderBy('umkm_pembiayaans.id', 'ASC')
+        ->pluck('jml_plafond', 'nama_bulan');
+
+   
+        $bulanplafonds = $plafonds->keys();
+        $hitungPerBulan = $plafonds->values();
+
+        $noas = UmkmPembiayaan::select(DB::raw("MONTHNAME(umkm_pembiayaans.tgl_pembiayaan) as nama_bulan, count(nasabah_id) as noa"))
+        ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
+        ->groupBy(DB::raw("nama_bulan"))
+        ->orderBy('umkm_pembiayaans.id', 'ASC')
+        ->pluck('noa', 'nama_bulan');
+        
+        $bulannoas = $noas->keys();
+        $noaPerBulan = $noas->values();
+
+      
+        // return ($noas);
+        return view('analis::umkm.index', [
+            'title' => 'Dashboard UMKM',
+            'data' => $data,
+            'bulans' => $bulans,
+            'hitungBulan' => $hitungBulan,
+            'plafond' => $hitungBulan,
+            'labelplafonds'=>$bulanplafonds,
+            'dataplafonds'=>$hitungPerBulan,
+            'labelnoas'=>$bulannoas,
+            'datanoas'=>$noaPerBulan,
         ]);
     }
 
