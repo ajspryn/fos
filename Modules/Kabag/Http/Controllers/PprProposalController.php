@@ -28,6 +28,8 @@ class PprProposalController extends Controller
      */
     public function create()
     {
+
+        
         return view('kabag::ppr.index', [
             'title' => 'Dashboard Kabag',
 

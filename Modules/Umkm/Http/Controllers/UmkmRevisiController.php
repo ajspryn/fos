@@ -250,11 +250,11 @@ class UmkmRevisiController extends Controller
             'jenisdagang_id'=>$request->jenisdagang_id,
         ]);
 
-        $request->validate([
-            'foto.*.kategori' => 'required',
-            'foto.*.foto' => 'required',
-        ]);
-
+        // $request->validate([
+        //     'foto.*.kategori' => 'required',
+        //     'foto.*.foto' => 'required',
+        // ]);
+            if($request->foto){
         foreach ($request->foto as $key => $value) {
             if ($value['foto']) {
                 Storage::delete($value['foto_lama']);
@@ -266,6 +266,10 @@ class UmkmRevisiController extends Controller
                     'foto' => $foto,
                 ]);
             }
+        }}
+        
+        else{
+
         }
 
         if ($request->slik[0]['nama_bank']){

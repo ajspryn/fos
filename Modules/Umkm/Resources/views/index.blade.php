@@ -232,61 +232,123 @@ $proposal1 = Modules\Umkm\Entities\UmkmPembiayaan::select()
                                 </div>
                                 <!--/ Earnings Card -->
                             </div>
-                        </div>
+                        </div> 
 
-                        <!-- Revenue Report Card -->
-                        <div class="col-lg-8 col-12">
-                            <div class="card card-revenue-budget">
-                                <div class="row mx-0">
-                                    <div class="col-md-8 col-12 revenue-report-wrapper">
-                                        <div class="d-sm-flex justify-content-between align-items-center mb-3">
-                                            <h4 class="card-title mb-50 mb-sm-0">Revenue Report</h4>
-                                            <div class="d-flex align-items-center">
-                                                <div class="d-flex align-items-center me-2">
-                                                    <span
-                                                        class="bullet bullet-primary font-small-3 me-50 cursor-pointer"></span>
-                                                    <span>Earning</span>
-                                                </div>
-                                                <div class="d-flex align-items-center ms-75">
-                                                    <span
-                                                        class="bullet bullet-warning font-small-3 me-50 cursor-pointer"></span>
-                                                    <span>Expense</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="revenue-report-chart"></div>
+                                       <div class="col-xl-8 col-md-6 col-12">
+                            <div class="card card-statistics">
+                                <div class="card-header">
+                                    <h4 class="card-title">Statistik Proposal Anda</h4>
+                                    <div class="d-flex align-items-center">
+                                        <p class="card-text font-small-2 me-25 mb-0"></p>
                                     </div>
-                                    <div class="col-md-4 col-12 budget-wrapper">
-                                        <div class="btn-group">
-                                            <button type="button"
-                                                class="btn btn-outline-primary btn-sm dropdown-toggle budget-dropdown"
-                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                2020
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">2020</a>
-                                                <a class="dropdown-item" href="#">2019</a>
-                                                <a class="dropdown-item" href="#">2018</a>
+                                </div>
+                                <div class="card-body statistics-body">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-2">
+                                            <div class="d-flex flex-row">
+                                                <div class="avatar bg-light-info me-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="clipboard" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="my-auto">
+                                                    <h4 class="fw-bolder mb-0">{{ $proposal }}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Pengajuan</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <h2 class="mb-25">$25,852</h2>
-                                        <div class="d-flex justify-content-center">
-                                            <span class="fw-bolder me-25">Budget:</span>
-                                            <span>56,800</span>
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-2">
+                                            <div class="d-flex flex-row">
+                                                <div class="avatar bg-light-danger me-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="x-circle" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="my-auto">
+                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Ditolak</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div id="budget-chart"></div>
-                                        <button type="button" class="btn btn-primary">Increase Budget</button>
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-2">
+                                            <div class="d-flex flex-row">
+                                                <div class="avatar bg-light-warning me-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="alert-circle" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="my-auto">
+                                                    <h4 class="fw-bolder mb-0">{{ $review }}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Review</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-2">
+                                            <div class="d-flex flex-row">
+                                                <div class="avatar bg-light-success me-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="check-circle" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="my-auto">
+                                                    <h4 class="fw-bolder mb-0">{{ $diterima }}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Disetujui</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--/ Revenue Report Card -->
-                    </div>
-                </section> --}}
-                <!-- Dashboard Ecommerce ends -->
+                        <!--/ Statistics Card -->
+                    </div> --}}
+                        <!-- Donut Chart Starts -->
+                        <div class="col-lg-12 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Statistik Proposal Perbulan</h4>
+                                </div>
+                                <div class="card-body">
 
+                                    <canvas id="myChart" width="400" height="400"></canvas>
+
+                                </div>
+                            </div>
+                    </div>
             </div>
         </div>
-    </div>
-    <!-- END: Content-->
+        <!-- END: Content-->
+
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+        <script type="text/javascript">
+            var _ydata = JSON.parse('{!! json_encode($bulans) !!}');
+            var _xdata = JSON.parse('{!! json_encode($hitungBulan) !!}');
+
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: _ydata,
+                    datasets: [{
+                        label: "Proposal Per Bulan",
+                        data: _xdata,
+                        backgroundColor: [
+                            '#1858AD', '#5cb85c', '#5bc0de','#f0ad4e','#d9534f'
+                        ],
+                        borderColor: [
+                            '#36b9cc', '#7ED8A5', '#B4F6EB','#E7F6B4','#d9534f'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
 @endsection

@@ -1139,7 +1139,8 @@
                                                                     </div>
                                                                 </li>
                                                             @endforeach
-                                                            {{-- <p>Total Waktu : {{ $waktuakhir- $waktuawal}}</p> --}}
+                                                          
+                                                            <p class="fw-bold"> Total SLA : {{ $totalwaktu }}</p>
                                                         </ul>
                                                     </div>
                                                 </div>

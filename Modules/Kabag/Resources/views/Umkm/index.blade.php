@@ -30,11 +30,26 @@ $ditolak = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
     ->get()
     ->count();
 
-$review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id', 7)
-    ->orderby('created_at', 'desc')
-    ->get()
-    ->count();
+    $komites = Modules\Umkm\Entities\UmkmPembiayaan::select()
+    ->whereNotNull('sektor_id')
+    ->orderby('updated_at', 'desc')
+    ->get();
+    
+$review = 0;
+foreach ($komites as $komite) {
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $komite->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_pasar = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $history->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 7) {
+        $review++;
+    }
+}
 @endphp
 @section('content')
     <!-- BEGIN: Content-->
@@ -274,9 +289,52 @@ $review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
                     </div> --}}
                 </section>
                 <!-- Dashboard Ecommerce ends -->
+                <div class="col-lg-12 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Statistik Proposal Perbulan</h4>
+                        </div>
+                        <div class="card-body">
 
+                            <canvas id="myChart" width="400" height="400"></canvas>
+
+                        </div>
+                    </div>
             </div>
-        </div>
     </div>
-    <!-- END: Content-->
+</div>
+<!-- END: Content-->
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script type="text/javascript">
+    var _ydata = JSON.parse('{!! json_encode($bulans) !!}');
+    var _xdata = JSON.parse('{!! json_encode($hitungBulan) !!}');
+
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: _ydata,
+            datasets: [{
+                label: "Proposal Per Bulan",
+                data: _xdata,
+                backgroundColor: [
+                    '#1858AD', '#5cb85c', '#5bc0de','#f0ad4e','#d9534f'
+                ],
+                borderColor: [
+                    '#36b9cc', '#7ED8A5', '#B4F6EB','#E7F6B4','#d9534f'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 @endsection

@@ -2,9 +2,11 @@
 
 namespace Modules\Kabag\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Umkm\Entities\UmkmPembiayaan;
 
 class UmkmProposalController extends Controller
@@ -28,8 +30,23 @@ class UmkmProposalController extends Controller
      */
     public function create()
     {
-        return view('kabag::umkm.index',[
-            'title' => 'Dasboard Kabag',
+        $data = UmkmPembiayaan::select('id', 'created_at')->get()->groupBy(function ($data) {
+            return Carbon::parse($data->created_at)->format('M');
+        });
+        $bulans = [];
+        $hitungBulan = [];
+        foreach ($data as $bulan => $values) {
+            $bulans[] = $bulan;
+            $hitungBulan[] = count($values);
+        }
+      
+      
+        // return (  $plabels);
+        return view('kabag::umkm.index', [
+            'title' => 'Dashboard Kabag UMKM',
+            'data' => $data,
+            'bulans' => $bulans,
+            'hitungBulan' => $hitungBulan,
         ]);
     }
 

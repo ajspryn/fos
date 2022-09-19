@@ -2,9 +2,13 @@
 
 namespace Modules\Umkm\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Modules\Umkm\Entities\UmkmPembiayaan;
+use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 
 class UmkmController extends Controller
 {
@@ -14,8 +18,27 @@ class UmkmController extends Controller
      */
     public function index()
     {
-        return view('umkm::index',[
-            'title'=>'Dashboard UMKM',
+        
+
+        $data = UmkmPembiayaan::select('id', 'created_at')->where('AO_id', Auth::user()->id)->get()->groupBy(function ($data) {
+            return Carbon::parse($data->created_at)->format('M');
+        });
+
+        $bulans = [];
+        $hitungBulan = [];
+        foreach ($data as $bulan => $values) {
+            $bulans[] = $bulan;
+            $hitungBulan[] = count($values);
+        }
+      
+      
+        // return ($historys);
+        return view('umkm::index', [
+            'title' => 'Dashboard UMKM',
+            'data' => $data,
+            'bulans' => $bulans,
+            'hitungBulan' => $hitungBulan,
+            'plafond' => $hitungBulan,
         ]);
     }
 
