@@ -103,6 +103,16 @@ class PasarProposalController extends Controller
         $bulanplafonds = $plafonds->keys();
         $hitungPerBulan = $plafonds->values();
 
+        $target1 = PasarPembiayaan::join('pasar_pembiayaan_histories','pasar_pembiayaans.id','=','pasar_pembiayaan_histories.pasar_pembiayaan_id')
+        ->select()
+        ->where('pasar_pembiayaan_histories.jabatan_id', 4)
+        ->where('pasar_pembiayaan_histories.status_id', 5)
+        ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
+        ->get();
+
+        $pipeline = PasarPembiayaan::select()
+        ->whereYear('tgl_pembiayaan', date('Y'))
+        ->count();
 
         // return (  $plafonds);
         return view('analis::pasar.index', [
@@ -116,6 +126,8 @@ class PasarProposalController extends Controller
             'pdatapasars' => $pdatapasar,
             'labelplafonds'=>$bulanplafonds,
             'dataplafonds'=>$hitungPerBulan,
+            'pipeline'=>$pipeline,
+            'target1'=>$target1,
 
         ]);
     }

@@ -62,18 +62,67 @@ foreach ($komites as $komite) {
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
                         <!-- Medal Card -->
+                        @php
+                            $cair = 0;
+                            foreach ($target1 as $target) {
+                                $tenor = $target->tenor;
+                                $harga = $target->harga;
+                                $rate = $target->rate;
+                                $margin = ($rate * $tenor) / 100;
+                            
+                                $harga1 = $harga * $margin;
+                                $harga_jual = $harga1 + $harga;
+                            
+                                $cair = $cair + $harga_jual;
+                            }
+                        @endphp
+
                         <div class="col-xl-4 col-md-6 col-12">
                             <div class="card card-congratulation-medal">
-                                <div class="card-body">
-                                    <h5>{{ Auth::user()->name }}</h5>
-                                    <p class="card-text font-small-3">Kamu Belum Mencapai Target</p>
-                                    <h3 class="mb-75 mt-2 pt-50">
-                                        <a href="#"></a>
-                                    </h3>
-                                    {{-- <button type="button" class="btn btn-primary">View Sales</button> --}}
-                                    <img src="../../../app-assets/images/illustration/badge.svg"
-                                        class="congratulation-medal" alt="Medal Pic" />
-                                </div>
+                                @if ($cair < 50000000)
+                                    <div class="card-body -ml-6 rounded bg-danger">
+                                        <h5 style="color: white">{{ Auth::user()->name }}</h5>
+                                        <p class="card-text font-small-3" style="color: white">Kamu Belum Mencapai Target
+                                        </p>
+                                        <h3 class="mb-75 mt-2 pt-50">
+                                            <a href="#"></a>
+                                        </h3>
+                                        <div class="col-xl-12 col-md-6 col-12">
+                                            <div class="card-body -ml-6 rounded bg-white">
+                                                <span class="fw-bolder"> Disburse VS Target </span>
+                                                <span class="fw-bolder"> <br>{{ number_format($cair) }} VS 50,000,000
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <iframe
+                                        src="https://github.com/anars/blank-audio/blob/master/250-milliseconds-of-silence.mp3"
+                                        allow="autoplay" id="audio" style="display: none"></iframe>
+                                        <audio id="player" autoplay>
+                                        <source src="https://github.com/devyFatmawati/audio/blob/main/info.mp3?raw=true"
+                                            type="audio/mp3">
+                                        </audio>
+                                    </div>
+                                @else
+                                    <div class="card-body">
+                                        <h5>{{ Auth::user()->name }}</h5>
+                                        <p class="card-text font-small-3">Kamu Sudah Mencapai Target</p>
+                                        <h3 class="mb-75 mt-2 pt-50">
+                                            <a href="#"></a>
+                                        </h3>
+                                        {{-- <button type="button" class="btn btn-primary">View Sales</button> --}}
+
+                                        <div class="col-xl-12 col-md-6 col-12">
+                                            <div class="card-body -ml-6 rounded bg-success">
+                                                <span class="fw-bolder" style="color: white"> Disburse VS Target </span>
+                                                <span class="fw-bolder" style="color: white"> <br>{{ number_format($cair) }}
+                                                    VS 50,000,000
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <img src="../../../app-assets/images/illustration/badge.svg"
+                                            class="congratulation-medal" alt="Medal Pic" />
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <!--/ Medal Card -->
@@ -146,8 +195,61 @@ foreach ($komites as $komite) {
                         </div>
                         <!--/ Statistics Card -->
                     </div>
-
-                    <div class="row" >
+                    <div class="row">
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="avatar bg-light-info p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="eye" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">{{ $pipeline }}</h2>
+                                    <p class="card-text">Pipeline</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="avatar bg-light-info p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="eye" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">0</h2>
+                                    <p class="card-text">Proposal</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="avatar bg-light-info p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="eye" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">0</h2>
+                                    <p class="card-text">Komite</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="avatar bg-light-info p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="eye" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">{{ number_format($cair) }}</h2>
+                                    <p class="card-text">Disburse</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <!-- Donut Chart Starts -->
                         <div class="col-lg-4 col-12">
                             <div class="card">
@@ -155,12 +257,10 @@ foreach ($komites as $komite) {
                                     <h4 class="card-title">Statistik Proposal Perbulan</h4>
                                     <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
                                         <i data-feather="calendar"></i>
-                                        <input
-                                          type="text"
-                                          class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
-                                          placeholder="YYYY-MM-DD"
-                                        />
-                                      </div>
+                                        <input type="text"
+                                            class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
+                                            placeholder="YYYY-MM-DD" />
+                                    </div>
                                 </div>
                                 <div class="card-body">
 
@@ -176,12 +276,10 @@ foreach ($komites as $komite) {
                                     <h4 class="card-title">Statistik Plafond Perbulan</h4>
                                     <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
                                         <i data-feather="calendar"></i>
-                                        <input
-                                          type="text"
-                                          class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
-                                          placeholder="YYYY-MM-DD"
-                                        />
-                                      </div>
+                                        <input type="text"
+                                            class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
+                                            placeholder="YYYY-MM-DD" />
+                                    </div>
                                 </div>
                                 <div class="card-body">
 
@@ -190,27 +288,25 @@ foreach ($komites as $komite) {
                                 </div>
                             </div>
                         </div>
-                      
+
 
                         <div class="col-lg-4 col-12">
-                            
+
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Statistik Pasar</h4>
                                     <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
                                         <i data-feather="calendar"></i>
-                                        <input
-                                          type="text"
-                                          class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
-                                          placeholder="YYYY-MM-DD"
-                                        />
-                                      </div>
+                                        <input type="text"
+                                            class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
+                                            placeholder="YYYY-MM-DD" />
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="myPiechart" width="400" height="400"></canvas>
                                 </div>
                                 {{-- <div class ="mt-4 text-center small">
-                                    @foreach($plabels as $label)
+                                    @foreach ($plabels as $label)
                                     <span>
                                         <i data-feather='circle'></i> {{ $label }}
                                     </span>
@@ -235,8 +331,8 @@ foreach ($komites as $komite) {
                     labels: _plabels,
                     datasets: [{
                         data: _pdatapasars,
-                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc','#EC6B56',' #FFC154'],
-                        hoverBackgroundColor: ['#2e59d0', '#17e671', '#2c9faf','#F15E1E',' #FFCF09'],
+                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#EC6B56', ' #FFC154'],
+                        hoverBackgroundColor: ['#2e59d0', '#17e671', '#2c9faf', '#F15E1E', ' #FFCF09'],
                         hoverBorderColor: "rgb(234,236,244,1)",
                     }]
                 },
@@ -269,10 +365,10 @@ foreach ($komites as $komite) {
                         label: "Proposal Per Bulan",
                         data: _xdata,
                         backgroundColor: [
-                            '#1858AD', '#5cb85c', '#5bc0de','#f0ad4e','#d9534f'
+                            '#1858AD', '#5cb85c', '#5bc0de', '#f0ad4e', '#d9534f'
                         ],
                         borderColor: [
-                            '#36b9cc', '#7ED8A5', '#B4F6EB','#E7F6B4','#d9534f'
+                            '#36b9cc', '#7ED8A5', '#B4F6EB', '#E7F6B4', '#d9534f'
                         ],
                         borderWidth: 1
                     }]
@@ -303,26 +399,26 @@ foreach ($komites as $komite) {
                         label: -_ydata,
                         data: _xdata,
                         backgroundColor: [
-                            '#1858AD', '#5cb85c', '#5bc0de','#f0ad4e','#d9534f'
+                            '#1858AD', '#5cb85c', '#5bc0de', '#f0ad4e', '#d9534f'
                         ],
                         borderColor: [
-                            '#36b9cc', '#7ED8A5', '#B4F6EB','#E7F6B4','#d9534f'
+                            '#36b9cc', '#7ED8A5', '#B4F6EB', '#E7F6B4', '#d9534f'
                         ],
                         borderWidth: 1
                     }]
                 },
                 options: {
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
             });
         </script>
     @endsection
