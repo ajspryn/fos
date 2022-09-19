@@ -54,9 +54,18 @@ class PasarController extends Controller
             $plabel[] = $rttotal->nama_pasar;
             $pdatapasar[] = $rttotal->total_noa;
         }
-        $plafonds = PasarPembiayaan::select('harga', 'created_at')->where('AO_id', Auth::user()->id)->get()->groupBy(function ($data) {
-            return Carbon::parse($data->created_at)->format('M');
-        });
+        $plafonds = PasarPembiayaan::join('pasar_pembiayaan_histories','pasar_pembiayaans.id','=','pasar_pembiayaan_histories.pasar_pembiayaan_id')
+        ->select(DB::raw("MONTHNAME(pasar_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(harga) as jml_plafond"))
+        ->where('pasar_pembiayaan_histories.jabatan_id', 4)
+        ->where('pasar_pembiayaan_histories.status_id', 5)
+        ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
+        ->groupBy(DB::raw("nama_bulan"))
+        ->orderBy('pasar_pembiayaans.id', 'ASC')
+        ->pluck('jml_plafond', 'nama_bulan');
+
+   
+        $bulanplafonds = $plafonds->keys();
+        $hitungPerBulan = $plafonds->values();
 
 
         // return (  $plafonds);
@@ -69,6 +78,9 @@ class PasarController extends Controller
             'datapasar' => $datapasar,
             'plabels' => $plabel,
             'pdatapasars' => $pdatapasar,
+            'labelplafonds'=>$bulanplafonds,
+            'dataplafonds'=>$hitungPerBulan,
+
         ]);
     }
 

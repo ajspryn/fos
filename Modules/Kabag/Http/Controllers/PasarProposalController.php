@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Modules\Pasar\Entities\PasarPembiayaan;
 
@@ -39,7 +40,7 @@ class PasarProposalController extends Controller
             $bulans[] = $bulan;
             $hitungBulan[] = count($values);
         }
-      
+
         $pasars = PasarPembiayaan::selectRaw('count(id) as total, created_at')->groupBy('created_at')->get();
 
         $labels = [];
@@ -64,9 +65,23 @@ class PasarProposalController extends Controller
             $plabel[] = $rttotal->nama_pasar;
             $pdatapasar[] = $rttotal->total_noa;
         }
+        $plafonds = PasarPembiayaan::join('pasar_pembiayaan_histories','pasar_pembiayaans.id','=','pasar_pembiayaan_histories.pasar_pembiayaan_id')
+        ->select(DB::raw("MONTHNAME(pasar_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(harga) as jml_plafond"))
+        ->where('pasar_pembiayaan_histories.jabatan_id', 4)
+        ->where('pasar_pembiayaan_histories.status_id', 5)
+        ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
+        ->groupBy(DB::raw("nama_bulan"))
+        ->orderBy('pasar_pembiayaans.id', 'ASC')
+        ->pluck('jml_plafond', 'nama_bulan');
 
-        return view('kabag::pasar.index',[
-            'title' => 'Dasboard Kabag',
+   
+        $bulanplafonds = $plafonds->keys();
+        $hitungPerBulan = $plafonds->values();
+
+
+        // return (  $plafonds);
+        return view('kabag::pasar.index', [
+            'title' => 'Dashboard Pasar',
             'data' => $data,
             'bulans' => $bulans,
             'hitungBulan' => $hitungBulan,
@@ -74,10 +89,11 @@ class PasarProposalController extends Controller
             'datapasar' => $datapasar,
             'plabels' => $plabel,
             'pdatapasars' => $pdatapasar,
+            'labelplafonds'=>$bulanplafonds,
+            'dataplafonds'=>$hitungPerBulan,
 
         ]);
     }
-
     /**
      * Store a newly created resource in storage.
      * @param Request $request

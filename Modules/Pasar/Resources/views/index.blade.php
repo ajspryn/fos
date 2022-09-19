@@ -147,9 +147,9 @@ foreach ($komites as $komite) {
                         <!--/ Statistics Card -->
                     </div>
 
-                    <div class="row">
+                    <div class="row" >
                         <!-- Donut Chart Starts -->
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-4 col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Statistik Proposal Perbulan</h4>
@@ -170,7 +170,29 @@ foreach ($komites as $komite) {
                             </div>
                         </div>
 
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-4 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Statistik Plafond Perbulan</h4>
+                                    <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
+                                        <i data-feather="calendar"></i>
+                                        <input
+                                          type="text"
+                                          class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
+                                          placeholder="YYYY-MM-DD"
+                                        />
+                                      </div>
+                                </div>
+                                <div class="card-body">
+
+                                    <canvas id="mylineChart" width="400" height="400"></canvas>
+
+                                </div>
+                            </div>
+                        </div>
+                      
+
+                        <div class="col-lg-4 col-12">
                             
                             <div class="card">
                                 <div class="card-header">
@@ -196,28 +218,6 @@ foreach ($komites as $komite) {
                                 </div> --}}
                             </div>
                         </div>
-
-                        <div class="col-lg-6 col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Statistik Proposal Perbulan</h4>
-                                    <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
-                                        <i data-feather="calendar"></i>
-                                        <input
-                                          type="text"
-                                          class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
-                                          placeholder="YYYY-MM-DD"
-                                        />
-                                      </div>
-                                </div>
-                                <div class="card-body">
-
-                                    <canvas id="mylineChart" width="400" height="400"></canvas>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Donut Chart Starts -->
                     </div>
             </div>
         </div>
@@ -277,19 +277,22 @@ foreach ($komites as $komite) {
                         borderWidth: 1
                     }]
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
             });
         </script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
         <script type="text/javascript">
-            var _ydata = JSON.parse('{!! json_encode($plafonds) !!}');
-            var _xdata = JSON.parse('{!! json_encode($banyakbulan) !!}');
+            var _ydata = JSON.parse('{!! json_encode($labelplafonds) !!}');
+            var _xdata = JSON.parse('{!! json_encode($dataplafonds) !!}');
 
             var ctx = document.getElementById('mylineChart');
             var mylineChart = new Chart(ctx, {
@@ -309,12 +312,17 @@ foreach ($komites as $komite) {
                     }]
                 },
                 options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
+            }
             });
         </script>
     @endsection

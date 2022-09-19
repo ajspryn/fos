@@ -2,30 +2,30 @@
 
 @php
 $proposal1 = Modules\Umkm\Entities\UmkmPembiayaan::select()
-->where('AO_id',Auth::user()->id)
-->get();
-    $diterima = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id',5)
+    ->where('AO_id', Auth::user()->id)
+    ->get();
+$diterima = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+    ->where('status_id', 5)
     ->where('jabatan_id', 4)
     // ->where('Umkm_pembiayaan_id',$proposal1->id)
     ->get()
     ->count();
 
-    $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
-    ->where('akad_id',null)
-    ->where('AO_id',auth::user()->id)
+$proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
+    ->where('akad_id', null)
+    ->where('AO_id', auth::user()->id)
     ->get()
     ->count();
 
-    $ditolak = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id',6)
-    ->where('user_id',auth::user()->id)
+$ditolak = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+    ->where('status_id', 6)
+    ->where('user_id', auth::user()->id)
     ->get()
     ->count();
 
-    $review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id',7)
-    ->orderby('created_at','desc')
+$review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+    ->where('status_id', 7)
+    ->orderby('created_at', 'desc')
     ->get()
     ->count();
 @endphp
@@ -302,11 +302,22 @@ $proposal1 = Modules\Umkm\Entities\UmkmPembiayaan::select()
                         </div>
                         <!--/ Statistics Card -->
                     </div> --}}
+                    <!-- Donut Chart Starts -->
+
+                    <div class="row" >
                         <!-- Donut Chart Starts -->
-                        <div class="col-lg-12 col-12">
+                        <div class="col-lg-4 col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Statistik Proposal Perbulan</h4>
+                                    <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
+                                        <i data-feather="calendar"></i>
+                                        <input
+                                          type="text"
+                                          class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
+                                          placeholder="YYYY-MM-DD"
+                                        />
+                                      </div>
                                 </div>
                                 <div class="card-body">
 
@@ -314,12 +325,55 @@ $proposal1 = Modules\Umkm\Entities\UmkmPembiayaan::select()
 
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="col-lg-4 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Statistik Plafond Perbulan</h4>
+                                    <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
+                                        <i data-feather="calendar"></i>
+                                        <input
+                                          type="text"
+                                          class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
+                                          placeholder="YYYY-MM-DD"
+                                        />
+                                      </div>
+                                </div>
+                                <div class="card-body">
+
+                                    <canvas id="mylineChart" width="400" height="400"></canvas>
+
+                                </div>
+                            </div>
+                        </div>
+                      
+
+                        <div class="col-lg-4 col-12">
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Statistik Noa</h4>
+                                    <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
+                                        <i data-feather="calendar"></i>
+                                        <input
+                                          type="text"
+                                          class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
+                                          placeholder="YYYY-MM-DD"
+                                        />
+                                      </div>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChartLine" width="400" height="400"></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
             </div>
         </div>
         <!-- END: Content-->
 
-
+     
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
         <script type="text/javascript">
             var _ydata = JSON.parse('{!! json_encode($bulans) !!}');
@@ -334,15 +388,20 @@ $proposal1 = Modules\Umkm\Entities\UmkmPembiayaan::select()
                         label: "Proposal Per Bulan",
                         data: _xdata,
                         backgroundColor: [
-                            '#1858AD', '#5cb85c', '#5bc0de','#f0ad4e','#d9534f'
+                            '#1858AD', '#5cb85c', '#5bc0de', '#f0ad4e', '#d9534f'
                         ],
                         borderColor: [
-                            '#36b9cc', '#7ED8A5', '#B4F6EB','#E7F6B4','#d9534f'
+                            '#36b9cc', '#7ED8A5', '#B4F6EB', '#E7F6B4', '#d9534f'
                         ],
                         borderWidth: 1
                     }]
                 },
                 options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
                     scales: {
                         y: {
                             beginAtZero: true
@@ -351,4 +410,78 @@ $proposal1 = Modules\Umkm\Entities\UmkmPembiayaan::select()
                 }
             });
         </script>
-@endsection
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+        <script type="text/javascript">
+            var _ydata = JSON.parse('{!! json_encode($labelplafonds) !!}');
+            var _xdata = JSON.parse('{!! json_encode($dataplafonds) !!}');
+
+            var ctx = document.getElementById('mylineChart');
+            var mylineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: _ydata,
+                    datasets: [{
+                        label: -_ydata,
+                        data: _xdata,
+                        backgroundColor: [
+                            '#1858AD', '#5cb85c', '#5bc0de', '#f0ad4e', '#d9534f'
+                        ],
+                        borderColor: [
+                            '#36b9cc', '#7ED8A5', '#B4F6EB', '#E7F6B4', '#d9534f'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+        <script type="text/javascript">
+            var _ydata = JSON.parse('{!! json_encode($labelnoas) !!}');
+            var _xdata = JSON.parse('{!! json_encode($datanoas) !!}');
+
+            var ctx = document.getElementById('myChartLine');
+            var myChartLine = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: _ydata,
+                    datasets: [{
+                        label: -_ydata,
+                        data: _xdata,
+                        backgroundColor: [
+                            '#1858AD', '#5cb85c', '#5bc0de', '#f0ad4e', '#d9534f'
+                        ],
+                        borderColor: [
+                            '#36b9cc', '#7ED8A5', '#B4F6EB', '#E7F6B4', '#d9534f'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    @endsection

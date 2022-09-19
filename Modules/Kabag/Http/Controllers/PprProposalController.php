@@ -29,10 +29,6 @@ class PprProposalController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
-
-        
-=======
         //Query Chart Proposal Per Bulan
         $proposalPerBulan = FormPprPembiayaan::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as nama_bulan"))
             ->whereYear('created_at', date('Y'))
@@ -76,7 +72,7 @@ class PprProposalController extends Controller
         $labelNoaProyekPerumahan = $noaProyekPerumahan->keys();
         $dataNoaProyekPerumahan = $noaProyekPerumahan->values();
 
->>>>>>> 881c212bffe0a7dfed896da0486808c4ea988f4d
+
         return view('kabag::ppr.index', [
             'title' => 'Dashboard Kabag',
         ], compact(
