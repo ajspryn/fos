@@ -762,7 +762,7 @@
                                             (Per Bulan)</label>
                                         <input type="text" name="keterangan_pengeluaran_lainnya" class="form-control"
                                             id="Pendapatan TPP" placeholder="Isikan Keterangan Pengeluaran Lainnya"
-                                            value="Rp.@if ($pembiayaan->keterangan_pengeluaran_lainnya) {{ number_format($pembiayaan->keterangan_pengeluaran_lainnya) }} @endif"
+                                            value="Rp.@if ($pembiayaan->keterangan_pengeluaran_lainnya) {{ $pembiayaan->keterangan_pengeluaran_lainnya }} @endif"
                                             disabled />
                                     </div>
                                     <div class="d-flex justify-content-between">
