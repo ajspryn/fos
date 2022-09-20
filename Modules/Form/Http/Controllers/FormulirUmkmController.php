@@ -77,7 +77,7 @@ class FormulirUmkmController extends Controller
         else {
             $id=$hitungid + 1;
         }
-        return $id;
+        // return $id;
         UmkmPembiayaan::create([
             'id'=>$id,
             'tgl_pembiayaan'=> $request ->tgl_pembiayaan,

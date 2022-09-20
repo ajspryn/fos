@@ -55,8 +55,8 @@ class PasarProposalController extends Controller
      */
     public function create()
     {
-        $data = PasarPembiayaan::select('id', 'created_at')->get()->groupBy(function ($data) {
-            return Carbon::parse($data->created_at)->format('M');
+        $data = PasarPembiayaan::select('id', 'tgl_pembiayaan')->get()->groupBy(function ($data) {
+            return Carbon::parse($data->tgl_pembiayaan)->format('M');
         });
 
         $bulans = [];

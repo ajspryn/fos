@@ -178,7 +178,7 @@ foreach ($komites as $komite) {
                     </div>
                 </section>
        
-                <div class="row" >
+                <div class="row match-height" >
                     <!-- Donut Chart Starts -->
                     <div class="col-lg-4 col-12">
                         <div class="card">
@@ -308,6 +308,7 @@ foreach ($komites as $komite) {
                     borderWidth: 1
                 }]
             },
+            options: {
             plugins: {
                 legend: {
                     display: false
@@ -318,6 +319,7 @@ foreach ($komites as $komite) {
                     beginAtZero: true
                 }
             }
+        }
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>

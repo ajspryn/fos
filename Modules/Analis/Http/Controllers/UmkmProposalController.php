@@ -45,10 +45,7 @@ class UmkmProposalController extends Controller
             $hitungBulan[] = count($values);
         }
 
-        $plafonds = UmkmPembiayaan::join('umkm_pembiayaan_histories','umkm_pembiayaans.id','=','umkm_pembiayaan_histories.umkm_pembiayaan_id')
-        ->select(DB::raw("MONTHNAME(umkm_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
-        ->where('umkm_pembiayaan_histories.jabatan_id', 4)
-        ->where('umkm_pembiayaan_histories.status_id', 5)
+        $plafonds = UmkmPembiayaan::select(DB::raw("MONTHNAME(umkm_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
         ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
         ->groupBy(DB::raw("nama_bulan"))
         ->orderBy('umkm_pembiayaans.id', 'ASC')

@@ -177,7 +177,7 @@ foreach ($komites as $komite) {
                     </div>
                 </section>
                 <!-- Dashboard Ecommerce ends -->
-                <div class="row" >
+                <div class="row match-height" >
                     <!-- Donut Chart Starts -->
                     <div class="col-lg-4 col-12">
                         <div class="card">
