@@ -2,13 +2,12 @@
 
 namespace Modules\Admin\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Support\Renderable;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +15,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $role=Role::select()->where('user_id',Auth::user()->id)->get()->first();
-        // dd($role->role_id);
-        return view('admin::lihat',[
-            // 'header'=>"Dashboard Admin",
-            'title'=>"Dashboard Admin",
-            'role'=>$role->role_id,
+        return view('admin::user.index',[
+            'title'=>'Data User',
+            'users'=>User::with('role')->select()->get(),
         ]);
     }
 
@@ -41,7 +37,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -82,6 +78,6 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect('/admin/user')->alert()->warning('WarningAlert', 'Lorem ipsum dolor sit amet.');
     }
 }

@@ -1087,7 +1087,7 @@
                                                 <!--/ post 1 -->
                                             @endforeach
                                         </div>
-
+                                        @if($nota)
                                         <div class="tab-pane" id="keuangan"
                                             role="tabpanel"aria-labelledby="messages-tab-justified">
 
@@ -1110,6 +1110,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
 
                                         <div class="tab-pane" id="legalitas-usaha"
                                             role="tabpanel"aria-labelledby="messages-tab-justified">

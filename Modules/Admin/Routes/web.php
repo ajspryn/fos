@@ -4,6 +4,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use Modules\Admin\Http\Controllers\UserController;
 use Modules\Admin\Http\Controllers\AdminController;
 use Modules\Admin\Http\Controllers\SkpdAkadController;
 use Modules\Admin\Http\Controllers\PasarAkadController;
@@ -15,6 +16,7 @@ use Modules\Admin\Http\Controllers\SkpdTanggunganController;
 use Modules\Admin\Http\Controllers\PasarJenisPasarController;
 use Modules\Admin\Http\Controllers\PasarPenggunaanController;
 use Modules\Admin\Http\Controllers\PasarTanggunganController;
+use Modules\Admin\Http\Controllers\PprCapacityUsiaController;
 use Modules\Admin\Http\Controllers\PasarJenisDagangController;
 use Modules\Admin\Http\Controllers\SkpdJenisJaminanController;
 use Modules\Admin\Http\Controllers\PasarJaminanRumahController;
@@ -23,72 +25,71 @@ use Modules\Admin\Http\Controllers\PasarJenisNasabahController;
 use Modules\Admin\Http\Controllers\SkpdSektorEkonomiController;
 use Modules\Admin\Http\Controllers\PasarLamaBerdagangController;
 use Modules\Admin\Http\Controllers\PasarSektorEkonomiController;
+use Modules\Admin\Http\Controllers\PprCapitalPekerjaanController;
 use Modules\Admin\Http\Controllers\SkpdJenisPenggunaanController;
+use Modules\Admin\Http\Controllers\PprCapacityPekerjaanController;
+use Modules\Admin\Http\Controllers\PprCapitalGajiBersihController;
+use Modules\Admin\Http\Controllers\PprCharacterMotivasiController;
 use Modules\Admin\Http\Controllers\SkpdStatusPerkawinanController;
 use Modules\Admin\Http\Controllers\PasarAtatusPerkawinanController;
-use Modules\Admin\Http\Controllers\PprCharacterTempatBekerjaController;
-use Modules\Admin\Http\Controllers\PprCharacterKonsistensiController;
-use Modules\Admin\Http\Controllers\PprCharacterKelengkapanValiditasController;
-use Modules\Admin\Http\Controllers\PprCharacterAngsuranKolektifController;
-use Modules\Admin\Http\Controllers\PprCharacterPengalamanPembiayaanController;
-use Modules\Admin\Http\Controllers\PprCharacterMotivasiController;
-use Modules\Admin\Http\Controllers\PprCharacterReferensiController;
-
-use Modules\Admin\Http\Controllers\PprCapitalPekerjaanController;
-use Modules\Admin\Http\Controllers\PprCapitalPengalamanPembiayaanController;
-use Modules\Admin\Http\Controllers\PprCapitalKeamananBisnisPekerjaanController;
-use Modules\Admin\Http\Controllers\PprCapitalPotensiPertumbuhanHasilController;
-use Modules\Admin\Http\Controllers\PprCapitalSumberPendapatanController;
-use Modules\Admin\Http\Controllers\PprCapitalGajiBersihController;
-use Modules\Admin\Http\Controllers\PprCapitalJmlTanggunganKeluargaController;
-
-use Modules\Admin\Http\Controllers\PprCapacityPekerjaanController;
-use Modules\Admin\Http\Controllers\PprCapacityPengalamanPembiayaanController;
-use Modules\Admin\Http\Controllers\PprCapacityKeamananBisnisPekerjaanController;
-use Modules\Admin\Http\Controllers\PprCapacityPotensiPertumbuhanHasilController;
-use Modules\Admin\Http\Controllers\PprCapacityPengalamanKerjaController;
-use Modules\Admin\Http\Controllers\PprCapacityPendidikanController;
-use Modules\Admin\Http\Controllers\PprCapacityUsiaController;
-use Modules\Admin\Http\Controllers\PprCapacitySumberPendapatanController;
 use Modules\Admin\Http\Controllers\PprCapacityGajiBersihController;
-use Modules\Admin\Http\Controllers\PprCapacityJmlTanggunganKeluargaController;
 
-use Modules\Admin\Http\Controllers\PprConditionShariaPekerjaanController;
-use Modules\Admin\Http\Controllers\PprConditionShariaPengalamanPembiayaanController;
-use Modules\Admin\Http\Controllers\PprConditionShariaKeamananBisnisPekerjaanController;
-use Modules\Admin\Http\Controllers\PprConditionShariaPotensiPertumbuhanHasilController;
-use Modules\Admin\Http\Controllers\PprConditionShariaPengalamanKerjaController;
-use Modules\Admin\Http\Controllers\PprConditionShariaPendidikanController;
+use Modules\Admin\Http\Controllers\PprCapacityPendidikanController;
+use Modules\Admin\Http\Controllers\PprCharacterReferensiController;
 use Modules\Admin\Http\Controllers\PprConditionShariaUsiaController;
-use Modules\Admin\Http\Controllers\PprConditionShariaSumberPendapatanController;
-use Modules\Admin\Http\Controllers\PprConditionShariaGajiBersihController;
-use Modules\Admin\Http\Controllers\PprConditionShariaJmlTanggunganKeluargaController;
-
-use Modules\Admin\Http\Controllers\PprCollateralMarketabilitasController;
-use Modules\Admin\Http\Controllers\PprCollateralKontribusiPemohonController;
-use Modules\Admin\Http\Controllers\PprCollateralPertumbuhanAgunanController;
-use Modules\Admin\Http\Controllers\PprCollateralDayaTarikAgunanController;
-use Modules\Admin\Http\Controllers\PprCollateralJangkaWaktuLikuiditasController;
-
-use Modules\Admin\Http\Controllers\PprCharacterNfPengelolaanRekeningController;
-use Modules\Admin\Http\Controllers\PprCharacterNfPerilakuPribadiController;
-use Modules\Admin\Http\Controllers\PprCharacterNfReputasiBisnisController;
-use Modules\Admin\Http\Controllers\PprCharacterNfTingkatKepercayaanController;
-
 use Modules\Admin\Http\Controllers\PprCapacityNfKaderisasiController;
-use Modules\Admin\Http\Controllers\PprCapacityNfKualifikasiKomersialController;
+use Modules\Admin\Http\Controllers\PprCharacterKonsistensiController;
+use Modules\Admin\Http\Controllers\PprCharacterTempatBekerjaController;
+use Modules\Admin\Http\Controllers\PprCapacityPengalamanKerjaController;
+
+use Modules\Admin\Http\Controllers\PprCapitalSumberPendapatanController;
+use Modules\Admin\Http\Controllers\PprCapacitySumberPendapatanController;
+use Modules\Admin\Http\Controllers\PprCollateralMarketabilitasController;
+use Modules\Admin\Http\Controllers\PprConditionShariaPekerjaanController;
+use Modules\Admin\Http\Controllers\PprCharacterAngsuranKolektifController;
+use Modules\Admin\Http\Controllers\PprCharacterNfReputasiBisnisController;
+use Modules\Admin\Http\Controllers\PprCollateralDayaTarikAgunanController;
+use Modules\Admin\Http\Controllers\PprConditionShariaGajiBersihController;
+use Modules\Admin\Http\Controllers\PprConditionShariaPendidikanController;
+use Modules\Admin\Http\Controllers\PprCharacterNfPerilakuPribadiController;
+
+use Modules\Admin\Http\Controllers\PprCollateralNfMarketabilitasController;
 use Modules\Admin\Http\Controllers\PprCapacityNfKualifikasiTeknisController;
 use Modules\Admin\Http\Controllers\PprCapacityNfSituasiPersainganController;
-
-use Modules\Admin\Http\Controllers\PprConditionShariaNfKualitasProdukJasaController;
-use Modules\Admin\Http\Controllers\PprConditionShariaNfLokasiUsahaController;
-use Modules\Admin\Http\Controllers\PprConditionShariaNfSistemPembayaranController;
-
+use Modules\Admin\Http\Controllers\PprCapitalPengalamanPembiayaanController;
+use Modules\Admin\Http\Controllers\PprCollateralKontribusiPemohonController;
 use Modules\Admin\Http\Controllers\PprCollateralNfDayaTarikAgunanController;
-use Modules\Admin\Http\Controllers\PprCollateralNfJangkaWaktuLikuidasiController;
+use Modules\Admin\Http\Controllers\PprCollateralPertumbuhanAgunanController;
+use Modules\Admin\Http\Controllers\PprCapacityPengalamanPembiayaanController;
+use Modules\Admin\Http\Controllers\PprCapitalJmlTanggunganKeluargaController;
+use Modules\Admin\Http\Controllers\PprConditionShariaNfLokasiUsahaController;
+
+use Modules\Admin\Http\Controllers\PprCapacityJmlTanggunganKeluargaController;
+use Modules\Admin\Http\Controllers\PprCharacterKelengkapanValiditasController;
+use Modules\Admin\Http\Controllers\PprCharacterNfTingkatKepercayaanController;
+use Modules\Admin\Http\Controllers\PprCharacterPengalamanPembiayaanController;
 use Modules\Admin\Http\Controllers\PprCollateralNfKontribusiPemohonController;
-use Modules\Admin\Http\Controllers\PprCollateralNfMarketabilitasController;
+
 use Modules\Admin\Http\Controllers\PprCollateralNfPertumbuhanAgunanController;
+use Modules\Admin\Http\Controllers\PprCapacityNfKualifikasiKomersialController;
+use Modules\Admin\Http\Controllers\PprCapitalKeamananBisnisPekerjaanController;
+use Modules\Admin\Http\Controllers\PprCapitalPotensiPertumbuhanHasilController;
+
+use Modules\Admin\Http\Controllers\PprCharacterNfPengelolaanRekeningController;
+use Modules\Admin\Http\Controllers\PprConditionShariaPengalamanKerjaController;
+use Modules\Admin\Http\Controllers\PprCapacityKeamananBisnisPekerjaanController;
+use Modules\Admin\Http\Controllers\PprCapacityPotensiPertumbuhanHasilController;
+
+use Modules\Admin\Http\Controllers\PprCollateralJangkaWaktuLikuiditasController;
+use Modules\Admin\Http\Controllers\PprConditionShariaSumberPendapatanController;
+use Modules\Admin\Http\Controllers\PprCollateralNfJangkaWaktuLikuidasiController;
+
+use Modules\Admin\Http\Controllers\PprConditionShariaNfSistemPembayaranController;
+use Modules\Admin\Http\Controllers\PprConditionShariaNfKualitasProdukJasaController;
+use Modules\Admin\Http\Controllers\PprConditionShariaPengalamanPembiayaanController;
+use Modules\Admin\Http\Controllers\PprConditionShariaJmlTanggunganKeluargaController;
+use Modules\Admin\Http\Controllers\PprConditionShariaKeamananBisnisPekerjaanController;
+use Modules\Admin\Http\Controllers\PprConditionShariaPotensiPertumbuhanHasilController;
 
 
 /*
@@ -104,6 +105,7 @@ use Modules\Admin\Http\Controllers\PprCollateralNfPertumbuhanAgunanController;
 
 Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:1' , 'divisi:0' , 'jabatan:0'])->group(function() {
     Route::get('/', 'AdminController@index');
+    Route::resource('/user', UserController::class);
     Route::resource('/skpd/akad', SkpdAkadController::class);
     Route::resource('/skpd/penggunaan', SkpdJenisPenggunaanController::class);
     Route::resource('/skpd/jaminan', SkpdJenisJaminanController::class);

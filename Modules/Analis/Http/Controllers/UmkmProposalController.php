@@ -67,7 +67,17 @@ class UmkmProposalController extends Controller
         $bulannoas = $noas->keys();
         $noaPerBulan = $noas->values();
 
-      
+        $target1 = UmkmPembiayaan::join('umkm_pembiayaan_histories','umkm_pembiayaans.id','=','umkm_pembiayaan_histories.umkm_pembiayaan_id')
+        ->select()
+        ->where('umkm_pembiayaan_histories.jabatan_id', 4)
+        ->where('umkm_pembiayaan_histories.status_id', 5)
+        ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
+        ->get();
+
+        $pipeline = UmkmPembiayaan::select()
+        ->whereYear('tgl_pembiayaan', date('Y'))
+        ->count();
+
         // return ($noas);
         return view('analis::umkm.index', [
             'title' => 'Dashboard UMKM',
@@ -79,6 +89,8 @@ class UmkmProposalController extends Controller
             'dataplafonds'=>$hitungPerBulan,
             'labelnoas'=>$bulannoas,
             'datanoas'=>$noaPerBulan,
+            'target1'=>$target1,
+            'pipeline'=>$pipeline,
         ]);
     }
 
