@@ -56,6 +56,13 @@ $diterima = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                         class="congratulation-medal" alt="Medal Pic" />
                                 </div>
                             </div>
+
+                            <iframe src="https://github.com/anars/blank-audio/blob/master/250-milliseconds-of-silence.mp3"
+                                allow="autoplay" id="audio" style="display: none"></iframe>
+                            <audio id="player" autoplay>
+                                <source src="https://github.com/devyFatmawati/audio/blob/main/info.mp3?raw=true"
+                                    type="audio/mp3">
+                            </audio>
                         </div>
                         <!--/ Medal Card -->
                         <!-- Statistics Card -->
