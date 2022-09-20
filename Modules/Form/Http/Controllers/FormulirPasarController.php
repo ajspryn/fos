@@ -73,8 +73,14 @@ class FormulirPasarController extends Controller
     public function store(Request $request)
     {
         // return dd($request);
-        $hitung=PasarPembiayaan::select()->get()->count();
-        $id=$hitung+1;
+        $hitungid=PasarPembiayaan::select()->get()->count();
+        if( $hitungid > 0 ){
+            $hitung=PasarPembiayaan::select()->orderby('created_at','desc')->get()->first();
+            $id=$hitung->id+1;
+        }
+        else {
+            $id=$hitungid + 1;
+        }
         PasarPembiayaan::create([
             'id'=>$id,
             'tgl_pembiayaan'=> $request ->tgl_pembiayaan,
@@ -263,8 +269,8 @@ class FormulirPasarController extends Controller
     public function update(Request $request, $id)
     {
          // return dd($request);
-         $hitung=PasarPembiayaan::select()->get()->count();
-         $number=$hitung+1;
+         $hitung=PasarPembiayaan::select()->orderby('created_at','desc')->get()->first();
+         $number=$hitung->id+1;
          PasarPembiayaan::create([
              'id'=>$number,
              'tgl_pembiayaan'=> $request ->tgl_pembiayaan,

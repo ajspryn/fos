@@ -2,6 +2,30 @@
 
 @section('content')
     <!-- BEGIN: Content-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-validation.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/authentication.css">
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.min.css">
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-validation.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/authentication.css">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+    <!-- END: Custom CSS-->
     <style>
         .data {
             visibility: hidden;
@@ -152,6 +176,34 @@
             overflow: hidden;
         }
 
+        #ifShgbAgunan1Expired {
+            width: 25%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan1Expired.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifShgbAgunan1Hak {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan1Hak.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
         #ifJenisAgunan2Lain {
             width: 50%;
             height: 40px;
@@ -163,6 +215,35 @@
             opacity: 0;
             overflow: hidden;
         }
+
+        #ifShgbAgunan2Expired {
+            width: 25%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan2Expired.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #ifShgbAgunan2Hak {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifShgbAgunan2Hak.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
 
         #ifHubunganLainnya {
             width: 50%;
@@ -177,6 +258,9 @@
             opacity: 0;
             overflow: hidden;
         }
+
+
+
 
         .form-text-beside {
             color: #5e5873;
@@ -347,8 +431,15 @@
                                             </small>Nilai PPR Syariah
                                             Dimohon</label>
                                         <input type="text" name="form_permohonan_nilai_ppr_dimohon"
-                                            id="form_permohonan_nilai_ppr_dimohon" class="form-control numeral-mask"
-                                            placeholder="Nilai PPR Syariah Dimohon" />
+                                            id="form_permohonan_nilai_ppr_dimohon"
+                                            class="form-control numeral-mask @error('form_permohonan_nilai_ppr_dimohon') is-invalid @enderror"
+                                            placeholder="Nilai PPR Syariah Dimohon" required
+                                            autocomplete="form_permohonan_nilai_ppr_dimohon" autofocus />
+                                        @error('form_permohonan_nilai_ppr_dimohon')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_permohonan_uang_muka_dana_sendiri"><small
@@ -404,7 +495,7 @@
                                     </div>
 
                                     <div class="mb-1 col-md-6 row">
-                                        <div class="col-md-11">
+                                        <div class="col-md-10">
                                             <label class="form-label" for="formPermohonanJumlahBulan">Jumlah Bulan</label>
                                             <input type="number" name="form_permohonan_jml_bulan"
                                                 id="formPermohonanJumlahBulan" class="form-control"
@@ -574,7 +665,7 @@
                                         <small class="text-danger">*
                                         </small> <label class="form-label" for="form_pribadi_pemohon_npwp">No.
                                             NPWP</label>
-                                        <input type="number" name="form_pribadi_pemohon_npwp"
+                                        <input type="text" name="form_pribadi_pemohon_npwp"
                                             id="form_pribadi_pemohon_npwp" class="form-control"
                                             placeholder="Masukkan Nomor NPWP Anda" />
                                     </div>
@@ -899,9 +990,8 @@
                                                 </div>
                                             </div>
                                             <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="form_pribadi_pemohon_no_telp"><small
-                                                        class="text-danger">*
-                                                    </small>No. Telepon</label>
+                                                <label class="form-label" for="form_pribadi_pemohon_no_telp">No.
+                                                    Telepon</label>
                                                 <input type="text" name="form_pribadi_pemohon_no_telp"
                                                     id="form_pribadi_pemohon_no_telp" class="form-control prefix-mask"
                                                     placeholder="Masukkan Nomor Telepon Anda" />
@@ -1026,7 +1116,8 @@
                                             </div>
 
                                             <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="fotoPemohon">Foto Terbaru Pemohon</label>
+                                                <label class="form-label" for="fotoPemohon"><small class="text-danger">*
+                                                    </small>Foto Terbaru Pemohon</label>
                                                 <input type="file" class="form-control" name="foto[1][foto]"
                                                     id="fotoPemohon" aria-describedby="fotoPemohon" />
                                                 <input type="hidden" name="foto[1][kategori]" value="Foto Pemohon">
@@ -1061,15 +1152,6 @@
                                                     id="form_pribadi_istri_suami_no_ktp" class="form-control"
                                                     placeholder="Masukkan Nomor KTP Istri/Suami Anda" />
                                             </div>
-                                            {{-- <div class="mb-1 col-md-6">
-                                                <label class="form-label"
-                                                    for="form_pribadi_istri_suami_no_ktp_berlaku_sd">Berlaku
-                                                    s/d.</label>
-                                                <input type="date" id="form_pribadi_istri_suami_no_ktp_berlaku_sd"
-                                                    class="form-control flatpickr-basic"
-                                                    name="form_pribadi_istri_suami_no_ktp_berlaku_sd"
-                                                    placeholder="DD-MM-YYYY" />
-                                            </div> --}}
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
                                                     for="form_pribadi_istri_suami_tempat_lahir">Tempat Lahir</label>
@@ -1088,7 +1170,7 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_pribadi_istri_suami_npwp">No.
                                                     NPWP</label>
-                                                <input type="number" name="form_pribadi_istri_suami_npwp"
+                                                <input type="text" name="form_pribadi_istri_suami_npwp"
                                                     id="form_pribadi_istri_suami_npwp" class="form-control"
                                                     placeholder="Masukkan Nomor NPWP Anda" />
                                             </div>
@@ -1112,7 +1194,9 @@
                                             </div>
 
                                             <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="fotoPasanganPemohon">Foto Terbaru
+                                                <label class="form-label" for="fotoPasanganPemohon"><small
+                                                        class="text-danger">*
+                                                    </small>Foto Terbaru
                                                     Istri/Suami Pemohon</label>
                                                 <input type="file" class="form-control" name="foto[2][foto]"
                                                     id="fotoPasanganPemohon" aria-describedby="fotoPasanganPemohon"
@@ -1309,7 +1393,8 @@
                                                 </button>
                                                 <button class="btn btn-primary btn-next" type="button">
                                                     <span class="align-middle d-sm-inline-block d-none">Next</span>
-                                                    <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                                    <i data-feather="arrow-right"
+                                                        class="align-middle ms-sm-25 ms-0"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -1403,7 +1488,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_pemohon_npwp">Nomor NPWP
                                             Perusahaan/Instansi</label>
-                                        <input type="number" name="form_pekerjaan_pemohon_npwp"
+                                        <input type="text" name="form_pekerjaan_pemohon_npwp"
                                             id="form_pekerjaan_pemohon_npwp" class="form-control"
                                             placeholder="Nomor NPWP Perusahaan/Instansi" />
                                     </div>
@@ -1822,8 +1907,8 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_istri_suami_npwp">Nomor NPWP
-                                            Perusahaan</label>
-                                        <input type="number" name="form_pekerjaan_istri_suami_npwp"
+                                            Perusahaan/Instansi</label>
+                                        <input type="text" name="form_pekerjaan_istri_suami_npwp"
                                             id="form_pekerjaan_istri_suami_npwp" class="form-control"
                                             placeholder="Nomor NPWP Perusahaan" />
                                     </div>
@@ -2239,7 +2324,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
-                                    <button class="btn btn-primary btn-prev">
+                                    <button class="btn btn-primary btn-prev" type="button">
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                     </button>
@@ -2430,7 +2515,8 @@
                                                             </small>Status/Bukti Kepemilikan</label>
                                                         <select class="select2 w-100"
                                                             name="form_agunan_1_status_bukti_kepemilikan"
-                                                            id="form_agunan_1_status_bukti_kepemilikan">
+                                                            id="formAgunan1StatusBuktiKepemilikan"
+                                                            onChange="changeShgbAgunan1()">
                                                             <option label="form_agunan_1_status_bukti_kepemilikan"
                                                                 selected disabled>Pilih
                                                                 Bukti Kepemilikan
@@ -2440,7 +2526,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="mb-1 col-md-3">
+                                                    <div class="mb-1 col-md-3 hide" id="ifShgbAgunan1Expired">
                                                         <label class="form-label"
                                                             for="form_agunan_1_status_bukti_kepemilikan_tgl_berakhir"><small
                                                                 class="text-danger">*
@@ -2452,7 +2538,7 @@
                                                             placeholder="DD-MM-YYYY" />
                                                     </div>
 
-                                                    <div class="mb-1 col-md-3">
+                                                    <div class="mb-1 col-md-3 hide" id="ifShgbAgunan1Hak">
                                                         <label class="form-label"
                                                             for="form_agunan_1_status_bukti_kepemilikan_hak"><small
                                                                 class="text-danger">*
@@ -2464,7 +2550,6 @@
                                                                 selected disabled>
                                                                 Pilih Hak Kepemilikan
                                                             </option>
-                                                            <option value="Hak Milik">Hak Milik</option>
                                                             <option value="Hak Pakai">Hak Pakai</option>
                                                             <option value="Hak Pengelolaan">Hak Pengelolaan</option>
                                                         </select>
@@ -2477,7 +2562,7 @@
                                         <label class="form-label" for="form_agunan_1_no_sertifikat"><small
                                                 class="text-danger">*
                                             </small>Nomor Sertifikat</label>
-                                        <input type="number" name="form_agunan_1_no_sertifikat"
+                                        <input type="text" name="form_agunan_1_no_sertifikat"
                                             id="form_agunan_1_no_sertifikat" class="form-control"
                                             placeholder="Masukkan Nomor Sertifikat" />
                                     </div>
@@ -2495,7 +2580,7 @@
                                         <label class="form-label" for="form_agunan_1_no_imb"><small
                                                 class="text-danger">*
                                             </small>Nomor IMB</label>
-                                        <input type="number" name="form_agunan_1_no_imb" id="form_agunan_1_no_imb"
+                                        <input type="text" name="form_agunan_1_no_imb" id="form_agunan_1_no_imb"
                                             class="form-control" placeholder="Masukkan Nomor IMB" />
                                     </div>
                                     <div class="mb-1 col-md-6">
@@ -2708,7 +2793,8 @@
                                                             Kepemilikan</label>
                                                         <select class="select2 w-100"
                                                             name="form_agunan_2_status_bukti_kepemilikan"
-                                                            id="form_agunan_2_status_bukti_kepemilikan">
+                                                            id="formAgunan2StatusBuktiKepemilikan"
+                                                            onChange="changeShgbAgunan2()">
                                                             <option label="form_agunan_2_status_bukti_kepemilikan">Pilih
                                                                 Bukti Kepemilikan
                                                             </option>
@@ -2717,7 +2803,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="mb-1 col-md-3">
+                                                    <div class="mb-1 col-md-3 hide" id="ifShgbAgunan2Expired">
                                                         <label class="form-label"
                                                             for="form_agunan_2_status_bukti_kepemilikan_tgl_berakhir">Tanggal
                                                             Berakhir</label>
@@ -2728,7 +2814,7 @@
                                                             placeholder="DD-MM-YYYY" />
                                                     </div>
 
-                                                    <div class="mb-1 col-md-3">
+                                                    <div class="mb-1 col-md-3 hide" id="ifShgbAgunan2Hak">
                                                         <label class="form-label"
                                                             for="form_agunan_2_status_bukti_kepemilikan_hak">Hak</label>
                                                         <select class="select2 w-100"
@@ -2737,7 +2823,6 @@
                                                             <option label="form_agunan_2_status_bukti_kepemilikan_hak">
                                                                 Pilih Bukti Kepemilikan
                                                             </option>
-                                                            <option value="Hak Milik">Hak Milik</option>
                                                             <option value="Hak Pakai">Hak Pakai</option>
                                                             <option value="Hak Pengelolaan">Hak Pengelolaan</option>
                                                         </select>
@@ -2749,7 +2834,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_agunan_2_no_sertifikat">Nomor
                                             Sertifikat</label>
-                                        <input type="number" name="form_agunan_2_no_sertifikat"
+                                        <input type="text" name="form_agunan_2_no_sertifikat"
                                             id="form_agunan_2_no_sertifikat" class="form-control"
                                             placeholder="Masukkan Nomor Sertifikat" />
                                     </div>
@@ -2763,7 +2848,7 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_agunan_2_no_imb">Nomor IMB</label>
-                                        <input type="number" name="form_agunan_2_no_imb" id="form_agunan_2_no_imb"
+                                        <input type="text" name="form_agunan_2_no_imb" id="form_agunan_2_no_imb"
                                             class="form-control" placeholder="Masukkan Nomor IMB" />
                                     </div>
                                     <div class="mb-1 col-md-6">
@@ -2846,7 +2931,7 @@
 
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
-                                    <button class="btn btn-primary btn-prev">
+                                    <button class="btn btn-primary btn-prev" type="button">
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                     </button>
@@ -2875,7 +2960,7 @@
                                     <div class="row">
                                         <div class="mb-1 col-md-12">
                                             <div class="repeater-default">
-                                                <div data-repeater-list="kekayaan_simpanan">
+                                                <div data-repeater-list="repeater_kekayaan_simpanan">
                                                     <h6>Simpanan</h6>
                                                     <div data-repeater-item>
                                                         <div class="row d-flex align-items-end">
@@ -3940,7 +4025,33 @@
             <!-- /Modern Horizontal Wizard -->
         </div>
     </div>
+    <!-- BEGIN: Vendor JS-->
+    <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="../../../app-assets/js/core/app-menu.min.js"></script>
+    <script src="../../../app-assets/js/core/app.min.js"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="../../../app-assets/js/scripts/pages/auth-login.js"></script>
+    <!-- END: Page JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(window).on('load', function() {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
+            }
+        })
+    </script>
     <script>
         function changeJenisAkad() {
             var jenisAkadPembayaran = document.getElementById("formPermohonanJenisAkadPembayaran");
@@ -4094,6 +4205,28 @@
                 document.getElementById("ifJenisAgunan1Lain").classList.toggle("hide");
             } else {
                 document.getElementById("ifJenisAgunan1Lain").classList = "hide";
+            }
+        }
+
+        function changeShgbAgunan1() {
+            var shgbAgunan1 = document.getElementById("formAgunan1StatusBuktiKepemilikan");
+            if (shgbAgunan1.value == "SHGB") {
+                document.getElementById("ifShgbAgunan1Expired").classList.toggle("hide");
+                document.getElementById("ifShgbAgunan1Hak").classList.toggle("hide");
+            } else {
+                document.getElementById("ifShgbAgunan1Expired").classList = "hide";
+                document.getElementById("ifShgbAgunan1Hak").classList = "hide";
+            }
+        }
+
+        function changeShgbAgunan2() {
+            var shgbAgunan2 = document.getElementById("formAgunan2StatusBuktiKepemilikan");
+            if (shgbAgunan2.value == "SHGB") {
+                document.getElementById("ifShgbAgunan2Expired").classList.toggle("hide");
+                document.getElementById("ifShgbAgunan2Hak").classList.toggle("hide");
+            } else {
+                document.getElementById("ifShgbAgunan2Expired").classList = "hide";
+                document.getElementById("ifShgbAgunan2Hak").classList = "hide";
             }
         }
 

@@ -18,24 +18,28 @@ class AnalisController extends Controller
      */
     public function index()
     {
-        $pasarproposal= PasarPembiayaanHistory::select()->where('status_id',3)->orderby('created_at','desc')->get()->count();
-        $skpdproposal= SkpdPembiayaanHistory::select()->where('status_id',3)->orderby('created_at','desc')->get()->count();
-        $umkmproposal= UmkmPembiayaanHistory::select()->where('status_id',3)->orderby('created_at','desc')->get()->count();
-        $pprproposal= PprPembiayaanHistory::select()->where('status_id',3)->orderby('created_at','desc')->get()->count();
-        $pasarditerima = PasarPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id', 4)->get()->count();
-        $skpdditerima = SkpdPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id', 4)->get()->count();
-        $umkmditerima = UmkmPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id', 4)->get()->count();
-        $pprditerima = PprPembiayaanHistory::select()->where('status_id',5)->where('jabatan_id', 4)->get()->count();
-        $pasarditolak =PasarPembiayaanHistory::select()->where('status_id',6)->get()->count();
-        $skpdditolak =SkpdPembiayaanHistory::select()->where('status_id',6)->get()->count();
-        $umkmditolak =UmkmPembiayaanHistory::select()->where('status_id',6)->get()->count();
-        $pprditolak =PprPembiayaanHistory::select()->where('status_id',6)->get()->count();
-        $review =PasarPembiayaanHistory::select()->where('status_id',7)->orderby('created_at','desc')->get()->count();
-        return view('analis::index',[
+        $pasarproposal = PasarPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get()->count();
+        $skpdproposal = SkpdPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get()->count();
+        $umkmproposal = UmkmPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get()->count();
+        $pprproposal = PprPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get()->count();
+        $pasarditerima = PasarPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get()->count();
+        $skpdditerima = SkpdPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get()->count();
+        $umkmditerima = UmkmPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get()->count();
+        $pprditerima = PprPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get()->count();
+        $pasarditolak = PasarPembiayaanHistory::select()->where('status_id', 6)->get()->count();
+        $skpdditolak = SkpdPembiayaanHistory::select()->where('status_id', 6)->get()->count();
+        $umkmditolak = UmkmPembiayaanHistory::select()->where('status_id', 6)->get()->count();
+        $pprditolak = PprPembiayaanHistory::select()->where('status_id', 6)->get()->count();
+        $pasarreview = PasarPembiayaanHistory::select()->where('status_id', 7)->orderby('created_at', 'desc')->get()->count();
+        $skpdreview = SkpdPembiayaanHistory::select()->where('status_id', 7)->orderby('created_at', 'desc')->get()->count();
+        $umkmreview = UmkmPembiayaanHistory::select()->where('status_id', 7)->orderby('created_at', 'desc')->get()->count();
+        $pprreview = PprPembiayaanHistory::select()->where('status_id', 7)->orderby('created_at', 'desc')->get()->count();
+        return view('analis::index', [
             'title' => 'Dasboard Analis',
-            'diterima'=>$pasarditerima + $skpdditerima + $umkmditerima + $pprditerima,
-            'tolak'=>$pasarditolak + $skpdditolak + $umkmditolak + $pprditolak,
-            'proposal'=>$pasarproposal + $skpdproposal + $umkmproposal + $pprproposal,
+            'proposal' => $pasarproposal + $skpdproposal + $umkmproposal + $pprproposal,
+            'diterima' => $pasarditerima + $skpdditerima + $umkmditerima + $pprditerima,
+            'tolak' => $pasarditolak + $skpdditolak + $umkmditolak + $pprditolak,
+            'review' => $pasarreview + $skpdreview + $umkmreview + $pprreview,
         ]);
     }
 

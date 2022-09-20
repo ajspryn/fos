@@ -570,12 +570,6 @@
                                     <button type="submit" class="btn btn-success btn-submit">Submit</button>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
-            <!-- /Modern Horizontal Wizard -->
-        </div>
-    </div>
+                        
     <!-- END: Content-->
 @endsection

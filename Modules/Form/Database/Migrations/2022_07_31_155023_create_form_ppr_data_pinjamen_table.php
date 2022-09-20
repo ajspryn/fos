@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('form_pinjaman_angsuran_per_bulan')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

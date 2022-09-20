@@ -4,6 +4,7 @@ namespace Modules\Ppr\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Form\Entities\FormPprPembiayaan;
 
 class PprClDokumenAgunan extends Model
 {
@@ -12,6 +13,11 @@ class PprClDokumenAgunan extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function pembiayaan()
+    {
+        return $this->belongsTo(FormPprPembiayaan::class, 'form_ppr_pembiayaan_id', 'id');
+    }
 
     public function dokumen()
     {

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('form_kekayaan_tanah_bangunan_taksasi_pasar_wajar')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

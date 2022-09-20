@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('ppr_cl_dokumen_agunans', function (Blueprint $table) {
             $table->id();
 
+            $table->integer('form_ppr_pembiayaan_id');
             $table->integer('ppr_cl_dokumen_id');
             $table->string('copy_shgb_shm')->nullable();
             $table->string('copy_shgb_proses')->nullable();

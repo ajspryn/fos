@@ -64,13 +64,12 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
-
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                                 ->where('form_ppr_pembiayaan_id', $proposal->id)
                                                 ->orderBy('created_at', 'desc')
                                                 ->get()
                                                 ->first();
-
+                                            
                                             if ($history) {
                                                 $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
                                                     ->where('id', $history->form_ppr_pembiayaan_id)

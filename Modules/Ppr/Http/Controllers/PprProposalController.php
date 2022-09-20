@@ -7,6 +7,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Modules\Admin\Entities\PprCapacityGajiBersih;
 use Modules\Admin\Entities\PprCapacityJmlTanggunganKeluarga;
 use Modules\Admin\Entities\PprCapacityKeamananBisnisPekerjaan;
@@ -74,6 +75,7 @@ use Modules\Form\Entities\FormPprDataPinjamanKartuKredit;
 use Modules\Form\Entities\FormPprDataPinjamanLainnya;
 use Modules\Form\Entities\FormPprDataPribadi;
 use Modules\Form\Entities\FormPprPembiayaan;
+use Modules\Form\Entities\FormPprFoto;
 use Modules\Ppr\Entities\PprAbilityToRepayFixedIncome;
 use Modules\Ppr\Entities\PprAbilityToRepayNonFixedIncome;
 use Modules\Ppr\Entities\PprCapacity;
@@ -96,8 +98,6 @@ use Modules\Ppr\Entities\PprScoringAtrFixedIncome;
 use Modules\Ppr\Entities\PprScoringAtrNonFixedIncome;
 use Modules\Ppr\Entities\PprScoringCollateralFixedIncome;
 use Modules\Ppr\Entities\PprScoringCollateralNonFixedIncome;
-use Modules\Ppr\Entities\PprScoringFixedIncome;
-use Modules\Ppr\Entities\PprScoringNonFixedIncome;
 use Modules\Ppr\Entities\PprScoringWtrFixedIncome;
 use Modules\Ppr\Entities\PprScoringWtrNonFixedIncome;
 use Modules\Ppr\Entities\PprScoring;
@@ -114,7 +114,17 @@ class PprProposalController extends Controller
         // return $test;
         return view('ppr::proposal.index', [
             'title' => 'Proposal PPR',
-            'proposals' => FormPprPembiayaan::select()->where('user_id', Auth::user()->id)->whereNull('form_cl')->orWhereNull('form_score')->get(),
+            'proposals' => FormPprPembiayaan::select()
+                //Mengambil sesuai AO
+                ->where('user_id', Auth::user()->id)
+                //Query agar pengambilan sesuai AO berfungsi
+                ->where(function ($query) {
+                    $query
+                        ->whereNull('dilengkapi_ao')
+                        ->orWhereNull('form_cl')
+                        ->orWhereNull('form_score');
+                })
+                ->get(),
         ]);
     }
 
@@ -149,27 +159,53 @@ class PprProposalController extends Controller
             'pembiayaan' => FormPprPembiayaan::select()->where('id', $id)->get()->first(),
             'dokumen' => PprClDokumen::select()->where('id', $id)->get()->first(),
 
-            'clPersyaratan' => PprClPersyaratan::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'dokFixedIncome' => PprClDokumenFixedIncome::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'dokNonFixedIncome' => PprClDokumenNonFixedIncome::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'dokAgunan' => PprClDokumenAgunan::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'AtrFixedIncome' => PprAbilityToRepayFixedIncome::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'AtrNonFixedIncome' => PprAbilityToRepayNonFixedIncome::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
-            'pemberkasanMemo' => PprPemberkasanMemo::select()->where('ppr_cl_dokumen_id', $id)->get()->first(),
+            'clPersyaratan' => PprClPersyaratan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'dokFixedIncome' => PprClDokumenFixedIncome::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'dokNonFixedIncome' => PprClDokumenNonFixedIncome::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'dokAgunan' => PprClDokumenAgunan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'AtrFixedIncome' => PprAbilityToRepayFixedIncome::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'AtrNonFixedIncome' => PprAbilityToRepayNonFixedIncome::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'pemberkasanMemo' => PprPemberkasanMemo::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
 
             'nasabah' => FormPprDataPribadi::select()->where('id', $id)->get()->first(),
+            'fotoPemohon' => FormPprFoto::select()->where('form_ppr_pembiayaan_id', $id)->where('kategori', 'Foto Pemohon')->get()->first(),
+            'fotoPasanganPemohon' => FormPprFoto::select()->where('form_ppr_pembiayaan_id', $id)->where('kategori', 'Foto Pasangan Pemohon')->get()->first(),
             'aos' => Role::select()->where('jabatan_id', 1)->get(),
             'pekerjaans' => FormPprDataPekerjaan::all(),
             'agunans' => FormPprDataAgunan::all(),
-            'kekayaan_simpanans' => FormPprDataKekayaanSimpanan::all(),
-            'kekayaan_tanah_bangunans' => FormPprDataKekayaanTanahBangunan::all(),
-            'kekayaan_kendaraans' => FormPprDataKekayaanKendaraan::all(),
-            'kekayaan_sahams' => FormPprDataKekayaanSaham::all(),
-            'kekayaan_lains' => FormPprDataKekayaanLainnya::all(),
-            'pinjamans' => FormPprDataPinjaman::all(),
-            'pinjaman_kartu_kredits' => FormPprDataPinjamanKartuKredit::all(),
-            'pinjaman_lains' => FormPprDataPinjamanLainnya::all(),
 
+            'kekayaan_simpanans' => FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_kekayaan_simpanan' => FormPprDataKekayaanSimpanan::select('deleted_at')->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
+            'kekayaan_tanah_bangunans' => FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_kekayaan_tanah_bangunan' => FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
+            'kekayaan_kendaraans' => FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_kekayaan_kendaraan' => FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
+            'kekayaan_sahams' => FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_kekayaan_saham' => FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
+            'kekayaan_lainnyas' => FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_kekayaan_lainnya' => FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
+            'pinjamans' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_pinjaman' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
+            'pinjaman_kartu_kredits' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_pinjaman_kartu_kredit' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
+            'pinjaman_lainnyas' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'if_pinjaman_lainnya' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+
+            // 'kekayaan_simpanan' => FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            // 'kekayaan_tanah_bangunan' => FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            // 'kekayaan_kendaraan' => FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            // 'kekayaan_saham' => FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            // 'kekayaan_lainnya' => FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            // 'pinjaman' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            // 'pinjaman_kartu_kredit' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            // 'pinjaman_lainnya' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
             // 'persyaratans' => PprClPersyaratan::all(),
 
             //Kategori Scoring Fixed Income
@@ -279,19 +315,449 @@ class PprProposalController extends Controller
         // dd($request);
 
         $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
+        // dd($request);
+        // $hitungDataKekayaanSimpanan = FormPprDataKekayaanSimpanan::select()->where('id', $pembiayaan->kekayaan_simpanan[0]['id'])->get()->first();
+        // $idDataKekayaanSimpanan = $hitungDataKekayaanSimpanan;
 
         FormPprPembiayaan::where('id', $id)
             ->update([
+                'dilengkapi_ao' => $request->dilengkapi_ao,
                 'form_cl' => $request->form_cl,
                 'form_score' => $request->form_score,
-                'form_permohonan_nilai_ppr_dimohon' => $request->form_permohonan_nilai_ppr_dimohon,
-                // 'form_permohonan_jenis_akad_pembayaran' => $request->form_permohonan_jenis_akad_pembayaran,
             ]);
 
+        if ($pembiayaan->dilengkapi_ao != 'Telah dilengkapi') {
+            FormPprPembiayaan::where('id', $id)
+                ->update([
+                    'form_permohonan_jenis_akad_pembayaran' => $request->form_permohonan_jenis_akad_pembayaran,
+                    'form_permohonan_jenis_akad_pembayaran_lain' => $request->form_permohonan_jenis_akad_pembayaran_lain,
+                    'form_permohonan_nilai_ppr_dimohon' => str_replace(",", "", $request->form_permohonan_nilai_ppr_dimohon),
+                    'form_permohonan_uang_muka_dana_sendiri' => str_replace(",", "", $request->form_permohonan_uang_muka_dana_sendiri),
+                    'form_permohonan_nilai_hpp' => str_replace(",", "", $request->form_permohonan_nilai_hpp),
+                    'form_permohonan_harga_jual' => str_replace(",", "", $request->form_permohonan_harga_jual),
+                    'form_permohonan_jangka_waktu_ppr' => $request->form_permohonan_jangka_waktu_ppr,
+                    'form_permohonan_peruntukan_ppr' => $request->form_permohonan_peruntukan_ppr,
+                    'form_permohonan_jml_margin' => str_replace(",", "", $request->form_permohonan_jml_margin),
+                    'form_permohonan_jml_sewa' => str_replace(",", "", $request->form_permohonan_jml_sewa),
+                    'form_permohonan_jml_bagi_hasil' => str_replace(",", "", $request->form_permohonan_jml_bagi_hasil),
+                    'form_permohonan_jml_bulan' => $request->form_permohonan_jml_bulan,
+                    'form_permohonan_sistem_pembayaran_angsuran' => $request->form_permohonan_sistem_pembayaran_angsuran,
+                    'form_penghasilan_pengeluaran_penghasilan_utama_pemohon' => str_replace(",", "", $request->form_penghasilan_pengeluaran_penghasilan_utama_pemohon),
+                    'form_penghasilan_pengeluaran_penghasilan_lain_pemohon' => str_replace(",", "", $request->form_penghasilan_pengeluaran_penghasilan_lain_pemohon),
+                    'form_penghasilan_pengeluaran_penghasilan_utama_istri_suami' => str_replace(",", "", $request->form_penghasilan_pengeluaran_penghasilan_utama_istri_suami),
+                    'form_penghasilan_pengeluaran_penghasilan_lain_istri_suami' => str_replace(",", "", $request->form_penghasilan_pengeluaran_penghasilan_lain_istri_suami),
+                    'form_penghasilan_pengeluaran_total_penghasilan' => str_replace(",", "", $request->form_penghasilan_pengeluaran_total_penghasilan),
+                    'form_penghasilan_pengeluaran_biaya_hidup_rutin_keluarga' => str_replace(",", "", $request->form_penghasilan_pengeluaran_biaya_hidup_rutin_keluarga),
+                    'form_penghasilan_pengeluaran_kewajiban_angsuran' => str_replace(",", "", $request->form_penghasilan_pengeluaran_kewajiban_angsuran),
+                    'form_penghasilan_pengeluaran_total_pengeluaran' => str_replace(",", "", $request->form_penghasilan_pengeluaran_total_pengeluaran),
+                    'form_penghasilan_pengeluaran_sisa_penghasilan' => str_replace(",", "", $request->form_penghasilan_pengeluaran_sisa_penghasilan),
+                    'form_penghasilan_pengeluaran_kemampuan_mengangsur' => str_replace(",", "", $request->form_penghasilan_pengeluaran_kemampuan_mengangsur),
+                ]);
 
-        if ($pembiayaan->form_cl != 'Telah diisi') {
+            FormPprDataPribadi::where('id', $id)
+                ->update([
+                    'form_pribadi_pemohon_nama_lengkap' => $request->form_pribadi_pemohon_nama_lengkap,
+                    'form_pribadi_pemohon_nama_ktp' => $request->form_pribadi_pemohon_nama_ktp,
+                    'form_pribadi_pemohon_gelar' => $request->form_pribadi_pemohon_gelar,
+                    'form_pribadi_pemohon_nama_alias' => $request->form_pribadi_pemohon_nama_alias,
+                    'form_pribadi_pemohon_no_ktp' => $request->form_pribadi_pemohon_no_ktp,
+                    'form_pribadi_pemohon_jenis_kelamin' => $request->form_pribadi_pemohon_jenis_kelamin,
+                    'form_pribadi_pemohon_tempat_lahir' => $request->form_pribadi_pemohon_tempat_lahir,
+                    'form_pribadi_pemohon_tanggal_lahir' => $request->form_pribadi_pemohon_tanggal_lahir,
+                    'form_pribadi_pemohon_npwp' => $request->form_pribadi_pemohon_npwp,
+                    'form_pribadi_pemohon_pendidikan' => $request->form_pribadi_pemohon_pendidikan,
+                    'form_pribadi_pemohon_agama' => $request->form_pribadi_pemohon_agama,
+                    'form_pribadi_pemohon_agama_lain' => $request->form_pribadi_pemohon_agama_lain,
+                    'form_pribadi_pemohon_status_pernikahan' => $request->form_pribadi_pemohon_status_pernikahan,
+                    'form_pribadi_pemohon_jml_anak' => $request->form_pribadi_pemohon_jml_anak,
+                    'form_pribadi_pemohon_jml_tanggungan' => $request->form_pribadi_pemohon_jml_tanggungan,
+                    'form_pribadi_pemohon_nama_gadis_ibu_kandung' => $request->form_pribadi_pemohon_nama_gadis_ibu_kandung,
+                    'form_pribadi_pemohon_alamat_ktp' => $request->form_pribadi_pemohon_alamat_ktp,
+                    'form_pribadi_pemohon_alamat_ktp_rt' => $request->form_pribadi_pemohon_alamat_ktp_rt,
+                    'form_pribadi_pemohon_alamat_ktp_rw' => $request->form_pribadi_pemohon_alamat_ktp_rw,
+                    'form_pribadi_pemohon_alamat_ktp_kelurahan' => $request->form_pribadi_pemohon_alamat_ktp_kelurahan,
+                    'form_pribadi_pemohon_alamat_ktp_kecamatan' => $request->form_pribadi_pemohon_alamat_ktp_kecamatan,
+                    'form_pribadi_pemohon_alamat_ktp_dati2' => $request->form_pribadi_pemohon_alamat_ktp_dati2,
+                    'form_pribadi_pemohon_alamat_ktp_provinsi' => $request->form_pribadi_pemohon_alamat_ktp_provinsi,
+                    'form_pribadi_pemohon_alamat_ktp_kode_pos' => $request->form_pribadi_pemohon_alamat_ktp_kode_pos,
+                    'form_pribadi_pemohon_alamat_domisili' => $request->form_pribadi_pemohon_alamat_domisili,
+                    'form_pribadi_pemohon_alamat_domisili_rt' => $request->form_pribadi_pemohon_alamat_domisili_rt,
+                    'form_pribadi_pemohon_alamat_domisili_rw' => $request->form_pribadi_pemohon_alamat_domisili_rw,
+                    'form_pribadi_pemohon_alamat_domisili_kelurahan' => $request->form_pribadi_pemohon_alamat_domisili_kelurahan,
+                    'form_pribadi_pemohon_alamat_domisili_kecamatan' => $request->form_pribadi_pemohon_alamat_domisili_kecamatan,
+                    'form_pribadi_pemohon_alamat_domisili_dati2' => $request->form_pribadi_pemohon_alamat_domisili_dati2,
+                    'form_pribadi_pemohon_alamat_domisili_provinsi' => $request->form_pribadi_pemohon_alamat_domisili_provinsi,
+                    'form_pribadi_pemohon_alamat_domisili_kode_pos' => $request->form_pribadi_pemohon_alamat_domisili_kode_pos,
+                    'form_pribadi_pemohon_no_telp' => $request->form_pribadi_pemohon_no_telp,
+                    'form_pribadi_pemohon_no_handphone' => $request->form_pribadi_pemohon_no_handphone,
+                    'form_pribadi_pemohon_status_tempat_tinggal' => $request->form_pribadi_pemohon_status_tempat_tinggal,
+                    'form_pribadi_pemohon_status_tempat_tinggal_lama_ditempati_tahun' => $request->form_pribadi_pemohon_status_tempat_tinggal_lama_ditempati_tahun,
+                    'form_pribadi_pemohon_status_tempat_tinggal_lama_ditempati_bulan' => $request->form_pribadi_pemohon_status_tempat_tinggal_lama_ditempati_bulan,
+                    'form_pribadi_pemohon_status_tempat_tinggal_dijaminkan' => $request->form_pribadi_pemohon_status_tempat_tinggal_dijaminkan,
+                    'form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada' => $request->form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada,
+                    'form_pribadi_pemohon_alamat_korespondensi' => $request->form_pribadi_pemohon_alamat_korespondensi,
+
+                    'form_pribadi_istri_suami_nama_lengkap' => $request->form_pribadi_istri_suami_nama_lengkap,
+                    'form_pribadi_istri_suami_gelar' => $request->form_pribadi_istri_suami_gelar,
+                    'form_pribadi_istri_suami_no_ktp' => $request->form_pribadi_istri_suami_no_ktp,
+                    'form_pribadi_istri_suami_tempat_lahir' => $request->form_pribadi_istri_suami_tempat_lahir,
+                    'form_pribadi_istri_suami_tanggal_lahir' => $request->form_pribadi_istri_suami_tanggal_lahir,
+                    'form_pribadi_istri_suami_npwp' => $request->form_pribadi_istri_suami_npwp,
+                    'form_pribadi_istri_suami_pendidikan' => $request->form_pribadi_istri_suami_pendidikan,
+
+                    'form_pribadi_keluarga_terdekat_nama_lengkap' => $request->form_pribadi_keluarga_terdekat_nama_lengkap,
+                    'form_pribadi_keluarga_terdekat_hubungan' => $request->form_pribadi_keluarga_terdekat_hubungan,
+                    'form_pribadi_keluarga_terdekat_hubungan_lain' => $request->form_pribadi_keluarga_terdekat_hubungan_lain,
+                    'form_pribadi_keluarga_terdekat_alamat' => $request->form_pribadi_keluarga_terdekat_alamat,
+                    'form_pribadi_keluarga_terdekat_alamat_rt' => $request->form_pribadi_keluarga_terdekat_alamat_rt,
+                    'form_pribadi_keluarga_terdekat_alamat_rw' => $request->form_pribadi_keluarga_terdekat_alamat_rw,
+                    'form_pribadi_keluarga_terdekat_alamat_kelurahan' => $request->form_pribadi_keluarga_terdekat_alamat_kelurahan,
+                    'form_pribadi_keluarga_terdekat_alamat_kecamatan' => $request->form_pribadi_keluarga_terdekat_alamat_kecamatan,
+                    'form_pribadi_keluarga_terdekat_alamat_dati2' => $request->form_pribadi_keluarga_terdekat_alamat_dati2,
+                    'form_pribadi_keluarga_terdekat_alamat_provinsi' => $request->form_pribadi_keluarga_terdekat_alamat_provinsi,
+                    'form_pribadi_keluarga_terdekat_alamat_kode_pos' => $request->form_pribadi_keluarga_terdekat_alamat_kode_pos,
+                    'form_pribadi_keluarga_terdekat_no_telp' => $request->form_pribadi_keluarga_terdekat_no_telp,
+                ]);
+
+            if (request('perbarui_foto_pemohon') == 'Ya') {
+                if ($pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan == 'Menikah') {
+                    foreach ($request->foto as $key => $value) {
+                        if ($value['foto']) {
+                            Storage::delete($value['foto_lama']);
+                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
+
+                            FormPprFoto::where('form_ppr_pembiayaan_id', $id)->where('id', $value['id'])->update([
+                                'form_ppr_pembiayaan_id' => $id,
+                                'kategori' => $value['kategori'],
+                                'foto' => $foto,
+                            ]);
+                        } else {
+                        }
+                    }
+                } elseif (request('form_pribadi_pemohon_status_pernikahan') == 'Menikah') {
+                    foreach ($request->foto as $key => $value) {
+                        if ($value['foto']) {
+                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
+                        } else {
+                        }
+
+                        FormPprFoto::create([
+                            'form_ppr_pembiayaan_id' => $id,
+                            'kategori' => $value['kategori'],
+                            'foto' => $foto,
+                        ]);
+                    }
+                } else {
+                }
+            } else {
+                //Kondisi tidak update foto pemohon yang statusnya selain menikah,
+                //kemudian statusnya diubah menjadi menikah (untuk upload foto pasangan)
+                if (request('form_pribadi_pemohon_status_pernikahan') == 'Menikah' && $pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan != 'Menikah') {
+                    foreach ($request->foto as $key => $value) {
+                        if ($value['foto']) {
+                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
+                        }
+
+                        FormPprFoto::create([
+                            'form_ppr_pembiayaan_id' => $id,
+                            'kategori' => $value['kategori'],
+                            'foto' => $foto,
+                        ]);
+                    }
+                } else {
+                }
+            }
+
+
+            FormPprDataPekerjaan::where('form_ppr_data_pribadi_id', $id)
+                ->update([
+                    'form_pekerjaan_pemohon_nama' => $request->form_pekerjaan_pemohon_nama,
+                    'form_pekerjaan_pemohon_badan_hukum' => $request->form_pekerjaan_pemohon_badan_hukum,
+                    'form_pekerjaan_pemohon_alamat' => $request->form_pekerjaan_pemohon_alamat,
+                    'form_pekerjaan_pemohon_alamat_kode_pos' => $request->form_pekerjaan_pemohon_alamat_kode_pos,
+                    'form_pekerjaan_pemohon_no_telp' => $request->form_pekerjaan_pemohon_no_telp,
+                    'form_pekerjaan_pemohon_no_telp_extension' => $request->form_pekerjaan_pemohon_no_telp_extension,
+                    'form_pekerjaan_pemohon_facsimile' => $request->form_pekerjaan_pemohon_facsimile,
+                    'form_pekerjaan_pemohon_npwp' => $request->form_pekerjaan_pemohon_npwp,
+                    'form_pekerjaan_pemohon_bidang_usaha' => $request->form_pekerjaan_pemohon_bidang_usaha,
+                    'form_pekerjaan_pemohon_bidang_usaha_lain' => $request->form_pekerjaan_pemohon_bidang_usaha_lain,
+                    'form_pekerjaan_pemohon_jenis_pekerjaan' => $request->form_pekerjaan_pemohon_jenis_pekerjaan,
+                    'form_pekerjaan_pemohon_jenis_pekerjaan_lain' => $request->form_pekerjaan_pemohon_jenis_pekerjaan_lain,
+                    'form_pekerjaan_pemohon_jml_karyawan' => $request->form_pekerjaan_pemohon_jml_karyawan,
+                    'form_pekerjaan_pemohon_departemen' => $request->form_pekerjaan_pemohon_departemen,
+                    'form_pekerjaan_pemohon_pangkat_gol_jabatan' => $request->form_pekerjaan_pemohon_pangkat_gol_jabatan,
+                    'form_pekerjaan_pemohon_nip_nrp' => $request->form_pekerjaan_pemohon_nip_nrp,
+                    'form_pekerjaan_pemohon_mulai_bekerja' => $request->form_pekerjaan_pemohon_mulai_bekerja,
+                    'form_pekerjaan_pemohon_usia_pensiun' => $request->form_pekerjaan_pemohon_usia_pensiun,
+                    'form_pekerjaan_pemohon_masa_kerja' => $request->form_pekerjaan_pemohon_masa_kerja,
+                    'form_pekerjaan_pemohon_nama_atasan_langsung' => $request->form_pekerjaan_pemohon_nama_atasan_langsung,
+                    'form_pekerjaan_pemohon_no_telp_atasan_langsung' => $request->form_pekerjaan_pemohon_no_telp_atasan_langsung,
+                    'form_pekerjaan_pemohon_no_telp_atasan_langsung_extension' => $request->form_pekerjaan_pemohon_no_telp_atasan_langsung_extension,
+                    'form_pekerjaan_pemohon_grup_afiliasi' => $request->form_pekerjaan_pemohon_grup_afiliasi,
+                    'form_pekerjaan_pemohon_pengalaman_kerja_terakhir_perusahaan' => $request->form_pekerjaan_pemohon_pengalaman_kerja_terakhir_perusahaan,
+                    'form_pekerjaan_pemohon_pengalaman_kerja_terakhir_jabatan' => $request->form_pekerjaan_pemohon_pengalaman_kerja_terakhir_jabatan,
+                    'form_pekerjaan_pemohon_pengalaman_kerja_terakhir_tahun' => $request->form_pekerjaan_pemohon_pengalaman_kerja_terakhir_tahun,
+                    'form_pekerjaan_pemohon_pengalaman_kerja_terakhir_bulan' => $request->form_pekerjaan_pemohon_pengalaman_kerja_terakhir_bulan,
+
+                    'form_pekerjaan_istri_suami_nama' => $request->form_pekerjaan_istri_suami_nama,
+                    'form_pekerjaan_istri_suami_badan_hukum' => $request->form_pekerjaan_istri_suami_badan_hukum,
+                    'form_pekerjaan_istri_suami_alamat' => $request->form_pekerjaan_istri_suami_alamat,
+                    'form_pekerjaan_istri_suami_alamat_kode_pos' => $request->form_pekerjaan_istri_suami_alamat_kode_pos,
+                    'form_pekerjaan_istri_suami_no_telp' => $request->form_pekerjaan_istri_suami_no_telp,
+                    'form_pekerjaan_istri_suami_no_telp_extension' => $request->form_pekerjaan_istri_suami_no_telp_extension,
+                    'form_pekerjaan_istri_suami_facsimile' => $request->form_pekerjaan_istri_suami_facsimile,
+                    'form_pekerjaan_istri_suami_npwp' => $request->form_pekerjaan_istri_suami_npwp,
+                    'form_pekerjaan_istri_suami_bidang_usaha' => $request->form_pekerjaan_istri_suami_bidang_usaha,
+                    'form_pekerjaan_istri_suami_bidang_usaha_lain' => $request->form_pekerjaan_istri_suami_bidang_usaha_lain,
+                    'form_pekerjaan_istri_suami_jenis_pekerjaan' => $request->form_pekerjaan_istri_suami_jenis_pekerjaan,
+                    'form_pekerjaan_istri_suami_jenis_pekerjaan_lain' => $request->form_pekerjaan_istri_suami_jenis_pekerjaan_lain,
+                    'form_pekerjaan_istri_suami_jml_karyawan' => $request->form_pekerjaan_istri_suami_jml_karyawan,
+                    'form_pekerjaan_istri_suami_departemen' => $request->form_pekerjaan_istri_suami_departemen,
+                    'form_pekerjaan_istri_suami_pangkat_gol_jabatan' => $request->form_pekerjaan_istri_suami_pangkat_gol_jabatan,
+                    'form_pekerjaan_istri_suami_nip_nrp' => $request->form_pekerjaan_istri_suami_nip_nrp,
+                    'form_pekerjaan_istri_suami_mulai_bekerja' => $request->form_pekerjaan_istri_suami_mulai_bekerja,
+                    'form_pekerjaan_istri_suami_usia_pensiun' => $request->form_pekerjaan_istri_suami_usia_pensiun,
+                    'form_pekerjaan_istri_suami_masa_kerja' => $request->form_pekerjaan_istri_suami_masa_kerja,
+                    'form_pekerjaan_istri_suami_nama_atasan_langsung' => $request->form_pekerjaan_istri_suami_nama_atasan_langsung,
+                    'form_pekerjaan_istri_suami_no_telp_atasan_langsung' => $request->form_pekerjaan_istri_suami_no_telp_atasan_langsung,
+                    'form_pekerjaan_istri_suami_no_telp_atasan_langsung_extension' => $request->form_pekerjaan_istri_suami_no_telp_atasan_langsung_extension,
+                    'form_pekerjaan_istri_suami_grup_afiliasi' => $request->form_pekerjaan_istri_suami_grup_afiliasi,
+                    'form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_perusahaan' => $request->form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_perusahaan,
+                    'form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_jabatan' => $request->form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_jabatan,
+                    'form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_tahun' => $request->form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_tahun,
+                    'form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_bulan' => $request->form_pekerjaan_istri_suami_pengalaman_kerja_terakhir_bulan,
+                ]);
+
+            FormPprDataAgunan::where('id', $id)
+                ->update([
+                    'form_agunan_1_jenis' => $request->form_agunan_1_jenis,
+                    'form_agunan_1_jenis_lain' => $request->form_agunan_1_jenis_lain,
+                    'form_agunan_1_nilai_harga_jual' => $request->form_agunan_1_nilai_harga_jual,
+                    'form_agunan_1_alamat' => $request->form_agunan_1_alamat,
+                    'form_agunan_1_alamat_rt' => $request->form_agunan_1_alamat_rt,
+                    'form_agunan_1_alamat_rw' => $request->form_agunan_1_alamat_rw,
+                    'form_agunan_1_alamat_kelurahan' => $request->form_agunan_1_alamat_kelurahan,
+                    'form_agunan_1_alamat_kecamatan' => $request->form_agunan_1_alamat_kecamatan,
+                    'form_agunan_1_alamat_dati2' => $request->form_agunan_1_alamat_dati2,
+                    'form_agunan_1_alamat_provinsi' => $request->form_agunan_1_alamat_provinsi,
+                    'form_agunan_1_alamat_kode_pos' => $request->form_agunan_1_alamat_kode_pos,
+                    'form_agunan_1_status_bukti_kepemilikan' => $request->form_agunan_1_status_bukti_kepemilikan,
+                    'form_agunan_1_status_bukti_kepemilikan_tgl_berakhir' => $request->form_agunan_1_status_bukti_kepemilikan_tgl_berakhir,
+                    'form_agunan_1_status_bukti_kepemilikan_hak' => $request->form_agunan_1_status_bukti_kepemilikan_hak,
+                    'form_agunan_1_no_sertifikat' => $request->form_agunan_1_no_sertifikat,
+                    'form_agunan_1_no_sertifikat_tgl_penerbitan' => $request->form_agunan_1_no_sertifikat_tgl_penerbitan,
+                    'form_agunan_1_no_imb' => $request->form_agunan_1_no_imb,
+                    'form_agunan_1_peruntukan_bangunan' => $request->form_agunan_1_peruntukan_bangunan,
+                    'form_agunan_1_luas_tanah' => $request->form_agunan_1_luas_tanah,
+                    'form_agunan_1_luas_bangunan' => $request->form_agunan_1_luas_bangunan,
+                    'form_agunan_1_atas_nama' => $request->form_agunan_1_atas_nama,
+                    'form_agunan_1_nama_pengembang' => $request->form_agunan_1_nama_pengembang,
+                    'form_agunan_1_nama_proyek_perumahan' => $request->form_agunan_1_nama_proyek_perumahan,
+
+                    'form_agunan_2_jenis' => $request->form_agunan_2_jenis,
+                    'form_agunan_2_jenis_lain' => $request->form_agunan_2_jenis_lain,
+                    'form_agunan_2_nilai_harga_jual' => $request->form_agunan_2_nilai_harga_jual,
+                    'form_agunan_2_alamat' => $request->form_agunan_2_alamat,
+                    'form_agunan_2_alamat_rt' => $request->form_agunan_2_alamat_rt,
+                    'form_agunan_2_alamat_rw' => $request->form_agunan_2_alamat_rw,
+                    'form_agunan_2_alamat_kelurahan' => $request->form_agunan_2_alamat_kelurahan,
+                    'form_agunan_2_alamat_kecamatan' => $request->form_agunan_2_alamat_kecamatan,
+                    'form_agunan_2_alamat_dati2' => $request->form_agunan_2_alamat_dati2,
+                    'form_agunan_2_alamat_provinsi' => $request->form_agunan_2_alamat_provinsi,
+                    'form_agunan_2_alamat_kode_pos' => $request->form_agunan_2_alamat_kode_pos,
+                    'form_agunan_2_status_bukti_kepemilikan' => $request->form_agunan_2_status_bukti_kepemilikan,
+                    'form_agunan_2_status_bukti_kepemilikan_tgl_berakhir' => $request->form_agunan_2_status_bukti_kepemilikan_tgl_berakhir,
+                    'form_agunan_2_status_bukti_kepemilikan_hak' => $request->form_agunan_2_status_bukti_kepemilikan_hak,
+                    'form_agunan_2_no_sertifikat' => $request->form_agunan_2_no_sertifikat,
+                    'form_agunan_2_no_sertifikat_tgl_penerbitan' => $request->form_agunan_2_no_sertifikat_tgl_penerbitan,
+                    'form_agunan_2_no_imb' => $request->form_agunan_2_no_imb,
+                    'form_agunan_2_peruntukan_bangunan' => $request->form_agunan_2_peruntukan_bangunan,
+                    'form_agunan_2_luas_tanah' => $request->form_agunan_2_luas_tanah,
+                    'form_agunan_2_luas_bangunan' => $request->form_agunan_2_luas_bangunan,
+                    'form_agunan_2_atas_nama' => $request->form_agunan_2_atas_nama,
+
+                    'form_agunan_3_jenis' => $request->form_agunan_3_jenis,
+                    'form_agunan_3_nilai' => $request->form_agunan_3_nilai,
+                    'form_agunan_3_no_rekening' => $request->form_agunan_3_no_rekening,
+                    'form_agunan_3_atas_nama' => $request->form_agunan_3_atas_nama,
+                ]);
+
+
+            //Kekayaan simpanan
+            if ($request->repeater_kekayaan_simpanan[0]['form_kekayaan_simpanan_nama_bank']) {
+
+                // FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+                foreach ($request->repeater_kekayaan_simpanan as $key => $value) {
+                    FormPprDataKekayaanSimpanan::updateOrCreate(
+                        [
+                            'id' => $value['id'],
+                        ],
+                        [
+                            'form_ppr_pembiayaan_id' => $id,
+                            'form_kekayaan_simpanan_nama_bank' => $value['form_kekayaan_simpanan_nama_bank'],
+                            'form_kekayaan_simpanan_jenis' => $value['form_kekayaan_simpanan_jenis'],
+                            'form_kekayaan_simpanan_sejak_tahun' => $value['form_kekayaan_simpanan_sejak_tahun'],
+                            'form_kekayaan_simpanan_saldo_per_tanggal' => $value['form_kekayaan_simpanan_saldo_per_tanggal'],
+                            'form_kekayaan_simpanan_saldo' => str_replace(",", "", $value['form_kekayaan_simpanan_saldo']),
+                        ]
+                    );
+                }
+            } else {
+            }
+
+            //Kekayaan tanah dan bangunan
+            if ($request->repeater_kekayaan_tanah_bangunan[0]['form_kekayaan_tanah_bangunan_luas_tanah']) {
+
+                // FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+
+                foreach ($request->repeater_kekayaan_tanah_bangunan as $key => $value) {
+                    FormPprDataKekayaanTanahBangunan::updateOrCreate(
+                        [
+                            'id' => $value['id'],
+                        ],
+                        [
+                            'form_ppr_pembiayaan_id' => $id,
+                            'form_kekayaan_tanah_bangunan_luas_tanah' => $value['form_kekayaan_tanah_bangunan_luas_tanah'],
+                            'form_kekayaan_tanah_bangunan_luas_bangunan' => $value['form_kekayaan_tanah_bangunan_luas_bangunan'],
+                            'form_kekayaan_tanah_bangunan_jenis' => $value['form_kekayaan_tanah_bangunan_jenis'],
+                            'form_kekayaan_tanah_bangunan_atas_nama' => $value['form_kekayaan_tanah_bangunan_atas_nama'],
+                            'form_kekayaan_tanah_bangunan_taksasi_pasar_wajar' => str_replace(",", "", $value['form_kekayaan_tanah_bangunan_taksasi_pasar_wajar']),
+                        ]
+                    );
+                }
+            } else {
+            }
+
+            //Kekayaan kendaraan
+            if ($request->repeater_kekayaan_kendaraan[0]['form_kekayaan_kendaraan_jenis_merk']) {
+
+                // FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+
+                foreach ($request->repeater_kekayaan_kendaraan as $key => $value) {
+                    FormPprDataKekayaanKendaraan::updateOrCreate(
+                        [
+                            'id' => $value['id'],
+                        ],
+                        [
+                            'form_ppr_pembiayaan_id' => $id,
+                            'form_kekayaan_kendaraan_jenis_merk' => $value['form_kekayaan_kendaraan_jenis_merk'],
+                            'form_kekayaan_kendaraan_tahun_dikeluarkan' => $value['form_kekayaan_kendaraan_tahun_dikeluarkan'],
+                            'form_kekayaan_kendaraan_atas_nama' => $value['form_kekayaan_kendaraan_atas_nama'],
+                            'form_kekayaan_kendaraan_taksasi_harga_jual' => str_replace(",", "", $value['form_kekayaan_kendaraan_taksasi_harga_jual']),
+                        ]
+                    );
+                }
+            } else {
+            }
+
+            //Kekayaan saham
+            if ($request->repeater_kekayaan_saham[0]['form_kekayaan_saham_penerbit']) {
+
+                // FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+
+                foreach ($request->repeater_kekayaan_saham as $key => $value) {
+                    FormPprDataKekayaanSaham::updateOrCreate(
+                        [
+                            'id' => $value['id'],
+                        ],
+                        [
+                            'form_ppr_pembiayaan_id' => $id,
+                            'form_kekayaan_saham_penerbit' => $value['form_kekayaan_saham_penerbit'],
+                            'form_kekayaan_saham_per_tanggal' => $value['form_kekayaan_saham_per_tanggal'],
+                            'form_kekayaan_saham_rp' => str_replace(",", "", $value['form_kekayaan_saham_rp']),
+                        ]
+                    );
+                }
+            } else {
+            }
+
+            //Kekayaan lainnya
+            if ($request->repeater_kekayaan_lainnya[0]['form_kekayaan_lainnya']) {
+
+                // FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+
+                foreach ($request->repeater_kekayaan_lainnya as $key => $value) {
+                    FormPprDataKekayaanLainnya::updateOrCreate(
+                        [
+                            'id' => $value['id'],
+                        ],
+                        [
+                            'form_ppr_pembiayaan_id' => $id,
+                            'form_kekayaan_lainnya' => $value['form_kekayaan_lainnya'],
+                            'form_kekayaan_lainnya_rp' => str_replace(",", "", $value['form_kekayaan_lainnya_rp']),
+                        ]
+                    );
+                }
+            } else {
+            }
+
+            //Pinjaman
+            if ($request->repeater_pinjaman[0]['form_pinjaman_nama_bank']) {
+
+                // FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+
+                foreach ($request->repeater_pinjaman as $key => $value) {
+                    FormPprDataPinjaman::updateOrCreate(
+                        [
+                            'id' => $value['id'],
+                        ],
+                        [
+                            'form_ppr_pembiayaan_id' => $id,
+                            'form_pinjaman_nama_bank' => $value['form_pinjaman_nama_bank'],
+                            'form_pinjaman_jenis' => $value['form_pinjaman_jenis'],
+                            'form_pinjaman_sejak_tahun' => $value['form_pinjaman_sejak_tahun'],
+                            'form_pinjaman_jangka_waktu_bulan' => $value['form_pinjaman_jangka_waktu_bulan'],
+                            'form_pinjaman_plafond' => str_replace(",", "", $value['form_pinjaman_plafond']),
+                            'form_pinjaman_angsuran_per_bulan' => str_replace(",", "", $value['form_pinjaman_angsuran_per_bulan']),
+                        ]
+                    );
+                }
+            } else {
+            }
+
+            //Pinjaman kartu kredit
+            if ($request->repeater_pinjaman_kartu_kredit[0]['form_pinjaman_kartu_kredit_nama_bank']) {
+
+                // FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+
+                foreach ($request->repeater_pinjaman_kartu_kredit as $key => $value) {
+                    FormPprDataPinjamanKartuKredit::updateOrCreate(
+                        [
+                            'id' => $value['id'],
+                        ],
+                        [
+                            'form_ppr_pembiayaan_id' => $id,
+                            'form_pinjaman_kartu_kredit_nama_bank' => $value['form_pinjaman_kartu_kredit_nama_bank'],
+                            'form_pinjaman_kartu_kredit_sejak_tahun' => $value['form_pinjaman_kartu_kredit_sejak_tahun'],
+                            'form_pinjaman_kartu_kredit_plafond' => str_replace(",", "", $value['form_pinjaman_kartu_kredit_plafond']),
+                        ]
+                    );
+                }
+            } else {
+            }
+
+            //Pinjaman lainnya
+            if ($request->repeater_pinjaman_lainnya[0]['form_pinjaman_lainnya']) {
+
+                // FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+
+                foreach ($request->repeater_pinjaman_lainnya as $key => $value) {
+                    FormPprDataPinjamanLainnya::updateOrCreate(
+                        [
+                            'id' => $value['id'],
+                        ],
+                        [
+                            'form_ppr_pembiayaan_id' => $id,
+                            'form_pinjaman_lainnya' => $value['form_pinjaman_lainnya'],
+                            'form_pinjaman_lainnya_rp' => str_replace(",", "", $value['form_pinjaman_lainnya_rp']),
+                        ]
+                    );
+                }
+            } else {
+            }
+        } elseif ($pembiayaan->form_cl != 'Telah diisi' && $pembiayaan->dilengkapi_ao == 'Telah dilengkapi') {
             //Check List
-            PprClPersyaratan::where('id', $id)
+            PprClPersyaratan::where('form_ppr_pembiayaan_id', $id)
                 ->update([
                     'wni' => $request->wni,
                     'usia_cukup' => $request->usia_cukup,
@@ -304,7 +770,7 @@ class PprProposalController extends Controller
                 ]);
 
             if ($pembiayaan->jenis_nasabah == 'Fixed Income') {
-                PprClDokumenFixedIncome::where('ppr_cl_dokumen_id', $id)
+                PprClDokumenFixedIncome::where('form_ppr_pembiayaan_id', $id)
                     ->update([
                         'aplikasi_permohonan' => $request->aplikasi_permohonan,
                         'copy_ktp' => $request->copy_ktp,
@@ -318,7 +784,7 @@ class PprProposalController extends Controller
                         'npwp' => $request->npwp,
                     ]);
 
-                PprAbilityToRepayFixedIncome::where('ppr_cl_dokumen_id', $id)
+                PprAbilityToRepayFixedIncome::where('form_ppr_pembiayaan_id', $id)
                     ->update([
                         'gaji1_gaji_kotor' => str_replace(",", "", $request->gaji1_gaji_kotor),
                         'gaji1_potongan_tht' => str_replace(",", "", $request->gaji1_potongan_tht),
@@ -356,7 +822,7 @@ class PprProposalController extends Controller
                         'total_penghasilan_bersih_per_bulan' => str_replace(",", "", $request->total_penghasilan_bersih_per_bulan),
                     ]);
             } else {
-                PprClDokumenNonFixedIncome::where('ppr_cl_dokumen_id', $id)
+                PprClDokumenNonFixedIncome::where('form_ppr_pembiayaan_id', $id)
                     ->update([
                         'aplikasi_permohonan' => $request->aplikasi_permohonan,
                         'copy_ktp' => $request->copy_ktp,
@@ -371,7 +837,7 @@ class PprProposalController extends Controller
                         'laporan_keuangan_perusahaan' => $request->laporan_keuangan_perusahaan,
                     ]);
 
-                PprAbilityToRepayNonFixedIncome::where('ppr_cl_dokumen_id', $id)
+                PprAbilityToRepayNonFixedIncome::where('form_ppr_pembiayaan_id', $id)
                     ->update([
                         //Usaha 1
                         'usaha1_penjualan' => str_replace(",", "", $request->usaha1_penjualan),
@@ -451,7 +917,7 @@ class PprProposalController extends Controller
                     ]);
             }
 
-            PprClDokumenAgunan::where('id', $id)
+            PprClDokumenAgunan::where('form_ppr_pembiayaan_id', $id)
                 ->update([
                     'copy_shgb_shm' => $request->copy_shgb_shm,
                     'copy_shgb_proses' => $request->copy_shgb_proses,
@@ -459,7 +925,7 @@ class PprProposalController extends Controller
                     'copy_imb_proses' => $request->copy_imb_proses,
                 ]);
 
-            PprPemberkasanMemo::where('id', $id)
+            PprPemberkasanMemo::where('form_ppr_pembiayaan_id', $id)
                 ->update([
                     'cl_persyaratan' => $request->cl_persyaratan,
                     'cl_dokumen' => $request->cl_dokumen,
@@ -472,7 +938,7 @@ class PprProposalController extends Controller
                     'perhitungan_plafond_ftv' => $request->perhitungan_plafond_ftv,
                     'daftar_calon_nasabah' => $request->daftar_calon_nasabah,
                 ]);
-        } elseif ($pembiayaan->form_score != 'Telah dinilai') {
+        } elseif ($pembiayaan->form_score != 'Telah dinilai' && $pembiayaan->dilengkapi_ao == 'Telah dilengkapi' && $pembiayaan->form_cl == 'Telah diisi') {
             if ($pembiayaan->jenis_nasabah == 'Fixed Income') {
                 PprCharacter::where('form_ppr_pembiayaan_id', $id)
                     ->update([
@@ -608,6 +1074,15 @@ class PprProposalController extends Controller
                     ->update([
                         'ppr_total_score' => $ppr_total_score,
                     ]);
+
+                $role = Role::select()->where('user_id', Auth::user()->id)->get()->first();
+                PprPembiayaanHistory::create([
+                    'form_ppr_pembiayaan_id' => $id,
+                    'status_id' => 2,
+                    'jabatan_id' => $role->jabatan_id,
+                    'divisi_id' => $role->divisi_id,
+                    'user_id' => Auth::user()->id,
+                ]);
             } elseif ($pembiayaan->jenis_nasabah == 'Non Fixed Income') {
                 PprCharacterNonFixed::where('form_ppr_pembiayaan_id', $id)
                     ->update([
@@ -695,6 +1170,15 @@ class PprProposalController extends Controller
                     ->update([
                         'ppr_total_score' => $ppr_total_score,
                     ]);
+
+                $role = Role::select()->where('user_id', Auth::user()->id)->get()->first();
+                PprPembiayaanHistory::create([
+                    'form_ppr_pembiayaan_id' => $id,
+                    'status_id' => 2,
+                    'jabatan_id' => $role->jabatan_id,
+                    'divisi_id' => $role->divisi_id,
+                    'user_id' => Auth::user()->id,
+                ]);
             } else {
             }
         } else {
@@ -702,17 +1186,7 @@ class PprProposalController extends Controller
 
 
 
-        $role = Role::select()->where('user_id', Auth::user()->id)->get()->first();
-        PprPembiayaanHistory::create([
-            'form_ppr_pembiayaan_id' => $id,
-            'status_id' => 2,
-            'jabatan_id' => $role->jabatan_id,
-            'divisi_id' => $role->divisi_id,
-            'user_id' => Auth::user()->id,
-        ]);
-
-
-        return redirect('/ppr/proposal/');
+        return redirect('/ppr/proposal/')->with('success', 'Proposal Berhasil Diperbarui!');
         // return redirect('/ppr/komite/' . $id)->with('success', 'Proposal telah diajukan ke Komite');
     }
 
@@ -723,6 +1197,37 @@ class PprProposalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (request('delete_repeater') == 'Hapus Kekayaan Simpanan') {
+            FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Kekayaan Simpanan Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Kekayaan Tanah & Bangunan') {
+            FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Kekayaan Tanah & Bangunan Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Kekayaan Kendaraan') {
+            FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Kekayaan Kendaraan Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Kekayaan Saham') {
+            FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Kekayaan Saham Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Kekayaan Lainnya') {
+            FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Kekayaan Lainnya Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Pinjaman') {
+            FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Pinjaman Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Pinjaman Kartu Kredit') {
+            FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Pinjaman Kartu Kredit Berhasil Dihapus!');
+        } elseif (request('delete_repeater') == 'Hapus Pinjaman Lainnya') {
+            FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->delete();
+            return redirect('/ppr/proposal/' . $id)->with('success', 'Data Pinjaman Lainnya Berhasil Dihapus!');
+        } else {
+        }
+        // FormPprDataKekayaanSimpanan::find($id)->delete($id);
+
+        // return response()->json([
+        //     'success' => 'Record deleted successfully!'
+        // ]);
+        // dd($id);
     }
 }

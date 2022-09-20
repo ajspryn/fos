@@ -3,6 +3,7 @@
 namespace Modules\Umkm\Http\Controllers;
 
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -28,6 +29,7 @@ use Modules\Umkm\Entities\UmkmNasabah;
 use Modules\Umkm\Entities\UmkmPembiayaan;
 use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 use Modules\Umkm\Entities\UmkmSlik;
+use Modules\Umkm\Entities\UmkmSlikPasangan;
 
 class UmkmKomiteController extends Controller
 {
@@ -37,7 +39,7 @@ class UmkmKomiteController extends Controller
      */
     public function index()
     {
-        $komite=UmkmPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->get();
+        $komite=UmkmPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->orderby('created_at','desc')->get();
     
 
         return view('umkm::komite.index',[
@@ -128,6 +130,15 @@ class UmkmKomiteController extends Controller
         $kebutuhan_keluarga=UmkmPembiayaan::select()->where('id',$id)->sum('keb_keluarga');
         $pengeluaranlain=$biaya_anak+$biaya_istri+$kebutuhan_keluarga;
         $total_pengeluaran = ($pengeluaranlain+$cicilan+$angsuran1);
+        $cekcicilanpasangan=UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->get()->count();
+
+
+        if($cekcicilanpasangan > 0){
+            $cicilanpasangan =   $cekcicilanpasangan=UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->sum('angsuran');
+
+            $total_pengeluaran = $pengeluaranlain+$cicilan+$angsuran1+$cicilanpasangan;
+            $cicilan =  $cicilan+$cicilanpasangan;
+        }
 
         $di=($laba_bersih-$total_pengeluaran);
 
@@ -192,10 +203,20 @@ class UmkmKomiteController extends Controller
         }
         $score_slik = $prosesslik->rating;
 
+        $waktuawal=UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
+        $waktuakhir=UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
+        // $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
+
+        $waktumulai=Carbon::parse($waktuawal->created_at);
+        $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+        // $selanjutnya=Carbon::parse($next->created_at);
+
+
+        $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
+
       
-      
-      
-        //    return $harga1;
+        // $ideps=UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get();
+        //    return $ideps;
         return view('umkm::komite.lihat',[
             'title'=>'Detail Calon Nasabah',
             'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
@@ -209,6 +230,7 @@ class UmkmKomiteController extends Controller
             'fotoktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
             'fotodiribersamaktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
             'fotokk'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'nota'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
             'jaminanusahas'=>UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get(),
             'jaminanlainusahas'=>UmkmJaminanLain::select()->where('umkm_pembiayaan_id',$id)->get(),
             'usahas'=>UmkmKeteranganUsaha::all(), //udah
@@ -222,8 +244,10 @@ class UmkmKomiteController extends Controller
             'sukus'=>PasarSukuBangsa::select()->where('kode_suku',$usaha->suku_bangsa_id)->get()->first(),
             'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
             // 'slik'=>$prosesslik,
-            'idebs'=>UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get(),
+            'ideps'=>UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get(),
+            'ideppasangans'=>UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->get(),
             'ideb'=>UmkmPembiayaan::select()->where('id',$id)->get(),
+            'cekcicilanpasangan'=>$cekcicilanpasangan,
             'laba_bersih'=>$laba_bersih,
             'cicilan'=>$cicilan,
             'pengeluaran_lain'=>$pengeluaranlain,
@@ -258,7 +282,7 @@ class UmkmKomiteController extends Controller
 
             'arr'=>-2,
             'banyak_history'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->count(),
-            
+            'totalwaktu'=>$totalwaktu,
         ]);
     }
 

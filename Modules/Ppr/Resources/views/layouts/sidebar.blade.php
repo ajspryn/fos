@@ -7,58 +7,23 @@ $proposal = Modules\Form\Entities\FormPprPembiayaan::select()
 
 $proposalppr = Modules\Form\Entities\FormPprPembiayaan::select()
     ->where('user_id', Auth::user()->id)
-    ->whereNull('form_cl')
-    ->orWhereNull('form_score')
+    ->where(function ($query) {
+        $query
+            ->whereNull('dilengkapi_ao')
+            ->orWhereNull('form_cl')
+            ->orWhereNull('form_score');
+    })
     ->get()
     ->count();
 
-$komiteppr = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+$komiteppr = Modules\Form\Entities\FormPprPembiayaan::select()
     ->where('user_id', Auth::user()->id)
-    ->where('status_id', 2)
+    ->whereNotNull(['dilengkapi_ao', 'form_cl', 'form_score'])
     ->get()
     ->count();
-
-// $pembiayaan = Modules\Form\Entities\FormPprPembiayaan::select()
-//     ->where('id', $id)
-//     ->get()
-//     ->first();
-
-// $notif_komite = DB::table('ppr_pembiayaan_histories')
-//     ->groupBy('form_ppr_pembiayaan_id')
-//     ->latest('form_ppr_pembiayaan_id')
-//     ->where('status_id', '=', 3)
-
-//     ->get()
-//     ->count();
-
-// $notif_komite = DB::table('ppr_pembiayaan_histories')
-//     ->latest('id')
-//     ->orderBy('created_at', 'DESC')
-//     ->groupBy('form_ppr_pembiayaan_id')
-//     ->where('status_id', '=', 3)
-//     ->paginate(20)
-
-//     ->count();
-
-// $notif_komite = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-//     ->latest()
-//     ->groupBy('form_ppr_pembiayaan_id')
-//     ->having('status_id', 3)
-//     ->get()
-//     ->count();
-
-// $notif_komite = DB::table('ppr_pembiayaan_histories')
-//     ->select('form_ppr_pembiayaan_id', DB::raw('count(*) as total'))
-//     ->groupBy('form_ppr_pembiayaan_id')
-//     ->get();
-
-// $notif_komite = Modules\Ppr\Entities\PprPembiayaanHistory::select('form_ppr_pembiayaan_id', DB::raw('MAX(form_ppr_pembiayaan_id) AS total'))
-//     ->groupBy('form_ppr_pembiayaan_id')
-//     ->where([['status_id', '=', 3], ['status_id', '>', 3], ['status_id', '<', 3]])
-//     ->get()
-//     ->count();
 
 $revisi = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    ->where('user_id', Auth::user()->id)
     ->where('status_id', 7)
     ->get()
     ->count();

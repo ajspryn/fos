@@ -114,6 +114,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:1' , 'divi
     Route::resource('/skpd/sektorekonomi', SkpdSektorEkonomiController::class);
     Route::resource('/skpd/statusperkawinan', SkpdStatusPerkawinanController::class);
     Route::resource('/skpd/tanggungan', SkpdTanggunganController::class);
+    
     Route::resource('/pasar/akad', PasarAkadController::class);
     Route::resource('/pasar/penggunaan', PasarPenggunaanController::class);
     Route::resource('/pasar/jaminanrumah', PasarJaminanRumahController::class);

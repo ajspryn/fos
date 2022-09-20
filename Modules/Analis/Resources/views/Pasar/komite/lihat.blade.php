@@ -285,8 +285,78 @@
                                                     </div>
                                                     <!-- Address and Contact ends -->
 
-                                                    <!-- Invoice Description starts -->
+                                                 <!-- Invoice Description starts -->
+                                                 <div class="table-responsive">
+                                                    <small>Informasi Debitur Nasabah</small>
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="text-align: center; width: 5%;"
+                                                                    class="py-1">No</th>
+                                                                <th style="text-align: center" class="py-1">Nama
+                                                                    Bank</th>
+                                                                <th style="text-align: center" class="py-1">
+                                                                    Plafond
+                                                                </th>
+                                                                <th style="text-align: center" class="py-1">
+                                                                    Outstanding</th>
+                                                                <th style="text-align: center" class="py-1">
+                                                                    Tenor
+                                                                </th>
+                                                                <th style="text-align: center" class="py-1">
+                                                                    Margin
+                                                                </th>
+                                                                <th style="text-align: center" class="py-1">
+                                                                    Angsuran
+                                                                </th>
+                                                                <th style="text-align: center" class="py-1">
+                                                                    Agunan
+                                                                </th>
+                                                                <th style="text-align: center" class="py-1">Kol
+                                                                    Tertinggi</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($idebs as $idep)
+                                                                @php
+                                                                    // if ($idep) {
+                                                                    //     $margin = $idep->margin / 12 / 100;
+                                                                    //     $plafond = $idep->plafond * $margin * $idep->tenor + $idep->plafond;
+                                                                    //     $angsuran = $plafond / $idep->tenor;
+                                                                    // }
+                                                                @endphp
+                                                                <tr>
+                                                                    <td style="text-align: center">
+                                                                        {{ $loop->iteration }}</td>
+                                                                    <td>{{ $idep->nama_bank }}</td>
+                                                                    <td>Rp. {{ number_format($idep->plafond) }}
+                                                                    </td>
+                                                                    <td>Rp.
+                                                                        {{ number_format($idep->outstanding) }}
+                                                                    </td>
+                                                                    <td style="text-align: center">
+                                                                        {{ $idep->tenor }}
+                                                                    </td>
+                                                                    <td style="text-align: center">
+                                                                        {{ number_format($idep->margin) }}%
+                                                                    </td>
+                                                                    <td>Rp. {{ number_format($idep->angsuran) }}
+                                                                    </td>
+                                                                    <td style="text-align: center">
+                                                                        {{ $idep->agunan }}
+                                                                    </td>
+                                                                    <td style="text-align: center">
+                                                                        {{ $idep->kol_tertinggi }}</td>
+                                                                </tr>
+                                                            @endforeach
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                @if ($cekcicilanpasangan > 0)
+                                                    <br>
                                                     <div class="table-responsive">
+                                                        <small>Informasi Debitur Pasangan Nasabah</small>
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
@@ -316,36 +386,45 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach ($idebs as $ideb)
+                                                                @foreach ($cicilanpasangans as $ideppasangan)
+                                                                    @php
+                                                                        // if ($ideppasangan) {
+                                                                        //     $margin = $ideppasangan->margin / 12 / 100;
+                                                                        //     $plafond = $ideppasangan->plafond * $margin * $ideppasangan->tenor + $ideppasangan->plafond;
+                                                                        //     $angsuran = $plafond / $ideppasangan->tenor;
+                                                                        // }
+                                                                    @endphp
                                                                     <tr>
                                                                         <td style="text-align: center">
                                                                             {{ $loop->iteration }}</td>
-                                                                        <td>{{ $ideb->nama_bank }}</td>
-                                                                        <td>Rp. {{ number_format($ideb->plafond) }}
+                                                                        <td>{{ $ideppasangan->nama_bank }}</td>
+                                                                        <td>Rp.
+                                                                            {{ number_format($ideppasangan->plafond) }}
                                                                         </td>
                                                                         <td>Rp.
-                                                                            {{ number_format($ideb->outstanding) }}
+                                                                            {{ number_format($ideppasangan->outstanding) }}
                                                                         </td>
                                                                         <td style="text-align: center">
-                                                                            {{ $ideb->tenor }}
+                                                                            {{ $ideppasangan->tenor }}
                                                                         </td>
                                                                         <td style="text-align: center">
-                                                                            {{ number_format($ideb->margin) }}%
+                                                                            {{ number_format($ideppasangan->margin) }}%
                                                                         </td>
-                                                                        <td>Rp. {{ number_format($ideb->angsuran) }}
-                                                                        </td>
-                                                                        <td style="text-align: center">
-                                                                            {{ $ideb->agunan }}
+                                                                        <td>Rp.
+                                                                            {{ number_format($ideppasangan->angsuran) }}
                                                                         </td>
                                                                         <td style="text-align: center">
-                                                                            {{ $ideb->kol }}</td>
+                                                                            {{ $ideppasangan->agunan }}
+                                                                        </td>
+                                                                        <td style="text-align: center">
+                                                                            {{ $ideppasangan->kol_tertinggi }}</td>
                                                                     </tr>
                                                                 @endforeach
-
 
                                                             </tbody>
                                                         </table>
                                                     </div>
+                                                @endif
 
                                                     <hr class="invoice-spacing" />
 
@@ -1096,7 +1175,9 @@
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
                                                                             <span
-                                                                            class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
+                                                                            class="timeline-event-time" style="text-align: right">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }} 
+                                                                            <br>{{ $timeline->created_at->isoformat('HH:mm:ss') }}
+                                                                        </span>
                                                                         </div>
                                                                         @if ($timeline->catatan)
                                                                             <p value="{{ $timeline->id }}"> <br>Catatan :

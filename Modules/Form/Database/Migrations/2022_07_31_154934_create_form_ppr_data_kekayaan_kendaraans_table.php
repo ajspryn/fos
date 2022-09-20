@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('form_kekayaan_kendaraan_taksasi_harga_jual')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

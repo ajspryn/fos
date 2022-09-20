@@ -9,7 +9,6 @@ use Modules\Form\Entities\FormPprDataPekerjaan;
 use Modules\Form\Entities\FormPprDataPribadi;
 use Modules\Form\Entities\FormPprPembiayaan;
 
-
 class PprNasabahController extends Controller
 {
     /**

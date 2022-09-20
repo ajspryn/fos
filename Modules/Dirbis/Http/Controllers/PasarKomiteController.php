@@ -31,6 +31,7 @@ use Modules\Pasar\Entities\PasarLegalitasRumah;
 use Modules\Pasar\Entities\PasarNasabahh;
 use Modules\Pasar\Entities\PasarPembiayaan;
 use Modules\Pasar\Entities\PasarSlik;
+use Modules\Pasar\Entities\PasarSlikPasangan;
 
 class PasarKomiteController extends Controller
 {
@@ -141,7 +142,15 @@ class PasarKomiteController extends Controller
         $biaya_istri=$nasabah->status->biaya;
         $kebutuhan_keluarga=PasarPembiayaan::select()->where('id',$id)->sum('keb_keluarga');
         $pengeluaranlain=$biaya_anak+$biaya_istri+$kebutuhan_keluarga;
+        $cekcicilanpasangan=PasarSlikPasangan::select()->where('pasar_pembiayaan_id',$id)->get()->count();
         $total_pengeluaran = ($pengeluaranlain+$cicilan+$angsuran1);
+
+        if($cekcicilanpasangan > 0){
+            $cicilanpasangan =   $cekcicilanpasangan=PasarSlikPasangan::select()->where('pasar_pembiayaan_id',$id)->sum('angsuran');
+
+            $total_pengeluaran = $pengeluaranlain+$cicilan+$angsuran1+$cicilanpasangan;
+            $cicilan =  $cicilan+$cicilanpasangan;
+        }
 
         $di=($laba_bersih-$total_pengeluaran);
 
@@ -224,7 +233,7 @@ class PasarKomiteController extends Controller
         return view('dirbis::pasar.komite.lihat',[
             'title'=>'Detail Calon Nasabah',
             // 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
-            'deviasi'=>PasarDeviasi::select()->where('pasar_pembiayaan_id',$id)->get()->first(),
+            'deviasi'=>PasarDeviasi::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
             'timelines'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->get(),
             'history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
             'waktuawal'=>PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->last(),
@@ -254,11 +263,13 @@ class PasarKomiteController extends Controller
             'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
             'slik'=>$prosesslik,
             'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
+            'cicilanpasangans'=>PasarSlikPasangan::select()->where('pasar_pembiayaan_id',$id)->get(),
             'ideb'=>PasarPembiayaan::select()->where('id',$id)->get(),
             'kepalapasar'=>$proses_kepalapasar,
             'idir'=>$proses_idir,
             'laba_bersih'=>$laba_bersih,
             'cicilan'=>$cicilan,
+            'cekcicilanpasangan'=>$cekcicilanpasangan,
             'pengeluaran_lain'=>$pengeluaranlain,
             'total_pengeluaran'=>$total_pengeluaran,
             'angsuran'=>$angsuran1,

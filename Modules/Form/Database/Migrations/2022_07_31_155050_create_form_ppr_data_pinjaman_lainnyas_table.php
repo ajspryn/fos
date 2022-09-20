@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('form_pinjaman_lainnya_rp')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

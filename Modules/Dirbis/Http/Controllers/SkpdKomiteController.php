@@ -20,6 +20,7 @@ use Modules\Skpd\Entities\SkpdNasabah;
 use Modules\Skpd\Entities\SkpdPembiayaan;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
 use Modules\Skpd\Entities\SkpdSlik;
+use Modules\Skpd\Entities\SkpdSlikPasangan;
 
 class SkpdKomiteController extends Controller
 {
@@ -103,7 +104,15 @@ class SkpdKomiteController extends Controller
         $biaya_istri=$nasabah->status_perkawinan->biaya;
         $cicilan=SkpdSlik::select()->where('skpd_pembiayaan_id',$id)->sum('angsuran');
         $pengeluaran_lainnya=SkpdPembiayaan::select()->where('id',$id)->sum('pengeluaran_lainnya');
+        $cekcicilanpasangan=SkpdSlikPasangan::select()->where('skpd_pembiayaan_id',$id)->get()->count();
         $total_pengeluaran=$biaya_anak+$biaya_istri+$cicilan+$pengeluaran_lainnya;
+
+        // if($cekcicilanpasangan>0){
+        //     $cicilanpasangan =   $cekcicilanpasangan=SkpdSlikPasangan::select()->where('skpd_pembiayaan_id',$id)->sum('angsuran');
+
+        //     $total_pengeluaran=$biaya_anak+$biaya_istri+$cicilan+$pengeluaran_lainnya+$cicilanpasangan;
+        //     $cicilan =  $cicilan+$cicilanpasangan;
+        // }
 
         //pemasukan
         $gaji_pokok=$data->gaji_pokok;
@@ -199,7 +208,9 @@ class SkpdKomiteController extends Controller
             'nilai_dsr'=>$dsr,
             'nilai_dsr1'=>$dsr,
             'total_pendapatan'=>$data->pendapatan_lainnya + $data->gaji_pokok + $data->pendapatan_lainnya,
-            'deviasi'=>SkpdDeviasi::select()->where('skpd_pembiayaan_id',$id)->get()->first(),
+            'deviasi'=>SkpdDeviasi::select()->where('skpd_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
+            'cekcicilanpasangan'=>$cekcicilanpasangan,
+            'ideppasangans'=>SkpdSlikPasangan::select()->where('skpd_pembiayaan_id',$id)->get(),
 
             'bendahara'=>$proses_bendahara,
             'dsr'=>$proses_dsr,

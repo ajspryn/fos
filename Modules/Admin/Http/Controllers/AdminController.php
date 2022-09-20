@@ -18,7 +18,8 @@ class AdminController extends Controller
     {
         $role=Role::select()->where('user_id',Auth::user()->id)->get()->first();
         // dd($role->role_id);
-        return view('admin::index',[
+        return view('admin::lihat',[
+            // 'header'=>"Dashboard Admin",
             'title'=>"Dashboard Admin",
             'role'=>$role->role_id,
         ]);

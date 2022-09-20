@@ -90,7 +90,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="pesanan_blok">Kios / Los Yang Di Pesan</label>
                                         <input type="text" name="pesanan_blok" class="form-control "
-                                            placeholder="Blok Pesanan" id="pesanan_blok" >
+                                            placeholder="Blok Pesanan" id="pesanan_blok">
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="luas">Luas Kios / Los Yang Di
@@ -102,7 +102,7 @@
                                         <label class="form-label" for="numeral-formatting"><small class="text-danger">*
                                             </small>Nominal Pembiayaan</label>
                                         <input type="text" class="form-control numeral-mask1" placeholder="Rp."
-                                            name="harga" id="harga" required/>
+                                            name="harga" id="harga" required />
                                     </div>
                                 </div>
                                 <div class="content-header">
@@ -145,9 +145,9 @@
                                             <select class="select2 w-100" name="jk_id" id="gender" required>
                                                 <option>
                                                     {{ $pembiayaan->nasabahh->jk_id }}</option>
-                                                    <option label="jenis_kelamin">Pilih Jenis Kelamin</option>
-                                                    <option >Laki-Laki</option>  
-                                                    <option >Perempuan</option> 
+                                                <option label="jenis_kelamin">Pilih Jenis Kelamin</option>
+                                                <option>Laki-Laki</option>
+                                                <option>Perempuan</option>
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -207,7 +207,7 @@
                                             <label class="form-label" for="exampleFormControlTextarea1">Alamat
                                                 Domisili</label>
                                             <textarea name="alamat_domisili" class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                placeholder="Alamat" value="{{ $pembiayaan->nasabahh->alamat_domisili }}" ></textarea>
+                                                placeholder="Alamat" value="{{ $pembiayaan->nasabahh->alamat_domisili }}"></textarea>
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="lamatinggal"><small class="text-danger">*
@@ -224,10 +224,10 @@
                                                 required>
                                                 <option value="{{ $pembiayaan->rumah->id }}">
                                                     {{ $pembiayaan->rumah->kepemilikan_rumah }}</option>
-                                                    <option label="kep_rumah">Pilih Kepemilikan Rumah</option>
-                                                    <option>Milik Sendiri</option>
-                                                    <option>Milik Keluarga</option>
-                                                    <option>Sewa Atau Kontrak</option>
+                                                <option label="kep_rumah">Pilih Kepemilikan Rumah</option>
+                                                <option>Milik Sendiri</option>
+                                                <option>Milik Keluarga</option>
+                                                <option>Sewa Atau Kontrak</option>
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -237,27 +237,27 @@
                                                 id="leg_rumah" required>
                                                 <option value="{{ $pembiayaan->rumah->legalitas->id }}">
                                                     {{ $pembiayaan->rumah->legalitas->nama_jaminan }}</option>
-                                                    @foreach ($rumahs as $rumah)
+                                                @foreach ($rumahs as $rumah)
                                                     <option value="{{ $rumah->id }}">{{ $rumah->nama_jaminan }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                        </div> 
+                                        </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="Pendidikan_id"><small class="text-danger">*
                                                 </small>Pendidikan Terakhir</label>
                                             <select class="select2 w-100" name="pendidikan" id="pendidikan_id" required>
                                                 <option value="{{ $pembiayaan->nasabahh->id }}">
                                                     {{ $pembiayaan->nasabahh->pendidikan }}</option>
-                                                    <option label="Pendidikan">Pilih Pendidikan Terakhir</option>
-                                                    <option>Tidak Sekolah</option>
-                                                    <option>SD</option>
-                                                    <option>SMP</option>
-                                                    <option>SMA</option>
-                                                    <option>Diploma</option>
-                                                    <option>S1</option>
-                                                    <option>S2</option>
-                                                    <option>S3</option>
+                                                <option label="Pendidikan">Pilih Pendidikan Terakhir</option>
+                                                <option>Tidak Sekolah</option>
+                                                <option>SD</option>
+                                                <option>SMP</option>
+                                                <option>SMA</option>
+                                                <option>Diploma</option>
+                                                <option>S1</option>
+                                                <option>S2</option>
+                                                <option>S3</option>
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -267,13 +267,13 @@
 
                                                 <option>
                                                     {{ $pembiayaan->nasabahh->agama_id }}</option>
-                                                    <option label="Agama">Pilih Agama</option>
-                                                    <option>Islam</option>
-                                                    <option>Kristen</option>
-                                                    <option>Katholik</option>
-                                                    <option>Hindu</option>
-                                                    <option>Buddha</option>
-                                                    <option>Konguchu</option>
+                                                <option label="Agama">Pilih Agama</option>
+                                                <option>Islam</option>
+                                                <option>Kristen</option>
+                                                <option>Katholik</option>
+                                                <option>Hindu</option>
+                                                <option>Buddha</option>
+                                                <option>Konguchu</option>
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -282,12 +282,12 @@
                                             <select class="select2 w-100" name="status_id" id="status_id" required>
                                                 <option value="{{ $pembiayaan->nasabahh->status->id }}">
                                                     {{ $pembiayaan->nasabahh->status->nama_status_perkawinan }}</option>
-                                                    @foreach ($statuss as $status)
+                                                @foreach ($statuss as $status)
                                                     <option value="{{ $status->id }}">
                                                         {{ $status->nama_status_perkawinan }}
                                                     </option>
                                                 @endforeach
-                                                </select>
+                                            </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="nama_pasangan"></small>Nama Suami Istri</label>
@@ -301,12 +301,12 @@
                                             <select class="select2 w-100" name="jumlah_anak" id="jumlah_anak" required>
                                                 <option value="{{ $pembiayaan->nasabahh->tanggungan->id }}">
                                                     {{ $pembiayaan->nasabahh->tanggungan->bannyak_tanggungan }}</option>
-                                                    @foreach ($tanggungans as $tanggungan)
+                                                @foreach ($tanggungans as $tanggungan)
                                                     <option value="{{ $tanggungan->id }}">
                                                         {{ $tanggungan->bannyak_tanggungan }}
                                                     </option>
                                                 @endforeach
-                                                </select>
+                                            </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="nonpwp">No NPWP</label>
@@ -316,152 +316,156 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="notelp"><small class="text-danger">*
                                                 </small>No Telepon</label>
-                                                <input type="text" name="no_tlp" id="no_tlp"
+                                            <input type="text" name="no_tlp" id="no_tlp"
                                                 class="form-control prefix-mask" placeholder="Masukan Nomor telepon Anda"
                                                 value="{{ $pembiayaan->nasabahh->no_tlp }}" required />
                                         </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="foto"><small class="text-danger">*
-                                            </small>Upload Foto Diri</label>
-                                        <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
-                                            class="form-control" required />
-                                        <input type="hidden" name="foto[1][kategori]" value="Foto Diri" rows="3"
-                                            class="form-control" />
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="foto"><small class="text-danger">*
+                                                </small>Upload Foto Diri</label>
+                                            <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
+                                                class="form-control" required />
+                                            <input type="hidden" name="foto[1][kategori]" value="Foto Diri"
+                                                rows="3" class="form-control" />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="fotodiri"><small class="text-danger">*
+                                                </small>Upload Foto KTP</label>
+                                            <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
+                                                class="form-control" required />
+                                            <input type="hidden" name="foto[2][kategori]" value="Foto KTP"
+                                                rows="3" class="form-control" />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="fotodiri"><small class="text-danger">*
+                                                </small>Upload Foto Diri Bersama KTP</label>
+                                            <input type="file" name="foto[3][foto]" id="fotodiribersamaktp"
+                                                rows="3" class="form-control" required />
+                                            <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
+                                                rows="3" class="form-control" />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="fotokk"><small
+                                                    class="text-danger">*</small>Upload Foto Kartu Keluarga</label>
+                                            <input type="file" name="foto[4][foto]" id="fotokk"
+                                                rows="3"class="form-control" required />
+                                            <input type="hidden" name="foto[4][kategori]"
+                                                value="Foto Kartu Keluarga"rows="3" class="form-control" />
+                                        </div>
                                     </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotodiri"><small class="text-danger">*
-                                            </small>Upload Foto KTP</label>
-                                        <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
-                                            class="form-control" required />
-                                        <input type="hidden" name="foto[2][kategori]" value="Foto KTP" rows="3"
-                                            class="form-control" />
+                                    <div class="content-header">
+                                        <h5 class="mb-0 mt-2">Data Orang Terdekat</h5>
+                                        <small class="text-muted">Lengkapi Data Orang Terdekat Tidak Serumah.</small>
                                     </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotodiri"><small class="text-danger">*
-                                            </small>Upload Foto Diri Bersama KTP</label>
-                                        <input type="file" name="foto[3][foto]" id="fotodiribersamaktp"
-                                            rows="3" class="form-control" required />
-                                        <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
-                                            rows="3" class="form-control" />
+                                    <div class="row">
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="namaot"><small class="text-danger">*
+                                                </small>Nama</label>
+                                            <input type="text" name="namaot" id="namaot" class="form-control"
+                                                placeholder="Masukan Nama Orang Terdekat"
+                                                value="{{ $pembiayaan->nasabahh->namaot }}" required />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="telpot"><small class="text-danger">*
+                                                </small>No Telepon</label>
+                                            <input type="number" name="telp_ot" id="telp_ot" class="form-control"
+                                                placeholder="Masukan Nomor Telepon Orang Terdekat"
+                                                value="{{ $pembiayaan->nasabahh->telp_ot }}" required />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="exampleFormControlTextarea1"><small
+                                                    class="text-danger">* </small>Alamat</label>
+                                            <textarea class="form-control" name="alamat_ot" id="exampleFormControlTextarea1" rows="3"
+                                                placeholder="Alamat Orang Terdekat" value="{{ $pembiayaan->nasabahh->alamat_ot }}" required></textarea>
+                                        </div>
                                     </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotokk"><small
-                                                class="text-danger">*</small>Upload Foto Kartu Keluarga</label>
-                                        <input type="file" name="foto[4][foto]" id="fotokk"
-                                            rows="3"class="form-control" required />
-                                        <input type="hidden" name="foto[4][kategori]"
-                                            value="Foto Kartu Keluarga"rows="3" class="form-control" />
+                                    <div class="content-header">
+                                        <h5 class="mb-0 mt-2">Data Usaha</h5>
+                                        <small class="text-muted">Lengkapi Data Usaha Anda.</small>
                                     </div>
-                                </div>
-                                <div class="content-header">
-                                    <h5 class="mb-0 mt-2">Data Orang Terdekat</h5>
-                                    <small class="text-muted">Lengkapi Data Orang Terdekat Tidak Serumah.</small>
-                                </div> <div class="row">
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="namaot"><small class="text-danger">*
-                                            </small>Nama</label>
-                                        <input type="text" name="namaot" id="namaot" class="form-control"
-                                            placeholder="Masukan Nama Orang Terdekat"
-                                            value="{{ $pembiayaan->nasabahh->namaot }}" required />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="telpot"><small class="text-danger">*
-                                            </small>No Telepon</label>
-                                        <input type="number" name="telp_ot" id="telp_ot" class="form-control"
-                                            placeholder="Masukan Nomor Telepon Orang Terdekat"
-                                            value="{{ $pembiayaan->nasabahh->telp_ot }}" required />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="exampleFormControlTextarea1"><small
-                                                class="text-danger">* </small>Alamat</label>
-                                        <textarea class="form-control" name="alamat_ot" id="exampleFormControlTextarea1" rows="3"
-                                            placeholder="Alamat Orang Terdekat" value="{{ $pembiayaan->nasabahh->alamat_ot }}" required></textarea>
-                                    </div>
-                                </div>
-                                <div class="content-header">
-                                    <h5 class="mb-0 mt-2">Data Usaha</h5>
-                                    <small class="text-muted">Lengkapi Data Usaha Anda.</small>
-                                </div>
-                                <div class="row">
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="nama_usaha"><small class="text-danger">*
-                                            </small>Nama Kios / Los</label>
-                                        <input type="text" name="nama_usaha" id="nama_usaha" class="form-control"
-                                            placeholder="Masukan Nama Toko Atau Usaha"value="{{ $pembiayaan->keteranganusaha->nama_usaha }}"
-                                            required>
-                                    </div> 
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
-                                            </small>Jenis Pasar</label>
-                                        <select class="select2 w-100" name="jenispasar_id" id="jenispasar_id">
-                                            <option value="{{ $pembiayaan->keteranganusaha->jenispasar->id }}">
-                                                {{ $pembiayaan->keteranganusaha->jenispasar->nama_pasar }}</option>
+                                    <div class="row">
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="nama_usaha"><small class="text-danger">*
+                                                </small>Nama Kios / Los</label>
+                                            <input type="text" name="nama_usaha" id="nama_usaha" class="form-control"
+                                                placeholder="Masukan Nama Toko Atau Usaha"value="{{ $pembiayaan->keteranganusaha->nama_usaha }}"
+                                                required>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
+                                                </small>Jenis Pasar</label>
+                                            <select class="select2 w-100" name="jenispasar_id" id="jenispasar_id">
+                                                <option value="{{ $pembiayaan->keteranganusaha->jenispasar->id }}">
+                                                    {{ $pembiayaan->keteranganusaha->jenispasar->nama_pasar }}</option>
                                                 @foreach ($pasars as $pasar)
-                                                <option value="{{ $pasar->id }}">{{ $pasar->nama_pasar }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
-                                            </small>Jenis Dagang</label>
-                                        <select class="select2 w-100" name="jenisdagang_id" id="jenisdagang_id"
-                                            required>
-                                            <option value="{{ $pembiayaan->keteranganusaha->dagang->id }}">
-                                                {{ $pembiayaan->keteranganusaha->dagang->nama_jenisdagang }}</option>
+                                                    <option value="{{ $pasar->id }}">{{ $pasar->nama_pasar }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
+                                                </small>Jenis Dagang</label>
+                                            <select class="select2 w-100" name="jenisdagang_id" id="jenisdagang_id"
+                                                required>
+                                                <option value="{{ $pembiayaan->keteranganusaha->dagang->id }}">
+                                                    {{ $pembiayaan->keteranganusaha->dagang->nama_jenisdagang }}</option>
                                                 @foreach ($dagangs as $dagang)
-                                                <option value="{{ $dagang->id }}">{{ $dagang->nama_jenisdagang }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="keptoko"><small class="text-danger">*
-                                            </small>Kepemilikan Kios / Los</label>
-                                        <select class="select2 w-100" name="kep_toko_id" id="keptoko" required>
-                                            <option value="{{ $pembiayaan->keteranganusaha->id }}">
-                                                {{ $pembiayaan->keteranganusaha->kep_toko_id }}</option>
-                                                <option value="{{ $pembiayaan->keteranganusaha->id }}">
+                                                    <option value="{{ $dagang->id }}">{{ $dagang->nama_jenisdagang }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="keptoko"><small class="text-danger">*
+                                                </small>Kepemilikan Kios / Los</label>
+                                            <select class="select2 w-100" name="kep_toko_id" id="keptoko" required>
+                                                <option>
                                                     {{ $pembiayaan->keteranganusaha->kep_toko_id }}</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="lamausaha"><small class="text-danger">*
-                                            </small>Lama Usaha</label>
-                                        <select class="select2 w-100" name="lama_usaha" id="lama_usaha" required>
-                                            <option value="{{ $pembiayaan->keteranganusaha->lamadagang->id }}">
-                                                {{ $pembiayaan->keteranganusaha->lamadagang->nama_lamaberdagang }}
-                                            </option>
-                                            @foreach ($lamas as $lama)
-                                            <option value="{{ $lama->id }}">{{ $lama->nama_lamaberdagang }}
-                                            </option>
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="lamausaha"> </small>No / Blok Usaha</label>
-                                        <input type="text" name="blok" id="blok" class="form-control"
-                                            placeholder="Masukan No / Blok Lama"
-                                            value="{{ $pembiayaan->keteranganusaha->no_blok }}" required>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="legalitastoko"><small class="text-danger">*
-                                            </small>Legalitas Kepemilikan Kios / Los</label>
-                                        <select class="select2 w-100" name="leg_toko_id" id="legalitastoko" required>
-                                            <option value="{{ $pembiayaan->keteranganusaha->id }}">
-                                                {{ $pembiayaan->keteranganusaha->leg_toko_id }}</option>
+                                                <option label="golongan">Pilih Kepemilikan Toko</option>
+                                                <option>Milik Sendiri</option>
+                                                <option>Milik Keluarga</option>
+                                                <option>Sewa Atau Kontrak</option>
+                                            </select>
+                                            </select>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="lamausaha"><small class="text-danger">*
+                                                </small>Lama Usaha</label>
+                                            <select class="select2 w-100" name="lama_usaha" id="lama_usaha" required>
+                                                <option value="{{ $pembiayaan->keteranganusaha->lamadagang->id }}">
+                                                    {{ $pembiayaan->keteranganusaha->lamadagang->nama_lamaberdagang }}
+                                                </option>
+                                                @foreach ($lamas as $lama)
+                                                    <option value="{{ $lama->id }}">{{ $lama->nama_lamaberdagang }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="lamausaha"> </small>No / Blok Usaha</label>
+                                            <input type="text" name="blok" id="blok" class="form-control"
+                                                placeholder="Masukan No / Blok Lama"
+                                                value="{{ $pembiayaan->keteranganusaha->no_blok }}" required>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="legalitastoko"><small class="text-danger">*
+                                                </small>Legalitas Kepemilikan Kios / Los</label>
+                                            <select class="select2 w-100" name="leg_toko_id" id="legalitastoko" required>
+                                                <option value="{{ $pembiayaan->keteranganusaha->id }}">
+                                                    {{ $pembiayaan->keteranganusaha->leg_toko_id }}</option>
                                                 <option label="legalitastoko">Pilih Legalitas Kepemilikan Toko</option>
                                                 <option>Surat Keterangan Usaha ( SKU )</option>
                                                 <option>Surat Keterangan Domisili Usaha ( SKDU )</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fototoko"><small class="text-danger">*
-                                            </small>Upload Foto Kios / Los</label>
-                                        <input type="file" name="foto[5][foto]" id="fototoko" rows="3"
-                                            class="form-control" required />
-                                        <input type="hidden" name="foto[5][kategori]" value="Foto toko" rows="3"
-                                            class="form-control" required>
-                                    </div>
+                                            </select>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="fototoko"><small class="text-danger">*
+                                                </small>Upload Foto Kios / Los</label>
+                                            <input type="file" name="foto[5][foto]" id="fototoko" rows="3"
+                                                class="form-control" required />
+                                            <input type="hidden" name="foto[5][kategori]" value="Foto toko"
+                                                rows="3" class="form-control" required>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="content-header">
@@ -471,7 +475,7 @@
                                 <div class="row">
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jaminanlain"><small class="text-danger">*
-                                        </small>Jaminan Lainnya</label>
+                                            </small>Jaminan Lainnya</label>
                                         <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
                                             <option label="jaminanlain">Pilih Jaminan</option>
                                             @foreach ($jaminans as $jaminan)
@@ -518,51 +522,59 @@
                                     <label class="form-label" for="numeral-formatting"><small class="text-danger">*
                                         </small>Omset Per Bulan</label>
                                     <input type="text" class="form-control numeral-mask1" placeholder="Rp."
-                                        name="omset" id="omset" value="{{ $pembiayaan->omset }}" required/>
+                                        name="omset" id="omset" value="{{ $pembiayaan->omset }}" required />
                                 </div>
                                 <div class="row">
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>HPP</label>
+                                        <label class="form-label" for="numeral-formatting"><small
+                                                class="text-danger">*</small>HPP</label>
                                         <input type="text" class="form-control numeral-mask" placeholder="Rp."
-                                            name="hpp" id="hpp" value="{{ $pembiayaan->hpp }}" required/>
+                                            name="hpp" id="hpp" value="{{ $pembiayaan->hpp }}" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya
+                                        <label class="form-label" for="numeral-formatting"><small
+                                                class="text-danger">*</small>Biaya
                                             Listrik</label>
                                         <input type="text" class="form-control numeral-mask2" placeholder="Rp."
-                                            name="listrik" id="listrik" value="{{ $pembiayaan->listrik }}" required/>
+                                            name="listrik" id="listrik" value="{{ $pembiayaan->listrik }}" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya
+                                        <label class="form-label" for="numeral-formatting"><small
+                                                class="text-danger">*</small>Biaya
                                             Transport</label>
                                         <input type="text" class="form-control numeral-mask6" placeholder="Rp."
-                                            name="trasport" id="transport" value="{{ $pembiayaan->trasport }}" required/>
+                                            name="trasport" id="transport" value="{{ $pembiayaan->trasport }}"
+                                            required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya
+                                        <label class="form-label" for="numeral-formatting"><small
+                                                class="text-danger">*</small>Biaya
                                             Karyawan</label>
                                         <input type="text" class="form-control numeral-mask3" placeholder="Rp."
-                                            name="karyawan" id="karyawan" value="{{ $pembiayaan->karyawan }}" required/>
+                                            name="karyawan" id="karyawan" value="{{ $pembiayaan->karyawan }}"
+                                            required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya
+                                        <label class="form-label" for="numeral-formatting"><small
+                                                class="text-danger">*</small>Biaya
                                             Telpon</label>
                                         <input type="text" class="form-control numeral-mask5" placeholder="Rp."
-                                            name="telpon" id="telpon" value="{{ $pembiayaan->telpon }}" required/>
+                                            name="telpon" id="telpon" value="{{ $pembiayaan->telpon }}" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"> <small class="text-danger">*</small>Biaya Sewa
+                                        <label class="form-label" for="numeral-formatting"> <small
+                                                class="text-danger">*</small>Biaya Sewa
                                             Kios</label>
                                         <input type="text" class="form-control numeral-mask4" placeholder="Rp."
-                                            name="sewa" id="sewa" value="{{ $pembiayaan->sewa }}" required/>
+                                            name="sewa" id="sewa" value="{{ $pembiayaan->sewa }}" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="fotonota"><small class="text-danger">*
                                             </small>Upload Nota Pembelanjaan</label>
                                         <input type="file" name="foto[6][foto]" id="fotonota" rows="3"
                                             class="form-control" required />
-                                        <input type="hidden" name="foto[6][kategori]" value="Foto Nota Pembelanjaan" rows="3"
-                                            class="form-control" required>
+                                        <input type="hidden" name="foto[6][kategori]" value="Foto Nota Pembelanjaan"
+                                            rows="3" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="content-header">
@@ -574,29 +586,28 @@
                                         <label class="form-label" for="numeral-formatting"><small
                                                 class="text-danger">*</small>Pengeluaran Lainnya</label>
                                         <input type="text" class="form-control numeral-mask7" placeholder="Rp."
-                                            name="keb_keluarga" id="kebkeluarga"
-                                            value="{{ $pembiayaan->keb_keluarga }}" required/>
+                                            name="keb_keluarga" id="kebkeluarga" value="{{ $pembiayaan->keb_keluarga }}"
+                                            required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small
                                                 class="text-danger">*</small>Keterangan Pengeluaran Lainnya</label>
-                                        <input type="text" class="form-control"
-                                            placeholder="Keterangan Pengeluaran" name="keterangan_keb_keluarga"
-                                            id="kebkeluarga" value="{{ $pembiayaan->keterangan_keb_keluarga }}"
-                                            required/>
+                                        <input type="text" class="form-control" placeholder="Keterangan Pengeluaran"
+                                            name="keterangan_keb_keluarga" id="kebkeluarga"
+                                            value="{{ $pembiayaan->keterangan_keb_keluarga }}" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="aset">Aset / Harta Benda</label>
                                         <input type="text" name="aset" id="aset" class="form-control"
                                             placeholder="Masukan Kepemilikkan Aset" value="{{ $pembiayaan->aset }}"
-                                            required/>
+                                            />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small
                                                 class="text-danger">*</small>Kesanggupan Angsuran</label>
                                         <input type="text" class="form-control numeral-mask8"
                                             name="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran"
-                                            value="{{ $pembiayaan->kesanggupan_angsuran }}" required/>
+                                            value="{{ $pembiayaan->kesanggupan_angsuran }}" required />
                                     </div><br>
                                 </div>
                                 <div class="d-flex justify-content-between">

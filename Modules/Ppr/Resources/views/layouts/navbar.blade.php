@@ -204,8 +204,8 @@
                         </span><span class="user-status">
                             {{ auth::user()->email }}
                         </span></div><span class="avatar"><img class="round"
-                            src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar"
-                            height="40" width="40"><span class="avatar-status-online"></span></span>
+                            src="{{ asset('storage/' . Auth::user()->foto) }}" alt="avatar" height="40"
+                            width="40"><span class="avatar-status-online"></span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
                     {{-- <a class="dropdown-item" href="/home"><i class="me-50" data-feather="airplay"></i> Dashboard</a> --}}

@@ -27,11 +27,11 @@
                                             <a class="nav-link" id="ftv-tab" data-bs-toggle="tab" href="#ftv"
                                                 role="tab" aria-controls="ftv-just" aria-selected="true">FTV</a>
                                         </li>
-                                        <li class="nav-item">
+                                        {{-- <li class="nav-item">
                                             <a class="nav-link" id="dokumentasi-tab" data-bs-toggle="tab"
                                                 href="#dokumentasi" role="tab" aria-controls="dokumentasi-just"
                                                 aria-selected="true">Dokumentasi Perkembangan</a>
-                                        </li>
+                                        </li> --}}
                                         <li class="nav-item">
                                             <a class="nav-link" id="timeline-tab" data-bs-toggle="tab" href="#timeline"
                                                 role="tab" aria-controls="timeline-just"
@@ -84,7 +84,7 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1">Nama Nasabah</td>
-                                                                            <td><span class="fw-bold">:
+                                                                            <td>:<span class="fw-bold">
                                                                                     {{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_lengkap }}</span>
                                                                             </td>
                                                                         </tr>
@@ -92,6 +92,12 @@
                                                                             <td class="pe-1">Jenis Kelamin</td>
                                                                             <td>:
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_jenis_kelamin }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Usia</td>
+                                                                            <td>:
+                                                                                {{ $usiaNasabah }} Tahun
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
@@ -116,7 +122,10 @@
                                                                             <td class="pe-1">Tempat, tanggal lahir</td>
                                                                             <td>:
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_tempat_lahir }},
-                                                                                {{ $pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir }}
+                                                                                @php
+                                                                                    $tgl_lahir = Carbon\Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir);
+                                                                                @endphp
+                                                                                {{ date_format($tgl_lahir, 'd-m-Y') }}
                                                                             </td>
                                                                         </tr>
                                                                         {{-- <tr>
@@ -134,7 +143,7 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td class="pe-1">Penghasilan Utama</td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_penghasilan_utama_pemohon) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -147,7 +156,7 @@
                                                                         <tr>
                                                                             <td class="pe-1">Penghasilan Utama Pasangan
                                                                             </td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_penghasilan_utama_istri_suami) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -166,7 +175,7 @@
                                                                         </tr> --}}
                                                                         <tr>
                                                                             <td class="pe-1 mt-2">Total Penghasilan</td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_total_penghasilan) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -185,14 +194,14 @@
 
                                                                         <tr>
                                                                             <td class="pe-1">Kewajiban Angsuran</td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_kewajiban_angsuran) }}</span>
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1 mt-1">Total Pengeluaran
                                                                             </td>
-                                                                            <td><span class="fw-bold">: Rp.
+                                                                            <td>: <span class="fw-bold">Rp.
                                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_total_pengeluaran) }}</span>
                                                                             </td>
                                                                         </tr>
@@ -839,7 +848,9 @@
                                                                                     <tr>
                                                                                         <td class="pe-1">Total Nilai
                                                                                         </td>
-                                                                                        <td>: {{ $score }}</td>
+                                                                                        <td>:
+                                                                                            <strong>{{ $score }}</strong>
+                                                                                        </td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td class="pe-1">Status</td>
@@ -1047,7 +1058,133 @@
                                         <div class="tab-pane" id="ftv" role="tabpanel" aria-labelledby="ftv-tab">
                                             <div class="col-xl-12 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
                                                 <div class="card">
+                                                    <div class="card-body invoice-padding pb-0">
+                                                        <!-- Header starts -->
+                                                        <div
+                                                            class="d-flex justify-content-center  flex-column invoice-spacing mt-0 col-xl-12 col-md-8 col-12">
+                                                            <div>
+                                                                <center>
+                                                                    <h4>Financing To Value (FTV) </h4>
+                                                                </center>
+                                                                <br />
+                                                                <div>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="pe-1">&ensp;Nama
+                                                                                    Nasabah</td>
+                                                                                <td>:
+                                                                                    {{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_lengkap }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1">&ensp;Jenis
+                                                                                    Nasabah</td>
+                                                                                <td>:
+                                                                                    {{ $pembiayaan->jenis_nasabah }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1">
+                                                                                    &ensp;Tanggal Pengajuan</td>
+                                                                                <td>:
+                                                                                    {{ date_format($pembiayaan->created_at, 'd-m-Y') }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1">
+                                                                                    &ensp;Usia Nasabah</td>
+                                                                                <td>:
+                                                                                    {{ $usiaNasabah }} Tahun
+                                                                                </td>
+                                                                            </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <br />
+                                                                <div class="table-responsive mt-1">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="70%">Angsuran
+                                                                                </th>
+                                                                                <th></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>Plafond</td>
+                                                                                <td>Rp.
+                                                                                    {{ number_format($pembiayaan->form_permohonan_nilai_ppr_dimohon) }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Margin</td>
+                                                                                <td>0.9 %
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Tenor</td>
+                                                                                <td>{{ $pembiayaan->form_permohonan_jml_bulan }}
+                                                                                    Bulan
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <strong>Besarnya Angsuran Per
+                                                                                        Bulan</strong>
+                                                                                </td>
+                                                                                <td>Rp. {{ number_format($angsuran) }}</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
 
+                                                                    <br />
+
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="70%">Maksimal
+                                                                                    Pembiayaan
+                                                                                </th>
+                                                                                <th></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>Angsuran (RPC)</td>
+                                                                                <td>Rp.
+                                                                                    {{ number_format($angsuran) }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Margin</td>
+                                                                                <td>0.9 %
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Tenor</td>
+                                                                                <td>{{ $pembiayaan->form_permohonan_jml_bulan }}
+                                                                                    Bulan
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <strong>Besarnya Maksimal Pembiayaan
+                                                                                        Yang
+                                                                                        Diberikan</strong>
+                                                                                </td>
+                                                                                <td>Rp. {{ number_format($plafondMaks) }}
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+                                                                <br />
+                                                            </div>
+                                                        </div>
+                                                        <!-- Header ends -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1068,6 +1205,23 @@
                                                     <div class="card-body">
                                                         <ul class="timeline">
                                                             @foreach ($timelines as $timeline)
+                                                                @php
+
+                                                                    $arr = $loop->iteration;
+                                                                    if ($arr == -2) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr == $banyak_history) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr >= 0) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[$arr]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    }
+                                                                @endphp
                                                                 <li class="timeline-item">
                                                                     <span
                                                                         class="timeline-point timeline-point-success timeline-point-indicator"></span>
@@ -1079,16 +1233,23 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
-                                                                            <span
-                                                                                class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
+                                                                            <span class="timeline-event-time"
+                                                                                style="text-align: right">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}
+                                                                                <br>{{ $timeline->created_at->isoformat('HH:mm:ss') }}
+                                                                            </span>
                                                                         </div>
                                                                         @if (isset($timeline->catatan))
                                                                             <p value="{{ $timeline->id }}"> <br>Catatan :
                                                                                 {{ $timeline->catatan }}
                                                                             <p>
                                                                         @endif
-                                                                        <span
-                                                                            class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span>
+                                                                        @if ($arr == -1)
+                                                                        @else
+                                                                            <span class="timeline-event-time">Waktu
+                                                                                Diproses : {{ $selisih }}</span>
+                                                                        @endif
+                                                                        {{-- <span
+                                                                            class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span> --}}
                                                                         {{-- <p>{{ $timeline->created_at->diffForHumans() }}</p> --}}
                                                                         <div class="d-flex flex-row align-items-center">
 
@@ -1118,48 +1279,6 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            {{-- <div class="modal-body px-sm-5 mx-50 pb-5">
-                                <h3 class="text-center">Nilai DSR </h3>
-                                <hr class="invoice-spacing" />
-                                <div class="card-body">
-                                    <div class="col-md-12 d-flex order-md-2 order-1">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="pe-1">Harga Beli</td>
-                                                    <td><span class="fw-bold">: Rp.
-                                                            {{ number_format($pembiayaan->nominal_pembiayaan) }}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Harga Jual</td>
-                                                    <td>: Rp. {{ number_format($harga_jual) }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Jangka Waktu</td>
-                                                    <td>: {{ $tenor }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Equivalen Rate</td>
-                                                    <td>: {{ $pembiayaan->rate }} %</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Angsuran</td>
-                                                    <td>: Rp. {{ number_format($angsuran1) }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1 mt-1">DSR</td>
-                                                    <td><span class="fw-bold">:
-                                                            {{ $nilai_dsr1 }}
-                                                            %</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>

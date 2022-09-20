@@ -73,7 +73,7 @@ class UmkmNasabahController extends Controller
             // 'history'=PasarNasabahh::select()->where('no_ktp'),
             'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
             'angsuran'=>$angsuran1,
-            'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
+            // 'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
         ]);
     }
 

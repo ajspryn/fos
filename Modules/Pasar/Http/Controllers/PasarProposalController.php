@@ -27,6 +27,7 @@ use Modules\Pasar\Entities\PasarNasabahh;
 use Modules\Pasar\Entities\PasarPembiayaan;
 use Modules\Pasar\Entities\PasarPembiayaanHistory;
 use Modules\Pasar\Entities\PasarSlik;
+use Modules\Pasar\Entities\PasarSlikPasangan;
 
 class PasarProposalController extends Controller
 {
@@ -166,6 +167,26 @@ class PasarProposalController extends Controller
 
                 // return $value;
                 PasarSlik::create([
+                    'pasar_pembiayaan_id'=>$id,
+                    'nama_bank'=> $value['nama_bank'],
+                    'plafond'=> $value['plafond'],
+                    'outstanding'=> $value['outstanding'],
+                    'tenor'=> $value['tenor'],
+                    'margin'=> $value['margin'],
+                    'angsuran'=> $value['angsuran'],
+                    'agunan'=> $value['agunan'],
+                    'kol'=> $value['kol'],
+                ]);
+            }
+        }
+            if ($request->slikpasangan[0]['nama_bank']){
+
+                // return $request->slikpasangan[0]['nama_bank'];
+                foreach ($request->slikpasangan as $key => $value) {
+
+
+                // return $value;
+                PasarSlikPasangan::create([
                     'pasar_pembiayaan_id'=>$id,
                     'nama_bank'=> $value['nama_bank'],
                     'plafond'=> $value['plafond'],

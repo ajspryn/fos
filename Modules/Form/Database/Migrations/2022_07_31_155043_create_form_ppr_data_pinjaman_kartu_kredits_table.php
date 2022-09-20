@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('form_pinjaman_kartu_kredit_plafond')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

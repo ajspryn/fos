@@ -62,19 +62,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{-- @php
+                                        $i = 1;
+                                    @endphp --}}
+
                                     @foreach ($komites as $komite)
                                         @php
-                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                                                ->where('form_ppr_pembiayaan_id', $komite->id)
-                                                ->orderby('created_at', 'desc')
+                                            // $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                            //     ->where('form_ppr_pembiayaan_id', $komite->id)
+                                            //     ->orderBy('created_at', 'desc')
+                                            //     ->get()
+                                            //     ->first();
+
+                                            // if ($history) {
+                                            //     $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                            //         ->where('id', $history->form_ppr_pembiayaan_id)
+                                            //         ->get()
+                                            //         ->first();
+                                            // }
+                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                ->where('id', $komite->form_ppr_pembiayaan_id)
                                                 ->get()
                                                 ->first();
 
-                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                                                ->where('id', $history->form_ppr_pembiayaan_id)
+                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                                ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
+                                                ->orderBy('created_at', 'desc')
                                                 ->get()
                                                 ->first();
                                         @endphp
+                                        {{-- @if ($history) --}}
                                         @if ($history->jabatan_id == 4 || ($history->jabatan_id == 3 && $history->status_id == 5))
                                             <tr>
                                                 <td style="text-align: center">
@@ -83,6 +100,7 @@
                                                         <i data-feather="eye"></i>
                                                     </button>
                                                 </td>
+                                                {{-- <td style="text-align: center">{{ $loop->iteration }}</td> --}}
                                                 <td style="text-align: center">{{ $loop->iteration }}</td>
                                                 <td style="text-align: center">
                                                     {{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
@@ -126,6 +144,10 @@
                                                 </td>
                                             </tr>
                                         @endif
+                                        {{-- @endif --}}
+                                        {{-- @php
+                                            $i++;
+                                        @endphp --}}
                                     @endforeach
                                 </tbody>
                             </table>

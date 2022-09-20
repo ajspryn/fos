@@ -34,6 +34,7 @@ class FormulirUmkmController extends Controller
      */
     public function index()
     {
+
         return view('form::umkm.index',[
             
             'akads'=>PasarAkad::all(),
@@ -68,8 +69,15 @@ class FormulirUmkmController extends Controller
     public function store(Request $request)
     {
         
-        $hitung=UmkmPembiayaan::select()->get()->count();
-        $id=$hitung+1;
+        $hitungid=UmkmPembiayaan::select()->get()->count();
+        if( $hitungid > 0 ){
+            $hitung=UmkmPembiayaan::select()->orderby('created_at','desc')->get()->first();
+            $id=$hitung->id+1;
+        }
+        else {
+            $id=$hitungid + 1;
+        }
+        return $id;
         UmkmPembiayaan::create([
             'id'=>$id,
             'tgl_pembiayaan'=> $request ->tgl_pembiayaan,
@@ -245,8 +253,8 @@ class FormulirUmkmController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $hitung=UmkmPembiayaan::select()->get()->count();
-        $number=$hitung+1;
+        $hitung=UmkmPembiayaan::select()->orderby('created_at','desc')->get()->first();
+        $number=$hitung->id+1;
         UmkmPembiayaan::create([
             'id'=>$number,
             'tgl_pembiayaan'=> $request ->tgl_pembiayaan,

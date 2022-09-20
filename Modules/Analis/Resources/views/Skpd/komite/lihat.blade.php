@@ -199,7 +199,9 @@
                                                     <!-- Address and Contact ends -->
 
                                                     <!-- Invoice Description starts -->
-                                                    <div class="table-responsive">
+                                                      <!-- Invoice Description starts -->
+                                                      <div class="table-responsive">
+                                                        <small>Informasi Debitur Nasabah</small>
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
@@ -231,11 +233,11 @@
                                                             <tbody>
                                                                 @foreach ($ideps as $idep)
                                                                     @php
-                                                                        if ($idep) {
-                                                                            $margin = $idep->margin / 12 / 100;
-                                                                            $plafond = $idep->plafond * $margin * $idep->tenor + $idep->plafond;
-                                                                            $angsuran = $plafond / $idep->tenor;
-                                                                        }
+                                                                        // if ($idep) {
+                                                                        //     $margin = $idep->margin / 12 / 100;
+                                                                        //     $plafond = $idep->plafond * $margin * $idep->tenor + $idep->plafond;
+                                                                        //     $angsuran = $plafond / $idep->tenor;
+                                                                        // }
                                                                     @endphp
                                                                     <tr>
                                                                         <td style="text-align: center">
@@ -265,6 +267,78 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
+                                                    @if ($cekcicilanpasangan > 0)
+                                                        <br>
+                                                        <div class="table-responsive">
+                                                            <small>Informasi Debitur Pasangan Nasabah</small>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="text-align: center; width: 5%;"
+                                                                            class="py-1">No</th>
+                                                                        <th style="text-align: center" class="py-1">Nama
+                                                                            Bank</th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Plafond
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Outstanding</th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Tenor
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Margin
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Angsuran
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">
+                                                                            Agunan
+                                                                        </th>
+                                                                        <th style="text-align: center" class="py-1">Kol
+                                                                            Tertinggi</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($ideppasangans as $ideppasangan)
+                                                                        @php
+                                                                            // if ($ideppasangan) {
+                                                                            //     $margin = $ideppasangan->margin / 12 / 100;
+                                                                            //     $plafond = $ideppasangan->plafond * $margin * $ideppasangan->tenor + $ideppasangan->plafond;
+                                                                            //     $angsuran = $plafond / $ideppasangan->tenor;
+                                                                            // }
+                                                                        @endphp
+                                                                        <tr>
+                                                                            <td style="text-align: center">
+                                                                                {{ $loop->iteration }}</td>
+                                                                            <td>{{ $ideppasangan->nama_bank }}</td>
+                                                                            <td>Rp.
+                                                                                {{ number_format($ideppasangan->plafond) }}
+                                                                            </td>
+                                                                            <td>Rp.
+                                                                                {{ number_format($ideppasangan->outstanding) }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ $ideppasangan->tenor }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ number_format($ideppasangan->margin) }}%
+                                                                            </td>
+                                                                            <td>Rp.
+                                                                                {{ number_format($ideppasangan->angsuran) }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ $ideppasangan->agunan }}
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{ $ideppasangan->kol_tertinggi }}</td>
+                                                                        </tr>
+                                                                    @endforeach
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    @endif
 
                                                     <div class="card-body invoice-padding pb-0">
                                                         <div class="row invoice-sales-total-wrapper">
@@ -504,21 +578,27 @@
                                                                                     <tr>
                                                                                         <td class="pe-1">Status</td>
                                                                                         <td>:
-                                                                                            @if ($nilai_dsr1 >= 40 || $nilai_dsr1 < 0)
-                                                                                                @if ($nilai_dsr1 >= 40)
+                                                                                            @if ($nilai_dsr >= 40 || $nilai_dsr < 0)
+                                                                                                @if ($nilai_dsr >= 40 && $total_score > 3)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
                                                                                                         class="text-danger">*DSR
-                                                                                                        >
-                                                                                                        40%</small>
-                                                                                                @elseif($nilai_dsr1 < 0)
+                                                                                                        > 80%</small>
+                                                                                                @elseif($nilai_dsr < 0 && $total_score > 3)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
                                                                                                         class="text-danger">*Pengeluaran
                                                                                                         >
                                                                                                         Pendapatan</small>
+                                                                                                @elseif($total_score > 2 || $total_score < 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                        Ulang</span>
+                                                                                                @else
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
                                                                                                 @endif
                                                                                             @else
                                                                                                 @if ($total_score > 3)
@@ -533,6 +613,7 @@
                                                                                                         class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
                                                                                                 @endif
                                                                                             @endif
+                                                                                                
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>

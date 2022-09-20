@@ -1,0 +1,6 @@
+@include('akad::layouts.head')
+@include('sweetalert::alert')
+@include('akad::layouts.navbar')
+@include('akad::layouts.sidebar')
+@yield('content')
+@include('akad::layouts.footer')

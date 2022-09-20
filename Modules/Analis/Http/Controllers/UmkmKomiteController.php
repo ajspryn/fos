@@ -29,6 +29,7 @@ use Modules\Umkm\Entities\UmkmNasabah;
 use Modules\Umkm\Entities\UmkmPembiayaan;
 use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 use Modules\Umkm\Entities\UmkmSlik;
+use Modules\Umkm\Entities\UmkmSlikPasangan;
 
 class UmkmKomiteController extends Controller
 {
@@ -84,11 +85,11 @@ class UmkmKomiteController extends Controller
     {
         $cek=UmkmPembiayaanHistory::select()
         ->where('umkm_pembiayaan_id', $id)
-        ->where('user_id',Auth::user()->id)
+        ->orderby('created_at','desc')
         ->get()
-        ->count();
+        ->first();
 
-        if ($cek==0){
+        if ($cek->status_id==5 && $cek->jabatan_id == 2 ){
             UmkmPembiayaanHistory::create([
                 'umkm_pembiayaan_id'=>$id,
                 'status_id'=>4,
@@ -134,6 +135,15 @@ class UmkmKomiteController extends Controller
             $biaya_istri=$nasabah->status->biaya;
             $kebutuhan_keluarga=UmkmPembiayaan::select()->where('id',$id)->sum('keb_keluarga');
             $pengeluaranlain=$biaya_anak+$biaya_istri+$kebutuhan_keluarga;
+            $cekcicilanpasangan=UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->get()->count();
+
+    
+            if($cekcicilanpasangan > 0){
+                $cicilanpasangan =   $cekcicilanpasangan=UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->sum('angsuran');
+    
+                $total_pengeluaran = $pengeluaranlain+$cicilan+$angsuran1+$cicilanpasangan;
+                $cicilan =  $cicilan+$cicilanpasangan;
+            }
             $total_pengeluaran = ($pengeluaranlain+$cicilan+$angsuran1);
     
             $di=($laba_bersih-$total_pengeluaran);
@@ -239,11 +249,14 @@ class UmkmKomiteController extends Controller
                 'nasabahs'=>PasarJenisNasabah::select()->where('kode_jenisnasabah',$data->nasabah)->get()->first(),
                 'sukus'=>PasarSukuBangsa::select()->where('kode_suku',$usaha->suku_bangsa_id)->get()->first(),
                 'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
+                'nota'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
                 // 'slik'=>$prosesslik,
                 'idebs'=>UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get(),
+                'cicilanpasangans'=>UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->get(),
                 'ideb'=>UmkmPembiayaan::select()->where('id',$id)->get(),
                 'laba_bersih'=>$laba_bersih,
                 'cicilan'=>$cicilan,
+                'cekcicilanpasangan'=>$cekcicilanpasangan,
                 'pengeluaran_lain'=>$pengeluaranlain,
                 'total_pengeluaran'=>$total_pengeluaran,
                 'angsuran'=>$angsuran1,
@@ -274,7 +287,7 @@ class UmkmKomiteController extends Controller
                 'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
 
                 
-            'deviasi'=>UmkmDeviasi::select()->where('umkm_pembiayaan_id',$id)->get()->first(),
+            'deviasi'=>UmkmDeviasi::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
                  
 
              //SLA

@@ -203,7 +203,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_pengalaman_pembiayaans')->insert([
             'id' => 3,
             'kode' => 'CPP3',
-            'keterangan' => 'Debitur baru, tidak memiliki riwayat pembiayaan',
+            'keterangan' => 'Nasabah baru, tidak memiliki riwayat pembiayaan',
             'rating' => '3',
             'bobot' => '0.10',
         ]);
@@ -269,7 +269,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_referensis')->insert([
             'id' => 1,
             'kode' => 'CR1',
-            'keterangan' => 'Debitur tidak memiliki kebiasaan hidup mewah dan tidak mempunyai permasalahan pribadi yang akan mempengaruhi pembayaran',
+            'keterangan' => 'Nasabah tidak memiliki kebiasaan hidup mewah dan tidak mempunyai permasalahan pribadi yang akan mempengaruhi pembayaran',
             'rating' => '1',
             'bobot' => '0.15',
         ]);
@@ -301,7 +301,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_referensis')->insert([
             'id' => 5,
             'kode' => 'CR5',
-            'keterangan' => 'Debitur tidak memiliki kebiasaan hidup mewah dan tidak mempunyai permasalahan pribadi yang akan mempengaruhi pembayaran',
+            'keterangan' => 'Nasabah tidak memiliki kebiasaan hidup mewah dan tidak mempunyai permasalahan pribadi yang akan mempengaruhi pembayaran',
             'rating' => '5',
             'bobot' => '0.15',
         ]);
@@ -375,7 +375,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capital_pengalaman_pembiayaans')->insert([
             'id' => 4,
             'kode' => 'CAPRP4',
-            'keterangan' => 'Debitur baru, tidak memiliki riwayat pembiayaan',
+            'keterangan' => 'Nasabah baru, tidak memiliki riwayat pembiayaan',
             'rating' => '4',
             'bobot' => '0.08',
         ]);
@@ -662,7 +662,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_pengalaman_pembiayaans')->insert([
             'id' => 4,
             'kode' => 'CTYRP4',
-            'keterangan' => 'Debitur baru, tidak memiliki riwayat pembiayaan',
+            'keterangan' => 'Nasabah baru, tidak memiliki riwayat pembiayaan',
             'rating' => '4',
             'bobot' => '0.08',
         ]);
@@ -1072,7 +1072,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_pengalaman_pembiayaans')->insert([
             'id' => 4,
             'kode' => 'CSRP4',
-            'keterangan' => 'Debitur baru, tidak memiliki riwayat pembiayaan',
+            'keterangan' => 'Nasabah baru, tidak memiliki riwayat pembiayaan',
             'rating' => '4',
             'bobot' => '0.08',
         ]);
@@ -1458,7 +1458,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_collateral_kontribusi_pemohons')->insert([
             'id' => 1,
             'kode' => 'CLTKP1',
-            'keterangan' => 'Agunan mengcover < 50%A',
+            'keterangan' => 'Agunan mengcover < 50%',
             'rating' => '1',
             'bobot' => '0.15',
         ]);
@@ -1581,7 +1581,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_collateral_jangka_waktu_likuidasis')->insert([
             'id' => 1,
             'kode' => 'CLTJWL1',
-            'keterangan' => '>5 tahun',
+            'keterangan' => '> 5 tahun',
             'rating' => '1',
             'bobot' => '0.30',
         ]);
@@ -1589,7 +1589,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_collateral_jangka_waktu_likuidasis')->insert([
             'id' => 2,
             'kode' => 'CLTJWL2',
-            'keterangan' => '>2 tahun s/d 5 tahun',
+            'keterangan' => '> 2 tahun s/d 5 tahun',
             'rating' => '2',
             'bobot' => '0.30',
         ]);
@@ -1597,7 +1597,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_collateral_jangka_waktu_likuidasis')->insert([
             'id' => 3,
             'kode' => 'CLTJWL3',
-            'keterangan' => '>1 tahun s/d 2 tahun',
+            'keterangan' => '> 1 tahun s/d 2 tahun',
             'rating' => '3',
             'bobot' => '0.30',
         ]);
@@ -1605,7 +1605,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_collateral_jangka_waktu_likuidasis')->insert([
             'id' => 4,
             'kode' => 'CLTJWL4',
-            'keterangan' => '>6 bulan s/d 1 tahun',
+            'keterangan' => '> 6 bulan s/d 1 tahun',
             'rating' => '4',
             'bobot' => '0.30',
         ]);
@@ -1625,7 +1625,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_tingkat_kepercayaans')->insert([
             'id' => 1,
             'kode' => '1',
-            'keterangan' => 'Sangat Kurang',
+            'keterangan' => 'Informasi yang diberikan nasabah tidak sesuai dengan kondisi sebenarnya',
             'rating' => '1',
             'bobot' => '0.25',
         ]);
@@ -1633,7 +1633,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_tingkat_kepercayaans')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Kurang',
+            'keterangan' => 'Informasi yang diberikan nasabah kurang sesuai dengan kondisi sebenarnya',
             'rating' => '2',
             'bobot' => '0.25',
         ]);
@@ -1641,7 +1641,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_tingkat_kepercayaans')->insert([
             'id' => 3,
             'kode' => '3',
-            'keterangan' => 'Cukup Baik',
+            'keterangan' => 'Informasi yang diberikan nasabah sesuai dengan kondisi sebenarnya namun informasi kurang lengkap',
             'rating' => '3',
             'bobot' => '0.25',
         ]);
@@ -1649,7 +1649,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_tingkat_kepercayaans')->insert([
             'id' => 4,
             'kode' => '4',
-            'keterangan' => 'Baik',
+            'keterangan' => 'Informasi yang diberikan nasabah sesuai dengan kondisi sebenarnya namun baru diberikan bila diminta',
             'rating' => '4',
             'bobot' => '0.25',
         ]);
@@ -1657,7 +1657,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_tingkat_kepercayaans')->insert([
             'id' => 5,
             'kode' => '5',
-            'keterangan' => 'Sangat Baik',
+            'keterangan' => 'Informasi yang diberikan nasabah sesuai dengan kondisi sebenarnya dan nasabah secara aktif menyampaikannya',
             'rating' => '5',
             'bobot' => '0.25',
         ]);
@@ -1666,7 +1666,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_pengelolaan_rekenings')->insert([
             'id' => 1,
             'kode' => '1',
-            'keterangan' => 'Sangat Kurang',
+            'keterangan' => 'Masih terdapat kewajiban yang belum diselesaikan, terdapat dokumen yang belum dipenuhi atau melanggar perjanjian pembiayaan',
             'rating' => '1',
             'bobot' => '0.25',
         ]);
@@ -1674,7 +1674,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_pengelolaan_rekenings')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Kurang',
+            'keterangan' => 'Sering terlambat membayar, terlambat memenuhi kelengkapan dokumen atau tidak memenuhi perjanjian pembiayaan dan nasabah baru (take over) dengan bukti-bukti/dokumen yang kurang sesuai dengan yang dipersyaratkan',
             'rating' => '2',
             'bobot' => '0.25',
         ]);
@@ -1682,7 +1682,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_pengelolaan_rekenings')->insert([
             'id' => 3,
             'kode' => '3',
-            'keterangan' => 'Cukup Baik',
+            'keterangan' => 'Pernah terlambat membayar, terlambat memenuhi kelengkapan dokumen atau tidak memenuhi perjanjian pembiayaan dan nasabah baru (take over) dengan bukti-bukti/dokumen sesuai dengan yang dipersyaratkan',
             'rating' => '3',
             'bobot' => '0.25',
         ]);
@@ -1690,7 +1690,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_pengelolaan_rekenings')->insert([
             'id' => 4,
             'kode' => '4',
-            'keterangan' => 'Baik',
+            'keterangan' => 'Pernah terlambat membayar, namun tidak terlambat memenuhi kelengkapan dokumen atau memenuhi perjanjian pembiayaan dan nasabah baru (take over) dengan bukti-bukti/dokumen sesuai dengan yang dipersyaratkan',
             'rating' => '4',
             'bobot' => '0.25',
         ]);
@@ -1698,7 +1698,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_pengelolaan_rekenings')->insert([
             'id' => 5,
             'kode' => '5',
-            'keterangan' => 'Sangat Baik',
+            'keterangan' => 'Tidak terlambat membayar, memenuhi kelengkapan dokumen atua memenuhi perjanjian pembiayaan',
             'rating' => '5',
             'bobot' => '0.25',
         ]);
@@ -1707,7 +1707,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_reputasi_bisnis')->insert([
             'id' => 1,
             'kode' => '1',
-            'keterangan' => 'Sangat Kurang',
+            'keterangan' => 'Terdapat informasi negatif dari supplier atau konsumen/pelanggan/perusahaan sejes namun dapat dijelaskan oleh nasabah disertai bukti yang memadai',
             'rating' => '1',
             'bobot' => '0.25',
         ]);
@@ -1715,7 +1715,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_reputasi_bisnis')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Kurang',
+            'keterangan' => 'Terdapat informasi negatif dari supplier atau konsumen namun dapat dijelaskan oleh nasabah disertai bukti yang memadai dan informasi tentang hubungan bisnis tidak dimiliki karena nasabah merupakan pemain baru',
             'rating' => '2',
             'bobot' => '0.25',
         ]);
@@ -1723,7 +1723,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_reputasi_bisnis')->insert([
             'id' => 3,
             'kode' => '3',
-            'keterangan' => 'Cukup Baik',
+            'keterangan' => 'Tidak terdapat informasi negatif dari supplier atau konsumen dalam jangka waktu < 1 tahun',
             'rating' => '3',
             'bobot' => '0.25',
         ]);
@@ -1731,7 +1731,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_reputasi_bisnis')->insert([
             'id' => 4,
             'kode' => '4',
-            'keterangan' => 'Baik',
+            'keterangan' => 'Tidak terdapat informasi negatif dari supplier atau konsumen dalam jangka waktu 1 s/d 2 tahun',
             'rating' => '4',
             'bobot' => '0.25',
         ]);
@@ -1739,16 +1739,16 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_reputasi_bisnis')->insert([
             'id' => 5,
             'kode' => '5',
-            'keterangan' => 'Sangat Baik',
+            'keterangan' => 'Tidak terdapat informasi negatif dari supplier atau konsumen dalam jangka waktu > 2 tahun',
             'rating' => '5',
             'bobot' => '0.25',
         ]);
 
-        //PPR Character Perilaku Pribadi Debitur
+        //PPR Character Perilaku Pribadi Nasabah
         DB::table('ppr_character_nf_perilaku_pribadis')->insert([
             'id' => 1,
             'kode' => '1',
-            'keterangan' => 'Sangat Kurang',
+            'keterangan' => 'Nasabah memiliki gaya hidup negatif dan permasalahan pribadi',
             'rating' => '1',
             'bobot' => '0.25',
         ]);
@@ -1756,7 +1756,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_perilaku_pribadis')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Kurang',
+            'keterangan' => 'Nasabah memiliki gaya hidup negatif',
             'rating' => '2',
             'bobot' => '0.25',
         ]);
@@ -1764,7 +1764,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_perilaku_pribadis')->insert([
             'id' => 3,
             'kode' => '3',
-            'keterangan' => 'Cukup Baik',
+            'keterangan' => 'Tidak dimiliki informasi gaya hidup dan riwayat pribadi sebagai nasabah BPRS BTB (nasabah baru)',
             'rating' => '3',
             'bobot' => '0.25',
         ]);
@@ -1772,7 +1772,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_perilaku_pribadis')->insert([
             'id' => 4,
             'kode' => '4',
-            'keterangan' => 'Baik',
+            'keterangan' => 'Nasabah tidak memiliki gaya hidup negatif atau permasalahan pribadi yang dapat mengurangi kemampuan membayar angsuran',
             'rating' => '4',
             'bobot' => '0.25',
         ]);
@@ -1780,7 +1780,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_nf_perilaku_pribadis')->insert([
             'id' => 5,
             'kode' => '5',
-            'keterangan' => 'Sangat Baik',
+            'keterangan' => 'Nasabah tidak memiliki gaya hidup negatif atau permasalahan pribadi',
             'rating' => '5',
             'bobot' => '0.25',
         ]);
@@ -1789,7 +1789,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_situasi_persaingans')->insert([
             'id' => 1,
             'kode' => '1',
-            'keterangan' => 'Sangat Kurang',
+            'keterangan' => 'Pasar menunjukkan penurunan, tidak terdapat peluang menghasilkan laba, dan jumlah pesaing meningkat dengan tajam',
             'rating' => '1',
             'bobot' => '0.14',
         ]);
@@ -1797,7 +1797,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_situasi_persaingans')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Kurang',
+            'keterangan' => 'Pasar tidak berkembang, peluuang untuk mendapatkan laba menurun, dan jumlah pesaing meningkat',
             'rating' => '2',
             'bobot' => '0.14',
         ]);
@@ -1805,7 +1805,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_situasi_persaingans')->insert([
             'id' => 3,
             'kode' => '3',
-            'keterangan' => 'Cukup Baik',
+            'keterangan' => 'Perkembangan pasar diperikarakan tetap stabil, peluang mendapatkan laba  cukup baik, dan jumlah pesaing meningkat cukup banyak',
             'rating' => '3',
             'bobot' => '0.14',
         ]);
@@ -1813,7 +1813,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_situasi_persaingans')->insert([
             'id' => 4,
             'kode' => '4',
-            'keterangan' => 'Baik',
+            'keterangan' => 'Perkembangan pasar diperikarakan tetap stabil, peluang mendapatkan laba  cukup baik, dan jumlah pesaing meningkat sedikit',
             'rating' => '4',
             'bobot' => '0.14',
         ]);
@@ -1821,7 +1821,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_situasi_persaingans')->insert([
             'id' => 5,
             'kode' => '5',
-            'keterangan' => 'Sangat Baik',
+            'keterangan' => 'Perkembangan pasar diperikarakan akan tinggi, peluang untuk mendapatkan laba tinggi, dan jumlah pesaing menurun',
             'rating' => '5',
             'bobot' => '0.14',
         ]);
@@ -1830,7 +1830,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kaderisasis')->insert([
             'id' => 1,
             'kode' => '1',
-            'keterangan' => 'Sangat Kurang',
+            'keterangan' => 'Nasabah tidak menyiapkan kader dan nasabah belum memiliki fungsi-fungsi organisasi',
             'rating' => '1',
             'bobot' => '0.14',
         ]);
@@ -1838,7 +1838,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kaderisasis')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Kurang',
+            'keterangan' => 'Nasabah belum menyiapkan kader dan nasabah telah memiliki fungsi-fungsi organisasi namun tidak berjalan',
             'rating' => '2',
             'bobot' => '0.14',
         ]);
@@ -1846,7 +1846,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kaderisasis')->insert([
             'id' => 3,
             'kode' => '3',
-            'keterangan' => 'Cukup Baik',
+            'keterangan' => 'Nasabah telah mempersiapkan kader, tetapi kader belum siap menggantikan dan nasabah telah memiliki fungsi-fungsi organisasi namun belum berjalan dengan baik',
             'rating' => '3',
             'bobot' => '0.14',
         ]);
@@ -1854,7 +1854,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kaderisasis')->insert([
             'id' => 4,
             'kode' => '4',
-            'keterangan' => 'Baik',
+            'keterangan' => 'Nasabah telah memiliki kader yang siap menggantikan dan nasabah telah memiliki fungsi-fungsi organisasi yang telah berjalan cukup baik',
             'rating' => '4',
             'bobot' => '0.14',
         ]);
@@ -1862,7 +1862,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kaderisasis')->insert([
             'id' => 5,
             'kode' => '5',
-            'keterangan' => 'Sangat Baik',
+            'keterangan' => 'Nasabah telah memiliki kader yang siap menggantikan dan nasabah telah memiliki fungsi-fungsi organisasi yang telah berjalan dengan baik',
             'rating' => '5',
             'bobot' => '0.14',
         ]);
@@ -1871,7 +1871,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kualifikasi_komersials')->insert([
             'id' => 1,
             'kode' => '1',
-            'keterangan' => 'Sangat Kurang',
+            'keterangan' => 'Nasabah tidak memiliki catatan-catatan transaksi keuangan dan pertanyaan-pertanyaan masalah finansial tidak dapat dijawab oleh nasabah',
             'rating' => '1',
             'bobot' => '0.14',
         ]);
@@ -1879,7 +1879,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kualifikasi_komersials')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Kurang',
+            'keterangan' => 'Pembukuan/pencatatan taransaksi keuangan hanya berupa kumpulan nota-nota dan pertanyaan-pertanyaan masalah finansial hanya dapat dijawab sebagian saja',
             'rating' => '2',
             'bobot' => '0.14',
         ]);
@@ -1887,7 +1887,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kualifikasi_komersials')->insert([
             'id' => 3,
             'kode' => '3',
-            'keterangan' => 'Cukup Baik',
+            'keterangan' => 'Pembukuan/pencatatan transaksi dilakukan kurang teratur, nasabah belum mampu menyusun laporan keuangan dan pertanyaan-pertanyaan masalah finansial hanya dapat dijawab sebagian saja',
             'rating' => '3',
             'bobot' => '0.14',
         ]);
@@ -1895,7 +1895,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kualifikasi_komersials')->insert([
             'id' => 4,
             'kode' => '4',
-            'keterangan' => 'Baik',
+            'keterangan' => 'Pembukuan/pencatatan transaksi keuangan dilakukan secara tertib dan teratur namun nasabah belum mampu menyusun laporan keuangan yang baik dan pertanyaan-pertanyaan masalah finansial dapat dijawab secara garis besar',
             'rating' => '4',
             'bobot' => '0.14',
         ]);
@@ -1903,7 +1903,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kualifikasi_komersials')->insert([
             'id' => 5,
             'kode' => '5',
-            'keterangan' => 'Sangat Baik',
+            'keterangan' => 'Pembukuan pencatatan transaksi keuangan dilakukan secara tertib dan nasabah mampu menyusun laporan keuangan (neraca, laporan rugi laba, dll) dan pertanyaan-pertanyaan masalah finansial dapat dijawab secara detail',
             'rating' => '5',
             'bobot' => '0.14',
         ]);
@@ -1912,7 +1912,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kualifikasi_teknis')->insert([
             'id' => 1,
             'kode' => '1',
-            'keterangan' => 'Sangat Kurang',
+            'keterangan' => 'Memiliki keahlian dan pengalaman sebagai pengelola usaha dalam jangka waktu <  2 tahun, serta tidak memiliki motivasi untuk mengembangkan usaha',
             'rating' => '1',
             'bobot' => '0.15',
         ]);
@@ -1920,7 +1920,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kualifikasi_teknis')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Kurang',
+            'keterangan' => 'Memiliki keahlian dan pengalaman sebagai pengelola usaha dalam jangka waktu > 2 s/d 3 tahun, namun kurang memiliki motivasi untuk mengembangkan usaha',
             'rating' => '2',
             'bobot' => '0.15',
         ]);
@@ -1928,7 +1928,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kualifikasi_teknis')->insert([
             'id' => 3,
             'kode' => '3',
-            'keterangan' => 'Cukup Baik',
+            'keterangan' => 'Memiliki keahlian dan pengalaman sebagai pengelola usaha dalam jangka waktu > 2 s/d 3 tahun, serta cukup memiliki motivasi untuk mengembangkan usaha',
             'rating' => '3',
             'bobot' => '0.15',
         ]);
@@ -1936,7 +1936,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kualifikasi_teknis')->insert([
             'id' => 4,
             'kode' => '4',
-            'keterangan' => 'Baik',
+            'keterangan' => 'Memiliki keahlian dan pengalaman sebagai pengelola usaha dalam jangka waktu > 3 s/d 4 tahun, serta memiliki motivasi untuk mengembangkan usaha',
             'rating' => '4',
             'bobot' => '0.15',
         ]);
@@ -1944,7 +1944,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_kualifikasi_teknis')->insert([
             'id' => 5,
             'kode' => '5',
-            'keterangan' => 'Sangat Baik',
+            'keterangan' => 'Memiliki keahlian dan pengalaman sebagai pengelola usaha dalam jangka waktu > 4 tahun, serta memiliki motivasi yang tinggi untuk mengembangkan usaha',
             'rating' => '5',
             'bobot' => '0.15',
         ]);
@@ -1953,7 +1953,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_kualitas_produk_jasas')->insert([
             'id' => 1,
             'kode' => '1',
-            'keterangan' => 'Sangat Kurang',
+            'keterangan' => 'Jenis produk/barang dagangan/jasa tidak memenuhi kebutuhan pembeli, harga jual lebih mahal dibanding pesaing, pemenuhan pesanan lebih lambat dari pesaing dantidak dapat diterima, serta personil tidak trampil dan tidak bersahabat',
             'rating' => '1',
             'bobot' => '0.15',
         ]);
@@ -1961,7 +1961,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_kualitas_produk_jasas')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Kurang',
+            'keterangan' => 'Jenis produk/barang dagangan/jasa kurang memenuhi kebutuhan pembeli, harga jual masih dapat bersaing, pemenuhan pesanan lebih lambat dari pesaing namun masih dapat diteirma, dan personil bersahatab namun kurang trampil',
             'rating' => '2',
             'bobot' => '0.15',
         ]);
@@ -1969,7 +1969,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_kualitas_produk_jasas')->insert([
             'id' => 3,
             'kode' => '3',
-            'keterangan' => 'Cukup Baik',
+            'keterangan' => 'Jenis produk/barang dagangan/jasa memenuhi kebutuhan pembeli, harga jual relatif sama dibanding pesaing, pemenuhan pesanan lebih lambat dari pesaing namun masih dapat diterima, dan personil trampil namun kurang bersahabat',
             'rating' => '3',
             'bobot' => '0.15',
         ]);
@@ -1977,7 +1977,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_kualitas_produk_jasas')->insert([
             'id' => 4,
             'kode' => '4',
-            'keterangan' => 'Baik',
+            'keterangan' => 'Jenis produk/barang dagangan/jasa memenuhi kebutuhan pembeli, harga jual relatif sama dibanding pesaing, pemenuhan pesanan sama cepat dengan pesaing, dan personil trampil namun kurang bersahabat',
             'rating' => '4',
             'bobot' => '0.15',
         ]);
@@ -1985,7 +1985,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_kualitas_produk_jasas')->insert([
             'id' => 5,
             'kode' => '5',
-            'keterangan' => 'Sangat Baik',
+            'keterangan' => 'Jenis produk/barang dagangan/jasa memenuhi kebutuhan pembeli, harga jual lebih murah dibanding pesaing, pemenuhan pesanan lebih cepat dari pesanan, dan personil trampil dan bersahabat',
             'rating' => '5',
             'bobot' => '0.15',
         ]);
@@ -1994,7 +1994,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_sistem_pembayarans')->insert([
             'id' => 1,
             'kode' => '1',
-            'keterangan' => 'Sangat Kurang',
+            'keterangan' => 'Nasabah tidak memiliki strategi pemasaran dan pembayaran selalu dihutang',
             'rating' => '1',
             'bobot' => '0.14',
         ]);
@@ -2002,7 +2002,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_sistem_pembayarans')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Kurang',
+            'keterangan' => 'Nasabah  memiliki strategi pemasaran yang kurang tepat dan sebagan besar pembayaran dihutang',
             'rating' => '2',
             'bobot' => '0.14',
         ]);
@@ -2010,7 +2010,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_sistem_pembayarans')->insert([
             'id' => 3,
             'kode' => '3',
-            'keterangan' => 'Cukup Baik',
+            'keterangan' => 'Nasabah memiliki strategi pemasaran yang cukup tepat namun sebagian besar pembayaran dihutang',
             'rating' => '3',
             'bobot' => '0.14',
         ]);
@@ -2018,7 +2018,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_sistem_pembayarans')->insert([
             'id' => 4,
             'kode' => '4',
-            'keterangan' => 'Baik',
+            'keterangan' => 'Nasabah memiliki strategi pemasaran yang cukup tepat dan tidak terdapat ketergantungan namun supplier/pembeli terbatas',
             'rating' => '4',
             'bobot' => '0.14',
         ]);
@@ -2026,7 +2026,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_sistem_pembayarans')->insert([
             'id' => 5,
             'kode' => '5',
-            'keterangan' => 'Sangat Baik',
+            'keterangan' => 'Nasabah memiliki strategi pemasaran yang tepat dan tidak terdapat ketergantungan karena supplier/pembeli banyak dan bervariasi',
             'rating' => '5',
             'bobot' => '0.14',
         ]);
@@ -2035,7 +2035,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_lokasi_usahas')->insert([
             'id' => 1,
             'kode' => '1',
-            'keterangan' => 'Sangat Kurang',
+            'keterangan' => 'Lokasi usaha tidak strategis, sulit untuk mendapatkan tenaga kerja, dan telah terdapat pembatasan peruntukan oleh pemerintah/pihak yang berwenang atau lokasi usaha tidak sesuai dengan peruntukan',
             'rating' => '1',
             'bobot' => '0.14',
         ]);
@@ -2043,7 +2043,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_lokasi_usahas')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Kurang',
+            'keterangan' => 'Lokasi usaha kurang strategis, terdapat permasalahan dalam penyediaan tenaga kerja, dan diperkirakan akan terdapat perubahan peruntukan oleh pemerinta/pihak yang berwenang',
             'rating' => '2',
             'bobot' => '0.14',
         ]);
@@ -2051,7 +2051,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_lokasi_usahas')->insert([
             'id' => 3,
             'kode' => '3',
-            'keterangan' => 'Cukup Baik',
+            'keterangan' => 'Lokasi usaha strategis, tersedia tenaga kerja namun untuk kualifikasi tertentu sulit diperoleh, dan tidak terdapat pembatasan peruntukan lokasi yang merugikan oleh pemerintah/pihak yang berwenang',
             'rating' => '3',
             'bobot' => '0.14',
         ]);
@@ -2059,7 +2059,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_lokasi_usahas')->insert([
             'id' => 4,
             'kode' => '4',
-            'keterangan' => 'Baik',
+            'keterangan' => 'Lokasi usaha strategis, tersedia tenaga kerja (baik kualitas maupun kuantitas), dan tidak terdapat pembatasan peruntukan lokasi yang merugikan oleh pemerintah/pihak yang berwenang',
             'rating' => '4',
             'bobot' => '0.14',
         ]);
@@ -2067,7 +2067,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_condition_sharia_nf_lokasi_usahas')->insert([
             'id' => 5,
             'kode' => '5',
-            'keterangan' => 'Sangat Baik',
+            'keterangan' => 'Lokasi usaha sangat strategis, tersedia tenaga kerja (baik kualitas maupun kuantitas), dan diperkirakan tidak terdapat perubahan pertuntukan lokasi oleh pemerintah/yang berwenang',
             'rating' => '5',
             'bobot' => '0.14',
         ]);
@@ -2117,7 +2117,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_collateral_nf_kontribusi_pemohons')->insert([
             'id' => 1,
             'kode' => 'CLTKP1',
-            'keterangan' => 'Agunan mengcover < 50%A',
+            'keterangan' => 'Agunan mengcover < 50%',
             'rating' => '1',
             'bobot' => '0.15',
         ]);
@@ -2240,7 +2240,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_collateral_nf_jangka_waktu_likuidasis')->insert([
             'id' => 1,
             'kode' => 'CLTJWL1',
-            'keterangan' => '>5 tahun',
+            'keterangan' => '> 5 tahun',
             'rating' => '1',
             'bobot' => '0.30',
         ]);
@@ -2248,7 +2248,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_collateral_nf_jangka_waktu_likuidasis')->insert([
             'id' => 2,
             'kode' => 'CLTJWL2',
-            'keterangan' => '>2 tahun s/d 5 tahun',
+            'keterangan' => '> 2 tahun s/d 5 tahun',
             'rating' => '2',
             'bobot' => '0.30',
         ]);
@@ -2256,7 +2256,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_collateral_nf_jangka_waktu_likuidasis')->insert([
             'id' => 3,
             'kode' => 'CLTJWL3',
-            'keterangan' => '>1 tahun s/d 2 tahun',
+            'keterangan' => '> 1 tahun s/d 2 tahun',
             'rating' => '3',
             'bobot' => '0.30',
         ]);
@@ -2264,7 +2264,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_collateral_nf_jangka_waktu_likuidasis')->insert([
             'id' => 4,
             'kode' => 'CLTJWL4',
-            'keterangan' => '>6 bulan s/d 1 tahun',
+            'keterangan' => '> 6 bulan s/d 1 tahun',
             'rating' => '4',
             'bobot' => '0.30',
         ]);

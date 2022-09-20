@@ -3,10 +3,13 @@
 namespace Modules\Ppr\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\Status;
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Modules\Form\Entities\FormPprDataPribadi;
 use Modules\Form\Entities\FormPprPembiayaan;
 use Modules\Ppr\Entities\PprPembiayaanHistory;
 use Modules\Ppr\Entities\PprScoring;
@@ -22,7 +25,7 @@ class PprKomiteController extends Controller
      */
     public function index()
     {
-        $proposal = FormPprPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull(['form_cl', 'form_score'])->get();
+        $proposal = FormPprPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull(['dilengkapi_ao', 'form_cl', 'form_score'])->get();
         return view('ppr::komite.index', [
             'title' => 'Komite PPR',
             'proposals' => $proposal,
@@ -47,19 +50,30 @@ class PprKomiteController extends Controller
      */
     public function store(Request $request)
     {
+        // $data = PprScoring::select()->where('', id)->get()->first();
+        // $score = $data->scoring->ppr_total_score;
         $role = Role::select()->where('user_id', Auth::user()->id)->get()->first();
 
         PprPembiayaanHistory::create([
             'form_ppr_pembiayaan_id' => $request->form_ppr_pembiayaan_id,
-            'status_id' => 3,
+            'status_id' => $request->status_id,
             'catatan' => $request->catatan,
             'jabatan_id' => $role->jabatan_id,
             'divisi_id' => $role->divisi_id,
             'user_id' => Auth::user()->id,
         ]);
 
-        return redirect('/ppr/komite/')->with('success', 'Proposal Anda Berhasil Diajukan');
-
+        //         if (request('revisi') == 'Ya') {
+        // FormPprPembiayaan::update
+        //         }
+        if ($request->status_id == 3) {
+            return redirect('/ppr/komite/')->with('success', 'Proposal Berhasil Diajukan!');
+        } elseif ($request->status_id == 6) {
+            return redirect('/ppr/komite/')->with('success', 'Proposal Berhasil Ditolak!');
+        } elseif ($request->status_id == 7) {
+            return redirect('/ppr/komite/')->with('success', 'Proposal Diajukan Untuk Revisi!');
+        } else {
+        }
     }
 
     /**
@@ -84,15 +98,51 @@ class PprKomiteController extends Controller
                 'user_id' => Auth::user()->$id,
             ]);
         }
+        $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
+
+        //SLA & Timeline
+        //Timeline
+        $waktuawal = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();
+        $waktuakhir = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first();
+
+        $waktumulai = Carbon::parse($waktuawal->created_at);
+        $waktuberakhir = Carbon::parse($waktuakhir->created_at);
+
+
+        $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
+
+        //Angsuran & Plafond
+        $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
+        // $margin = $pembiayaan->form_permohonan_jml_margin / 100;
+        $margin = 0.9 / 100;
+        $tenor = $pembiayaan->form_permohonan_jml_bulan;
+
+        //Angsuran
+        $angsuran = ($plafond * $margin) / (1 - (1 / (1 + $margin)) ** $tenor);
+
+        //Plafond
+        $plafondMaks = ($angsuran / $margin) * (1 - (1 / (1 + $margin)) ** $tenor);
+
+        //Usia Nasabah
+        $usiaNasabah = Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir)->age;
+
         return view('ppr::komite.lihat', [
             'title' => 'Detail Proposal',
             'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
             'pembiayaan' => FormPprPembiayaan::select()->where('id', $id)->get()->first(),
+            'usiaNasabah' => $usiaNasabah,
             'scoring' => PprScoring::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            'timelines' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'angsuran' => $angsuran,
+            'plafondMaks' => $plafondMaks,
 
             //History
             'history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
+            'timelines' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+
+            //SLA
+            'totalwaktu' => $totalwaktu,
+            'arr' => -2,
+            'banyak_history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->count(),
 
         ]);
     }
