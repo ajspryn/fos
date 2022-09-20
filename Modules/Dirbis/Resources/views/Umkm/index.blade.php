@@ -132,7 +132,7 @@ foreach ($umkms as $umkm) {
                         $cair = $cair + $harga_jual;
                     }
                 @endphp
-{{--
+
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">

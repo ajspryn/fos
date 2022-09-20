@@ -171,9 +171,61 @@ foreach ($pprs as $ppr) {
                         </div>
                         <!--/ Statistics Card -->
                     </div>
+                    @php
+                    $disbursepasar = 0;
+                    foreach ($cairpasars as $cairpasar) {
+                        $tenor = $cairpasar->tenor;
+                        $harga = $cairpasar->harga;
+                        $rate = $cairpasar->rate;
+                        $margin = ($rate * $tenor) / 100;
+                    
+                        $harga1 = $harga * $margin;
+                        $harga_jual = $harga1 + $harga;
+                    
+                        $disbursepasar = $disbursepasar + $harga_jual;
+                    }
 
+
+                    $disburseumkm = 0;
+                    foreach ($cairumkms as $cairumkm) {
+                        $tenor = $cairumkm->tenor;
+                        $harga = $cairumkm->nominal_pembiayaan;
+                        $rate = $cairumkm->rate;
+                        $margin = ($rate * $tenor) / 100;
+                    
+                        $harga1 = $harga * $margin;
+                        $harga_jual = $harga1 + $harga;
+                    
+                        $disburseumkm = $disburseumkm + $harga_jual;
+                    }
+
+
+                    $disburseskpd = 0;
+                    foreach ($cairskpds as $cairskpd) {
+                        $tenor = $cairskpd->tenor;
+                        $harga = $cairskpd->nominal_pembiayaan;
+                        $rate = $cairskpd->rate;
+                        $margin = ($rate * $tenor) / 100;
+                    
+                        $harga1 = $harga * $margin;
+                        $harga_jual = $harga1 + $harga;
+                    
+                        $disburseskpd = $disburseskpd + $harga_jual;
+                    }
+
+                    $disburseppr = 0;
+                    foreach ($cairpprs as $cairppr) {
+                        $harga = $cairppr->form_permohonan_harga_jual;
+                       
+                    
+                        $disburseppr = $disburseppr + $harga;
+                    }
+
+
+
+                @endphp
                     <div class="row">
-                        <div class="col-xl-3 col-md-4 col-sm-6">
+                        <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-info p-50 mb-1">
@@ -186,7 +238,7 @@ foreach ($pprs as $ppr) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
+                        <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-info p-50 mb-1">
@@ -194,39 +246,12 @@ foreach ($pprs as $ppr) {
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Proposal</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                            <div class="card text-center">
-                                <div class="card-body">
-                                    <div class="avatar bg-light-info p-50 mb-1">
-                                        <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Komite</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                            <div class="card text-center">
-                                <div class="card-body">
-                                    <div class="avatar bg-light-info p-50 mb-1">
-                                        <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="fw-bolder">0</h2>
+                                    <h2 class="fw-bolder">{{ number_format( $disburseskpd +  $disburseumkm +  $disbursepasar +  $disburseppr ) }}</h2>
                                     <p class="card-text">Disburse</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     {{-- <div class="row match-height">
                         <div class="col-lg-4 col-12">
                             <div class="row match-height">
