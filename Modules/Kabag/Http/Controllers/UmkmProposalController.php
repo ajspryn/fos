@@ -71,9 +71,6 @@ class UmkmProposalController extends Controller
         ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
         ->get();
 
-        $pipeline = UmkmPembiayaan::select()
-        ->whereYear('tgl_pembiayaan', date('Y'))
-        ->count();
 
     //   return $hitungPerBulan;
         return view('kabag::umkm.index', [
@@ -87,7 +84,6 @@ class UmkmProposalController extends Controller
             'labelnoas'=>$bulannoas,
             'datanoas'=>$noaPerBulan,
             'target1'=>$target1,
-            'pipeline'=>$pipeline,
         ]);
     }
 

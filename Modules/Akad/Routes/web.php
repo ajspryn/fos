@@ -11,6 +11,7 @@
 |
 */
 
+use Modules\Akad\Http\Controllers\CetakAkadController;
 use Modules\Akad\Http\Controllers\ProposalAkadController;
 use Modules\Akad\Http\Controllers\SelesaiAkadController;
 
@@ -18,4 +19,5 @@ Route::prefix('staff')->middleware(['auth:sanctum', 'verified', 'role:1', 'divis
     Route::get('/', 'AkadController@index');
     Route::resource('/proposal', ProposalAkadController::class);
     Route::resource('/selesai', SelesaiAkadController::class);
+    Route::resource('/cetak', CetakAkadController::class);
 });
