@@ -667,7 +667,7 @@
                                                                     @else
                                                                         <div class="card-body">
                                                                             <button class="btn btn-success w-100 mb-75"
-                                                                                data-bs-toggle="modal"data-bs-target="#lanjut_komite">
+                                                                                data-bs-toggle="modal"data-bs-target="#lanjut_komite"><i data-feather="check-square"></i>
                                                                                 Lanjut Komite
                                                                             </button>
                                                                         </div>
@@ -675,11 +675,21 @@
                                                                     <div class="card-body">
                                                                         <button class="btn btn-warning w-100 mb-75"
                                                                             data-bs-toggle="modal"
-                                                                            data-bs-target="#edit_proposal">
+                                                                            data-bs-target="#edit_proposal"><i data-feather="edit"></i>
                                                                             Edit Proposal
                                                                         </button>
                                                                     </div>
                                                                 @endif
+                                                                <form action="/skpd/cetak">
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $pembiayaan->id }}">
+                                                                    <div class="card-body">
+                                                                        <button action="sumbit"
+                                                                            class="btn btn-info w-100 mb-75"><i data-feather="printer"></i>
+                                                                            Cetak Proposal
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -971,7 +981,7 @@
                                                         <ul class="timeline">
                                                             @foreach ($timelines as $timeline)
                                                                 @php
-                                                                    
+
                                                                     $arr = $loop->iteration;
                                                                     if ($arr == -2) {
                                                                         $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
@@ -986,13 +996,13 @@
                                                                         $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                         $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                     }
-                                                                    
+
                                                                     // $waktu_mulai=Carbon\Carbon::parse($timelines[$arr]->created_at);
                                                                     // $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
                                                                     // $selisih=$waktu_mulai->diffAsCarbonInterval($waktu_selesai);
-                                                                    
+
                                                                     // ddd($selisih);
-                                                                    
+
                                                                 @endphp
                                                                 <li class="timeline-item">
                                                                     <span
