@@ -2,8 +2,9 @@
 
 use Modules\Skpd\Http\Controllers\SkpdController;
 use Modules\Skpd\Http\Controllers\SkpdKomiteController;
-use Modules\Skpd\Http\Controllers\SkpdNasabahController;
 use Modules\Skpd\Http\Controllers\SkpdRevisiController;
+use Modules\Skpd\Http\Controllers\SkpdNasabahController;
+use Modules\Skpd\Http\Controllers\SkpdCetakProposalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,5 @@ Route::prefix('skpd')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi
     Route::resource('/komite', SkpdKomiteController::class);
     Route::resource('/proposal', SkpdProposalController::class);
     Route::resource('/revisi', SkpdRevisiController::class);
+    Route::resource('/cetak', SkpdCetakProposalController::class);
 });
