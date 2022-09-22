@@ -15,7 +15,7 @@ class CetakAkadController extends Controller
      */
     public function index()
     {
-        return view('akad::cetak.index',
+        return view('akad::ijarah.pasar',
         [
             'title'=>'Cetak Akad',
             'now'=>Carbon::now()->isoFormat('D MMMM Y'),
