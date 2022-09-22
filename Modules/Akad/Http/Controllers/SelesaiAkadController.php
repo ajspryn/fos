@@ -5,6 +5,7 @@ namespace Modules\Akad\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Akad\Entities\Pembiayaan;
 
 class SelesaiAkadController extends Controller
 {
@@ -14,7 +15,12 @@ class SelesaiAkadController extends Controller
      */
     public function index()
     {
-        return view('akad::index');
+        $akadBerhasil = Pembiayaan::select()->get();
+        // return $pasar;
+        return view('akad::selesai.index', [
+            'title' => 'Dashboard Akad Selesai',
+            'akadBerhasils' => $akadBerhasil,
+        ]);
     }
 
     /**
