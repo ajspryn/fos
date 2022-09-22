@@ -49,6 +49,9 @@
 
     <style>
         /* Font Definitions */
+        body{
+            margin: 0.5cm 1cm 3cm 1.5cm;
+        }
         @font-face {
             font-family: Wingdings;
             panose-1: 5 0 0 0 0 0 0 0 0 0;

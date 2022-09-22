@@ -49,8 +49,8 @@
 
 
     <style>
-        body{
-            margin: 1cm 1cm 3cm 1.5cm;
+         body{
+            margin: 0.5cm 1cm 3cm 1.5cm;
         }
         @font-face {
             font-family: Wingdings;
