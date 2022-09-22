@@ -11,11 +11,15 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
 use Modules\Akad\Http\Controllers\ProposalAkadController;
 use Modules\Akad\Http\Controllers\SelesaiAkadController;
+
 
 Route::prefix('staff')->middleware(['auth:sanctum', 'verified', 'role:1', 'divisi:5', 'jabatan:1'])->group(function () {
     Route::get('/', 'AkadController@index');
     Route::resource('/proposal', ProposalAkadController::class);
+    Route::get('/proposal/pasar/{id}', [ProposalAkadController::class, 'showPasar']);
+    Route::get('/proposal/ppr/{id}', [ProposalAkadController::class, 'showPpr']);
     Route::resource('/selesai', SelesaiAkadController::class);
 });

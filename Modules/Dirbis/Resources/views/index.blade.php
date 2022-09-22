@@ -171,59 +171,86 @@ foreach ($pprs as $ppr) {
                         </div>
                         <!--/ Statistics Card -->
                     </div>
+
+                    {{-- @php
+                        $propPprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                            ->where('status_id', 5)
+                            ->get();
+
+                        $jmlProposalPpr = 0;
+                        foreach ($propPprs as $propPpr) {
+                            $prop_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                ->where('id', $propPpr->form_ppr_pembiayaan_id)
+                                ->get()
+                                ->first();
+                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                ->where('form_ppr_pembiayaan_id', $prop_ppr->id)
+                                ->orderBy('created_at', 'desc')
+                                ->get()
+                                ->first();
+                            if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+                                $jmlProposalPpr++;
+                            }
+                        }
+                    @endphp --}}
+                    <div class="row match-height">
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5>Total Proposal Per Bulan</h5>
+                                    <canvas id="chartProposal" width="100" height="100"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @php
-                    $disbursepasar = 0;
-                    foreach ($cairpasars as $cairpasar) {
-                        $tenor = $cairpasar->tenor;
-                        $harga = $cairpasar->harga;
-                        $rate = $cairpasar->rate;
-                        $margin = ($rate * $tenor) / 100;
-                    
-                        $harga1 = $harga * $margin;
-                        $harga_jual = $harga1 + $harga;
-                    
-                        $disbursepasar = $disbursepasar + $harga_jual;
-                    }
+                        $disbursepasar = 0;
+                        foreach ($cairpasars as $cairpasar) {
+                            $tenor = $cairpasar->tenor;
+                            $harga = $cairpasar->harga;
+                            $rate = $cairpasar->rate;
+                            $margin = ($rate * $tenor) / 100;
 
+                            $harga1 = $harga * $margin;
+                            $harga_jual = $harga1 + $harga;
 
-                    $disburseumkm = 0;
-                    foreach ($cairumkms as $cairumkm) {
-                        $tenor = $cairumkm->tenor;
-                        $harga = $cairumkm->nominal_pembiayaan;
-                        $rate = $cairumkm->rate;
-                        $margin = ($rate * $tenor) / 100;
-                    
-                        $harga1 = $harga * $margin;
-                        $harga_jual = $harga1 + $harga;
-                    
-                        $disburseumkm = $disburseumkm + $harga_jual;
-                    }
+                            $disbursepasar = $disbursepasar + $harga_jual;
+                        }
 
+                        $disburseumkm = 0;
+                        foreach ($cairumkms as $cairumkm) {
+                            $tenor = $cairumkm->tenor;
+                            $harga = $cairumkm->nominal_pembiayaan;
+                            $rate = $cairumkm->rate;
+                            $margin = ($rate * $tenor) / 100;
 
-                    $disburseskpd = 0;
-                    foreach ($cairskpds as $cairskpd) {
-                        $tenor = $cairskpd->tenor;
-                        $harga = $cairskpd->nominal_pembiayaan;
-                        $rate = $cairskpd->rate;
-                        $margin = ($rate * $tenor) / 100;
-                    
-                        $harga1 = $harga * $margin;
-                        $harga_jual = $harga1 + $harga;
-                    
-                        $disburseskpd = $disburseskpd + $harga_jual;
-                    }
+                            $harga1 = $harga * $margin;
+                            $harga_jual = $harga1 + $harga;
 
-                    $disburseppr = 0;
-                    foreach ($cairpprs as $cairppr) {
-                        $harga = $cairppr->form_permohonan_harga_jual;
-                       
-                    
-                        $disburseppr = $disburseppr + $harga;
-                    }
+                            $disburseumkm = $disburseumkm + $harga_jual;
+                        }
 
+                        $disburseskpd = 0;
+                        foreach ($cairskpds as $cairskpd) {
+                            $tenor = $cairskpd->tenor;
+                            $harga = $cairskpd->nominal_pembiayaan;
+                            $rate = $cairskpd->rate;
+                            $margin = ($rate * $tenor) / 100;
 
+                            $harga1 = $harga * $margin;
+                            $harga_jual = $harga1 + $harga;
 
-                @endphp
+                            $disburseskpd = $disburseskpd + $harga_jual;
+                        }
+
+                        $disburseppr = 0;
+                        foreach ($cairpprs as $cairppr) {
+                            $harga = $cairppr->form_permohonan_harga_jual;
+
+                            $disburseppr = $disburseppr + $harga;
+                        }
+
+                    @endphp
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">
@@ -246,7 +273,9 @@ foreach ($pprs as $ppr) {
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ number_format( $disburseskpd +  $disburseumkm +  $disbursepasar +  $disburseppr ) }}</h2>
+                                    <h2 class="fw-bolder">
+                                        {{ number_format($disburseskpd + $disburseumkm + $disbursepasar + $disburseppr) }}
+                                    </h2>
                                     <p class="card-text">Disburse</p>
                                 </div>
                             </div>
@@ -359,4 +388,56 @@ foreach ($pprs as $ppr) {
         </div>
     </div>
     <!-- END: Content-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script>
+        var labelProposal = JSON.parse('{!! json_encode($bulans) !!}');
+        var dataProposal = JSON.parse('{!! json_encode($jmlProposalPpr) !!}');
+
+        var ctx = document.getElementById('chartProposal');
+        var chartProposal = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labelProposal,
+                datasets: [{
+                    label: "Proposal Per Bulan",
+                    data: dataProposal,
+                    backgroundColor: [
+                        'rgba(203, 38, 33, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(203, 38, 33, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: {
+                            precision: 0,
+                            beginAtZero: true,
+                            callback: (yValue) => {
+                                return Math.floor(yValue);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 @endsection
