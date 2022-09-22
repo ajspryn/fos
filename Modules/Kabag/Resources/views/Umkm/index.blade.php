@@ -134,17 +134,30 @@ foreach ($komites as $komite) {
                     </div>
                     @php
                     $cair = 0;
-                    foreach ($target1 as $target) {
-                        $tenor = $target->tenor;
-                        $harga = $target->nominal_pembiayaan;
-                        $rate = $target->rate;
-                        $margin = ($rate * $tenor) / 100;
-                    
-                        $harga1 = $harga * $margin;
-                        $harga_jual = $harga1 + $harga;
-                    
-                        $cair = $cair + $harga_jual;
-                    }
+                            foreach ($target1 as $target) {
+                                $harga_jual = $target->nominal_pembiayaan;
+                            
+                                $cair = $cair + $harga_jual;
+                            }
+
+                            $pasars = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
+                        
+                        $pipeline = 0;
+                        foreach ($pasars as $pasar) {
+                            $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+                                ->where('umkm_pembiayaan_id', $umkm->id)
+                                ->orderby('created_at', 'desc')
+                                ->get()
+                                ->first();
+                        
+                            $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                ->where('id', $history->umkm_pembiayaan_id)
+                                ->get()
+                                ->first();
+                            if ($history->jabatan_id < 4) {
+                                $pipeline++;
+                            }
+                        }
                 @endphp
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">

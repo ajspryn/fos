@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Modules\Umkm\Http\Controllers\UmkmCetakController;
 use Modules\Umkm\Http\Controllers\UmkmController;
 use Modules\Umkm\Http\Controllers\UmkmKomiteController;
 use Modules\Umkm\Http\Controllers\UmkmProposalController;
@@ -25,4 +26,5 @@ Route::prefix('umkm')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi
     Route::resource('/komite', UmkmKomiteController::class);
     Route::resource('/proposal', UmkmProposalController::class);
     Route::resource('/revisi', UmkmRevisiController::class);
+    Route::resource('/cetak', UmkmCetakController::class);
 });

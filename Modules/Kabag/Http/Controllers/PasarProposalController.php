@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Modules\Pasar\Entities\PasarPembiayaan;
-
+use Modules\Pasar\Entities\PasarPembiayaanHistory;
 
 class PasarProposalController extends Controller
 {
@@ -90,7 +90,8 @@ class PasarProposalController extends Controller
         ->whereYear('tgl_pembiayaan', date('Y'))
         ->count();
 
-        // return (  $plafonds);
+        // $pasars = PasarPembiayaanHistory::select()->whereNotIn('jabatan_id' == 4)->whereNotIn('status_id' == 5)->orderby('created_at','desc')->get();
+        // return (  $pasars);
         return view('kabag::pasar.index', [
             'title' => 'Dashboard Pasar',
             'data' => $data,
@@ -103,7 +104,6 @@ class PasarProposalController extends Controller
             'labelplafonds'=>$bulanplafonds,
             'dataplafonds'=>$hitungPerBulan,
             'target1'=>$target1,
-            'pipeline'=>$pipeline
 
         ]);
     }

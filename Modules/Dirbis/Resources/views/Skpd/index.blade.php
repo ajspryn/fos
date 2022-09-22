@@ -123,15 +123,29 @@
                     @php
                         $cair = 0;
                         foreach ($target1 as $target) {
-                            $tenor = $target->tenor;
-                            $harga = $target->nominal_pembiayaan;
-                            $rate = $target->rate;
-                            $margin = ($rate * $tenor) / 100;
-                        
-                            $harga1 = $harga * $margin;
-                            $harga_jual = $harga1 + $harga;
+                            $harga_jual = $target->nominal_pembiayaan;
                         
                             $cair = $cair + $harga_jual;
+
+                            $skpds = Modules\Skpd\Entities\SkpdPembiayaan::select()->get();
+                            
+                                $pipeline1 = 0;
+                                foreach ($skpds as $skpd) {
+                                    $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                                        ->where('skpd_pembiayaan_id', $skpd->id)
+                                        ->orderby('created_at', 'desc')
+                                        ->get()
+                                        ->first();
+                            
+                                    $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                        ->where('id', $history->skpd_pembiayaan_id)
+                                        ->get()
+                                        ->first();
+                                    if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                                        if($history->status_id != 6)
+                                        $pipeline1++;
+                                    }
+                                }
                         }
                     @endphp
                     <div class="row">
@@ -143,7 +157,7 @@
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">0</h2>
+                                    <h2 class="fw-bolder">{{ $pipeline1 }}</h2>
                                     <p class="card-text">Pipeline</p>
                                 </div>
                             </div>
@@ -244,7 +258,7 @@
 
         var ctx = document.getElementById("myPiechart");
         var myPiechart = new Chart(ctx, {
-            type: 'doughnut',
+            type: 'pie',
             data: {
                 labels: _plabels,
                 datasets: [{

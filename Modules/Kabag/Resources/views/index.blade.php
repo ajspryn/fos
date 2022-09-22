@@ -168,13 +168,7 @@ foreach ($pprs as $ppr) {
                     @php
                         $disbursepasar = 0;
                         foreach ($cairpasars as $cairpasar) {
-                            $tenor = $cairpasar->tenor;
-                            $harga = $cairpasar->harga;
-                            $rate = $cairpasar->rate;
-                            $margin = ($rate * $tenor) / 100;
-                        
-                            $harga1 = $harga * $margin;
-                            $harga_jual = $harga1 + $harga;
+                            $harga_jual = $cairpasar->harga;
                         
                             $disbursepasar = $disbursepasar + $harga_jual;
                         }
@@ -182,13 +176,7 @@ foreach ($pprs as $ppr) {
 
                         $disburseumkm = 0;
                         foreach ($cairumkms as $cairumkm) {
-                            $tenor = $cairumkm->tenor;
-                            $harga = $cairumkm->nominal_pembiayaan;
-                            $rate = $cairumkm->rate;
-                            $margin = ($rate * $tenor) / 100;
-                        
-                            $harga1 = $harga * $margin;
-                            $harga_jual = $harga1 + $harga;
+                            $harga_jual = $cairumkm->nominal_pembiayaan;
                         
                             $disburseumkm = $disburseumkm + $harga_jual;
                         }
@@ -196,13 +184,7 @@ foreach ($pprs as $ppr) {
 
                         $disburseskpd = 0;
                         foreach ($cairskpds as $cairskpd) {
-                            $tenor = $cairskpd->tenor;
-                            $harga = $cairskpd->nominal_pembiayaan;
-                            $rate = $cairskpd->rate;
-                            $margin = ($rate * $tenor) / 100;
-                        
-                            $harga1 = $harga * $margin;
-                            $harga_jual = $harga1 + $harga;
+                            $harga_jual = $cairskpd->nominal_pembiayaan;
                         
                             $disburseskpd = $disburseskpd + $harga_jual;
                         }

@@ -206,50 +206,58 @@ foreach ($pprs as $ppr) {
                     @php
                         $disbursepasar = 0;
                         foreach ($cairpasars as $cairpasar) {
-                            $tenor = $cairpasar->tenor;
-                            $harga = $cairpasar->harga;
-                            $rate = $cairpasar->rate;
-                            $margin = ($rate * $tenor) / 100;
-
-                            $harga1 = $harga * $margin;
-                            $harga_jual = $harga1 + $harga;
-
+                            $harga_jual = $cairpasar->harga;
+                        
                             $disbursepasar = $disbursepasar + $harga_jual;
                         }
-
+                        
+                        $harga1 = $harga * $margin;
+                        $harga_jual = $harga1 + $harga;
+                        
+                        $disburseumkm = 0;
+                        foreach ($cairumkms as $cairumkm) {
+                            $harga_jual = $cairumkm->nominal_pembiayaan;
+                        
+                            $disburseumkm = $disburseumkm + $harga_jual;
+                        }
+                        
                         $disburseumkm = 0;
                         foreach ($cairumkms as $cairumkm) {
                             $tenor = $cairumkm->tenor;
                             $harga = $cairumkm->nominal_pembiayaan;
                             $rate = $cairumkm->rate;
                             $margin = ($rate * $tenor) / 100;
-
-                            $harga1 = $harga * $margin;
-                            $harga_jual = $harga1 + $harga;
-
+                        
+                            $disburseskpd = 0;
+                            foreach ($cairskpds as $cairskpd) {
+                                $harga_jual = $cairskpd->nominal_pembiayaan;
+                        
+                                $disburseskpd = $disburseskpd + $harga_jual;
+                            }
+                        
                             $disburseumkm = $disburseumkm + $harga_jual;
                         }
-
+                        
                         $disburseskpd = 0;
                         foreach ($cairskpds as $cairskpd) {
                             $tenor = $cairskpd->tenor;
                             $harga = $cairskpd->nominal_pembiayaan;
                             $rate = $cairskpd->rate;
                             $margin = ($rate * $tenor) / 100;
-
+                        
                             $harga1 = $harga * $margin;
                             $harga_jual = $harga1 + $harga;
-
+                        
                             $disburseskpd = $disburseskpd + $harga_jual;
                         }
-
+                        
                         $disburseppr = 0;
                         foreach ($cairpprs as $cairppr) {
                             $harga = $cairppr->form_permohonan_harga_jual;
-
+                        
                             $disburseppr = $disburseppr + $harga;
                         }
-
+                        
                     @endphp
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">

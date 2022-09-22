@@ -1,29 +1,29 @@
 <?php
 
-namespace Modules\Kabag\Http\Controllers;
+namespace Modules\Skpd\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Models\Role;
 use Carbon\Carbon;
-use Illuminate\Contracts\Support\Renderable;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Admin\Entities\SkpdBendahara;
-use Modules\Admin\Entities\SkpdInstansi;
-use Modules\Admin\Entities\SkpdJenisJaminan;
-use Modules\Admin\Entities\SkpdScoreDsr;
-use Modules\Admin\Entities\SkpdScoreSlik;
-use Modules\Skpd\Entities\SkpdDeviasi;
 use Modules\Skpd\Entities\SkpdFoto;
-use Modules\Skpd\Entities\SkpdJaminan;
-use Modules\Skpd\Entities\SkpdJaminanLainnya;
-use Modules\Skpd\Entities\SkpdNasabah;
-use Modules\Skpd\Entities\SkpdPembiayaan;
-use Modules\Skpd\Entities\SkpdPembiayaanHistory;
 use Modules\Skpd\Entities\SkpdSlik;
+use Illuminate\Support\Facades\Auth;
+use Modules\Skpd\Entities\SkpdJaminan;
+use Modules\Skpd\Entities\SkpdNasabah;
+use Modules\Admin\Entities\SkpdInstansi;
+use Modules\Admin\Entities\SkpdScoreDsr;
+use Modules\Admin\Entities\SkpdBendahara;
+use Modules\Admin\Entities\SkpdScoreSlik;
+use Modules\Skpd\Entities\SkpdPembiayaan;
 use Modules\Skpd\Entities\SkpdSlikPasangan;
+use Illuminate\Contracts\Support\Renderable;
+use Modules\Admin\Entities\SkpdJenisJaminan;
+use Modules\Skpd\Entities\SkpdJaminanLainnya;
+use Modules\Skpd\Entities\SkpdPembiayaanHistory;
+use Modules\Pasar\Entities\PasarPembiayaanHistory;
 
-class SkpdKomiteController extends Controller
+class SkpdCetakProposalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,58 +31,18 @@ class SkpdKomiteController extends Controller
      */
     public function index()
     {
-        $komite = SkpdPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get();
-        return view('kabag::skpd.komite.index', [
-            'title' => 'Data Komite',
-            'proposals' => $komite,
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        SkpdPembiayaanHistory::create([
-            'skpd_pembiayaan_id' => $request->skpd_pembiayaan_id,
-            'catatan' => $request->catatan,
-            'status_id' => $request->status_id,
-            'user_id' => Auth::user()->id,
-            'jabatan_id' => 2
-        ]);
-
-        return redirect('/kabag/skpd/komite')->with('success', 'Pengajuan Berhasil Diproses');
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-
+        $id=Request('id');
         $cek = SkpdPembiayaanHistory::select()
             ->where('skpd_pembiayaan_id', $id)
-            ->orderby('created_at', 'desc')
+            ->where('user_id', Auth::user()->id)
             ->get()
-            ->first();
+            ->count();
 
-        if ($cek->status_id == 3 && $cek->jabatan_id == 1) {
+        if ($cek == 0) {
             SkpdPembiayaanHistory::create([
                 'skpd_pembiayaan_id' => $id,
-                'status_id' => 4,
-                'jabatan_id' => 2,
+                'status_id' => 2,
+                'jabatan_id' => 1,
                 'divisi_id' => 0,
                 'user_id' => Auth::user()->$id,
             ]);
@@ -113,6 +73,7 @@ class SkpdKomiteController extends Controller
         //     $total_pengeluaran=$biaya_anak+$biaya_istri+$cicilan+$pengeluaran_lainnya+$cicilanpasangan;
         //     $cicilan =  $cicilan+$cicilanpasangan;
         // }
+
         //pemasukan
         $gaji_pokok = $data->gaji_pokok;
         $pendapatan_lainnya = $data->pendapatan_lainnya;
@@ -191,9 +152,11 @@ class SkpdKomiteController extends Controller
 
 
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
-        // return $proses_dsr;
-        return view('kabag::skpd.komite.lihat', [
+        // return $total_pengeluaran;
+        return view('skpd::cetak', [
             'title' => 'Detail Proposal',
+            'arr' => -2,
+            'banyak_history' => SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $id)->count(),
             'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
             'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
             'timelines' => SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $id)->get(),
@@ -201,14 +164,15 @@ class SkpdKomiteController extends Controller
             'biayakeluarga' => $biaya_anak + $biaya_istri,
             'pendapatan_bersih' => $pendapatan_bersih,
             'ideps' => SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->get(),
+            'ideppasangans' => SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->get(),
             'harga_jual' => $harga_jual,
             'tenor' => $tenor,
             'angsuran1' => $angsuran,
             'nilai_dsr' => $dsr,
             'nilai_dsr1' => $dsr,
             'total_pendapatan' => $data->pendapatan_lainnya + $data->gaji_pokok + $data->pendapatan_lainnya,
+            'total_pengeluaran' => $total_pengeluaran,
             'cekcicilanpasangan' => $cekcicilanpasangan,
-            'ideppasangans' => SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->get(),
 
             'bendahara' => $proses_bendahara,
             'dsr' => $proses_dsr,
@@ -236,16 +200,42 @@ class SkpdKomiteController extends Controller
             'skpengangkatans' => SkpdPembiayaan::select()->where('id', $id)->get(),
             'ideb' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'IDEB')->get()->first(),
             'konfirmasi' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Konfirmasi Bendahara')->get()->first(),
-            'deviasi' => SkpdDeviasi::select()->where('skpd_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
 
             //history
             'history' => SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
 
             //sla
-            'totalwaktu' => $totalwaktu,
-            'arr' => -2,
-            'banyak_history' => SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $id)->count(),
+            'totalwaktu' => $totalwaktu
         ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Renderable
+     */
+    public function create()
+    {
+        return view('skpd::create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return Renderable
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function show($id)
+    {
+        return view('skpd::show');
     }
 
     /**
@@ -255,7 +245,7 @@ class SkpdKomiteController extends Controller
      */
     public function edit($id)
     {
-        return view('kabag::edit');
+        return view('skpd::edit');
     }
 
     /**

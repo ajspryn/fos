@@ -11,7 +11,7 @@
 |
 */
 
-use Illuminate\Support\Facades\Route;
+use Modules\Akad\Http\Controllers\CetakAkadController;
 use Modules\Akad\Http\Controllers\ProposalAkadController;
 use Modules\Akad\Http\Controllers\SelesaiAkadController;
 
@@ -22,4 +22,5 @@ Route::prefix('staff')->middleware(['auth:sanctum', 'verified', 'role:1', 'divis
     Route::get('/proposal/pasar/{id}', [ProposalAkadController::class, 'showPasar']);
     Route::get('/proposal/ppr/{id}', [ProposalAkadController::class, 'showPpr']);
     Route::resource('/selesai', SelesaiAkadController::class);
+    Route::resource('/cetak', CetakAkadController::class);
 });
