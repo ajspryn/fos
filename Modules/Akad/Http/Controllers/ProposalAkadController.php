@@ -30,7 +30,7 @@ class ProposalAkadController extends Controller
             ->where(function ($query) {
                 $query
                     ->where('status_id', 5)
-                    ->orWhere('status_id', '>', 7);
+                    ->Where('status_id', '<', 9);
             })->where('jabatan_id', 4)->get();
         $proposalskpd = SkpdPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
         $proposalumkm = UmkmPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
