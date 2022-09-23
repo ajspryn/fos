@@ -193,6 +193,8 @@
                                                                         value="Akad Batal" />
                                                                     <input type="hidden" name="form_ppr_pembiayaan_id"
                                                                         value="{{ $pembiayaan->id }}" />
+                                                                    <input type="hidden" name="status_id"
+                                                                        value="10" />
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <button type="button"
@@ -235,6 +237,7 @@
                                                         <input type="hidden" name="status" value="Selesai Akad" />
                                                         <input type="hidden" name="form_ppr_pembiayaan_id"
                                                             value="{{ $pembiayaan->id }}" />
+                                                        <input type="hidden" name="status_id" value="9" />
                                                         <button type="submit" class="btn btn-success w-100"><i
                                                                 data-feather="check"></i>
                                                             Selesai

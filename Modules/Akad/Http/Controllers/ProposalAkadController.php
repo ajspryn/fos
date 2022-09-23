@@ -26,7 +26,12 @@ class ProposalAkadController extends Controller
     public function index()
     {
         $proposalpasar = PasarPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
-        $proposalppr = PprPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
+        $proposalppr = PprPembiayaanHistory::select()
+            ->where(function ($query) {
+                $query
+                    ->where('status_id', 5)
+                    ->orWhere('status_id', '>', 7);
+            })->where('jabatan_id', 4)->get();
         $proposalskpd = SkpdPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
         $proposalumkm = UmkmPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
 
@@ -66,6 +71,8 @@ class ProposalAkadController extends Controller
             $id = $hitungId->id + 1;
         }
 
+        $role = Role::select()->where('user_id', Auth::user()->id)->get()->first();
+
         if ($request->segmen == 'PPR') {
             Pembiayaan::create([
                 'id' => $id,
@@ -76,17 +83,19 @@ class ProposalAkadController extends Controller
                 'cif' => $request->cif,
                 'kode_tabungan' => $request->kode_tabungan,
                 'plafond' => $request->plafond,
+                'tenor' => $request->tenor,
+                'margin' => $request->margin,
                 'harga_jual' => $request->harga_jual,
                 'status' => $request->status,
                 'catatan' => $request->catatan,
             ]);
 
-            $role = Role::select()->where('user_id', Auth::user()->id)->get()->first();
             PprPembiayaanHistory::create([
                 'form_ppr_pembiayaan_id' => $request->form_ppr_pembiayaan_id,
-                'status_id' => 8,
+                'status_id' => $request->status_id,
                 'jabatan_id' => $role->jabatan_id,
                 'divisi_id' => $role->divisi_id,
+                'catatan' => $request->catatan,
                 'user_id' => Auth::user()->id,
             ]);
         } else if ($request->segmen == 'SKPD') {
@@ -99,6 +108,8 @@ class ProposalAkadController extends Controller
                 'cif' => $request->cif,
                 'kode_tabungan' => $request->kode_tabungan,
                 'plafond' => $request->plafond,
+                'tenor' => $request->tenor,
+                'margin' => $request->margin,
                 'harga_jual' => $request->harga_jual,
                 'status' => $request->status,
                 'catatan' => $request->catatan,
@@ -113,6 +124,8 @@ class ProposalAkadController extends Controller
                 'cif' => $request->cif,
                 'kode_tabungan' => $request->kode_tabungan,
                 'plafond' => $request->plafond,
+                'tenor' => $request->tenor,
+                'margin' => $request->margin,
                 'harga_jual' => $request->harga_jual,
                 'status' => $request->status,
                 'catatan' => $request->catatan,
@@ -127,6 +140,8 @@ class ProposalAkadController extends Controller
                 'cif' => $request->cif,
                 'kode_tabungan' => $request->kode_tabungan,
                 'plafond' => $request->plafond,
+                'tenor' => $request->tenor,
+                'margin' => $request->margin,
                 'harga_jual' => $request->harga_jual,
                 'status' => $request->status,
                 'catatan' => $request->catatan,
