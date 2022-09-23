@@ -427,7 +427,7 @@
                                                                                     {{ $rating_bendahara }}</td>
                                                                                 <td style="text-align: center">
                                                                                     {{ $nilai_bendahara }}</td>
-                                                    
+
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="text-align: center">2</td>
@@ -613,7 +613,7 @@
                                                                                                         class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
                                                                                                 @endif
                                                                                             @endif
-                                                                                                
+
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
@@ -932,10 +932,10 @@
                                         </div>
                                         <div class="tab-pane" id="ideb" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
-                                            {{-- <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
-                                        width="1000" height="900"></iframe> --}}
-                                            {{-- <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
-                                                width="1000" height="900"> --}}
+                                            <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
+                                        width= "1000" height="900"></iframe>
+                                            <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
+                                                width="1000" height="900">
                                         </div>
 
                                         <div class="tab-pane" id="timeline" role="tabpanel"
@@ -962,8 +962,8 @@
                                                             $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
                                                             $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                             }
-                                                            
-                                 
+
+
                                                             @endphp
                                                                 <li class="timeline-item">
                                                                     <span

@@ -136,16 +136,16 @@ class SkpdKomiteController extends Controller
 
         //proses menentukan rating
         $proses_bendahara = SkpdBendahara::select()->where('skpd_instansi_id', $data->skpd_instansi_id)->get()->first();
-        if ($dsr > 29) {
+        if ($dsr > 36) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 1)->get()->first();
         }
-        if ($dsr <= 29 && $dsr >= 20) {
+        if ($dsr <= 35 && $dsr >= 31) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 2)->get()->first();
         }
-        if ($dsr <= 19 && $dsr >= 11) {
+        if ($dsr <= 30 && $dsr >= 21) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 3)->get()->first();
         }
-        if ($dsr < 11) {
+        if ($dsr < 20) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 4)->get()->first();
         }
 
