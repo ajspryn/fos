@@ -49,6 +49,9 @@
 
     <style>
         /* Font Definitions */
+        body{
+            margin: 0.5cm 1cm 3cm 1.5cm;
+        }
         @font-face {
             font-family: Wingdings;
             panose-1: 5 0 0 0 0 0 0 0 0 0;
@@ -123,7 +126,7 @@
         }
 
         @page WordSection1 {
-            size: 21.0cm 841.95pt;
+            size: A4;
             margin: 81.35pt 51.85pt 28.4pt 70.55pt;
         }
 
@@ -246,7 +249,7 @@
         }
 
         p.MsoFooter,
-        li.MsoFooter,
+        li.MsoFooter,pasa
         div.MsoFooter {
             mso-style-link: "Footer Char";
             margin: 0cm;
@@ -341,7 +344,7 @@
 
         /* Page Definitions */
         @page WordSection1 {
-            size: 595.45pt 841.7pt;
+            size: A4;
             margin: 57.6pt 51.1pt 21.6pt 42.5pt;
         }
 
@@ -1400,12 +1403,6 @@ margin-left:18.0pt;margin-bottom:.0001pt;text-align:justify'>
             <span lang=IN style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span>
         </p>
 
-        <p class=MsoNormal align=center
-            style='margin-top:0cm;margin-right:.1pt;
-margin-bottom:0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:center;
-text-indent:-18.0pt'>
-            <b><span lang=IN style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></b>
-        </p>
 
         <p class=MsoNormal align=center
             style='margin-top:0cm;margin-right:.1pt;
@@ -1479,14 +1476,7 @@ margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:-18.0pt'
                 menerima pengakuan hutang NASABAH.</span>
         </p>
 
-        <p class=MsoNormal
-            style='margin-top:0cm;margin-right:.1pt;margin-bottom:0cm;
-margin-left:18.0pt;margin-bottom:.0001pt;text-align:justify'>
-            <span lang=IN style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span>
-        </p>
-
-        <p class=MsoNormal><b><span lang=IN style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></b>
-        </p>
+    
 
         <p class=MsoNormal align=center
             style='margin-top:0cm;margin-right:.1pt;
@@ -1617,9 +1607,6 @@ margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:-18.0pt'
                 diakui oleh Nasabah. </span>
         </p>
 
-        <p class=MsoNormal style='margin-right:.1pt;text-align:justify'><span lang=IN
-                style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
-
         <p class=MsoNormal align=center
             style='margin-top:0cm;margin-right:.1pt;
 margin-bottom:6.0pt;margin-left:18.0pt;text-align:center'><b><span
@@ -1697,8 +1684,6 @@ margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:-18.0pt'
                 syarat-syarat yang dianggap baik oleh BANK. </span>
         </p>
 
-        <p class=MsoNormal align=center style='margin-right:.1pt;text-align:center'><span lang=IN
-                style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
 
         <p class=MsoNormal align=center style='margin-bottom:6.0pt;text-align:center'><b><span lang=IN
                     style='font-size:11.0pt;font-family:"Arial",sans-serif'>Pasal 4</span></b></p>
@@ -1713,8 +1698,6 @@ margin-bottom:6.0pt;margin-left:0cm;text-align:center'><b><span
                 style='font-size:11.0pt;font-family:"Arial",sans-serif'>Akad ini diatur
                 dan ditafsirkan menurut ketentuan hukum Indonesia</span></p>
 
-        <p class=MsoNormal align=center style='margin-right:.1pt;text-align:center'><span lang=IN
-                style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
 
         <p class=MsoNormal align=center style='margin-bottom:6.0pt;text-align:center'><b><span lang=IN
                     style='font-size:11.0pt;font-family:"Arial",sans-serif'>Pasal 5</span></b></p>
@@ -1792,14 +1775,6 @@ margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:-18.0pt'
                 karena tindak pidana yang dilakukannya, yang diancam dengan hukuman penjara
                 atau kurungan selama satu tahun atau lebih.</span>
         </p>
-
-        <h2 style='margin-left:18.0pt'><span lang=SV
-                style='font-size:11.0pt;
-font-family:"Arial",sans-serif'>&nbsp;</span></h2>
-
-        <h2 style='margin-left:18.0pt'><b><span lang=SV
-                    style='font-size:11.0pt;
-font-family:"Arial",sans-serif'>&nbsp;</span></b></h2>
 
         <p class=MsoNormal align=center
             style='margin-top:0cm;margin-right:.1pt;
@@ -1903,10 +1878,6 @@ margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:-18.0pt'
                 maka <b>BANK</b> berjanji dan dengan ini mengikatkan diri untuk menyerahkan
                 kelebihan tersebut kepada <b>NASABAH</b>.</span>
         </p>
-
-        <p class=MsoNormal align=center style='margin-right:.1pt;text-align:center'><span lang=IN
-                style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
-
         <p class=MsoNormal align=center style='margin-bottom:6.0pt;text-align:center'><b><span lang=IN
                     style='font-size:11.0pt;font-family:"Arial",sans-serif'>Pasal 7</span></b></p>
 
@@ -1946,11 +1917,7 @@ margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:-18.0pt'
                 ini. </span>
         </p>
 
-        <p class=MsoNormal
-            style='margin-top:0cm;margin-right:.1pt;margin-bottom:0cm;
-margin-left:18.0pt;margin-bottom:.0001pt;text-align:justify'>
-            <span style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span>
-        </p>
+
 
         <p class=MsoNormal><b><span lang=IN style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></b>
         </p>
@@ -5035,55 +5002,54 @@ font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
     <p class=MsoNormal style='text-align:justify'><span lang=EN-GB
     style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
     
-    <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-    margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Nama</span><span
-    lang=IN style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>
-    Nasabah</span><span lang=FI style='font-size:11.0pt;line-height:115%;
-    font-family:"Arial",sans-serif'>        :     </span><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Mochamad
-    Ridwan</span></p>
-    
-    <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-    margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>KTP
-    No.                   :     </span><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>3201012006800032</span></p>
-    
-    <p class=MsoBodyText style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
-    6.0pt;margin-left:126.0pt;text-indent:-126.0pt;line-height:115%'><span lang=FI
-    style='font-family:"Arial",sans-serif'>Alamat Tinggal         :     </span><span lang=EN-GB style='font-family:"Arial",sans-serif'>Perum Griya Asri Pertiwi Blok
-    A-4 No. 04</span><span style='font-family:"Arial",sans-serif'>, RT </span><span lang=EN-GB style='font-family:"Arial",sans-serif'>005</span><span
-    style='font-family:"Arial",sans-serif'> / RW </span><span
-    lang=EN-GB style='font-family:"Arial",sans-serif'>004</span><span
-    style='font-family:"Arial",sans-serif'>, </span><span
-    lang=EN-GB style='font-family:"Arial",sans-serif'>Sukahati</span><span
-    style='font-family:"Arial",sans-serif'>, </span></p>
-    
-    <p class=MsoBodyText style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
-    6.0pt;margin-left:117.0pt;text-indent:-.1pt;line-height:115%'><span
-    style='font-family:"Arial",sans-serif'>Kecamatan </span><span
-    lang=EN-GB style='font-family:"Arial",sans-serif'>Cibinong</span><span
-    style='font-family:"Arial",sans-serif'>, </span><span
-    lang=EN-GB style='font-family:"Arial",sans-serif'>Kab. Bogor</span><span
-    style='font-family:"Arial",sans-serif'>.</span></p>
-    
-    <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-    margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Usaha</span><span
-    lang=IN style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>/pekerjaaan</span><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>    :     </span><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Pegawai
-    (PNS) BPKAD</span></p>
-    
-    <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-    margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Alamat
-    Usaha</span><span lang=IN style='font-size:11.0pt;line-height:115%;font-family:
-    "Arial",sans-serif'>/Kantor</span><span lang=FI style='font-size:11.0pt;
-    line-height:115%;font-family:"Arial",sans-serif'>     :. </span><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Jl.
-    Aman No. 1</span></p>
+    <p class=MsoNormal
+    style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'>
+    <span lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Nama</span><span
+        lang=IN style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>
+        Nasabah</span><span lang=FI
+        style='font-size:11.0pt;line-height:115%;
+font-family:"Arial",sans-serif'>&emsp;&emsp;&ensp;&nbsp;&nbsp;
+        : </span><span lang=FI
+        style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Mochamad
+        Ridwan</span></p>
+
+<p class=MsoNormal
+    style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'>
+    <span lang=FI
+        style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Tempat/Tgl.Lahir&emsp;&emsp;&ensp;
+        : </span><span lang=FI
+        style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Bogor</span><span lang=IN
+        style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>,
+    </span><span lang=IN
+        style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>20</span><span lang=IN
+        style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>
+    </span><span style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Juni</span><span
+        style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'> </span><span lang=IN
+        style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>1980</span></p>
+
+<p class=MsoNormal
+    style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'>
+    <span lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>KTP
+        No. &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;: </span><span lang=FI
+        style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>3201012006800032</span></p>
+
+<p class=MsoBodyText
+    style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+6.0pt;margin-left:126.0pt;text-indent:-126.0pt;line-height:115%'>
+    <span lang=FI style='font-family:"Arial",sans-serif'>Alamat Tinggal &emsp;&emsp; : </span><span lang=EN-GB
+        style='font-family:"Arial",sans-serif'>Perum Griya Asri Pertiwi Blok
+        A-4 No. 04</span><span style='font-family:"Arial",sans-serif'>, RT </span><span lang=EN-GB
+        style='font-family:"Arial",sans-serif'>005</span><span style='font-family:"Arial",sans-serif'>/ RW
+    </span><span lang=EN-GB style='font-family:"Arial",sans-serif'>004</span><span
+        style='font-family:"Arial",sans-serif'>, Kelurahan </span><span lang=EN-GB
+        style='font-family:"Arial",sans-serif'>Sukahati</span><span style='font-family:"Arial",sans-serif'>,
+        Kecamatan </span><span lang=EN-GB style='font-family:"Arial",sans-serif'>Cibinong</span><span
+        style='font-family:"Arial",sans-serif'>, </span><span lang=EN-GB
+        style='font-family:"Arial",sans-serif'>Kab. Bogor</span></p>
+
     
     <p class=MsoNormal style='text-align:justify'><b><span lang=IN
     style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
@@ -5212,46 +5178,57 @@ font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
     
     <p class=MsoNormal style='text-align:justify'><span lang=EN-GB
     style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
-    
-    <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-    margin-left:144.0pt;text-align:justify;text-indent:-144.0pt;line-height:115%'><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Nama</span><span
-    lang=IN style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Pasangan
-    Nasabah</span><span lang=FI style='font-size:11.0pt;line-height:115%;
-    font-family:"Arial",sans-serif'>   :. </span><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Rachmawati</span></p>
-    
-    <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-    margin-left:144.0pt;text-align:justify;text-indent:-144.0pt;line-height:115%'><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>KTP
-    No.                           :   </span><span
-    lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>3201014405840015</span></p>
-    
-    <p class=MsoBodyText style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
-    6.0pt;margin-left:126.0pt;text-indent:-126.0pt;line-height:115%'><span lang=FI
-    style='font-family:"Arial",sans-serif'>Alamat </span><span lang=IN
-    style='font-family:"Arial",sans-serif'>KTP</span><span lang=FI
-    style='font-family:"Arial",sans-serif'></span><span lang=IN
-    style='font-family:"Arial",sans-serif'></span><span lang=FI
-    style='font-family:"Arial",sans-serif'>:</span><span
-    lang=EN-GB style='font-family:"Arial",sans-serif'>Perum Griya Asri Pertiwi Blok
-    A-4 No. 04</span><span style='font-family:"Arial",sans-serif'>, RT </span><span lang=EN-GB style='font-family:"Arial",sans-serif'>005</span><span
-    style='font-family:"Arial",sans-serif'> / RW </span><span
-    lang=EN-GB style='font-family:"Arial",sans-serif'>004</span><span
-    style='font-family:"Arial",sans-serif'>, Kel. </span><span style='font-family:
-    "Arial",sans-serif'> </span><span
-    lang=EN-GB style='font-family:"Arial",sans-serif'>Sukahati</span><span
-    style='font-family:"Arial",sans-serif'>, Kecamatan </span><span lang=EN-GB style='font-family:"Arial",sans-serif'>Cibinong</span><span
-    style='font-family:"Arial",sans-serif'>, </span><span
-    lang=EN-GB style='font-family:"Arial",sans-serif'>Kab. Bogor</span><span
-    style='font-family:"Arial",sans-serif'>.</span></p>
-    
-    <p class=MsoBodyText style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
-    6.0pt;margin-left:144.0pt;text-indent:-144.0pt;line-height:115%'><span
-    style='font-family:"Arial",sans-serif'>.</span></p>
-    
-    <p class=MsoNormal style='text-align:justify'><b><span lang=IN
-    style='font-size:11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
+    <p class=MsoNormal
+            style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+        margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'>
+            <span lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Nama
+                Pasangan</span><span lang=IN style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>
+                Nasabah</span><span lang=FI
+                style='font-size:11.0pt;line-height:115%;
+        font-family:"Arial",sans-serif'>&emsp;&emsp;&ensp; :
+            </span><span lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Mochamad
+                Ridwan</span></p>
+
+        <p class=MsoNormal
+            style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+        margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'>
+            <span lang=FI
+                style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Tempat/Tgl.Lahir&emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&ensp;&ensp;
+                : </span><span lang=FI
+                style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Bogor</span><span lang=IN
+                style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>,
+            </span><span lang=IN
+                style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>20</span><span lang=IN
+                style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>
+            </span><span style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Juni</span><span
+                style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'> </span><span lang=IN
+                style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>1980</span></p>
+
+        <p class=MsoNormal
+            style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+        margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'>
+            <span lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>KTP
+                No. &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&emsp;&ensp;&ensp;: </span><span lang=FI
+                style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>3201012006800032</span></p>
+
+        <p class=MsoBodyText
+            style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+        6.0pt;margin-left:126.0pt;text-indent:-126.0pt;line-height:115%'>
+            <span lang=FI style='font-family:"Arial",sans-serif'>Alamat Tinggal &emsp;&emsp; &emsp;&emsp;&ensp; :
+            </span><span lang=EN-GB style='font-family:"Arial",sans-serif'>Perum Griya Asri Pertiwi Blok
+                A-4 No. 04</span><span style='font-family:"Arial",sans-serif'>, RT </span><span lang=EN-GB
+                style='font-family:"Arial",sans-serif'>005</span><span style='font-family:"Arial",sans-serif'>/ RW
+            </span><span lang=EN-GB style='font-family:"Arial",sans-serif'>004</span><span
+                style='font-family:"Arial",sans-serif'>, Kelurahan </span><span lang=EN-GB
+                style='font-family:"Arial",sans-serif'>Sukahati</span><span style='font-family:"Arial",sans-serif'>,
+                Kecamatan </span><span lang=EN-GB style='font-family:"Arial",sans-serif'>Cibinong</span><span
+                style='font-family:"Arial",sans-serif'>, </span><span lang=EN-GB
+                style='font-family:"Arial",sans-serif'>Kab. Bogor</span></p>
+
+        <p class=MsoBodyText
+            style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+    6.0pt;margin-left:144.0pt;text-indent:-144.0pt;line-height:115%'>
+            <span style='font-family:"Arial",sans-serif'>.</span></p>
     
     <p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt;
     font-family:"Arial",sans-serif'>            </span></b></p>
@@ -5378,87 +5355,110 @@ font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
         <p class=MsoNormal style='text-align:justify'><span lang=SV style='font-size:
         11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
         
-        <p class=MsoNormal style='text-align:justify'><span lang=SV style='font-size:
-        11.0pt;font-family:"Arial",sans-serif'>Yang bertandatangan di bawah ini :</span></p>
-        
-        <p class=MsoNormal style='text-align:justify'><span lang=SV style='font-size:
-        11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
-        
-        <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-        margin-left:1.0cm;text-align:justify'><span lang=SV style='font-size:11.0pt;
-        font-family:"Arial",sans-serif'>Nama             :   </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Mochamad Ridwan</span></p>
-        
-        <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-        margin-left:1.0cm;text-align:justify'><span lang=SV style='font-size:11.0pt;
-        font-family:"Arial",sans-serif'>Nomor KTP</span><span lang=IN style='font-size:
-        11.0pt;font-family:"Arial",sans-serif'>   </span><span lang=SV
-        style='font-size:11.0pt;font-family:"Arial",sans-serif'>:   </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>3201012006800032</span></p>
-        
-        <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-        margin-left:106.35pt;text-align:justify;text-indent:-79.35pt'><span lang=SV
-        style='font-size:11.0pt;font-family:"Arial",sans-serif'>Alamat </span><span
-        lang=IN style='font-size:11.0pt;font-family:"Arial",sans-serif'>          </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>:</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'> </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'> </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Perum Griya
-        Asri Pertiwi Blok A-4 No. 04</span><span lang=SV style='font-size:11.0pt;
-        font-family:"Arial",sans-serif'>, RT </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>005</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'> / RW </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>004</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>, Kelurahan </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Sukahati</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>,</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'> </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Kecamatan </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Cibinong</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>, </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Kab. Bogor</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>.</span></p>
-        
-        <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-        margin-left:1.0cm;text-align:justify'><span lang=SV style='font-size:11.0pt;
-        font-family:"Arial",sans-serif'>Selanjutnya disebut <b>NASABAH</b></span></p>
-        
-        <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-        margin-left:1.0cm;text-align:justify'><span lang=SV style='font-size:11.0pt;
-        font-family:"Arial",sans-serif'>&nbsp;</span></p>
-        
-        <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-        margin-left:1.0cm;text-align:justify'><span lang=SV style='font-size:11.0pt;
-        font-family:"Arial",sans-serif'>Nama             :   </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Rachmawati</span></p>
-        
-        <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-        margin-left:1.0cm;text-align:justify'><span lang=SV style='font-size:11.0pt;
-        font-family:"Arial",sans-serif'>Nomor KTP   :   </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>3201014405840015</span></p>
-        
-        <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-        margin-left:102.2pt;text-align:justify;text-indent:-72.45pt'><span lang=SV
-        style='font-size:11.0pt;font-family:"Arial",sans-serif'>Alamat          : </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Perum Griya
-        Asri Pertiwi Blok A-4 No. 04</span><span lang=SV style='font-size:11.0pt;
-        font-family:"Arial",sans-serif'>, RT </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>005</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'> / RW </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>004</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>, Kelurahan </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Sukahati</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>,</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'> </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Kecamatan   </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Cibinong</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>, </span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>Kab. Bogor</span><span
-        lang=SV style='font-size:11.0pt;font-family:"Arial",sans-serif'>.</span></p>
-        
-        <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
-        margin-left:1.0cm;text-align:justify'><span lang=SV style='font-size:11.0pt;
-        font-family:"Arial",sans-serif'>Selanjutnya disebut <b>PASANGAN NASABAH</b></span></p>
+        <p class=MsoNormal style='text-align:justify'><span lang=SV
+            style='font-size:
+11.0pt;font-family:"Arial",sans-serif'>Yang bertandatangan di bawah ini
+            :</span></p>
+
+    <p class=MsoNormal style='text-align:justify'><span lang=SV
+            style='font-size:
+11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+
+    <p class=MsoNormal
+        style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'>
+        <span lang=FI
+            style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Nama</span><span lang=IN
+            style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>
+            Nasabah</span><span lang=FI
+            style='font-size:11.0pt;line-height:115%;
+font-family:"Arial",sans-serif'>&emsp;&emsp;&ensp;&nbsp;&nbsp;
+            : </span><span lang=FI
+            style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Mochamad
+            Ridwan</span></p>
+
+
+    <p class=MsoNormal
+        style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'>
+        <span lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>KTP
+            No. &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;: </span><span lang=FI
+            style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>3201012006800032</span>
+    </p>
+
+    <p class=MsoBodyText
+        style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+6.0pt;margin-left:126.0pt;text-indent:-126.0pt;line-height:115%'>
+        <span lang=FI style='font-family:"Arial",sans-serif'>Alamat Tinggal &emsp;&emsp; : </span><span
+            lang=EN-GB style='font-family:"Arial",sans-serif'>Perum Griya Asri Pertiwi Blok
+            A-4 No. 04</span><span style='font-family:"Arial",sans-serif'>, RT </span><span lang=EN-GB
+            style='font-family:"Arial",sans-serif'>005</span><span style='font-family:"Arial",sans-serif'>/
+            RW </span><span lang=EN-GB style='font-family:"Arial",sans-serif'>004</span><span
+            style='font-family:"Arial",sans-serif'>, Kelurahan </span><span lang=EN-GB
+            style='font-family:"Arial",sans-serif'>Sukahati</span><span
+            style='font-family:"Arial",sans-serif'>, Kecamatan </span><span lang=EN-GB
+            style='font-family:"Arial",sans-serif'>Cibinong</span><span
+            style='font-family:"Arial",sans-serif'>, </span><span lang=EN-GB
+            style='font-family:"Arial",sans-serif'>Kab. Bogor</span></p>
+
+
+    <p class=MsoNormal
+        style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:1.0cm;text-align:justify'>
+        <span lang=SV style='font-size:11.0pt;
+font-family:"Arial",sans-serif'>Selanjutnya disebut
+            <b>NASABAH</b></span></p>
+
+    <p class=MsoNormal
+        style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:1.0cm;text-align:justify'>
+        <span lang=SV style='font-size:11.0pt;
+font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+    <p class=MsoNormal
+        style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'>
+        <span lang=FI
+            style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Nama</span><span lang=IN
+            style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>
+            Nasabah</span><span lang=FI
+            style='font-size:11.0pt;line-height:115%;
+font-family:"Arial",sans-serif'>&emsp;&emsp;&ensp;&nbsp;&nbsp;
+            : </span><span lang=FI
+            style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>Mochamad
+            Ridwan</span></p>
+
+
+    <p class=MsoNormal
+        style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:126.0pt;text-align:justify;text-indent:-126.0pt;line-height:115%'>
+        <span lang=FI style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>KTP
+            No. &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;: </span><span lang=FI
+            style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'>3201012006800032</span>
+    </p>
+
+    <p class=MsoBodyText
+        style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+6.0pt;margin-left:126.0pt;text-indent:-126.0pt;line-height:115%'>
+        <span lang=FI style='font-family:"Arial",sans-serif'>Alamat Tinggal &emsp;&emsp; : </span><span
+            lang=EN-GB style='font-family:"Arial",sans-serif'>Perum Griya Asri Pertiwi Blok
+            A-4 No. 04</span><span style='font-family:"Arial",sans-serif'>, RT </span><span lang=EN-GB
+            style='font-family:"Arial",sans-serif'>005</span><span style='font-family:"Arial",sans-serif'>/
+            RW </span><span lang=EN-GB style='font-family:"Arial",sans-serif'>004</span><span
+            style='font-family:"Arial",sans-serif'>, Kelurahan </span><span lang=EN-GB
+            style='font-family:"Arial",sans-serif'>Sukahati</span><span
+            style='font-family:"Arial",sans-serif'>, Kecamatan </span><span lang=EN-GB
+            style='font-family:"Arial",sans-serif'>Cibinong</span><span
+            style='font-family:"Arial",sans-serif'>, </span><span lang=EN-GB
+            style='font-family:"Arial",sans-serif'>Kab. Bogor</span></p>
+
+    <p class=MsoNormal
+        style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:1.0cm;text-align:justify'>
+        <span lang=SV style='font-size:11.0pt;
+font-family:"Arial",sans-serif'>Selanjutnya disebut
+            <b>PASANGAN NASABAH</b></span></p>
         
         <p class=MsoNormal style='text-align:justify'><span lang=SV style='font-size:
         11.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
