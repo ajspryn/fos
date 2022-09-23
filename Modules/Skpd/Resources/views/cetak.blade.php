@@ -696,7 +696,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                         <p class=MsoNormal align=center
                             style='margin-bottom:0cm;text-align:center;
   line-height:normal'>
-                            <b><span style='font-size:8.0pt;font-family:"Times New Roman",serif'>U<span
+                            <b><span style='font-size:8.0pt;font-family:"Times New Roman",serif'><span
                                         style='color:black'>USULAN PEMBIAYAAN SKPD</span></span></b>
                         </p>
                     </td>
@@ -1331,7 +1331,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                     <p class=MsoNormal align=center
                                         style='margin-bottom:0cm;text-align:center;
     line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>Annalist</span></b>
+                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>Analist</span></b>
                                     </p>
                                 </td>
                                 <td width=185 valign=top
