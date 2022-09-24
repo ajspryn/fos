@@ -334,9 +334,7 @@
                 </span></p>
 
             <p class=MsoNormal style='text-align:justify;text-autospace:none'><span style='font-size:11.0pt'>Cibinong,
-                </span><span style='font-size:11.0pt'>30</span><span style='font-size:11.0pt'> </span><span
-                    style='font-size:11.0pt'>Agustus</span><span style='font-size:11.0pt'> </span><span
-                    style='font-size:11.0pt'>2022</span></p>
+                </span><span style='font-size:11.0pt'>{{ $now }}</span></p>
 
             <p class=MsoNormal style='text-align:justify;text-autospace:none'><span style='font-size:11.0pt'> </span>
             </p>
