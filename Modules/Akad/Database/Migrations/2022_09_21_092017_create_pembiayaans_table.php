@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('cif');
             $table->string('kode_tabungan');
             $table->string('plafond')->nullable();
+            $table->integer('tenor')->nullable();
+            $table->string('margin')->nullable();
             $table->string('harga_jual')->nullable();
             $table->string('status')->nullable();
             $table->string('catatan')->nullable();
