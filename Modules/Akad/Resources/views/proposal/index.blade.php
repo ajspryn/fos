@@ -57,10 +57,10 @@
                                                 </td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_skpd->nasabah->nama_nasabah }}</td>
-                                                <td style="text-align: center">
-                                                    <a href="/staff/cetak/skpd/{{ $proposal_skpd->id }}"
-                                                        class="btn btn-outline-info round">Detail</a>
-                                                </td>
+                                                    <td style="text-align: center">
+                                                        <a href="/staff/proposal/skpd/{{ $proposal_skpd->id }}"
+                                                            class="btn btn-outline-info round">Detail</a>
+                                                    </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -146,9 +146,10 @@
                                                 </td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_umkm->nasabahh->nama_nasabah }}</td>
-                                                <td style="text-align: center">
-                                                    <a href="/" class="btn btn-outline-info round">Detail</a>
-                                                </td>
+                                                    <td style="text-align: center">
+                                                        <a href="/staff/proposal/umkm/{{ $proposal_umkm->id }}"
+                                                            class="btn btn-outline-info round">Detail</a>
+                                                    </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

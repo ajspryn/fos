@@ -399,7 +399,7 @@ ul
       </td>
       <td width=203 valign=top style='width:152.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal align=right style='margin-bottom:0cm;text-align:right;
-      line-height:normal;text-autospace:none'><b><span style='font-family:"Ottawa",sans-serif'>{{ number_format($pembiayaan->harga) }},-</span></b>
+      line-height:normal;text-autospace:none'><b><span style='font-family:"Ottawa",sans-serif'>{{ number_format($pembiayaan->nominal_pembiayaan) }},-</span></b>
       </p>
       </td>
      </tr>
@@ -469,7 +469,7 @@ ul
       </td>
       <td width=203 valign=top style='width:152.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal align=right style='margin-bottom:0cm;text-align:right;
-      line-height:normal;text-autospace:none'><span style='font-family:"Ottawa",sans-serif'>{{ number_format($pembiayaan->harga) }},-</span>
+      line-height:normal;text-autospace:none'><span style='font-family:"Ottawa",sans-serif'>{{ number_format($pembiayaan->nominal_pembiayaan) }},-</span>
       </p>
       </td>
      </tr>
@@ -490,7 +490,7 @@ ul
       </td>
       <td width=203 valign=top style='width:152.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal align=right style='margin-bottom:0cm;text-align:right;
-      line-height:normal;text-autospace:none'><span style='font-family:"Ottawa",sans-serif'>{{ number_format($hargaJual-($pembiayaan->harga)) }},-</span></p>
+      line-height:normal;text-autospace:none'><span style='font-family:"Ottawa",sans-serif'>{{ number_format($hargaJual-($pembiayaan->nominal_pembiayaan)) }},-</span></p>
       </td>
      </tr>
      <tr>
@@ -869,7 +869,7 @@ ul
       </td>
       <td width=19 valign=top style='width:14.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal;text-autospace:
-      none'><span style='font-family:"Ottawa",sans-serif'>: Belum Terisi </span></p>
+      none'><span style='font-family:"Ottawa",sans-serif'>: </span></p>
       </td>
       <td width=397 style='width:297.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal;text-autospace:
@@ -1241,7 +1241,7 @@ ul
     in telah</span><span lang=SV style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>
     mendapat persetujuan dari </span><span style='font-size:11.0pt;font-family:
     "Ottawa",sans-serif'>Pasangan yang bernama <b>{{ $pembiayaan->nasabahh->nama_pasangan }},</b> pemegang kartu
-    penduduk nomor 3203072209720003.</span> </p>
+    penduduk nomor {{ $pembiayaan->nasabahh->ktp_pasangan }}.</span> </p>
     
     <p class=MsoListParagraph style='margin-top:0cm;margin-right:.1pt;margin-bottom:
     0cm;margin-left:36.0pt;text-align:justify;text-indent:-18.0pt;text-autospace:
@@ -1272,8 +1272,8 @@ ul
     harga jual sebesar <b>Rp. {{ number_format($hargaJual) }},- </b></span><span lang=SV
     style='font-family:"Ottawa",sans-serif'>dengan perincian harga pokok sebesar </span><span
     lang=SV>&nbsp;</span><b><span style='font-family:"Ottawa",sans-serif'>Rp.
-    {{ number_format($pembiayaan->harga) }},-</span></b><span style='font-family:"Ottawa",sans-serif'> dan
-    marjin keuntungan sebesar <b>Rp. {{ number_format($hargaJual-($pembiayaan->harga)) }},-. </b>Selanjutnya dengan ini pula
+    {{ number_format($pembiayaan->nominal_pembiayaan) }},-</span></b><span style='font-family:"Ottawa",sans-serif'> dan
+    marjin keuntungan sebesar <b>Rp. {{ number_format($hargaJual-($pembiayaan->nominal_pembiayaan)) }},-. </b>Selanjutnya dengan ini pula
     NASABAH mengakui telah berhutang kepada bank.</span> </p>
     
     <p class=MsoNormal style='margin-top:0cm;margin-right:.1pt;margin-bottom:0cm;
@@ -2016,7 +2016,7 @@ ul
     "Calibri",sans-serif;color:black'>&nbsp;</span><b><span style='font-size:11.0pt;
     font-family:"Ottawa",sans-serif;color:black'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></b><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>,
-    berdasarkan kartu tanda Penduduk Nomor 3203072209720003</span><span lang=SV
+    berdasarkan kartu tanda Penduduk Nomor {{ $pembiayaan->nasabahh->ktp_pasangan }}</span><span lang=SV
     style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>, </span><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>dalam
     Perjanjian ini bertindak selaku Pembeli, </span><span lang=SV style='font-size:
@@ -2158,7 +2158,7 @@ ul
     style='font-family:"Ottawa",sans-serif;color:black'>P</span><span lang=SV
     style='font-family:"Ottawa",sans-serif;color:black'>asal 1 maka PIHAK PERTAMA
     akan menitipkan kepada PIHAK KEDUA, uang (berdasarkan Plafond Pembiayaan yang
-    telah disetujui) yaitu sejumlah <b>Rp. {{ number_format($pembiayaan->harga) }}</b></span><b><span
+    telah disetujui) yaitu sejumlah <b>Rp. {{ number_format($pembiayaan->nominal_pembiayaan) }}</b></span><b><span
     style='font-family:"Ottawa",sans-serif;color:black'>,-.</span></b><b><span
     lang=SV style='color:black'>&nbsp;</span></b></p>
     
@@ -2744,7 +2744,7 @@ ul
     "Calibri",sans-serif;color:black'>&nbsp;</span><b><span style='font-size:11.0pt;
     font-family:"Ottawa",sans-serif;color:black'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></b><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>,
-    berdasarkan kartu tanda Penduduk Nomor 3203072209720003</span><span lang=SV
+    berdasarkan kartu tanda Penduduk Nomor {{ $pembiayaan->nasabahh->ktp_pasangan }}</span><span lang=SV
     style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>, </span><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>dalam
     Perjanjian ini bertindak selaku Pembeli, </span><span lang=SV style='font-size:
@@ -2886,7 +2886,7 @@ ul
     style='font-family:"Ottawa",sans-serif;color:black'>P</span><span lang=SV
     style='font-family:"Ottawa",sans-serif;color:black'>asal 1 maka PIHAK PERTAMA
     akan menitipkan kepada PIHAK KEDUA, uang (berdasarkan Plafond Pembiayaan yang
-    telah disetujui) yaitu sejumlah <b>Rp. {{ number_format($pembiayaan->harga) }}</b></span><b><span
+    telah disetujui) yaitu sejumlah <b>Rp. {{ number_format($pembiayaan->nominal_pembiayaan) }}</b></span><b><span
     style='font-family:"Ottawa",sans-serif;color:black'>,-.</span></b><b><span
     lang=SV style='color:black'>&nbsp;</span></b></p>
     
@@ -3523,7 +3523,7 @@ ul
       </td>
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>: 3203072209720003<u1:p></u1:p></span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>: {{ $pembiayaan->nasabahh->ktp_pasangan }}<u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr>
@@ -3956,7 +3956,7 @@ ul
       normal'><span lang=FI style='font-family:"Ottawa",sans-serif'>Alamat Usaha</span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>/Kantor </span></p>
       </td>
-      <td width=463 valign=top style='width:347.25pt;background:red;padding:0cm 5.4pt 0cm 5.4pt'>
+      <td width=463 valign=top style='width:347.25pt;background:white;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
       normal'><span style='font-family:"Ottawa",sans-serif;color:black'><u1:p></u1:p>:
@@ -3980,7 +3980,7 @@ ul
     lang=FI style='font-family:"Ottawa",sans-serif'>d</span><span lang=IN
     style='font-family:"Ottawa",sans-serif'>ar</span><span lang=FI
     style='font-family:"Ottawa",sans-serif'>i Bank BPRS Bogor Tegar Beriman sebesar
-    <b>Rp. {{ number_format($pembiayaan->harga) }},-</b>. Pembiayaan tersebut akan saya gunakan untuk <b>Kepemilikan
+    <b>Rp. {{ number_format($pembiayaan->nominal_pembiayaan) }},-</b>. Pembiayaan tersebut akan saya gunakan untuk <b>Kepemilikan
     Kendaraan Bermotor</b></span><span lang=IN style='font-family:"Ottawa",sans-serif'>
     berdasarkan rencana penggunaan pembiayaan yang saya buat pada saat mengajukan
     pembiayaan ini</span><span lang=FI style='font-family:"Ottawa",sans-serif'>.
@@ -4185,10 +4185,10 @@ ul
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
       normal'><span style='font-family:"Ottawa",sans-serif'>Usaha / Pekerjaan <u1:p></u1:p></span></p>
       </td>
-      <td width=463 valign=top style='width:347.25pt;background:red;padding:0cm 5.4pt 0cm 5.4pt'>
+      <td width=463 valign=top style='width:347.25pt;background:white;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif;color:black'>:  {{ $pembiayaan->keteranganusaha->dagang->nama_jenisdagang }}/{{ $pembiayaan->keteranganusaha->dagang }}u1:p></u1:p></span><span style='color:black'> </span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif;color:black'>:  {{ $pembiayaan->keteranganusaha->dagang->nama_jenisdagang }}/{{ $pembiayaan->keteranganusaha->nama_usaha }}<u1:p></u1:p></span><span style='color:black'> </span></p>
       </td>
      </tr>
      <tr>
@@ -4197,11 +4197,11 @@ ul
       normal'><span lang=FI style='font-family:"Ottawa",sans-serif'>Alamat Usaha</span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>/Kantor </span></p>
       </td>
-      <td width=463 valign=top style='width:347.25pt;background:red;padding:0cm 5.4pt 0cm 5.4pt'>
+      <td width=463 valign=top style='width:347.25pt;background:white;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
       normal'><span style='font-family:"Ottawa",sans-serif;color:black'><u1:p></u1:p>:
-      Belum Terisi<u1:p></u1:p></span><span style='color:black'> </span></p>
+      {{ $pembiayaan->keteranganusaha->alamatusaha }}<u1:p></u1:p></span><span style='color:black'> </span></p>
       </td>
      </tr>
     </table>
@@ -4325,7 +4325,7 @@ ul
       </td>
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>: 3203072209720003<u1:p></u1:p></span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>: {{ $pembiayaan->nasabahh->ktp_pasangan }}<u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr>
@@ -4513,7 +4513,7 @@ ul
       </td>
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>: 3203072209720003<u1:p></u1:p></span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>: {{ $pembiayaan->nasabahh->ktp_pasangan }}<u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr>
@@ -5394,7 +5394,7 @@ ul
       border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal align=right style='margin-top:2.0pt;margin-right:0cm;
       margin-bottom:2.0pt;margin-left:0cm;text-align:right;line-height:normal'><b><span
-      style='font-family:"Ottawa",sans-serif'>{{ number_format($pembiayaan->harga) }},- </span></b></p>
+      style='font-family:"Ottawa",sans-serif'>{{ number_format($pembiayaan->nominal_pembiayaan) }},- </span></b></p>
       </td>
      </tr>
      <tr>
@@ -5639,7 +5639,7 @@ ul
       border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal align=right style='margin-top:2.0pt;margin-right:0cm;
       margin-bottom:2.0pt;margin-left:0cm;text-align:right;line-height:normal'><b><span
-      style='font-family:"Ottawa",sans-serif'>{{ number_format(($pembiayaan->harga)-1329882) }},-</span></b> </p>
+      style='font-family:"Ottawa",sans-serif'>{{ number_format(($pembiayaan->nominal_pembiayaan)-1329882) }},-</span></b> </p>
       </td>
      </tr>
     </table>
@@ -5982,7 +5982,7 @@ ul
       height:17.9pt'>
       <p class=MsoNormal align=right style='margin-top:2.0pt;margin-right:0cm;
       margin-bottom:2.0pt;margin-left:0cm;text-align:right;line-height:normal'><b><span
-      style='font-family:"Ottawa",sans-serif'>{{ number_format($pembiayaan->harga) }},- </span></b></p>
+      style='font-family:"Ottawa",sans-serif'>{{ number_format($pembiayaan->nominal_pembiayaan) }},- </span></b></p>
       </td>
      </tr>
      <tr style='height:17.15pt'>
@@ -6251,7 +6251,7 @@ ul
       height:17.15pt'>
       <p class=MsoNormal align=right style='margin-top:2.0pt;margin-right:0cm;
       margin-bottom:2.0pt;margin-left:0cm;text-align:right;line-height:normal'><b><span
-      style='font-family:"Ottawa",sans-serif'>{{  number_format(($pembiayaan->harga)-1329882) }},-</span></b> </p>
+      style='font-family:"Ottawa",sans-serif'>{{  number_format(($pembiayaan->nominal_pembiayaan)-1329882) }},-</span></b> </p>
       </td>
      </tr>
     </table>

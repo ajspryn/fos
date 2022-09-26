@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('lama_tinggal')->nullable();
             $table->string('nama_ibu')->nullable();
             $table->string('nama_pasangan')->nullable();
+            $table->string('ktp_pasangan')->nullable();
             $table->string('agama_id')->nullable();
             $table->string('status_id')->nullable();
             $table->string('pendidikan')->nullable();

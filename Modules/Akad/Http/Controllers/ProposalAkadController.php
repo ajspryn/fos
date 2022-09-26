@@ -9,12 +9,24 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Admin\Entities\PasarCashPick;
+use Modules\Admin\Entities\PasarJenisJaminan;
 use Modules\Akad\Entities\Pembiayaan;
 use Modules\Form\Entities\FormPprPembiayaan;
+use Modules\Pasar\Entities\PasarFoto;
+use Modules\Pasar\Entities\PasarJaminan;
+use Modules\Pasar\Entities\PasarJaminanLain;
 use Modules\Pasar\Entities\PasarPembiayaan;
 use Modules\Pasar\Entities\PasarPembiayaanHistory;
 use Modules\Ppr\Entities\PprPembiayaanHistory;
+use Modules\Skpd\Entities\SkpdFoto;
+use Modules\Skpd\Entities\SkpdJaminan;
+use Modules\Skpd\Entities\SkpdJaminanLainnya;
+use Modules\Skpd\Entities\SkpdPembiayaan;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
+use Modules\Umkm\Entities\UmkmFoto;
+use Modules\Umkm\Entities\UmkmJaminan;
+use Modules\Umkm\Entities\UmkmJaminanLain;
+use Modules\Umkm\Entities\UmkmPembiayaan;
 use Modules\Umkm\Entities\UmkmPembiayaanHistory;
 
 class ProposalAkadController extends Controller
@@ -297,15 +309,88 @@ class ProposalAkadController extends Controller
 
         //Usia Nasabah
         $usiaNasabah = Carbon::parse($pembiayaan->nasabahh->tgl_lahir)->age;
+        $jaminanlain=PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first();
         return view('akad::proposal.lihat', [
             'title' => 'Proposal Pasar',
             'segmen' => 'Pasar',
             'pembiayaan' => PasarPembiayaan::select()->where('id', $id)->get()->first(),
             'usiaNasabah' => $usiaNasabah,
             'hargaJual' => $harga_jual,
+            'fotodiri'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+            'fotoktp'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotodiribersamaktp'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
+            'fotokk'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'jaminanusahas'=>PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get(),
+            'jaminanlainusahas'=>PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get(),
+            'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
         ]);
     }
+    public function showSkpd($id)
+    {
+        $pembiayaan = SkpdPembiayaan::select()->where('id', $id)->get()->first();
 
+        $data = SkpdPembiayaan::select()->where('id', $id)->get()->first();
+
+        $tenor = $data->tenor;
+        $harga = $data->nominal_pembiayaan;
+        $rate = $data->rate;
+        $margin = ($rate * $tenor) / 100;
+
+        //idir
+        $harga1 = $harga * $margin;
+        $harga_jual = $harga1 + $harga;
+
+        //Usia Nasabah
+        $usiaNasabah = Carbon::parse($pembiayaan->nasabah->tgl_lahir)->age;
+        $jaminanlain=SkpdJaminan::select()->where('skpd_pembiayaan_id',$id)->get()->first();
+        return view('akad::proposal.lihat', [
+            'title' => 'Proposal Skpd',
+            'segmen' => 'SKPD',
+            'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
+            'usiaNasabah' => $usiaNasabah,
+            'hargaJual' => $harga_jual,
+            'fotodiri'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+            'fotoktp'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotodiribersamaktp'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
+            'fotokk'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'jaminans' => SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->get(),
+            'jaminanlainnyas' => SkpdJaminanLainnya::select()->where('skpd_pembiayaan_id', $id)->get(),
+        ]);
+    }
+    public function showUmkm($id)
+    {
+        $pembiayaan = UmkmPembiayaan::select()->where('id', $id)->get()->first();
+
+        $data = UmkmPembiayaan::select()->where('id', $id)->get()->first();
+
+        $tenor = $data->tenor;
+        $harga = $data->nominal_pembiayaan;
+        $rate = $data->rate;
+        $margin = ($rate * $tenor) / 100;
+        $cash = PasarCashPick::select()->first();
+
+        //idir
+        $harga1 = $harga * $margin;
+        $harga_jual = $harga1 + $harga;
+
+        //Usia Nasabah
+        $usiaNasabah = Carbon::parse($pembiayaan->nasabahh->tgl_lahir)->age;
+        $jaminanlain=UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get()->first();
+        return view('akad::proposal.lihat', [
+            'title' => 'Proposal UMKM',
+            'segmen' => 'UMKM',
+            'pembiayaan' => UmkmPembiayaan::select()->where('id', $id)->get()->first(),
+            'usiaNasabah' => $usiaNasabah,
+            'hargaJual' => $harga_jual,
+            'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
+            'fotoktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotodiribersamaktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
+            'fotokk'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'jaminanusahas'=>UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get(),
+            'jaminanlainusahas'=>UmkmJaminanLain::select()->where('umkm_pembiayaan_id',$id)->get(),
+            'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
+        ]);
+    }
     /**
      * Show the form for editing the specified resource.
      * @param int $id

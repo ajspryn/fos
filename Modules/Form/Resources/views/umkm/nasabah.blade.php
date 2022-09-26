@@ -286,6 +286,12 @@
                                                 value="{{ $pembiayaan->nasabahh->nama_pasangan }}" />
                                         </div>
                                         <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="ktp_pasangan"></small>No KTP Suami/Istri</label>
+                                            <input class="form-control" name="ktp_pasangan" id="ktp_pasangan"
+                                                rows="3" placeholder="Masukkan No KTP Suami Istri"
+                                                value="{{ $pembiayaan->nasabahh->ktp_pasangan }}" />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="jumlahanak"> </small>Jumlah
                                                 Anak/Tanggungan</label>
                                             <select class="select2 w-100" name="jumlah_anak" id="jumlah_anak" required>
