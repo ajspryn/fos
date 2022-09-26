@@ -138,6 +138,7 @@
                                                 <div class="col-md-12">
                                                     <form action="">
                                                         <input type="hidden" name="" value="" />
+                                                        <input type="hidden" name="cek_staff_akad" value="Dicetak" />
                                                         <button type="submit" class="btn btn-info w-100"><i
                                                                 data-feather="printer"></i>
                                                             Cetak
@@ -195,6 +196,8 @@
                                                                         value="{{ $pembiayaan->id }}" />
                                                                     <input type="hidden" name="status_id"
                                                                         value="10" />
+                                                                    <input type="hidden" name="cek_staff_akad"
+                                                                        value="Sudah" />
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <button type="button"
@@ -238,6 +241,7 @@
                                                         <input type="hidden" name="form_ppr_pembiayaan_id"
                                                             value="{{ $pembiayaan->id }}" />
                                                         <input type="hidden" name="status_id" value="9" />
+                                                        <input type="hidden" name="cek_staff_akad" value="Sudah" />
                                                         <button type="submit" class="btn btn-success w-100"><i
                                                                 data-feather="check"></i>
                                                             Selesai
@@ -552,6 +556,8 @@
                                                         <div class="col-md-12">
                                                             <form action="">
                                                                 <input type="hidden" name="" value="" />
+                                                                <input type="hidden" name="cek_staff_akad"
+                                                                    value="Dicetak" />
                                                                 <a type="submit" class="btn btn-info w-100"
                                                                     href="/staff/cetak/pasar/{{ $pembiayaan->id }}"><i
                                                                         data-feather="printer"></i>
@@ -584,6 +590,13 @@
                                                                     value="{{ $pembiayaan->harga }}" />
                                                                 <input type="hidden" name="harga_jual"
                                                                     value="{{ $hargaJual }}" />
+                                                                <input type="hidden" name="status"
+                                                                    value="Selesai Akad" />
+                                                                <input type="hidden" name="pasar_pembiayaan_id"
+                                                                    value="{{ $pembiayaan->id }}" />
+                                                                <input type="hidden" name="status_id" value="9" />
+                                                                <input type="hidden" name="cek_staff_akad"
+                                                                    value="Sudah" />
                                                                 <button type="submit" class="btn btn-success w-100"><i
                                                                         data-feather="check"></i>
                                                                     Selesai
@@ -900,6 +913,8 @@
                                                         <div class="col-md-12">
                                                             <form action="">
                                                                 <input type="hidden" name="" value="" />
+                                                                <input type="hidden" name="cek_staff_akad"
+                                                                    value="Dicetak" />
                                                                 <a type="submit" class="btn btn-info w-100"
                                                                     href="/staff/cetak/umkm/{{ $pembiayaan->id }}"><i
                                                                         data-feather="printer"></i>
@@ -932,6 +947,13 @@
                                                                     value="{{ $pembiayaan->nominal_pembiayaan }}" />
                                                                 <input type="hidden" name="harga_jual"
                                                                     value="{{ $hargaJual }}" />
+                                                                <input type="hidden" name="status"
+                                                                    value="Selesai Akad" />
+                                                                <input type="hidden" name="umkm_pembiayaan_id"
+                                                                    value="{{ $pembiayaan->id }}" />
+                                                                <input type="hidden" name="status_id" value="9" />
+                                                                <input type="hidden" name="cek_staff_akad"
+                                                                    value="Sudah" />
                                                                 <button type="submit" class="btn btn-success w-100"><i
                                                                         data-feather="check"></i>
                                                                     Selesai
@@ -1248,6 +1270,8 @@
                                                         <div class="col-md-12">
                                                             <form action="">
                                                                 <input type="hidden" name="" value="" />
+                                                                <input type="hidden" name="cek_staff_akad"
+                                                                    value="Dicetak" />
                                                                 <a type="submit" class="btn btn-info w-100"
                                                                     href="/staff/cetak/skpd/{{ $pembiayaan->id }}"><i
                                                                         data-feather="printer"></i>
@@ -1280,6 +1304,13 @@
                                                                     value="{{ $pembiayaan->nominal_pembiayaan }}" />
                                                                 <input type="hidden" name="harga_jual"
                                                                     value="{{ $hargaJual }}" />
+                                                                <input type="hidden" name="status"
+                                                                    value="Selesai Akad" />
+                                                                <input type="hidden" name="skpd_pembiayaan_id"
+                                                                    value="{{ $pembiayaan->id }}" />
+                                                                <input type="hidden" name="status_id" value="9" />
+                                                                <input type="hidden" name="cek_staff_akad"
+                                                                    value="Sudah" />
                                                                 <button type="submit" class="btn btn-success w-100"><i
                                                                         data-feather="check"></i>
                                                                     Selesai
