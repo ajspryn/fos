@@ -3956,7 +3956,7 @@ ul
       normal'><span lang=FI style='font-family:"Ottawa",sans-serif'>Alamat Usaha</span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>/Kantor </span></p>
       </td>
-      <td width=463 valign=top style='width:347.25pt;background:red;padding:0cm 5.4pt 0cm 5.4pt'>
+      <td width=463 valign=top style='width:347.25pt;background:white;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
       normal'><span style='font-family:"Ottawa",sans-serif;color:black'><u1:p></u1:p>:
@@ -4185,7 +4185,7 @@ ul
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
       normal'><span style='font-family:"Ottawa",sans-serif'>Usaha / Pekerjaan <u1:p></u1:p></span></p>
       </td>
-      <td width=463 valign=top style='width:347.25pt;background:red;padding:0cm 5.4pt 0cm 5.4pt'>
+      <td width=463 valign=top style='width:347.25pt;background:white;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
       normal'><span style='font-family:"Ottawa",sans-serif;color:black'>:  {{ $pembiayaan->keteranganusaha->dagang->nama_jenisdagang }}/{{ $pembiayaan->keteranganusaha->nama_usaha }}<u1:p></u1:p></span><span style='color:black'> </span></p>
@@ -4197,7 +4197,7 @@ ul
       normal'><span lang=FI style='font-family:"Ottawa",sans-serif'>Alamat Usaha</span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>/Kantor </span></p>
       </td>
-      <td width=463 valign=top style='width:347.25pt;background:red;padding:0cm 5.4pt 0cm 5.4pt'>
+      <td width=463 valign=top style='width:347.25pt;background:white;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
       normal'><span style='font-family:"Ottawa",sans-serif;color:black'><u1:p></u1:p>:
@@ -5002,7 +5002,7 @@ ul
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
       lang=FI style='font-family:"Ottawa",sans-serif'>Nomor Jaminan<u1:p></u1:p></span></p>
       </td>
-      <td width=428 valign=top style='width:320.65pt;background:red;padding:0cm 5.4pt 0cm 5.4pt;
+      <td width=428 valign=top style='width:320.65pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
       height:16.7pt'>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
       lang=FI style='font-family:"Ottawa",sans-serif;color:black'>: {{ $no_ktb }}<u1:p></u1:p></span></p>

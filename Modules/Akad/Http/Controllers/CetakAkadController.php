@@ -61,7 +61,7 @@ class CetakAkadController extends Controller
         $usiaNasabah = Carbon::parse($pembiayaan->nasabahh->tgl_lahir)->age;
         $headers = array(
             'Content-type' => 'text/html',
-            'Content-Disposition' => 'attachment;Filename=Akad_.doc',
+            'Content-Disposition' => 'attachment;Filename=Akad_Pasar.doc',
         );
 
         if($akad==1)
@@ -118,9 +118,9 @@ class CetakAkadController extends Controller
         $usiaNasabah = Carbon::parse($pembiayaan->nasabahh->tgl_lahir)->age;
         $headers = array(
             'Content-type' => 'text/html',
-            'Content-Disposition' => 'attachment;Filename=Akad_.doc',
+            'Content-Disposition' => 'attachment;Filename=Akad_Mikro.doc',
         );
-
+        if($akad==1)
         return Response::make(view('akad::murabahah.umkm', [
             'title' => 'Proposal UMKM',
             'segmen' => 'Umkm',
@@ -134,21 +134,19 @@ class CetakAkadController extends Controller
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
         ]), 200, $headers);
 
-
-        // else
-        //     return view('akad::ijarah.pasar', [
-        //         'title' => 'Proposal Pasar',
-        //         'segmen' => 'Pasar',
-        //         'pembiayaan' => PasarPembiayaan::select()->where('id', $id)->get()->first(),
-        //         'usiaNasabah' => $usiaNasabah,
-        //         'hargaJual' => $harga_jual,
-        //         'nasabah' => $nasabah,
-        //         'jaminan' => $jenisjaminan,
-        //         'now' => Carbon::now()->isoFormat('D MMMM Y'),
-        //         'angsuran1' => $angsuran1,
-        //         'ktb' => $jaminan->no_ktb
-
-        //     ]);
+        else
+        return Response::make(view('akad::ijarah.umkm', [
+            'title' => 'Proposal UMKM',
+            'segmen' => 'Umkm',
+            'pembiayaan' => UmkmPembiayaan::select()->where('id', $id)->get()->first(),
+            // 'usiaNasabah' => $usiaNasabah,
+            'hargaJual' => $harga_jual,
+            'nasabah' => $nasabah,
+            'angsuran1' => $angsuran1,
+            'jaminan' => $jenisjaminan,
+            'no_ktb' => $jaminan->no_ktb,
+            'now' => Carbon::now()->isoFormat('D MMMM Y'),
+        ]), 200, $headers);
     }
 
     public function showSkpd($id)
@@ -177,7 +175,7 @@ class CetakAkadController extends Controller
         );
 
 
-        // if($akad==1)
+        if($akad==1)
         return Response::make(view('akad::ijarah.skpd', [
             'title' => 'Proposal Skpd',
             'segmen' => 'Skpd',
@@ -189,17 +187,17 @@ class CetakAkadController extends Controller
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
         ]), 200, $headers);
 
-    //    else
-    //     return Response::make(view('akad::ijarah.skpd', [
-    //         'title' => 'Proposal Skpd',
-    //         'segmen' => 'Skpd',
-    //         'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
-    //         // 'usiaNasabah' => $usiaNasabah,
-    //         'hargaJual' => $harga_jual,
-    //         'nasabah' => $nasabah,
-    //         'angsuran1' => $angsuran1,
-    //         'now' => Carbon::now()->isoFormat('D MMMM Y'),
-    //     ]), 200, $headers);
+       else
+        return Response::make(view('akad::ijarah.skpd', [
+            'title' => 'Proposal Skpd',
+            'segmen' => 'Skpd',
+            'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
+            // 'usiaNasabah' => $usiaNasabah,
+            'hargaJual' => $harga_jual,
+            'nasabah' => $nasabah,
+            'angsuran1' => $angsuran1,
+            'now' => Carbon::now()->isoFormat('D MMMM Y'),
+        ]), 200, $headers);
 
     }
     public function showPpr($id)
