@@ -119,6 +119,7 @@ class FormulirUmkmController extends Controller
             'alamat_domisili'=> $request ->provinsi,
             'lama_tinggal'=> $request ->lama_tinggal,
             'nama_pasangan'=> $request ->nama_pasangan,
+            'ktp_pasangan'=> $request ->ktp_pasangan,
             'nama_ibu'=> $request ->nama_ibu,
             'agama_id'=> $request ->agama_id,
             'status_id'=> $request -> status_id,

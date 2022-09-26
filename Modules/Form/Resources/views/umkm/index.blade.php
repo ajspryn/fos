@@ -223,6 +223,11 @@
                                         <input class="form-control" name="nama_pasangan" id="nama_pasangan" rows="3" placeholder="Masukkan Nama Suami Istri" >
                                     </div>
                                     <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="ktp_pasangan"></small>Nama Suami Istri</label>
+                                        <input class="form-control" name="ktp_pasangan" id="ktp_pasangan" rows="3" placeholder="Masukkan No KTP Suami Istri" >
+                                    </div>
+                                    
+                                    <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jumlahanak"> </small>Jumlah Anak/Tanggungan</label>
                                         <select class="select2 w-100" name="jumlah_anak" id="jumlah_anak" required>
                                             <option label="jumlahanak">Pilih Jumlah Anak</option>

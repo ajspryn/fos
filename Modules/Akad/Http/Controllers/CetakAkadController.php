@@ -64,6 +64,7 @@ class CetakAkadController extends Controller
             'Content-Disposition' => 'attachment;Filename=Akad_.doc',
         );
 
+        if($akad==1)
         return Response::make(view('akad::murabahah.pasar', [
             'title' => 'Proposal Pasar',
             'segmen' => 'Pasar',
@@ -77,21 +78,19 @@ class CetakAkadController extends Controller
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
         ]), 200, $headers);
 
-
-        // else
-        //     return view('akad::ijarah.pasar', [
-        //         'title' => 'Proposal Pasar',
-        //         'segmen' => 'Pasar',
-        //         'pembiayaan' => PasarPembiayaan::select()->where('id', $id)->get()->first(),
-        //         'usiaNasabah' => $usiaNasabah,
-        //         'hargaJual' => $harga_jual,
-        //         'nasabah' => $nasabah,
-        //         'jaminan' => $jenisjaminan,
-        //         'now' => Carbon::now()->isoFormat('D MMMM Y'),
-        //         'angsuran1' => $angsuran1,
-        //         'ktb' => $jaminan->no_ktb
-
-        //     ]);
+        else
+        return Response::make(view('akad::ijarah.pasar', [
+            'title' => 'Proposal Pasar',
+            'segmen' => 'Pasar',
+            'pembiayaan' => PasarPembiayaan::select()->where('id', $id)->get()->first(),
+            // 'usiaNasabah' => $usiaNasabah,
+            'hargaJual' => $harga_jual,
+            'nasabah' => $nasabah,
+            'angsuran1' => $angsuran1,
+            'jaminan' => $jenisjaminan,
+            'no_ktb' => $jaminan->no_ktb,
+            'now' => Carbon::now()->isoFormat('D MMMM Y'),
+        ]), 200, $headers);
     }
     public function showUmkm($id)
     {
@@ -178,19 +177,8 @@ class CetakAkadController extends Controller
         );
 
 
-        // return view('akad::murabahah.skpd', [
-        //             'title' => 'Proposal Skpd',
-        //             'segmen' => 'Skpd',
-        //             'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
-        //             // 'usiaNasabah' => $usiaNasabah,
-        //             'hargaJual' => $harga_jual,
-        //             'nasabah' => $nasabah,
-        //             'angsuran1' => $angsuran1,
-        //             'now' => Carbon::now()->isoFormat('D MMMM Y')]);
-
-
         // if($akad==1)
-        return Response::make(view('akad::murabahah.skpd', [
+        return Response::make(view('akad::ijarah.skpd', [
             'title' => 'Proposal Skpd',
             'segmen' => 'Skpd',
             'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
