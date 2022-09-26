@@ -218,6 +218,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- /Modal Batal-->
+
                                                 <div class="col-md-6">
                                                     <form action="/staff/proposal" method="POST">
                                                         @csrf
@@ -572,10 +573,12 @@
                                                         <div class="col-md-6">
                                                             <form action="">
                                                                 <input type="hidden" name="" value="" />
-                                                                <button type="submit" class="btn btn-primary w-100"><i
+                                                                <a class="btn btn-primary w-100"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#modalAkadPasarBatal"><i
                                                                         data-feather="x"></i> Akad
                                                                     Batal
-                                                                </button>
+                                                            </a>
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
@@ -588,6 +591,8 @@
                                                                     value="{{ $pembiayaan->id }}" />
                                                                 <input type="hidden" name="plafond"
                                                                     value="{{ $pembiayaan->harga }}" />
+                                                                <input type="hidden" name="akad"
+                                                                    value="{{ $pembiayaan->akad->nama_akad }}" />
                                                                 <input type="hidden" name="harga_jual"
                                                                     value="{{ $hargaJual }}" />
                                                                 <input type="hidden" name="status"
@@ -604,6 +609,70 @@
                                                                 </button>
                                                             </form>
                                                         </div>
+
+
+                                                        <!-- Modal Batal-->
+                                                        <div class="modal fade" id="modalAkadPasarBatal" tabindex="-1"
+                                                            aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header bg-transparent">
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                        <form action="/staff/proposal" method="POST">
+                                                                            <h5 class="text-center">Tuliskan catatan
+                                                                                mengapa akad
+                                                                                batal!</h5>
+                                                                            <br />
+                                                                            <textarea class="form-control" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
+                                                                            <br />
+
+                                                                            @csrf
+
+                                                                            <input type="hidden" name="segmen"
+                                                                                value="Pasar" />
+                                                                            <input type="hidden" name="cif"
+                                                                                value="{{ $pembiayaan->id }}" />
+                                                                            <input type="hidden" name="kode_tabungan"
+                                                                                value="{{ $pembiayaan->id }}" />
+                                                                            <input type="hidden" name="akad"
+                                                                                value="{{ $pembiayaan->akad->nama_akad }}" />
+                                                                            <input type="hidden" name="plafond"
+                                                                                value="{{ $pembiayaan->harga }}" />
+                                                                            <input type="hidden" name="harga_jual"
+                                                                                value="{{ $hargaJual }}" />
+                                                                            <input type="hidden" name="status"
+                                                                                value="Akad Batal" />
+                                                                            <input type="hidden"
+                                                                                name="pasar_pembiayaan_id"
+                                                                                value="{{ $pembiayaan->id }}" />
+                                                                            <input type="hidden" name="status_id"
+                                                                                value="10" />
+                                                                            <input type="hidden" name="cek_staff_akad"
+                                                                                value="Sudah" />
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-outline-danger w-100"
+                                                                                        data-bs-dismiss="modal">Cancel</button>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-primary w-100"><i
+                                                                                            data-feather="x"></i> Akad
+                                                                                        Batal
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /Modal Batal-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -929,12 +998,16 @@
                                                         <div class="col-md-6">
                                                             <form action="">
                                                                 <input type="hidden" name="" value="" />
-                                                                <button type="submit" class="btn btn-primary w-100"><i
-                                                                        data-feather="x"></i> Akad
+                                                                <a class="btn btn-primary w-100"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#modalAkadUmkmBatal"><i
+                                                                        data-feather="x"></i>
+                                                                    Akad
                                                                     Batal
-                                                                </button>
+                                                            </a>
                                                             </form>
                                                         </div>
+
                                                         <div class="col-md-6">
                                                             <form action="/staff/proposal" method="POST">
                                                                 @csrf
@@ -943,6 +1016,8 @@
                                                                     value="{{ $pembiayaan->nasabahh->id }}" />
                                                                 <input type="hidden" name="kode_tabungan"
                                                                     value="{{ $pembiayaan->id }}" />
+                                                                <input type="hidden" name="akad"
+                                                                    value="{{ $pembiayaan->akad->nama_akad }}" />
                                                                 <input type="hidden" name="plafond"
                                                                     value="{{ $pembiayaan->nominal_pembiayaan }}" />
                                                                 <input type="hidden" name="harga_jual"
@@ -966,6 +1041,67 @@
                                             </div>
                                             <!-- /Tombol Aksi -->
                                         </div>
+                                        <div class="modal fade" id="modalAkadUmkmBatal" tabindex="-1"
+                                            aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-transparent">
+                                                        <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                        <form action="/staff/proposal" method="POST">
+                                                            <h5 class="text-center">Tuliskan Catatan
+                                                                Mengapa Akad
+                                                                Batal!</h5>
+                                                            <br />
+                                                            <textarea class="form-control" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
+                                                            <br />
+
+                                                            @csrf
+                                                            <input type="hidden" name="segmen"
+                                                                value="UMKM" />
+                                                            <input type="hidden" name="cif"
+                                                                value="{{ $pembiayaan->id }}" />
+                                                            <input type="hidden" name="kode_tabungan"
+                                                                value="{{ $pembiayaan->id }}" />
+                                                            <input type="hidden" name="akad"
+                                                                value="{{ $pembiayaan->akad->nama_akad }}" />
+                                                            <input type="hidden" name="plafond"
+                                                                value="{{ $pembiayaan->nominal_pembiayaan }}" />
+                                                            <input type="hidden" name="harga_jual"
+                                                                value="{{ $hargaJual }}" />
+                                                            <input type="hidden" name="status"
+                                                                value="Akad Batal" />
+                                                            <input type="hidden"
+                                                                name="umkm_pembiayaan_id"
+                                                                value="{{ $pembiayaan->id }}" />
+                                                            <input type="hidden" name="status_id"
+                                                                value="10" />
+                                                            <input type="hidden" name="cek_staff_akad"
+                                                                value="Sudah" />
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <button type="button"
+                                                                        class="btn btn-outline-danger w-100"
+                                                                        data-bs-dismiss="modal">Cancel</button>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary w-100"><i
+                                                                            data-feather="x"></i> Akad
+                                                                        Batal
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /Modal Batal-->
+
                                     </div>
                                 </div>
                             </div>
@@ -1286,10 +1422,10 @@
                                                         <div class="col-md-6">
                                                             <form action="">
                                                                 <input type="hidden" name="" value="" />
-                                                                <button type="submit" class="btn btn-primary w-100"><i
+                                                                <a class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalAkadSkpdBatal"><i
                                                                         data-feather="x"></i> Akad
                                                                     Batal
-                                                                </button>
+                                                                </a>
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
@@ -1306,6 +1442,8 @@
                                                                     value="{{ $hargaJual }}" />
                                                                 <input type="hidden" name="status"
                                                                     value="Selesai Akad" />
+                                                                <input type="hidden" name="akad"
+                                                                    value="{{ $pembiayaan->akad->nama_akad }}" />
                                                                 <input type="hidden" name="skpd_pembiayaan_id"
                                                                     value="{{ $pembiayaan->id }}" />
                                                                 <input type="hidden" name="status_id" value="9" />
@@ -1319,6 +1457,68 @@
                                                             </form>
                                                         </div>
                                                     </div>
+                                                     <!-- Modal Batal-->
+                                                     <div class="modal fade" id="modalAkadSkpdBatal" tabindex="-1"
+                                                     aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                     <div class="modal-dialog modal-dialog-centered">
+                                                         <div class="modal-content">
+                                                             <div class="modal-header bg-transparent">
+                                                                 <button type="button" class="btn-close"
+                                                                     data-bs-dismiss="modal"
+                                                                     aria-label="Close"></button>
+                                                             </div>
+                                                             <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                 <form action="/staff/proposal" method="POST">
+                                                                     <h5 class="text-center">Tuliskan catatan
+                                                                         mengapa akad
+                                                                         batal!</h5>
+                                                                     <br />
+                                                                     <textarea class="form-control" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
+                                                                     <br />
+
+                                                                     @csrf
+
+                                                                     <input type="hidden" name="segmen"
+                                                                         value="Pasar" />
+                                                                     <input type="hidden" name="cif"
+                                                                         value="{{ $pembiayaan->id }}" />
+                                                                     <input type="hidden" name="kode_tabungan"
+                                                                         value="{{ $pembiayaan->id }}" />
+                                                                     <input type="hidden" name="akad"
+                                                                         value="{{ $pembiayaan->akad->nama_akad }}" />
+                                                                     <input type="hidden" name="plafond"
+                                                                         value="{{ $pembiayaan->harga }}" />
+                                                                     <input type="hidden" name="harga_jual"
+                                                                         value="{{ $hargaJual }}" />
+                                                                     <input type="hidden" name="status"
+                                                                         value="Akad Batal" />
+                                                                     <input type="hidden"
+                                                                         name="pasar_pembiayaan_id"
+                                                                         value="{{ $pembiayaan->id }}" />
+                                                                     <input type="hidden" name="status_id"
+                                                                         value="10" />
+                                                                     <input type="hidden" name="cek_staff_akad"
+                                                                         value="Sudah" />
+                                                                     <div class="row">
+                                                                         <div class="col-md-6">
+                                                                             <button type="button"
+                                                                                 class="btn btn-outline-danger w-100"
+                                                                                 data-bs-dismiss="modal">Cancel</button>
+                                                                         </div>
+                                                                         <div class="col-md-6">
+                                                                             <button type="submit"
+                                                                                 class="btn btn-primary w-100"><i
+                                                                                     data-feather="x"></i> Akad
+                                                                                 Batal
+                                                                             </button>
+                                                                         </div>
+                                                                     </div>
+                                                                 </form>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <!-- /Modal Batal-->
                                                 </div>
                                             </div>
                                             <!-- /Tombol Aksi -->

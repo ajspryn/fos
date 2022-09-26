@@ -315,7 +315,7 @@ ul
     
     <p class=MsoNormal align=center style='text-align:center'><span
     style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>No.
-    02256/SP3/BTB/VIII-2022</span></p>
+    02256/SP3/BTB/{{ $bulan }}-2022</span></p>
     
     <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
      style='border-collapse:collapse'>
@@ -1137,7 +1137,7 @@ ul
     font-family:"Ottawa",sans-serif'>BTB/</span></b><b><span style='font-size:12.0pt;
     line-height:105%;font-family:"Ottawa",sans-serif'>MBA</span></b><b><span
     lang=IN style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>/</span></b><b><span
-    style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>VIII</span></b><b><span
+    style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>{{ $bulan }}</span></b><b><span
     lang=IN style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>/</span></b><b><span
     style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>2022/4-32-01-02256</span></b></p>
     
@@ -1890,7 +1890,7 @@ ul
     margin-bottom:0cm;margin-left:0cm;text-align:center;line-height:normal'><span
     style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>Nomor :</span><span
     lang=IN style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>BTB/</span><span
-    style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>WKL/VIII</span><span
+    style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>WKL/{{ $bulan }}</span><span
     lang=IN style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>/</span><span
     style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>2022/4-32-01-02256</span>
     </p>
@@ -2618,7 +2618,7 @@ ul
     margin-bottom:0cm;margin-left:0cm;text-align:center;line-height:normal'><span
     style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>Nomor :</span><span
     lang=IN style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>BTB/</span><span
-    style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>WKL/VIII</span><span
+    style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>WKL/{{ $bulan }}</span><span
     lang=IN style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>/</span><span
     style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>2022/4-32-01-02256</span>
     </p>
@@ -3338,7 +3338,7 @@ ul
     
     <p class=MsoNormal align=center style='text-align:center'><strong><u><span
     style='font-family:"Ottawa",sans-serif'>Nomor :</span></u></strong><u><span
-    style='font-family:"Ottawa",sans-serif'>BTB/SKMB/VIII/2022/4-32-01-02256<strong><span
+    style='font-family:"Ottawa",sans-serif'>BTB/SKMB/{{ $bulan }}/2022/4-32-01-02256<strong><span
     style='font-family:"Ottawa",sans-serif'> </span></strong></span></u></p>
     
     <p class=MsoNormal align=center style='text-align:center'><strong><span
@@ -3497,7 +3497,7 @@ ul
     <p class=MsoNormal align=center style='text-align:center'><strong><u><span
     style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>Nomor
     :</span></u></strong><u><span style='font-size:12.0pt;line-height:105%;
-    font-family:"Ottawa",sans-serif'>BTB/SKPP/VIII/2022/4-32-01-02256</span></u></p>
+    font-family:"Ottawa",sans-serif'>BTB/SKPP/{{ $bulan }}/2022/4-32-01-02256</span></u></p>
     
     <p class=MsoNormal style='text-align:justify'>&nbsp;</p>
     
@@ -3699,7 +3699,7 @@ ul
     
     <p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><span
     style='font-family:"Ottawa",sans-serif'>Nomor :
-    BTB/SKMT/VIII/2022/4-32-01-02256</span></p>
+    BTB/SKMT/{{ $bulan }}/2022/4-32-01-02256</span></p>
     
     <p class=MsoNormal style='text-align:justify'><span lang=SV style='font-family:
     "Ottawa",sans-serif'>Yang bertandatangan di bawah ini :</span></p>
@@ -4556,7 +4556,7 @@ ul
     style='font-family:"Ottawa",sans-serif'>Pembiayaan</span><span lang=SV
     style='font-family:"Ottawa",sans-serif'> No</span><span lang=IN
     style='font-family:"Ottawa",sans-serif'>mor BTB/02256/</span><span lang=SV
-    style='font-family:"Ottawa",sans-serif'>VIII</span><span lang=IN
+    style='font-family:"Ottawa",sans-serif'>{{ $bulan }}</span><span lang=IN
     style='font-family:"Ottawa",sans-serif'>/</span><span lang=SV style='font-family:
     "Ottawa",sans-serif'>2022/4-02256-01-02256 pada tanggal{{$now}} , dalam
     rangka Pelaksanaan Tata Kelola Perusahaan Yang Baik <i>(Good Corporate
@@ -4973,7 +4973,7 @@ ul
     
     <p class=MsoNormal align=center style='text-align:center'><span lang=ES
     style='font-family:"Ottawa",sans-serif'>Nomor :</span><span style='font-family:
-    "Ottawa",sans-serif'>BTB/BSTJ-SK/VIII/2022/4-32-01-02256</span></p>
+    "Ottawa",sans-serif'>BTB/BSTJ-SK/{{ $bulan }}/2022/4-32-01-02256</span></p>
     
     <p class=MsoNormal align=center style='text-align:center'><span lang=ES>&nbsp;</span></p>
     
@@ -5087,7 +5087,7 @@ ul
     8.0pt;margin-left:0cm;text-align:justify'><span lang=ES style='font-family:
     "Ottawa",sans-serif'>Bukti tanda terima ini tidak berdiri sendiri dan merupakan
     dokumen yang berhubungan dengan Surat Perjanjian Pembiayaan Nomor :
-    BTB/02256/VIII</span><span lang=IN style='font-family:"Ottawa",sans-serif'>/</span><span
+    BTB/02256/{{ $bulan }}</span><span lang=IN style='font-family:"Ottawa",sans-serif'>/</span><span
     lang=ES style='font-family:"Ottawa",sans-serif'>2022/4-02256-01-02256 tanggal
    {{$now}} antara Bank selaku pihak pemberi Pembiayaan dengan {{ $pembiayaan->nasabahh->nama_nasabah }}
      selaku nasabah.</span></p>
@@ -5226,7 +5226,7 @@ ul
       <td width=235 valign=top style='width:176.1pt;border:solid black 1.0pt;
       border-left:none;padding:0cm 5.4pt 0cm 5.4pt;height:16.75pt'>
       <p class=MsoNormal style='margin-top:2.0pt;margin-right:0cm;margin-bottom:
-      2.0pt;margin-left:0cm;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>02256/NPP/BTB-CBNG/VIII/2022</span>
+      2.0pt;margin-left:0cm;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>02256/NPP/BTB-CBNG/{{ $bulan }}/2022</span>
       </p>
       </td>
      </tr>
@@ -5284,7 +5284,7 @@ ul
       <p class=MsoNormal style='margin-top:2.0pt;margin-right:0cm;margin-bottom:
       2.0pt;margin-left:0cm;line-height:normal'><span lang=IN style='font-family:
       "Ottawa",sans-serif'>BTB/MBA</span><span style='font-family:"Ottawa",sans-serif'>/
-      VIII</span><span lang=IN style='font-family:"Ottawa",sans-serif'>/</span><span
+      {{ $bulan }}</span><span lang=IN style='font-family:"Ottawa",sans-serif'>/</span><span
       style='font-family:"Ottawa",sans-serif'>2022/4-32-01-02256</span> </p>
       </td>
      </tr>
@@ -5811,7 +5811,7 @@ ul
       <td width=210 valign=top style='width:157.55pt;border:solid black 1.0pt;
       border-left:none;padding:0cm 5.4pt 0cm 5.4pt;height:30.75pt'>
       <p class=MsoNormal style='margin-top:2.0pt;margin-right:0cm;margin-bottom:
-      2.0pt;margin-left:0cm;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>02256/NKPT/BTB-CBNG/VIII/2022</span>
+      2.0pt;margin-left:0cm;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>02256/NKPT/BTB-CBNG/{{ $bulan }}/2022</span>
       </p>
       </td>
      </tr>
@@ -5868,7 +5868,7 @@ ul
       padding:0cm 5.4pt 0cm 5.4pt;height:30.0pt'>
       <p class=MsoNormal style='margin-top:2.0pt;margin-right:0cm;margin-bottom:
       2.0pt;margin-left:0cm;line-height:normal'><span lang=IN style='font-family:
-      "Ottawa",sans-serif'>BTB/MBA/</span><span style='font-family:"Ottawa",sans-serif'>VIII</span><span
+      "Ottawa",sans-serif'>BTB/MBA/</span><span style='font-family:"Ottawa",sans-serif'>{{ $bulan }}</span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>/</span><span
       style='font-family:"Ottawa",sans-serif'>2022/4-32-01-02256</span> </p>
       </td>

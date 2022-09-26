@@ -64,6 +64,33 @@ class CetakAkadController extends Controller
             'Content-Disposition' => 'attachment;Filename=Akad_Pasar.doc',
         );
 
+        $bulan = Carbon::now()->isoFormat('M');
+
+        if($bulan == 1 )
+        $bulan = 'I';
+        elseif ($bulan == 2 )
+        $bulan = 'II';
+        elseif ($bulan == 3 )
+        $bulan = 'III';
+        elseif ($bulan == 4 )
+        $bulan = 'IV';
+        elseif ($bulan == 5  )
+        $bulan = 'V';
+        elseif ($bulan == 6 )
+        $bulan = 'VI';
+        elseif ($bulan == 7 )
+        $bulan = 'VII';
+        elseif ($bulan == 8 )
+        $bulan = 'VIII';
+        elseif ($bulan == 9 )
+        $bulan = 'IX';
+        elseif ($bulan == 10 )
+        $bulan = 'X';
+        elseif ($bulan == 11 )
+        $bulan = 'XI';
+        else
+        $bulan = 'XII';
+
         if($akad==1)
         return Response::make(view('akad::murabahah.pasar', [
             'title' => 'Proposal Pasar',
@@ -76,6 +103,7 @@ class CetakAkadController extends Controller
             'jaminan' => $jenisjaminan,
             'no_ktb' => $jaminan->no_ktb,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
+            'bulan'=>$bulan
         ]), 200, $headers);
 
         else
@@ -90,6 +118,7 @@ class CetakAkadController extends Controller
             'jaminan' => $jenisjaminan,
             'no_ktb' => $jaminan->no_ktb,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
+            'bulan'=>$bulan,
         ]), 200, $headers);
     }
     public function showUmkm($id)
@@ -120,6 +149,35 @@ class CetakAkadController extends Controller
             'Content-type' => 'text/html',
             'Content-Disposition' => 'attachment;Filename=Akad_Mikro.doc',
         );
+
+        $bulan = Carbon::now()->isoFormat('M');
+
+        if($bulan == 1 )
+        $bulan = 'I';
+        elseif ($bulan == 2 )
+        $bulan = 'II';
+        elseif ($bulan == 3 )
+        $bulan = 'III';
+        elseif ($bulan == 4 )
+        $bulan = 'IV';
+        elseif ($bulan == 5  )
+        $bulan = 'V';
+        elseif ($bulan == 6 )
+        $bulan = 'VI';
+        elseif ($bulan == 7 )
+        $bulan = 'VII';
+        elseif ($bulan == 8 )
+        $bulan = 'VIII';
+        elseif ($bulan == 9 )
+        $bulan = 'IX';
+        elseif ($bulan == 10 )
+        $bulan = 'X';
+        elseif ($bulan == 11 )
+        $bulan = 'XI';
+        else
+        $bulan = 'XII';
+
+        // return $bulan;
         if($akad==1)
         return Response::make(view('akad::murabahah.umkm', [
             'title' => 'Proposal UMKM',
@@ -132,6 +190,7 @@ class CetakAkadController extends Controller
             'jaminan' => $jenisjaminan,
             'no_ktb' => $jaminan->no_ktb,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
+            'bulan'=>$bulan,
         ]), 200, $headers);
 
         else
@@ -146,6 +205,7 @@ class CetakAkadController extends Controller
             'jaminan' => $jenisjaminan,
             'no_ktb' => $jaminan->no_ktb,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
+            'bulan'=>$bulan
         ]), 200, $headers);
     }
 
@@ -174,6 +234,32 @@ class CetakAkadController extends Controller
             'Content-Disposition' => 'attachment;Filename=Skpd_Akad.doc',
         );
 
+        $bulan = Carbon::now()->isoFormat('M');
+
+        if($bulan == 1 )
+        $bulan = 'I';
+        elseif ($bulan == 2 )
+        $bulan = 'II';
+        elseif ($bulan == 3 )
+        $bulan = 'III';
+        elseif ($bulan == 4 )
+        $bulan = 'IV';
+        elseif ($bulan == 5  )
+        $bulan = 'V';
+        elseif ($bulan == 6 )
+        $bulan = 'VI';
+        elseif ($bulan == 7 )
+        $bulan = 'VII';
+        elseif ($bulan == 8 )
+        $bulan = 'VIII';
+        elseif ($bulan == 9 )
+        $bulan = 'IX';
+        elseif ($bulan == 10 )
+        $bulan = 'X';
+        elseif ($bulan == 11 )
+        $bulan = 'XI';
+        else
+        $bulan = 'XII';
 
         if($akad==1)
         return Response::make(view('akad::ijarah.skpd', [
@@ -185,6 +271,7 @@ class CetakAkadController extends Controller
             'nasabah' => $nasabah,
             'angsuran1' => $angsuran1,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
+            'bulan'=>$bulan
         ]), 200, $headers);
 
        else
@@ -197,6 +284,7 @@ class CetakAkadController extends Controller
             'nasabah' => $nasabah,
             'angsuran1' => $angsuran1,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
+            'bulan'=>$bulan
         ]), 200, $headers);
 
     }
