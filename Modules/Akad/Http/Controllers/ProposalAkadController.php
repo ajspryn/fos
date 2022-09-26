@@ -39,11 +39,25 @@ class ProposalAkadController extends Controller
     {
         $proposalpasar = PasarPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
         $proposalppr = PprPembiayaanHistory::select()
+            // ->orderBy('created_at', 'DESC')
+            ->groupBy('form_ppr_pembiayaan_id')
+            ->orderBy('created_at', 'DESC')
             ->where(function ($query) {
                 $query
+                    ->where('status_id', 8)
+                    ->where('user_id', Auth::user()->id);
+            })
+            ->orwhere(function ($query) {
+                $query
                     ->where('status_id', 5)
-                    ->Where('status_id', '<', 9);
-            })->where('jabatan_id', 4)->get();
+                    ->where('jabatan_id', 4)
+                    ->where('user_id', 7);
+            })
+            // ->where([['status_id', '=', 5], ['jabatan_id', '=', 4]])
+            // ->orWhere([['status_id', '=', 8], ['user_id', Auth::user()->id]])
+
+
+            ->get();
         $proposalskpd = SkpdPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
         $proposalumkm = UmkmPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
 
