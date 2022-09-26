@@ -372,11 +372,12 @@
                                                 <div class="col-md-12">
                                                     <form action="">
                                                         <input type="hidden" name="" value="" />
-                                                        <button type="submit" class="btn btn-info w-100"><i
+                                                        <a type="submit" class="btn btn-info w-100" href="/staff/cetak/pasar/{{ $pembiayaan->id }}"><i
                                                                 data-feather="printer"></i>
+                                                            
                                                             Cetak
                                                             Akad
-                                                        </button>
+                                                        </a>
                                                     </form>
                                                 </div>
                                                 <br />

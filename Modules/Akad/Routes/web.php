@@ -21,6 +21,6 @@ Route::prefix('staff')->middleware(['auth:sanctum', 'verified', 'role:1', 'divis
     Route::resource('/proposal', ProposalAkadController::class);
     Route::get('/proposal/pasar/{id}', [ProposalAkadController::class, 'showPasar']);
     Route::get('/proposal/ppr/{id}', [ProposalAkadController::class, 'showPpr']);
-    Route::resource('/selesai', SelesaiAkadController::class);
-    Route::resource('/cetak', CetakAkadController::class);
+    Route::get('/cetak/pasar/{id}', [CetakAkadController::class, 'showPasar']);
+    Route::get('/cetak/skpd/{id}', [CetakAkadController::class, 'showSkpd']);
 });

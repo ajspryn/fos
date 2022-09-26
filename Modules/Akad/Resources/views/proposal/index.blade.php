@@ -58,8 +58,9 @@
                                                 <td style="text-align: center">
                                                     {{ $proposal_skpd->nasabah->nama_nasabah }}</td>
                                                 <td style="text-align: center">
-                                                    <a href=<a href="/staff/cetak"
+                                                    <a href="/staff/cetak/skpd/{{ $proposal_skpd->id }}"
                                                         class="btn btn-outline-info round">Detail</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
