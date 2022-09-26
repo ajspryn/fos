@@ -79,13 +79,6 @@ class PprController extends Controller
         ));
     }
 
-    public function form_pengecekan()
-    {
-        return view('ppr::form_pengecekan.index', [
-            'title' => 'Form Pengecekan PPR',
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      * @return Renderable

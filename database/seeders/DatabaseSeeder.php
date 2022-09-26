@@ -71,6 +71,13 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('ariebtb123'),
         ]);
 
+        DB::table('users')->insert([
+            'id' => 8,
+            'name' => 'Staff Akad',
+            'email' => 'staffakad@bprsbtb.com',
+            'password' => bcrypt('staff123'),
+        ]);
+
         DB::table('roles')->insert([
             'user_id' => 1,
             'role_id' => 1,
@@ -120,6 +127,13 @@ class DatabaseSeeder extends Seeder
             'jabatan_id' => 4,
         ]);
 
+        DB::table('roles')->insert([
+            'user_id' => 8,
+            'role_id' => 1,
+            'divisi_id' => 5,
+            'jabatan_id' => 1,
+        ]);
+
         //Status
         DB::table('statuses')->insert([
             'id' => 1,
@@ -154,6 +168,21 @@ class DatabaseSeeder extends Seeder
         DB::table('statuses')->insert([
             'id' => 7,
             'keterangan' => 'Rekomendasi Revisi',
+        ]);
+
+        DB::table('statuses')->insert([
+            'id' => 8,
+            'keterangan' => 'Akad Dicetak',
+        ]);
+
+        DB::table('statuses')->insert([
+            'id' => 9,
+            'keterangan' => 'Akad Selesai',
+        ]);
+
+        DB::table('statuses')->insert([
+            'id' => 10,
+            'keterangan' => 'Akad Batal',
         ]);
 
         //Jabatan
