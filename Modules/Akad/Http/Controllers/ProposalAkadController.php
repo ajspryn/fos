@@ -25,29 +25,37 @@ class ProposalAkadController extends Controller
      */
     public function index()
     {
-        $proposalpasar = PasarPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
-        $proposalppr = PprPembiayaanHistory::select()
-            // ->orderBy('created_at', 'DESC')
-            ->groupBy('form_ppr_pembiayaan_id')
-            ->orderBy('created_at', 'DESC')
-            ->where(function ($query) {
-                $query
-                    ->where('status_id', 8)
-                    ->where('user_id', Auth::user()->id);
-            })
-            ->orwhere(function ($query) {
-                $query
-                    ->where('status_id', 5)
-                    ->where('jabatan_id', 4)
-                    ->where('user_id', 7);
-            })
-            // ->where([['status_id', '=', 5], ['jabatan_id', '=', 4]])
-            // ->orWhere([['status_id', '=', 8], ['user_id', Auth::user()->id]])
-
-
+        $proposalpasar = PasarPembiayaanHistory::select()
+            ->groupBy('pasar_pembiayaan_id')
+            ->where('status_id', 5)
+            ->where('jabatan_id', 4)
+            ->where('cek_staff_akad', 'Belum')
+            ->orWhere('cek_staff_akad', 'Dicetak')
             ->get();
-        $proposalskpd = SkpdPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
-        $proposalumkm = UmkmPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get();
+
+        $proposalppr = PprPembiayaanHistory::select()
+            ->groupBy('form_ppr_pembiayaan_id')
+            ->where('status_id', 5)
+            ->where('jabatan_id', 4)
+            ->where('cek_staff_akad', 'Belum')
+            ->orWhere('cek_staff_akad', 'Dicetak')
+            ->get();
+
+        $proposalskpd = SkpdPembiayaanHistory::select()
+            ->groupBy('skpd_pembiayaan_id')
+            ->where('status_id', 5)
+            ->where('jabatan_id', 4)
+            ->where('cek_staff_akad', 'Belum')
+            ->orWhere('cek_staff_akad', 'Dicetak')
+            ->get();
+
+        $proposalumkm = UmkmPembiayaanHistory::select()
+            ->groupBy('umkm_pembiayaan_id')
+            ->where('status_id', 5)
+            ->where('jabatan_id', 4)
+            ->where('cek_staff_akad', 'Belum')
+            ->orWhere('cek_staff_akad', 'Dicetak')
+            ->get();
 
         // return $pasar;
         return view('akad::proposal.index', [
@@ -104,6 +112,15 @@ class ProposalAkadController extends Controller
                 'catatan' => $request->catatan,
             ]);
 
+            PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $request->form_ppr_pembiayaan_id)
+                ->where('status_id', 5)
+                ->where('jabatan_id', 4)
+                ->latest()
+                ->first()
+                ->update([
+                    'cek_staff_akad' => $request->cek_staff_akad,
+                ]);
+
             PprPembiayaanHistory::create([
                 'form_ppr_pembiayaan_id' => $request->form_ppr_pembiayaan_id,
                 'status_id' => $request->status_id,
@@ -111,6 +128,7 @@ class ProposalAkadController extends Controller
                 'divisi_id' => $role->divisi_id,
                 'catatan' => $request->catatan,
                 'user_id' => Auth::user()->id,
+                'cek_staff_akad' => $request->cek_staff_akad,
             ]);
         } else if ($request->segmen == 'SKPD') {
             Pembiayaan::create([
@@ -128,6 +146,25 @@ class ProposalAkadController extends Controller
                 'status' => $request->status,
                 'catatan' => $request->catatan,
             ]);
+
+            SkpdPembiayaanHistory::where('skpd_pembiayaan_id', $request->skpd_pembiayaan_id)
+                ->where('status_id', 5)
+                ->where('jabatan_id', 4)
+                ->latest()
+                ->first()
+                ->update([
+                    'cek_staff_akad' => $request->cek_staff_akad,
+                ]);
+
+            SkpdPembiayaanHistory::create([
+                'skpd_pembiayaan_id' => $request->skpd_pembiayaan_id,
+                'status_id' => $request->status_id,
+                'jabatan_id' => $role->jabatan_id,
+                'divisi_id' => $role->divisi_id,
+                'catatan' => $request->catatan,
+                'user_id' => Auth::user()->id,
+                'cek_staff_akad' => $request->cek_staff_akad,
+            ]);
         } else if ($request->segmen == 'Pasar') {
             Pembiayaan::create([
                 'id' => $id,
@@ -144,6 +181,25 @@ class ProposalAkadController extends Controller
                 'status' => $request->status,
                 'catatan' => $request->catatan,
             ]);
+
+            PasarPembiayaan::where('pasar_pembiayaan_id', $request->pasar_pembiayaan_id)
+                ->where('status_id', 5)
+                ->where('jabatan_id', 4)
+                ->latest()
+                ->first()
+                ->update([
+                    'cek_staff_akad' => $request->cek_staff_akad,
+                ]);
+
+            PasarPembiayaan::create([
+                'pasar_pembiayaan_id' => $request->pasar_pembiayaan_id,
+                'status_id' => $request->status_id,
+                'jabatan_id' => $role->jabatan_id,
+                'divisi_id' => $role->divisi_id,
+                'catatan' => $request->catatan,
+                'user_id' => Auth::user()->id,
+                'cek_staff_akad' => $request->cek_staff_akad,
+            ]);
         } else if ($request->segmen == 'UMKM') {
             Pembiayaan::create([
                 'id' => $id,
@@ -159,6 +215,25 @@ class ProposalAkadController extends Controller
                 'harga_jual' => $request->harga_jual,
                 'status' => $request->status,
                 'catatan' => $request->catatan,
+            ]);
+
+            UmkmPembiayaanHistory::where('umkm_pembiayaan_id', $request->umkm_pembiayaan_id)
+                ->where('status_id', 5)
+                ->where('jabatan_id', 4)
+                ->latest()
+                ->first()
+                ->update([
+                    'cek_staff_akad' => $request->cek_staff_akad,
+                ]);
+
+            UmkmPembiayaanHistory::create([
+                'umkm_pembiayaan_id' => $request->umkm_pembiayaan_id,
+                'status_id' => $request->status_id,
+                'jabatan_id' => $role->jabatan_id,
+                'divisi_id' => $role->divisi_id,
+                'catatan' => $request->catatan,
+                'user_id' => Auth::user()->id,
+                'cek_staff_akad' => $request->cek_staff_akad,
             ]);
         } else {
         }
