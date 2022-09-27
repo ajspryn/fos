@@ -696,7 +696,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                         <p class=MsoNormal align=center
                             style='margin-bottom:0cm;text-align:center;
   line-height:normal'>
-                            <b><span style='font-size:8.0pt;font-family:"Times New Roman",serif'><span
+                            <b><span style='font-size:12.0pt;font-family:"Times New Roman",serif'><span
                                         style='color:black'>USULAN PEMBIAYAAN SKPD</span></span></b>
                         </p>
                     </td>
@@ -713,14 +713,14 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                     style='width:138.85pt;border:solid windowtext 1.0pt;
     border-right:none;padding:0cm 5.4pt 0cm 5.4pt;height:13.45pt'>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>Fasilitas</span></b>
+                                                style='font-size:12.0pt;font-family:"Times New Roman",serif'>Fasilitas</span></b>
                                     </p>
                                 </td>
                                 <td width=185
                                     style='width:138.9pt;border:solid windowtext 1.0pt;
     border-left:none;padding:0cm 5.4pt 0cm 5.4pt;height:13.45pt'>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>: 1
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>: 1
                                             (Satu)</span>
                                     </p>
                                 </td>
@@ -730,7 +730,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                     <p class=MsoNormal align=center
                                         style='margin-bottom:0cm;text-align:center;
     line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>Data
+                                                style='font-size:12.0pt;font-family:"Times New Roman",serif'>Data
                                                 Keuangan</span></b></p>
                                 </td>
                             </tr>
@@ -740,46 +740,47 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
     solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;border-right:
     none;padding:0cm 5.4pt 0cm 5.4pt;height:48.65pt'>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Tanggal</span>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Tanggal</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Penggunaan</span>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Penggunaan</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Jenis
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Jenis
                                             Fasilitas</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Nama
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Nama
                                             Nasabah</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Status
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Status
                                             Perkawinan</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Jumlah
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Jumlah
                                             Anak</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>No Telp /
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>No Telp /
                                             Hp</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Tlp Tdk
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Tlp Tdk
                                             Serumah</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Alamat</span>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Alamat</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>No KTP</span>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>No KTP</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Tmpt/Tgl
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Tmpt/Tgl
                                             Lahir</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Umur</span></p>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Umur</span>
+                                    </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Kantor/Dinas</span>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Kantor/Dinas</span>
                                     </p>
                                 </td>
                                 <td width=185 valign=top
@@ -788,37 +789,37 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
     padding:0cm 5.4pt 0cm 5.4pt;height:48.65pt'>
                                     {{-- {{ $pembiayaan }} --}}
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->tanggal_pengajuan }}</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->jenis_penggunaan->jenis_penggunaan }}</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->akad->nama_akad }}</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->nasabah->nama_nasabah }}</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->nasabah->status_perkawinan->nama_status_perkawinan }}</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->nasabah->tanggungan->banyak_tanggungan }}</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->nasabah->no_telp }}</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->nasabah->orang_terdekat->no_telp_orang_terdekat }}</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->nasabah->alamat }},
                                             {{ $pembiayaan->nasabah->rt }}/{{ $pembiayaan->nasabah->rw }}</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->nasabah->no_ktp }}</span></p>
                                     @php
                                         $tgl = strtotime($pembiayaan->nasabah->tgl_lahir);
@@ -827,60 +828,60 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                         $umur = $tgl_sekarang->format('Y') - $tgl_lahir->format('Y');
                                     @endphp
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->nasabah->tempat_lahir }}/{{ $tgl_lahir->format('d-m-Y') }}</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $umur }} Thn</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
                                             {{ $pembiayaan->instansi->nama_instansi }}</span></p>
                                 </td>
                                 <td width=185 valign=top
                                     style='width:138.9pt;border:none;border-bottom:
     solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;height:48.65pt'>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><u><span
-                                                    style='font-size:8.0pt;font-family:"Times New Roman",serif'>Pendapatan</span></u></b>
+                                                    style='font-size:12.0pt;font-family:"Times New Roman",serif'>Pendapatan</span></u></b>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Gaji
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Gaji
                                             Nasabah</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Gaji/Pendapatan
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Gaji/Pendapatan
                                             Suami/istri</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Pendapatan
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Pendapatan
                                             TPP</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>Jumlah
+                                                style='font-size:12.0pt;font-family:"Times New Roman",serif'>Jumlah
                                                 Pendapatan</span></b></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><u><span
-                                                    style='font-size:8.0pt;font-family:"Times New Roman",serif'>Pengeluaran</span></u></b>
+                                                    style='font-size:12.0pt;font-family:"Times New Roman",serif'>Pengeluaran</span></u></b>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Cicilan
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Cicilan
                                             Bank</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Potongan
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Potongan
                                             Lainnya</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Kebutuhan
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Kebutuhan
                                             Keluarga</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>Jumlah
+                                                style='font-size:12.0pt;font-family:"Times New Roman",serif'>Jumlah
                                                 Pengeluaran</span></b></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></b>
+                                                style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></b>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><u><span
-                                                    style='font-size:8.0pt;font-family:"Times New Roman",serif'>Sisa
+                                                    style='font-size:12.0pt;font-family:"Times New Roman",serif'>Sisa
                                                     Pendapatan
                                                     Bersih</span></u></b></p>
                                 </td>
@@ -889,38 +890,38 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
     none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
     padding:0cm 5.4pt 0cm 5.4pt;height:48.65pt'>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>: Rp.
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>: Rp.
                                             {{ number_format($pembiayaan->gaji_pokok) }}</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>: Rp.
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>: Rp.
                                             {{ number_format($pembiayaan->pendapatan_lainnya) }}</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>: Rp.
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>: Rp.
                                             {{ number_format($pembiayaan->gaji_tpp) }}</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>: Rp.
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>: Rp.
                                             {{ number_format($pembiayaan->pendapatan_lainnya + $pembiayaan->gaji_pokok + $pembiayaan->gaji_tpp) }}</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>: Rp.
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>: Rp.
                                             {{ number_format($cicilan) }}<br>
                                             : Rp. {{ number_format($pembiayaan->pengeluaran_lainnya) }}<br>
                                             : Rp. {{ number_format($biayakeluarga) }}<br>
                                             : Rp. {{ number_format($total_pengeluaran) }}</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>: Rp.
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>: Rp.
                                             {{ number_format($pendapatan_bersih) }}</span></p>
                                 </td>
                             </tr>
@@ -931,7 +932,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                     <p class=MsoNormal align=center
                                         style='margin-bottom:0cm;text-align:center;
     line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>INFORMASI
+                                                style='font-size:12.0pt;font-family:"Times New Roman",serif'>INFORMASI
                                                 DEBITUR</span></b></p>
                                 </td>
                             </tr>
@@ -950,7 +951,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     style='margin-bottom:0cm;text-align:center;
       line-height:normal'>
                                                     <b><span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>NO</span></b>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>NO</span></b>
                                                 </p>
                                             </td>
                                             <td width=84
@@ -960,7 +961,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     style='margin-bottom:0cm;text-align:center;
       line-height:normal'>
                                                     <b><span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Bank/LK</span></b>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Bank/LK</span></b>
                                                 </p>
                                             </td>
                                             <td width=94
@@ -970,7 +971,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     style='margin-bottom:0cm;text-align:center;
       line-height:normal'>
                                                     <b><span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Plafond</span></b>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Plafond</span></b>
                                                 </p>
                                             </td>
                                             <td width=118
@@ -980,7 +981,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     style='margin-bottom:0cm;text-align:center;
       line-height:normal'>
                                                     <b><span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Outstanding</span></b>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Outstanding</span></b>
                                                 </p>
                                             </td>
                                             <td width=74
@@ -990,7 +991,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     style='margin-bottom:0cm;text-align:center;
       line-height:normal'>
                                                     <b><span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Tenor/Bln</span></b>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Tenor/Bln</span></b>
                                                 </p>
                                             </td>
                                             <td width=57
@@ -1000,7 +1001,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     style='margin-bottom:0cm;text-align:center;
       line-height:normal'>
                                                     <b><span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Margin</span></b>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Margin</span></b>
                                                 </p>
                                             </td>
                                             <td width=130
@@ -1010,7 +1011,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     style='margin-bottom:0cm;text-align:center;
       line-height:normal'>
                                                     <b><span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Angsuran</span></b>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Angsuran</span></b>
                                                 </p>
                                             </td>
                                             <td width=63
@@ -1020,7 +1021,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     style='margin-bottom:0cm;text-align:center;
       line-height:normal'>
                                                     <b><span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Agunan</span></b>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Agunan</span></b>
                                                 </p>
                                             </td>
                                             <td width=69
@@ -1030,7 +1031,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     style='margin-bottom:0cm;text-align:center;
       line-height:normal'>
                                                     <b><span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Kol
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Kol
                                                             Tertinggi</span></b>
                                                 </p>
                                             </td>
@@ -1043,7 +1044,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ $loop->iteration }}</span>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $loop->iteration }}</span>
                                                     </p>
                                                 </td>
                                                 <td width=84 valign=top
@@ -1051,7 +1052,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ $idep->nama_bank }}</span>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $idep->nama_bank }}</span>
                                                     </p>
                                                 </td>
                                                 <td width=94 valign=top
@@ -1059,7 +1060,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Rp.
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Rp.
                                                             {{ number_format($idep->plafond) }}</span>
                                                     </p>
                                                 </td>
@@ -1068,7 +1069,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Rp.
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Rp.
                                                             {{ number_format($idep->outstanding) }}</span>
                                                     </p>
                                                 </td>
@@ -1077,7 +1078,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ $idep->tenor }}</span>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $idep->tenor }}</span>
                                                     </p>
                                                 </td>
                                                 <td width=57 valign=top
@@ -1085,7 +1086,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ number_format($idep->margin) }}%</span>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ number_format($idep->margin) }}%</span>
                                                     </p>
                                                 </td>
                                                 <td width=130 valign=top
@@ -1093,7 +1094,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center; line-height:normal'>
                                                         <span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Rp.
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Rp.
                                                             {{ number_format($idep->angsuran) }}</span>
                                                     </p>
                                                 </td>
@@ -1102,7 +1103,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ $idep->agunan }}</span>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $idep->agunan }}</span>
                                                     </p>
                                                 </td>
                                                 <td width=69 valign=top
@@ -1110,7 +1111,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ $idep->kol_tertinggi }}</span>
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $idep->kol_tertinggi }}</span>
                                                     </p>
                                                 </td>
                                             </tr>
@@ -1123,11 +1124,11 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                 <p class=MsoNormal align=center
                                                     style='margin-bottom:0cm;text-align:center;
       line-height:normal'>
-                                                <span
-                                                    style='font-size:8.0pt;font-family:"Times New Roman",serif'>Total</span>
-                                            </p>
-                                        </td>
-                                        @if ($cekcicilanpasangan > 0)
+                                                    <span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Total</span>
+                                                </p>
+                                            </td>
+                                            @if ($cekcicilanpasangan > 0)
 
                                         <tr style='height:10.05pt'>
                                             <td width=741 colspan=4 valign=top
@@ -1136,15 +1137,18 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                 <p class=MsoNormal align=center
                                                     style='margin-bottom:0cm;text-align:center;
                         line-height:normal'>
-                                                    <b><span style='font-size:8.0pt;font-family:"Times New Roman",serif'>INFORMASI
-                                                            DEBITUR</span></b></p>
+                                                    <b><span
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>INFORMASI
+                                                            DEBITUR</span></b>
+                                                </p>
                                             </td>
                                         </tr>
                                         <tr style='height:79.45pt'>
                                             <td width=741 colspan=4
                                                 style='width:555.55pt;border:solid windowtext 1.0pt;
                         border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:79.45pt'>
-                                                <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 align=left
+                                                <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+                                                    align=left
                                                     style='border-collapse:collapse;border:none;margin-left:-2.25pt;
                          margin-right:-2.25pt'>
                                                     <tr>
@@ -1155,7 +1159,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 style='margin-bottom:0cm;text-align:center;
                           line-height:normal'>
                                                                 <b><span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>NO</span></b>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>NO</span></b>
                                                             </p>
                                                         </td>
                                                         <td width=84
@@ -1165,7 +1169,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 style='margin-bottom:0cm;text-align:center;
                           line-height:normal'>
                                                                 <b><span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Bank/LK</span></b>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Bank/LK</span></b>
                                                             </p>
                                                         </td>
                                                         <td width=94
@@ -1175,7 +1179,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 style='margin-bottom:0cm;text-align:center;
                           line-height:normal'>
                                                                 <b><span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Plafond</span></b>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Plafond</span></b>
                                                             </p>
                                                         </td>
                                                         <td width=118
@@ -1185,7 +1189,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 style='margin-bottom:0cm;text-align:center;
                           line-height:normal'>
                                                                 <b><span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Outstanding</span></b>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Outstanding</span></b>
                                                             </p>
                                                         </td>
                                                         <td width=74
@@ -1195,7 +1199,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 style='margin-bottom:0cm;text-align:center;
                           line-height:normal'>
                                                                 <b><span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Tenor/Bln</span></b>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Tenor/Bln</span></b>
                                                             </p>
                                                         </td>
                                                         <td width=57
@@ -1205,7 +1209,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 style='margin-bottom:0cm;text-align:center;
                           line-height:normal'>
                                                                 <b><span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Margin</span></b>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Margin</span></b>
                                                             </p>
                                                         </td>
                                                         <td width=130
@@ -1215,7 +1219,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 style='margin-bottom:0cm;text-align:center;
                           line-height:normal'>
                                                                 <b><span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Angsuran</span></b>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Angsuran</span></b>
                                                             </p>
                                                         </td>
                                                         <td width=63
@@ -1225,7 +1229,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 style='margin-bottom:0cm;text-align:center;
                           line-height:normal'>
                                                                 <b><span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Agunan</span></b>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Agunan</span></b>
                                                             </p>
                                                         </td>
                                                         <td width=69
@@ -1235,12 +1239,12 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 style='margin-bottom:0cm;text-align:center;
                           line-height:normal'>
                                                                 <b><span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Kol
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Kol
                                                                         Tertinggi</span></b>
                                                             </p>
                                                         </td>
                                                     </tr>
-    
+
                                                     @foreach ($ideppasangans as $ideppasangan)
                                                         <tr>
                                                             <td width=34 valign=top
@@ -1248,7 +1252,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 <p class=MsoNormal align=center
                                                                     style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                                     <span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ $loop->iteration }}</span>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $loop->iteration }}</span>
                                                                 </p>
                                                             </td>
                                                             <td width=84 valign=top
@@ -1256,7 +1260,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 <p class=MsoNormal align=center
                                                                     style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                                     <span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ $ideppasangan->nama_bank }}</span>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $ideppasangan->nama_bank }}</span>
                                                                 </p>
                                                             </td>
                                                             <td width=94 valign=top
@@ -1264,7 +1268,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 <p class=MsoNormal align=center
                                                                     style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                                     <span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Rp.
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Rp.
                                                                         {{ number_format($ideppasangan->plafond) }}</span>
                                                                 </p>
                                                             </td>
@@ -1273,7 +1277,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 <p class=MsoNormal align=center
                                                                     style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                                     <span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Rp.
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Rp.
                                                                         {{ number_format($ideppasangan->outstanding) }}</span>
                                                                 </p>
                                                             </td>
@@ -1282,7 +1286,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 <p class=MsoNormal align=center
                                                                     style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                                     <span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ $ideppasangan->tenor }}</span>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $ideppasangan->tenor }}</span>
                                                                 </p>
                                                             </td>
                                                             <td width=57 valign=top
@@ -1290,7 +1294,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 <p class=MsoNormal align=center
                                                                     style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                                     <span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ number_format($ideppasangan->margin) }}%</span>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ number_format($ideppasangan->margin) }}%</span>
                                                                 </p>
                                                             </td>
                                                             <td width=130 valign=top
@@ -1298,7 +1302,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 <p class=MsoNormal align=center
                                                                     style='margin-bottom:0cm;text-align:center; line-height:normal'>
                                                                     <span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Rp.
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Rp.
                                                                         {{ number_format($ideppasangan->angsuran) }}</span>
                                                                 </p>
                                                             </td>
@@ -1307,7 +1311,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 <p class=MsoNormal align=center
                                                                     style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                                     <span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ $ideppasangan->agunan }}</span>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $ideppasangan->agunan }}</span>
                                                                 </p>
                                                             </td>
                                                             <td width=69 valign=top
@@ -1315,12 +1319,12 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 <p class=MsoNormal align=center
                                                                     style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                                     <span
-                                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>{{ $ideppasangan->kol_tertinggi }}</span>
+                                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $ideppasangan->kol_tertinggi }}</span>
                                                                 </p>
                                                             </td>
                                                         </tr>
                                                     @endforeach
-    
+
                                                     <tr>
                                                         <td width=119 colspan=2 valign=top
                                                             style='width:88.9pt;border:solid windowtext 1.0pt;
@@ -1329,87 +1333,271 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                                 style='margin-bottom:0cm;text-align:center;
                           line-height:normal'>
                                                                 <span
-                                                                    style='font-size:8.0pt;font-family:"Times New Roman",serif'>Total</span>
+                                                                    style='font-size:12.0pt;font-family:"Times New Roman",serif'>Total</span>
                                                             </p>
                                                         </td>
                                                         @endif
-                                        
-                                        <td width=94 valign=top
-                                            style='width:70.65pt;border-top:none;border-left:
+
+                                                        <td width=94 valign=top
+                                                            style='width:70.65pt;border-top:none;border-left:
       none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
       padding:0cm 5.4pt 0cm 5.4pt'>
-                                                <p class=MsoNormal align=center
-                                                    style='margin-bottom:0cm;text-align:center;
+                                                            <p class=MsoNormal align=center
+                                                                style='margin-bottom:0cm;text-align:center;
       line-height:normal'>
-                                                    <span
-                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                                                <span
+                                                                    style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                                            </p>
+                                                        </td>
+                                                        <td width=118 valign=top
+                                                            style='width:88.85pt;border-top:none;border-left:
+      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+      padding:0cm 5.4pt 0cm 5.4pt'>
+                                                            <p class=MsoNormal align=center
+                                                                style='margin-bottom:0cm;text-align:center;
+      line-height:normal'>
+                                                                <span
+                                                                    style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                                            </p>
+                                                        </td>
+                                                        <td width=74 valign=top
+                                                            style='width:55.6pt;border-top:none;border-left:
+      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+      padding:0cm 5.4pt 0cm 5.4pt'>
+                                                            <p class=MsoNormal align=center
+                                                                style='margin-bottom:0cm;text-align:center;
+      line-height:normal'>
+                                                                <span
+                                                                    style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                                            </p>
+                                                        </td>
+                                                        <td width=57 valign=top
+                                                            style='width:43.05pt;border-top:none;border-left:
+      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+      padding:0cm 5.4pt 0cm 5.4pt'>
+                                                            <p class=MsoNormal align=center
+                                                                style='margin-bottom:0cm;text-align:center;
+      line-height:normal'>
+                                                                <span
+                                                                    style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                                            </p>
+                                                        </td>
+                                                        <td width=130 valign=top
+                                                            style='width:97.8pt;border-top:none;border-left:
+      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+      padding:0cm 5.4pt 0cm 5.4pt'>
+                                                            <p class=MsoNormal align=center
+                                                                style='margin-bottom:0cm;text-align:center;
+      line-height:normal'>
+                                                                <span
+                                                                    style='font-size:12.0pt;font-family:"Times New Roman",serif'>Rp.
+                                                                    {{ number_format($cicilan) }}</span>
+                                                            </p>
+                                                        </td>
+                                                        <td width=63 valign=top
+                                                            style='width:47.4pt;border-top:none;border-left:
+      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+      padding:0cm 5.4pt 0cm 5.4pt'>
+                                                            <p class=MsoNormal align=center
+                                                                style='margin-bottom:0cm;text-align:center;
+      line-height:normal'>
+                                                                <span
+                                                                    style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                                            </p>
+                                                        </td>
+                                                        <td width=69 valign=top
+                                                            style='width:51.95pt;border-top:none;border-left:
+      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+      padding:0cm 5.4pt 0cm 5.4pt'>
+                                                            <p class=MsoNormal align=center
+                                                                style='margin-bottom:0cm;text-align:center;
+      line-height:normal'>
+                                                                <span
+                                                                    style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'></p>
+                                            </td>
+                                        </tr>
+                                        <tr style='height:63.25pt'>
+                                            <td width=185 valign=top
+                                                style='width:138.85pt;border-top:none;border-left:
+    solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;border-right:
+    none;padding:0cm 5.4pt 0cm 5.4pt;height:63.25pt'>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Sektor
+                                                        Ekonomi</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Jenis
+                                                        Fasilitas
+                                                        Pembiayaan</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Kegunaan</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Harga
+                                                        Beli</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Harga
+                                                        Jual</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Jangka
+                                                        Waktu</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Equivalen
+                                                        Rate</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Angsuran</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>Jaminan</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>DSR</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'>
+                                                    <b><span
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Catatan</span></b>
                                                 </p>
                                             </td>
-                                            <td width=118 valign=top
-                                                style='width:88.85pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                <p class=MsoNormal align=center
-                                                    style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                    <span
-                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                            <td width=556 colspan=3 valign=top
+                                                style='width:416.7pt;border-top:none;
+    border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt;height:63.25pt'>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+                                                        {{ $pembiayaan->sektor->nama_sektor_ekonomi }}</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+                                                        {{ $pembiayaan->akad->nama_akad }}</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+                                                        {{ $pembiayaan->jenis_penggunaan->jenis_penggunaan }}</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+                                                        Rp.
+                                                        {{ number_format($pembiayaan->nominal_pembiayaan) }}</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+                                                        Rp.
+                                                        {{ number_format($harga_jual) }}</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+                                                        {{ $tenor }} Bulan</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+                                                        {{ $pembiayaan->rate }} %</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+                                                        Rp.
+                                                        {{ number_format($angsuran1) }}/Bulan</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+                                                        {{ $jaminan->nama_jaminan }}</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+                                                        {{ $nilai_dsr1 }} %</span></p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>:</span>
+                                                </p>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
                                                 </p>
                                             </td>
-                                            <td width=74 valign=top
-                                                style='width:55.6pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
+                                        </tr>
+                                        <tr style='height:10.95pt'>
+                                            <td width=185 valign=top
+                                                style='width:138.85pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:10.95pt'>
                                                 <p class=MsoNormal align=center
                                                     style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                    <span
-                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+    line-height:normal'>
+                                                    <b><span
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Diajukan
+                                                            AO</span></b></p>
+                                            </td>
+                                            <td width=185 valign=top
+                                                style='width:138.9pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt;height:10.95pt'>
+                                                <p class=MsoNormal align=center
+                                                    style='margin-bottom:0cm;text-align:center;
+    line-height:normal'>
+                                                    <b><span
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Kabag
+                                                            Marketing</span></b></p>
+                                            </td>
+                                            <td width=185 valign=top
+                                                style='width:138.9pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt;height:10.95pt'>
+                                                <p class=MsoNormal align=center
+                                                    style='margin-bottom:0cm;text-align:center;
+    line-height:normal'>
+                                                    <b><span
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Analist</span></b>
                                                 </p>
                                             </td>
-                                            <td width=57 valign=top
-                                                style='width:43.05pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
+                                            <td width=185 valign=top
+                                                style='width:138.9pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt;height:10.95pt'>
                                                 <p class=MsoNormal align=center
                                                     style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                    <span
-                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+    line-height:normal'>
+                                                    <b><span
+                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Direktur
+                                                            Bisnis</span></b></p>
+                                            </td>
+                                        </tr>
+                                        <tr style='height:57.55pt'>
+                                            <td width=185 valign=top
+                                                style='width:138.85pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:57.55pt'>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
                                                 </p>
                                             </td>
-                                            <td width=130 valign=top
-                                                style='width:97.8pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                <p class=MsoNormal align=center
-                                                    style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                    <span
-                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>Rp.
-                                                        {{ number_format($cicilan) }}</span>
+                                            <td width=185 valign=top
+                                                style='width:138.9pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt;height:57.55pt'>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
                                                 </p>
                                             </td>
-                                            <td width=63 valign=top
-                                                style='width:47.4pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                <p class=MsoNormal align=center
-                                                    style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                    <span
-                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                            <td width=185 valign=top
+                                                style='width:138.9pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt;height:57.55pt'>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
                                                 </p>
                                             </td>
-                                            <td width=69 valign=top
-                                                style='width:51.95pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                <p class=MsoNormal align=center
-                                                    style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                    <span
-                                                        style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
+                                            <td width=185 valign=top
+                                                style='width:138.9pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt;height:57.55pt'>
+                                                <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+                                                        style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
                                                 </p>
                                             </td>
                                         </tr>
@@ -1417,191 +1605,22 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'></p>
                                 </td>
                             </tr>
-                            <tr style='height:63.25pt'>
-                                <td width=185 valign=top
-                                    style='width:138.85pt;border-top:none;border-left:
-    solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;border-right:
-    none;padding:0cm 5.4pt 0cm 5.4pt;height:63.25pt'>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                    </p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Sektor
-                                            Ekonomi</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Jenis Fasilitas
-                                            Pembiayaan</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Kegunaan</span>
-                                    </p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Harga
-                                            Beli</span>
-                                    </p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Harga
-                                            Jual</span>
-                                    </p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Jangka
-                                            Waktu</span>
-                                    </p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Equivalen
-                                            Rate</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Angsuran</span>
-                                    </p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>Jaminan</span>
-                                    </p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>DSR</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                    </p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>Catatan</span></b>
-                                    </p>
-                                </td>
-                                <td width=556 colspan=3 valign=top
-                                    style='width:416.7pt;border-top:none;
-    border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-    padding:0cm 5.4pt 0cm 5.4pt;height:63.25pt'>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                    </p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
-                                            {{ $pembiayaan->sektor->nama_sektor_ekonomi }}</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
-                                            {{ $pembiayaan->akad->nama_akad }}</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
-                                            {{ $pembiayaan->jenis_penggunaan->jenis_penggunaan }}</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>: Rp.
-                                            {{ number_format($pembiayaan->nominal_pembiayaan) }}</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>: Rp.
-                                            {{ number_format($harga_jual) }}</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
-                                            {{ $tenor }} Bulan</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
-                                            {{ $pembiayaan->rate }} %</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>: Rp.
-                                            {{ number_format($angsuran1) }}/Bulan</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
-                                            {{ $jaminan->nama_jaminan }}</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:
-                                            {{ $nilai_dsr1 }} %</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                    </p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>:</span></p>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr style='height:10.95pt'>
-                                <td width=185 valign=top
-                                    style='width:138.85pt;border:solid windowtext 1.0pt;
-    border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:10.95pt'>
-                                    <p class=MsoNormal align=center
-                                        style='margin-bottom:0cm;text-align:center;
-    line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>Diajukan
-                                                AO</span></b></p>
-                                </td>
-                                <td width=185 valign=top
-                                    style='width:138.9pt;border-top:none;border-left:
-    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-    padding:0cm 5.4pt 0cm 5.4pt;height:10.95pt'>
-                                    <p class=MsoNormal align=center
-                                        style='margin-bottom:0cm;text-align:center;
-    line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>Kabag
-                                                Marketing</span></b></p>
-                                </td>
-                                <td width=185 valign=top
-                                    style='width:138.9pt;border-top:none;border-left:
-    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-    padding:0cm 5.4pt 0cm 5.4pt;height:10.95pt'>
-                                    <p class=MsoNormal align=center
-                                        style='margin-bottom:0cm;text-align:center;
-    line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>Analist</span></b>
-                                    </p>
-                                </td>
-                                <td width=185 valign=top
-                                    style='width:138.9pt;border-top:none;border-left:
-    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-    padding:0cm 5.4pt 0cm 5.4pt;height:10.95pt'>
-                                    <p class=MsoNormal align=center
-                                        style='margin-bottom:0cm;text-align:center;
-    line-height:normal'><b><span
-                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>Direktur
-                                                Bisnis</span></b></p>
-                                </td>
-                            </tr>
-                            <tr style='height:57.55pt'>
-                                <td width=185 valign=top
-                                    style='width:138.85pt;border:solid windowtext 1.0pt;
-    border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:57.55pt'>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                    </p>
-                                </td>
-                                <td width=185 valign=top
-                                    style='width:138.9pt;border-top:none;border-left:
-    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-    padding:0cm 5.4pt 0cm 5.4pt;height:57.55pt'>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                    </p>
-                                </td>
-                                <td width=185 valign=top
-                                    style='width:138.9pt;border-top:none;border-left:
-    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-    padding:0cm 5.4pt 0cm 5.4pt;height:57.55pt'>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                    </p>
-                                </td>
-                                <td width=185 valign=top
-                                    style='width:138.9pt;border-top:none;border-left:
-    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-    padding:0cm 5.4pt 0cm 5.4pt;height:57.55pt'>
-                                    <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                    </p>
-                                </td>
-                            </tr>
                         </table>
-                        <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'></p>
-                    </td>
-                </tr>
-            </table>
 
-            <p class=MsoNormal><span
-                    style='font-size:8.0pt;line-height:107%;font-family:
-"Times New Roman",serif'>&nbsp;</span></p>
+                        <p class=MsoNormal><span
+                                style='font-size:11.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>&nbsp;</span>
+                        </p>
 
-            <p class=MsoNormal><span
-                    style='font-size:8.0pt;line-height:107%;font-family:
-"Times New Roman",serif'>&nbsp;</span></p>
+                        <p class=MsoNormal><span
+                                style='font-size:11.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>&nbsp;</span>
+                        </p>
 
-            <p class=MsoNormal><span
-                    style='font-size:8.0pt;line-height:107%;font-family:
-"Times New Roman",serif'>&nbsp;</span></p>
+                        <p class=MsoNormal><span
+                                style='font-size:11.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>&nbsp;</span>
+                        </p>
 
         </div>
     </div>
