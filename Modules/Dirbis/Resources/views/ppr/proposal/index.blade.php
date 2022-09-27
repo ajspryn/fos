@@ -65,10 +65,11 @@
                                     @foreach ($proposals as $proposal)
                                         @php
 
-                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                                                ->where('form_ppr_pembiayaan_id', $proposal->id)
-                                                ->orderBy('created_at', 'desc')
-                                                ->get()
+                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $proposal->id)
+                                                ->whereNot(function ($query) {
+                                                    $query->where('status_id', '>', 5)->where('jabatan_id', '<', 4);
+                                                })
+                                                ->latest()
                                                 ->first();
 
                                             if ($history) {

@@ -16,7 +16,6 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        $no = 1;
         $proposal = FormPprPembiayaan::select()->get();
         return view('dirbis::ppr.proposal.index', [
             'title' => 'Proposal PPR',
