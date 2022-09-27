@@ -77,7 +77,7 @@ class SkpdKomiteController extends Controller
             ]);
         }
 
-        return redirect('/skpd/komite');
+        return redirect('skpd/revisi/'.$request->skpd_pembiayaan_id.'/edit');
     }
 
     /**
