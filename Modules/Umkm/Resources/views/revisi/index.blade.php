@@ -47,16 +47,20 @@
                                 <tbody>
                                     @foreach ($komites as $komite)
                                         @php
-                                            $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                ->where('id', $komite->umkm_pembiayaan_id)
-                                                ->get()
-                                                ->first();
-
                                             $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-                                                ->where('umkm_pembiayaan_id', $proposal_umkm->id)
+                                                ->where('umkm_pembiayaan_id', $komite->id)
                                                 ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
+                                            $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                                ->where('id', $history->umkm_pembiayaan_id)
+                                                ->get()
+                                                ->first();
+                                            $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+                                                ->where('id', $history->pasar_pembiayaan_id)
+                                                ->get()
+                                                ->first();
+
                                         @endphp
                                         @if($history->status_id== 7)
                                         <tr>

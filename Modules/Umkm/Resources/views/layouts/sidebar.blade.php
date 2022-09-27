@@ -6,19 +6,18 @@ $notif_proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
     ->get()
     ->count();
 
-$komites = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id', 7)
-    ->get();
+$komites =   Modules\Umkm\Entities\UmkmPembiayaan::select()
+    ->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->orderby('updated_at','desc')->get();
 $notif_revisi = 0;
 foreach ($komites as $komite) {
-    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
-        ->where('id', $komite->umkm_pembiayaan_id)
-        ->get()
-        ->first();
-
+    
     $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-        ->where('umkm_pembiayaan_id', $proposal_umkm->id)
-        ->orderby('created_at', 'desc')
+    ->where('umkm_pembiayaan_id', $komite->id)
+    ->orderby('created_at', 'desc')
+    ->get()
+    ->first();
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $history->umkm_pembiayaan_id)
         ->get()
         ->first();
     if ($history->status_id == 7) {

@@ -14,8 +14,8 @@
                                     <i data-feather="file-text" class="font-medium-3"></i>
                                 </span>
                                 <span class="bs-stepper-label">
-                                    <span class="bs-stepper-title">Form Data Diri</span>
-                                    <span class="bs-stepper-subtitle">Isi Data Diri Dan Data Usaha</span>;
+                                    <span class="bs-stepper-title">Form Pembiayaan</span>
+                                    <span class="bs-stepper-subtitle">Isi Data Kelengkapan Pembiayaan</span>;
                                 </span>
                             </button>
                         </div>
@@ -28,8 +28,92 @@
                                     <i data-feather="user" class="font-medium-3"></i>
                                 </span>
                                 <span class="bs-stepper-label">
-                                    <span class="bs-stepper-title">Form Keuangan</span>
-                                    <span class="bs-stepper-subtitle">Isi Data Keuangan</span>
+                                    <span class="bs-stepper-title">Form Data Diri</span>
+                                    <span class="bs-stepper-subtitle">Isi Data Diri</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="line">
+                            <i data-feather="chevron-right" class="font-medium-2"></i>
+                        </div>
+                        <div class="step" data-target="#form3" role="tab" id="personal-info-modern-trigger">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-box">
+                                    <i data-feather="image" class="font-medium-3"></i>
+                                </span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title">Lampiran Data Diri</span>
+                                    <span class="bs-stepper-subtitle">Lengkapi Lampiran Data Diri</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="line">
+                            <i data-feather="chevron-right" class="font-medium-2"></i>
+                        </div>
+                        <div class="step" data-target="#form4" role="tab" id="personal-info-modern-trigger">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-box">
+                                    <i data-feather="users" class="font-medium-3"></i>
+                                </span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title">Data Orang Terdekat</span>
+                                    <span class="bs-stepper-subtitle">Isi Data Orang Terdekat</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="line">
+                            <i data-feather="chevron-right" class="font-medium-2"></i>
+                        </div>
+                        <div class="step" data-target="#form5" role="tab" id="personal-info-modern-trigger">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-box">
+                                    <i data-feather="briefcase" class="font-medium-3"></i>
+                                </span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title">Data Usaha</span>
+                                    <span class="bs-stepper-subtitle">Isi Data Usaha</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="line">
+                            <i data-feather="chevron-right" class="font-medium-2"></i>
+                        </div>
+                        <div class="step" data-target="#form6" role="tab" id="personal-info-modern-trigger">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-box">
+                                    <i data-feather="clipboard" class="font-medium-3"></i>
+                                </span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title">Data Jaminan</span>
+                                    <span class="bs-stepper-subtitle">Isi Data Jaminan</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="line">
+                            <i data-feather="chevron-right" class="font-medium-2"></i>
+                        </div>
+                        <div class="step" data-target="#form7" role="tab" id="personal-info-modern-trigger">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-box">
+                                    <i data-feather="bar-chart-2" class="font-medium-3"></i>
+                                </span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title">Form Pendapatan Keuangan</span>
+                                    <span class="bs-stepper-subtitle">Isi Data Pemasukkan Keuangan</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="line">
+                            <i data-feather="chevron-right" class="font-medium-2"></i>
+                        </div>
+                        <div class="step" data-target="#form8" role="tab" id="personal-info-modern-trigger">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-box">
+                                    <i data-feather="bar-chart" class="font-medium-3"></i>
+                                </span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title">Form Pengeluaran Keuangan</span>
+                                    <span class="bs-stepper-subtitle">Isi Data Pengeluaran  Keuangan</span>
                                 </span>
                             </button>
                         </div>
@@ -38,7 +122,8 @@
                         <form action="/form/pasar" method="post" enctype="multipart/form-data">
                             @csrf
 
-                            <div id="form1" class="content" role="tabpanel" aria-labelledby="account-details-trigger">
+                            <div id="form1" class="content" role="tabpanel"
+                                aria-labelledby="account-details-trigger">
                                 <div class="content-header">
                                     {{-- <h5 class="mb-0">Account Details</h5> --}}
                                     <small class="text-danger">* Wajib Diisi</small>
@@ -90,7 +175,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="pesanan_blok">Kios / Los Yang Di Pesan</label>
                                         <input type="text" name="pesanan_blok" class="form-control "
-                                            placeholder="Blok Pesanan" id="pesanan_blok" >
+                                            placeholder="Blok Pesanan" id="pesanan_blok">
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="luas">Luas Kios / Los Yang Di
@@ -105,6 +190,23 @@
                                             name="harga" id="harga">
                                     </div>
                                 </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <a class="btn btn-outline-secondary btn-prev" disabled>
+                                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </a>
+                                    <a class="btn btn-primary btn-next" type="button">
+                                        <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="form2" class="content" role="tabpanel"
+                                aria-labelledby="account-details-trigger">
+                                <div class="content-header">
+                                    {{-- <h5 class="mb-0">Account Details</h5> --}}
+                                    <small class="text-danger">* Wajib Diisi</small>
+                                </div>
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Data Diri</h5>
                                     <small class="text-muted">Lengkapi Data Diri Sesuai Dengan KTP.</small>
@@ -114,25 +216,25 @@
                                         <label class="form-label" for="nama"><small class="text-danger">*
                                             </small>Nama Lengkap Nasabah</label>
                                         <input type="text" name="nama_nasabah" id="nama_nasabah" class="form-control"
-                                            placeholder="Nama Lengkap"required/>
+                                            placeholder="Nama Lengkap"required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="noktp"><small class="text-danger">* </small>No
                                             KTP</label>
                                         <input type="number" name="no_ktp" id="no_ktp" class="form-control"
-                                            placeholder="Masukan Nomor KTP Anda"required/>
+                                            placeholder="Masukan Nomor KTP Anda"required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="tempatlahir"><small class="text-danger">*
                                             </small>Tempat Lahir</label>
                                         <input type="text" name="tmp_lahir" id="tmp_lahir" class="form-control"
-                                            placeholder="Maukan Tempat Lahir Anda"required/>
+                                            placeholder="Maukan Tempat Lahir Anda"required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="tgl_lahir"><small class="text-danger">*
                                             </small>Tanggal Tanggal</label>
                                         <input type="date" id="tgl_lahir" class="form-control flatpickr-basic"
-                                            name="tgl_lahir" placeholder="YYYY-MM-DD"required/>
+                                            name="tgl_lahir" placeholder="YYYY-MM-DD"required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="gender"><small class="text-danger">*
@@ -147,7 +249,7 @@
                                         <label class="form-label" for="ibu"><small class="text-danger">*
                                             </small>Nama Ibu Kandung</label>
                                         <input class="form-control" name="nama_ibu" id="ibu" rows="3"
-                                            placeholder="Masukkan Nama Ibu Kandung"required/>
+                                            placeholder="Masukkan Nama Ibu Kandung"required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="exampleFormControlTextarea1"><small
@@ -277,13 +379,14 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="ktp_pasangan"></small>No KTP Pasangan</label>
-                                        <input class="form-control" name="ktp_pasangan" id="ktp_pasangan"
-                                            rows="3" placeholder="Masukkan No KTP Suami/Istri">
+                                        <input class="form-control" name="ktp_pasangan" id="ktp_pasangan" rows="3"
+                                            placeholder="Masukkan No KTP Suami/Istri">
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="jumlahanak"> </small>Jumlah Anak/Tanggungan</label>
+                                        <label class="form-label" for="jumlahanak"><small class="text-danger">*
+                                        </small>Jumlah Anak/Tanggungan</label>
                                         <select class="select2 w-100" name="jumlah_anak" id="jumlah_anak" required>
-                                            <option label="jumlahanak">Pilih Jumlah Anak</option>
+                                            <option label="jumlahanak">Pilih Jumlah Anak/Tanggungan</option>
                                             @foreach ($tanggungans as $tanggungan)
                                                 <option value="{{ $tanggungan->id }}">{{ $tanggungan->bannyak_tanggungan }}
                                                 </option>
@@ -302,38 +405,74 @@
                                             class="form-control prefix-mask" placeholder="Masukan Nomor telepon Anda"
                                             required />
                                     </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="foto"><small class="text-danger">*
-                                            </small>Upload Foto Diri</label>
-                                        <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
-                                            class="form-control" required />
-                                        <input type="hidden" name="foto[1][kategori]" value="Foto Diri" rows="3"
-                                            class="form-control" />
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev" type="button">
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
                                     </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotodiri"><small class="text-danger">*
-                                            </small>Upload Foto KTP</label>
-                                        <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
-                                            class="form-control" required />
-                                        <input type="hidden" name="foto[2][kategori]" value="Foto KTP" rows="3"
-                                            class="form-control" />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotodiri"><small class="text-danger">*
-                                            </small>Upload Foto Diri Bersama KTP</label>
-                                        <input type="file" name="foto[3][foto]" id="fotodiribersamaktp"
-                                            rows="3" class="form-control" required />
-                                        <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
-                                            rows="3" class="form-control" />
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotokk"><small
-                                                class="text-danger">*</small>Upload Foto Kartu Keluarga</label>
-                                        <input type="file" name="foto[4][foto]" id="fotokk"
-                                            rows="3"class="form-control" required />
-                                        <input type="hidden" name="foto[4][kategori]"
-                                            value="Foto Kartu Keluarga"rows="3" class="form-control" />
-                                    </div>
+                                </div>
+                            </div>
+                            <div id="form3" class="content" role="tabpanel"
+                                aria-labelledby="account-details-trigger">
+                                <div class="content-header">
+                                    {{-- <h5 class="mb-0">Account Details</h5> --}}
+                                    <small class="text-danger">* Wajib Diisi</small>
+                                </div>
+                                <div class="row">
+                                <div class="mb-1 col-md-6">
+                                    <label class="form-label" for="foto"><small class="text-danger">*
+                                        </small>Upload Foto Diri</label>
+                                    <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
+                                        class="form-control" required />
+                                    <input type="hidden" name="foto[1][kategori]" value="Foto Diri" rows="3"
+                                        class="form-control" />
+                                </div>
+                                <div class="mb-1 col-md-6">
+                                    <label class="form-label" for="fotodiri"><small class="text-danger">*
+                                        </small>Upload Foto KTP</label>
+                                    <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
+                                        class="form-control" required />
+                                    <input type="hidden" name="foto[2][kategori]" value="Foto KTP" rows="3"
+                                        class="form-control" />
+                                </div>
+                                <div class="mb-1 col-md-6">
+                                    <label class="form-label" for="fotodiri"><small class="text-danger">*
+                                        </small>Upload Foto Diri Bersama KTP</label>
+                                    <input type="file" name="foto[3][foto]" id="fotodiribersamaktp" rows="3"
+                                        class="form-control" required />
+                                    <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
+                                        rows="3" class="form-control" />
+                                </div>
+                                <div class="mb-1 col-md-6">
+                                    <label class="form-label" for="fotokk"><small class="text-danger">*</small>Upload
+                                        Foto Kartu Keluarga</label>
+                                    <input type="file" name="foto[4][foto]" id="fotokk"
+                                        rows="3"class="form-control" required />
+                                    <input type="hidden" name="foto[4][kategori]"
+                                        value="Foto Kartu Keluarga"rows="3" class="form-control" />
+                                </div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <a class="btn btn-outline-secondary btn-prev" type="button">
+                                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </a>
+                                    <a class="btn btn-primary btn-next" type="button">
+                                        <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="form4" class="content" role="tabpanel"
+                                aria-labelledby="account-details-trigger">
+                                <div class="content-header">
+                                    {{-- <h5 class="mb-0">Account Details</h5> --}}
+                                    <small class="text-danger">* Wajib Diisi</small>
                                 </div>
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Data Orang Terdekat</h5>
@@ -344,14 +483,15 @@
                                         <label class="form-label" for="namaot"><small class="text-danger">*
                                             </small>Nama</label>
                                         <input type="text" name="namaot" id="namaot" class="form-control"
-                                            placeholder="Masukan Nama Orang Terdekat" required/>
+                                            placeholder="Masukan Nama Orang Terdekat" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="telpot"><small class="text-danger">* </small>No
+                                        <label class="form-label" for="telpot"><small class="text-danger">*
+                                            </small>No
                                             Telepon</label>
                                         <input type="number" name="telp_ot" id="telp_ot"
                                             class="form-control prefix-mask"
-                                            placeholder="Masukan Nomor Telepon Orang Terdekat" required/>
+                                            placeholder="Masukan Nomor Telepon Orang Terdekat" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="exampleFormControlTextarea1"><small
@@ -360,6 +500,19 @@
                                             placeholder="Alamat Orang Terdekat" required></textarea>
                                     </div>
                                 </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <a class="btn btn-outline-secondary btn-prev" type="button">
+                                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </a>
+                                    <a class="btn btn-primary btn-next" type="button">
+                                        <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="form5" class="content" role="tabpanel"
+                                aria-labelledby="account-details-trigger">
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Data Usaha</h5>
                                     <small class="text-muted">Lengkapi Data Usaha Anda.</small>
@@ -369,7 +522,7 @@
                                         <label class="form-label" for="nama_usaha"><small class="text-danger">*
                                             </small>Nama Kios / Los</label>
                                         <input type="text" name="nama_usaha" id="nama_usaha" class="form-control"
-                                            placeholder="Masukan Nama Toko Atau Usaha" required/>
+                                            placeholder="Masukan Nama Toko Atau Usaha" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
@@ -436,24 +589,39 @@
                                             class="form-control" required>
                                     </div>
                                 </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <a class="btn btn-outline-secondary btn-prev" type="button">
+                                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </a>
+                                    <a class="btn btn-primary btn-next" type="button">
+                                        <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="form6" class="content" role="tabpanel"
+                                aria-labelledby="account-details-trigger">
                                 <div class="content-header">
                                     <h5 class="mb-0 mt-2">Data Jaminan</h5>
                                     <small class="text-muted">Silahkan Upload Data Jaminan Anda</small>
                                 </div>
                                 <div class="row">
-                                  
+
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jaminanlain"><small class="text-danger">*
-                                        </small>Jenis Jaminan </label>
+                                            </small>Jenis Jaminan </label>
                                         <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
                                             <option label="jaminanlain">Pilih Jaminan</option>
                                             @foreach ($jaminans as $jaminan)
-                                                <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}</option>
+                                                <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="lamausaha"><small class="text-danger">* </small>No
+                                        <label class="form-label" for="lamausaha"><small class="text-danger">*
+                                            </small>No
                                             KTB</label>
                                         <input type="text" name="no_ktb" id="lamausaha" class="form-control"
                                             placeholder="Masukan No KTB" required />
@@ -471,8 +639,8 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
-                                    <a class="btn btn-outline-secondary btn-prev" disabled>
-                                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                    <a class="btn btn-outline-secondary btn-prev" type="button"> <i
+                                        data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                     </a>
                                     <a class="btn btn-primary btn-next" type="button">
@@ -481,7 +649,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div id="form2" class="content" role="tabpanel"
+                            <div id="form7" class="content" role="tabpanel"
                                 aria-labelledby="personal-info-modern-trigger">
                                 <div class="content-header">
                                     <h5 class="mb-0">Data Pendapatan</h5>
@@ -495,49 +663,69 @@
                                     <label class="form-label" for="numeral-formatting"><small class="text-danger">*
                                         </small>Omset Per Bulan</label>
                                     <input type="text" class="form-control numeral-mask9" placeholder="Rp."
-                                        name="omset" id="omset" required/>
+                                        name="omset" id="omset" required />
                                 </div>
                                 <div class="row">
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>HPP</label>
-                                        <input type="text" class="form-control numeral-mask" placeholder="Rp."
-                                            name="hpp" id="hpp" required/>
+                                        <label class="form-label" for="numeral-formatting"><small
+                                                class="text-danger">*</small>HPP</label>
+                                        <input type="text" class="form-control numeral-mask" placeholder="Isi 0 Jika Tidak Ada"
+                                            name="hpp" id="hpp" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya Listrik</label>
-                                        <input type="text" class="form-control numeral-mask2" placeholder="Rp."
+                                        <label class="form-label" for="numeral-formatting"><small
+                                                class="text-danger">*</small>Biaya Listrik</label>
+                                        <input type="text" class="form-control numeral-mask2" placeholder="Isi 0 Jika Tidak Ada"
                                             name="listrik" id="listrik">
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya Transport</label>
-                                        <input type="text" class="form-control numeral-mask6" placeholder="Rp."
-                                            name="trasport" id="transport" required/>
+                                        <label class="form-label" for="numeral-formatting"><small
+                                                class="text-danger">*</small>Biaya Transport</label>
+                                        <input type="text" class="form-control numeral-mask6" placeholder="Isi 0 Jika Tidak Ada"
+                                            name="trasport" id="transport" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya Karyawan</label>
-                                        <input type="text" class="form-control numeral-mask3" placeholder="Rp."
-                                            name="karyawan" id="karyawan" required/>
+                                        <label class="form-label" for="numeral-formatting"><small
+                                                class="text-danger">*</small>Biaya Karyawan</label>
+                                        <input type="text" class="form-control numeral-mask3" placeholder="Isi 0 Jika Tidak Ada"
+                                            name="karyawan" id="karyawan" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya Telpon</label>
-                                        <input type="text" class="form-control numeral-mask5" placeholder="Rp."
-                                            name="telpon" id="telpon" required/>
+                                        <label class="form-label" for="numeral-formatting"><small
+                                                class="text-danger">*</small>Biaya Telpon</label>
+                                        <input type="text" class="form-control numeral-mask5" placeholder="Isi 0 Jika Tidak Ada"
+                                            name="telpon" id="telpon" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*</small>Biaya Sewa
+                                        <label class="form-label" for="numeral-formatting"><small
+                                                class="text-danger">*</small>Biaya Sewa
                                             Kios</label>
-                                        <input type="text" class="form-control numeral-mask4" placeholder="Rp."
-                                            name="sewa" id="sewa" required/>
+                                        <input type="text" class="form-control numeral-mask4" placeholder="Isi 0 Jika Tidak Ada"
+                                            name="sewa" id="sewa" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="fotonota"><small class="text-danger">*
                                             </small>Upload Nota Pembelanjaan</label>
                                         <input type="file" name="foto[6][foto]" id="fotonota" rows="3"
                                             class="form-control" required />
-                                        <input type="hidden" name="foto[6][kategori]" value="Foto Nota Pembelanjaan" rows="3"
-                                            class="form-control" required>
+                                        <input type="hidden" name="foto[6][kategori]" value="Foto Nota Pembelanjaan"
+                                            rows="3" class="form-control" required>
                                     </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev" type="button">
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
+                                    </div>
+
                                 </div>
+                            </div>
+                            <div id="form8" class="content" role="tabpanel"
+                                aria-labelledby="personal-info-modern-trigger">
                                 <div class="content-header">
                                     <h5 class="mb-0">Data Pengeluaran Anda</h5>
                                     <small>Data Pengeluaran Nasabah Anda</small>
@@ -546,14 +734,14 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small
                                                 class="text-danger">*</small>Pengeluaran Lainnya</label>
-                                        <input type="text" class="form-control numeral-mask7" placeholder="Rp."
-                                            name="keb_keluarga" id="kebkeluarga" required/>
+                                        <input type="text" class="form-control numeral-mask7" placeholder="Isi 0 Jika Tidak Ada"
+                                            name="keb_keluarga" id="kebkeluarga" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting"><small
                                                 class="text-danger">*</small>Keterangan Pengeluaran Lainnya</label>
                                         <input type="text" class="form-control" placeholder="Keterangan Pengeluaran"
-                                            name="keterangan_keb_keluarga" id="kebkeluarga" required/>
+                                            name="keterangan_keb_keluarga" id="kebkeluarga" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="aset">Aset / Harta Benda</label>
@@ -564,7 +752,8 @@
                                         <label class="form-label" for="numeral-formatting"><small
                                                 class="text-danger">*</small>Kesanggupan Angsuran</label>
                                         <input type="text" class="form-control numeral-mask8"
-                                            name="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran" required/>
+                                            name="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran"
+                                            required />
                                     </div><br>
                                 </div>
                                 <div class="d-flex justify-content-between">
@@ -575,6 +764,12 @@
                                     <button type="submit" class="btn btn-success btn-submit">Submit</button>
                                 </div>
                             </div>
-                        
-    <!-- END: Content-->
+
+                            <!-- END: Content-->
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 @endsection
