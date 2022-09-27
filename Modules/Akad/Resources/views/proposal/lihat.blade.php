@@ -167,12 +167,6 @@
                                                             </div>
                                                             <div class="modal-body px-sm-5 mx-50 pb-5">
                                                                 <form action="/staff/proposal" method="POST">
-                                                                    <h5 class="text-center">Tuliskan catatan mengapa akad
-                                                                        batal!</h5>
-                                                                    <br />
-                                                                    <textarea class="form-control" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
-                                                                    <br />
-
                                                                     @csrf
                                                                     @if ($pembiayaan->form_permohonan_jenis_akad_pembayaran == 'Akad Lainnya')
                                                                         <input type="hidden" name="akad"
@@ -192,12 +186,17 @@
                                                                         value="{{ $pembiayaan->form_permohonan_harga_jual }}" />
                                                                     <input type="hidden" name="status"
                                                                         value="Akad Batal" />
+                                                                    <h5 class="text-center">Tuliskan catatan mengapa akad
+                                                                        batal!</h5>
+                                                                    <br />
+                                                                    <textarea class="form-control" name="catatan" rows="3" placeholder="Catatan Anda"></textarea>
                                                                     <input type="hidden" name="form_ppr_pembiayaan_id"
                                                                         value="{{ $pembiayaan->id }}" />
                                                                     <input type="hidden" name="status_id"
                                                                         value="10" />
                                                                     <input type="hidden" name="cek_staff_akad"
                                                                         value="Sudah" />
+                                                                    <br />
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <button type="button"

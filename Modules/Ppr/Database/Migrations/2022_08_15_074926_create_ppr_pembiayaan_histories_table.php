@@ -19,8 +19,10 @@ return new class extends Migration
             $table->integer('form_ppr_pembiayaan_id');
             $table->string('status_id');
             $table->string('jabatan_id');
+            $table->string('divisi_id')->nullable();
             $table->string('catatan')->nullable();
             $table->string('user_id')->nullable();
+            $table->string('cek_staff_akad')->nullable()->default('Belum');
 
             $table->timestamps();
         });

@@ -106,9 +106,9 @@
                                                         class="badge rounded-pill badge-light-info">{{ $history->statusHistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>
                                                 @elseif ($history->statusHistory->id == 10)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-info">{{ $history->statusHistory->keterangan }}
-                                                    </span>
+                                                    <a class="badge rounded-pill badge-light-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#modalCatatanAkadBatal-{{ $history->id }}">{{ $history->statusHistory->keterangan }}
+                                                    </a>
                                                 @else
                                                     <span
                                                         class="badge rounded-pill badge-light-warning">{{ $history->statusHistory->keterangan }}
@@ -123,6 +123,38 @@
                                                     class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
+                                    @endforeach
+                                    @foreach ($proposals as $forCatatanModal)
+                                        @php
+                                            $historyCatatan = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $forCatatanModal->id)
+                                                ->latest()
+                                                ->first();
+                                        @endphp
+                                        <!-- Modal Catatan Akad Batal -->
+                                        <div class="modal fade" id="modalCatatanAkadBatal-{{ $historyCatatan->id }}"
+                                            tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-transparent">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                        <h5 class="text-center">Catatan</h5>
+                                                        <br />
+                                                        <textarea class="form-control" name="catatan" rows="3" placeholder="Catatan">{{ $historyCatatan->catatan }}</textarea>
+                                                        <br />
+                                                        <div class="row">
+                                                            <div class="col-md-6" style="width:150px; margin:0 auto;">
+                                                                <button type="button" class="btn btn-primary w-100"
+                                                                    data-bs-dismiss="modal">Tutup</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /Modal Catatan Akad Batal -->
                                     @endforeach
                                 </tbody>
                             </table>

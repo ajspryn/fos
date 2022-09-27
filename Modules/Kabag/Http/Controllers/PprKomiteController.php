@@ -32,11 +32,7 @@ class PprKomiteController extends Controller
      */
     public function index()
     {
-        $komite = PprPembiayaanHistory::select()
-            ->where('status_id', 3)
-            ->orderby('created_at', 'desc')
-            ->get();
-
+        $komite = FormPprPembiayaan::select()->get();
         return view('kabag::ppr.komite.index', [
             'title' => 'Data Komite PPR',
             'proposals' => $komite,
@@ -114,16 +110,14 @@ class PprKomiteController extends Controller
 
         $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
 
-        //Angsuran & Plafond
-        $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
-        $margin = 0.9 / 100;
+        //Perhitungan Margin, Harga Jual & Angsuran
+        $hpp = $pembiayaan->form_permohonan_nilai_hpp;
         $tenor = $pembiayaan->form_permohonan_jml_bulan;
-
-        //Angsuran
-        $angsuran = ($plafond * $margin) / (1 - (1 / (1 + $margin)) ** $tenor);
-
-        //Plafond
-        $plafondMaks = ($angsuran / $margin) * (1 - (1 / (1 + $margin)) ** $tenor);
+        $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $hpp);
+        $marginRp = $hpp * $persenMargin;
+        $hargaJual = $hpp + $marginRp;
+        $angsuran = $hargaJual / $tenor;
+        $plafondMaks = $hpp;
 
         //Usia Nasabah
         $usiaNasabah = Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir)->age;
@@ -135,6 +129,11 @@ class PprKomiteController extends Controller
             'nasabah' => FormPprDataPribadi::select()->where('id', $id)->get()->first(),
             'usiaNasabah' => $usiaNasabah,
             'scoring' => PprScoring::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'hpp' => $hpp,
+            'tenor' => $tenor,
+            'persenMargin' => $persenMargin,
+            'marginRp' => $marginRp,
+            'hargaJual' => $hargaJual,
             'angsuran' => $angsuran,
             'plafondMaks' => $plafondMaks,
             'timelines' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->get(),
