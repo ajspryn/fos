@@ -100,7 +100,7 @@ foreach ($pprs as $ppr) {
             <div class="content-body">
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
-                    <div class="row match-height">>
+                    <div class="row match-height">
                         <!-- Statistics Card -->
                         <div class="col-xl-12 col-md-6 col-12">
                             <div class="card card-statistics">
@@ -172,8 +172,39 @@ foreach ($pprs as $ppr) {
                         <!--/ Statistics Card -->
                     </div>
 
+
+                    @php
+                        $disbursepasar = 0;
+                        foreach ($cairpasars as $cairpasar) {
+                            $harga = $cairpasar->harga;
+                        
+                            $disbursepasar = $disbursepasar + $harga;
+                        }
+                        
+                        $disburseumkm = 0;
+                        foreach ($cairumkms as $cairumkm) {
+                            $harga = $cairumkm->harga;
+                        
+                            $disburseumkm = $disburseumkm + $harga;
+                        }
+                        
+                        $disburseskpd = 0;
+                        foreach ($cairskpds as $cairskpd) {
+                            $harga = $cairskpd->harga;
+                        
+                            $disburseskpd = $disburseskpd + $harga;
+                        }
+                        
+                        $disburseppr = 0;
+                        foreach ($cairpprs as $cairppr) {
+                            $harga = $cairppr->form_permohonan_nilai_hpp;
+                        
+                            $disburseppr = $disburseppr + $harga;
+                        }
+                        
+                    @endphp
                     <div class="row">
-                        <div class="col-xl-3 col-md-4 col-sm-6">
+                        <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-info p-50 mb-1">
@@ -186,7 +217,7 @@ foreach ($pprs as $ppr) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
+                        <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-info p-50 mb-1">
@@ -194,39 +225,43 @@ foreach ($pprs as $ppr) {
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Proposal</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                            <div class="card text-center">
-                                <div class="card-body">
-                                    <div class="avatar bg-light-info p-50 mb-1">
-                                        <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Komite</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                            <div class="card text-center">
-                                <div class="card-body">
-                                    <div class="avatar bg-light-info p-50 mb-1">
-                                        <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="fw-bolder">0</h2>
+                                    <h2 class="fw-bolder">
+                                        {{ number_format($disburseskpd + $disburseumkm + $disbursepasar + $disburseppr) }}
+                                    </h2>
                                     <p class="card-text">Disburse</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Charts -->
+                    <div class="row match-height">
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5>Total Proposal Per Bulan</h5>
+                                    <canvas id="chartProposal" width="100" height="100"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5>Proposal Per Segmen</h5>
+                                    <canvas id="chartSegmen" width="100" height="100"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5>Total Disburse Per Bulan</h5>
+                                    <canvas id="chartDisburse" width="100" height="100"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Charts -->
                     {{-- <div class="row match-height">
                         <div class="col-lg-4 col-12">
                             <div class="row match-height">
@@ -334,4 +369,175 @@ foreach ($pprs as $ppr) {
         </div>
     </div>
     <!-- END: Content-->
+
+    <!-- Charts Script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+    <!-- Chart Proposal Per Bulan -->
+    <script>
+        var labelProposal = JSON.parse('{!! json_encode($bulans) !!}');
+        var dataProposal = JSON.parse('{!! json_encode($hitungPerBulan) !!}');
+
+        var ctx = document.getElementById('chartProposal');
+        var chartProposal = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labelProposal,
+                datasets: [{
+                    label: "Total Proposal Per Bulan",
+                    data: dataProposal,
+                    backgroundColor: [
+                        'rgba(203, 38, 33, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(203, 38, 33, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: {
+                            precision: 0,
+                            beginAtZero: true,
+                            callback: (yValue) => {
+                                return Math.floor(yValue);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- /Chart Proposal Per Bulan -->
+
+    <!-- Chart Proposal Per Segmen -->
+    <script>
+        var labelSegmen = JSON.parse('{!! json_encode($labelSegmen) !!}');
+        var dataSegmen = JSON.parse('{!! json_encode($dataSegmen) !!}');
+
+        var ctx = document.getElementById('chartSegmen');
+        var chartSegmen = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labelSegmen,
+                datasets: [{
+                    label: "Proposal Per Segmen",
+                    data: dataSegmen,
+                    backgroundColor: [
+                        'rgba(203, 38, 33, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(203, 38, 33, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        align: 'start',
+                        labels: {
+                            boxWidth: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- /Chart Proposal Per Segmen -->
+
+    <!-- Chart Disburse -->
+    <script>
+        var labelDisburse = JSON.parse('{!! json_encode($labelDisburse) !!}');
+        var dataDisburse = JSON.parse('{!! json_encode($dataDisburse) !!}');
+
+        var ctx = document.getElementById('chartDisburse');
+        var chartDisburse = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labelDisburse,
+                datasets: [{
+                    label: "Total Disburse Per Bulan",
+                    data: dataDisburse,
+                    backgroundColor: [
+                        'rgba(203, 38, 33, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(203, 38, 33, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: {
+                            precision: 0,
+                            beginAtZero: true,
+                        },
+                        tooltipTemplate: "<%= addCommas(value) %>"
+                    }
+                }
+            }
+        });
+
+        function addCommas(nStr) {
+            nStr += '';
+            x = nStr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            return x1 + x2;
+        }
+    </script>
+    <!-- /Chart Disburse -->
 @endsection

@@ -1,4 +1,3 @@
-
 @extends('akad::layouts.main')
 @php
 $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
@@ -16,11 +15,10 @@ foreach ($proposals as $proposal) {
         ->orderby('created_at', 'desc')
         ->get()
         ->first();
-    if (($history->jabatan_id == 4 && $history->status_id == 5)){
+    if ($history->jabatan_id == 4 && $history->status_id == 5) {
         $proposalskpd++;
     }
 }
-
 
 $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
 
@@ -36,7 +34,7 @@ foreach ($pasars as $pasar) {
         ->where('id', $history->pasar_pembiayaan_id)
         ->get()
         ->first();
-        if (($history->jabatan_id == 4 && $history->status_id == 5)){
+    if ($history->jabatan_id == 4 && $history->status_id == 5) {
         $proposalpasar++;
     }
 }
@@ -58,7 +56,7 @@ foreach ($umkms as $umkm) {
         ->get()
         ->first();
 
-    if (($history->jabatan_id == 4 && $history->status_id == 5)) {
+    if ($history->jabatan_id == 4 && $history->status_id == 5) {
         $proposalumkm++;
     }
 }
@@ -79,7 +77,7 @@ foreach ($pprs as $ppr) {
         ->orderBy('created_at', 'desc')
         ->get()
         ->first();
-        if (($history->jabatan_id == 4 && $history->status_id == 5)) {
+    if ($history->jabatan_id == 4 && $history->status_id == 5) {
         $proposalppr++;
     }
 }
@@ -168,7 +166,7 @@ foreach ($pprs as $ppr) {
                     </div> --}}
 
                     <div class="row">
-                        <div class="col-xl-6 col-md-4 col-sm-6">
+                        <div class="col-xl-4 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-info p-50 mb-1">
@@ -176,12 +174,27 @@ foreach ($pprs as $ppr) {
                                             <i data-feather="clipboard" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ $proposalskpd+$proposalpasar+$proposalumkm+  $proposalppr}}</h2>
+                                    <h2 class="fw-bolder">
+                                        {{ $proposalskpd + $proposalpasar + $proposalumkm + $proposalppr }}
+                                    </h2>
                                     <p class="card-text">Proposal Akad</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-md-4 col-sm-6">
+                        <div class="col-xl-4 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="avatar bg-light-danger p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="x-circle" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">{{ $akadBatal }}</h2>
+                                    <p class="card-text">Akad Batal</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-success p-50 mb-1">
@@ -189,8 +202,8 @@ foreach ($pprs as $ppr) {
                                             <i data-feather="check-circle" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">AKad Selesai</p>
+                                    <h2 class="fw-bolder">{{ $akadSelesai }}</h2>
+                                    <p class="card-text">Akad Selesai</p>
                                 </div>
                             </div>
                         </div>

@@ -3,6 +3,7 @@
 namespace Modules\Skpd\Http\Controllers;
 
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Skpd\Entities\SkpdJaminan;
@@ -10,6 +11,7 @@ use Modules\Skpd\Entities\SkpdNasabah;
 use Modules\Skpd\Entities\SkpdPembiayaan;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Modules\Skpd\Entities\SkpdFoto;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
 use Modules\Skpd\Entities\SkpdOrangTerdekat;
@@ -23,9 +25,84 @@ class SkpdController extends Controller
      */
     public function index()
     {
+        $target1 = SkpdPembiayaan::join('skpd_pembiayaan_histories','skpd_pembiayaans.id','=','skpd_pembiayaan_histories.skpd_pembiayaan_id')
+        ->select()
+        ->where('skpd_pembiayaans.user_id',  Auth::user()->id)
+        ->where('skpd_pembiayaan_histories.jabatan_id', 4)
+        ->where('skpd_pembiayaan_histories.status_id', 5)
+        ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
+        ->get();
 
+        $pipeline = SkpdPembiayaan::select()
+        ->where('user_id',  Auth::user()->id)
+        ->whereYear('tanggal_pengajuan', date('Y'))
+        ->count();
+
+
+        $pasars = SkpdPembiayaan::selectRaw('count(id) as total, created_at')->where('user_id', Auth::user()->id)->groupBy('created_at')->get();
+
+        $labels = [];
+        $datapasar = [];
+        foreach ($pasars as $pasar) {
+            $labels[] = $pasar['created_at'];
+            $datapasar[] = $pasar['total'];
+        }
+
+
+        //piechart 
+        $rttotals = DB::table('skpd_instansis as jp')
+            ->join('skpd_pembiayaans as pp', 'pp.skpd_instansi_id', '=', 'jp.id')
+            ->select('jp.*', 'pp.*', DB::raw('count(*) as total_noa'))
+            ->groupBy('pp.skpd_instansi_id')
+            ->where('pp.user_id', Auth::user()->id)
+            ->get();
+
+        $plabel = [];
+        $pdatainstansi = [];
+        foreach ($rttotals as $rttotal) {
+            $plabel[] = $rttotal->nama_instansi;
+            $pdatainstansi[] = $rttotal->total_noa;
+        }
+
+        $plafonds = SkpdPembiayaan::join('skpd_pembiayaan_histories','skpd_pembiayaans.id','=','skpd_pembiayaan_histories.skpd_pembiayaan_id')
+        ->select(DB::raw("MONTHNAME(skpd_pembiayaans.tanggal_pengajuan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
+        ->where('skpd_pembiayaan_histories.jabatan_id', 4)
+        ->where('skpd_pembiayaan_histories.status_id', 5)
+        ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
+        ->groupBy(DB::raw("nama_bulan"))
+        ->orderBy('skpd_pembiayaans.id', 'ASC')
+        ->pluck('jml_plafond', 'nama_bulan');
+
+   
+        $bulanplafonds = $plafonds->keys();
+        $hitungPerBulan = $plafonds->values();
+
+
+        $data = SkpdPembiayaan::select('id', 'created_at')->where('user_id', Auth::user()->id)->get()->groupBy(function ($data) {
+            return Carbon::parse($data->created_at)->format('M');
+        });
+
+        $bulans = [];
+        $hitungBulan = [];
+        foreach ($data as $bulan => $values) {
+            $bulans[] = $bulan;
+            $hitungBulan[] = count($values);
+        }
+
+        // return $bulans;
         return view('skpd::index', [
             'title' => 'Dashboard SKPD',
+            'target1'=>$target1,
+            'pipeline'=>$pipeline,
+            'labels' => $labels,
+            'datainstansi' => $datapasar,
+            'plabels' => $plabel,
+            'pdatainstansis' => $pdatainstansi,
+            'labelplafonds'=>$bulanplafonds,
+            'dataplafonds'=>$hitungPerBulan,
+            'bulans'=>$bulans,
+            'hitungBulan'=>$hitungBulan,
+
         ]);
     }
 

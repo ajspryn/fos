@@ -38,7 +38,7 @@
                                             <th style="text-align: center">No</th>
                                             <th style="text-align: center">Tanggal Pengajuan</th>
                                             <th style="text-align: center">Nama Nasabah</th>
-                                            <th style="text-align: center">Actionn</th>
+                                            <th style="text-align: center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -57,9 +57,10 @@
                                                 </td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_skpd->nasabah->nama_nasabah }}</td>
-                                                <td style="text-align: center">
-                                                    <a href="/" class="btn btn-outline-info round">Detail</a>
-                                                </td>
+                                                    <td style="text-align: center">
+                                                        <a href="/staff/proposal/skpd/{{ $proposal_skpd->id }}"
+                                                            class="btn btn-outline-info round">Detail</a>
+                                                    </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -81,7 +82,7 @@
                                             <th style="text-align: center">No</th>
                                             <th style="text-align: center">Tanggal Pengajuan</th>
                                             <th style="text-align: center">Nama Nasabah</th>
-                                            <th style="text-align: center">Actionn</th>
+                                            <th style="text-align: center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -101,7 +102,8 @@
                                                 <td style="text-align: center">
                                                     {{ $proposal_pasar->nasabahh->nama_nasabah }}</td>
                                                 <td style="text-align: center">
-                                                    <a href="/" class="btn btn-outline-info round">Detail</a>
+                                                    <a href="/staff/proposal/pasar/{{ $proposal_pasar->id }}"
+                                                        class="btn btn-outline-info round">Detail</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -125,7 +127,7 @@
                                             <th style="text-align: center">No</th>
                                             <th style="text-align: center">Tanggal Pengajuan</th>
                                             <th style="text-align: center">Nama Nasabah</th>
-                                            <th style="text-align: center">Actionn</th>
+                                            <th style="text-align: center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -144,9 +146,10 @@
                                                 </td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_umkm->nasabahh->nama_nasabah }}</td>
-                                                <td style="text-align: center">
-                                                    <a href="/" class="btn btn-outline-info round">Detail</a>
-                                                </td>
+                                                    <td style="text-align: center">
+                                                        <a href="/staff/proposal/umkm/{{ $proposal_umkm->id }}"
+                                                            class="btn btn-outline-info round">Detail</a>
+                                                    </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -170,7 +173,7 @@
                                             <th style="text-align: center">No</th>
                                             <th style="text-align: center">Tanggal Pengajuan</th>
                                             <th style="text-align: center">Nama Nasabah</th>
-                                            <th style="text-align: center">Actionn</th>
+                                            <th style="text-align: center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -183,7 +186,6 @@
                                             @endphp
 
                                             <tr>
-
                                                 <td style="text-align: center">{{ $loop->iteration }}</td>
                                                 <td style="text-align: center">
                                                     {{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
@@ -191,7 +193,10 @@
                                                 <td style="text-align: center">
                                                     {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
                                                 <td style="text-align: center">
-                                                    <a href="/" class="btn btn-outline-info round">Detail</a>
+                                                    {{-- <button class="btn btn-outline-info round" type="button"
+                                                        data-bs-toggle="modal"data-bs-target="#modalAkadPpr">Detail</button> --}}
+                                                    <a href="/staff/proposal/ppr/{{ $proposal_ppr->id }}"
+                                                        class="btn btn-outline-info round">Detail</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -200,6 +205,90 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modals -->
+                    <div class="modal fade" id="modalAkadPpr" tabindex="-1" aria-labelledby="addNewCardTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-transparent">
+                                    <h5 class="modal-title" id="pilihPendapatanTitle">
+                                        Title
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body ">
+                                    <div class="row">
+                                        {{-- <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="pe-1">&emsp;&nbsp;&nbsp;Nama Nasabah</td>
+                                                    <td>:
+                                                        {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">&emsp;&nbsp;&nbsp;Jenis Nasabah</td>
+                                                    <td>:
+                                                        {{ $proposal_ppr->jenis_nasabah }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-1">&emsp;&nbsp;&nbsp;Tanggal Pengajuan</td>
+                                                    <td>:
+                                                        {{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
+                                                    </td>
+                                                </tr>
+                                        </table> --}}
+                                        <div class="col-md-12">
+                                            <form action="">
+                                                <input type="hidden" name="" value="" />
+                                                <button type="submit"
+                                                    class="btn btn-warning btn-block form-control">Cetak
+                                                    Akad
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <form action="">
+                                                <input type="hidden" name="" value="" />
+                                                <button type="submit" class="btn btn-primary btn-block form-control">Akad
+                                                    Batal
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @csrf
+                                            @foreach ($proposalpprs as $proposalppre)
+                                                @php
+                                                    $proposal_ppra = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                        ->where('id', $proposalppre->form_ppr_pembiayaan_id)
+                                                        ->get()
+                                                        ->first();
+                                                @endphp
+                                                <input type="hidden" name="segmen" value="PPR" />
+                                                <input type="hidden" name="cif"
+                                                    value="{{ $proposal_ppra->pemohon->id }}" />
+                                                <input type="hidden" name="kode_tabungan"
+                                                    value="{{ $proposal_ppra->id }}" />
+                                                <input type="hidden" name="plafond"
+                                                    value="{{ $proposal_ppra->form_permohonan_nilai_ppr_dimohon }}" />
+                                                <input type="hidden" name="harga_jual"
+                                                    value="{{ $proposal_ppra->form_permohonan_harga_jual }}" />
+                                            @endforeach
+                                            <button type="submit" class="btn btn-success btn-block form-control">Selesai
+                                                Akad
+                                            </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ Modals -->
 
                 </section>
                 <!--/ Basic table -->

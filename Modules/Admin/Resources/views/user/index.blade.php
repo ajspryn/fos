@@ -10,14 +10,14 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Pengaturan Akad</h2>
+                            <h2 class="content-header-title float-start mb-0">Pengaturan Role User</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">Pengaturan
+                                    <li class="breadcrumb-item">User
                                     </li>
-                                    <li class="breadcrumb-item active">SKPD
+                                    <li class="breadcrumb-item active">Data User
                                     </li>
-                                    <li class="breadcrumb-item active"><a href="#">Akad</a>
+                                    <li class="breadcrumb-item active"><a href="#">Role User</a>
                                     </li>
                                 </ol>
                             </div>
@@ -32,24 +32,38 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Form Akad</h4>
+                                    <h4 class="card-title">Form Role User</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form class="form" method="post" action="/admin/skpd/akad">
+                                    <form class="form" method="post" action="/admin/user">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Kode Akad</label>
+                                                    <label class="form-label" for="first-name-column">User ID</label>
                                                     <input type="number" id="first-name-column" class="form-control"
-                                                        placeholder="Isikan Kode Jaminan" name="kode_akad" />
+                                                        placeholder="Isikan User ID" name="user_id" />
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Jenis Akad</label>
+                                                    <label class="form-label" for="first-name-column">Role ID</label>
                                                     <input type="text" id="first-name-column" class="form-control"
-                                                        placeholder="Isikan Nama Akad" name="nama_akad" />
+                                                        placeholder="Isikan Role" name="role_id" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Divisi ID</label>
+                                                    <input type="text" id="first-name-column" class="form-control"
+                                                        placeholder="Isikan Divisi" name="divisi_id" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Jabatan ID</label>
+                                                    <input type="text" id="first-name-column" class="form-control"
+                                                        placeholder="Isikan Jabatan" name="jabatan_id" />
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -63,7 +77,6 @@
                         </div>
                     </div>
                 </section>
-                <!-- Basic table -->
                 <section id="basic-datatable">
                     <div class="row">
                         <div class="col-12">
@@ -83,14 +96,15 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($users as $user)
+
                                             <tr>
                                                 <td style="text-align: center"></td>
-                                                <td style="text-align: center">{{ $loop->iteration }}</td>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->role_id }}</td>
-                                                <td>{{ $user->divisi_id }}</td>
-                                                <td>{{ $user->jabatan_id }}</td>
+                                                <td style="text-align: center">{{ $user->id }}</td>
+                                                <td style="text-align: center">{{ $user->name }}</td>
+                                                <td style="text-align: center">{{ $user->email }}</td>
+                                                <td style="text-align: center">{{ $user->role_id }}</td>
+                                                <td style="text-align: center">{{ $user->divisi_id }}</td>
+                                                <td style="text-align: center">{{ $user->jabatan_id }}</td>
                                                 <td style="text-align: center">
                                                     <div class="dropdown">
                                                         <button type="button"
@@ -100,7 +114,7 @@
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
                                                             <a class="dropdown-item"
-                                                                href="admin/user/{{ $user->id }}/edit">
+                                                                href="/admin/user/{{ $user->id }}/edit">
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>

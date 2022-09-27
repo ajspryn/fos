@@ -123,18 +123,12 @@ foreach ($umkms as $umkm) {
                     @php
                     $cair = 0;
                     foreach ($target1 as $target) {
-                        $tenor = $target->tenor;
-                        $harga = $target->nominal_pembiayaan;
-                        $rate = $target->rate;
-                        $margin = ($rate * $tenor) / 100;
-                    
-                        $harga1 = $harga * $margin;
-                        $harga_jual = $harga1 + $harga;
+                        $harga_jual = $target->nominal_pembiayaan;
                     
                         $cair = $cair + $harga_jual;
                     }
                 @endphp
-                    <div class="row">
+                    <div class="row match-height">
                         <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">

@@ -135,17 +135,31 @@ foreach ($komites as $komite) {
 
                     @php
                     $cair = 0;
-                    foreach ($target1 as $target) {
-                        $tenor = $target->tenor;
-                        $harga = $target->harga;
-                        $rate = $target->rate;
-                        $margin = ($rate * $tenor) / 100;
-                    
-                        $harga1 = $harga * $margin;
-                        $harga_jual = $harga1 + $harga;
-                    
-                        $cair = $cair + $harga_jual;
-                    }
+                            foreach ($target1 as $target) {
+                                $harga_jual = $target->harga;
+                            
+                                $cair = $cair + $harga_jual;
+                            
+                                $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
+                            
+                                $pipeline1 = 0;
+                                foreach ($pasars as $pasar) {
+                                    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+                                        ->where('pasar_pembiayaan_id', $pasar->id)
+                                        ->orderby('created_at', 'desc')
+                                        ->get()
+                                        ->first();
+                            
+                                    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+                                        ->where('id', $history->pasar_pembiayaan_id)
+                                        ->get()
+                                        ->first();
+                                    if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                                        if($history->status_id != 6)
+                                        $pipeline1++;
+                                    }
+                                }
+                            }
                 @endphp
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">
@@ -156,7 +170,7 @@ foreach ($komites as $komite) {
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ $pipeline }}</h2>
+                                    <h2 class="fw-bolder">{{ $pipeline1 }}</h2>
                                     <p class="card-text">Pipeline</p>
                                 </div>
                             </div>
@@ -178,7 +192,7 @@ foreach ($komites as $komite) {
                     </div>
                 </section>
        
-                <div class="row" >
+                <div class="row match-height" >
                     <!-- Donut Chart Starts -->
                     <div class="col-lg-4 col-12">
                         <div class="card">
@@ -261,7 +275,7 @@ foreach ($komites as $komite) {
 
         var ctx = document.getElementById("myPiechart");
         var myPiechart = new Chart(ctx, {
-            type: 'doughnut',
+            type: 'pie',
             data: {
                 labels: _plabels,
                 datasets: [{
@@ -308,6 +322,7 @@ foreach ($komites as $komite) {
                     borderWidth: 1
                 }]
             },
+            options: {
             plugins: {
                 legend: {
                     display: false
@@ -318,6 +333,7 @@ foreach ($komites as $komite) {
                     beginAtZero: true
                 }
             }
+        }
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>

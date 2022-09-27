@@ -98,10 +98,17 @@
                                                     <span
                                                         class="badge rounded-pill badge-light-success">{{ $history->statusHistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>
+                                                @elseif ($history->statusHistory->id == 9)
+                                                    <span class="badge rounded-pill badge-light-success">
+                                                        {{ $history->statusHistory->keterangan }}</span>
                                                 @elseif ($history->statusHistory->id == 4)
                                                     <span
                                                         class="badge rounded-pill badge-light-info">{{ $history->statusHistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>
+                                                @elseif ($history->statusHistory->id == 10)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-info">{{ $history->statusHistory->keterangan }}
+                                                    </span>
                                                 @else
                                                     <span
                                                         class="badge rounded-pill badge-light-warning">{{ $history->statusHistory->keterangan }}

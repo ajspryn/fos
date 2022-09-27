@@ -4,12 +4,25 @@
 $proposal1 = Modules\Umkm\Entities\UmkmPembiayaan::select()
     ->where('AO_id', Auth::user()->id)
     ->get();
-$diterima = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id', 5)
-    ->where('jabatan_id', 4)
-    // ->where('Umkm_pembiayaan_id',$proposal1->id)
-    ->get()
-    ->count();
+
+$datas = Modules\Umkm\Entities\UmkmPembiayaan::select()
+    ->where('AO_id', Auth::user()->id)
+    ->get();
+$diterima = 0;
+foreach ($datas as $data) {
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $data->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $history->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 5 && $history->jabatan_id == 4) {
+        $diterima++;
+    }
+}
 
 $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
     ->where('akad_id', null)
@@ -23,11 +36,26 @@ $ditolak = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
     ->get()
     ->count();
 
-$review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+$komites = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
     ->where('status_id', 7)
-    ->orderby('created_at', 'desc')
-    ->get()
-    ->count();
+    ->get();
+
+$review = 0;
+foreach ($komites as $komite) {
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $komite->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $proposal_umkm->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    if ($history->status_id == 7) {
+        $review++;
+    }
+}
 @endphp
 @section('content')
     <!-- BEGIN: Content-->
@@ -45,15 +73,29 @@ $review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
                         @php
                             $cair = 0;
                             foreach ($target1 as $target) {
-                                $tenor = $target->tenor;
-                                $harga = $target->nominal_pembiayaan;
-                                $rate = $target->rate;
-                                $margin = ($rate * $tenor) / 100;
-                            
-                                $harga1 = $harga * $margin;
-                                $harga_jual = $harga1 + $harga;
+                                $harga_jual = $target->nominal_pembiayaan;
                             
                                 $cair = $cair + $harga_jual;
+                            
+                                $datas = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                    ->where('AO_id', Auth::user()->id)
+                                    ->get();
+                                $pipeline1 = 0;
+                                foreach ($datas as $data) {
+                                    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+                                        ->where('umkm_pembiayaan_id', $data->id)
+                                        ->orderby('created_at', 'desc')
+                                        ->get()
+                                        ->first();
+                                    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                        ->where('id', $history->umkm_pembiayaan_id)
+                                        ->get()
+                                        ->first();
+                                    if ($history->status_id != 5 && $history->jabatan_id != 4) {
+                                        if($history->status_id != 6)
+                                        $pipeline1++;
+                                    }
+                                }
                             }
                         @endphp
                         <div class="col-xl-4 col-md-6 col-12">
@@ -74,11 +116,11 @@ $review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
                                             </div>
                                         </div>
                                         <iframe
-                                        src="https://github.com/anars/blank-audio/blob/master/250-milliseconds-of-silence.mp3"
-                                        allow="autoplay" id="audio" style="display: none"></iframe>
+                                            src="https://github.com/anars/blank-audio/blob/master/250-milliseconds-of-silence.mp3"
+                                            allow="autoplay" id="audio" style="display: none"></iframe>
                                         <audio id="player" autoplay>
-                                        <source src="https://github.com/devyFatmawati/audio/blob/main/info.mp3?raw=true"
-                                            type="audio/mp3">
+                                            <source src="https://github.com/devyFatmawati/audio/blob/main/info.mp3?raw=true"
+                                                type="audio/mp3">
                                         </audio>
                                     </div>
                                 @else
@@ -184,7 +226,7 @@ $review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ $pipeline }}</h2>
+                                    <h2 class="fw-bolder">{{ $pipeline1 }}</h2>
                                     <p class="card-text">Pipeline</p>
                                 </div>
                             </div>

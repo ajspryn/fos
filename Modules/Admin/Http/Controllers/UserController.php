@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -14,10 +15,11 @@ class UserController extends Controller
      * @return Renderable
      */
     public function index()
-    {
+    {   $user=Role::Rightjoin('users','roles.user_id','=','users.id')->select()->get();
+        // return $user;
         return view('admin::user.index',[
             'title'=>'Data User',
-            'users'=>User::with('role')->select()->get(),
+            'users'=>$user,
         ]);
     }
 
@@ -37,7 +39,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $request -> validate([
+            'user_id'=> 'required',
+            'role_id'=> 'required',
+            'divisi_id'=> 'required',
+            'jabatan_id'=> 'required',
+        ]);
+
+        $input=$request->all();
+
+        Role::create($input);
+        return redirect()->back()->with('success', 'Data User Berhasil Ditambahkan');
     }
 
     /**
@@ -47,7 +60,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('admin::show');
+      
     }
 
     /**
@@ -57,7 +70,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('admin::edit');
+        $user=User::select()->where('id',$id)->get()->first();
+        return view('admin::show',[
+            'user'=>$user,
+            'title'=>'Data User',
+        ]);
     }
 
     /**
@@ -68,7 +85,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request -> validate([
+            'user_id'=> 'required',
+            'role_id'=> 'required',
+            'divisi_id'=> 'required',
+            'jabatan_id'=> 'required',
+        ]);
+
+        $input=$request->all();
+
+        Role::create($input);
+        return redirect()->back()->with('success', 'Data User Berhasil Ditambahkan');
     }
 
     /**
