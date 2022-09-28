@@ -40,36 +40,33 @@ class KabagController extends Controller
         $pprreview = PprPembiayaanHistory::select()->where('status_id', 7)->orderby('created_at', 'desc')->get()->count();
 
 
-        $cairpasar = PasarPembiayaan::join('pasar_pembiayaan_histories','pasar_pembiayaans.id','=','pasar_pembiayaan_histories.pasar_pembiayaan_id')
-        ->select()
-        ->where('pasar_pembiayaan_histories.jabatan_id', 4)
-        ->where('pasar_pembiayaan_histories.status_id', 5)
-        ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
-        ->get();
+        $cairpasar = PasarPembiayaan::join('pasar_pembiayaan_histories', 'pasar_pembiayaans.id', '=', 'pasar_pembiayaan_histories.pasar_pembiayaan_id')
+            ->select()
+            ->where('pasar_pembiayaan_histories.jabatan_id', 4)
+            ->where('pasar_pembiayaan_histories.status_id', 5)
+            ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
+            ->get();
 
-        
-        $cairumkm = UmkmPembiayaan::join('umkm_pembiayaan_histories','umkm_pembiayaans.id','=','umkm_pembiayaan_histories.umkm_pembiayaan_id')
-        ->select()
-        ->where('umkm_pembiayaan_histories.jabatan_id', 4)
-        ->where('umkm_pembiayaan_histories.status_id', 5)
-        ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
-        ->get();
+        $cairumkm = UmkmPembiayaan::join('umkm_pembiayaan_histories', 'umkm_pembiayaans.id', '=', 'umkm_pembiayaan_histories.umkm_pembiayaan_id')
+            ->select()
+            ->where('umkm_pembiayaan_histories.jabatan_id', 4)
+            ->where('umkm_pembiayaan_histories.status_id', 5)
+            ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
+            ->get();
 
+        $cairskpd = SkpdPembiayaan::join('skpd_pembiayaan_histories', 'skpd_pembiayaans.id', '=', 'skpd_pembiayaan_histories.skpd_pembiayaan_id')
+            ->select()
+            ->where('skpd_pembiayaan_histories.jabatan_id', 4)
+            ->where('skpd_pembiayaan_histories.status_id', 5)
+            ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
+            ->get();
 
-        
-        $cairskpd = SkpdPembiayaan::join('skpd_pembiayaan_histories','skpd_pembiayaans.id','=','skpd_pembiayaan_histories.skpd_pembiayaan_id')
-        ->select()
-        ->where('skpd_pembiayaan_histories.jabatan_id', 4)
-        ->where('skpd_pembiayaan_histories.status_id', 5)
-        ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
-        ->get();
-
-        $cairppr = FormPprPembiayaan::join('ppr_pembiayaan_histories','form_ppr_pembiayaans.id','=','ppr_pembiayaan_histories.form_ppr_pembiayaan_id')
-        ->select()
-        ->where('ppr_pembiayaan_histories.jabatan_id', 4)
-        ->where('ppr_pembiayaan_histories.status_id', 5)
-        ->whereYear('form_ppr_pembiayaans.created_at', date('Y'))
-        ->get();
+        $cairppr = FormPprPembiayaan::join('ppr_pembiayaan_histories', 'form_ppr_pembiayaans.id', '=', 'ppr_pembiayaan_histories.form_ppr_pembiayaan_id')
+            ->select()
+            ->where('ppr_pembiayaan_histories.jabatan_id', 4)
+            ->where('ppr_pembiayaan_histories.status_id', 5)
+            ->whereYear('form_ppr_pembiayaans.created_at', date('Y'))
+            ->get();
 
 
         return view('kabag::index', [
@@ -78,10 +75,10 @@ class KabagController extends Controller
             'diterima' => $pasarditerima + $skpdditerima + $umkmditerima + $pprditerima,
             'tolak' => $pasarditolak + $skpdditolak + $umkmditolak + $pprditolak,
             'review' => $pasarreview + $skpdreview + $umkmreview + $pprreview,
-            'cairpasars'=>$cairpasar,
-            'cairumkms'=>$cairumkm,
-            'cairskpds'=>$cairskpd,
-            'cairpprs'=>$cairppr,
+            'cairpasars' => $cairpasar,
+            'cairumkms' => $cairumkm,
+            'cairskpds' => $cairskpd,
+            'cairpprs' => $cairppr,
         ]);
     }
 
