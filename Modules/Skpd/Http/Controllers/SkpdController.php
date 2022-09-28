@@ -158,6 +158,8 @@ class SkpdController extends Controller
             'id' => $id,
             'nama_nasabah' => $request->nama_nasabah,
             'no_ktp' => $request->no_ktp,
+            'nama_pasangan_nasabah' => $request->nama_pasangan_nasabah,
+            'no_ktp_pasangan' => $request->no_ktp_pasangan,
             'tempat_lahir' => $request->tempat_lahir,
             'tgl_lahir' => $request->tgl_lahir,
             'alamat' => $request->alamat,
