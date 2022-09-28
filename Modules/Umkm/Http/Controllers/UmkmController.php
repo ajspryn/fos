@@ -21,8 +21,8 @@ class UmkmController extends Controller
     {
         
 
-        $data = UmkmPembiayaan::select('id', 'created_at')->where('AO_id', Auth::user()->id)->get()->groupBy(function ($data) {
-            return Carbon::parse($data->created_at)->format('M');
+        $data = UmkmPembiayaan::select('id', 'tgl_pembiayaan')->where('AO_id', Auth::user()->id)->get()->groupBy(function ($data) {
+            return Carbon::parse($data->tgl_pembiayaan)->format('M');
         });
 
         $bulans = [];
@@ -32,12 +32,20 @@ class UmkmController extends Controller
             $hitungBulan[] = count($values);
         }
 
-        $plafonds = UmkmPembiayaan::select(DB::raw("MONTHNAME(umkm_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
+        // $plafonds = UmkmPembiayaan::select(DB::raw("MONTHNAME(umkm_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
+        // ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
+        // ->groupBy(DB::raw("nama_bulan"))
+        // ->orderBy('umkm_pembiayaans.id', 'ASC')
+        // ->pluck('jml_plafond', 'nama_bulan');
+
+        $plafonds = UmkmPembiayaan::join('umkm_pembiayaan_histories','umkm_pembiayaans.id','=','umkm_pembiayaan_histories.umkm_pembiayaan_id')
+        ->select(DB::raw("MONTHNAME(umkm_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
+        ->where('umkm_pembiayaans.AO_id',  Auth::user()->id)
+        ->where('umkm_pembiayaan_histories.status_id', 9)
         ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
         ->groupBy(DB::raw("nama_bulan"))
         ->orderBy('umkm_pembiayaans.id', 'ASC')
         ->pluck('jml_plafond', 'nama_bulan');
-
    
         $bulanplafonds = $plafonds->keys();
         $hitungPerBulan = $plafonds->values();
@@ -45,7 +53,6 @@ class UmkmController extends Controller
         $noas = UmkmPembiayaan::select(DB::raw("MONTHNAME(umkm_pembiayaans.tgl_pembiayaan) as nama_bulan, count(nasabah_id) as noa"))
         ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
         ->groupBy(DB::raw("nama_bulan"))
-        ->orderBy('umkm_pembiayaans.id', 'ASC')
         ->pluck('noa', 'nama_bulan');
 
         $bulannoas = $noas->keys();
@@ -55,8 +62,7 @@ class UmkmController extends Controller
         $target1 = UmkmPembiayaan::join('umkm_pembiayaan_histories','umkm_pembiayaans.id','=','umkm_pembiayaan_histories.umkm_pembiayaan_id')
         ->select()
         ->where('umkm_pembiayaans.AO_id',  Auth::user()->id)
-        ->where('umkm_pembiayaan_histories.jabatan_id', 4)
-        ->where('umkm_pembiayaan_histories.status_id', 5)
+        ->where('umkm_pembiayaan_histories.status_id', 9)
         ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
         ->get();
 
