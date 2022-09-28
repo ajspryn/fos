@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('kode_kontrak');
             $table->string('akad');
             $table->string('segmen');
+            $table->string('ao_id');
             $table->string('cif');
             $table->string('kode_tabungan');
             $table->string('plafond')->nullable();

@@ -2,9 +2,9 @@
 
 @section('content')
     @php
-        $diterima = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-            ->where('status_id', 5)
-            ->where('jabatan_id', 4)
+        $diterima = Modules\Akad\Entities\Pembiayaan::select()
+            ->where('segmen', 'PPR')
+            ->where('status', 'Selesai Akad')
             ->get()
             ->count();
 
@@ -269,16 +269,17 @@
 
     <!-- Chart Jenis Nasabah -->
     <script>
-        var jenisNasabah = JSON.parse('{!! json_encode($jenisNasabah) !!}');
+        var labelJenisNasabah = JSON.parse('{!! json_encode($labelJenisNasabah) !!}');
+        var dataJenisNasabah = JSON.parse('{!! json_encode($dataJenisNasabah) !!}');
 
         var ctx = document.getElementById('chartJenisNasabah');
         var chartJenisNasabah = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Fixed Income', 'Non Fixed Income'],
+                labels: labelJenisNasabah,
                 datasets: [{
                     label: "Jenis Nasabah",
-                    data: jenisNasabah,
+                    data: dataJenisNasabah,
                     backgroundColor: [
                         'rgba(203, 38, 33, 0.7)',
                         'rgba(54, 162, 235, 0.7)',
