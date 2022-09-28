@@ -1044,7 +1044,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $loop->iteration }}</span>
+                                                            style='font-size:9.0pt;font-family:"Times New Roman",serif'>{{ $loop->iteration }}</span>
                                                     </p>
                                                 </td>
                                                 <td width=84 valign=top
@@ -1052,7 +1052,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $idep->nama_bank }}</span>
+                                                            style='font-size:9.0pt;font-family:"Times New Roman",serif'>{{ $idep->nama_bank }}</span>
                                                     </p>
                                                 </td>
                                                 <td width=94 valign=top
@@ -1060,7 +1060,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Rp.
+                                                            style='font-size:9.0pt;font-family:"Times New Roman",serif'>Rp.
                                                             {{ number_format($idep->plafond) }}</span>
                                                     </p>
                                                 </td>
@@ -1069,7 +1069,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Rp.
+                                                            style='font-size:9.0pt;font-family:"Times New Roman",serif'>Rp.
                                                             {{ number_format($idep->outstanding) }}</span>
                                                     </p>
                                                 </td>
@@ -1078,7 +1078,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $idep->tenor }}</span>
+                                                            style='font-size:9.0pt;font-family:"Times New Roman",serif'>{{ $idep->tenor }}</span>
                                                     </p>
                                                 </td>
                                                 <td width=57 valign=top
@@ -1086,7 +1086,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ number_format($idep->margin) }}%</span>
+                                                            style='font-size:9.0pt;font-family:"Times New Roman",serif'>{{ number_format($idep->margin) }}%</span>
                                                     </p>
                                                 </td>
                                                 <td width=130 valign=top
@@ -1094,7 +1094,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center; line-height:normal'>
                                                         <span
-                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Rp.
+                                                            style='font-size:9.0pt;font-family:"Times New Roman",serif'>Rp.
                                                             {{ number_format($idep->angsuran) }}</span>
                                                     </p>
                                                 </td>
@@ -1103,7 +1103,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $idep->agunan }}</span>
+                                                            style='font-size:9.0pt;font-family:"Times New Roman",serif'>{{ $idep->agunan }}</span>
                                                     </p>
                                                 </td>
                                                 <td width=69 valign=top
@@ -1111,7 +1111,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                                     <p class=MsoNormal align=center
                                                         style='margin-bottom:0cm;text-align:center;line-height:normal'>
                                                         <span
-                                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>{{ $idep->kol_tertinggi }}</span>
+                                                            style='font-size:9.0pt;font-family:"Times New Roman",serif'>{{ $idep->kol_tertinggi }}</span>
                                                     </p>
                                                 </td>
                                             </tr>
