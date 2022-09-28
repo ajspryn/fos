@@ -410,7 +410,7 @@
 <body lang=EN-ID style='word-wrap:break-word'>
 
     <div class="center-layout">
-
+        <div class="card-app-design">
         <div class="WordSection1">
 
             <p class=MsoNormal>&nbsp;</p>
@@ -1622,6 +1622,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
 "Times New Roman",serif'>&nbsp;</span>
                         </p>
 
+        </div>
         </div>
     </div>
 
