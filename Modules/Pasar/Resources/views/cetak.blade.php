@@ -852,8 +852,6 @@
                                         </tr>
                                     @endforeach
 
-
-
                                     <tr>
                                         <td width=119 colspan=2 valign=top
                                             style='width:88.9pt;border:solid windowtext 1.0pt;
@@ -865,115 +863,117 @@
                                                     style='font-size:8.0pt;font-family:"Times New Roman",serif'>Total</span>
                                             </p>
                                         </td>
-
+                        </tr>
+                                        </table>
                                         @if ($cekcicilanpasangan > 0)
-
+                                    
+                                <table>
                                     <tr style='height:10.05pt'>
                                         <td width=741 colspan=4 valign=top
                                             style='width:555.55pt;border:solid windowtext 1.0pt;
-                        border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:10.05pt'>
+                    border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:10.05pt'>
                                             <p class=MsoNormal align=center
                                                 style='margin-bottom:0cm;text-align:center;
-                        line-height:normal'>
+                    line-height:normal'>
                                                 <b><span style='font-size:8.0pt;font-family:"Times New Roman",serif'>INFORMASI
-                                                        DEBITUR</span></b>
+                                                        DEBITUR PASANGAN</span></b>
                                             </p>
                                         </td>
                                     </tr>
                                     <tr style='height:79.45pt'>
                                         <td width=741 colspan=4
                                             style='width:555.55pt;border:solid windowtext 1.0pt;
-                        border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:79.45pt'>
+                    border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:79.45pt'>
                                             <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 align=left
                                                 style='border-collapse:collapse;border:none;margin-left:-2.25pt;
-                         margin-right:-2.25pt'>
+                     margin-right:-2.25pt'>
                                                 <tr>
                                                     <td width=34
                                                         style='width:25.8pt;border:solid windowtext 1.0pt;
-                          padding:0cm 5.4pt 0cm 5.4pt'>
+                      padding:0cm 5.4pt 0cm 5.4pt'>
                                                         <p class=MsoNormal align=center
                                                             style='margin-bottom:0cm;text-align:center;
-                          line-height:normal'>
+                      line-height:normal'>
                                                             <b><span
                                                                     style='font-size:8.0pt;font-family:"Times New Roman",serif'>NO</span></b>
                                                         </p>
                                                     </td>
                                                     <td width=84
                                                         style='width:63.1pt;border:solid windowtext 1.0pt;
-                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                      border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
                                                         <p class=MsoNormal align=center
                                                             style='margin-bottom:0cm;text-align:center;
-                          line-height:normal'>
+                      line-height:normal'>
                                                             <b><span
                                                                     style='font-size:8.0pt;font-family:"Times New Roman",serif'>Bank/LK</span></b>
                                                         </p>
                                                     </td>
                                                     <td width=94
                                                         style='width:70.65pt;border:solid windowtext 1.0pt;
-                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                      border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
                                                         <p class=MsoNormal align=center
                                                             style='margin-bottom:0cm;text-align:center;
-                          line-height:normal'>
+                      line-height:normal'>
                                                             <b><span
                                                                     style='font-size:8.0pt;font-family:"Times New Roman",serif'>Plafond</span></b>
                                                         </p>
                                                     </td>
                                                     <td width=118
                                                         style='width:88.85pt;border:solid windowtext 1.0pt;
-                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                      border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
                                                         <p class=MsoNormal align=center
                                                             style='margin-bottom:0cm;text-align:center;
-                          line-height:normal'>
+                      line-height:normal'>
                                                             <b><span
                                                                     style='font-size:8.0pt;font-family:"Times New Roman",serif'>Outstanding</span></b>
                                                         </p>
                                                     </td>
                                                     <td width=74
                                                         style='width:55.6pt;border:solid windowtext 1.0pt;
-                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                      border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
                                                         <p class=MsoNormal align=center
                                                             style='margin-bottom:0cm;text-align:center;
-                          line-height:normal'>
+                      line-height:normal'>
                                                             <b><span
                                                                     style='font-size:8.0pt;font-family:"Times New Roman",serif'>Tenor/Bln</span></b>
                                                         </p>
                                                     </td>
                                                     <td width=57
                                                         style='width:43.05pt;border:solid windowtext 1.0pt;
-                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                      border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
                                                         <p class=MsoNormal align=center
                                                             style='margin-bottom:0cm;text-align:center;
-                          line-height:normal'>
+                      line-height:normal'>
                                                             <b><span
                                                                     style='font-size:8.0pt;font-family:"Times New Roman",serif'>Margin</span></b>
                                                         </p>
                                                     </td>
                                                     <td width=130
                                                         style='width:97.8pt;border:solid windowtext 1.0pt;
-                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                      border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
                                                         <p class=MsoNormal align=center
                                                             style='margin-bottom:0cm;text-align:center;
-                          line-height:normal'>
+                      line-height:normal'>
                                                             <b><span
                                                                     style='font-size:8.0pt;font-family:"Times New Roman",serif'>Angsuran</span></b>
                                                         </p>
                                                     </td>
                                                     <td width=63
                                                         style='width:47.4pt;border:solid windowtext 1.0pt;
-                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                      border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
                                                         <p class=MsoNormal align=center
                                                             style='margin-bottom:0cm;text-align:center;
-                          line-height:normal'>
+                      line-height:normal'>
                                                             <b><span
                                                                     style='font-size:8.0pt;font-family:"Times New Roman",serif'>Agunan</span></b>
                                                         </p>
                                                     </td>
                                                     <td width=69
                                                         style='width:51.95pt;border:solid windowtext 1.0pt;
-                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                      border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
                                                         <p class=MsoNormal align=center
                                                             style='margin-bottom:0cm;text-align:center;
-                          line-height:normal'>
+                      line-height:normal'>
                                                             <b><span
                                                                     style='font-size:8.0pt;font-family:"Times New Roman",serif'>Kol
                                                                     Tertinggi</span></b>
@@ -1060,96 +1060,18 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
-
                                                 <tr>
                                                     <td width=119 colspan=2 valign=top
                                                         style='width:88.9pt;border:solid windowtext 1.0pt;
-                          border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                      border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
                                                         <p class=MsoNormal align=center
                                                             style='margin-bottom:0cm;text-align:center;
-                          line-height:normal'>
+                      line-height:normal'>
                                                             <span
                                                                 style='font-size:8.0pt;font-family:"Times New Roman",serif'>Total</span>
                                                         </p>
                                                     </td>
                                                     @endif
-                                                    <td width=94 valign=top
-                                                        style='width:70.65pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=118 valign=top
-                                                        style='width:88.85pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=74 valign=top
-                                                        style='width:55.6pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=57 valign=top
-                                                        style='width:43.05pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=130 valign=top
-                                                        style='width:97.8pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=63 valign=top
-                                                        style='width:47.4pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=69 valign=top
-                                                        style='width:51.95pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
                                                 </tr>
                                             </table>
                                             <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'></p>

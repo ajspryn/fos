@@ -60,6 +60,7 @@
                                                 ->first();
                                         @endphp
                                         @if ($history->status_id == 7)
+                                      
                                             <tr>
                                                 <td style="text-align: center">
                                                     <button type="button"

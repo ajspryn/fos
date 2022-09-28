@@ -86,6 +86,9 @@ class EditProposalController extends Controller
     {
         $datafoto = PasarFoto::select()->where('pasar_pembiayaan_id', $id)->get();
         $foto = $datafoto;
+        $data = PasarPembiayaan::select()->where('id',$id)->get()->first();
+
+        // return $data;
         return view('pasar::Revisi.lihat', [
             'title' => 'Detail Calon Nasabah',
             'pembiayaan' => PasarPembiayaan::select()->where('id', $id)->get()->first(),
@@ -135,7 +138,7 @@ class EditProposalController extends Controller
     public function update(Request $request, $id)
     { 
             // return $request;
-
+            $data = PasarPembiayaan::select()->where('id',$id)->get()->first();
             PasarPembiayaan::where('id',$id)->update([
                 'id' => $id,
                 'tgl_pembiayaan' => $request->tgl_pembiayaan,
@@ -172,8 +175,11 @@ class EditProposalController extends Controller
                         'dokumen_keuangan' => $dokumen_keuangan,
                     ]);
             }
+            else {
 
-            PasarNasabahh::where('id',$id)->update([
+            }
+
+            PasarNasabahh::where('id',$data->nasabah_id)->update([
                 'nama_nasabah' => $request->nama_nasabah,
                 'no_ktp' => $request->no_ktp,
                 'tmp_lahir' => $request->tmp_lahir,
@@ -219,6 +225,9 @@ class EditProposalController extends Controller
                     'dokumenktb'=> $dokumenktb,
                 ]);
             }
+            else{
+
+            }
            
             if ($request->file('dokumen_jaminan')) {
                 if ($request->dokumenjaminanlama) {
@@ -258,19 +267,13 @@ class EditProposalController extends Controller
                 'no_blok' => $request->blok,
                 'foto_id' => $id,
             ]);
-
+          
             // $request->validate([
             //     'foto.*.kategori' => 'required',
             //     'foto.*.foto' => 'required',
             // ]);
-          
-    
-            $request->validate([
-                'foto.*.kategori' => 'required',
-                'foto.*.foto' => 'required',
-            ]);
             
-           
+            if (request('perbarui_lampiran') == 'Ya') {
             foreach ($request->foto as $key => $value) {
                 if ($value['foto']) {
                     Storage::delete($value['foto_lama']);
@@ -282,6 +285,8 @@ class EditProposalController extends Controller
                         'foto' => $foto,
                     ]);
                 }
+            }} else{
+
             }
 
             if ($request->slik[0]['nama_bank']){

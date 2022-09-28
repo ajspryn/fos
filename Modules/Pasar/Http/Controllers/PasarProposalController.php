@@ -95,6 +95,7 @@ class PasarProposalController extends Controller
             'jaminans'=>PasarJenisJaminan::all(),
             'nasabahs'=>PasarJenisNasabah::all(),
             'sukus'=>PasarSukuBangsa::all(),
+            'jaminanutama' => PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first(), //udah
         ]);
 
     }

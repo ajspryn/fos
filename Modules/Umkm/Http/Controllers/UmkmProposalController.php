@@ -21,6 +21,7 @@ use Modules\Admin\Entities\PasarStatusPerkawinan;
 use Modules\Admin\Entities\PasarSukuBangsa;
 use Modules\Admin\Entities\PasarTanggungan;
 use Modules\Umkm\Entities\UmkmFoto;
+use Modules\Umkm\Entities\UmkmJaminan;
 use Modules\Umkm\Entities\UmkmKeteranganUsaha;
 use Modules\Umkm\Entities\UmkmLegalitasRumah;
 use Modules\Umkm\Entities\UmkmNasabah;
@@ -69,6 +70,7 @@ class UmkmProposalController extends Controller
     public function show($id)
     {
         $pembiayaan = UmkmPembiayaan::select()->where('id', $id)->get()->first();
+        $jaminanutama= UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get()->first();
         return view('umkm::proposal.lihat', [
             'title' => 'Detail Calon Nasabah',
             'pembiayaan' => UmkmPembiayaan::select()->where('id', $id)->get()->first(),
@@ -94,6 +96,7 @@ class UmkmProposalController extends Controller
             'tanggungans' => PasarTanggungan::all(),
             'statuss' => PasarStatusPerkawinan::all(),
             'rumah' => UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id', $pembiayaan->umkm_legalitas_rumah_id)->get()->first(),
+            'jaminanutama' => PasarJenisJaminan::select()->where('kode_jaminan',$jaminanutama->jaminanlain)->get()->first(),
         ]);
     }
 

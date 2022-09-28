@@ -16,7 +16,7 @@ class PasarJaminan extends Model
     
     public function jaminan()
     {
-        return $this->belongsTo(PasarJenisJaminan::class,'jaminan_id', 'id');
+        return $this->belongsTo(PasarJenisJaminan::class,'jaminanlain', 'id');
     }
 
     public function jaminanlain()

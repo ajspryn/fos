@@ -864,8 +864,11 @@
                                                     style='font-size:8.0pt;font-family:"Times New Roman",serif'>Total</span>
                                             </p>
                                         </td>
+                        </tr>
+                                        </table>
                                         @if ($cekcicilanpasangan > 0)
-
+                                    
+                                <table>
                                     <tr style='height:10.05pt'>
                                         <td width=741 colspan=4 valign=top
                                             style='width:555.55pt;border:solid windowtext 1.0pt;
@@ -874,7 +877,7 @@
                                                 style='margin-bottom:0cm;text-align:center;
                     line-height:normal'>
                                                 <b><span style='font-size:8.0pt;font-family:"Times New Roman",serif'>INFORMASI
-                                                        DEBITUR</span></b>
+                                                        DEBITUR PASANGAN</span></b>
                                             </p>
                                         </td>
                                     </tr>
@@ -1058,7 +1061,6 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
-
                                                 <tr>
                                                     <td width=119 colspan=2 valign=top
                                                         style='width:88.9pt;border:solid windowtext 1.0pt;
@@ -1071,83 +1073,6 @@
                                                         </p>
                                                     </td>
                                                     @endif
-                                                    <td width=94 valign=top
-                                                        style='width:70.65pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=118 valign=top
-                                                        style='width:88.85pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=74 valign=top
-                                                        style='width:55.6pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=57 valign=top
-                                                        style='width:43.05pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=130 valign=top
-                                                        style='width:97.8pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=63 valign=top
-                                                        style='width:47.4pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
-                                                    <td width=69 valign=top
-                                                        style='width:51.95pt;border-top:none;border-left:
-      none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-      padding:0cm 5.4pt 0cm 5.4pt'>
-                                                        <p class=MsoNormal align=center
-                                                            style='margin-bottom:0cm;text-align:center;
-      line-height:normal'>
-                                                            <span
-                                                                style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span>
-                                                        </p>
-                                                    </td>
                                                 </tr>
                                             </table>
                                             <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'></p>
