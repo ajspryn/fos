@@ -865,6 +865,8 @@
                                                         <img class="img-fluid rounded mb-75"
                                                             src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
                                                             alt="avatar img" />
+                                                            <iframe src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
+                                                            class="d-block w-100" height='500' weight='800'></iframe>
                                                         <!--/ post img -->
                                                     </div>
                                                 </div>
