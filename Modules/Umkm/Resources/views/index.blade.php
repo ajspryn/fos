@@ -76,7 +76,7 @@ foreach ($komites as $komite) {
                                 $harga_jual = $target->nominal_pembiayaan;
                             
                                 $cair = $cair + $harga_jual;
-                            
+                            }
                                 $datas = Modules\Umkm\Entities\UmkmPembiayaan::select()
                                     ->where('AO_id', Auth::user()->id)
                                     ->get();
@@ -96,7 +96,7 @@ foreach ($komites as $komite) {
                                         $pipeline1++;
                                     }
                                 }
-                            }
+                            
                         @endphp
                         <div class="col-xl-4 col-md-6 col-12">
                             <div class="card card-congratulation-medal">
