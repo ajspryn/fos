@@ -152,7 +152,7 @@ foreach ($komites as $komite) {
                                 $cair = $cair + $harga_jual;
                             }
 
-                            $pasars = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
+                            $datas = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
                         
                             $pipeline1 = 0;
                                 foreach ($datas as $data) {

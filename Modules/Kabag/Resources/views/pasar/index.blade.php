@@ -150,7 +150,7 @@ foreach ($komites as $komite) {
                                 $harga_jual = $target->harga;
                             
                                 $cair = $cair + $harga_jual;
-                            
+                            }
                                 $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
                             
                                 $pipeline1 = 0;
@@ -170,7 +170,6 @@ foreach ($komites as $komite) {
                                         $pipeline1++;
                                     }
                                 }
-                            }
                     @endphp
 
                     <div class="row">

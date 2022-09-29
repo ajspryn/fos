@@ -152,6 +152,24 @@ foreach ($komites as $komite) {
                     
                         $cair = $cair + $harga_jual;
                     }
+                    $datas = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
+                        
+                            $pipeline1 = 0;
+                                foreach ($datas as $data) {
+                                    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+                                        ->where('umkm_pembiayaan_id', $data->id)
+                                        ->orderby('created_at', 'desc')
+                                        ->get()
+                                        ->first();
+                                    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                        ->where('id', $history->umkm_pembiayaan_id)
+                                        ->get()
+                                        ->first();
+                                    if ($history->status_id != 5 && $history->jabatan_id != 4) {
+                                        if($history->status_id != 9)
+                                        $pipeline1++;
+                                    }
+                                }
                 @endphp
 
                     <div class="row">
@@ -163,7 +181,7 @@ foreach ($komites as $komite) {
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ $pipeline }}</h2>
+                                    <h2 class="fw-bolder">{{ $pipeline1 }}</h2>
                                     <p class="card-text">Pipeline</p>
                                 </div>
                             </div>
