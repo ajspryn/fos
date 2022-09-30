@@ -1241,7 +1241,7 @@ ul
         <p class=MsoNormal style='text-align:justify'><b><span style='font-family:"Ottawa",sans-serif'>&nbsp;</span></b></p>
         
         <p class=MsoBodyTextIndent style='margin-left:21.3pt;text-indent:-21.3pt'><b><span
-        style='font-family:"Ottawa",sans-serif'>2.    </span></b><b><span style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabah->nama_nasabah) }}</span></b><span
+        style='font-family:"Ottawa",sans-serif'>2.    </span></b><b><span style='font-family:"Ottawa",sans-serif'>&nbsp;{{ Str::title($pembiayaan->nasabah->nama_nasabah) }}</span></b><span
         style='font-family:"Ottawa",sans-serif'>, dalam hal ini bertindak untuk dan
         atas nama diri sendiri berdasarkan Kartu Tanda Penduduk nomor </span><b><span style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabah->no_ktp }}</span></b><span
         style='font-family:"Ottawa",sans-serif'> untuk melakukan transaksi hukum ini <span
@@ -1988,8 +1988,6 @@ ul
     </span></b>
     
     <p class=MsoNormal style='margin-bottom:0cm'>&nbsp;</p>
-    
-    <u1:p>
     
     <p class=MsoNormal align=center style='margin-top:6.0pt;margin-right:0cm;
     margin-bottom:0cm;margin-left:0cm;text-align:center;line-height:normal;
@@ -3485,7 +3483,7 @@ ul
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif;text-transform: capitalize'>:{{Str::title($pembiayaan->nasabah->alamat))}}, RT </span><span
+      normal'><span style='font-family:"Ottawa",sans-serif;text-transform: capitalize'>:{{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabah->rt}}</span><span
       style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabah->rw}}</span><span lang=IN
       style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabah->desa_kelurahan)}}</span><span style='font-family:
@@ -3533,7 +3531,7 @@ ul
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
         <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
         3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-        normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabah->alamat))}}, RT </span><span
+        normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
         lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabah->rt}}</span><span
         style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabah->rw}}</span><span lang=IN
         style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabah->desa_kelurahan)}}</span><span style='font-family:
@@ -3685,7 +3683,7 @@ ul
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>: {{Str::title($pembiayaan->nasabah->alamat))}}, RT </span><span
+      normal'><span style='font-family:"Ottawa",sans-serif'>: {{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabah->rt }}</span><span
       style='font-family:"Ottawa",sans-serif'> / RW {{ $pembiayaan->nasabah->rw }}</span><span lang=IN
       style='font-family:"Ottawa",sans-serif'> Kel. {{ Str::title($pembiayaan->nasabah->desa_kelurahan)}}</span><span style='font-family:
@@ -3879,7 +3877,7 @@ ul
       height:18.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>: {{Str::title($pembiayaan->nasabah->alamat))}}, RT </span><span
+      normal'><span style='font-family:"Ottawa",sans-serif'>: {{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
       lang=IN style='font-family:"Ottawa",sans-serif'> {{ $pembiayaan->nasabah->rt }}</span><span
       style='font-family:"Ottawa",sans-serif'> / RW  {{ $pembiayaan->nasabah->rw }}</span><span lang=IN
       style='font-family:"Ottawa",sans-serif'> Kel.  {{ Str::title($pembiayaan->nasabah->desa_kelurahan)}}</span><span style='font-family:
@@ -4120,7 +4118,7 @@ ul
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
+      normal'><span style='font-family:"Ottawa",sans-serif'>: {{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabah->rt}}</span><span
       style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabah->rt}}</span><span lang=IN
       style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabah->desa_kelurahan)}}</span><span style='font-family:
@@ -4287,7 +4285,7 @@ ul
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
         <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
         3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-        normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
+        normal'><span style='font-family:"Ottawa",sans-serif'>: {{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
         lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabah->rt}}</span><span
         style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabah->rt}}</span><span lang=IN
         style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabah->desa_kelurahan)}}</span><span style='font-family:
@@ -4428,7 +4426,7 @@ ul
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
         <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
         3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-        normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
+        normal'><span style='font-family:"Ottawa",sans-serif'>: {{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
         lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabah->rt}}</span><span
         style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabah->rt}}</span><span lang=IN
         style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabah->desa_kelurahan)}}</span><span style='font-family:
@@ -4475,7 +4473,7 @@ ul
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
         <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
         3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-        normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
+        normal'><span style='font-family:"Ottawa",sans-serif'>: {{Str::title($pembiayaan->nasabah->alamat)}}, RT </span><span
         lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabah->rt}}</span><span
         style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabah->rt}}</span><span lang=IN
         style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabah->desa_kelurahan)}}</span><span style='font-family:
