@@ -12,6 +12,7 @@ use Modules\Admin\Entities\SkpdAkad;
 use Modules\Admin\Entities\SkpdJenisPenggunaan;
 use Modules\Admin\Entities\SkpdSektorEkonomi;
 use Modules\Admin\Entities\SkpdStatusPerkawinan;
+use Modules\Admin\Entities\SkpdTanggungan;
 
 class SkpdPembiayaan extends Model
 {

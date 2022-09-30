@@ -349,7 +349,7 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="gender"><small class="text-danger">*
                                                 </small>Jenis Kelamin</label>
-                                            <select class="select2 w-100" name="jk_id" id="gender" required>
+                                            <select class="select2 w-100" name="jenis_kelamin" id="gender">
                                                 <option value="{{ $pembiayaan->nasabahh->jenis_kelamin }}">
                                                     {{ $pembiayaan->nasabahh->jenis_kelamin }}</option>
                                                 <option>Laki-Laki</option>
@@ -366,8 +366,8 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="exampleFormControlTextarea1"><small
                                                     class="text-danger">* </small>Alamat Sesuai KTP</label>
-                                            <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                value="{{ $pembiayaan->nasabahh->alamat }}" required></textarea>
+                                            <input type="text" name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                value="{{ $pembiayaan->nasabahh->alamat }}" required>
                                         </div>
                                         <div class="mb-1 col-md-1">
                                             <label class="form-label" for="rt"><small class="text-danger">*
@@ -684,11 +684,13 @@
                                                 value="{{ $pembiayaan->nasabahh->telp_ot }}" required />
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="exampleFormControlTextarea1"><small
-                                                    class="text-danger">* </small>Alamat</label>
-                                            <textarea class="form-control" name="alamat_ot" id="exampleFormControlTextarea1" rows="3"
-                                                placeholder="Alamat Orang Terdekat" value="{{ $pembiayaan->nasabahh->alamat_ot }}" required></textarea>
+                                            <label class="form-label" for="telpot"><small class="text-danger">*
+                                                </small>Alamat</label>
+                                            <input type="text" name="alamat_ot" id="alamat_ot" class="form-control"
+                                                placeholder="Masukan Nomor Telepon Orang Terdekat"
+                                                value="{{ $pembiayaan->nasabahh->alamat_ot }}" required/>
                                         </div>
+                                        
                                     </div>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a class="btn btn-outline-secondary btn-prev">
@@ -872,48 +874,48 @@
                                                     class="text-danger">*
                                                 </small>Omset Per Bulan</label>
                                             <input type="text" class="form-control numeral-mask9" placeholder="Rp."
-                                                name="omset" id="omset" value="{{ $pembiayaan->omset }}" required>
+                                                name="omset" id="omset" value="{{ number_format($pembiayaan->omset) }}" required>
                                         </div>
                                         <div class="row">
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="numeral-formatting"></small>HPP</label>
                                                 <input type="text" class="form-control numeral-mask" placeholder="Rp."
-                                                    name="hpp" id="hpp" value="{{ $pembiayaan->hpp }}">
+                                                    name="hpp" id="hpp" value="{{  number_format($pembiayaan->hpp) }}">
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="numeral-formatting"></small>Biaya
                                                     Listrik</label>
                                                 <input type="text" class="form-control numeral-mask2"
                                                     placeholder="Rp." name="listrik" id="listrik"
-                                                    value="{{ $pembiayaan->listrik }}">
+                                                    value="{{ number_format( $pembiayaan->listrik) }}">
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="numeral-formatting"></small>Biaya
                                                     Transport</label>
                                                 <input type="text" class="form-control numeral-mask6"
                                                     placeholder="Rp." name="trasport" id="transport"
-                                                    value="{{ $pembiayaan->trasport }}">
+                                                    value="{{ number_format($pembiayaan->trasport) }}">
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="numeral-formatting"></small>Biaya
                                                     Karyawan</label>
                                                 <input type="text" class="form-control numeral-mask3"
                                                     placeholder="Rp." name="karyawan" id="karyawan"
-                                                    value="{{ $pembiayaan->karyawan }}">
+                                                    value="{{  number_format($pembiayaan->karyawan) }}">
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="numeral-formatting"></small>Biaya
                                                     Telpon</label>
-                                                <input type="text" class="form-control numeral-mask5"
+                                                <input type="text" class="form-control numeral-mask9"
                                                     placeholder="Rp." name="telpon" id="telpon"
-                                                    value="{{ $pembiayaan->telpon }}">
+                                                    value="{{  number_format($pembiayaan->telpon) }}">
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="numeral-formatting"> </small>Biaya Sewa
                                                     Kios</label>
-                                                <input type="text" class="form-control numeral-mask4"
+                                                <input type="text" class="form-control numeral-mask11"
                                                     placeholder="Rp." name="sewa" id="sewa"
-                                                    value="{{ $pembiayaan->sewa }}">
+                                                    value="{{ number_format( $pembiayaan->sewa )}}">
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="fotokk"><small class="text-danger">*

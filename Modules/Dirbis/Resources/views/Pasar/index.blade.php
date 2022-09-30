@@ -1,10 +1,22 @@
 @extends('dirbis::layouts.main')
 @php
-    $diterima = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('status_id',5)
-    ->where('jabatan_id', 4)
-    ->get()
-    ->count();
+$datas = Modules\Pasar\Entities\PasarPembiayaan::select()
+    ->get();
+$diterima = 0;
+foreach ($datas as $data) {
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $data->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 5 && $history->jabatan_id == 4 ) {
+        $diterima++;
+    }
+}
 
     $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
 
@@ -141,7 +153,7 @@ foreach ($komites as $komite) {
                                 $cair = $cair + $harga_jual;
                             
                                 $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
-                            
+                            }
                                 $pipeline1 = 0;
                                 foreach ($pasars as $pasar) {
                                     $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
@@ -155,11 +167,11 @@ foreach ($komites as $komite) {
                                         ->get()
                                         ->first();
                                     if ($history->status_id != 5 || $history->jabatan_id != 4) {
-                                        if($history->status_id != 6)
+                                        if($history->status_id != 9)
                                         $pipeline1++;
                                     }
                                 }
-                            }
+                            
                 @endphp
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">

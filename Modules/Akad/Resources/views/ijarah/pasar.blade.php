@@ -335,7 +335,7 @@ ul
      <tr>
       <td width=385 valign=top style='width:288.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal;text-autospace:none'><b><span style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->nama_nasabah}}</span></b></p>
+      normal;text-autospace:none'><b><span style='font-family:"Ottawa",sans-serif'>{{Str::title($pembiayaan->nasabahh->nama_nasabah)}}</span></b></p>
       </td>
      </tr>
      <tr>
@@ -347,10 +347,10 @@ ul
      <tr>
       <td width=385 valign=top style='width:288.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal;text-autospace:none'><b><span style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->alamat}}, RT {{$pembiayaan->nasabahh->rw}}/RW {{$pembiayaan->nasabahh->rw}},</span></b> </p>
+      normal;text-autospace:none'><b><span style='font-family:"Ottawa",sans-serif'>{{Str::title($pembiayaan->nasabahh->alamat)}}, RT {{$pembiayaan->nasabahh->rw}}/RW {{$pembiayaan->nasabahh->rw}},</span></b> </p>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal;text-autospace:none'><b><span lang=IN style='font-family:"Ottawa",sans-serif'>Kel.{{$pembiayaan->nasabahh->desa_kelurahan}}
-      </span></b><b><span style='font-family:"Ottawa",sans-serif'>, Kec. {{$pembiayaan->nasabahh->Kecamatan}}</span></b></p>
+      normal;text-autospace:none'><b><span lang=IN style='font-family:"Ottawa",sans-serif'>Kel.{{Str::title($pembiayaan->nasabahh->desa_kelurahan)}}
+      </span></b><b><span style='font-family:"Ottawa",sans-serif'>, Kec. {{Str::title($pembiaykan->nasabahh->kecamatan)}}</span></b></p>
       </td>
      </tr>
     </table>
@@ -845,7 +845,7 @@ ul
       </td>
       <td width=397 style='width:297.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal;text-autospace:
-      none'><span style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_nasabah }}</span></p>
+      none'><span style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}</span></p>
       </td>
      </tr>
      <tr>
@@ -1059,7 +1059,7 @@ ul
       </td>
       <td width=295 valign=top style='width:221.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><b><u><span style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_nasabah }}</span></u></b></p>
+      normal'><b><u><span style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}</span></u></b></p>
       </td>
       <td width=38 valign=top style='width:1.0cm;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal align=right style='margin-bottom:0cm;text-align:right;
@@ -1072,7 +1072,7 @@ ul
       </td>
       <td width=225 valign=top style='width:168.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><b><u><span style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></u></b></p>
+      normal'><b><u><span style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></u></b></p>
       </td>
      </tr>
      <tr>
@@ -1240,7 +1240,7 @@ ul
         <p class=MsoNormal style='text-align:justify'><b><span style='font-family:"Ottawa",sans-serif'>&nbsp;</span></b></p>
         
         <p class=MsoBodyTextIndent style='margin-left:21.3pt;text-indent:-21.3pt'><b><span
-        style='font-family:"Ottawa",sans-serif'>2.    </span></b><b><span style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_nasabah }}</span></b><span
+        style='font-family:"Ottawa",sans-serif'>2.    </span></b><b><span style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}</span></b><span
         style='font-family:"Ottawa",sans-serif'>, dalam hal ini bertindak untuk dan
         atas nama diri sendiri berdasarkan Kartu Tanda Penduduk nomor </span><b><span style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->no_ktp }}</span></b><span
         style='font-family:"Ottawa",sans-serif'> untuk melakukan transaksi hukum ini <span
@@ -1248,17 +1248,17 @@ ul
         style='font-family:"Ottawa",sans-serif;color:#333333'>Istri</span><span
         style='font-family:"Ottawa",sans-serif;color:#333333'> yang bernama</span><span
         style='color:#333333'>&nbsp;</span><b><span
-        style='font-family:"Ottawa",sans-serif'>&nbsp;&nbsp;&nbsp;{{ $pembiayaan->nasabahh->nama_pasangan }}</span></b><b><span
+        style='font-family:"Ottawa",sans-serif'>&nbsp;&nbsp;&nbsp;{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></b><b><span
         style='font-family:"Ottawa",sans-serif;text-transform:uppercase'>, </span></b><span
-        style='font-family:"Ottawa",sans-serif'>yang saat ini bertempat tinggal di </span><span style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->alamat }}</span><span
+        style='font-family:"Ottawa",sans-serif'>yang saat ini bertempat tinggal di </span><span style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->alamat) }}</span><span
         style='font-family:"Ottawa",sans-serif'>, RT </span><span
         style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->rt }}</span><span style='font-family:
         "Ottawa",sans-serif'>/RW </span><span
         style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->rw }}</span><span style='font-family:
         "Ottawa",sans-serif'>,Kelurahan </span><span
-        style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->desa_kelurahan }}</span><span style='font-family:
+        style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->desa_kelurahan) }}</span><span style='font-family:
         "Ottawa",sans-serif'>, Kecamatan </span><span
-        style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->kecamatan }}</span><span
+        style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->kecamatan) }}</span><span
         style='font-family:"Ottawa",sans-serif'>, </span><span
         style='font-family:"Ottawa",sans-serif'>Kota Bogor</span><span
         style='font-family:"Ottawa",sans-serif'><span style='text-transform:uppercase'>.
@@ -1380,7 +1380,7 @@ ul
         style='font-family:"Ottawa",sans-serif'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
         </span></span><span style='font-family:"Ottawa",sans-serif'>Jumlah kewajiban NASABAH
         kepada BANK atas Pembiayaan ini adalah sebesar <b>Rp.</b></span><b><span
-        style='font-family:"Ottawa",sans-serif'>{{ $hargaJual }}</span></b><b><span
+        style='font-family:"Ottawa",sans-serif'>{{ number_format($hargaJual) }}</span></b><b><span
         style='font-family:"Ottawa",sans-serif'>,-</span></b><span style='font-family:
         "Ottawa",sans-serif'> </span><span style='font-family:"Ottawa",sans-serif'>yaitu
         pokok Pembiayaan dengan imbalan jasa, sebagaimana diatur dalam pasal 2 pasal 4 Akad
@@ -1492,7 +1492,7 @@ ul
         "Ottawa",sans-serif'>, <span style='color:black'>nomor : </span></span><span
         style='font-family:"Ottawa",sans-serif;color:black'>Belum Terisi</span><span
         style='font-family:"Ottawa",sans-serif;color:black'> atas nama </span><span
-        style='font-family:"Ottawa",sans-serif;color:black'>{{ $pembiayaan->nasabahh->nama_nasabah}}</span><span
+        style='font-family:"Ottawa",sans-serif;color:black'>{{ Str::title($pembiayaan->nasabahh->nama_nasabah)}}</span><span
         style='font-family:"Ottawa",sans-serif;color:black'>(NASABAH SENDIRI)</span><span
         style='font-family:"Ottawa",sans-serif;color:black'> yang diterbitkan oleh </span><span
         style='font-family:"Ottawa",sans-serif;color:black'>Belum Terisi</span><span
@@ -1893,7 +1893,7 @@ ul
           style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
           <p class=MsoBodyText align=right style='margin-right:.1pt;text-align:right'><b><span
           style='font-size:11.0pt;font-family:"Ottawa",sans-serif;text-transform:uppercase'>(</span></b><b><span
-          style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_nasabah }}<span
+          style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}<span
           style='text-transform:uppercase'>)</span></span></b></p>
           </td>
           <td width=190 style='width:142.15pt;padding:0cm 5.4pt 0cm 5.4pt;height:123.25pt'>
@@ -1911,7 +1911,7 @@ ul
           style='font-family:"Calibri",sans-serif'>&nbsp;</span></p>
           <p class=MsoBodyText align=left style='margin-right:.1pt;text-align:left'><b><span
           lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;text-transform:
-          uppercase'>(</span></b><b><span style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></b><b><span
+          uppercase'>(</span></b><b><span style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></b><b><span
           lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;text-transform:
           uppercase'>)</span></b><span lang=IN style='font-family:"Ottawa",sans-serif'>
           </span></p>
@@ -2110,20 +2110,20 @@ ul
     0cm;margin-left:14.2pt;text-align:justify;text-indent:-14.2pt;line-height:14.15pt;
     background:white'><span style='font-size:11.0pt'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
     </span></span><b><span lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;
-    color:black'>{{ $pembiayaan->nasabahh->nama_nasabah }} </span></b><span lang=IN style='font-size:11.0pt;
+    color:black'>{{ Str::title($pembiayaan->nasabahh->nama_nasabah) }} </span></b><span lang=IN style='font-size:11.0pt;
     font-family:"Ottawa",sans-serif;color:black'>, pemegang Kartu Tanda Penduduk
     nomor {{ $pembiayaan->nasabahh->no_ktp }} </span><span lang=SV style='font-size:11.0pt;font-family:
     "Ottawa",sans-serif;color:black'>bertempat tinggal di</span><span lang=SV
     style='font-size:11.0pt;font-family:"Calibri",sans-serif;color:black'>&nbsp;</span><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>
-    {{ $pembiayaan->nasabahh->alamat }}, RT {{ $pembiayaan->nasabahh->rt }}/ RW {{ $pembiayaan->nasabahh->rw }}, Kelurahan {{ $pembiayaan->nasabahh->desa_kelurahan }}, Kecamatan {{ $pembiayaan->nasabahh->Kecamatan }},
+    {{ Str::title($pembiayaan->nasabahh->alamat) }}, RT {{ $pembiayaan->nasabahh->rt }}/ RW {{ $pembiayaan->nasabahh->rw }}, Kelurahan {{ Str::title($pembiayaan->nasabahh->desa_kelurahan) }}, Kecamatan {{ Str::title($pembiaykan->nasabahh->kecamatan) }},
     Kab. Bogor </span><span lang=SV style='font-size:11.0pt;font-family:"Ottawa",sans-serif;
     color:black'>yang dalam hal ini telah mendapat persetujuan dari </span><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>Pasangan
     yang </span><span lang=SV style='font-size:11.0pt;font-family:"Ottawa",sans-serif;
     color:black'>bernama</span><span lang=IN style='font-size:11.0pt;font-family:
     "Calibri",sans-serif;color:black'>&nbsp;</span><b><span style='font-size:11.0pt;
-    font-family:"Ottawa",sans-serif;color:black'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></b><span
+    font-family:"Ottawa",sans-serif;color:black'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></b><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>,
     berdasarkan kartu tanda Penduduk Nomor {{ $pembiayaan->nasabahh->ktp_pasangan }}</span><span lang=SV
     style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>, </span><span
@@ -2293,7 +2293,7 @@ ul
     PIHAK KEDUA menitipkan jaminan berupa </span><span lang=IN style='font-size:
     11.0pt;font-family:"Ottawa",sans-serif;color:black'>{{ $jaminan->nama_jaminan }} dengan nomor
     KTB {{ $no_ktb }}... diterbitkan oleh Perumda Pasar Tohaga pada tanggal ... atas
-    nama {{ $pembiayaan->nasabahh->nama_nasabah }}(NASABAH SENDIRI).</span><span lang=IN style='font-size:
+    nama {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}(NASABAH SENDIRI).</span><span lang=IN style='font-size:
     11.0pt;color:black'> </span><b><span lang=SV style='font-size:11.0pt;
     color:black'>&nbsp;</span></b><span lang=SV style='font-size:11.0pt;color:black'>
     </span></p>
@@ -2613,7 +2613,7 @@ ul
       <p class=MsoBodyText align=right style='margin-right:.1pt;text-align:right;
       line-height:115%'><b><span style='font-size:11.0pt;line-height:115%;
       font-family:"Ottawa",sans-serif;text-transform:uppercase'>(</span></b><b><span
-      style='font-size:11.0pt;line-height:115%;font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->nama_nasabah}}<span style='text-transform:uppercase'>)</span></span></b></p>
+      style='font-size:11.0pt;line-height:115%;font-family:"Ottawa",sans-serif'>{{Str::title($pembiayaan->nasabahh->nama_nasabah)}}<span style='text-transform:uppercase'>)</span></span></b></p>
       </td>
       <td width=200 valign=top style='width:150.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoBodyText align=center style='margin-right:.1pt;text-align:center;
@@ -2633,7 +2633,7 @@ ul
       <p class=MsoBodyText style='margin-right:.1pt;line-height:115%'><b><span
       lang=IN style='font-size:11.0pt;line-height:115%;font-family:"Ottawa",sans-serif;
       text-transform:uppercase'>(</span></b><b><span style='font-size:11.0pt;
-      line-height:115%;font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></b><b><span
+      line-height:115%;font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></b><b><span
       lang=IN style='font-size:11.0pt;line-height:115%;font-family:"Ottawa",sans-serif;
       text-transform:uppercase'>)</span></b><span lang=IN style='font-size:11.0pt;
       line-height:115%'> </span></p>
@@ -2838,20 +2838,20 @@ ul
     0cm;margin-left:14.2pt;text-align:justify;text-indent:-14.2pt;line-height:14.15pt;
     background:white'><span style='font-size:11.0pt'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
     </span></span><b><span lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;
-    color:black'>{{ $pembiayaan->nasabahh->nama_nasabah }} </span></b><span lang=IN style='font-size:11.0pt;
+    color:black'>{{ Str::title($pembiayaan->nasabahh->nama_nasabah) }} </span></b><span lang=IN style='font-size:11.0pt;
     font-family:"Ottawa",sans-serif;color:black'>, pemegang Kartu Tanda Penduduk
     nomor {{ $pembiayaan->nasabahh->no_ktp }} </span><span lang=SV style='font-size:11.0pt;font-family:
     "Ottawa",sans-serif;color:black'>bertempat tinggal di</span><span lang=SV
     style='font-size:11.0pt;font-family:"Calibri",sans-serif;color:black'>&nbsp;</span><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>
-    {{ $pembiayaan->nasabahh->alamat }}, RT {{ $pembiayaan->nasabahh->rt }}/ RW {{ $pembiayaan->nasabahh->rw }}, Kelurahan {{ $pembiayaan->nasabahh->desa_kelurahan }}, Kecamatan {{ $pembiayaan->nasabahh->Kecamatan }},
+    {{ Str::title($pembiayaan->nasabahh->alamat) }}, RT {{ $pembiayaan->nasabahh->rt }}/ RW {{ $pembiayaan->nasabahh->rw }}, Kelurahan {{ Str::title($pembiayaan->nasabahh->desa_kelurahan) }}, Kecamatan {{ Str::title($pembiaykan->nasabahh->kecamatan) }},
     Kab. Bogor </span><span lang=SV style='font-size:11.0pt;font-family:"Ottawa",sans-serif;
     color:black'>yang dalam hal ini telah mendapat persetujuan dari </span><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>Pasangan
     yang </span><span lang=SV style='font-size:11.0pt;font-family:"Ottawa",sans-serif;
     color:black'>bernama</span><span lang=IN style='font-size:11.0pt;font-family:
     "Calibri",sans-serif;color:black'>&nbsp;</span><b><span style='font-size:11.0pt;
-    font-family:"Ottawa",sans-serif;color:black'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></b><span
+    font-family:"Ottawa",sans-serif;color:black'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></b><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>,
     berdasarkan kartu tanda Penduduk Nomor {{ $pembiayaan->nasabahh->ktp_pasangan }}</span><span lang=SV
     style='font-size:11.0pt;font-family:"Ottawa",sans-serif;color:black'>, </span><span
@@ -3021,7 +3021,7 @@ ul
     PIHAK KEDUA menitipkan jaminan berupa </span><span lang=IN style='font-size:
     11.0pt;font-family:"Ottawa",sans-serif;color:black'>{{ $jaminan->nama_jaminan }} dengan nomor KTB
     {{ $no_ktb }} diterbitkan oleh Perumda Pasar Tohaga  pada tanggal ... atas
-    nama {{ $pembiayaan->nasabahh->nama_nasabah }}(NASABAH SENDIRI).</span><span lang=IN style='font-size:
+    nama {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}(NASABAH SENDIRI).</span><span lang=IN style='font-size:
     11.0pt;color:black'> </span><b><span lang=SV style='font-size:11.0pt;
     color:black'>&nbsp;</span></b><span lang=SV style='font-size:11.0pt;color:black'>
     </span></p>
@@ -3341,7 +3341,7 @@ ul
       <p class=MsoBodyText align=right style='margin-right:.1pt;text-align:right;
       line-height:115%'><b><span style='font-size:11.0pt;line-height:115%;
       font-family:"Ottawa",sans-serif;text-transform:uppercase'>(</span></b><b><span
-      style='font-size:11.0pt;line-height:115%;font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->nama_nasabah}}<span style='text-transform:uppercase'>)</span></span></b></p>
+      style='font-size:11.0pt;line-height:115%;font-family:"Ottawa",sans-serif'>{{Str::title($pembiayaan->nasabahh->nama_nasabah)}}<span style='text-transform:uppercase'>)</span></span></b></p>
       </td>
       <td width=200 valign=top style='width:150.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoBodyText align=center style='margin-right:.1pt;text-align:center;
@@ -3361,7 +3361,7 @@ ul
       <p class=MsoBodyText style='margin-right:.1pt;line-height:115%'><b><span
       lang=IN style='font-size:11.0pt;line-height:115%;font-family:"Ottawa",sans-serif;
       text-transform:uppercase'>(</span></b><b><span style='font-size:11.0pt;
-      line-height:115%;font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></b><b><span
+      line-height:115%;font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></b><b><span
       lang=IN style='font-size:11.0pt;line-height:115%;font-family:"Ottawa",sans-serif;
       text-transform:uppercase'>)</span></b><span lang=IN style='font-size:11.0pt;
       line-height:115%'> </span></p>
@@ -3464,7 +3464,7 @@ ul
       </td>
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ $pembiayaan->nasabahh->nama_pasangan }}</b> <u1:p></u1:p></span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</b> <u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr>
@@ -3485,12 +3485,12 @@ ul
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>:{{$pembiayaan->nasabahh->alamat}}, RT </span><span
+      normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabahh->alamat)}}, RT </span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->rt}}</span><span
       style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabahh->rw}}</span><span lang=IN
-      style='font-family:"Ottawa",sans-serif'> Kel. {{$pembiayaan->nasabahh->desa_kelurahan}}</span><span style='font-family:
+      style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabahh->desa_kelurahan)}}</span><span style='font-family:
       "Ottawa",sans-serif'>. </span><span lang=IN style='font-family:"Ottawa",sans-serif'>Kecamatan
-      {{$pembiayaan->nasabahh->kecamatan}}</span><span lang=IN> </span></p>
+      {{Str::title($pembiayaan->nasabahh->kecamatan)}}</span><span lang=IN> </span></p>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
       normal'><u1:p><u1:p></u1:p>&nbsp;<span style='font-family:"Ottawa",sans-serif'></u1:p>
       </span></p>
@@ -3512,7 +3512,7 @@ ul
       </td>
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ $pembiayaan->nasabahh->nama_nasabah }}</b> <u1:p></u1:p></span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}</b> <u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr>
@@ -3533,12 +3533,12 @@ ul
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
         <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
         3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-        normal'><span style='font-family:"Ottawa",sans-serif'>:{{$pembiayaan->nasabahh->alamat}}, RT </span><span
+        normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabahh->alamat)}}, RT </span><span
         lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->rt}}</span><span
         style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabahh->rw}}</span><span lang=IN
-        style='font-family:"Ottawa",sans-serif'> Kel. {{$pembiayaan->nasabahh->desa_kelurahan}}</span><span style='font-family:
+        style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabahh->desa_kelurahan)}}</span><span style='font-family:
         "Ottawa",sans-serif'>. </span><span lang=IN style='font-family:"Ottawa",sans-serif'>Kecamatan
-        {{$pembiayaan->nasabahh->kecamatan}}</span><span lang=IN> </span></p>
+        {{Str::title($pembiayaan->nasabahh->kecamatan)}}</span><span lang=IN> </span></p>
         <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
         normal'><u1:p><u1:p></u1:p>&nbsp;<span style='font-family:"Ottawa",sans-serif'></u1:p>
         </span></p>
@@ -3550,7 +3550,7 @@ ul
     white'><span style='font-family:"Ottawa",sans-serif;color:black'>Untuk
     mengajukan pembiayaan dan menjaminkan Ijazah Asli Pendidikan Terakhir </span><span
     lang=IN style='font-family:"Ottawa",sans-serif;color:black'>nomor 06130510 atas
-    nama {{ $pembiayaan->nasabahh->nama_nasabah }} (NASABAH SENDIRI) yang beralamat di </span><span
+    nama {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }} (NASABAH SENDIRI) yang beralamat di </span><span
     style='font-family:"Ottawa",sans-serif;color:black'>Kp Pawengan, RT 003/ RW
     004, , Kecamatan Cibinong, Kab. Bogor </span><span lang=IN style='font-family:
     "Ottawa",sans-serif;color:black'>k</span><span style='font-family:"Ottawa",sans-serif;
@@ -3597,7 +3597,7 @@ ul
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
       line-height:normal'><b>&nbsp;</b> </p>
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
-      line-height:normal'><b><span style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></b>
+      line-height:normal'><b><span style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></b>
       </p>
       </td>
       <td width=308 valign=top style='width:231.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
@@ -3617,7 +3617,7 @@ ul
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
       line-height:normal'><b>&nbsp;</b> </p>
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
-      line-height:normal'><b><span style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->nama_nasabah}}</span></b> </p>
+      line-height:normal'><b><span style='font-family:"Ottawa",sans-serif'>{{Str::title($pembiayaan->nasabahh->nama_nasabah)}}</span></b> </p>
       </td>
      </tr>
     </table>
@@ -3664,7 +3664,7 @@ ul
       </td>
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ $pembiayaan->nasabahh->nama_nasabah }}</b> <u1:p></u1:p></span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}</b> <u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr>
@@ -3685,12 +3685,12 @@ ul
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>: {{ $pembiayaan->nasabahh->alamat }}, RT </span><span
+      normal'><span style='font-family:"Ottawa",sans-serif'>: {{ Str::title($pembiayaan->nasabahh->alamat) }}, RT </span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->rt }}</span><span
       style='font-family:"Ottawa",sans-serif'> / RW {{ $pembiayaan->nasabahh->rw }}</span><span lang=IN
-      style='font-family:"Ottawa",sans-serif'> Kel. {{ $pembiayaan->nasabahh->desa_kelurahan }}</span><span style='font-family:
+      style='font-family:"Ottawa",sans-serif'> Kel. {{ Str::title($pembiayaan->nasabahh->desa_kelurahan) }}</span><span style='font-family:
       "Ottawa",sans-serif'>. </span><span lang=IN style='font-family:"Ottawa",sans-serif'>Kecamatan
-      {{ $pembiayaan->nasabahh->Kecamatan }}</span><span lang=IN> </span></p>
+      {{ $pembiayaan->nasabahh->kecamatan }}</span><span lang=IN> </span></p>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
       normal'><u1:p><u1:p></u1:p>&nbsp;<span style='font-family:"Ottawa",sans-serif'></u1:p>
       </span></p>
@@ -3757,7 +3757,7 @@ ul
       style='font-family:"Ottawa",sans-serif'>10000</span></p>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'>&nbsp;</p>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><u><span
-      style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_nasabah }}</span></u></b></p>
+      style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}</span></u></b></p>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
       style='font-family:"Ottawa",sans-serif'>Nasabah</span></p>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'>&nbsp;</p>
@@ -3793,7 +3793,7 @@ ul
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'>&nbsp;</p>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'>&nbsp;</p>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><u><span
-      style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></u></b></p>
+      style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></u></b></p>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
       lang=IN style='font-family:"Ottawa",sans-serif'>Pasangan </span><span
       style='font-family:"Ottawa",sans-serif'>Nasabah</span></p>
@@ -3841,7 +3841,7 @@ ul
       </td>
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ $pembiayaan->nasabahh->nama_nasabah }}</b> <u1:p></u1:p></span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}</b> <u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr>
@@ -3853,7 +3853,7 @@ ul
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
       normal'><span style='font-family:"Ottawa",sans-serif'><u1:p></u1:p>: </span><span
-      lang=FI style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->tmp_lahir }}</span><span lang=IN
+      lang=FI style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->tmp_lahir) }}</span><span lang=IN
       style='font-family:"Ottawa",sans-serif'>, {{ $pembiayaan->nasabahh->tgl_lahir }} </span><span style='font-family:
       "Ottawa",sans-serif'> </span><span lang=IN style='font-family:"Ottawa",sans-serif'>
       </span></p>
@@ -3879,12 +3879,12 @@ ul
       height:18.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>: {{ $pembiayaan->nasabahh->alamat }}, RT </span><span
+      normal'><span style='font-family:"Ottawa",sans-serif'>: {{ Str::title($pembiayaan->nasabahh->alamat) }}, RT </span><span
       lang=IN style='font-family:"Ottawa",sans-serif'> {{ $pembiayaan->nasabahh->rt }}</span><span
       style='font-family:"Ottawa",sans-serif'> / RW  {{ $pembiayaan->nasabahh->rw }}</span><span lang=IN
-      style='font-family:"Ottawa",sans-serif'> Kel.  {{ $pembiayaan->nasabahh->desa_kelurahan }}</span><span style='font-family:
+      style='font-family:"Ottawa",sans-serif'> Kel.  {{ Str::title($pembiayaan->nasabahh->desa_kelurahan) }}</span><span style='font-family:
       "Ottawa",sans-serif'>. </span><span lang=IN style='font-family:"Ottawa",sans-serif'>Kecamatan
-       {{ $pembiayaan->nasabahh->Kecamatan }}</span><span lang=IN> </span></p>
+       {{ Str::title($pembiaykan->nasabahh->kecamatan) }}</span><span lang=IN> </span></p>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
       normal'><u1:p><u1:p></u1:p>&nbsp;<span style='font-family:"Ottawa",sans-serif'></u1:p>
       </span></p>
@@ -3971,7 +3971,7 @@ ul
       line-height:150%'><b><span lang=IT>&nbsp;</span></b></p>
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
       line-height:normal'><b><u><span lang=FI style='font-family:"Ottawa",sans-serif'>(
-      {{ $pembiayaan->nasabahh->nama_nasabah }} )</span></u></b></p>
+      {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }} )</span></u></b></p>
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
       line-height:normal'><span lang=IT style='font-family:"Ottawa",sans-serif'>Nasabah</span></p>
       </td>
@@ -3986,7 +3986,7 @@ ul
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
       line-height:normal'><b><u><span lang=IT style='font-family:"Ottawa",sans-serif;
       text-transform:uppercase'>( </span></u></b><b><u><span lang=IT
-      style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_pasangan }}<span style='text-transform:
+      style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}<span style='text-transform:
       uppercase'> )</span></span></u></b></p>
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
       line-height:normal'><span lang=IN style='font-family:"Ottawa",sans-serif'>Pasangan
@@ -4084,7 +4084,7 @@ ul
       </td>
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ $pembiayaan->nasabahh->nama_nasabah }}</b> <u1:p></u1:p></span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}</b> <u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr>
@@ -4096,7 +4096,7 @@ ul
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
       normal'><span style='font-family:"Ottawa",sans-serif'><u1:p></u1:p>: </span><span
-      lang=FI style='font-family:"Ottawa",sans-serif'> {{ $pembiayaan->nasabahh->tmp_lahir }}</span><span lang=IN
+      lang=FI style='font-family:"Ottawa",sans-serif'> {{ Str::title($pembiayaan->nasabahh->tmp_lahir) }}</span><span lang=IN
       style='font-family:"Ottawa",sans-serif'>, {{ $pembiayaan->nasabahh->tgl_lahir }} </span><span style='font-family:
       "Ottawa",sans-serif'> </span><span lang=IN style='font-family:"Ottawa",sans-serif'>
       </span></p>
@@ -4120,12 +4120,12 @@ ul
       <td width=463 valign=top style='width:347.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
       3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>:{{$pembiayaan->nasabahh->alamat}}, RT </span><span
+      normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabahh->alamat)}}, RT </span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->rt}}</span><span
       style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabahh->rt}}</span><span lang=IN
-      style='font-family:"Ottawa",sans-serif'> Kel. {{$pembiayaan->nasabahh->desa_kelurahan}}</span><span style='font-family:
+      style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabahh->desa_kelurahan)}}</span><span style='font-family:
       "Ottawa",sans-serif'>. </span><span lang=IN style='font-family:"Ottawa",sans-serif'>Kecamatan
-      {{$pembiayaan->nasabahh->Kecamatan}}</span><span lang=IN> </span></p>
+      {{Str::title($pembiaykan->nasabahh->kecamatan)}}</span><span lang=IN> </span></p>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
       normal'><u1:p><u1:p></u1:p>&nbsp;<span style='font-family:"Ottawa",sans-serif'></u1:p>
       </span></p>
@@ -4228,7 +4228,7 @@ ul
     <p class=MsoNormal style='text-align:justify'><i>&nbsp;</i></p>
     
     <p class=MsoNormal style='text-align:justify'><b><span lang=SV
-    style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_nasabah }}</span></b></p>
+    style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}</span></b></p>
     
     <div>
     
@@ -4266,7 +4266,7 @@ ul
       </td>
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ $pembiayaan->nasabahh->nama_pasangan }}</b> <u1:p></u1:p></span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</b> <u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr>
@@ -4287,12 +4287,12 @@ ul
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
         <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
         3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-        normal'><span style='font-family:"Ottawa",sans-serif'>:{{$pembiayaan->nasabahh->alamat}}, RT </span><span
+        normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabahh->alamat)}}, RT </span><span
         lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->rt}}</span><span
         style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabahh->rt}}</span><span lang=IN
-        style='font-family:"Ottawa",sans-serif'> Kel. {{$pembiayaan->nasabahh->desa_kelurahan}}</span><span style='font-family:
+        style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabahh->desa_kelurahan)}}</span><span style='font-family:
         "Ottawa",sans-serif'>. </span><span lang=IN style='font-family:"Ottawa",sans-serif'>Kecamatan
-        {{$pembiayaan->nasabahh->Kecamatan}}</span><span lang=IN> </span></p>
+        {{Str::title($pembiaykan->nasabahh->kecamatan)}}</span><span lang=IN> </span></p>
         <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
         normal'><u1:p><u1:p></u1:p>&nbsp;<span style='font-family:"Ottawa",sans-serif'></u1:p>
         </span></p>
@@ -4370,7 +4370,7 @@ ul
     </span></p>
     
     <p class=MsoNormal style='text-align:justify'><b><span lang=FI
-    style='font-family:"Ottawa",sans-serif'><u1:p></u1:p>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></b></p>
+    style='font-family:"Ottawa",sans-serif'><u1:p></u1:p>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></b></p>
     
     <p class=MsoNormal>&nbsp;</p>
     
@@ -4405,7 +4405,7 @@ ul
       </td>
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ $pembiayaan->nasabahh->nama_nasabah }}</b> <u1:p></u1:p></span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}</b> <u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr>
@@ -4428,12 +4428,12 @@ ul
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
         <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
         3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-        normal'><span style='font-family:"Ottawa",sans-serif'>:{{$pembiayaan->nasabahh->alamat}}, RT </span><span
+        normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabahh->alamat)}}, RT </span><span
         lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->rt}}</span><span
         style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabahh->rt}}</span><span lang=IN
-        style='font-family:"Ottawa",sans-serif'> Kel. {{$pembiayaan->nasabahh->desa_kelurahan}}</span><span style='font-family:
+        style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabahh->desa_kelurahan)}}</span><span style='font-family:
         "Ottawa",sans-serif'>. </span><span lang=IN style='font-family:"Ottawa",sans-serif'>Kecamatan
-        {{$pembiayaan->nasabahh->Kecamatan}}</span><span lang=IN> </span></p>
+        {{Str::title($pembiaykan->nasabahh->kecamatan)}}</span><span lang=IN> </span></p>
         <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
         normal'><u1:p><u1:p></u1:p>&nbsp;<span style='font-family:"Ottawa",sans-serif'></u1:p>
         </span></p>
@@ -4454,7 +4454,7 @@ ul
       </td>
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ $pembiayaan->nasabahh->nama_pasangan }}</b> <u1:p></u1:p></span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>:<b> {{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</b> <u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr>
@@ -4475,12 +4475,12 @@ ul
       <td width=425 valign=top style='width:318.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
         <p class=MsoNormal style='margin-top:3.0pt;margin-right:0cm;margin-bottom:
         3.0pt;margin-left:8.7pt;text-align:justify;text-indent:-8.7pt;line-height:
-        normal'><span style='font-family:"Ottawa",sans-serif'>:{{$pembiayaan->nasabahh->alamat}}, RT </span><span
+        normal'><span style='font-family:"Ottawa",sans-serif'>:{{Str::title($pembiayaan->nasabahh->alamat)}}, RT </span><span
         lang=IN style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->rt}}</span><span
         style='font-family:"Ottawa",sans-serif'> / RW {{$pembiayaan->nasabahh->rt}}</span><span lang=IN
-        style='font-family:"Ottawa",sans-serif'> Kel. {{$pembiayaan->nasabahh->desa_kelurahan}}</span><span style='font-family:
+        style='font-family:"Ottawa",sans-serif'> Kel. {{Str::title($pembiayaan->nasabahh->desa_kelurahan)}}</span><span style='font-family:
         "Ottawa",sans-serif'>. </span><span lang=IN style='font-family:"Ottawa",sans-serif'>Kecamatan
-        {{$pembiayaan->nasabahh->Kecamatan}}</span><span lang=IN> </span></p>
+        {{Str::title($pembiaykan->nasabahh->kecamatan)}}</span><span lang=IN> </span></p>
         <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
         normal'><u1:p><u1:p></u1:p>&nbsp;<span style='font-family:"Ottawa",sans-serif'></u1:p>
         </span></p>
@@ -4562,12 +4562,9 @@ ul
       font-family:"Ottawa",sans-serif'>Mengetahui,<u1:p></u1:p></span></p>
       </td>
      </tr>
-     <tr style='height:138.15pt'>
+     <tr style='height:100pt'>
       <td width=193 valign=top style='width:145.05pt;padding:0cm 5.4pt 0cm 5.4pt;
-      height:138.15pt'>
-      <p class=MsoBodyText align=center style='margin-right:.1pt;text-align:center'><span
-      style='font-size:11.0pt;font-family:"Calibri",sans-serif'><u1:p>&nbsp;</u1:p></span><span
-      style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> </span></p>
+      height:100pt'>
       <p class=MsoBodyText align=center style='margin-right:.1pt;text-align:center'><span
       style='font-size:11.0pt;font-family:"Calibri",sans-serif'><u1:p>&nbsp;</u1:p></span><span
       style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> </span></p>
@@ -4590,14 +4587,11 @@ ul
       style='font-size:11.0pt;font-family:"Calibri",sans-serif'><u1:p>&nbsp;</u1:p></span><span
       style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> </span></p>
       <p class=MsoBodyText align=left style='margin-right:.1pt;text-align:left'><b><span
-      lang=SV style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->nama_nasabah}} </span></b></p>
+      lang=SV style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>{{Str::title($pembiayaan->nasabahh->nama_nasabah)}} </span></b></p>
       </td>
       <u1:p></u1:p>
       <td width=226 valign=top style='width:169.5pt;padding:0cm 5.4pt 0cm 5.4pt;
-      height:138.15pt'>
-      <p class=MsoBodyText align=center style='margin-right:.1pt;text-align:center'><span
-      style='font-size:11.0pt;font-family:"Calibri",sans-serif'><u1:p>&nbsp;</u1:p></span><span
-      style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> </span></p>
+      height:100pt'>
       <p class=MsoBodyText align=center style='margin-right:.1pt;text-align:center'><span
       style='font-size:11.0pt;font-family:"Calibri",sans-serif'><u1:p>&nbsp;</u1:p></span><span
       style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> </span></p>
@@ -4620,14 +4614,11 @@ ul
       style='font-size:11.0pt;font-family:"Calibri",sans-serif'><u1:p>&nbsp;</u1:p></span><span
       style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> </span></p>
       <p class=MsoBodyText align=left style='margin-right:.1pt;text-align:left'><b><span
-      lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></b><span
+      lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></b><span
       lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> </span></p>
       </td>
       <td width=226 valign=top style='width:169.5pt;padding:0cm 5.4pt 0cm 5.4pt;
-      height:138.15pt'>
-      <p class=MsoBodyText align=center style='margin-right:.1pt;text-align:center'><span
-      style='font-size:11.0pt;font-family:"Calibri",sans-serif'><u1:p><u1:p></u1:p>&nbsp;</u1:p></span><span
-      style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> </span></p>
+      height:100pt'>
       <p class=MsoBodyText align=center style='margin-right:.1pt;text-align:center'><span
       style='font-size:11.0pt;font-family:"Calibri",sans-serif'><u1:p>&nbsp;</u1:p></span><span
       style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> </span></p>
@@ -4661,7 +4652,7 @@ ul
       <td width=226 style='width:169.5pt;padding:0cm 0cm 0cm 0cm'></td>
      </tr>
     </table>
-    
+    <p style="page-break-before: always;">&nbsp;</p>
     <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 align=left
      width=676 style='width:507.0pt;border-collapse:collapse;margin-left:6.75pt;
      margin-right:6.75pt'>
@@ -4815,7 +4806,7 @@ ul
       </td>
       <td width=184 nowrap style='width:137.8pt;border:none;border-bottom:solid windowtext 1.0pt;
       padding:0cm 5.4pt 0cm 5.4pt;height:73.05pt'>
-      <p class=MsoNormal><span style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->nama_nasabah}}</span></p>
+      <p class=MsoNormal><span style='font-family:"Ottawa",sans-serif'>{{Str::title($pembiayaan->nasabahh->nama_nasabah)}}</span></p>
       </td>
       <td width=142 style='width:106.35pt;border:solid windowtext 1.0pt;border-top:
       none;padding:0cm 5.4pt 0cm 5.4pt;height:73.05pt'>
@@ -4846,7 +4837,7 @@ ul
       <td width=184 nowrap style='width:137.8pt;border-top:none;border-left:none;
       border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
       padding:0cm 5.4pt 0cm 5.4pt;height:73.05pt'>
-      <p class=MsoNormal><span style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_pasangan }}</span></p>
+      <p class=MsoNormal><span style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></p>
       </td>
       <td width=142 nowrap style='width:106.35pt;border-top:none;border-left:none;
       border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -4968,7 +4959,7 @@ ul
       <td width=428 valign=top style='width:320.65pt;padding:0cm 5.4pt 0cm 5.4pt;
       height:15.95pt'>
       <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-      lang=FI style='font-family:"Ottawa",sans-serif'>: {{ $pembiayaan->nasabahh->nama_nasabah }}<u1:p></u1:p></span></p>
+      lang=FI style='font-family:"Ottawa",sans-serif'>: {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}<u1:p></u1:p></span></p>
       </td>
      </tr>
      <tr style='height:16.7pt'>
@@ -5040,7 +5031,7 @@ ul
     dokumen yang berhubungan dengan Surat Perjanjian Pembiayaan Nomor :
     BTB/02256/{{ $bulan }}</span><span lang=IN style='font-family:"Ottawa",sans-serif'>/</span><span
     lang=ES style='font-family:"Ottawa",sans-serif'>2022/4-02256-01-02256 tanggal
-   {{$now}} antara Bank selaku pihak pemberi Pembiayaan dengan {{ $pembiayaan->nasabahh->nama_nasabah }}
+   {{$now}} antara Bank selaku pihak pemberi Pembiayaan dengan {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}
      selaku nasabah.</span></p>
     
     <p class=MsoNormal style='text-align:justify'><span lang=ES style='font-family:
@@ -5081,7 +5072,7 @@ ul
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
       line-height:normal'><b><span lang=SV style='font-family:"Ottawa",sans-serif;
       text-transform:uppercase'>( </span></b><b><span lang=SV style='font-family:
-      "Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_nasabah }}<span style='text-transform:uppercase'> )</span></span></b></p>
+      "Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}<span style='text-transform:uppercase'> )</span></span></b></p>
       </td>
       <td width=188 valign=top style='width:140.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
@@ -5106,7 +5097,7 @@ ul
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
       line-height:normal'><b><span lang=SV style='font-family:"Ottawa",sans-serif;
       text-transform:uppercase'>( </span></b><b><span lang=SV style='font-family:
-      "Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->nama_pasangan }}<span style='text-transform:uppercase'>)</span></span></b></p>
+      "Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}<span style='text-transform:uppercase'>)</span></span></b></p>
       </td>
       <td width=259 valign=top style='width:194.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
@@ -5192,7 +5183,7 @@ ul
       none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
       padding:0cm 5.4pt 0cm 5.4pt;height:16.75pt'>
       <p class=MsoNormal style='margin-top:2.0pt;margin-right:-5.4pt;margin-bottom:
-      2.0pt;margin-left:.7pt;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->nama_nasabah}}</span> </p>
+      2.0pt;margin-left:.7pt;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>{{Str::title($pembiayaan->nasabahh->nama_nasabah)}}</span> </p>
       </td>
       <td width=109 valign=top style='width:81.4pt;border-top:none;border-left:
       none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
@@ -5731,6 +5722,9 @@ ul
      </tr>
     </table>
     
+    <b><u><span style='font-size:12.0pt;font-family:"Ottawa",sans-serif'><br
+      clear=all style='page-break-before:always'>
+      </span></u></b>
     <p class=MsoNormal align=center style='text-align:center'><b><u><span
     style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>NOTA
     KUASA PENDEBETAN TABUNGAN NASABAH</span></u></b></p>
@@ -5777,7 +5771,7 @@ ul
       none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
       padding:0cm 5.4pt 0cm 5.4pt;height:17.25pt'>
       <p class=MsoNormal style='margin-top:2.0pt;margin-right:-5.4pt;margin-bottom:
-      2.0pt;margin-left:0cm;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>{{$pembiayaan->nasabahh->nama_nasabah}}</span> </p>
+      2.0pt;margin-left:0cm;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>{{Str::title($pembiayaan->nasabahh->nama_nasabah)}}</span> </p>
       </td>
       <td width=107 valign=top style='width:80.6pt;border-top:none;border-left:
       none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;

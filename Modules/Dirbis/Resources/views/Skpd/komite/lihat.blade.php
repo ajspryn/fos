@@ -199,8 +199,8 @@
                                                     <!-- Address and Contact ends -->
 
                                                     <!-- Invoice Description starts -->
-                                                     <!-- Invoice Description starts -->
-                                                     <div class="table-responsive">
+                                                    <!-- Invoice Description starts -->
+                                                    <div class="table-responsive">
                                                         <small>Informasi Debitur Nasabah</small>
                                                         <table class="table">
                                                             <thead>
@@ -559,16 +559,16 @@
                                                                     </table>
                                                                 </div>
                                                                 @if ($deviasi)
-                                                                <div class="card-body invoice-padding pt-0">
-                                                                    <div class="mb-0 mt-1 col-md-4">
-                                                                        <button type="button" class="btn btn-primary"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#dokumendeviasi">Dokumen
-                                                                            Deviasi
-                                                                        </button>
+                                                                    <div class="card-body invoice-padding pt-0">
+                                                                        <div class="mb-0 mt-1 col-md-4">
+                                                                            <button type="button" class="btn btn-primary"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#dokumendeviasi">Dokumen
+                                                                                Deviasi
+                                                                            </button>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            @endif
+                                                                @endif
                                                                 @php
                                                                     $total_score = $nilai_bendahara + $nilai_dsr + $nilai_slik + $nilai_jaminan + $nilai_nasabah + $nilai_instansi;
                                                                 @endphp
@@ -586,41 +586,41 @@
                                                                                         <td class="pe-1">Status</td>
                                                                                         <td>:
                                                                                             @if ($nilai_dsr >= 40 || $nilai_dsr < 0)
-                                                                                            @if ($nilai_dsr >= 40 && $total_score > 3)
-                                                                                                <span
-                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                                <small
-                                                                                                    class="text-danger">*DSR
-                                                                                                    > 80%</small>
-                                                                                            @elseif($nilai_dsr < 0 && $total_score > 3)
-                                                                                                <span
-                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                                <small
-                                                                                                    class="text-danger">*Pengeluaran
-                                                                                                    >
-                                                                                                    Pendapatan</small>
-                                                                                            @elseif($total_score > 2 || $total_score < 3)
-                                                                                                <span
-                                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                                    Ulang</span>
+                                                                                                @if ($nilai_dsr >= 40 && $total_score > 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                                    <small
+                                                                                                        class="text-danger">*DSR
+                                                                                                        > 80%</small>
+                                                                                                @elseif($nilai_dsr < 0 && $total_score > 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                                    <small
+                                                                                                        class="text-danger">*Pengeluaran
+                                                                                                        >
+                                                                                                        Pendapatan</small>
+                                                                                                @elseif($total_score > 2 || $total_score < 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                        Ulang</span>
+                                                                                                @else
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                @endif
                                                                                             @else
-                                                                                                <span
-                                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                @if ($total_score > 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-success">Diterima</span>
+                                                                                                @elseif($total_score > 2 || $total_score > 3)
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-warning">Tinjau
+                                                                                                        Ulang</span>
+                                                                                                @else
+                                                                                                    <span
+                                                                                                        class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
+                                                                                                @endif
                                                                                             @endif
-                                                                                        @else
-                                                                                            @if ($total_score > 3)
-                                                                                                <span
-                                                                                                    class="badge rounded-pill badge-glow bg-success">Diterima</span>
-                                                                                            @elseif($total_score > 2 || $total_score > 3)
-                                                                                                <span
-                                                                                                    class="badge rounded-pill badge-glow bg-warning">Tinjau
-                                                                                                    Ulang</span>
-                                                                                            @else
-                                                                                                <span
-                                                                                                    class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
-                                                                                            @endif
-                                                                                        @endif
-                                                                                            
+
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
@@ -674,19 +674,19 @@
                                                             </div>
 
                                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
-                                                                 @php
-                                                            $historystatus = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-                                                                ->where('skpd_pembiayaan_id', $pembiayaan->id)
-                                                                ->orderby('created_at', 'desc')
-                                                                ->get()
-                                                                ->first();
-                                                        @endphp
-                                                        @if ($historystatus->status_id == 4 && $historystatus->jabatan_id == 4)
+                                                                @php
+                                                                    $historystatus = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                                                                        ->where('skpd_pembiayaan_id', $pembiayaan->id)
+                                                                        ->orderby('created_at', 'desc')
+                                                                        ->get()
+                                                                        ->first();
+                                                                @endphp
+                                                                @if ($historystatus->status_id == 4 && $historystatus->jabatan_id == 4)
                                                                     <div class="card-body">
                                                                         <button class="btn btn-success w-100"
                                                                             data-bs-toggle="modal"
                                                                             data-bs-target="#lanjut_komite">
-                                                                           Disetujui
+                                                                            Disetujui
                                                                         </button>
                                                                     </div>
                                                                     <div class="card-body">
@@ -751,26 +751,29 @@
                                                     </div>
                                                     <!--/ add new card modal  -->
 
-                                                    @if($deviasi)
-                                                    <div class="modal fade" id="dokumendeviasi" tabindex="-1"
-                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header bg-transparent">
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
-                                                                    <h3 class="text-center">Lampiran Dokumen Deviasi</h3>
-                                                                    <div class="card-body">
-                                                                        <iframe src="{{ asset('storage/' . $deviasi->dokumen_deviasi) }}" class="d-block w-100"
-                                                                          height="500"  weight='900'></iframe>
+                                                    @if ($deviasi)
+                                                        <div class="modal fade" id="dokumendeviasi" tabindex="-1"
+                                                            aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header bg-transparent">
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                        <h3 class="text-center">Lampiran Dokumen Deviasi
+                                                                        </h3>
+                                                                        <div class="card-body">
+                                                                            <iframe
+                                                                                src="{{ asset('storage/' . $deviasi->dokumen_deviasi) }}"
+                                                                                class="d-block w-100" height="500"
+                                                                                weight='900'></iframe>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     @endif
                                                 </div>
                                             </div>
@@ -883,7 +886,7 @@
                                         <div class="tab-pane" id="ideb" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
                                             <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
-                                        width="1000" height="900"></iframe>
+                                                width="1000" height="900"></iframe>
                                             {{-- <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
                                                 width="1000" height="900"> --}}
                                         </div>
@@ -896,24 +899,24 @@
                                                     <div class="card-body">
                                                         <ul class="timeline">
                                                             @foreach ($timelines as $timeline)
-                                                            @php
-
-                                                            $arr=$loop->iteration;
-                                                            if ($arr== -2) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }elseif ($arr== $banyak_history) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }elseif ($arr>=0) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[$arr]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }
-                                 
-                                                            @endphp
+                                                                @php
+                                                                    
+                                                                    $arr = $loop->iteration;
+                                                                    if ($arr == -2) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr == $banyak_history) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr >= 0) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[$arr]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    }
+                                                                    
+                                                                @endphp
                                                                 <li class="timeline-item">
                                                                     <span
                                                                         class="timeline-point timeline-point-success timeline-point-indicator"></span>
@@ -926,18 +929,17 @@
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
                                                                             <span
-                                                                            class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
+                                                                                class="timeline-event-time">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}</span>
                                                                         </div>
                                                                         @if ($timeline->catatan)
-
-                                                                        <p value="{{ $timeline->id }}"> <br>Catatan :
-                                                                            {{ $timeline->catatan }}
-                                                                        <p>
-
-                                                                    @endif
-                                                                    @if($arr==-1)
-                                                                                @else
-                                                                                <span class="timeline-event-time" >Waktu Diproses : {{ $selisih }}</span>
+                                                                            <p value="{{ $timeline->id }}"> <br>Catatan :
+                                                                                {{ $timeline->catatan }}
+                                                                            <p>
+                                                                        @endif
+                                                                        @if ($arr == -1)
+                                                                        @else
+                                                                            <span class="timeline-event-time">Waktu
+                                                                                Diproses : {{ $selisih }}</span>
                                                                         @endif
                                                                         {{-- <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span> --}}
@@ -1057,26 +1059,26 @@
                         </div>
                     </div>
                     <!--/ ideb  -->
-     <!-- LampiranJaminan  -->
-     <div class="modal fade" id="ijazah" tabindex="-1" aria-labelledby="addNewCardTitle"
-     aria-hidden="true">
-     <div class="modal-dialog modal-dialog-centered">
-         <div class="modal-content">
-             <div class="modal-header bg-transparent">
-                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                     aria-label="Close"></button>
-             </div>
-             <div class="modal-body px-sm-12 mx-50 pb-5">
-                 <h3 class="text-center">Lampiran Jaminan</h3>
-                 <div class="card-body">
-                     <iframe src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
-                         class="d-block w-100" height='500' weight='800'></iframe>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
- <!--/ LampiranJaminan  -->
+                    <!-- LampiranJaminan  -->
+                    <div class="modal fade" id="ijazah" tabindex="-1" aria-labelledby="addNewCardTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-transparent">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body px-sm-12 mx-50 pb-5">
+                                    <h3 class="text-center">Lampiran Jaminan</h3>
+                                    <div class="card-body">
+                                        <iframe src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
+                                            class="d-block w-100" height='500' weight='800'></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ LampiranJaminan  -->
                 </div>
             </div>
         @endsection

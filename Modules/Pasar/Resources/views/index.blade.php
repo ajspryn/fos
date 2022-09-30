@@ -81,7 +81,7 @@ foreach ($komites as $komite) {
                                 $harga_jual = $target->harga;
                             
                                 $cair = $cair + $harga_jual;
-                            
+                            }
                                 $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->where('AO_id', auth::user()->id)->get();
                             
                                 $pipeline1 = 0;
@@ -97,16 +97,16 @@ foreach ($komites as $komite) {
                                         ->get()
                                         ->first();
                                     if ($history->status_id != 5 || $history->jabatan_id != 4) {
-                                        if($history->status_id != 6)
+                                        if($history->status_id != 9)
                                         $pipeline1++;
                                     }
                                 }
-                            }
+                            
                         @endphp
 
                         <div class="col-xl-4 col-md-6 col-12">
                             <div class="card card-congratulation-medal">
-                                @if ($cair < 50000000)
+                                @if ($cair < 5000000)
                                     <div class="card-body -ml-6 rounded bg-danger">
                                         <h5 style="color: white">{{ Auth::user()->name }}</h5>
                                         <p class="card-text font-small-3" style="color: white">Kamu Belum Mencapai Target

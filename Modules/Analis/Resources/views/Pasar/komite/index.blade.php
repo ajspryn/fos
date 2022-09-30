@@ -87,6 +87,10 @@
                                                     <span
                                                         class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>
+                                                @else
+                                                    <span
+                                                        class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
                                                 @endif
                                             </td>
                                             <td style="text-align: center">{{ $proposal_pasar->user->name }}</td>
