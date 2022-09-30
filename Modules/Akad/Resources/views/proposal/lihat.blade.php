@@ -639,7 +639,7 @@
                                                                             <input type="hidden" name="segmen"
                                                                                 value="Pasar" />
                                                                             <input type="hidden" name="ao_id"
-                                                                                value="{{ $pembiayaan->ao_id }}" />
+                                                                                value="{{ $pembiayaan->AO_id }}" />
                                                                             <input type="hidden" name="cif"
                                                                                 value="{{ $pembiayaan->id }}" />
                                                                             <input type="hidden" name="kode_tabungan"
@@ -1018,7 +1018,7 @@
                                                                 @csrf
                                                                 <input type="hidden" name="segmen" value="UMKM" />
                                                                 <input type="hidden" name="ao_id"
-                                                                    value="{{ $pembiayaan->ao_id }}" />
+                                                                    value="{{ $pembiayaan->AO_id }}" />
                                                                 <input type="hidden" name="cif"
                                                                     value="{{ $pembiayaan->nasabahh->id }}" />
                                                                 <input type="hidden" name="kode_tabungan"
