@@ -236,9 +236,6 @@
             overflow: hidden;
         }
 
-
-
-
         .form-text-beside {
             color: #5e5873;
             font-size: 12px;
@@ -350,13 +347,13 @@
                         </div>
                     </div>
                     <div class="bs-stepper-content">
-                        <form action="/form/ppr" method="POST" enctype="multipart/form-data">
+                        <form id="form-ppr" class="needs-validation" action="/form/ppr" method="POST"
+                            enctype="multipart/form-data" novalidate>
                             @csrf
                             <!-- Form Permohonan -->
                             <div id="formPermohonan" class="content" role="tabpanel"
                                 aria-labelledby="permohonan-trigger">
                                 <div class="content-header">
-                                    {{-- <h5 class="mb-0">Account Details</h5> --}}
                                     <small class="text-danger">* Wajib Diisi</small>
                                 </div>
                                 <div class="row">
@@ -364,16 +361,17 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="ao"><small class="text-danger">*
                                             </small>Nama Account Officer (AO)</label>
-                                        <select class="select2 w-100" name="user_id" id="ao">
+                                        <select class="w-100 form-control" name="user_id" id="ao" required>
                                             <option label="Pilih
                                             AO" selected
-                                                disabled> Pilih
+                                                value="" disabled> Pilih
                                                 AO
                                             </option>
                                             @foreach ($aos as $ao)
                                                 <option value="{{ $ao->user->id }}">{{ $ao->user->name }}</option>
                                             @endforeach
                                         </select>
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                     </div>
@@ -382,8 +380,9 @@
                                                 class="text-danger">*
                                             </small>Jenis Akad Pembayaran</label>
                                         <select class="select2 w-100" name="form_permohonan_jenis_akad_pembayaran"
-                                            id="formPermohonanJenisAkadPembayaran" onChange="changeJenisAkad()">
-                                            <option label="form_permohonan_jenis_akad_pembayaran" selected disabled>
+                                            id="formPermohonanJenisAkadPembayaran" onChange="changeJenisAkad()" required>
+                                            <option label="form_permohonan_jenis_akad_pembayaran" value="" selected
+                                                disabled>
                                                 Pilih
                                                 Akad
                                                 Pembayaran</option>
@@ -392,6 +391,7 @@
                                             <option value="MMQ">MMQ</option>
                                             <option value="Akad Lainnya">Lainnya</option>
                                         </select>
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6 hide" id="ifJenisAkadLain">
                                         <label class="form-label" for="akadLainnya"><small class="text-danger">*
@@ -417,6 +417,7 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_permohonan_uang_muka_dana_sendiri"><small
@@ -425,7 +426,8 @@
                                             Sendiri</label>
                                         <input type="text" name="form_permohonan_uang_muka_dana_sendiri"
                                             id="form_permohonan_uang_muka_dana_sendiri" class="form-control numeral-mask1"
-                                            placeholder="Uang Muka/Dana Sendiri" />
+                                            placeholder="Uang Muka/Dana Sendiri" required />
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_permohonan_nilai_hpp">Nilai HPP</label>
@@ -444,8 +446,9 @@
                                                 class="text-danger">*
                                             </small>Jangka Waktu PPR Syariah (Tahun)</label>
                                         <select class="select2 w-100" name="form_permohonan_jangka_waktu_ppr"
-                                            id="formPermohonanJangkaWaktuTahun" onChange="changeJangkaWaktu()">
-                                            <option label="form_permohonan_jangka_waktu_ppr" selected disabled>
+                                            id="formPermohonanJangkaWaktuTahun" onChange="changeJangkaWaktu()" required>
+                                            <option label="form_permohonan_jangka_waktu_ppr" value="" selected
+                                                disabled>
                                                 Pilih
                                                 Jangka Waktu</option>
                                             <option value="1 Tahun">1 Tahun</option>
@@ -469,6 +472,7 @@
                                             <option value="19 Tahun">19 Tahun</option>
                                             <option value="20 Tahun">20 Tahun</option>
                                         </select>
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
 
                                     <div class="mb-1 col-md-6 row">
@@ -488,8 +492,9 @@
                                                 class="text-danger">*
                                             </small>Peruntukan PPR Syariah</label>
                                         <select class="select2 w-100" name="form_permohonan_peruntukan_ppr"
-                                            id="form_permohonan_peruntukan_ppr">
-                                            <option label="form_permohonan_peruntukan_ppr" selected disabled>Pilih
+                                            id="form_permohonan_peruntukan_ppr" required>
+                                            <option label="form_permohonan_peruntukan_ppr" value="" selected
+                                                disabled>Pilih
                                                 Peruntukan</option>
                                             <option value="Rumah Tinggal">Rumah Tinggal</option>
                                             <option value="Apartemen">Apartemen</option>
@@ -498,6 +503,7 @@
                                             <option value="Rukan">Rukan</option>
                                             <option value="Kios">Kios</option>
                                         </select>
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_permohonan_jml_margin">Jumlah Margin</label>
@@ -522,9 +528,11 @@
                                         <label class="form-label" for="form_permohonan_sistem_pembayaran_angsuran"><small
                                                 class="text-danger">*
                                             </small>Sistem Pembayaran Angsuran</label>
-                                        <select class="select2 w-100" name="form_permohonan_sistem_pembayaran_angsuran"
-                                            id="form_permohonan_sistem_pembayaran_angsuran">
-                                            <option label="form_permohonan_sistem_pembayaran_angsuran" selected disabled>
+                                        <select class="form-control w-100"
+                                            name="form_permohonan_sistem_pembayaran_angsuran"
+                                            id="form_permohonan_sistem_pembayaran_angsuran" required>
+                                            <option label="form_permohonan_sistem_pembayaran_angsuran" value=""
+                                                selected disabled>
                                                 Pilih Sistem
                                                 Pembayaran Angsuran</option>
                                             <option value="Kolektif/Potong Gaji">Kolektif/Potong Gaji</option>
@@ -533,8 +541,8 @@
                                             <option value="Tunai - Loket">Tunai - Loket</option>
                                             <option value="Kantor Pos">Kantor Pos</option>
                                         </select>
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
-
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-3">
@@ -569,7 +577,8 @@
                                             </small>Nama Lengkap</label>
                                         <input type="text" name="form_pribadi_pemohon_nama_lengkap"
                                             id="form_pribadi_pemohon_nama_lengkap" class="form-control"
-                                            placeholder="Nama Lengkap" />
+                                            placeholder="Nama Lengkap" required />
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_nama_ktp"><small
@@ -577,7 +586,8 @@
                                             </small>Nama Sesuai KTP</label>
                                         <input type="text" name="form_pribadi_pemohon_nama_ktp"
                                             id="form_pribadi_pemohon_nama_ktp" class="form-control"
-                                            placeholder="Nama Sesuai KTP" />
+                                            placeholder="Nama Sesuai KTP" required />
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_gelar">Gelar</label>
@@ -596,16 +606,9 @@
                                             </small>No. KTP</label>
                                         <input type="number" name="form_pribadi_pemohon_no_ktp"
                                             id="form_pribadi_pemohon_no_ktp" class="form-control"
-                                            placeholder="Masukkan Nomor KTP Anda" />
+                                            placeholder="Masukkan Nomor KTP Anda" required />
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
-                                    {{-- <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="form_pribadi_pemohon_no_ktp_berlaku_sd"><small
-                                                class="text-danger">*
-                                            </small>Berlaku s/d.</label>
-                                        <input type="date" id="form_pribadi_pemohon_no_ktp_berlaku_sd"
-                                            class="form-control flatpickr-basic"
-                                            name="form_pribadi_pemohon_no_ktp_berlaku_sd" placeholder="DD-MM-YYYY" />
-                                    </div> --}}
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_jenis_kelamin"><small
                                                 class="text-danger">*
@@ -613,13 +616,14 @@
                                         <div>
                                             &ensp;
                                             <input type="radio" name="form_pribadi_pemohon_jenis_kelamin"
-                                                class="form-check-input" id="pria" value="Pria" />
+                                                class="form-check-input" id="pria" value="Pria" required />
                                             <label class="form-label" for="pria">&nbsp;Pria</label>
                                             <br>
                                             &ensp;
                                             <input type="radio" name="form_pribadi_pemohon_jenis_kelamin"
-                                                class="form-check-input" id="wanita" value="Wanita" />
+                                                class="form-check-input" id="wanita" value="Wanita" required />
                                             <label class="form-label" for="wanita">&nbsp;Wanita</label>
+                                            <div class="invalid-feedback">&emsp;Field ini wajib dipilih!</div>
                                         </div>
                                     </div>
                                     <div class="mb-1 col-md-6">
@@ -628,7 +632,8 @@
                                             </small>Tempat Lahir</label>
                                         <input type="text" name="form_pribadi_pemohon_tempat_lahir"
                                             id="form_pribadi_pemohon_tempat_lahir" class="form-control"
-                                            placeholder="Masukkan Tempat Lahir Anda" />
+                                            placeholder="Masukkan Tempat Lahir Anda" required />
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_tanggal_lahir"><small
@@ -636,7 +641,8 @@
                                             </small>Tanggal Lahir</label>
                                         <input type="date" id="form_pribadi_pemohon_tanggal_lahir"
                                             class="form-control flatpickr-basic" name="form_pribadi_pemohon_tanggal_lahir"
-                                            placeholder="DD-MM-YYYY" />
+                                            placeholder="DD-MM-YYYY" required />
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <small class="text-danger">*
@@ -644,15 +650,17 @@
                                             NPWP</label>
                                         <input type="text" name="form_pribadi_pemohon_npwp"
                                             id="form_pribadi_pemohon_npwp" class="form-control"
-                                            placeholder="Masukkan Nomor NPWP Anda" />
+                                            placeholder="Masukkan Nomor NPWP Anda" required />
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_pendidikan"><small
                                                 class="text-danger">*
                                             </small>Pendidikan</label>
                                         <select class="select2 w-100" name="form_pribadi_pemohon_pendidikan"
-                                            id="form_pribadi_pemohon_pendidikan">
-                                            <option label="form_pribadi_pemohon_pendidikan" selected disabled>Pilih
+                                            id="form_pribadi_pemohon_pendidikan" required>
+                                            <option label="form_pribadi_pemohon_pendidikan" value="" selected
+                                                disabled>Pilih
                                                 Pendidikan</option>
                                             <option value="SD">SD</option>
                                             <option value="SLTP">SLTP</option>
@@ -664,6 +672,7 @@
                                             <option value="S2">S2</option>
                                             <option value="S3">S3</option>
                                         </select>
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_agama">Agama</label>
@@ -691,13 +700,16 @@
                                                 class="text-danger">*
                                             </small>Status Pernikahan</label>
                                         <select class="select2 w-100" name="form_pribadi_pemohon_status_pernikahan"
-                                            id="form_pribadi_pemohon_status_pernikahan" onChange="changeStatus()">
-                                            <option label="status" selected disabled>Pilih Status Pernikahan</option>
+                                            id="form_pribadi_pemohon_status_pernikahan" onChange="changeStatus()"
+                                            required>
+                                            <option label="Pilih Status Pernikahan" value="" selected disabled>Pilih
+                                                Status Pernikahan</option>
                                             <option value="Belum Menikah">Belum Menikah</option>
                                             <option value="Menikah">Menikah</option>
                                             <option value="Janda/Duda - Meninggal">Janda/Duda - Meninggal</option>
                                             <option value="Janda/Duda - Cerai">Janda/Duda - Cerai</option>
                                         </select>
+                                        <div class="invalid-feedback">Field ini wajib dipilih!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_jml_anak"><small
@@ -705,7 +717,8 @@
                                             </small>Jumlah Anak</label>
                                         <input type="number" name="form_pribadi_pemohon_jml_anak"
                                             id="form_pribadi_pemohon_jml_anak" class="form-control"
-                                            placeholder="Jumlah Anak" />
+                                            placeholder="Jumlah Anak" required />
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_jml_tanggungan"><small
@@ -713,7 +726,8 @@
                                             </small>Jumlah Tanggungan</label>
                                         <input type="number" name="form_pribadi_pemohon_jml_tanggungan"
                                             id="form_pribadi_pemohon_jml_tanggungan" class="form-control"
-                                            placeholder="Jumlah Tanggungan" />
+                                            placeholder="Jumlah Tanggungan" required />
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_nama_gadis_ibu_kandung">Nama
@@ -737,7 +751,8 @@
                                                                     name="form_pribadi_pemohon_alamat_ktp"
                                                                     id="form_pribadi_pemohon_alamat_ktp"
                                                                     aria-describedby="form_pribadi_pemohon_alamat_ktp"
-                                                                    placeholder="Alamat Sesuai KTP" />
+                                                                    placeholder="Alamat Sesuai KTP" required />
+                                                                <div class="invalid-feedback">Wajib diisi!</div>
                                                             </div>
                                                         </div>
 
@@ -751,7 +766,8 @@
                                                                     name="form_pribadi_pemohon_alamat_ktp_rt"
                                                                     id="form_pribadi_pemohon_alamat_ktp_rt"
                                                                     aria-describedby="form_pribadi_pemohon_alamat_ktp_rt"
-                                                                    placeholder="RT" />
+                                                                    placeholder="RT" required />
+                                                                <div class="invalid-feedback">Wajib diisi!</div>
                                                             </div>
                                                         </div>
 
@@ -765,7 +781,8 @@
                                                                     name="form_pribadi_pemohon_alamat_ktp_rw"
                                                                     id="form_pribadi_pemohon_alamat_ktp_rw"
                                                                     aria-describedby="form_pribadi_pemohon_alamat_ktp_rw"
-                                                                    placeholder="RW" />
+                                                                    placeholder="RW" required />
+                                                                <div class="invalid-feedback">Wajib diisi!</div>
                                                             </div>
                                                         </div>
 
@@ -779,7 +796,8 @@
                                                                     name="form_pribadi_pemohon_alamat_ktp_kelurahan"
                                                                     id="form_pribadi_pemohon_alamat_ktp_kelurahan"
                                                                     aria-describedby="form_pribadi_pemohon_alamat_ktp_kelurahan"
-                                                                    placeholder="Kelurahan" />
+                                                                    placeholder="Kelurahan" required />
+                                                                <div class="invalid-feedback">Wajib diisi!</div>
                                                             </div>
                                                         </div>
 
@@ -793,7 +811,8 @@
                                                                     name="form_pribadi_pemohon_alamat_ktp_kecamatan"
                                                                     id="form_pribadi_pemohon_alamat_ktp_kecamatan"
                                                                     aria-describedby="form_pribadi_pemohon_alamat_ktp_kecamatan"
-                                                                    placeholder="Kecamatan" />
+                                                                    placeholder="Kecamatan" required />
+                                                                <div class="invalid-feedback">Wajib diisi!</div>
                                                             </div>
                                                         </div>
 
@@ -807,7 +826,8 @@
                                                                     name="form_pribadi_pemohon_alamat_ktp_dati2"
                                                                     id="form_pribadi_pemohon_alamat_ktp_dati2"
                                                                     aria-describedby="form_pribadi_pemohon_alamat_ktp_dati2"
-                                                                    placeholder="Kabupaten/Kota" />
+                                                                    placeholder="Kabupaten/Kota" required />
+                                                                <div class="invalid-feedback">Wajib diisi!</div>
                                                             </div>
                                                         </div>
 
@@ -821,7 +841,8 @@
                                                                     name="form_pribadi_pemohon_alamat_ktp_provinsi"
                                                                     id="form_pribadi_pemohon_alamat_ktp_provinsi"
                                                                     aria-describedby="form_pribadi_pemohon_alamat_ktp_provinsi"
-                                                                    placeholder="Provinsi" />
+                                                                    placeholder="Provinsi" required />
+                                                                <div class="invalid-feedback">Wajib diisi!</div>
                                                             </div>
                                                         </div>
 
@@ -836,7 +857,8 @@
                                                                     name="form_pribadi_pemohon_alamat_ktp_kode_pos"
                                                                     id="form_pribadi_pemohon_alamat_ktp_kode_pos"
                                                                     aria-describedby="form_pribadi_pemohon_alamat_ktp_kode_pos"
-                                                                    placeholder="16XXXX" />
+                                                                    placeholder="16XXX" required />
+                                                                <div class="invalid-feedback">Wajib diisi!</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -860,7 +882,9 @@
                                                                         id="form_pribadi_pemohon_alamat_domisili"
                                                                         name="form_pribadi_pemohon_alamat_domisili"
                                                                         aria-describedby="form_pribadi_pemohon_alamat_domisili"
-                                                                        placeholder="Alamat Tempat Tinggal (Domisili)" />
+                                                                        placeholder="Alamat Tempat Tinggal (Domisili)"
+                                                                        required />
+                                                                    <div class="invalid-feedback">Wajib diisi!</div>
                                                                 </div>
                                                             </div>
 
@@ -874,7 +898,8 @@
                                                                         name="form_pribadi_pemohon_alamat_domisili_rt"
                                                                         id="form_pribadi_pemohon_alamat_domisili_rt"
                                                                         aria-describedby="form_pribadi_pemohon_alamat_domisili_rt"
-                                                                        placeholder="RT" />
+                                                                        placeholder="RT" required />
+                                                                    <div class="invalid-feedback">Wajib diisi!</div>
                                                                 </div>
                                                             </div>
 
@@ -888,7 +913,8 @@
                                                                         name="form_pribadi_pemohon_alamat_domisili_rw"
                                                                         id="form_pribadi_pemohon_alamat_domisili_rw"
                                                                         aria-describedby="form_pribadi_pemohon_alamat_domisili_rw"
-                                                                        placeholder="RW" />
+                                                                        placeholder="RW" required />
+                                                                    <div class="invalid-feedback">Wajib diisi!</div>
                                                                 </div>
                                                             </div>
 
@@ -902,7 +928,8 @@
                                                                         name="form_pribadi_pemohon_alamat_domisili_kelurahan"
                                                                         id="form_pribadi_pemohon_alamat_domisili_kelurahan"
                                                                         aria-describedby="form_pribadi_pemohon_alamat_domisili_kelurahan"
-                                                                        placeholder="Kelurahan" />
+                                                                        placeholder="Kelurahan" required />
+                                                                    <div class="invalid-feedback">Wajib diisi!</div>
                                                                 </div>
                                                             </div>
 
@@ -916,7 +943,8 @@
                                                                         name="form_pribadi_pemohon_alamat_domisili_kecamatan"
                                                                         id="form_pribadi_pemohon_alamat_domisili_kecamatan"
                                                                         aria-describedby="form_pribadi_pemohon_alamat_domisili_kecamatan"
-                                                                        placeholder="Kecamatan" />
+                                                                        placeholder="Kecamatan" required />
+                                                                    <div class="invalid-feedback">Wajib diisi!</div>
                                                                 </div>
                                                             </div>
 
@@ -930,7 +958,8 @@
                                                                         name="form_pribadi_pemohon_alamat_domisili_dati2"
                                                                         id="form_pribadi_pemohon_alamat_domisili_dati2"
                                                                         aria-describedby="form_pribadi_pemohon_alamat_domisili_dati2"
-                                                                        placeholder="Kabupaten/Kota" />
+                                                                        placeholder="Kabupaten/Kota" required />
+                                                                    <div class="invalid-feedback">Wajib diisi!</div>
                                                                 </div>
                                                             </div>
 
@@ -944,7 +973,8 @@
                                                                         name="form_pribadi_pemohon_alamat_domisili_provinsi"
                                                                         id="form_pribadi_pemohon_alamat_domisili_provinsi"
                                                                         aria-describedby="form_pribadi_pemohon_alamat_domisili_provinsi"
-                                                                        placeholder="Provinsi" />
+                                                                        placeholder="Provinsi" required />
+                                                                    <div class="invalid-feedback">Wajib diisi!</div>
                                                                 </div>
                                                             </div>
 
@@ -959,7 +989,8 @@
                                                                         name="form_pribadi_pemohon_alamat_domisili_kode_pos"
                                                                         id="form_pribadi_pemohon_alamat_domisili_kode_pos"
                                                                         aria-describedby="form_pribadi_pemohon_alamat_domisili_kode_pos"
-                                                                        placeholder="16XXXX" />
+                                                                        placeholder="16XXX" required />
+                                                                    <div class="invalid-feedback">Wajib diisi!</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -980,7 +1011,8 @@
                                                 <input type="text" name="form_pribadi_pemohon_no_handphone"
                                                     id="form_pribadi_pemohon_no_handphone"
                                                     class="form-control prefix-mask1"
-                                                    placeholder="Masukkan Nomor Handphone Anda" />
+                                                    placeholder="Masukkan Nomor Handphone Anda" required />
+                                                <div class="invalid-feedback">Wajib diisi!</div>
                                             </div>
                                             <div class="mb-1 col-md-12">
                                                 <div data-repeater-list="form_pribadi_pemohon_status_tempat_tinggal">
@@ -1096,8 +1128,9 @@
                                                 <label class="form-label" for="fotoPemohon"><small class="text-danger">*
                                                     </small>Foto Terbaru Pemohon</label>
                                                 <input type="file" class="form-control" name="foto[1][foto]"
-                                                    id="fotoPemohon" aria-describedby="fotoPemohon" />
-                                                <input type="hidden" name="foto[1][kategori]" value="Foto Pemohon">
+                                                    id="fotoPemohon" aria-describedby="fotoPemohon" required />
+                                                <input type="hidden" name="foto[1][kategori]" value="Foto Pemohon" />
+                                                <div class="invalid-feedback">Wajib diisi!</div>
                                             </div>
                                         </div>
                                         <!-- Data Pemohon end -->
@@ -1177,9 +1210,10 @@
                                                     Istri/Suami Pemohon</label>
                                                 <input type="file" class="form-control" name="foto[2][foto]"
                                                     id="fotoPasanganPemohon" aria-describedby="fotoPasanganPemohon"
-                                                    disabled />
+                                                    disabled required />
                                                 <input type="hidden" name="foto[2][kategori]"
                                                     id="kategoriPasanganPemohon" value="Foto Pasangan Pemohon" disabled>
+                                                <div class="invalid-feedback">Wajib diisi!</div>
                                             </div>
                                         </div>
                                         <!-- Istri/Suami end -->
@@ -1198,7 +1232,8 @@
                                                     </small>Nama Lengkap</label>
                                                 <input type="text" name="form_pribadi_keluarga_terdekat_nama_lengkap"
                                                     id="form_pribadi_keluarga_terdekat_nama_lengkap" class="form-control"
-                                                    placeholder="Nama Lengkap" />
+                                                    placeholder="Nama Lengkap" required />
+                                                <div class="invalid-feedback">Wajib diisi!</div>
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -1208,8 +1243,8 @@
                                                 <select class="select2 w-100"
                                                     name="form_pribadi_keluarga_terdekat_hubungan"
                                                     id="hubunganKeluargaTerdekatLain"
-                                                    onChange="changeHubunganKeluargaTerdekat()">
-                                                    <option label="form_pribadi_keluarga_terdekat_hubungan" selected
+                                                    onChange="changeHubunganKeluargaTerdekat()" required>
+                                                    <option label="Pilih Hubungan Dengan Pemohon" value="" selected
                                                         disabled>Pilih Hubungan Dengan Pemohon</option>
                                                     <option value="Orangtua">Orangtua</option>
                                                     <option value="Mertua">Mertua</option>
@@ -1220,6 +1255,7 @@
                                                     </option>
                                                     <option value="Lainnya">Lainnya</option>
                                                 </select>
+                                                <div class="invalid-feedback">Wajib diisi!</div>
                                             </div>
                                             <div class="mb-1 col-md-6 hide" id=ifHubunganLainnya>
                                                 <label class="form-label" for="hubunganLainnya"><small
@@ -1245,6 +1281,7 @@
                                                                             id="form_pribadi_keluarga_terdekat_alamat"
                                                                             aria-describedby="form_pribadi_keluarga_terdekat_alamat"
                                                                             placeholder="Alamat" required />
+                                                                        <div class="invalid-feedback">Wajib diisi!</div>
                                                                     </div>
                                                                 </div>
 
@@ -1259,6 +1296,7 @@
                                                                             id="form_pribadi_keluarga_terdekat_alamat_rt"
                                                                             aria-describedby="form_pribadi_keluarga_terdekat_alamat_rt"
                                                                             placeholder="RT" required />
+                                                                        <div class="invalid-feedback">Wajib diisi!</div>
                                                                     </div>
                                                                 </div>
 
@@ -1273,6 +1311,7 @@
                                                                             id="form_pribadi_keluarga_terdekat_alamat_rw"
                                                                             aria-describedby="form_pribadi_keluarga_terdekat_alamat_rw"
                                                                             placeholder="RW" required />
+                                                                        <div class="invalid-feedback">Wajib diisi!</div>
                                                                     </div>
                                                                 </div>
 
@@ -1287,6 +1326,7 @@
                                                                             id="form_pribadi_keluarga_terdekat_alamat_kelurahan"
                                                                             aria-describedby="form_pribadi_keluarga_terdekat_alamat_kelurahan"
                                                                             placeholder="Kelurahan" required />
+                                                                        <div class="invalid-feedback">Wajib diisi!</div>
                                                                     </div>
                                                                 </div>
 
@@ -1301,6 +1341,7 @@
                                                                             id="form_pribadi_keluarga_terdekat_alamat_kecamatan"
                                                                             aria-describedby="form_pribadi_keluarga_terdekat_alamat_kecamatan"
                                                                             placeholder="Kecamatan" required />
+                                                                        <div class="invalid-feedback">Wajib diisi!</div>
                                                                     </div>
                                                                 </div>
 
@@ -1370,7 +1411,8 @@
                                                 </button>
                                                 <button class="btn btn-primary btn-next" type="button">
                                                     <span class="align-middle d-sm-inline-block d-none">Next</span>
-                                                    <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                                    <i data-feather="arrow-right"
+                                                        class="align-middle ms-sm-25 ms-0"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -2191,7 +2233,8 @@
                                             id="form_penghasilan_pengeluaran_penghasilan_utama_pemohon"
                                             class="form-control numeral-mask7"
                                             placeholder="Masukkan Penghasilan Utama Pemohon"
-                                            onkeyup="sumPP(this.value);" />
+                                            onkeyup="sumPP(this.value);" required />
+                                        <div class="invalid-feedback">Wajib diisi!</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label"
@@ -3987,7 +4030,7 @@
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                     </button>
-                                    <button class="btn btn-success btn-submit">Submit</button>
+                                    <button class="btn btn-success">Submit</button>
                                 </div>
                             </div>
 
@@ -4029,6 +4072,25 @@
         })
     </script>
     <script>
+        //Form Validation (Bootstrap)
+        var bootstrapForm = $('.needs-validation');
+
+        Array.prototype.filter.call(bootstrapForm, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    form.classList.add('invalid');
+                    // form.bootstrapValidator('defaultSubmit');
+
+                } else {
+                    form.classList.add('was-validated');
+                    form.bootstrapValidator('defaultSubmit');
+
+                }
+                form.classList.add('was-validated');
+                event.preventDefault();
+            });
+        });
+
         function changeJenisAkad() {
             var jenisAkadPembayaran = document.getElementById("formPermohonanJenisAkadPembayaran");
             if (jenisAkadPembayaran.value == "Akad Lainnya") {
@@ -4115,6 +4177,7 @@
                 document.getElementById("ifMenikahHeader").classList = "hide",
                     document.getElementById("ifMenikah").classList = "hide",
                     document.getElementById("fotoPasanganPemohon").setAttribute("disabled", "disabled"),
+                    document.getElementById("fotoPasanganPemohon").removeAttribute("required"),
                     document.getElementById("kategoriPasanganPemohon").setAttribute("disabled", "disabled"),
                     document.getElementById("ifISMHeader").classList = "hide",
                     document.getElementById("ifISM").classList = "hide";

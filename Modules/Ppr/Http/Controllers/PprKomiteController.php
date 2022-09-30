@@ -9,6 +9,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Modules\Form\Entities\FormPprDataPinjaman;
 use Modules\Form\Entities\FormPprDataPribadi;
 use Modules\Form\Entities\FormPprPembiayaan;
 use Modules\Ppr\Entities\PprPembiayaanHistory;
@@ -120,6 +121,11 @@ class PprKomiteController extends Controller
         $angsuran = $hargaJual / $tenor;
         $plafondMaks = $hpp;
 
+        //Idir
+        $penghasilanBersih = $pembiayaan->form_penghasilan_pengeluaran_sisa_penghasilan;
+        $kewajibanAngsuran = $pembiayaan->form_penghasilan_pengeluaran_kewajiban_angsuran;
+        $idir = (($kewajibanAngsuran + $angsuran) / $penghasilanBersih) * 100;
+
         // $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $plafond) * 100 / 12;
         // $margin = $pembiayaan->form_permohonan_jml_margin / 100;
         // $margin = $hpp * $persenMargin * $tenor;
@@ -146,6 +152,8 @@ class PprKomiteController extends Controller
             'hargaJual' => $hargaJual,
             'angsuran' => $angsuran,
             'plafondMaks' => $plafondMaks,
+            'idir' => $idir,
+            'idebs' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get(),
 
             //History
             'history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),

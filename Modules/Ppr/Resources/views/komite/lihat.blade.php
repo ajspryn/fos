@@ -214,14 +214,94 @@
                                                                 <h6>Kemampuan Mengangsur : Rp.
                                                                     {{ number_format($pembiayaan->form_penghasilan_pengeluaran_kemampuan_mengangsur) }}
                                                                 </h6>
+                                                                <hr />
+                                                                <h6 style="text-align: center;">IDIR :
+                                                                    {{ number_format((float) $idir, 2, '.', '') }} %
+                                                                    &emsp; &emsp; &emsp;
+                                                                    <small
+                                                                        class="{{ $idir > 70 ? 'text-danger' : 'text-success' }}">*
+                                                                        Maks. IDIR 70%</small>
+                                                                </h6>
+
                                                                 <hr>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- Address and Contact ends -->
 
-
-
+                                                    <div class="card-body invoice-padding pb-0">
+                                                        <!-- Header starts -->
+                                                        <div
+                                                            class="d-flex justify-content-center  flex-column invoice-spacing mt-0 col-xl-12 col-md-8 col-12">
+                                                            <div>
+                                                                <!-- Tabel Pinjaman/Ideb -->
+                                                                <h4>Informasi Debitur Nasabah</h4>
+                                                                <div class="table-responsive mt-1">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="text-align: center; width: 5%;"
+                                                                                    class="py-1">No</th>
+                                                                                <th style="text-align: center"
+                                                                                    class="py-1">Nama
+                                                                                    Bank</th>
+                                                                                <th style="text-align: center"
+                                                                                    class="py-1">
+                                                                                    Plafond
+                                                                                </th>
+                                                                                <th style="text-align: center"
+                                                                                    class="py-1">
+                                                                                    Tenor
+                                                                                </th>
+                                                                                <th style="text-align: center"
+                                                                                    class="py-1">
+                                                                                    Margin
+                                                                                </th>
+                                                                                <th style="text-align: center"
+                                                                                    class="py-1">
+                                                                                    Angsuran
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @if ($idebs->first())
+                                                                                @foreach ($idebs as $ideb)
+                                                                                    <tr>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $loop->iteration }}</td>
+                                                                                        <td>{{ $ideb->nama_bank }}</td>
+                                                                                        <td>Rp.
+                                                                                            {{ number_format($ideb->plafond) }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $ideb->tenor }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ number_format($ideb->margin) }}%
+                                                                                        </td>
+                                                                                        <td>Rp.
+                                                                                            {{ number_format($ideb->angsuran) }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            @else
+                                                                                <tr>
+                                                                                    <td colspan="6"
+                                                                                        style="text-align: center;">
+                                                                                        No Data
+                                                                                        Available
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @endif
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <hr style="margin-top:-1px;" />
+                                                                </div>
+                                                                <!-- /Tabel Pinjaman/Ideb -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br />
                                                     <hr class="invoice-spacing" />
 
                                                     <div class="card-body invoice-padding pb-0">
@@ -230,7 +310,6 @@
                                                             class="d-flex justify-content-center  flex-column invoice-spacing mt-0 col-xl-12 col-md-8 col-12">
                                                             <div>
                                                                 <h4>Summary </h4>
-                                                                <hr>
                                                                 <div class="table-responsive mt-1">
                                                                     <table class="table">
                                                                         <thead>
@@ -834,6 +913,7 @@
                                                                             @endif
                                                                         </tbody>
                                                                     </table>
+                                                                    <hr style="margin-top:-1px;" />
                                                                 </div>
                                                                 <br />
                                                                 @php
@@ -1313,7 +1393,7 @@
                                                                         $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                         $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                     }
-
+                                                                    
                                                                 @endphp
 
                                                                 <li class="timeline-item">
