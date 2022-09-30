@@ -156,7 +156,7 @@ foreach ($komites as $komite) {
                                         ->get()
                                         ->first();
                                     if ($history->status_id != 5 || $history->jabatan_id != 4) {
-                                        if($history->status_id != 6)
+                                        if($history->status_id != 9)
                                         $pipeline1++;
                                     }
                                 }
