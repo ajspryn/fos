@@ -268,7 +268,7 @@ foreach ($pprs as $ppr) {
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ $pipelineumkm+ $pipenlineskpd+$pipelinepasar }}</h2>
+                                    <h2 class="fw-bolder">{{ $pipelineumkm+ $pipelineskpd+$pipelinepasar }}</h2>
                                     <p class="card-text">Pipeline</p>
                                 </div>
                             </div>
