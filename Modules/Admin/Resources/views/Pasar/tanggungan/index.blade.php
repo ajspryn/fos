@@ -15,7 +15,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">Pengaturan
                                     </li>
-                                    <li class="breadcrumb-item active">SKPD
+                                    <li class="breadcrumb-item active">PASAR / UMKM
                                     </li>
                                     <li class="breadcrumb-item active"><a href="#">Tanggungan</a>
                                     </li>
