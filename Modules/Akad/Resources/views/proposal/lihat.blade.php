@@ -879,8 +879,7 @@
                                                                                                                         {{ $scoring->scoringCollateralFixedIncome->cc_fixed_total_bobot_bersih }}
                                                                                                                     </td>
                                                                                                                 </tr>
-                                                                                                                @elseif
-                                                                                                                ($pembiayaan->jenis_nasabah == 'Non Fixed Income')
+                                                                                                                @elseif ($pembiayaan->jenis_nasabah == 'Non Fixed Income')
                                                                                                                 <tr>
                                                                                                                     <td
                                                                                                                         style="text-align: center">

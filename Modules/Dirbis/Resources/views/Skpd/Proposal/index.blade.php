@@ -60,7 +60,7 @@
                                             }
                                         @endphp
                                         @if ($history)
-                                        @if (($history->jabatan_id == 1 || $history->jabatan_id == 2 || $history->jabatan_id == 0  || $history->jabatan_id == 3 && $history->status_id == 4))
+                                        @if (($history ->status_id ! = 9 || $history->jabatan_id == 1 || $history->jabatan_id == 2 || $history->jabatan_id == 0  || $history->jabatan_id == 3 && $history->status_id == 4))
                                         <tr>
                                                 <tr>
                                                     
