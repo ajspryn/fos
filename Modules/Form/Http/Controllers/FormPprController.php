@@ -41,6 +41,7 @@ use Modules\Ppr\Entities\PprCollateral;
 use Modules\Ppr\Entities\PprCollateralNonFixed;
 use Modules\Ppr\Entities\PprCondition;
 use Modules\Ppr\Entities\PprConditionNonFixed;
+use Modules\Ppr\Entities\PprPembiayaanHistory;
 use Modules\Ppr\Entities\PprScoring;
 use Modules\Ppr\Entities\PprScoringAtrFixedIncome;
 use Modules\Ppr\Entities\PprScoringAtrNonFixedIncome;
@@ -687,6 +688,14 @@ class FormPprController extends Controller
                 ]);
             }
         }
+
+        PprPembiayaanHistory::create([
+            'form_ppr_pembiayaan_id' => $id,
+            'status_id' => 1,
+            'user_id' => null,
+            'jabatan_id' => 0,
+            'divisi_id' => null
+        ]);
 
         return redirect('/')->with('success', 'Pengajuan PPR Anda Berhasil Diajukan!');
     }

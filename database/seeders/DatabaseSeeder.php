@@ -137,7 +137,7 @@ class DatabaseSeeder extends Seeder
         //Status
         DB::table('statuses')->insert([
             'id' => 1,
-            'keterangan' => 'Diajukan oleh Nasabah',
+            'keterangan' => 'Diajukan',
         ]);
 
         DB::table('statuses')->insert([
@@ -186,6 +186,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //Jabatan
+        DB::table('keterangan_jabatans')->insert([
+            'id' => 0,
+            'jabatan_id' => 0,
+            'keterangan' => 'Nasabah',
+        ]);
+
         DB::table('keterangan_jabatans')->insert([
             'id' => 1,
             'jabatan_id' => 1,
