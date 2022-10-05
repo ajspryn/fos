@@ -13,7 +13,7 @@ class PasarSektorEkonomiController extends Controller
    */
   public function index()
   {
-      return view('admin::Pasar.sektor_ekonomi.index',[
+      return view('admin::pasar.sektor_ekonomi.index',[
           'title' => 'Pengaturan Sektor Ekonomi Pasar',
           'sektors'=>PasarSektorEkonomi::all(),
       ]);

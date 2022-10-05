@@ -66,9 +66,9 @@
                                                 <td style="text-align: center">
                                                     {{ $akadBerhasil->kode_tabungan }}</td>
                                                 <td style="text-align: center">
-                                                    {{ $akadBerhasil->plafond }}</td>
+                                                    {{ number_format($akadBerhasil->plafond) }}</td>
                                                 <td style="text-align: center">
-                                                    {{ $akadBerhasil->harga_jual }}</td>
+                                                    {{ number_format($akadBerhasil->harga_jual) }}</td>
                                                 <td style="text-align: center">
                                                     @if ($akadBerhasil->status == 'Selesai Akad')
                                                         <span class="badge rounded-pill badge-light-success">

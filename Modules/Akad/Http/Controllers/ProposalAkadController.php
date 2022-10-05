@@ -315,141 +315,141 @@ class ProposalAkadController extends Controller
     {
 
         $historystatus = PprPembiayaanHistory::select()
-        ->where('form_ppr_pembiayaan_id', $id)
-        ->orderby('created_at', 'desc')
-        ->get()
-        ->first();
+            ->where('form_ppr_pembiayaan_id', $id)
+            ->orderby('created_at', 'desc')
+            ->get()
+            ->first();
 
-    $data = FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
+        $data = FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
 
-    $nasabah = FormPprDataPribadi::select()->where('id', $id)->get()->first();
-    $pekerjaan_nasabah = FormPprDataPekerjaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
+        $nasabah = FormPprDataPribadi::select()->where('id', $id)->get()->first();
+        $pekerjaan_nasabah = FormPprDataPekerjaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
 
-    //Timeline
-    $waktuawal = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();
-    $waktuakhir = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first();
+        //Timeline
+        $waktuawal = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();
+        $waktuakhir = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first();
 
-    $waktumulai = Carbon::parse($waktuawal->created_at);
-    $waktuberakhir = Carbon::parse($waktuakhir->created_at);
-    $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
+        $waktumulai = Carbon::parse($waktuawal->created_at);
+        $waktuberakhir = Carbon::parse($waktuakhir->created_at);
+        $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
 
-    $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
+        $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
 
-    //Perhitungan Margin, Harga Jual & Angsuran
-    $hpp = $pembiayaan->form_permohonan_nilai_hpp;
-    $tenor = $pembiayaan->form_permohonan_jml_bulan;
-    $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $hpp);
-    $marginRp = $hpp * $persenMargin;
-    $hargaJual = $hpp + $marginRp;
-    $angsuran = $hargaJual / $tenor;
-    $plafondMaks = $hpp;
+        //Perhitungan Margin, Harga Jual & Angsuran
+        $hpp = $pembiayaan->form_permohonan_nilai_hpp;
+        $tenor = $pembiayaan->form_permohonan_jml_bulan;
+        $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $hpp);
+        $marginRp = $hpp * $persenMargin;
+        $hargaJual = $hpp + $marginRp;
+        $angsuran = $hargaJual / $tenor;
+        $plafondMaks = $hpp;
 
-    //Usia Nasabah
-    $usiaNasabah = Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir)->age;
+        //Usia Nasabah
+        $usiaNasabah = Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir)->age;
 
-    return view('dirbis::ppr.komite.lihat', [
-        'segmen'=>'PPR',
-        'title' => 'Detail Proposal',
-        'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
-        'pembiayaan' => FormPprPembiayaan::select()->where('id', $id)->get()->first(),
-        'nasabah' => FormPprDataPribadi::select()->where('id', $id)->get()->first(),
-        'usiaNasabah' => $usiaNasabah,
-        'scoring' => PprScoring::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-        'hpp' => $hpp,
-        'tenor' => $tenor,
-        'persenMargin' => $persenMargin,
-        'marginRp' => $marginRp,
-        'hargaJual' => $hargaJual,
-        'angsuran' => $angsuran,
-        'plafondMaks' => $plafondMaks,
+        return view('dirbis::ppr.komite.lihat', [
+            'segmen' => 'PPR',
+            'title' => 'Detail Proposal',
+            'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
+            'pembiayaan' => FormPprPembiayaan::select()->where('id', $id)->get()->first(),
+            'nasabah' => FormPprDataPribadi::select()->where('id', $id)->get()->first(),
+            'usiaNasabah' => $usiaNasabah,
+            'scoring' => PprScoring::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'hpp' => $hpp,
+            'tenor' => $tenor,
+            'persenMargin' => $persenMargin,
+            'marginRp' => $marginRp,
+            'hargaJual' => $hargaJual,
+            'angsuran' => $angsuran,
+            'plafondMaks' => $plafondMaks,
 
-        'aos' => Role::select()->where('jabatan_id', 1)->get(),
-        'pekerjaans' => FormPprDataPekerjaan::all(),
-        'agunans' => FormPprDataAgunan::all(),
-        'kekayaan_simpanans' => FormPprDataKekayaanSimpanan::all(),
-        'kekayaan_tanah_bangunans' => FormPprDataKekayaanTanahBangunan::all(),
-        'kekayaan_kendaraans' => FormPprDataKekayaanKendaraan::all(),
-        'kekayaan_sahams' => FormPprDataKekayaanSaham::all(),
-        'kekayaan_lains' => FormPprDataKekayaanLainnya::all(),
-        'pinjamans' => FormPprDataPinjaman::all(),
-        'pinjaman_kartu_kredits' => FormPprDataPinjamanKartuKredit::all(),
-        'pinjaman_lains' => FormPprDataPinjamanLainnya::all(),
+            'aos' => Role::select()->where('jabatan_id', 1)->get(),
+            'pekerjaans' => FormPprDataPekerjaan::all(),
+            'agunans' => FormPprDataAgunan::all(),
+            'kekayaan_simpanans' => FormPprDataKekayaanSimpanan::all(),
+            'kekayaan_tanah_bangunans' => FormPprDataKekayaanTanahBangunan::all(),
+            'kekayaan_kendaraans' => FormPprDataKekayaanKendaraan::all(),
+            'kekayaan_sahams' => FormPprDataKekayaanSaham::all(),
+            'kekayaan_lains' => FormPprDataKekayaanLainnya::all(),
+            'pinjamans' => FormPprDataPinjaman::all(),
+            'pinjaman_kartu_kredits' => FormPprDataPinjamanKartuKredit::all(),
+            'pinjaman_lains' => FormPprDataPinjamanLainnya::all(),
 
-        //History
-        'history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
-        'timelines' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            //History
+            'history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
+            'timelines' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->get(),
 
-        //perhitunganSLA
-        'totalwaktu' => $totalwaktu,
-        'arr' => -2,
-        'banyak_history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->count(),
-    ]);
+            //perhitunganSLA
+            'totalwaktu' => $totalwaktu,
+            'arr' => -2,
+            'banyak_history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->count(),
+        ]);
     }
 
     public function showPasar($id)
     {
-        $data=PasarPembiayaan::select()->where('id',$id)->get()->first();
-        $nasabah=PasarNasabahh::select()->where('id',$data->nasabah_id)->get()->first();
-        $usaha=PasarKeteranganUsaha::select()->where('pasar_pembiayaan_id',$id)->get()->first();
-        $pasar=PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first();
-        $jaminanrumah=PasarLegalitasRumah::select()->where('pasar_pembiayaan_id',$id)->get()->first();
-        $jaminanlain=PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first();
-        $tenor=$data->tenor;
-        $harga=$data->harga;
-        $rate=$data->rate;
-        $margin=($rate*$tenor)/100;
-        $cash=PasarCashPick::select()->first();
+        $data = PasarPembiayaan::select()->where('id', $id)->get()->first();
+        $nasabah = PasarNasabahh::select()->where('id', $data->nasabah_id)->get()->first();
+        $usaha = PasarKeteranganUsaha::select()->where('pasar_pembiayaan_id', $id)->get()->first();
+        $pasar = PasarJenisPasar::select()->where('kode_pasar', $usaha->jenispasar_id)->get()->first();
+        $jaminanrumah = PasarLegalitasRumah::select()->where('pasar_pembiayaan_id', $id)->get()->first();
+        $jaminanlain = PasarJaminan::select()->where('pasar_pembiayaan_id', $id)->get()->first();
+        $tenor = $data->tenor;
+        $harga = $data->harga;
+        $rate = $data->rate;
+        $margin = ($rate * $tenor) / 100;
+        $cash = PasarCashPick::select()->first();
 
         //idir
-        $harga1=$harga*$margin;
-        $harga_jual=$harga1+$harga;
+        $harga1 = $harga * $margin;
+        $harga_jual = $harga1 + $harga;
 
-        $angsuran1=(int)($harga_jual/$tenor);
+        $angsuran1 = (int)($harga_jual / $tenor);
 
 
         //pemasukan
 
-        $omset=$data->omset;
-        $hpp=$data->hpp;
-        $listrik=$data->listrik;
-        $transport=$data->trasport;
-        $sewa=$data->sewa;
-        $karyawan=$data->karyawan;
-        $telpon=$data->telpon;
-        $laba_bersih=($omset-($hpp+$listrik+$sewa+$karyawan+$telpon+$transport));
+        $omset = $data->omset;
+        $hpp = $data->hpp;
+        $listrik = $data->listrik;
+        $transport = $data->trasport;
+        $sewa = $data->sewa;
+        $karyawan = $data->karyawan;
+        $telpon = $data->telpon;
+        $laba_bersih = ($omset - ($hpp + $listrik + $sewa + $karyawan + $telpon + $transport));
 
         //pengeluaran
 
-        $cicilan=PasarSlik::select()->where('pasar_pembiayaan_id',$id)->sum('angsuran');
-        $biaya_anak=$nasabah->tanggungan->biaya;
-        $biaya_istri=$nasabah->status->biaya;
-        $kebutuhan_keluarga=PasarPembiayaan::select()->where('id',$id)->sum('keb_keluarga');
-        $pengeluaranlain=$biaya_anak+$biaya_istri+$kebutuhan_keluarga;
-        $cekcicilanpasangan=PasarSlikPasangan::select()->where('pasar_pembiayaan_id',$id)->get()->count();
-        $total_pengeluaran = ($pengeluaranlain+$cicilan+$angsuran1);
+        $cicilan = PasarSlik::select()->where('pasar_pembiayaan_id', $id)->sum('angsuran');
+        $biaya_anak = $nasabah->tanggungan->biaya;
+        $biaya_istri = $nasabah->status->biaya;
+        $kebutuhan_keluarga = PasarPembiayaan::select()->where('id', $id)->sum('keb_keluarga');
+        $pengeluaranlain = $biaya_anak + $biaya_istri + $kebutuhan_keluarga;
+        $cekcicilanpasangan = PasarSlikPasangan::select()->where('pasar_pembiayaan_id', $id)->get()->count();
+        $total_pengeluaran = ($pengeluaranlain + $cicilan + $angsuran1);
 
-        if($cekcicilanpasangan > 0){
-            $cicilanpasangan =   $cekcicilanpasangan=PasarSlikPasangan::select()->where('pasar_pembiayaan_id',$id)->sum('angsuran');
+        if ($cekcicilanpasangan > 0) {
+            $cicilanpasangan =   $cekcicilanpasangan = PasarSlikPasangan::select()->where('pasar_pembiayaan_id', $id)->sum('angsuran');
 
-            $total_pengeluaran = $pengeluaranlain+$cicilan+$angsuran1+$cicilanpasangan;
-            $cicilan =  $cicilan+$cicilanpasangan;
+            $total_pengeluaran = $pengeluaranlain + $cicilan + $angsuran1 + $cicilanpasangan;
+            $cicilan =  $cicilan + $cicilanpasangan;
         }
 
-        $di=($laba_bersih-$total_pengeluaran);
+        $di = ($laba_bersih - $total_pengeluaran);
 
         //rating
 
-        $proses_kepalapasar=PasarBendahara::select()->where('jenis_pasar_id',$pasar->kode_pasar)->get()->first();
-        $proses_jenispasar=PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first();
-        $proses_jenisdagang=PasarJenisDagang::select()->where('kode_jenisdagang',$usaha->jenisdagang_id)->get()->first();
-        $proses_sukubangsa=PasarSukuBangsa::select()->where('kode_suku',$usaha->suku_bangsa_id)->get()->first();
-        $proses_lamadagang=PasarLamaBerdagang::select()->where('kode_lamaberdagang',$usaha->lama_usaha)->get()->first();
-        $proses_jaminanrumah=PasarJaminanRumahh::select()->where('kode_jaminan',$jaminanrumah->legalitas_kepemilikan_rumah)->get()->first();
-        $proses_cashpickup=PasarCashPick::select()->where('kode_jeniscash',$data->cashpickup)->get()->first();
-        $proses_jenisnasabah=PasarJenisNasabah::select()->where('kode_jenisnasabah',$data->nasabah)->get()->first();
+        $proses_kepalapasar = PasarBendahara::select()->where('jenis_pasar_id', $pasar->kode_pasar)->get()->first();
+        $proses_jenispasar = PasarJenisPasar::select()->where('kode_pasar', $usaha->jenispasar_id)->get()->first();
+        $proses_jenisdagang = PasarJenisDagang::select()->where('kode_jenisdagang', $usaha->jenisdagang_id)->get()->first();
+        $proses_sukubangsa = PasarSukuBangsa::select()->where('kode_suku', $usaha->suku_bangsa_id)->get()->first();
+        $proses_lamadagang = PasarLamaBerdagang::select()->where('kode_lamaberdagang', $usaha->lama_usaha)->get()->first();
+        $proses_jaminanrumah = PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah->legalitas_kepemilikan_rumah)->get()->first();
+        $proses_cashpickup = PasarCashPick::select()->where('kode_jeniscash', $data->cashpickup)->get()->first();
+        $proses_jenisnasabah = PasarJenisNasabah::select()->where('kode_jenisnasabah', $data->nasabah)->get()->first();
 
 
-        $proses_jaminanlain=PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first();
+        $proses_jaminanlain = PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->get()->first();
 
         // if(!isset($proses_jaminanlain)){
         //     $prosesjaminanlain=PasarJenisJaminan::select()->where('kol',null)->get()->first();
@@ -459,140 +459,139 @@ class ProposalAkadController extends Controller
         // }
         //score
 
-        $score_kepalapasar=$proses_kepalapasar->rating;
-        $score_jenispasar=$proses_jenispasar->rating;
-        $score_jenisdagang=$proses_jenisdagang->rating;
-        $score_sukubangsa=$proses_sukubangsa->rating;
-        $score_lamadagang=$proses_lamadagang->rating;
-        $score_jaminanrumahr=$proses_jaminanrumah->rating;
-        $score_cashpick=$proses_cashpickup->rating;
-        $score_jenisnasabah=$proses_jenisnasabah->rating;
-        $score_jaminanlain=$proses_jaminanlain->rating;
+        $score_kepalapasar = $proses_kepalapasar->rating;
+        $score_jenispasar = $proses_jenispasar->rating;
+        $score_jenisdagang = $proses_jenisdagang->rating;
+        $score_sukubangsa = $proses_sukubangsa->rating;
+        $score_lamadagang = $proses_lamadagang->rating;
+        $score_jaminanrumahr = $proses_jaminanrumah->rating;
+        $score_cashpick = $proses_cashpickup->rating;
+        $score_jenisnasabah = $proses_jenisnasabah->rating;
+        $score_jaminanlain = $proses_jaminanlain->rating;
 
-        $idir=number_format(($cicilan+$angsuran1)/($di)*100);
+        $idir = number_format(($cicilan + $angsuran1) / ($di) * 100);
 
-        if($idir<=50){
-            $proses_idir=PasarScoreIdir::select()->where('rating',4)->get()->first();
+        if ($idir <= 50) {
+            $proses_idir = PasarScoreIdir::select()->where('rating', 4)->get()->first();
         }
 
-        if($idir>=50 && $idir<=60){
-            $proses_idir=PasarScoreIdir::select()->where('rating',3)->get()->first();
+        if ($idir >= 50 && $idir <= 60) {
+            $proses_idir = PasarScoreIdir::select()->where('rating', 3)->get()->first();
         }
 
-        if($idir>=60 && $idir<=69){
-            $proses_idir=PasarScoreIdir::select()->where('rating',2)->get()->first();
+        if ($idir >= 60 && $idir <= 69) {
+            $proses_idir = PasarScoreIdir::select()->where('rating', 2)->get()->first();
         }
 
-        if( $idir>=70){
-            $proses_idir=PasarScoreIdir::select()->where('rating',1)->get()->first();
+        if ($idir >= 70) {
+            $proses_idir = PasarScoreIdir::select()->where('rating', 1)->get()->first();
         }
 
 
 
-        $score_idir=$proses_idir->rating;
+        $score_idir = $proses_idir->rating;
         //slik
 
-        $data_slik=PasarSlik::select()->where('pasar_pembiayaan_id',$id)->orderBy('kol', 'desc')->get()->first();
+        $data_slik = PasarSlik::select()->where('pasar_pembiayaan_id', $id)->orderBy('kol', 'desc')->get()->first();
 
-        if(!isset($data_slik)){
-            $prosesslik=PasarScoreSlik::select()->where('kol',null)->get()->first();
-        }
-        else{
-            $prosesslik=PasarScoreSlik::select()->where('kol',$data_slik->kol)->get()->first();
+        if (!isset($data_slik)) {
+            $prosesslik = PasarScoreSlik::select()->where('kol', null)->get()->first();
+        } else {
+            $prosesslik = PasarScoreSlik::select()->where('kol', $data_slik->kol)->get()->first();
         }
         $score_slik = $prosesslik->rating;
 
-        $waktuawal=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
-        $waktuakhir=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
+        $waktuawal = PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();
+        $waktuakhir = PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first();
 
-        $waktumulai=Carbon::parse($waktuawal->created_at);
-        $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+        $waktumulai = Carbon::parse($waktuawal->created_at);
+        $waktuberakhir = Carbon::parse($waktuakhir->created_at);
 
 
-        $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
+        $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
 
 
         //    return $harga1;
-        return view('akad::proposal.lihat',[
+        return view('akad::proposal.lihat', [
             'segmen' => 'Pasar',
-            'title'=>'Detail Calon Nasabah',
+            'title' => 'Detail Calon Nasabah',
             // 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
-            'deviasi'=>PasarDeviasi::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
-            'timelines'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->get(),
-            'history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
-            'waktuawal'=>PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->last(),
-            'waktuakhir'=>PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
-            'pembiayaan'=>PasarPembiayaan::select()->where('id',$id)->get()->first(),
-            'nasabah'=>PasarNasabahh::select()->where('id',$id)->get()->first(),
-            'fotos'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->get(),
-            'fototoko'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
-            'fotodiri'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
-            'fotoktp'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
-            'fotodiribersamaktp'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
-            'fotokk'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
-            'jaminanusahas'=>PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get(),
-            'jaminanlainusahas'=>PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get(),
-            'usahas'=>PasarKeteranganUsaha::all(), //udah
-            'akads'=>PasarAkad::all(),
-            'sektors'=>PasarSektorEkonomi::all(),
-            'konfirmasi'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Konfirmasi Kepala Pasar')->get()->first(),
-            'nota'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
-            'pasars'=>PasarJenisPasar::select()->where('kode_pasar',$usaha->jenispasar_id)->get()->first(),
-            'lamas'=>PasarLamaBerdagang::select()->where('kode_lamaberdagang',$usaha->lama_usaha)->get()->first(),
-            'rumahs'=>PasarJaminanRumahh::select()->where('kode_jaminan',$jaminanrumah->legalitas_kepemilikan_rumah)->get()->first(),
-            'dagangs'=>PasarJenisDagang::select()->where('kode_jenisdagang',$usaha->jenisdagang_id)->get()->first(),
-            'cashs'=>PasarCashPick::select()->where('kode_jeniscash',$data->cashpickup)->get()->first(),
-            'nasabahs'=>PasarJenisNasabah::select()->where('kode_jenisnasabah',$data->nasabah)->get()->first(),
-            'sukus'=>PasarSukuBangsa::select()->where('kode_suku',$usaha->suku_bangsa_id)->get()->first(),
-            'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
-            'slik'=>$prosesslik,
-            'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
-            'cicilanpasangans'=>PasarSlikPasangan::select()->where('pasar_pembiayaan_id',$id)->get(),
-            'ideb'=>PasarPembiayaan::select()->where('id',$id)->get(),
-            'kepalapasar'=>$proses_kepalapasar,
-            'idir'=>$proses_idir,
-            'laba_bersih'=>$laba_bersih,
-            'cicilan'=>$cicilan,
-            'cekcicilanpasangan'=>$cekcicilanpasangan,
-            'pengeluaran_lain'=>$pengeluaranlain,
-            'total_pengeluaran'=>$total_pengeluaran,
-            'angsuran'=>$angsuran1,
-            'nilai_idir'=>$idir,
-            'harga_jual'=>$harga_jual,
+            'deviasi' => PasarDeviasi::select()->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
+            'timelines' => PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'history' => PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
+            'waktuawal' => PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->last(),
+            'waktuakhir' => PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
+            'pembiayaan' => PasarPembiayaan::select()->where('id', $id)->get()->first(),
+            'nasabah' => PasarNasabahh::select()->where('id', $id)->get()->first(),
+            'fotos' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'fototoko' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto toko')->get()->first(),
+            'fotodiri' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Diri')->get()->first(),
+            'fotoktp' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotodiribersamaktp' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
+            'fotokk' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'jaminanusahas' => PasarJaminan::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'jaminanlainusahas' => PasarJaminanLain::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'usahas' => PasarKeteranganUsaha::all(), //udah
+            'akads' => PasarAkad::all(),
+            'sektors' => PasarSektorEkonomi::all(),
+            'konfirmasi' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Konfirmasi Kepala Pasar')->get()->first(),
+            'nota' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
+            'pasars' => PasarJenisPasar::select()->where('kode_pasar', $usaha->jenispasar_id)->get()->first(),
+            'lamas' => PasarLamaBerdagang::select()->where('kode_lamaberdagang', $usaha->lama_usaha)->get()->first(),
+            'rumahs' => PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah->legalitas_kepemilikan_rumah)->get()->first(),
+            'dagangs' => PasarJenisDagang::select()->where('kode_jenisdagang', $usaha->jenisdagang_id)->get()->first(),
+            'cashs' => PasarCashPick::select()->where('kode_jeniscash', $data->cashpickup)->get()->first(),
+            'nasabahs' => PasarJenisNasabah::select()->where('kode_jenisnasabah', $data->nasabah)->get()->first(),
+            'sukus' => PasarSukuBangsa::select()->where('kode_suku', $usaha->suku_bangsa_id)->get()->first(),
+            'jaminans' => PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->get()->first(),
+            'slik' => $prosesslik,
+            'idebs' => PasarSlik::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'cicilanpasangans' => PasarSlikPasangan::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'ideb' => PasarPembiayaan::select()->where('id', $id)->get(),
+            'kepalapasar' => $proses_kepalapasar,
+            'idir' => $proses_idir,
+            'laba_bersih' => $laba_bersih,
+            'cicilan' => $cicilan,
+            'cekcicilanpasangan' => $cekcicilanpasangan,
+            'pengeluaran_lain' => $pengeluaranlain,
+            'total_pengeluaran' => $total_pengeluaran,
+            'angsuran' => $angsuran1,
+            'nilai_idir' => $idir,
+            'harga_jual' => $harga_jual,
 
-            
+
             //rating
-            'rating_kepalapasar'=>$score_kepalapasar,
-            'rating_jenispasar'=>$score_jenispasar,
-            'rating_jenisdagang'=>$score_jenisdagang,
-            'rating_sukubangsa'=>$score_sukubangsa,
-            'rating_lamadagang'=>$score_lamadagang,
-            'rating_jaminanrumah'=>$score_jaminanrumahr,
-            'rating_cashpick'=>$score_cashpick,
-            'rating_jenisnasabah'=>$score_jenisnasabah,
-            'rating_slik'=>$score_slik,
-            'rating_idir'=>$score_idir,
-            'rating_jaminanlain'=>$score_jaminanlain,
+            'rating_kepalapasar' => $score_kepalapasar,
+            'rating_jenispasar' => $score_jenispasar,
+            'rating_jenisdagang' => $score_jenisdagang,
+            'rating_sukubangsa' => $score_sukubangsa,
+            'rating_lamadagang' => $score_lamadagang,
+            'rating_jaminanrumah' => $score_jaminanrumahr,
+            'rating_cashpick' => $score_cashpick,
+            'rating_jenisnasabah' => $score_jenisnasabah,
+            'rating_slik' => $score_slik,
+            'rating_idir' => $score_idir,
+            'rating_jaminanlain' => $score_jaminanlain,
 
-            'score_kepalapasar'=>$score_kepalapasar * $proses_kepalapasar->bobot,
-            'score_jenispasar'=>$score_jenispasar * $proses_jenispasar->bobot,
-            'score_jenisdagang'=> $score_jenisdagang *  $proses_jenisdagang->bobot,
-            'score_sukubangsa'=>$score_sukubangsa * $proses_sukubangsa->bobot,
-            'score_lamadagang'=>$score_lamadagang * $proses_lamadagang->bobot,
-            'score_jaminanrumah'=>$score_jaminanrumahr * $proses_jaminanrumah->bobot,
-            'score_cashpick'=>$score_cashpick * $proses_cashpickup->bobot,
-            'score_jenisnasabah'=>$score_jenisnasabah * $proses_jenisnasabah->bobot,
-            'score_slik'=>$score_slik * $prosesslik->bobot,
-            'score_idir'=>$score_idir *$proses_idir->bobot,
-            'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
+            'score_kepalapasar' => $score_kepalapasar * $proses_kepalapasar->bobot,
+            'score_jenispasar' => $score_jenispasar * $proses_jenispasar->bobot,
+            'score_jenisdagang' => $score_jenisdagang *  $proses_jenisdagang->bobot,
+            'score_sukubangsa' => $score_sukubangsa * $proses_sukubangsa->bobot,
+            'score_lamadagang' => $score_lamadagang * $proses_lamadagang->bobot,
+            'score_jaminanrumah' => $score_jaminanrumahr * $proses_jaminanrumah->bobot,
+            'score_cashpick' => $score_cashpick * $proses_cashpickup->bobot,
+            'score_jenisnasabah' => $score_jenisnasabah * $proses_jenisnasabah->bobot,
+            'score_slik' => $score_slik * $prosesslik->bobot,
+            'score_idir' => $score_idir * $proses_idir->bobot,
+            'score_jaminanlain' => $score_jaminanlain * $proses_jaminanlain->bobot,
 
 
-             //perhitunganSLA
-             'totalwaktu'=>$totalwaktu,
-             'arr'=>-2,
-             'banyak_history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->count(),
+            //perhitunganSLA
+            'totalwaktu' => $totalwaktu,
+            'arr' => -2,
+            'banyak_history' => PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id', $id)->count(),
         ]);
-}
+    }
     public function showSkpd($id)
     {
         $data = SkpdPembiayaan::select()->where('id', $id)->get()->first();
@@ -642,7 +641,6 @@ class ProposalAkadController extends Controller
         if ($data_slik) {
             $slik = $data_slik->kol_tertinggi;
         }
-
         //proses menentukan rating
         $proses_bendahara = SkpdBendahara::select()->where('skpd_instansi_id', $data->skpd_instansi_id)->get()->first();
         if ($dsr > 36) {
@@ -702,7 +700,7 @@ class ProposalAkadController extends Controller
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
         // return $proses_dsr;
         return view('akad::proposal.lihat', [
-            'segmen'=>'SKPD',
+            'segmen' => 'SKPD',
             'title' => 'Detail Proposal',
             'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
             'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
@@ -760,66 +758,66 @@ class ProposalAkadController extends Controller
     }
     public function showUmkm($id)
     {
-        $data=UmkmPembiayaan::select()->where('id',$id)->get()->first();
-        $nasabah=UmkmNasabah::select()->where('id',$data->nasabah_id)->get()->first();
-        $usaha=UmkmKeteranganUsaha::select()->where('umkm_pembiayaan_id',$id)->get()->first();
-        $jaminanrumah=UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id',$id)->get()->first();
-        $jaminanlain=UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get()->first();
-        $tenor=$data->tenor;
-        $harga=$data->nominal_pembiayaan;
-        $rate=$data->rate;
-        $margin=($rate*$tenor)/100;
-        $cash=PasarCashPick::select()->first();
+        $data = UmkmPembiayaan::select()->where('id', $id)->get()->first();
+        $nasabah = UmkmNasabah::select()->where('id', $data->nasabah_id)->get()->first();
+        $usaha = UmkmKeteranganUsaha::select()->where('umkm_pembiayaan_id', $id)->get()->first();
+        $jaminanrumah = UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id', $id)->get()->first();
+        $jaminanlain = UmkmJaminan::select()->where('umkm_pembiayaan_id', $id)->get()->first();
+        $tenor = $data->tenor;
+        $harga = $data->nominal_pembiayaan;
+        $rate = $data->rate;
+        $margin = ($rate * $tenor) / 100;
+        $cash = PasarCashPick::select()->first();
 
         //idir
-        $harga1=$harga*$margin;
-        $harga_jual=$harga1+$harga;
+        $harga1 = $harga * $margin;
+        $harga_jual = $harga1 + $harga;
 
-        $angsuran1=(int)($harga_jual/$tenor);
-        
+        $angsuran1 = (int)($harga_jual / $tenor);
+
 
         //pemasukan
 
-        $omset=$data->omset;
-        $hpp=$data->hpp;
-        $listrik=$data->listrik;
-        $transport=$data->trasport;
-        $sewa=$data->sewa;
-        $karyawan=$data->karyawan;
-        $telpon=$data->telpon;
-        $laba_bersih=($omset-($hpp+$listrik+$sewa+$karyawan+$telpon+$transport));
+        $omset = $data->omset;
+        $hpp = $data->hpp;
+        $listrik = $data->listrik;
+        $transport = $data->trasport;
+        $sewa = $data->sewa;
+        $karyawan = $data->karyawan;
+        $telpon = $data->telpon;
+        $laba_bersih = ($omset - ($hpp + $listrik + $sewa + $karyawan + $telpon + $transport));
 
         //pengeluaran
 
-        $cicilan=UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->sum('angsuran');
-        $biaya_anak=$nasabah->tanggungan->biaya;
-        $biaya_istri=$nasabah->status->biaya;
-        $kebutuhan_keluarga=UmkmPembiayaan::select()->where('id',$id)->sum('keb_keluarga');
-        $pengeluaranlain=$biaya_anak+$biaya_istri+$kebutuhan_keluarga;
-        $total_pengeluaran = ($pengeluaranlain+$cicilan+$angsuran1);
-        $cekcicilanpasangan=UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->get()->count();
+        $cicilan = UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->sum('angsuran');
+        $biaya_anak = $nasabah->tanggungan->biaya;
+        $biaya_istri = $nasabah->status->biaya;
+        $kebutuhan_keluarga = UmkmPembiayaan::select()->where('id', $id)->sum('keb_keluarga');
+        $pengeluaranlain = $biaya_anak + $biaya_istri + $kebutuhan_keluarga;
+        $total_pengeluaran = ($pengeluaranlain + $cicilan + $angsuran1);
+        $cekcicilanpasangan = UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->get()->count();
 
-        if($cekcicilanpasangan > 0){
-            $cicilanpasangan =   $cekcicilanpasangan=UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->sum('angsuran');
+        if ($cekcicilanpasangan > 0) {
+            $cicilanpasangan =   $cekcicilanpasangan = UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->sum('angsuran');
 
-            $total_pengeluaran = $pengeluaranlain+$cicilan+$angsuran1+$cicilanpasangan;
-            $cicilan =  $cicilan+$cicilanpasangan;
+            $total_pengeluaran = $pengeluaranlain + $cicilan + $angsuran1 + $cicilanpasangan;
+            $cicilan =  $cicilan + $cicilanpasangan;
         }
 
-        $di=($laba_bersih-$total_pengeluaran);
+        $di = ($laba_bersih - $total_pengeluaran);
 
         //rating
 
-        $proses_jenisdagang=PasarJenisDagang::select()->where('kode_jenisdagang',$usaha->jenisdagang_id)->get()->first();
-        $proses_sukubangsa=PasarSukuBangsa::select()->where('kode_suku',$usaha->suku_bangsa_id)->get()->first();
-        $proses_lamadagang=PasarLamaBerdagang::select()->where('kode_lamaberdagang',$usaha->lama_usaha)->get()->first();
-        $proses_jaminanrumah=PasarJaminanRumahh::select()->where('kode_jaminan',$jaminanrumah->legalitas_kepemilikan_rumah)->get()->first();
-        $proses_cashpickup=PasarCashPick::select()->where('kode_jeniscash',$data->cashpickup)->get()->first();
-        $proses_jenisnasabah=PasarJenisNasabah::select()->where('kode_jenisnasabah',$data->nasabah)->get()->first();
+        $proses_jenisdagang = PasarJenisDagang::select()->where('kode_jenisdagang', $usaha->jenisdagang_id)->get()->first();
+        $proses_sukubangsa = PasarSukuBangsa::select()->where('kode_suku', $usaha->suku_bangsa_id)->get()->first();
+        $proses_lamadagang = PasarLamaBerdagang::select()->where('kode_lamaberdagang', $usaha->lama_usaha)->get()->first();
+        $proses_jaminanrumah = PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah->legalitas_kepemilikan_rumah)->get()->first();
+        $proses_cashpickup = PasarCashPick::select()->where('kode_jeniscash', $data->cashpickup)->get()->first();
+        $proses_jenisnasabah = PasarJenisNasabah::select()->where('kode_jenisnasabah', $data->nasabah)->get()->first();
 
 
-        $proses_jaminanlain=PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first();
-        
+        $proses_jaminanlain = PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->get()->first();
+
         // if(!isset($proses_jaminanlain)){
         //     $prosesjaminanlain=PasarJenisJaminan::select()->where('kol',null)->get()->first();
         // }
@@ -828,138 +826,134 @@ class ProposalAkadController extends Controller
         // }
         //score 
 
-        $score_jenisdagang=$proses_jenisdagang->rating;
-        $score_sukubangsa=$proses_sukubangsa->rating;
-        $score_lamadagang=$proses_lamadagang->rating;
-        $score_jaminanrumahr=$proses_jaminanrumah->rating;
-        $score_cashpick=$proses_cashpickup->rating;
-        $score_jenisnasabah=$proses_jenisnasabah->rating;
-        $score_jaminanlain=$proses_jaminanlain->rating;
+        $score_jenisdagang = $proses_jenisdagang->rating;
+        $score_sukubangsa = $proses_sukubangsa->rating;
+        $score_lamadagang = $proses_lamadagang->rating;
+        $score_jaminanrumahr = $proses_jaminanrumah->rating;
+        $score_cashpick = $proses_cashpickup->rating;
+        $score_jenisnasabah = $proses_jenisnasabah->rating;
+        $score_jaminanlain = $proses_jaminanlain->rating;
 
-        $idir=number_format(($cicilan+$angsuran1)/($di)*100);
+        $idir = number_format(($cicilan + $angsuran1) / ($di) * 100);
 
-        if($idir<=50){
-            $proses_idir=UmkmScoreIdir::select()->where('rating',4)->get()->first();
+        if ($idir <= 50) {
+            $proses_idir = UmkmScoreIdir::select()->where('rating', 4)->get()->first();
         }
 
-        if($idir>=50 && $idir<=60){
-            $proses_idir=UmkmScoreIdir::select()->where('rating',3)->get()->first();
-        }
-    
-        if($idir>=60 && $idir<=69){
-            $proses_idir=UmkmScoreIdir::select()->where('rating',2)->get()->first();
+        if ($idir >= 50 && $idir <= 60) {
+            $proses_idir = UmkmScoreIdir::select()->where('rating', 3)->get()->first();
         }
 
-        if( $idir>=70){
-            $proses_idir=UmkmScoreIdir::select()->where('rating',1)->get()->first();
+        if ($idir >= 60 && $idir <= 69) {
+            $proses_idir = UmkmScoreIdir::select()->where('rating', 2)->get()->first();
         }
-       
+
+        if ($idir >= 70) {
+            $proses_idir = UmkmScoreIdir::select()->where('rating', 1)->get()->first();
+        }
 
 
-        $score_idir=$proses_idir->rating;
+
+        $score_idir = $proses_idir->rating;
         //slik 
 
-        $data_slik=UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->orderBy('kol', 'desc')->get()->first(); 
+        $data_slik = UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->orderBy('kol', 'desc')->get()->first();
 
-        if(!isset($data_slik)){
-            $prosesslik=PasarScoreSlik::select()->where('kol',null)->get()->first();
-        }
-        else{
-            $prosesslik=PasarScoreSlik::select()->where('kol',$data_slik->kol)->get()->first();
+        if (!isset($data_slik)) {
+            $prosesslik = PasarScoreSlik::select()->where('kol', null)->get()->first();
+        } else {
+            $prosesslik = PasarScoreSlik::select()->where('kol', $data_slik->kol)->get()->first();
         }
         $score_slik = $prosesslik->rating;
 
-      
-        $waktuawal=UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','asc')->get()->first();
-        $waktuakhir=UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first();
+
+        $waktuawal = UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();
+        $waktuakhir = UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first();
         // $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
 
-        $waktumulai=Carbon::parse($waktuawal->created_at);
-        $waktuberakhir=Carbon::parse($waktuakhir->created_at);
+        $waktumulai = Carbon::parse($waktuawal->created_at);
+        $waktuberakhir = Carbon::parse($waktuakhir->created_at);
         // $selanjutnya=Carbon::parse($next->created_at);
 
 
-        $totalwaktu=$waktumulai->diffAsCarbonInterval($waktuberakhir);
+        $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
 
 
-      
+
         //    return $harga1;
-        return view('akad::proposal.lihat',[
-            'segmen'=>'UMKM',
-            'title'=>'Detail Calon Nasabah',
-            'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
-            'timelines'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->get(),
-            'history'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
-            'pembiayaan'=>UmkmPembiayaan::select()->where('id',$id)->get()->first(),
-            'nasabah'=>UmkmNasabah::select()->where('id',$id)->get()->first(),
-            'fotos'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->get(),
-            'fototoko'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
-            'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
-            'fotoktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
-            'fotodiribersamaktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
-            'fotokk'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
-            'jaminanusahas'=>UmkmJaminan::select()->where('umkm_pembiayaan_id',$id)->get(),
-            'jaminanlainusahas'=>UmkmJaminanLain::select()->where('umkm_pembiayaan_id',$id)->get(),
-            'usahas'=>UmkmKeteranganUsaha::all(), //udah
-            'akads'=>PasarAkad::all(),
-            'nota'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
-            'sektors'=>PasarSektorEkonomi::all(),
-            'lamas'=>PasarLamaBerdagang::select()->where('kode_lamaberdagang',$usaha->lama_usaha)->get()->first(),
-            'rumahs'=>PasarJaminanRumahh::select()->where('kode_jaminan',$jaminanrumah->legalitas_kepemilikan_rumah)->get()->first(),
-            'dagangs'=>PasarJenisDagang::select()->where('kode_jenisdagang',$usaha->jenisdagang_id)->get()->first(),
-            'cashs'=>PasarCashPick::select()->where('kode_jeniscash',$data->cashpickup)->get()->first(),
-            'nasabahs'=>PasarJenisNasabah::select()->where('kode_jenisnasabah',$data->nasabah)->get()->first(),
-            'sukus'=>PasarSukuBangsa::select()->where('kode_suku',$usaha->suku_bangsa_id)->get()->first(),
-            'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->get()->first(),
+        return view('akad::proposal.lihat', [
+            'segmen' => 'UMKM',
+            'title' => 'Detail Calon Nasabah',
+            'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
+            'timelines' => UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'history' => UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
+            'pembiayaan' => UmkmPembiayaan::select()->where('id', $id)->get()->first(),
+            'nasabah' => UmkmNasabah::select()->where('id', $id)->get()->first(),
+            'fotos' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'fototoko' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto toko')->get()->first(),
+            'fotodiri' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Diri')->get()->first(),
+            'fotoktp' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotodiribersamaktp' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
+            'fotokk' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'jaminanusahas' => UmkmJaminan::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'jaminanlainusahas' => UmkmJaminanLain::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'usahas' => UmkmKeteranganUsaha::all(), //udah
+            'akads' => PasarAkad::all(),
+            'nota' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
+            'sektors' => PasarSektorEkonomi::all(),
+            'lamas' => PasarLamaBerdagang::select()->where('kode_lamaberdagang', $usaha->lama_usaha)->get()->first(),
+            'rumahs' => PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah->legalitas_kepemilikan_rumah)->get()->first(),
+            'dagangs' => PasarJenisDagang::select()->where('kode_jenisdagang', $usaha->jenisdagang_id)->get()->first(),
+            'cashs' => PasarCashPick::select()->where('kode_jeniscash', $data->cashpickup)->get()->first(),
+            'nasabahs' => PasarJenisNasabah::select()->where('kode_jenisnasabah', $data->nasabah)->get()->first(),
+            'sukus' => PasarSukuBangsa::select()->where('kode_suku', $usaha->suku_bangsa_id)->get()->first(),
+            'jaminans' => PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->get()->first(),
             // 'slik'=>$prosesslik,
-            'idebs'=>UmkmSlik::select()->where('umkm_pembiayaan_id',$id)->get(),
-            'cicilanpasangans'=>UmkmSlikPasangan::select()->where('umkm_pembiayaan_id',$id)->get(),
-            'ideb'=>UmkmPembiayaan::select()->where('id',$id)->get(),
-            'laba_bersih'=>$laba_bersih,
-            'cicilan'=>$cicilan,
-            'cekcicilanpasangan'=>$cekcicilanpasangan,
-            'pengeluaran_lain'=>$pengeluaranlain,
-            'total_pengeluaran'=>$total_pengeluaran,
-            'angsuran'=>$angsuran1,
-            'harga_jual'=>$harga_jual,
-             'idir'=>$proses_idir,
-             'nilai_idir'=>$idir,
-             'slik'=>$prosesslik,
-        
+            'idebs' => UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'cicilanpasangans' => UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'ideb' => UmkmPembiayaan::select()->where('id', $id)->get(),
+            'laba_bersih' => $laba_bersih,
+            'cicilan' => $cicilan,
+            'cekcicilanpasangan' => $cekcicilanpasangan,
+            'pengeluaran_lain' => $pengeluaranlain,
+            'total_pengeluaran' => $total_pengeluaran,
+            'angsuran' => $angsuran1,
+            'harga_jual' => $harga_jual,
+            'idir' => $proses_idir,
+            'nilai_idir' => $idir,
+            'slik' => $prosesslik,
+
             //rating
-            'rating_jenisdagang'=>$score_jenisdagang,
-            'rating_sukubangsa'=>$score_sukubangsa,
-            'rating_lamadagang'=>$score_lamadagang,
-            'rating_jaminanrumah'=>$score_jaminanrumahr,
-            'rating_cashpick'=>$score_cashpick,
-            'rating_jenisnasabah'=>$score_jenisnasabah,
-            'rating_slik'=>$score_slik,
-            'rating_idir'=>$score_idir,
-            'rating_jaminanlain'=>$score_jaminanlain,
+            'rating_jenisdagang' => $score_jenisdagang,
+            'rating_sukubangsa' => $score_sukubangsa,
+            'rating_lamadagang' => $score_lamadagang,
+            'rating_jaminanrumah' => $score_jaminanrumahr,
+            'rating_cashpick' => $score_cashpick,
+            'rating_jenisnasabah' => $score_jenisnasabah,
+            'rating_slik' => $score_slik,
+            'rating_idir' => $score_idir,
+            'rating_jaminanlain' => $score_jaminanlain,
 
-            'score_jenisdagang'=> $score_jenisdagang *  $proses_jenisdagang->bobot,
-            'score_sukubangsa'=>$score_sukubangsa * $proses_sukubangsa->bobot,
-            'score_lamadagang'=>$score_lamadagang * $proses_lamadagang->bobot,
-            'score_jaminanrumah'=>$score_jaminanrumahr * $proses_jaminanrumah->bobot,
-            'score_cashpick'=>$score_cashpick * $proses_cashpickup->bobot,
-            'score_jenisnasabah'=>$score_jenisnasabah * $proses_jenisnasabah->bobot,
-            'score_slik'=>$score_slik * $prosesslik->bobot,
-            'score_idir'=>$score_idir *$proses_idir->bobot,
-            'score_jaminanlain'=>$score_jaminanlain* $proses_jaminanlain->bobot,
+            'score_jenisdagang' => $score_jenisdagang *  $proses_jenisdagang->bobot,
+            'score_sukubangsa' => $score_sukubangsa * $proses_sukubangsa->bobot,
+            'score_lamadagang' => $score_lamadagang * $proses_lamadagang->bobot,
+            'score_jaminanrumah' => $score_jaminanrumahr * $proses_jaminanrumah->bobot,
+            'score_cashpick' => $score_cashpick * $proses_cashpickup->bobot,
+            'score_jenisnasabah' => $score_jenisnasabah * $proses_jenisnasabah->bobot,
+            'score_slik' => $score_slik * $prosesslik->bobot,
+            'score_idir' => $score_idir * $proses_idir->bobot,
+            'score_jaminanlain' => $score_jaminanlain * $proses_jaminanlain->bobot,
 
-            'deviasi'=>UmkmDeviasi::select()->where('umkm_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
-             
-             //SLA
-             'totalwaktu'=>$totalwaktu,
-             'arr'=>-2,
-             'banyak_history'=>UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id',$id)->count(),
+            'deviasi' => UmkmDeviasi::select()->where('umkm_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
 
-            
+            //SLA
+            'totalwaktu' => $totalwaktu,
+            'arr' => -2,
+            'banyak_history' => UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->count(),
+
+
         ]);
-    
-
-
-}
+    }
     /**
      * Show the form for editing the specified resource.
      * @param int $id
