@@ -90,15 +90,14 @@
                                                             class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
                                                             {{ $history->jabatan->keterangan }}</span>
                                                     @endif
+                                                </td>
+                                                <td style="text-align: center">{{ $proposal_umkm->user->name }}</td>
+                                                <td>
+                                                    <a href="/kabag/umkm/komite/{{ $proposal_umkm->id }}"
+                                                        class="btn btn-outline-info round">Detail</a>
+                                                </td>
+                                                </tr>
                                         @endif
-                                        </td>
-                                        <td style="text-align: center">{{ $proposal_umkm->user->name }}</td>
-                                        <td>
-                                            <a href="/kabag/umkm/komite/{{ $proposal_umkm->id }}"
-                                                class="btn btn-outline-info round">Detail</a>
-                                        </td>
-                                        </tr>
-                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>

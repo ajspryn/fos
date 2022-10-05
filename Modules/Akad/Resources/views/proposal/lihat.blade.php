@@ -88,7 +88,14 @@
                                                                                                                 {{ date_format($pembiayaan->created_at, 'd-m-Y') }}
                                                                                                             </td>
                                                                                                         </tr>
-
+                                                                                                        <tr>
+                                                                                                            <td class="pe-1">
+                                                                                                                Nama AO </td>
+                                                                                                            <td>:
+                                                                                                                {{ $pembiayaan->user->name}}
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                <tr>
                                                                                                         <tr>
                                                                                                             <td
                                                                                                                 class="pe-1">
@@ -2033,6 +2040,13 @@
                                                                                             </tr>
                                                                                             <tr>
                                                                                                 <td class="pe-1">
+                                                                                                    Nama AO </td>
+                                                                                                <td>:
+                                                                                                    {{ $pembiayaan->user->name}}
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td class="pe-1">
                                                                                                     Penggunaan</td>
                                                                                                 <td>:
                                                                                                     {{ $pembiayaan->penggunaan_id }}
@@ -3674,6 +3688,13 @@
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
+                                                                                                <td class="pe-1">
+                                                                                                    Nama AO </td>
+                                                                                                <td>:
+                                                                                                    {{ $pembiayaan->user->name}}
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                    <tr>
                                                                                         <td class="pe-1">Penggunaan</td>
                                                                                         <td>:
                                                                                             {{ $pembiayaan->penggunaan_id }}
@@ -5146,6 +5167,14 @@
                                                                                         {{ $pembiayaan->tanggal_pengajuan }}
                                                                                     </td>
                                                                                 </tr>
+                                                                                <tr>
+                                                                                    <td class="pe-1">
+                                                                                        Nama AO </td>
+                                                                                    <td>:
+                                                                                        {{ $pembiayaan->user->name}}
+                                                                                    </td>
+                                                                                </tr>
+                                                                        <tr>
                                                                                 <tr>
                                                                                     <td class="pe-1">Penggunaan</td>
                                                                                     <td>:

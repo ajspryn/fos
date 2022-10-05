@@ -1,4 +1,5 @@
 @extends('kabag::layouts.main')
+
 @section('content')
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -576,7 +577,7 @@
                                                                                     <tr>
                                                                                         <td class="pe-1">Status</td>
                                                                                         <td>:
-                                                                                            
+
                                                                                             @if ($nilai_dsr >= 40 || $nilai_dsr < 0)
                                                                                                 @if ($nilai_dsr >= 40 && $total_score > 3)
                                                                                                     <span
@@ -612,7 +613,7 @@
                                                                                                         class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
                                                                                                 @endif
                                                                                             @endif
-                                                                                                
+
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
@@ -834,9 +835,11 @@
                                                             </div>
                                                         </div>
                                                         <!-- post img -->
-                                                        <img class="img-fluid rounded mb-75"
+                                                        <iframe src="{{ asset('storage/' . $foto->foto) }}"
+                                                            class="d-block w-100" height='500' weight='800'></iframe>
+                                                        {{-- <img class="img-fluid rounded mb-75"
                                                             src="{{ asset('storage/' . $foto->foto) }}"
-                                                            alt="avatar img" />
+                                                            alt="avatar img" /> --}}
                                                         <!--/ post img -->
                                                     </div>
                                                 </div>
@@ -862,6 +865,8 @@
                                                         <img class="img-fluid rounded mb-75"
                                                             src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
                                                             alt="avatar img" />
+                                                            <iframe src="{{ asset('storage/' . $jaminan->dokumen_jaminan) }}"
+                                                            class="d-block w-100" height='500' weight='800'></iframe>
                                                         <!--/ post img -->
                                                     </div>
                                                 </div>
@@ -1002,6 +1007,8 @@
                                 </div>
                                 <!-- Justified Tabs ends -->
                             </div>
+                        </div>
+                    </div>
                 </section>
 
                 <!-- Idir -->
@@ -1063,8 +1070,8 @@
                         </div>
                     </div>
                 </div>
-
                 <!--akhir idir -->
+
                 <!-- LampiranJaminan  -->
                 <div class="modal fade" id="ijazah" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
@@ -1085,6 +1092,7 @@
                     </div>
                 </div>
                 <!--/ LampiranJaminan  -->
+
                 <!-- ideb  -->
                 <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
@@ -1106,4 +1114,6 @@
                 </div>
                 <!--/ ideb  -->
             </div>
-        @endsection
+        </div>
+    </div>
+@endsection
