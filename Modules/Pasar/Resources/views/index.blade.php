@@ -103,10 +103,9 @@ foreach ($komites as $komite) {
                                 }
                             
                         @endphp
-
                         <div class="col-xl-4 col-md-6 col-12">
                             <div class="card card-congratulation-medal">
-                                @if ($cair < 5000000)
+                                @if ($cair < 50000000)
                                     <div class="card-body -ml-6 rounded bg-danger">
                                         <h5 style="color: white">{{ Auth::user()->name }}</h5>
                                         <p class="card-text font-small-3" style="color: white">Kamu Belum Mencapai Target

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Response;
 use Modules\Admin\Entities\PasarJenisJaminan;
 use Modules\Admin\Entities\PasarJenisPasar;
 use Modules\Admin\Entities\SkpdInstansi;
+use Modules\Akad\Entities\Pembiayaan;
 use Modules\Form\Entities\FormPprPembiayaan;
 use Modules\Pasar\Entities\PasarJaminan;
 use Modules\Pasar\Entities\PasarKeteranganUsaha;
@@ -91,6 +92,10 @@ class CetakAkadController extends Controller
         else
         $bulan = 'XII';
 
+        $no = Pembiayaan::select()->where('status','Selesai Akad')->get()->count();
+
+        $no_surat = (2298 - 24 ) + ($no+1);
+
         if($akad==1)
         return Response::make(view('akad::murabahah.pasar', [
             'title' => 'Proposal Pasar',
@@ -103,7 +108,10 @@ class CetakAkadController extends Controller
             'jaminan' => $jenisjaminan,
             'no_ktb' => $jaminan->no_ktb,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
-            'bulan'=>$bulan
+            'bulan'=>$bulan,
+            'no_surat'=>$no_surat,
+            'tahun'=>Carbon::now()->isoFormat('Y'),
+            'month'=>Carbon::now()->isoFormat('M'),
         ]), 200, $headers);
 
         else
@@ -119,6 +127,9 @@ class CetakAkadController extends Controller
             'no_ktb' => $jaminan->no_ktb,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
             'bulan'=>$bulan,
+            'no_surat'=>$no_surat,
+            'tahun'=>Carbon::now()->isoFormat('Y'),
+            'month'=>Carbon::now()->isoFormat('M'),
         ]), 200, $headers);
     }
     public function showUmkm($id)
@@ -177,7 +188,9 @@ class CetakAkadController extends Controller
         else
         $bulan = 'XII';
 
-        // return $bulan;
+        $no = Pembiayaan::select()->where('status','Selesai Akad')->get()->count();
+
+        $no_surat = (2298 - 24 ) + ($no+1);
         if($akad==1)
         return Response::make(view('akad::murabahah.umkm', [
             'title' => 'Proposal UMKM',
@@ -191,6 +204,9 @@ class CetakAkadController extends Controller
             'no_ktb' => $jaminan->no_ktb,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
             'bulan'=>$bulan,
+            'no_surat'=>$no_surat,
+            'tahun'=>Carbon::now()->isoFormat('Y'),
+            'month'=>Carbon::now()->isoFormat('M'),
         ]), 200, $headers);
 
         else
@@ -205,7 +221,10 @@ class CetakAkadController extends Controller
             'jaminan' => $jenisjaminan,
             'no_ktb' => $jaminan->no_ktb,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
-            'bulan'=>$bulan
+            'bulan'=>$bulan,
+            'no_surat'=>$no_surat,
+            'tahun'=>Carbon::now()->isoFormat('Y'),
+            'month'=>Carbon::now()->isoFormat('M'),
         ]), 200, $headers);
     }
 
@@ -261,6 +280,10 @@ class CetakAkadController extends Controller
         else
         $bulan = 'XII';
 
+        $no = Pembiayaan::select()->where('status','Selesai Akad')->get()->count();
+
+        $no_surat = (2298 - 24 ) + ($no+1);
+     
         if($akad==1)
         return Response::make(view('akad::ijarah.skpd', [
             'title' => 'Proposal Skpd',
@@ -271,7 +294,10 @@ class CetakAkadController extends Controller
             'nasabah' => $nasabah,
             'angsuran1' => $angsuran1,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
-            'bulan'=>$bulan
+            'bulan'=>$bulan,
+            'no_surat'=>$no_surat,
+            'tahun'=>Carbon::now()->isoFormat('Y'),
+            'month'=>Carbon::now()->isoFormat('M'),
         ]), 200, $headers);
 
        else
@@ -284,7 +310,11 @@ class CetakAkadController extends Controller
             'nasabah' => $nasabah,
             'angsuran1' => $angsuran1,
             'now' => Carbon::now()->isoFormat('D MMMM Y'),
-            'bulan'=>$bulan
+            'bulan'=>$bulan,
+            'no_surat'=>$no_surat,
+            'tahun'=>Carbon::now()->isoFormat('Y'),
+            'month'=>Carbon::now()->isoFormat('M'),
+            
         ]), 200, $headers);
 
     }

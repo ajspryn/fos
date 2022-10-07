@@ -983,6 +983,9 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    <hr class="invoice-spacing" />
+                                    <small>Jika ada perubahan pada Slik, silahkan inputkan dari awal</small>
+                                    <hr class="invoice-spacing" />
                                     <small>Cicilan Bank</small>
                                     <section id="form-repeater">
                                         <div class="row">
