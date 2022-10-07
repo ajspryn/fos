@@ -82,7 +82,7 @@
                                             <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}</td>
                                             <td style="text-align: center"
                                                 value="{{ $history->statushistory->id }} ,{{ $history->jabatan->jabatan_id }} ">
-                                                @if ($history->statushistory->id == 5 )
+                                                @if ($history->statushistory->id == 5 || $history->statushistory->id == 9 )
                                                     <span
                                                         class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>
@@ -94,7 +94,7 @@
                                                     <span
                                                         class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>
-                                                @elseif ($history->statushistory->id == 6)
+                                                @elseif ($history->statushistory->id == 6 || $history->statushistory->id == 10)
                                                     <span
                                                         class="badge rounded-pill badge-light-danger">{{ $history->statushistory->keterangan }}
                                                         {{ $history->jabatan->keterangan }}</span>

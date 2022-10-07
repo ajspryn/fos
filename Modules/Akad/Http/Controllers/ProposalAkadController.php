@@ -704,12 +704,12 @@ class ProposalAkadController extends Controller
 
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
         // return $proses_dsr;
-        $no = Pembiayaan::select()->where('status','Selesai Akad')->get()->count();
+        // $no = Pembiayaan::select()->where('status','Selesai Akad')->get()->count();
 
-        $no_surat = (2298 - $no) + ($no+1);
+        // $no_surat = (2298 - 12) + ($no+1);
 
 
-        return $no_surat;
+        // return $no_surat;
         return view('akad::proposal.lihat', [
             'segmen' => 'SKPD',
             'title' => 'Detail Proposal',

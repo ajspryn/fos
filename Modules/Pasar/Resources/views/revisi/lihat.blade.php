@@ -242,8 +242,8 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="harga"><small class="text-danger">*
                                                 </small>Harga Kios / Los (Nominal Pembiayaan)</label>
-                                            <input type="text" name="harga" class="form-control numeral-mask4"
-                                                placeholder="Rp." id="harga"
+                                                <input type="text" class="form-control numeral-mask1" placeholder="Rp."
+                                                name="harga" id="harga"
                                                 value="{{ number_format($pembiayaan->harga) }}" required />
                                         </div>
                                         <div class="mb-1 col-md-4">
