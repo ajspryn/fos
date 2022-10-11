@@ -15,7 +15,7 @@ class PasarAkadController extends Controller
      */
     public function index()
     {
-        return view('admin::Pasar.akad.index',[
+        return view('admin::pasar.akad.index',[
             'title' => 'Pengaturan Akad Pasar',
             'akads'=>PasarAkad::all(),
         ]);

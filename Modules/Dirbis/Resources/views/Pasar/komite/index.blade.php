@@ -89,6 +89,10 @@
                                                             {{ $history->jabatan->keterangan }}</span>
                                                     @elseif ($history->statushistory->id == 5 && $history->jabatan->jabatan_id == 3)
                                                         <span
+                                                            class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                            {{ $history->jabatan->keterangan }}</span>
+                                                    @else
+                                                        <span
                                                             class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
                                                             {{ $history->jabatan->keterangan }}</span>
                                                     @endif

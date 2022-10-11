@@ -3,6 +3,7 @@
 namespace Modules\Admin\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -17,11 +18,16 @@ class AdminController extends Controller
     public function index()
     {
         $role=Role::select()->where('user_id',Auth::user()->id)->get()->first();
+        $user=Role::Rightjoin('users','roles.user_id','=','users.id')->select()->whereNull('role_id')->get()->count();
+        $userlengkap=Role::Rightjoin('users','roles.user_id','=','users.id')->select()->get()->count();
         // dd($role->role_id);
         return view('admin::lihat',[
             // 'header'=>"Dashboard Admin",
             'title'=>"Dashboard Admin",
             'role'=>$role->role_id,
+            'user'=>User::select()->where('id', Auth::user()->id)->get()->first(),
+            'usertidakadarole'=>$user,
+            'userlengkap'=>$userlengkap,
         ]);
     }
 

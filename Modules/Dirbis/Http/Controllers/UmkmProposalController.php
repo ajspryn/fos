@@ -47,13 +47,11 @@ class UmkmProposalController extends Controller
 
             $plafonds = UmkmPembiayaan::join('umkm_pembiayaan_histories', 'umkm_pembiayaans.id', '=', 'umkm_pembiayaan_histories.umkm_pembiayaan_id')
                 ->select(DB::raw("MONTHNAME(umkm_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
-                ->where('umkm_pembiayaan_histories.jabatan_id', 4)
-                ->where('umkm_pembiayaan_histories.status_id', 5)
+                ->where('umkm_pembiayaan_histories.status_id', 9)
                 ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
                 ->groupBy(DB::raw("nama_bulan"))
                 ->orderBy('umkm_pembiayaans.id', 'ASC')
                 ->pluck('jml_plafond', 'nama_bulan');
-
 
             $bulanplafonds = $plafonds->keys();
             $hitungPerBulan = $plafonds->values();
@@ -69,13 +67,12 @@ class UmkmProposalController extends Controller
 
             $target1 = UmkmPembiayaan::join('umkm_pembiayaan_histories', 'umkm_pembiayaans.id', '=', 'umkm_pembiayaan_histories.umkm_pembiayaan_id')
                 ->select()
-                ->where('umkm_pembiayaan_histories.jabatan_id', 4)
-                ->where('umkm_pembiayaan_histories.status_id', 5)
+                ->where('umkm_pembiayaan_histories.status_id', 9)
                 ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
                 ->get();
 
             $pipeline = UmkmPembiayaan::select()
-            ->whereYear('tgl_pembiayaan', date('Y'))
+                ->whereYear('tgl_pembiayaan', date('Y'))
                 ->count();
 
             // return ($noas);
@@ -89,8 +86,8 @@ class UmkmProposalController extends Controller
                 'dataplafonds' => $hitungPerBulan,
                 'labelnoas' => $bulannoas,
                 'datanoas' => $noaPerBulan,
-                'target1'=>$target1,
-                'pipeline'=>$pipeline
+                'target1' => $target1,
+                'pipeline' => $pipeline
             ]);
         }
     }

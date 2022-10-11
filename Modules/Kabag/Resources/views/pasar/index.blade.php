@@ -1,11 +1,23 @@
 @extends('kabag::layouts.main')
 @php
-$diterima = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('status_id', 5)
-    ->where('jabatan_id', 4)
-    ->get()
-    ->count();
 
+$datas = Modules\Pasar\Entities\PasarPembiayaan::select()
+    ->get();
+$diterima = 0;
+foreach ($datas as $data) {
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $data->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 5 && $history->jabatan_id == 4 ) {
+        $diterima++;
+    }
+}
 $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
 
 $proposal = 0;
@@ -30,7 +42,7 @@ $ditolak = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
     ->get()
     ->count();
 
-    $komites = Modules\Pasar\Entities\PasarPembiayaan::select()
+$komites = Modules\Pasar\Entities\PasarPembiayaan::select()
     ->whereNotNull('sektor_id')
     ->orderby('updated_at', 'desc')
     ->get();
@@ -133,19 +145,33 @@ foreach ($komites as $komite) {
                         <!--/ Statistics Card -->
                     </div>
                     @php
-                    $cair = 0;
-                    foreach ($target1 as $target) {
-                        $tenor = $target->tenor;
-                        $harga = $target->harga;
-                        $rate = $target->rate;
-                        $margin = ($rate * $tenor) / 100;
-                    
-                        $harga1 = $harga * $margin;
-                        $harga_jual = $harga1 + $harga;
-                    
-                        $cair = $cair + $harga_jual;
-                    }
-                @endphp
+                        $cair = 0;
+                            foreach ($target1 as $target) {
+                                $harga_jual = $target->harga;
+                            
+                                $cair = $cair + $harga_jual;
+                            }
+                                $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
+                            
+                                $pipeline1 = 0;
+                                foreach ($pasars as $pasar) {
+                                    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+                                        ->where('pasar_pembiayaan_id', $pasar->id)
+                                        ->orderby('created_at', 'desc')
+                                        ->get()
+                                        ->first();
+                            
+                                    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+                                        ->where('id', $history->pasar_pembiayaan_id)
+                                        ->get()
+                                        ->first();
+                                    if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                                        if($history->status_id != 9)
+                                        $pipeline1++;
+                                    }
+                                }
+                    @endphp
+
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">
@@ -155,12 +181,12 @@ foreach ($komites as $komite) {
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ $pipeline }}</h2>
+                                    <h2 class="fw-bolder">{{ $pipeline1 }}</h2>
                                     <p class="card-text">Pipeline</p>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
@@ -176,11 +202,11 @@ foreach ($komites as $komite) {
                         </div>
                     </div>
 
-                 
+
                 </section>
                 <!-- Dashboard Ecommerce ends -->
 
-                <div class="row" >
+                <div class="row match-height">
                     <!-- Donut Chart Starts -->
                     <div class="col-lg-4 col-12">
                         <div class="card">
@@ -188,12 +214,10 @@ foreach ($komites as $komite) {
                                 <h4 class="card-title">Statistik Proposal Perbulan</h4>
                                 <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
                                     <i data-feather="calendar"></i>
-                                    <input
-                                      type="text"
-                                      class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
-                                      placeholder="YYYY-MM-DD"
-                                    />
-                                  </div>
+                                    <input type="text"
+                                        class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
+                                        placeholder="YYYY-MM-DD" />
+                                </div>
                             </div>
                             <div class="card-body">
 
@@ -209,12 +233,10 @@ foreach ($komites as $komite) {
                                 <h4 class="card-title">Statistik Plafond Perbulan</h4>
                                 <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
                                     <i data-feather="calendar"></i>
-                                    <input
-                                      type="text"
-                                      class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
-                                      placeholder="YYYY-MM-DD"
-                                    />
-                                  </div>
+                                    <input type="text"
+                                        class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
+                                        placeholder="YYYY-MM-DD" />
+                                </div>
                             </div>
                             <div class="card-body">
 
@@ -223,27 +245,25 @@ foreach ($komites as $komite) {
                             </div>
                         </div>
                     </div>
-                  
+
 
                     <div class="col-lg-4 col-12">
-                        
+
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Statistik Pasar</h4>
                                 <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
                                     <i data-feather="calendar"></i>
-                                    <input
-                                      type="text"
-                                      class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
-                                      placeholder="YYYY-MM-DD"
-                                    />
-                                  </div>
+                                    <input type="text"
+                                        class="form-control flat-picker border-0 shadow-none bg-transparent pe-0"
+                                        placeholder="YYYY-MM-DD" />
+                                </div>
                             </div>
                             <div class="card-body">
                                 <canvas id="myPiechart" width="400" height="400"></canvas>
                             </div>
                             {{-- <div class ="mt-4 text-center small">
-                                @foreach($plabels as $label)
+                                @foreach ($plabels as $label)
                                 <span>
                                     <i data-feather='circle'></i> {{ $label }}
                                 </span>
@@ -252,110 +272,112 @@ foreach ($komites as $komite) {
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-    </div>
-    <!-- END: Content-->
+        <!-- END: Content-->
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-    <script type="text/javascript">
-        var _plabels = {!! json_encode($plabels) !!};
-        var _pdatapasars = {!! json_encode($pdatapasars) !!};
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+        <script type="text/javascript">
+            var _plabels = {!! json_encode($plabels) !!};
+            var _pdatapasars = {!! json_encode($pdatapasars) !!};
 
-        var ctx = document.getElementById("myPiechart");
-        var myPiechart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: _plabels,
-                datasets: [{
-                    data: _pdatapasars,
-                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc','#EC6B56',' #FFC154'],
-                    hoverBackgroundColor: ['#2e59d0', '#17e671', '#2c9faf','#F15E1E',' #FFCF09'],
-                    hoverBorderColor: "rgb(234,236,244,1)",
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                tooltips: {
+            var ctx = document.getElementById("myPiechart");
+            var myPiechart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: _plabels,
+                    datasets: [{
+                        data: _pdatapasars,
+                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#EC6B56', ' #FFC154'],
+                        hoverBackgroundColor: ['#2e59d0', '#17e671', '#2c9faf', '#F15E1E', ' #FFCF09'],
+                        hoverBorderColor: "rgb(234,236,244,1)",
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
 
-                    backgroundColor: "rgb(255,255,255)",
-                    bodyFontColor: "#858796",
-                    borderWidth: 1,
-                    xpadding: 15,
-                    ypadding: 15,
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        borderWidth: 1,
+                        xpadding: 15,
+                        ypadding: 15,
+                    }
+                },
+            })
+        </script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+        <script type="text/javascript">
+            var _ydata = JSON.parse('{!! json_encode($bulans) !!}');
+            var _xdata = JSON.parse('{!! json_encode($hitungBulan) !!}');
+
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: _ydata,
+                    datasets: [{
+                        label: "Proposal Per Bulan",
+                        data: _xdata,
+                        backgroundColor: [
+                            '#1858AD', '#5cb85c', '#5bc0de', '#f0ad4e', '#d9534f'
+                        ],
+                        borderColor: [
+                            '#36b9cc', '#7ED8A5', '#B4F6EB', '#E7F6B4', '#d9534f'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
                 }
-            },
-        })
-    </script>
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+        <script type="text/javascript">
+            var _ydata = JSON.parse('{!! json_encode($labelplafonds) !!}');
+            var _xdata = JSON.parse('{!! json_encode($dataplafonds) !!}');
 
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-    <script type="text/javascript">
-        var _ydata = JSON.parse('{!! json_encode($bulans) !!}');
-        var _xdata = JSON.parse('{!! json_encode($hitungBulan) !!}');
-
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: _ydata,
-                datasets: [{
-                    label: "Proposal Per Bulan",
-                    data: _xdata,
-                    backgroundColor: [
-                        '#1858AD', '#5cb85c', '#5bc0de','#f0ad4e','#d9534f'
-                    ],
-                    borderColor: [
-                        '#36b9cc', '#7ED8A5', '#B4F6EB','#E7F6B4','#d9534f'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            plugins: {
-                legend: {
-                    display: false
+            var ctx = document.getElementById('mylineChart');
+            var mylineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: _ydata,
+                    datasets: [{
+                        label: -_ydata,
+                        data: _xdata,
+                        backgroundColor: [
+                            '#1858AD', '#5cb85c', '#5bc0de', '#f0ad4e', '#d9534f'
+                        ],
+                        borderColor: [
+                            '#36b9cc', '#7ED8A5', '#B4F6EB', '#E7F6B4', '#d9534f'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
                 }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-    <script type="text/javascript">
-        var _ydata = JSON.parse('{!! json_encode($labelplafonds) !!}');
-        var _xdata = JSON.parse('{!! json_encode($dataplafonds) !!}');
-
-        var ctx = document.getElementById('mylineChart');
-        var mylineChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: _ydata,
-                datasets: [{
-                    label: -_ydata,
-                    data: _xdata,
-                    backgroundColor: [
-                        '#1858AD', '#5cb85c', '#5bc0de','#f0ad4e','#d9534f'
-                    ],
-                    borderColor: [
-                        '#36b9cc', '#7ED8A5', '#B4F6EB','#E7F6B4','#d9534f'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-        });
-    </script>
-@endsection
+            });
+        </script>
+    @endsection

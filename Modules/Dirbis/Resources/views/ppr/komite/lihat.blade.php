@@ -1111,20 +1111,32 @@
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td>Plafond</td>
+                                                                                <td>Harga Beli</td>
                                                                                 <td>Rp.
-                                                                                    {{ number_format($pembiayaan->form_permohonan_nilai_ppr_dimohon) }}
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>Margin</td>
-                                                                                <td>0.9 %
+                                                                                    {{ number_format($pembiayaan->form_permohonan_nilai_hpp) }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Tenor</td>
-                                                                                <td>{{ $pembiayaan->form_permohonan_jml_bulan }}
+                                                                                <td>{{ $tenor }}
                                                                                     Bulan
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Margin (% Per Bulan)</td>
+                                                                                <td>{{ number_format((float) $persenMargin, 2, '.', '') }}
+                                                                                    %
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Margin (Rp)</td>
+                                                                                <td>Rp.
+                                                                                    {{ number_format($marginRp) }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Harga Jual</td>
+                                                                                <td>Rp. {{ number_format($hargaJual) }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -1156,14 +1168,26 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td>Margin</td>
-                                                                                <td>0.9 %
+                                                                                <td>Tenor</td>
+                                                                                <td>{{ $tenor }}
+                                                                                    Bulan
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td>Tenor</td>
-                                                                                <td>{{ $pembiayaan->form_permohonan_jml_bulan }}
-                                                                                    Bulan
+                                                                                <td>Margin (% Per Bulan)</td>
+                                                                                <td>{{ number_format((float) $persenMargin, 2, '.', '') }}
+                                                                                    %
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Margin (Rp)</td>
+                                                                                <td>Rp.
+                                                                                    {{ number_format($marginRp) }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Harga Jual</td>
+                                                                                <td>Rp. {{ number_format($hargaJual) }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>

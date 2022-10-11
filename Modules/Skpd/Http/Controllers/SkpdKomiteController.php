@@ -139,9 +139,10 @@ class SkpdKomiteController extends Controller
         $pendapatan_bersih = $total_pemasukan - $total_pengeluaran;
 
         //DSR(rasio total angsuran terhadap pendapatan bersih)
-        $dsr = number_format($angsuran / $gaji_tpp * 100);
         if ($data->skpd_golongan_id == 18) {
             $dsr = number_format($angsuran / $total_pemasukan * 100);
+        } else {
+            $dsr = number_format($angsuran / $gaji_tpp * 100);
         }
 
         //mencari slik dengan kol tertinggi

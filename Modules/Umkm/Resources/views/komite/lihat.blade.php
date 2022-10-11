@@ -746,6 +746,16 @@
                                                                 </button>
                                                             </div>
                                                                 @endif
+                                                                <form action="/umkm/cetak">
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $pembiayaan->id }}">
+                                                                    <div class="card-body">
+                                                                        <button action="sumbit"
+                                                                            class="btn btn-info w-100 mb-75"><i data-feather="printer"></i>
+                                                                            Cetak Proposal
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>

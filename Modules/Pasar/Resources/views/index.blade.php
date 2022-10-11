@@ -3,12 +3,25 @@
 $proposal1 = Modules\Pasar\Entities\PasarPembiayaan::select()
     ->where('AO_id', Auth::user()->id)
     ->get();
-$diterima = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-    ->where('status_id', 5)
-    ->where('jabatan_id', 4)
-    // ->where('pasar_pembiayaan_id',$proposal1->id)
-    ->get()
-    ->count();
+
+$datas = Modules\Pasar\Entities\PasarPembiayaan::select()
+    ->where('AO_id', Auth::user()->id)
+    ->get();
+$diterima = 0;
+foreach ($datas as $data) {
+    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('pasar_pembiayaan_id', $data->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+        ->where('id', $history->pasar_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 5 && $history->jabatan_id == 4 ) {
+        $diterima++;
+    }
+}
 
 $proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
     ->where('akad_id', null)
@@ -65,18 +78,31 @@ foreach ($komites as $komite) {
                         @php
                             $cair = 0;
                             foreach ($target1 as $target) {
-                                $tenor = $target->tenor;
-                                $harga = $target->harga;
-                                $rate = $target->rate;
-                                $margin = ($rate * $tenor) / 100;
-                            
-                                $harga1 = $harga * $margin;
-                                $harga_jual = $harga1 + $harga;
+                                $harga_jual = $target->harga;
                             
                                 $cair = $cair + $harga_jual;
                             }
+                                $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->where('AO_id', auth::user()->id)->get();
+                            
+                                $pipeline1 = 0;
+                                foreach ($pasars as $pasar) {
+                                    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+                                        ->where('pasar_pembiayaan_id', $pasar->id)
+                                        ->orderby('created_at', 'desc')
+                                        ->get()
+                                        ->first();
+                            
+                                    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+                                        ->where('id', $history->pasar_pembiayaan_id)
+                                        ->get()
+                                        ->first();
+                                    if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                                        if($history->status_id != 9)
+                                        $pipeline1++;
+                                    }
+                                }
+                            
                         @endphp
-
                         <div class="col-xl-4 col-md-6 col-12">
                             <div class="card card-congratulation-medal">
                                 @if ($cair < 50000000)
@@ -95,11 +121,11 @@ foreach ($komites as $komite) {
                                             </div>
                                         </div>
                                         <iframe
-                                        src="https://github.com/anars/blank-audio/blob/master/250-milliseconds-of-silence.mp3"
-                                        allow="autoplay" id="audio" style="display: none"></iframe>
+                                            src="https://github.com/anars/blank-audio/blob/master/250-milliseconds-of-silence.mp3"
+                                            allow="autoplay" id="audio" style="display: none"></iframe>
                                         <audio id="player" autoplay>
-                                        <source src="https://github.com/devyFatmawati/audio/blob/main/info.mp3?raw=true"
-                                            type="audio/mp3">
+                                            <source src="https://github.com/devyFatmawati/audio/blob/main/info.mp3?raw=true"
+                                                type="audio/mp3">
                                         </audio>
                                     </div>
                                 @else
@@ -204,7 +230,7 @@ foreach ($komites as $komite) {
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ $pipeline }}</h2>
+                                    <h2 class="fw-bolder">{{ $pipeline1 }}</h2>
                                     <p class="card-text">Pipeline</p>
                                 </div>
                             </div>
@@ -326,7 +352,7 @@ foreach ($komites as $komite) {
 
             var ctx = document.getElementById("myPiechart");
             var myPiechart = new Chart(ctx, {
-                type: 'doughnut',
+                type: 'pie',
                 data: {
                     labels: _plabels,
                     datasets: [{

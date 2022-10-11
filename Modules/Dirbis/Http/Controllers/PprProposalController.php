@@ -16,7 +16,6 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        $no = 1;
         $proposal = FormPprPembiayaan::select()->get();
         return view('dirbis::ppr.proposal.index', [
             'title' => 'Proposal PPR',
@@ -43,8 +42,7 @@ class PprProposalController extends Controller
         //Query Chart Plafond Per Bulan
         $plafondPerBulan = FormPprPembiayaan::join('ppr_pembiayaan_histories', 'form_ppr_pembiayaans.id', '=', 'ppr_pembiayaan_histories.form_ppr_pembiayaan_id')
             ->select(DB::raw("MONTHNAME(form_ppr_pembiayaans.created_at) as nama_bulan, sum(form_permohonan_nilai_ppr_dimohon) as jml_plafond"))
-            ->where('ppr_pembiayaan_histories.jabatan_id', 4)
-            ->where('ppr_pembiayaan_histories.status_id', 5)
+            ->where('ppr_pembiayaan_histories.status_id', 9)
             ->whereYear('form_ppr_pembiayaans.created_at', date('Y'))
             ->groupBy(DB::raw("nama_bulan"))
             ->orderBy('form_ppr_pembiayaans.id', 'ASC')
@@ -56,22 +54,24 @@ class PprProposalController extends Controller
         //Query Chart Jenis Nasabah
         $jenisNasabah = FormPprPembiayaan::join('ppr_pembiayaan_histories', 'form_ppr_pembiayaans.id', '=', 'ppr_pembiayaan_histories.form_ppr_pembiayaan_id')
             ->select('jenis_nasabah', DB::raw("COUNT('id') as count"))
-            ->where('ppr_pembiayaan_histories.jabatan_id', 4)
-            ->where('ppr_pembiayaan_histories.status_id', 5)
+            ->where('ppr_pembiayaan_histories.status_id', 9)
             ->groupBy('jenis_nasabah')
-            ->pluck('count');
+            ->pluck('count', 'jenis_nasabah');
+
+        $labelJenisNasabah = $jenisNasabah->keys();
+        $dataJenisNasabah = $jenisNasabah->values();
 
         //Query Chart NOA Proyek Perumahan
         $noaProyekPerumahan = FormPprPembiayaan::join('form_ppr_data_agunans', 'form_ppr_pembiayaans.id', '=', 'form_ppr_data_agunans.form_ppr_pembiayaan_id')
             ->join('ppr_pembiayaan_histories', 'form_ppr_pembiayaans.id', '=', 'ppr_pembiayaan_histories.form_ppr_pembiayaan_id')
             ->select(DB::raw('COUNT(form_agunan_1_nama_proyek_perumahan) as proyek_perumahan, form_agunan_1_nama_proyek_perumahan, COUNT(form_ppr_data_pribadi_id) as noa'))
-            ->where('ppr_pembiayaan_histories.jabatan_id', 4)
-            ->where('ppr_pembiayaan_histories.status_id', 5)
+            ->where('ppr_pembiayaan_histories.status_id', 9)
             ->groupBy('form_agunan_1_nama_proyek_perumahan')
             ->pluck('proyek_perumahan', 'form_agunan_1_nama_proyek_perumahan');
 
         $labelNoaProyekPerumahan = $noaProyekPerumahan->keys();
         $dataNoaProyekPerumahan = $noaProyekPerumahan->values();
+
         return view('dirbis::ppr.index', [
             'title' => 'Dashboard Direktur Bisnis',
         ], compact(
@@ -79,7 +79,8 @@ class PprProposalController extends Controller
             'hitungPerBulan',
             'labelPlafond',
             'dataPlafond',
-            'jenisNasabah',
+            'labelJenisNasabah',
+            'dataJenisNasabah',
             'labelNoaProyekPerumahan',
             'dataNoaProyekPerumahan'
         ));

@@ -30,31 +30,101 @@
                 <section class="modern-horizontal-wizard">
                     <div class="bs-stepper wizard-modern modern-wizard-example">
                         <div class="bs-stepper-header">
-                            <div class="step" data-target="#form1" role="tab" id="account-details-modern-trigger">
+                            <div class="step" data-target="#form1" role="tab" id="personal-info-modern-trigger">
                                 <button type="button" class="step-trigger">
                                     <span class="bs-stepper-box">
                                         <i data-feather="file-text" class="font-medium-3"></i>
                                     </span>
                                     <span class="bs-stepper-label">
-                                        <span class="bs-stepper-title">Form Data Diri</span>
-                                        <span class="bs-stepper-subtitle">Isi Data Diri Dan Pekerjaan</span>
+                                        <span class="bs-stepper-title">Form Pembiayaan</span>
+                                        <span class="bs-stepper-subtitle">Informasi Pembiayaan</span>
                                     </span>
                                 </button>
                             </div>
                             <div class="line">
                                 <i data-feather="chevron-right" class="font-medium-2"></i>
                             </div>
-                            <div class="step" data-target="#form2" role="tab" id="personal-info-modern-trigger">
+                            <div class="step" data-target="#form2" role="tab" id="account-details-modern-trigger">
                                 <button type="button" class="step-trigger">
                                     <span class="bs-stepper-box">
                                         <i data-feather="user" class="font-medium-3"></i>
                                     </span>
                                     <span class="bs-stepper-label">
-                                        <span class="bs-stepper-title">Form Keuangan</span>
-                                        <span class="bs-stepper-subtitle">Isi Data Keuangan</span>
+                                        <span class="bs-stepper-title">Form Data Diri</span>
+                                        <span class="bs-stepper-subtitle">Isi Data Diri Dan Data Usaha</span>;
                                     </span>
                                 </button>
                             </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#form3" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="users" class="font-medium-3"></i>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Form Orang Terdekat</span>
+                                        <span class="bs-stepper-subtitle"> Data Orang Terdekat</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#form4" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="briefcase" class="font-medium-3"></i>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Form Usaha</span>
+                                        <span class="bs-stepper-subtitle"> Data Pekerjaan</span>
+                                    </span>
+                                </button>
+                            </div>
+                             <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#form5" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="clipboard" class="font-medium-3"></i>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Form Jaminan</span>
+                                        <span class="bs-stepper-subtitle"> Data Jaminan</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#form6" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="bar-chart-2" class="font-medium-3"></i>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Form Keuangan</span>
+                                        <span class="bs-stepper-subtitle"> Data Pendapatan</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#form7" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="bar-chart" class="font-medium-3"></i>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Form Keuangan</span>
+                                        <span class="bs-stepper-subtitle"> Data Pengeluaran</span>
+                                    </span>
+                                </button>
+                            </div> 
                         </div>
                         <div class="bs-stepper-content">
                             <form method='post'action="/pasar/proposal/{{ $pembiayaan->id }}"
@@ -179,6 +249,19 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev" disabled>
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="form2" class="content" role="tabpanel"
+                                    aria-labelledby="account-details-trigger">
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Diri</h5>
                                         <small class="text-muted">Lengkapi Data Diri Sesuai Dengan KTP.</small>
@@ -384,6 +467,19 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev">
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="form3" class="content" role="tabpanel"
+                                    aria-labelledby="account-details-trigger">
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Orang Terdekat</h5>
                                         <small class="text-muted">Lengkapi Data Orang Terdekat Tidak Serumah.</small>
@@ -410,6 +506,19 @@
                                                 placeholder="Alamat Orang Terdekat" value="{{ $pembiayaan->nasabahh->alamat_ot }}" disabled></textarea>
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev" type="button">
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="form4" class="content" role="tabpanel"
+                                    aria-labelledby="account-details-trigger">
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Usaha</h5>
                                         <small class="text-muted">Lengkapi Data Usaha Anda.</small>
@@ -425,7 +534,7 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="jenisdagang_id"><small class="text-danger">*
                                                 </small>Jenis Pasar</label>
-                                            <select class="select2 w-100" name="jenispasar_id" id="jenispasar_id">
+                                            <select class="select2 w-100" name="jenispasar_id" id="jenispasar_id" disabled>
                                                 <option value="{{ $pembiayaan->keteranganusaha->jenispasar->id }}">
                                                     {{ $pembiayaan->keteranganusaha->jenispasar->nama_pasar }}</option>
                                             </select>
@@ -488,12 +597,38 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev" type="button">
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="form5" class="content" role="tabpanel"
+                                    aria-labelledby="account-details-trigger">
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Jaminan</h5>
                                         <small class="text-muted">Silahkan Upload Data Jaminan Anda</small>
                                     </div>
                                     <div class="row">
                                         <small>Jaminan Utama</small>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="jaminanlain"><small class="text-danger">*
+                                                </small>Jaminan</label>
+                                            <select class="select2 w-100" name="jaminanlain" id="jaminanlain" disabled>
+                                                <option value="{{ $jaminanutama->jaminan->id }}">
+                                                    {{ $jaminanutama->jaminan->nama_jaminan }}</option>
+                                                <option label="jaminanlain">Pilih Jaminan Utama</option>
+                                                @foreach ($jaminans as $jaminan)
+                                                    <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="lamausaha"></small>No KTB</label>
                                             <input type="text" name="no_ktb" id="lamausaha" class="form-control"
@@ -508,9 +643,10 @@
                                                     {{ $pembiayaan->jaminanpasarlain->jaminanlain->nama_jaminan }}</option> --}}
                                             </select>
                                         </div>
+                                        
                                     </div>
                                     <div class="d-flex justify-content-between mt-3">
-                                        <a class="btn btn-outline-secondary btn-prev" disabled>
+                                        <a class="btn btn-outline-secondary btn-prev" type="button">
                                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                             <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                         </a>
@@ -520,7 +656,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div id="form2" class="content" role="tabpanel"
+                                <div id="form6" class="content" role="tabpanel"
                                     aria-labelledby="personal-info-modern-trigger">
                                     <div class="content-header">
                                         <h5 class="mb-0">Data Pendapatan</h5>
@@ -528,41 +664,59 @@
                                     </div>
                                     <div class="row">
                                         <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="numeral-formatting"></small>Omset</label>
+                                            <input type="text" class="form-control numeral-mask" placeholder="Rp."
+                                                name="omset" id="omset" value="{{ number_format($pembiayaan->omset) }}" disabled>
+                                        </div>
+                                        <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"></small>HPP</label>
                                             <input type="text" class="form-control numeral-mask" placeholder="Rp."
-                                                name="hpp" id="hpp" value="{{ number_format($pembiayaan->hpp) }}">
+                                                name="hpp" id="hpp" value="{{ number_format($pembiayaan->hpp) }}" disabled>
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"></small>Biaya
                                                 Listrik</label>
                                             <input type="text" class="form-control numeral-mask2" placeholder="Rp."
-                                                name="listrik" id="listrik" value="{{ number_format($pembiayaan->listrik) }}">
+                                                name="listrik" id="listrik" value="{{ number_format($pembiayaan->listrik) }}" disabled>
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"></small>Biaya
                                                 Transport</label>
                                             <input type="text" class="form-control numeral-mask6" placeholder="Rp."
-                                                name="trasport" id="transport" value="{{ number_format($pembiayaan->trasport) }}">
+                                                name="trasport" id="transport" value="{{ number_format($pembiayaan->trasport) }}" disabled>
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"></small>Biaya
                                                 Karyawan</label>
                                             <input type="text" class="form-control numeral-mask3" placeholder="Rp."
-                                                name="karyawan" id="karyawan" value="{{ number_format($pembiayaan->karyawan) }}">
+                                                name="karyawan" id="karyawan" value="{{ number_format($pembiayaan->karyawan) }}" disabled>
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"></small>Biaya
                                                 Telpon</label>
                                             <input type="text" class="form-control numeral-mask5" placeholder="Rp."
-                                                name="telpon" id="telpon" value="{{ number_format($pembiayaan->telpon) }}">
+                                                name="telpon" id="telpon" value="{{ number_format($pembiayaan->telpon) }}" disabled>
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="numeral-formatting"> </small>Biaya Sewa
                                                 Kios</label>
                                             <input type="text" class="form-control numeral-mask4" placeholder="Rp."
-                                                name="sewa" id="sewa" value="{{ number_format($pembiayaan->sewa) }}">
+                                                name="sewa" id="sewa" value="{{ number_format($pembiayaan->sewa) }}" disabled>
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev" type="button">
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="form7" class="content" role="tabpanel"
+                                    aria-labelledby="personal-info-modern-trigger">
                                     <div class="content-header">
                                         <h5 class="mb-0">Data Pengeluaran Anda</h5>
                                         <small>Data Pengeluaran Nasabah Anda</small>
@@ -877,13 +1031,13 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            {{-- <div class="modal-body px-sm-5 mx-50 pb-5">
+                            <div class="modal-body px-sm-5 mx-50 pb-5">
                                 <h1 class="text-center mb-1" id="addNewCardTitle">{{ $fotodiri->kategori }}</h1>
                                 <p class="text-center">Lampiran Foto Nasabah</p>
                                 <div class="card-body">
                                     <img src="{{ asset('storage/' . $fotodiri->foto) }}" class="d-block w-100" />
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 </div>

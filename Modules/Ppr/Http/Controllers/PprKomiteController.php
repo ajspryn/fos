@@ -9,6 +9,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Modules\Form\Entities\FormPprDataPinjaman;
 use Modules\Form\Entities\FormPprDataPribadi;
 use Modules\Form\Entities\FormPprPembiayaan;
 use Modules\Ppr\Entities\PprPembiayaanHistory;
@@ -111,29 +112,48 @@ class PprKomiteController extends Controller
 
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
 
-        //Angsuran & Plafond
-        $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
-        // $margin = $pembiayaan->form_permohonan_jml_margin / 100;
-        $margin = 0.9 / 100;
+        //Perhitungan Margin, Harga Jual & Angsuran
+        $hpp = $pembiayaan->form_permohonan_nilai_hpp;
         $tenor = $pembiayaan->form_permohonan_jml_bulan;
+        $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $hpp);
+        $marginRp = $hpp * $persenMargin;
+        $hargaJual = $hpp + $marginRp;
+        $angsuran = $hargaJual / $tenor;
+        $plafondMaks = $hpp;
 
+        //Idir
+        $penghasilanBersih = $pembiayaan->form_penghasilan_pengeluaran_sisa_penghasilan;
+        $kewajibanAngsuran = $pembiayaan->form_penghasilan_pengeluaran_kewajiban_angsuran;
+        $idir = (($kewajibanAngsuran + $angsuran) / $penghasilanBersih) * 100;
+
+        // $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $plafond) * 100 / 12;
+        // $margin = $pembiayaan->form_permohonan_jml_margin / 100;
+        // $margin = $hpp * $persenMargin * $tenor;
+        // $marginBulan = $persenMargin / 100;
+        // $marginBulan = $persenMargin;
         //Angsuran
-        $angsuran = ($plafond * $margin) / (1 - (1 / (1 + $margin)) ** $tenor);
+        // $angsuran = ($plafond * $marginBulan) / (1 - (1 / (1 + $marginBulan)) ** $tenor);
 
         //Plafond
-        $plafondMaks = ($angsuran / $margin) * (1 - (1 / (1 + $margin)) ** $tenor);
+        // $plafondMaks = ($angsuran / $marginBulan) * (1 - (1 / (1 + $marginBulan)) ** $tenor);
 
         //Usia Nasabah
         $usiaNasabah = Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir)->age;
-
         return view('ppr::komite.lihat', [
             'title' => 'Detail Proposal',
             'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
             'pembiayaan' => FormPprPembiayaan::select()->where('id', $id)->get()->first(),
             'usiaNasabah' => $usiaNasabah,
             'scoring' => PprScoring::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'hpp' => $hpp,
+            'tenor' => $tenor,
+            'persenMargin' => $persenMargin,
+            'marginRp' => $marginRp,
+            'hargaJual' => $hargaJual,
             'angsuran' => $angsuran,
             'plafondMaks' => $plafondMaks,
+            'idir' => $idir,
+            'idebs' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get(),
 
             //History
             'history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),

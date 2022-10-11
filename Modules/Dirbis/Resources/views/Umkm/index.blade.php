@@ -1,11 +1,23 @@
 @extends('dirbis::layouts.main')
 @php
-    $diterima = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id',5)
-    ->where('jabatan_id', 4)
-    ->get()
-    ->count();
 
+$datas = Modules\Umkm\Entities\UmkmPembiayaan::select()
+    ->get();
+$diterima = 0;
+foreach ($datas as $data) {
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $data->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $history->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 5 && $history->jabatan_id == 4 ) {
+        $diterima++;
+    }
+}
 $umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()->where('status_id', 3)->get();
 
 $b = 0;
@@ -31,11 +43,26 @@ foreach ($umkms as $umkm) {
     ->get()
     ->count();
 
-     $review = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id',7)
-    ->orderby('created_at','desc')
-    ->get()
-    ->count();
+    $komites = Modules\Umkm\Entities\UmkmPembiayaan::select()
+    ->whereNotNull('sektor_id')
+    ->orderby('updated_at', 'desc')
+    ->get();
+    
+$review = 0;
+foreach ($komites as $komite) {
+    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('umkm_pembiayaan_id', $komite->id)
+        ->orderby('created_at', 'desc')
+        ->get()
+        ->first();
+    $proposal_pasar = Modules\Umkm\Entities\UmkmPembiayaan::select()
+        ->where('id', $history->umkm_pembiayaan_id)
+        ->get()
+        ->first();
+    if ($history->status_id == 7) {
+        $review++;
+    }
+}
 @endphp
 @section('content')
     <!-- BEGIN: Content-->
@@ -121,18 +148,30 @@ foreach ($umkms as $umkm) {
                     @php
                     $cair = 0;
                     foreach ($target1 as $target) {
-                        $tenor = $target->tenor;
-                        $harga = $target->nominal_pembiayaan;
-                        $rate = $target->rate;
-                        $margin = ($rate * $tenor) / 100;
-                    
-                        $harga1 = $harga * $margin;
-                        $harga_jual = $harga1 + $harga;
+                        $harga_jual = $target->nominal_pembiayaan;
                     
                         $cair = $cair + $harga_jual;
                     }
+                    $datas = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
+                        
+                            $pipeline1 = 0;
+                                foreach ($datas as $data) {
+                                    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+                                        ->where('umkm_pembiayaan_id', $data->id)
+                                        ->orderby('created_at', 'desc')
+                                        ->get()
+                                        ->first();
+                                    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                        ->where('id', $history->umkm_pembiayaan_id)
+                                        ->get()
+                                        ->first();
+                                    if ($history->status_id != 5 && $history->jabatan_id != 4) {
+                                        if($history->status_id != 9)
+                                        $pipeline1++;
+                                    }
+                                }
                 @endphp
-{{--
+
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">
                             <div class="card text-center">
@@ -142,7 +181,7 @@ foreach ($umkms as $umkm) {
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ $pipeline }}</h2>
+                                    <h2 class="fw-bolder">{{ $pipeline1 }}</h2>
                                     <p class="card-text">Pipeline</p>
                                 </div>
                             </div>

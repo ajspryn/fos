@@ -1,4 +1,3 @@
-
 @extends('akad::layouts.main')
 @php
 $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
@@ -16,11 +15,10 @@ foreach ($proposals as $proposal) {
         ->orderby('created_at', 'desc')
         ->get()
         ->first();
-    if (($history->jabatan_id == 4 && $history->status_id == 5)){
+    if ($history->jabatan_id == 4 && $history->status_id == 5) {
         $proposalskpd++;
     }
 }
-
 
 $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
 
@@ -36,7 +34,7 @@ foreach ($pasars as $pasar) {
         ->where('id', $history->pasar_pembiayaan_id)
         ->get()
         ->first();
-        if (($history->jabatan_id == 4 && $history->status_id == 5)){
+    if ($history->jabatan_id == 4 && $history->status_id == 5) {
         $proposalpasar++;
     }
 }
@@ -58,7 +56,7 @@ foreach ($umkms as $umkm) {
         ->get()
         ->first();
 
-    if (($history->jabatan_id == 4 && $history->status_id == 5)) {
+    if ($history->jabatan_id == 4 && $history->status_id == 5) {
         $proposalumkm++;
     }
 }
@@ -79,7 +77,7 @@ foreach ($pprs as $ppr) {
         ->orderBy('created_at', 'desc')
         ->get()
         ->first();
-        if (($history->jabatan_id == 4 && $history->status_id == 5)) {
+    if ($history->jabatan_id == 4 && $history->status_id == 5) {
         $proposalppr++;
     }
 }
@@ -95,80 +93,38 @@ foreach ($pprs as $ppr) {
             <div class="content-body">
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
-                    {{-- <div class="row match-height">>
-                        <!-- Statistics Card -->
-                        <div class="col-xl-12 col-md-6 col-12">
-                            <div class="card card-statistics">
-                                <div class="card-header">
-                                    <h4 class="card-title">Statistik </h4>
-                                    <div class="d-flex align-items-center">
-                                        <p class="card-text font-small-2 me-25 mb-0"></p>
-                                    </div>
-                                </div>
-                                <div class="card-body statistics-body">
-                                    <div class="row">
-                                        <div class="col-xl-3 col-sm-6 col-12 mb-2">
-                                            <div class="d-flex flex-row">
-                                                <div class="avatar bg-light-info me-2">
-                                                    <div class="avatar-content">
-                                                        <i data-feather="clipboard" class="avatar-icon"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">
-                                                        {{ $b + $proposalskpd + $data + $proposalppr }}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Pengajuan</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-sm-6 col-12 mb-2">
-                                            <div class="d-flex flex-row">
-                                                <div class="avatar bg-light-danger me-2">
-                                                    <div class="avatar-content">
-                                                        <i data-feather="x-circle" class="avatar-icon"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $tolak }}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Ditolak</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-sm-6 col-12 mb-2">
-                                            <div class="d-flex flex-row">
-                                                <div class="avatar bg-light-warning me-2">
-                                                    <div class="avatar-content">
-                                                        <i data-feather="alert-circle" class="avatar-icon"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">0</h4>
-                                                    <p class="card-text font-small-3 mb-0">Review</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-sm-6 col-12 mb-2">
-                                            <div class="d-flex flex-row">
-                                                <div class="avatar bg-light-success me-2">
-                                                    <div class="avatar-content">
-                                                        <i data-feather="check-circle" class="avatar-icon"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $diterima }}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Disetujui</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                   <!-- Congratulations Card -->
+                   <div class="col-12 col-md-6 col-lg-12">
+                    <div class="card card-congratulations">
+                      <div class="card-body text-center">
+                        <img
+                          src="../../../app-assets/images/elements/decore-left.png"
+                          class="congratulations-img-left"
+                          alt="card-img-left"
+                        />
+                        <img
+                          src="../../../app-assets/images/elements/decore-right.png"
+                          class="congratulations-img-right"
+                          alt="card-img-right"
+                        />
+                        <div class="avatar avatar-xl bg-primary shadow">
+                          <div class="avatar-content">
+                            <i data-feather="award" class="font-large-1"></i>
+                          </div>
                         </div>
-                        <!--/ Statistics Card -->
-                    </div> --}}
+                        <div class="text-center">
+                          <h1 class="mb-1 text-white">Hallo {{ $user->name }},</h1>
+                          <p class="card-text m-auto w-75">
+                            Awali Harimu Dengan Doa dan Selamat Bekerja.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/ Congratulations Card -->
 
                     <div class="row">
-                        <div class="col-xl-6 col-md-4 col-sm-6">
+                        <div class="col-xl-4 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-info p-50 mb-1">
@@ -176,12 +132,27 @@ foreach ($pprs as $ppr) {
                                             <i data-feather="clipboard" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ $proposalskpd+$proposalpasar+$proposalumkm+  $proposalppr}}</h2>
+                                    <h2 class="fw-bolder">
+                                        {{ $proposalskpd + $proposalpasar + $proposalumkm + $proposalppr }}
+                                    </h2>
                                     <p class="card-text">Proposal Akad</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-md-4 col-sm-6">
+                        <div class="col-xl-4 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="avatar bg-light-danger p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="x-circle" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">{{ $akadBatal }}</h2>
+                                    <p class="card-text">Akad Batal</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-success p-50 mb-1">
@@ -189,8 +160,8 @@ foreach ($pprs as $ppr) {
                                             <i data-feather="check-circle" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">AKad Selesai</p>
+                                    <h2 class="fw-bolder">{{ $akadSelesai }}</h2>
+                                    <p class="card-text">Akad Selesai</p>
                                 </div>
                             </div>
                         </div>

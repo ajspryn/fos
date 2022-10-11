@@ -2,6 +2,19 @@
 
 @section('content')
     <!-- BEGIN: Content-->
+    <style>
+        #ifPerbaruiLampiran {
+            width: 100%;
+            height: 140px;
+            transition: all 0.5s;
+        }
+
+        #ifPerbaruiLampiran.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        </style>
     <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -36,8 +49,8 @@
                                         <i data-feather="file-text" class="font-medium-3"></i>
                                     </span>
                                     <span class="bs-stepper-label">
-                                        <span class="bs-stepper-title">Form Data Diri</span>
-                                        <span class="bs-stepper-subtitle">Isi Data Diri Dan Pekerjaan</span>
+                                        <span class="bs-stepper-title">Form Pembiayaani</span>
+                                        <span class="bs-stepper-subtitle">Informasi Pembiayaan</span>
                                     </span>
                                 </button>
                             </div>
@@ -50,14 +63,99 @@
                                         <i data-feather="user" class="font-medium-3"></i>
                                     </span>
                                     <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Form Data Diri</span>
+                                        <span class="bs-stepper-subtitle">Isi Data Diri </span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#form3" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="image" class="font-medium-3"></i>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Form Lampiran</span>
+                                        <span class="bs-stepper-subtitle">Isi Data Lampiran</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#form4" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="users" class="font-medium-3"></i>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Form Orang Terdekat</span>
+                                        <span class="bs-stepper-subtitle">Isi Data Orang Terdekat</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#form5" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="briefcase" class="font-medium-3"></i>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Form Usaha</span>
+                                        <span class="bs-stepper-subtitle">Isi Data Pekerjaan</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#form6" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="clipboard" class="font-medium-3"></i>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Form Jaminan</span>
+                                        <span class="bs-stepper-subtitle">Isi Data Jaminan</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#form7" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="bar-chart-2" class="font-medium-3"></i>
+                                    </span>
+                                    <span class="bs-stepper-label">
                                         <span class="bs-stepper-title">Form Keuangan</span>
-                                        <span class="bs-stepper-subtitle">Isi Data Keuangan</span>
+                                        <span class="bs-stepper-subtitle">Isi Data Pendapatan</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#form8" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="bar-chart" class="font-medium-3"></i>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Form Keuangan</span>
+                                        <span class="bs-stepper-subtitle">Isi Data Pengeluaran</span>
                                     </span>
                                 </button>
                             </div>
                         </div>
                         <div class="bs-stepper-content">
-                            <form method='post'action="/pasar/revisi/{{ $pembiayaan->id }}" enctype="multipart/form-data">
+                            <form method='post'action="/pasar/revisi/{{ $pembiayaan->id }}"
+                                enctype="multipart/form-data">
                                 @method('put')
                                 @csrf
                                 <div id="form1" class="content" role="tabpanel"
@@ -67,7 +165,8 @@
                                         <small class="text-danger">* Wajib Diisi</small>
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="ao"><small class="text-danger">* </small>Kode
+                                        <label class="form-label" for="ao"><small class="text-danger">*
+                                            </small>Kode
                                             Account Officer</label>
                                         <select class="select2 w-100" name="AO_id" id="ao"required>
                                             <option value="{{ $pembiayaan->user->id }}">{{ $pembiayaan->user->name }}
@@ -82,8 +181,9 @@
                                             <label class="form-label" for="tanggal"><small class="text-danger">*
                                                 </small>Tanggal Pengajuan</label>
                                             <input type="text" name="tgl_pembiayaan" id="tgl_pembiayaan"
-                                                class="form-control flatpickr-basic" name="tanggal" placeholder="YYYY-MM-DD"
-                                                value="{{ $pembiayaan->tgl_pembiayaan }}" required />
+                                                class="form-control flatpickr-basic" name="tanggal"
+                                                placeholder="YYYY-MM-DD" value="{{ $pembiayaan->tgl_pembiayaan }}"
+                                                required />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="jenispenggunaan"><small class="text-danger">*
@@ -100,7 +200,8 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="akad"><small class="text-danger">* </small>
+                                            <label class="form-label" for="akad"><small class="text-danger">*
+                                                </small>
                                                 Sektor Ekonomi</label>
                                             <select class="select2 w-100" name="sektor_id" id="sektor_id" required>
                                                 <option>{{ $pembiayaan->sektor->nama_sektor_ekonomi }}</option>
@@ -112,7 +213,8 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="akad"><small class="text-danger">* </small>
+                                            <label class="form-label" for="akad"><small class="text-danger">*
+                                                </small>
                                                 Akad</label>
                                             <select class="select2 w-100" name="akad_id" id="akad" required>
                                                 <option>{{ $pembiayaan->akad->nama_akad }}</option>
@@ -139,7 +241,7 @@
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="harga"><small class="text-danger">*
-                                                </small>Harga Kios / Los</label>
+                                                </small>Harga Kios / Los (Nominal Pembiayaan)</label>
                                             <input type="text" name="harga" class="form-control numeral-mask4"
                                                 placeholder="Rp." id="harga"
                                                 value="{{ number_format($pembiayaan->harga) }}" required />
@@ -198,6 +300,19 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev" disabled>
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="form2" class="content" role="tabpanel"
+                                    aria-labelledby="account-details-trigger">
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Diri</h5>
                                         <small class="text-muted">Lengkapi Data Diri Sesuai Dengan KTP.</small>
@@ -234,8 +349,9 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="gender"><small class="text-danger">*
                                                 </small>Jenis Kelamin</label>
-                                            <select class="select2 w-100" name="jk_id" id="gender" required>
-                                                <option>{{ $nasabah->jk_id }}</option>
+                                            <select class="select2 w-100" name="jenis_kelamin" id="gender">
+                                                <option value="{{ $pembiayaan->nasabahh->jenis_kelamin }}">
+                                                    {{ $pembiayaan->nasabahh->jenis_kelamin }}</option>
                                                 <option>Laki-Laki</option>
                                                 <option>Perempuan</option>
                                             </select>
@@ -250,8 +366,8 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="exampleFormControlTextarea1"><small
                                                     class="text-danger">* </small>Alamat Sesuai KTP</label>
-                                            <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                value="{{ $pembiayaan->nasabahh->alamat }}" required></textarea>
+                                            <input type="text" name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                value="{{ $pembiayaan->nasabahh->alamat }}" required>
                                         </div>
                                         <div class="mb-1 col-md-1">
                                             <label class="form-label" for="rt"><small class="text-danger">*
@@ -303,7 +419,8 @@
                                             <label class="form-label" for="lamatinggal"><small class="text-danger">*
                                                 </small>Lama Tinggal Di Alamat Rumah</label>
                                             <select class="select2 w-100" name="lama_tinggal" id="lama_tinggal" required>
-                                                <option >Pilih Lama Tinggal</option>
+                                                <option>{{ $pembiayaan->nasabahh->lama_tinggal }}</option>
+                                                <option>Pilih Lama Tinggal</option>
                                                 <option>
                                                     < 1 Tahun</option>
                                                 <option>1 - 3 Tahun</option>
@@ -316,8 +433,8 @@
                                                 </small>Kepemilikan Rumah</label>
                                             <select class="select2 w-100" name="kepemilikan_rumah" id="kep_rumah"
                                                 required>
-                                                <option >
-                                                    {{ $pembiayaan->nasabahh->kepemilikkan_rumah }}</option>
+                                                <option value="{{ $pembiayaan->rumah->kepemilikan_rumah }}">
+                                                    {{ $pembiayaan->rumah->kepemilikan_rumah }}</option>
                                                 <option label="kep_rumah">Pilih Kepemilikan Rumah</option>
                                                 <option>Milik Sendiri</option>
                                                 <option>Milik Keluarga</option>
@@ -329,10 +446,6 @@
                                                 </small>Legalitas Kepemilikan Rumah</label>
                                             <select class="select2 w-100" name="legalitas_kepemilikan_rumah"
                                                 id="legalitas_kepemilikan_rumah" required>
-                                                <option>{{ $pembiayaan->rumah->nama_jaminan }}</option>
-                                                <option label="legalitas_kepemilikan_rumah">Pilih Legalitas Kepemilikan
-                                                    Rumah
-                                                </option>
                                                 @foreach ($rumahs as $rumah)
                                                     <option value="{{ $rumah->id }}">{{ $rumah->nama_jaminan }}
                                                     </option>
@@ -343,7 +456,8 @@
                                             <label class="form-label" for="Pendidikan_id"><small class="text-danger">*
                                                 </small>Pendidikan Terakhir</label>
                                             <select class="select2 w-100" name="pendidikan" id="pendidikan_id" required>
-                                                <option>Tidak Sekolah</option>
+                                                <option>{{ $pembiayaan->nasabahh->pendidikan }}</option>
+                                                <option label="Pendidikan">Pilih Pendidikan Terakhir</option>
                                                 <option>SD</option>
                                                 <option>SMP</option>
                                                 <option>SMA</option>
@@ -357,6 +471,8 @@
                                             <label class="form-label" for="agama"><small class="text-danger">*
                                                 </small>Agama</label>
                                             <select class="select2 w-100" name="agama_id" id="agama_id" required>
+                                                <option value="{{ $pembiayaan->nasabahh->agama_id }}">
+                                                    {{ $pembiayaan->nasabahh->agama_id }}</option>
                                                 <option label="Agama">Pilih Agama</option>
                                                 <option>Islam</option>
                                                 <option>Kristen</option>
@@ -406,7 +522,7 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="notelp"><small class="text-danger">*
                                                 </small>No Telepon</label>
-                                            <input type="number" name="no_tlp" id="no_tlp" class="form-control"
+                                            <input type="text" name="no_tlp" id="no_tlp" class="form-control"
                                                 placeholder="Masukan Nomor telepon Anda"
                                                 value="{{ $pembiayaan->nasabahh->no_tlp }}" required />
                                         </div>
@@ -414,6 +530,8 @@
                                             <label class="form-label" for="suku"><small class="text-danger">*
                                                 </small>Suku Bangsa</label>
                                             <select class="select2 w-100" name="suku_bangsa_id" id="suku_bangsa_id">
+                                                <option value="{{ $pembiayaan->keteranganusaha->suku->kode_suku }}">
+                                                    {{ $pembiayaan->keteranganusaha->suku->nama_suku }}</option>
                                                 <option label="suku_bangsa_id">Pilih Suku Bangsa Nasabah</option>
                                                 @foreach ($sukus as $suku)
                                                     <option value="{{ $suku->kode_suku }}">{{ $suku->nama_suku }}
@@ -421,38 +539,68 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @php
-                                            $fotodiri = Modules\Pasar\Entities\PasarFoto::Select()
-                                                ->where('pasar_pembiayaan_id', $pembiayaan->id)
-                                                ->where('kategori', 'Foto Diri')
-                                                ->get()
-                                                ->first();
-                                            $fotodiriktp = Modules\Pasar\Entities\PasarFoto::Select()
-                                                ->where('pasar_pembiayaan_id', $pembiayaan->id)
-                                                ->where('kategori', 'Foto Diri Bersama KTP')
-                                                ->get()
-                                                ->first();
-                                            $fotoktp = Modules\Pasar\Entities\PasarFoto::Select()
-                                                ->where('pasar_pembiayaan_id', $pembiayaan->id)
-                                                ->where('kategori', 'Foto KTP')
-                                                ->get()
-                                                ->first();
-                                            $fotokk = Modules\Pasar\Entities\PasarFoto::Select()
-                                                ->where('pasar_pembiayaan_id', $pembiayaan->id)
-                                                ->where('kategori', 'Foto Kartu Keluarga')
-                                                ->get()
-                                                ->first();
-                                            $fototoko = Modules\Pasar\Entities\PasarFoto::Select()
-                                                ->where('pasar_pembiayaan_id', $pembiayaan->id)
-                                                ->where('kategori', 'Foto toko')
-                                                ->get()
-                                                ->first();
-                                            $fotonota = Modules\Pasar\Entities\PasarFoto::Select()
-                                                ->where('pasar_pembiayaan_id', $pembiayaan->id)
-                                                ->where('kategori', 'Foto Nota Pembelanjaan')
-                                                ->get()
-                                                ->first();
-                                        @endphp
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev">
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="form3" class="content" role="tabpanel"
+                                    aria-labelledby="account-details-trigger">
+                                    <div class="content-header">
+                                        <h5 class="mb-0 mt-2">Data Lampiran</h5>
+                                        <small class="text-muted">Lengkapi Data Lampiran Nasabah.</small>
+                                    </div>
+                                    @php
+                                        $fotodiri = Modules\Pasar\Entities\PasarFoto::Select()
+                                            ->where('pasar_pembiayaan_id', $pembiayaan->id)
+                                            ->where('kategori', 'Foto Diri')
+                                            ->get()
+                                            ->first();
+                                        $fotodiriktp = Modules\Pasar\Entities\PasarFoto::Select()
+                                            ->where('pasar_pembiayaan_id', $pembiayaan->id)
+                                            ->where('kategori', 'Foto Diri Bersama KTP')
+                                            ->get()
+                                            ->first();
+                                        $fotoktp = Modules\Pasar\Entities\PasarFoto::Select()
+                                            ->where('pasar_pembiayaan_id', $pembiayaan->id)
+                                            ->where('kategori', 'Foto KTP')
+                                            ->get()
+                                            ->first();
+                                        $fotokk = Modules\Pasar\Entities\PasarFoto::Select()
+                                            ->where('pasar_pembiayaan_id', $pembiayaan->id)
+                                            ->where('kategori', 'Foto Kartu Keluarga')
+                                            ->get()
+                                            ->first();
+                                        $fototoko = Modules\Pasar\Entities\PasarFoto::Select()
+                                            ->where('pasar_pembiayaan_id', $pembiayaan->id)
+                                            ->where('kategori', 'Foto toko')
+                                            ->get()
+                                            ->first();
+                                        $fotonota = Modules\Pasar\Entities\PasarFoto::Select()
+                                            ->where('pasar_pembiayaan_id', $pembiayaan->id)
+                                            ->where('kategori', 'Foto Nota Pembelanjaan')
+                                            ->get()
+                                            ->first();
+                                    @endphp
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="perbaruiLampiran">Perbarui Lampiran
+                                            Nasabah
+                                        </label>
+                                        <select class="select2 w-100" name="perbarui_lampiran"
+                                            id="perbaruiLampiran" onChange="changePerbaruiLampiran()">
+                                            <option value="Ya">Ya</option>
+                                            <option value="Tidak" selected>Tidak
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="row hide" id="ifPerbaruiLampiran">
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="fotoktp"><small class="text-danger">*
                                                 </small>Upload Foto Diri</label>
@@ -461,7 +609,7 @@
                                             <input type="hidden" name="foto[1][id]" rows="3" class="form-control"
                                                 value="{{ $fotodiri->id }}">
                                             <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
-                                                class="form-control" required />
+                                                class="form-control" />
                                             <input type="hidden" name="foto[1][kategori]" value="Foto Diri"
                                                 rows="3" class="form-control" />
                                         </div>
@@ -473,7 +621,7 @@
                                             <input type="hidden" name="foto[2][id]" rows="3" class="form-control"
                                                 value="{{ $fotoktp->id }}">
                                             <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
-                                                class="form-control" required />
+                                                class="form-control"  />
                                             <input type="hidden" name="foto[2][kategori]" value="Foto KTP"
                                                 rows="3" class="form-control" />
                                         </div>
@@ -485,7 +633,7 @@
                                             <input type="hidden" name="foto[3][id]" rows="3" class="form-control"
                                                 value="{{ $fotodiriktp->id }}">
                                             <input type="file" name="foto[3][foto]" id="fotodiriktp" rows="3"
-                                                class="form-control" required />
+                                                class="form-control"  />
                                             <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
                                                 rows="3" class="form-control" />
 
@@ -498,11 +646,24 @@
                                             <input type="hidden" name="foto[4][id]" rows="3" class="form-control"
                                                 value="{{ $fotokk->id }}">
                                             <input type="file" name="foto[4][foto]" id="fotokk" rows="3"
-                                                class="form-control" required />
+                                                class="form-control"  />
                                             <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga"
                                                 rows="3" class="form-control" />
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev" disabled>
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="form4" class="content" role="tabpanel"
+                                    aria-labelledby="account-details-trigger">
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Orang Terdekat</h5>
                                         <small class="text-muted">Lengkapi Data Orang Terdekat Tidak Serumah.</small>
@@ -523,12 +684,27 @@
                                                 value="{{ $pembiayaan->nasabahh->telp_ot }}" required />
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="exampleFormControlTextarea1"><small
-                                                    class="text-danger">* </small>Alamat</label>
-                                            <textarea class="form-control" name="alamat_ot" id="exampleFormControlTextarea1" rows="3"
-                                                placeholder="Alamat Orang Terdekat" value="{{ $pembiayaan->nasabahh->alamat_ot }}" required></textarea>
+                                            <label class="form-label" for="telpot"><small class="text-danger">*
+                                                </small>Alamat</label>
+                                            <input type="text" name="alamat_ot" id="alamat_ot" class="form-control"
+                                                placeholder="Masukan Nomor Telepon Orang Terdekat"
+                                                value="{{ $pembiayaan->nasabahh->alamat_ot }}" required/>
                                         </div>
+                                        
                                     </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev">
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="form5" class="content" role="tabpanel"
+                                    aria-labelledby="account-details-trigger">
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Usaha</h5>
                                         <small class="text-muted">Lengkapi Data Usaha Anda.</small>
@@ -569,10 +745,12 @@
                                             <label class="form-label" for="keptoko"><small class="text-danger">*
                                                 </small>Kepemilikan Kios / Los</label>
                                             <select class="select2 w-100" name="kep_toko_id" id="keptoko" required>
-                                                    <option label="kep_rumah">Pilih Kepemilikan Kios / Los</option>
-                                                    <option>Milik Sendiri</option>
-                                                    <option>Milik Keluarga</option>
-                                                    <option>Sewa Atau Kontrak</option>
+                                                <option value="{{ $pembiayaan->keteranganusaha->kep_toko_id }}">
+                                                    {{ $pembiayaan->keteranganusaha->kep_toko_id }}</option>
+                                                <option label="kep_rumah">Pilih Kepemilikan Kios / Los</option>
+                                                <option>Milik Sendiri</option>
+                                                <option>Milik Keluarga</option>
+                                                <option>Sewa Atau Kontrak</option>
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
@@ -598,6 +776,8 @@
                                             <label class="form-label" for="legalitastoko"><small class="text-danger">*
                                                 </small>Legalitas Kepemilikan Kios / Los</label>
                                             <select class="select2 w-100" name="leg_toko_id" id="legalitastoko" required>
+                                                <option value="{{ $pembiayaan->keteranganusaha->leg_toko_id }}">
+                                                    {{ $pembiayaan->keteranganusaha->leg_toko_id }}</option>
                                                 <option label="legalitastoko">Pilih Legalitas Kepemilikan Toko</option>
                                                 <option>Surat Keterangan Usaha ( SKU )</option>
                                                 <option>Surat Keterangan Domisili Usaha ( SKDU )</option>
@@ -610,12 +790,25 @@
                                                 value="{{ old('foto', $fototoko->foto) }}">
                                             <input type="hidden" name="foto[5][id]" rows="3" class="form-control"
                                                 value="{{ $fototoko->id }}">
-                                            <input type="file" name="foto[5][foto]" id="fotokk" rows="3"
-                                                class="form-control" required />
+                                            <input type="file" name="foto[5][foto]" id="fototoko" rows="3"
+                                                class="form-control"  />
                                             <input type="hidden" name="foto[5][kategori]" value="Foto Toko"
                                                 rows="3" class="form-control" />
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <a class="btn btn-outline-secondary btn-prev" disabled>
+                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-next" type="button">
+                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="form6" class="content" role="tabpanel"
+                                    aria-labelledby="account-details-trigger">
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Jaminan</h5>
                                         <small class="text-muted">Silahkan Upload Data Jaminan Anda</small>
@@ -625,6 +818,8 @@
                                             <label class="form-label" for="jaminanlain"><small class="text-danger">*
                                                 </small>Jaminan</label>
                                             <select class="select2 w-100" name="jaminanlain" id="jaminanlain" required>
+                                                <option value="{{ $jaminanutama->jaminan->id }}">
+                                                    {{ $jaminanutama->jaminan->nama_jaminan }}</option>
                                                 <option label="jaminanlain">Pilih Jaminan Utama</option>
                                                 @foreach ($jaminans as $jaminan)
                                                     <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}
@@ -642,7 +837,7 @@
                                             <label class="form-label" for="SHPB"> <small class="text-danger">*
                                                 </small>Upload Jaminan Utama</label>
                                             <input type="file" name="dokumenktb" id="dokumenktb" rows="3"
-                                                class="form-control" required />
+                                                class="form-control" />
                                             <input type="hidden" id="EditUserFirstName" name="dokumenlama"
                                                 value="{{ $jaminanutama->dokumenktb }}" class="form-control" />
                                         </div>
@@ -651,503 +846,538 @@
                                             <label class="form-label" for="dokumen_jaminan">Upload Jaminan Lainnya</label>
                                             <input type="file" name="dokumen_jaminan" id="dokumen_jaminan"
                                                 rows="3" class="form-control">
-                                                @if($jaminanlain)
+                                            @if ($jaminanlain)
                                                 <input type="hidden" id="EditUserFirstName" name="dokumenjaminanlama"
                                                     value="{{ $jaminanlain->dokumen_jaminan }}" class="form-control" />
-                                                    @endif
+                                            @endif
                                         </div>
-
-                                    </div>
-                                    <div class="d-flex justify-content-between mt-3">
-                                        <a class="btn btn-outline-secondary btn-prev" required>
-                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                                        </a>
-                                        <a class="btn btn-primary btn-next" type="button">
-                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
-                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-                                        </a>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <a class="btn btn-outline-secondary btn-prev" disabled>
+                                                <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                            </a>
+                                            <a class="btn btn-primary btn-next" type="button">
+                                                <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                                <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div id="form2" class="content" role="tabpanel"
-                                    aria-labelledby="personal-info-modern-trigger">
-                                    <div class="content-header">
-                                        <h5 class="mb-0">Data Pendapatan</h5>
-                                        <small>Isikan Data Pendapatan Anda</small>
-                                    </div>
-                                    <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="numeral-formatting"><small class="text-danger">*
-                                            </small>Omset Per Bulan</label>
-                                        <input type="text" class="form-control numeral-mask9" placeholder="Rp."
-                                            name="omset" id="omset" value="{{ $pembiayaan->omset }}" required>
-                                    </div>
-                                    <div class="row">
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="numeral-formatting"></small>HPP</label>
-                                            <input type="text" class="form-control numeral-mask" placeholder="Rp."
-                                                name="hpp" id="hpp" value="{{ $pembiayaan->hpp }}">
+                                    <div id="form7" class="content" role="tabpanel"
+                                        aria-labelledby="personal-info-modern-trigger">
+                                        <div class="content-header">
+                                            <h5 class="mb-0">Data Pendapatan</h5>
+                                            <small>Isikan Data Pendapatan Anda</small>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="numeral-formatting"></small>Biaya
-                                                Listrik</label>
-                                            <input type="text" class="form-control numeral-mask2" placeholder="Rp."
-                                                name="listrik" id="listrik" value="{{ $pembiayaan->listrik }}">
+                                            <label class="form-label" for="numeral-formatting"><small
+                                                    class="text-danger">*
+                                                </small>Omset Per Bulan</label>
+                                            <input type="text" class="form-control numeral-mask9" placeholder="Rp."
+                                                name="omset" id="omset" value="{{ number_format($pembiayaan->omset) }}" required>
                                         </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="numeral-formatting"></small>Biaya
-                                                Transport</label>
-                                            <input type="text" class="form-control numeral-mask6" placeholder="Rp."
-                                                name="trasport" id="transport" value="{{ $pembiayaan->trasport }}">
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="numeral-formatting"></small>Biaya
-                                                Karyawan</label>
-                                            <input type="text" class="form-control numeral-mask3" placeholder="Rp."
-                                                name="karyawan" id="karyawan" value="{{ $pembiayaan->karyawan }}">
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="numeral-formatting"></small>Biaya
-                                                Telpon</label>
-                                            <input type="text" class="form-control numeral-mask5" placeholder="Rp."
-                                                name="telpon" id="telpon" value="{{ $pembiayaan->telpon }}">
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="numeral-formatting"> </small>Biaya Sewa
-                                                Kios</label>
-                                            <input type="text" class="form-control numeral-mask4" placeholder="Rp."
-                                                name="sewa" id="sewa" value="{{ $pembiayaan->sewa }}">
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="fotokk"><small class="text-danger">*
-                                                </small>Upload Nota Pembelanjaan</label>
-                                            <input type="hidden" name="foto[6][foto_lama]"
-                                                value="{{ old('foto', $fotonota->foto) }}">
-                                            <input type="hidden" name="foto[6][id]" rows="3" class="form-control"
-                                                value="{{ $fotonota->id }}">
-                                            <input type="file" name="foto[6][foto]" id="fotokk" rows="3"
-                                                class="form-control" required />
-                                            <input type="hidden" name="foto[6][kategori]" value="Foto Nota Pembelanjaan"
-                                                rows="3" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="content-header">
-                                        <h5 class="mb-0">Data Pengeluaran Anda</h5>
-                                        <small>Data Pengeluaran Nasabah Anda</small>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align: center; width: 5%;" class="py-1">No</th>
-                                                    <th style="text-align: center" class="py-1">Nama
-                                                        Bank</th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Plafond
-                                                    </th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Outstanding</th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Tenor
-                                                    </th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Margin
-                                                    </th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Angsuran
-                                                    </th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Agunan
-                                                    </th>
-                                                    <th style="text-align: center" class="py-1">Kol
-                                                        Tertinggi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($idebs as $ideb)
-                                                    <tr>
-                                                        <td style="text-align: center">
-                                                            {{ $loop->iteration }}</td>
-                                                        <td>{{ $ideb->nama_bank }}</td>
-                                                        <td>Rp. {{ number_format($ideb->plafond) }}
-                                                        </td>
-                                                        <td>Rp. {{ number_format($ideb->outstanding) }}
-                                                        </td>
-                                                        <td style="text-align: center">
-                                                            {{ $ideb->tenor }}
-                                                        </td>
-                                                        <td style="text-align: center">
-                                                            {{ number_format($ideb->margin) }}%
-                                                        </td>
-                                                        <td>Rp. {{ number_format($ideb->angsuran) }}
-                                                        </td>
-                                                        <td style="text-align: center">
-                                                            {{ $ideb->agunan }}
-                                                        </td>
-                                                        <td style="text-align: center">
-                                                            {{ $ideb->kol }}</td>
-                                                    </tr>
-                                                @endforeach
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <small>Cicilan Bank</small>
-                                    <section id="form-repeater">
                                         <div class="row">
-                                            <div class="mb-1 col-md-12">
-                                                <div class="repeater-default">
-                                                    <div data-repeater-list="slik">
-                                                        <div data-repeater-item>
-                                                            <div class="row d-flex align-items-end">
-                                                                <div class="col-md-2 col-12">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label" for="nama_bank">Nama
-                                                                            Bank</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="nama_bank" id="nama_bank"
-                                                                            aria-describedby="nama_bank"
-                                                                            placeholder="Nama Bank" />
-                                                                    </div>
-                                                                </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="numeral-formatting"></small>HPP</label>
+                                                <input type="text" class="form-control numeral-mask" placeholder="Rp."
+                                                    name="hpp" id="hpp" value="{{  number_format($pembiayaan->hpp) }}">
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="numeral-formatting"></small>Biaya
+                                                    Listrik</label>
+                                                <input type="text" class="form-control numeral-mask2"
+                                                    placeholder="Rp." name="listrik" id="listrik"
+                                                    value="{{ number_format( $pembiayaan->listrik) }}">
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="numeral-formatting"></small>Biaya
+                                                    Transport</label>
+                                                <input type="text" class="form-control numeral-mask6"
+                                                    placeholder="Rp." name="trasport" id="transport"
+                                                    value="{{ number_format($pembiayaan->trasport) }}">
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="numeral-formatting"></small>Biaya
+                                                    Karyawan</label>
+                                                <input type="text" class="form-control numeral-mask3"
+                                                    placeholder="Rp." name="karyawan" id="karyawan"
+                                                    value="{{  number_format($pembiayaan->karyawan) }}">
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="numeral-formatting"></small>Biaya
+                                                    Telpon</label>
+                                                <input type="text" class="form-control numeral-mask9"
+                                                    placeholder="Rp." name="telpon" id="telpon"
+                                                    value="{{  number_format($pembiayaan->telpon) }}">
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="numeral-formatting"> </small>Biaya Sewa
+                                                    Kios</label>
+                                                <input type="text" class="form-control numeral-mask11"
+                                                    placeholder="Rp." name="sewa" id="sewa"
+                                                    value="{{ number_format( $pembiayaan->sewa )}}">
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="fotokk"><small class="text-danger">*
+                                                    </small>Upload Nota Pembelanjaan</label>
+                                                <input type="hidden" name="foto[6][foto_lama]"
+                                                    value="{{ old('foto', $fotonota->foto) }}">
+                                                <input type="hidden" name="foto[6][id]" rows="3"
+                                                    class="form-control" value="{{ $fotonota->id }}">
+                                                <input type="file" name="foto[6][foto]" id="fotonota" rows="3"
+                                                    class="form-control" />
+                                                <input type="hidden" name="foto[6][kategori]"
+                                                    value="Foto Nota Pembelanjaan" rows="3" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <a class="btn btn-outline-secondary btn-prev" disabled>
+                                                <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                            </a>
+                                            <a class="btn btn-primary btn-next" type="button">
+                                                <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                                <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div id="form8" class="content" role="tabpanel"
+                                        aria-labelledby="account-details-trigger">
+                                        <div class="content-header">
+                                            <h5 class="mb-0">Data Pengeluaran Anda</h5>
+                                            <small>Data Pengeluaran Nasabah Anda</small>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align: center; width: 5%;" class="py-1">No</th>
+                                                        <th style="text-align: center" class="py-1">Nama
+                                                            Bank</th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Plafond
+                                                        </th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Outstanding</th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Tenor
+                                                        </th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Margin
+                                                        </th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Angsuran
+                                                        </th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Agunan
+                                                        </th>
+                                                        <th style="text-align: center" class="py-1">Kol
+                                                            Tertinggi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($idebs as $ideb)
+                                                        <tr>
+                                                            <td style="text-align: center">
+                                                                {{ $loop->iteration }}</td>
+                                                            <td>{{ $ideb->nama_bank }}</td>
+                                                            <td>Rp. {{ number_format($ideb->plafond) }}
+                                                            </td>
+                                                            <td>Rp. {{ number_format($ideb->outstanding) }}
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                {{ $ideb->tenor }}
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                {{ number_format($ideb->margin) }}%
+                                                            </td>
+                                                            <td>Rp. {{ number_format($ideb->angsuran) }}
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                {{ $ideb->agunan }}
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                {{ $ideb->kol }}</td>
+                                                        </tr>
+                                                    @endforeach
 
-                                                                <div class="col-md-2 col-12">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="plafond">Plafond</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="plafond" id="plafond"
-                                                                            aria-describedby="itemcost"
-                                                                            placeholder="Rp." />
-                                                                    </div>
-                                                                </div>
 
-                                                                <div class="col-md-2 col-12">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="outstanding">Outstanding</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="outstanding" id="outstanding"
-                                                                            aria-describedby="outstanding"
-                                                                            placeholder="Rp." />
-                                                                    </div>
-                                                                </div>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <hr class="invoice-spacing" />
+                                        <small>Jika ada perubahan pada Slik, silahkan inputkan dari awal</small>
 
-                                                                <div class="col-md-1 col-8">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="tenor">Tenor</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="tenor" id="tenor"
-                                                                            aria-describedby="tenor"
-                                                                            placeholder="tenor" />
-                                                                    </div>
-                                                                </div>
+                                        <hr class="invoice-spacing" />
 
-                                                                <div class="col-md-1 col-8">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="margin">Margin</label>
-                                                                        <input type="number" class="form-control persen"
-                                                                            name="margin" id="margin"
-                                                                            aria-describedby="margin" placeholder="%" />
+                                        <small>Cicilan Bank</small>
+                                        <section id="form-repeater">
+                                            <div class="row">
+                                                <div class="mb-1 col-md-12">
+                                                    <div class="repeater-default">
+                                                        <div data-repeater-list="slik">
+                                                            <div data-repeater-item>
+                                                                <div class="row d-flex align-items-end">
+                                                                    <div class="col-md-2 col-12">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="nama_bank">Nama
+                                                                                Bank</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="nama_bank" id="nama_bank"
+                                                                                aria-describedby="nama_bank"
+                                                                                placeholder="Nama Bank" />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                {{-- <div class="col-md-1 col-12">
+                                                                    <div class="col-md-2 col-12">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="plafond">Plafond</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="plafond" id="plafond"
+                                                                                aria-describedby="itemcost"
+                                                                                placeholder="Rp." />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-2 col-12">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="outstanding">Outstanding</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="outstanding" id="outstanding"
+                                                                                aria-describedby="outstanding"
+                                                                                placeholder="Rp." />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-1 col-8">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="tenor">Tenor</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="tenor" id="tenor"
+                                                                                aria-describedby="tenor"
+                                                                                placeholder="tenor" />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-1 col-8">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="margin">Margin</label>
+                                                                            <input type="number"
+                                                                                class="form-control persen"
+                                                                                name="margin" id="margin"
+                                                                                aria-describedby="margin"
+                                                                                placeholder="%" />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    {{-- <div class="col-md-1 col-12">
                                                                 <div class="mb-1">
                                                                     <label class="form-label" for="itemquantity">Angsuran</label>
                                                                     <input type="number" class="form-control" name="angsuran" id="angsuran" aria-describedby="itemquantity" placeholder="1"/>
                                                                 </div>
                                                             </div> --}}
 
-                                                                <div class="col-md-1 col-8">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="itemquantity">Agunan</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="agunan" id="agunan"
-                                                                            aria-describedby="itemquantity" />
+                                                                    <div class="col-md-1 col-8">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="itemquantity">Agunan</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="agunan" id="agunan"
+                                                                                aria-describedby="itemquantity" />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="col-md-2 col-12">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="angsuran">Angsuran</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="angsuran" id="angsuran"
-                                                                            aria-describedby="angsuran"
-                                                                            placeholder="Rp." />
+                                                                    <div class="col-md-2 col-12">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="angsuran">Angsuran</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="angsuran" id="angsuran"
+                                                                                aria-describedby="angsuran"
+                                                                                placeholder="Rp." />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="col-md-1 col-2">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="angsuran">Kol</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="kol" id="kol"
-                                                                            aria-describedby="angsuran"
-                                                                            placeholder="Rp." />
+                                                                    <div class="col-md-1 col-2">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="angsuran">Kol</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="kol" id="kol"
+                                                                                aria-describedby="angsuran"
+                                                                                placeholder="Rp." />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="col-md-1 col-12 mb-25">
-                                                                    <div class="mb-1">
-                                                                        <button
-                                                                            class="btn btn-outline-danger text-nowrap px-1"
-                                                                            data-repeater-delete type="button">
-                                                                            <i data-feather="x" class="me-25"></i>
-                                                                            {{-- <span>Delete</span> --}}
-                                                                        </button>
+                                                                    <div class="col-md-1 col-12 mb-25">
+                                                                        <div class="mb-1">
+                                                                            <button
+                                                                                class="btn btn-outline-danger text-nowrap px-1"
+                                                                                data-repeater-delete type="button">
+                                                                                <i data-feather="x" class="me-25"></i>
+                                                                                {{-- <span>Delete</span> --}}
+                                                                            </button>
+                                                                        </div>
                                                                     </div>
+                                                                    <hr>
                                                                 </div>
-                                                                <hr>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-1 col-12">
-                                                        <a data-repeater-create class="btn btn-icon btn-primary"
-                                                            type="button">
-                                                            <i data-feather="plus" class="me-30"></i>
-                                                            <span>Tambah</span>
-                                                        </a>
+                                                        <div class="col-md-1 col-12">
+                                                            <a data-repeater-create class="btn btn-icon btn-primary"
+                                                                type="button">
+                                                                <i data-feather="plus" class="me-30"></i>
+                                                                <span>Tambah</span>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                    </section>
-                                    <div class="table-responsive">
+                                        </section>
+                                        <div class="table-responsive">
+                                            <small>Informasi Debitur Pasangan</small>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align: center; width: 5%;" class="py-1">No
+                                                        </th>
+                                                        <th style="text-align: center" class="py-1">Nama
+                                                            Bank</th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Plafond
+                                                        </th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Outstanding</th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Tenor
+                                                        </th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Margin
+                                                        </th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Angsuran
+                                                        </th>
+                                                        <th style="text-align: center" class="py-1">
+                                                            Agunan
+                                                        </th>
+                                                        <th style="text-align: center" class="py-1">Kol
+                                                            Tertinggi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($idebpasangans as $idebpasangan)
+                                                        <tr>
+                                                            <td style="text-align: center">
+                                                                {{ $loop->iteration }}</td>
+                                                            <td>{{ $idebpasangan->nama_bank }}</td>
+                                                            <td>Rp. {{ number_format($idebpasangan->plafond) }}
+                                                            </td>
+                                                            <td>Rp. {{ number_format($idebpasangan->outstanding) }}
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                {{ $idebpasangan->tenor }}
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                {{ number_format($idebpasangan->margin) }}%
+                                                            </td>
+                                                            <td>Rp. {{ number_format($idebpasangan->angsuran) }}
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                {{ $idebpasangan->agunan }}
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                {{ $idebpasangan->kol }}</td>
+                                                        </tr>
+                                                    @endforeach
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
                                         <small>Informasi Debitur Pasangan</small>
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align: center; width: 5%;" class="py-1">No</th>
-                                                    <th style="text-align: center" class="py-1">Nama
-                                                        Bank</th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Plafond
-                                                    </th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Outstanding</th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Tenor
-                                                    </th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Margin
-                                                    </th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Angsuran
-                                                    </th>
-                                                    <th style="text-align: center" class="py-1">
-                                                        Agunan
-                                                    </th>
-                                                    <th style="text-align: center" class="py-1">Kol
-                                                        Tertinggi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($idebpasangans as $idebpasangan)
-                                                    <tr>
-                                                        <td style="text-align: center">
-                                                            {{ $loop->iteration }}</td>
-                                                        <td>{{ $idebpasangan->nama_bank }}</td>
-                                                        <td>Rp. {{ number_format($idebpasangan->plafond) }}
-                                                        </td>
-                                                        <td>Rp. {{ number_format($idebpasangan->outstanding) }}
-                                                        </td>
-                                                        <td style="text-align: center">
-                                                            {{ $idebpasangan->tenor }}
-                                                        </td>
-                                                        <td style="text-align: center">
-                                                            {{ number_format($idebpasangan->margin) }}%
-                                                        </td>
-                                                        <td>Rp. {{ number_format($idebpasangan->angsuran) }}
-                                                        </td>
-                                                        <td style="text-align: center">
-                                                            {{ $idebpasangan->agunan }}
-                                                        </td>
-                                                        <td style="text-align: center">
-                                                            {{ $idebpasangan->kol }}</td>
-                                                    </tr>
-                                                @endforeach
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <small>Informasi Debitur Pasangan</small>
-                                    <section id="form-repeater">
-                                        <div class="row">
-                                            <div class="mb-1 col-md-12">
-                                                <div class="repeater-default">
-                                                    <div data-repeater-list="slikpasangan">
-                                                        <div data-repeater-item>
-                                                            <div class="row d-flex align-items-end">
-                                                                <div class="col-md-2 col-12">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label" for="nama_bank">Nama
-                                                                            Bank</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="nama_bank" id="nama_bank"
-                                                                            aria-describedby="nama_bank"
-                                                                            placeholder="Nama Bank" />
+                                        <section id="form-repeater">
+                                            <div class="row">
+                                                <div class="mb-1 col-md-12">
+                                                    <div class="repeater-default">
+                                                        <div data-repeater-list="slikpasangan">
+                                                            <div data-repeater-item>
+                                                                <div class="row d-flex align-items-end">
+                                                                    <div class="col-md-2 col-12">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="nama_bank">Nama
+                                                                                Bank</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="nama_bank" id="nama_bank"
+                                                                                aria-describedby="nama_bank"
+                                                                                placeholder="Nama Bank" />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="col-md-2 col-12">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="plafond">Plafond</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="plafond" id="plafond"
-                                                                            aria-describedby="itemcost"
-                                                                            placeholder="Rp." />
+                                                                    <div class="col-md-2 col-12">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="plafond">Plafond</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="plafond" id="plafond"
+                                                                                aria-describedby="itemcost"
+                                                                                placeholder="Rp." />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="col-md-2 col-12">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="outstanding">Outstanding</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="outstanding" id="outstanding"
-                                                                            aria-describedby="outstanding"
-                                                                            placeholder="Rp." />
+                                                                    <div class="col-md-2 col-12">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="outstanding">Outstanding</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="outstanding" id="outstanding"
+                                                                                aria-describedby="outstanding"
+                                                                                placeholder="Rp." />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="col-md-1 col-8">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="tenor">Tenor</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="tenor" id="tenor"
-                                                                            aria-describedby="tenor"
-                                                                            placeholder="tenor" />
+                                                                    <div class="col-md-1 col-8">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="tenor">Tenor</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="tenor" id="tenor"
+                                                                                aria-describedby="tenor"
+                                                                                placeholder="tenor" />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="col-md-1 col-8">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="margin">Margin</label>
-                                                                        <input type="number" class="form-control persen"
-                                                                            name="margin" id="margin"
-                                                                            aria-describedby="margin" placeholder="%" />
+                                                                    <div class="col-md-1 col-8">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="margin">Margin</label>
+                                                                            <input type="number"
+                                                                                class="form-control persen"
+                                                                                name="margin" id="margin"
+                                                                                aria-describedby="margin"
+                                                                                placeholder="%" />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                {{-- <div class="col-md-1 col-12">
+                                                                    {{-- <div class="col-md-1 col-12">
                                                                 <div class="mb-1">
                                                                     <label class="form-label" for="itemquantity">Angsuran</label>
                                                                     <input type="number" class="form-control" name="angsuran" id="angsuran" aria-describedby="itemquantity" placeholder="1"/>
                                                                 </div>
                                                             </div> --}}
 
-                                                                <div class="col-md-1 col-8">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="itemquantity">Agunan</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="agunan" id="agunan"
-                                                                            aria-describedby="itemquantity" />
+                                                                    <div class="col-md-1 col-8">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="itemquantity">Agunan</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="agunan" id="agunan"
+                                                                                aria-describedby="itemquantity" />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="col-md-2 col-12">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="angsuran">Angsuran</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="angsuran" id="angsuran"
-                                                                            aria-describedby="angsuran"
-                                                                            placeholder="Rp." />
+                                                                    <div class="col-md-2 col-12">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="angsuran">Angsuran</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="angsuran" id="angsuran"
+                                                                                aria-describedby="angsuran"
+                                                                                placeholder="Rp." />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="col-md-1 col-2">
-                                                                    <div class="mb-1">
-                                                                        <label class="form-label"
-                                                                            for="angsuran">Kol</label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="kol" id="kol"
-                                                                            aria-describedby="angsuran"
-                                                                            placeholder="Rp." />
+                                                                    <div class="col-md-1 col-2">
+                                                                        <div class="mb-1">
+                                                                            <label class="form-label"
+                                                                                for="angsuran">Kol</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="kol" id="kol"
+                                                                                aria-describedby="angsuran"
+                                                                                placeholder="Rp." />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="col-md-1 col-12 mb-25">
-                                                                    <div class="mb-1">
-                                                                        <button
-                                                                            class="btn btn-outline-danger text-nowrap px-1"
-                                                                            data-repeater-delete type="button">
-                                                                            <i data-feather="x" class="me-25"></i>
-                                                                            {{-- <span>Delete</span> --}}
-                                                                        </button>
+                                                                    <div class="col-md-1 col-12 mb-25">
+                                                                        <div class="mb-1">
+                                                                            <button
+                                                                                class="btn btn-outline-danger text-nowrap px-1"
+                                                                                data-repeater-delete type="button">
+                                                                                <i data-feather="x" class="me-25"></i>
+                                                                                {{-- <span>Delete</span> --}}
+                                                                            </button>
+                                                                        </div>
                                                                     </div>
+                                                                    <hr>
                                                                 </div>
-                                                                <hr>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-1 col-12">
-                                                        <a data-repeater-create class="btn btn-icon btn-primary"
-                                                            type="button">
-                                                            <i data-feather="plus" class="me-30"></i>
-                                                            <span>Tambah</span>
-                                                        </a>
+                                                        <div class="col-md-1 col-12">
+                                                            <a data-repeater-create class="btn btn-icon btn-primary"
+                                                                type="button">
+                                                                <i data-feather="plus" class="me-30"></i>
+                                                                <span>Tambah</span>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                    </section>
-                                    
-                                    <div class="row">
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="numeral-formatting"><small
-                                                    class="text-danger">*</small>Pengeluaran Lainnya</label>
-                                            <input type="text" class="form-control numeral-mask7" placeholder="Rp."
-                                                name="keb_keluarga" id="kebkeluarga"
-                                                value="{{ $pembiayaan->keb_keluarga }}" dis>
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="numeral-formatting"><small
-                                                    class="text-danger">*</small>Keterangan Pengeluaran Lainnya</label>
-                                            <input type="text" class="form-control"
-                                                placeholder="Keterangan Pengeluaran" name="keterangan_keb_keluarga"
-                                                id="kebkeluarga" value="{{ $pembiayaan->keterangan_keb_keluarga }}"
-                                                required>
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="aset">Aset / Harta Benda</label>
-                                            <input type="text" name="aset" id="aset" class="form-control"
-                                                placeholder="Masukan Kepemilikkan Aset" value="{{ $pembiayaan->aset }}">
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="numeral-formatting"><small
-                                                    class="text-danger">*</small>Kesanggupan Angsuran</label>
-                                            <input type="text" class="form-control numeral-mask8"
-                                                name="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran"
-                                                value="{{ $pembiayaan->kesanggupan_angsuran }}" required>
-                                        </div><br>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="dokumen_keuangan"><small
-                                                    class="text-danger">*</small>Upload IDEB</label>
-                                            <input type="file" name="dokumen_keuangan" id="dokumen_keuangan"
-                                                rows="3"class="form-control">
-                                            <input type="hidden" id="EditUserFirstName" name="dokumen_keuangan_lama"
-                                                value="{{ $pembiayaan->dokumen_keuangan }}" class="form-control" />
-                                        </div>
+                                        </section>
 
+                                        <div class="row">
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="numeral-formatting"><small
+                                                        class="text-danger">*</small>Pengeluaran Lainnya</label>
+                                                <input type="text" class="form-control numeral-mask7"
+                                                    placeholder="Rp." name="keb_keluarga" id="kebkeluarga"
+                                                    value="{{ $pembiayaan->keb_keluarga }}" dis>
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="numeral-formatting"><small
+                                                        class="text-danger">*</small>Keterangan Pengeluaran
+                                                    Lainnya</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Keterangan Pengeluaran" name="keterangan_keb_keluarga"
+                                                    id="kebkeluarga"
+                                                    value="{{ $pembiayaan->keterangan_keb_keluarga }}" required>
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="aset">Aset / Harta Benda</label>
+                                                <input type="text" name="aset" id="aset"
+                                                    class="form-control" placeholder="Masukan Kepemilikkan Aset"
+                                                    value="{{ $pembiayaan->aset }}">
+                                            </div>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="numeral-formatting"><small
+                                                        class="text-danger">*</small>Kesanggupan Angsuran</label>
+                                                <input type="text" class="form-control numeral-mask8"
+                                                    name="kesanggupan_angsuran" placeholder="Rp."
+                                                    id="kesanggupan_angsuran"
+                                                    value="{{ $pembiayaan->kesanggupan_angsuran }}" required>
+                                            </div><br>
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="dokumen_keuangan"><small
+                                                        class="text-danger">*</small>Upload IDEB</label>
+                                                <input type="file" name="dokumen_keuangan" id="dokumen_keuangan"
+                                                    rows="3"class="form-control">
+                                                <input type="hidden" id="EditUserFirstName"
+                                                    name="dokumen_keuangan_lama"
+                                                    value="{{ $pembiayaan->dokumen_keuangan }}"
+                                                    class="form-control" />
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <button class="btn btn-primary btn-prev">
+                                                <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                            </button>
+                                            <button type="submit" class="btn btn-success btn-submit">Submit</button>
+                                        </div>
                                     </div>
-                                    <div class="d-flex justify-content-between">
-                                        <button class="btn btn-primary btn-prev">
-                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                                        </button>
-                                        <button type="submit" class="btn btn-success btn-submit">Submit</button>
-                                    </div>
-                                </div>
                             </form>
                         </div>
                     </div>
@@ -1264,5 +1494,37 @@
     </div>
     </div>
     </div>
-    <!-- END: Content-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // function changePerbaruiFotoPemohon() {
+        //     var perbaruiFotoPemohon = document.getElementById("perbaruiFotoPemohon");
+        //     if (perbaruiFotoPemohon.value == "Ya") {
+        //         document.getElementById("fotodiri").classList.toggle("hide"),
+        //             document.getElementById("fotoktp").classList.toggle("hide"),
+        //         document.getElementById("fotokk").classList.toggle("hide"),
+        //             document.getElementById("fotodiriktp").classList.toggle("hide"),
+        //         document.getElementById("fototoko").classList.toggle("hide"),
+        //         document.getElementById("fotonota").classList.toggle("hide");
+        //     } else {
+        //         document.getElementById("fotodiri").classList.toggle("hide"),
+        //             document.getElementById("fotoktp").classList.toggle("hide"),
+        //         document.getElementById("fotokk").classList.toggle("hide"),
+        //             document.getElementById("fotodiriktp").classList.toggle("hide"),
+        //         document.getElementById("fototoko").classList.toggle("hide"),
+        //         document.getElementById("fotonota").classList.toggle("hide");
+        //     }
+
+        // }
+
+        function changePerbaruiLampiran() {
+            var xd = document.getElementById("perbaruiLampiran");
+            if (xd.value == "Ya") {
+                    document.getElementById("ifPerbaruiLampiran").classList.toggle("hide");
+                
+            } else {
+                document.getElementById("ifPerbaruiLampiran").classList = "hide";
+
+            }
+        }
+    </script>
 @endsection

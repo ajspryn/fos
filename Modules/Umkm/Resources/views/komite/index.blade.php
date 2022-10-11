@@ -71,7 +71,7 @@
                                         <span
                                             class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
                                             {{ $history->jabatan->keterangan }}</span>
-                                    @elseif ($history->statushistory->id == 3)
+                                    @elseif ($history->statushistory->id == 3 || $history->statushistory->id == 4)
                                         <span
                                             class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
                                             {{ $history->jabatan->keterangan }}</span>

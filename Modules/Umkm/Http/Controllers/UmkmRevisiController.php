@@ -6,6 +6,7 @@ use App\Models\Role;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Modules\Admin\Entities\PasarAkad;
 use Modules\Admin\Entities\PasarCashPick;
@@ -39,7 +40,7 @@ class UmkmRevisiController extends Controller
      */
     public function index()
     {
-        $komite = UmkmPembiayaanHistory::select()->where('status_id', 7)->get();
+        $komite = UmkmPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->orderby('updated_at','desc')->get();
         return view('umkm::Revisi.index', [
             'title' => 'Data  Revisi Proposal Nasabah',
             'komites' => $komite,
@@ -88,6 +89,7 @@ class UmkmRevisiController extends Controller
             'title' => 'Detail Calon Nasabah',
             'pembiayaan' => UmkmPembiayaan::select()->where('id', $id)->get()->first(),
             'nasabah' => UmkmNasabah::select()->where('id', $id)->get()->first(),
+            'datanasabah' => UmkmNasabah::select()->where('id', $id)->get()->first(),
             'usahas' => UmkmKeteranganUsaha::all(), //udah
             'akads' => PasarAkad::all(),
             'sektors' => PasarSektorEkonomi::all(),
@@ -125,7 +127,7 @@ class UmkmRevisiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // return ($request);
+        $data = UmkmPembiayaan::select()->where('id',$id)->get()->first();
         UmkmPembiayaan::where('id',$id)->update([
             'id'=>$id,
             'tgl_pembiayaan'=> $request ->tgl_pembiayaan,
@@ -161,8 +163,11 @@ class UmkmRevisiController extends Controller
                     'dokumen_keuangan' => $dokumen_keuangan,
                 ]);
         }
+        else{
+            
+        }
 
-        UmkmNasabah::where('id',$id)->update([
+        UmkmNasabah::where('id',$data->nasabah_id)->update([
             'nama_nasabah'=> $request ->nama_nasabah,
             'no_ktp'=> $request ->no_ktp,
             'tmp_lahir'=> $request ->tmp_lahir,
@@ -222,6 +227,9 @@ class UmkmRevisiController extends Controller
             ]);
         
         }
+        else{
+
+        }
 
         UmkmLegalitasRumah::where('umkm_pembiayaan_id',$id)->update([
            
@@ -254,7 +262,7 @@ class UmkmRevisiController extends Controller
         //     'foto.*.kategori' => 'required',
         //     'foto.*.foto' => 'required',
         // ]);
-            if($request->foto){
+        if (request('perbarui_foto_pemohon') == 'Ya') {
         foreach ($request->foto as $key => $value) {
             if ($value['foto']) {
                 Storage::delete($value['foto_lama']);

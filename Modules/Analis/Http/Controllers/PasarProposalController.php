@@ -55,8 +55,8 @@ class PasarProposalController extends Controller
      */
     public function create()
     {
-        $data = PasarPembiayaan::select('id', 'created_at')->get()->groupBy(function ($data) {
-            return Carbon::parse($data->created_at)->format('M');
+        $data = PasarPembiayaan::select('id', 'tgl_pembiayaan')->get()->groupBy(function ($data) {
+            return Carbon::parse($data->tgl_pembiayaan)->format('M');
         });
 
         $bulans = [];
@@ -92,8 +92,7 @@ class PasarProposalController extends Controller
         }
         $plafonds = PasarPembiayaan::join('pasar_pembiayaan_histories','pasar_pembiayaans.id','=','pasar_pembiayaan_histories.pasar_pembiayaan_id')
         ->select(DB::raw("MONTHNAME(pasar_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(harga) as jml_plafond"))
-        ->where('pasar_pembiayaan_histories.jabatan_id', 4)
-        ->where('pasar_pembiayaan_histories.status_id', 5)
+        ->where('pasar_pembiayaan_histories.status_id', 9)
         ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
         ->groupBy(DB::raw("nama_bulan"))
         ->orderBy('pasar_pembiayaans.id', 'ASC')
@@ -105,8 +104,7 @@ class PasarProposalController extends Controller
 
         $target1 = PasarPembiayaan::join('pasar_pembiayaan_histories','pasar_pembiayaans.id','=','pasar_pembiayaan_histories.pasar_pembiayaan_id')
         ->select()
-        ->where('pasar_pembiayaan_histories.jabatan_id', 4)
-        ->where('pasar_pembiayaan_histories.status_id', 5)
+        ->where('pasar_pembiayaan_histories.status_id', 9)
         ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
         ->get();
 

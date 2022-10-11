@@ -33,8 +33,8 @@ class UmkmProposalController extends Controller
     {
         
 
-        $data = UmkmPembiayaan::select('id', 'created_at')->get()->groupBy(function ($data) {
-            return Carbon::parse($data->created_at)->format('M');
+        $data = UmkmPembiayaan::select('id', 'tgl_pembiayaan')->get()->groupBy(function ($data) {
+            return Carbon::parse($data->tgl_pembiayaan)->format('M');
         });
 
         $bulans = [];
@@ -46,8 +46,7 @@ class UmkmProposalController extends Controller
 
         $plafonds = UmkmPembiayaan::join('umkm_pembiayaan_histories','umkm_pembiayaans.id','=','umkm_pembiayaan_histories.umkm_pembiayaan_id')
         ->select(DB::raw("MONTHNAME(umkm_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
-        ->where('umkm_pembiayaan_histories.jabatan_id', 4)
-        ->where('umkm_pembiayaan_histories.status_id', 5)
+        ->where('umkm_pembiayaan_histories.status_id', 9)
         ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
         ->groupBy(DB::raw("nama_bulan"))
         ->orderBy('umkm_pembiayaans.id', 'ASC')
@@ -69,17 +68,12 @@ class UmkmProposalController extends Controller
 
         $target1 = UmkmPembiayaan::join('umkm_pembiayaan_histories','umkm_pembiayaans.id','=','umkm_pembiayaan_histories.umkm_pembiayaan_id')
         ->select()
-        ->where('umkm_pembiayaan_histories.jabatan_id', 4)
-        ->where('umkm_pembiayaan_histories.status_id', 5)
+        ->where('umkm_pembiayaan_histories.status_id', 9)
         ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
         ->get();
 
-        $pipeline = UmkmPembiayaan::select()
-        ->whereYear('tgl_pembiayaan', date('Y'))
-        ->count();
 
-      
-        // return ($noas);
+    //   return $hitungPerBulan;
         return view('kabag::umkm.index', [
             'title' => 'Dashboard UMKM',
             'data' => $data,
@@ -91,7 +85,6 @@ class UmkmProposalController extends Controller
             'labelnoas'=>$bulannoas,
             'datanoas'=>$noaPerBulan,
             'target1'=>$target1,
-            'pipeline'=>$pipeline,
         ]);
     }
 
