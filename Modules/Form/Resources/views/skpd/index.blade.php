@@ -683,6 +683,7 @@
                                     <h5 class="mb-0">Data Pengeluaran Anda</h5>
                                     <small>Data Pengeluaran Nasabah Anda</small>
                                 </div>
+                                
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"><small class="text-danger">*
                                         </small>Pengeluaran Lainnya (Per
