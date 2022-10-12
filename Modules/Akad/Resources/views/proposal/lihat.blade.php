@@ -1442,7 +1442,8 @@
                                                                                                     name="cek_staff_akad"
                                                                                                     value="Dicetak" />
                                                                                                 <button type="submit"
-                                                                                                    class="btn btn-info w-100"><i
+                                                                                                class="btn w-100" style="background-color:darkorange; color:wheat
+                                                                                                "><i
                                                                                                         data-feather="printer"></i>
                                                                                                     Cetak
                                                                                                     Akad
@@ -2936,7 +2937,8 @@
                                                                                         name="cek_staff_akad"
                                                                                         value="Dicetak" />
                                                                                     <a type="submit"
-                                                                                        class="btn btn-info w-100"
+                                                                                        class="btn w-100" style="background-color:darkorange; color:wheat
+                                                                                        "
                                                                                         href="/staff/cetak/pasar/{{ $pembiayaan->id }}"><i
                                                                                             data-feather="printer"></i>
 
@@ -4535,7 +4537,8 @@
                                                                                         name="cek_staff_akad"
                                                                                         value="Dicetak" />
                                                                                     <a type="submit"
-                                                                                        class="btn btn-info w-100"
+                                                                                    class="btn w-100" style="background-color:darkorange; color:wheat
+                                                                                    "
                                                                                         href="/staff/cetak/umkm/{{ $pembiayaan->id }}"><i
                                                                                             data-feather="printer"></i>
 
@@ -5846,7 +5849,8 @@
                                                                                     name="cek_staff_akad"
                                                                                     value="Dicetak" />
                                                                                 <a type="submit"
-                                                                                    class="btn btn-info w-100"
+                                                                                class="btn w-100" style="background-color:darkorange; color:wheat
+                                                                                "
                                                                                     href="/staff/cetak/skpd/{{ $pembiayaan->id }}"><i
                                                                                         data-feather="printer"></i>
 

@@ -115,7 +115,7 @@ foreach ($pprs as $ppr) {
                         <div class="text-center">
                           <h1 class="mb-1 text-white">Hallo {{ $user->name }},</h1>
                           <p class="card-text m-auto w-75">
-                            Awali Harimu Dengan Doa, Dan Selamat Bekerja.
+                            Awali Harimu Dengan Doa dan Selamat Bekerja.
                           </p>
                         </div>
                       </div>

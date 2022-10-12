@@ -315,7 +315,7 @@ ul
     
     <p class=MsoNormal align=center style='text-align:center'><span
     style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>No.
-    02256/SP3/BTB/{{ $bulan }}-2022</span></p>
+    0{{ $no_surat }}/SP3/BTB/{{ $bulan }}-{{ $tahun }}</span></p>
     
     <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
      style='border-collapse:collapse'>
@@ -1000,8 +1000,8 @@ ul
       </td>
       <td width=553 valign=top style='width:415.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><b><u><span style='font-family:"Ottawa",sans-serif'>Aditya Fatahilah
-      Muharam</span></u></b></p>
+      normal'><b><u><span style='font-family:"Ottawa",sans-serif'>Arie Wibowo Irawan,
+          SP.MM.</span></u></b></p>
       </td>
      </tr>
      <tr>
@@ -1015,8 +1015,7 @@ ul
       </td>
       <td width=553 valign=top style='width:415.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal'><span style='font-family:"Ottawa",sans-serif'>Kepala Bagian Bisnis
-      Retail</span></p>
+      normal'><span style='font-family:"Ottawa",sans-serif'>Direktur Bisnis</span></p>
       </td>
      </tr>
     </table>
@@ -1139,7 +1138,7 @@ ul
     lang=IN style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>/</span></b><b><span
     style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>{{ $bulan }}</span></b><b><span
     lang=IN style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>/</span></b><b><span
-    style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>2022/4-32-01-02256</span></b></p>
+    style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>{{ $tahun }}/4-32-01-0{{ $no_surat }}</span></b></p>
     
     <p class=MsoNormal align=center style='text-align:center'><b><span
     style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>&nbsp;</span></b></p>
@@ -1183,7 +1182,7 @@ ul
     uppercase'> Murabahah</span></b><span lang=IN style='font-size:11.0pt;
     font-family:"Ottawa",sans-serif'> ini dibuat dan ditandatangani pada hari ini </span><span
     style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>Selasa, tanggal23
-    September 2022. </span><span lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>Yang
+    September {{ $tahun }}. </span><span lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>Yang
     bertanda tangan di bawah ini :</span></p>
     
     <p class=MsoBodyText align=center style='margin-top:0cm;margin-right:.1pt;
@@ -1312,7 +1311,7 @@ ul
     style='font-family:"Ottawa",sans-serif'><u1:p></u1:p>1.</span><span
     style='font-size:7.0pt;font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;
     </span><span style='font-family:"Ottawa",sans-serif'>Pembiayaan ini diberikan
-    untuk jangka waktu 36 bulan di mulai dari tanggal 26 Agustus 2022 sampai dengan
+    untuk jangka waktu 36 bulan di mulai dari tanggal 26 Agustus {{ $tahun }} sampai dengan
     26 Agustus 2025.</span> </p>
     
     <p class=MsoNormal style='margin-top:0cm;margin-right:.1pt;margin-bottom:0cm;
@@ -1323,7 +1322,7 @@ ul
     kembali atas pembiayaan ini secara angsuran sebesar <b>Rp. {{ number_format($angsuran1) }},-</b>
     terdiri dari angsuran pokok, ditambah margin setiap tanggal 30 pada setiap
     bulannya yang dibayarkan secara kolektif melalui Bendaharawan /Juru Bayar yang
-    dimulai pada tanggal 26 September 2022, sebagaimana tercantum didalam jadwal
+    dimulai pada tanggal 26 September {{ $tahun }}, sebagaimana tercantum didalam jadwal
     angsuran pembiayaan nasabah yang menjadi satu kesatuan dari akad ini dan tak terpisahkan
     dari pembiayaan ini.</span> </p>
     
@@ -1892,7 +1891,7 @@ ul
     lang=IN style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>BTB/</span><span
     style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>WKL/{{ $bulan }}</span><span
     lang=IN style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>/</span><span
-    style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>2022/4-32-01-02256</span>
+    style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>{{ $tahun }}/4-32-01-0{{ $no_surat }}</span>
     </p>
     
     <p class=MsoNormal align=center style='margin-right:.1pt;text-align:center'><b><i>&nbsp;</i></b></p>
@@ -1958,7 +1957,7 @@ ul
     font-family:"Ottawa",sans-serif'>, <b>Akad Wakalah</b></span><span lang=SV
     style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> ini </span><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>dibuat dan
-    ditandatangani pada hari ini Selasa, tanggal 30 bulan Agustus Tahun 2022. Yang
+    ditandatangani pada hari ini Selasa, tanggal 30 bulan Agustus Tahun {{ $tahun }}. Yang
     bertanda tangan di bawah ini :</span></p>
     
     <p class=MsoListParagraph style='margin-left:14.2pt;text-align:justify;
@@ -2620,7 +2619,7 @@ ul
     lang=IN style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>BTB/</span><span
     style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>WKL/{{ $bulan }}</span><span
     lang=IN style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>/</span><span
-    style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>2022/4-32-01-02256</span>
+    style='font-size:12.0pt;font-family:"Ottawa",sans-serif'>{{ $tahun }}/4-32-01-0{{ $no_surat }}</span>
     </p>
     
     <p class=MsoNormal align=center style='margin-right:.1pt;text-align:center'><b><i>&nbsp;</i></b></p>
@@ -2686,7 +2685,7 @@ ul
     font-family:"Ottawa",sans-serif'>, <b>Akad Wakalah</b></span><span lang=SV
     style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> ini </span><span
     lang=IN style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>dibuat dan
-    ditandatangani pada hari ini Selasa, tanggal 30 bulan Agustus Tahun 2022. Yang
+    ditandatangani pada hari ini Selasa, tanggal 30 bulan Agustus Tahun {{ $tahun }}. Yang
     bertanda tangan di bawah ini :</span></p>
     
     <p class=MsoListParagraph style='margin-left:14.2pt;text-align:justify;
@@ -3338,7 +3337,7 @@ ul
     
     <p class=MsoNormal align=center style='text-align:center'><strong><u><span
     style='font-family:"Ottawa",sans-serif'>Nomor :</span></u></strong><u><span
-    style='font-family:"Ottawa",sans-serif'>BTB/SKMB/{{ $bulan }}/2022/4-32-01-02256<strong><span
+    style='font-family:"Ottawa",sans-serif'>BTB/SKMB/{{ $bulan }}/{{ $tahun }}/4-32-01-0{{ $no_surat }}<strong><span
     style='font-family:"Ottawa",sans-serif'> </span></strong></span></u></p>
     
     <p class=MsoNormal align=center style='text-align:center'><strong><span
@@ -3497,7 +3496,7 @@ ul
     <p class=MsoNormal align=center style='text-align:center'><strong><u><span
     style='font-size:12.0pt;line-height:105%;font-family:"Ottawa",sans-serif'>Nomor
     :</span></u></strong><u><span style='font-size:12.0pt;line-height:105%;
-    font-family:"Ottawa",sans-serif'>BTB/SKPP/{{ $bulan }}/2022/4-32-01-02256</span></u></p>
+    font-family:"Ottawa",sans-serif'>BTB/SKPP/{{ $bulan }}/{{ $tahun }}/4-32-01-0{{ $no_surat }}</span></u></p>
     
     <p class=MsoNormal style='text-align:justify'>&nbsp;</p>
     
@@ -3600,8 +3599,8 @@ ul
     mengajukan pembiayaan dan menjaminkan Ijazah Asli Pendidikan Terakhir </span><span
     lang=IN style='font-family:"Ottawa",sans-serif;color:black'>nomor 06130510 atas
     nama {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }} (NASABAH SENDIRI) yang beralamat di </span><span
-    style='font-family:"Ottawa",sans-serif;color:black'>Kp Pawengan, RT 003/ RW
-    004, , Kecamatan Cibinong, Kab. Bogor </span><span lang=IN style='font-family:
+    style='font-family:"Ottawa",sans-serif;color:black'>{{Str::title($pembiayaan->nasabahh->alamat)}}, Rt {{Str::title($pembiayaan->nasabahh->rt)}}/ Rw
+    {{Str::title($pembiayaan->nasabahh->rw)}},Kel. {{Str::title($pembiayaan->nasabahh->desa_kelurahan)}} , Kecamatan {{Str::title($pembiayaan->nasabahh->kecamatan)}}, Kab. Bogor </span><span lang=IN style='font-family:
     "Ottawa",sans-serif;color:black'>k</span><span style='font-family:"Ottawa",sans-serif;
     color:black'>epada Bank BPRS Bogor Tegar Beriman yang </span><span lang=FI
     style='font-family:"Ottawa",sans-serif;color:black'>berkedudukan dan berkantor
@@ -3699,7 +3698,7 @@ ul
     
     <p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><span
     style='font-family:"Ottawa",sans-serif'>Nomor :
-    BTB/SKMT/{{ $bulan }}/2022/4-32-01-02256</span></p>
+    BTB/SKMT/{{ $bulan }}/{{ $tahun }}/4-32-01-0{{ $no_surat }}</span></p>
     
     <p class=MsoNormal style='text-align:justify'><span lang=SV style='font-family:
     "Ottawa",sans-serif'>Yang bertandatangan di bawah ini :</span></p>
@@ -4555,10 +4554,10 @@ ul
     disebut <b>Bank</b>) berdasarkan Perjanjian </span><span lang=IN
     style='font-family:"Ottawa",sans-serif'>Pembiayaan</span><span lang=SV
     style='font-family:"Ottawa",sans-serif'> No</span><span lang=IN
-    style='font-family:"Ottawa",sans-serif'>mor BTB/02256/</span><span lang=SV
+    style='font-family:"Ottawa",sans-serif'>mor BTB/0{{ $no_surat }}/</span><span lang=SV
     style='font-family:"Ottawa",sans-serif'>{{ $bulan }}</span><span lang=IN
     style='font-family:"Ottawa",sans-serif'>/</span><span lang=SV style='font-family:
-    "Ottawa",sans-serif'>2022/4-02256-01-02256 pada tanggal{{$now}} , dalam
+    "Ottawa",sans-serif'>{{ $tahun }}/4-0{{ $no_surat }}-01-0{{ $no_surat }} pada tanggal{{$now}} , dalam
     rangka Pelaksanaan Tata Kelola Perusahaan Yang Baik <i>(Good Corporate
     Governance) </i>di B</span><span lang=IN style='font-family:"Ottawa",sans-serif'>ank
     Pembiayaan Rakyat Syariah Bogor Tegar Beriman</span><span lang=SV
@@ -4965,7 +4964,7 @@ ul
     
     <p class=MsoNormal align=center style='text-align:center'><span lang=ES
     style='font-family:"Ottawa",sans-serif'>Nomor :</span><span style='font-family:
-    "Ottawa",sans-serif'>BTB/BSTJ-SK/{{ $bulan }}/2022/4-32-01-02256</span></p>
+    "Ottawa",sans-serif'>BTB/BSTJ-SK/{{ $bulan }}/{{ $tahun }}/4-32-01-0{{ $no_surat }}</span></p>
     
     <p class=MsoNormal align=center style='text-align:center'><span lang=ES>&nbsp;</span></p>
     
@@ -5079,8 +5078,8 @@ ul
     8.0pt;margin-left:0cm;text-align:justify'><span lang=ES style='font-family:
     "Ottawa",sans-serif'>Bukti tanda terima ini tidak berdiri sendiri dan merupakan
     dokumen yang berhubungan dengan Surat Perjanjian Pembiayaan Nomor :
-    BTB/02256/{{ $bulan }}</span><span lang=IN style='font-family:"Ottawa",sans-serif'>/</span><span
-    lang=ES style='font-family:"Ottawa",sans-serif'>2022/4-02256-01-02256 tanggal
+    BTB/0{{ $no_surat }}/{{ $bulan }}</span><span lang=IN style='font-family:"Ottawa",sans-serif'>/</span><span
+    lang=ES style='font-family:"Ottawa",sans-serif'>{{ $tahun }}/4-0{{ $no_surat }}-01-0{{ $no_surat }} tanggal
    {{$now}} antara Bank selaku pihak pemberi Pembiayaan dengan {{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}
      selaku nasabah.</span></p>
     
@@ -5218,7 +5217,7 @@ ul
       <td width=235 valign=top style='width:176.1pt;border:solid black 1.0pt;
       border-left:none;padding:0cm 5.4pt 0cm 5.4pt;height:16.75pt'>
       <p class=MsoNormal style='margin-top:2.0pt;margin-right:0cm;margin-bottom:
-      2.0pt;margin-left:0cm;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>02256/NPP/BTB-CBNG/{{ $bulan }}/2022</span>
+      2.0pt;margin-left:0cm;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>0{{ $no_surat }}/NPP/BTB-CBNG/{{ $bulan }}/{{ $tahun }}</span>
       </p>
       </td>
      </tr>
@@ -5277,7 +5276,7 @@ ul
       2.0pt;margin-left:0cm;line-height:normal'><span lang=IN style='font-family:
       "Ottawa",sans-serif'>BTB/MBA</span><span style='font-family:"Ottawa",sans-serif'>/
       {{ $bulan }}</span><span lang=IN style='font-family:"Ottawa",sans-serif'>/</span><span
-      style='font-family:"Ottawa",sans-serif'>2022/4-32-01-02256</span> </p>
+      style='font-family:"Ottawa",sans-serif'>{{ $tahun }}/4-32-01-0{{ $no_surat }}</span> </p>
       </td>
      </tr>
      <tr style='height:29.9pt'>
@@ -5803,7 +5802,7 @@ ul
       <td width=210 valign=top style='width:157.55pt;border:solid black 1.0pt;
       border-left:none;padding:0cm 5.4pt 0cm 5.4pt;height:30.75pt'>
       <p class=MsoNormal style='margin-top:2.0pt;margin-right:0cm;margin-bottom:
-      2.0pt;margin-left:0cm;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>02256/NKPT/BTB-CBNG/{{ $bulan }}/2022</span>
+      2.0pt;margin-left:0cm;line-height:normal'><span style='font-family:"Ottawa",sans-serif'>0{{ $no_surat }}/NKPT/BTB-CBNG/{{ $bulan }}/{{ $tahun }}</span>
       </p>
       </td>
      </tr>
@@ -5862,7 +5861,7 @@ ul
       2.0pt;margin-left:0cm;line-height:normal'><span lang=IN style='font-family:
       "Ottawa",sans-serif'>BTB/MBA/</span><span style='font-family:"Ottawa",sans-serif'>{{ $bulan }}</span><span
       lang=IN style='font-family:"Ottawa",sans-serif'>/</span><span
-      style='font-family:"Ottawa",sans-serif'>2022/4-32-01-02256</span> </p>
+      style='font-family:"Ottawa",sans-serif'>{{ $tahun }}/4-32-01-0{{ $no_surat }}</span> </p>
       </td>
      </tr>
      <tr style='height:18.0pt'>
