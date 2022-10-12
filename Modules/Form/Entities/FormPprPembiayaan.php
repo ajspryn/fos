@@ -26,6 +26,7 @@ use Modules\Ppr\Entities\PprCollateral;
 use Modules\Ppr\Entities\PprCollateralNonFixed;
 use Modules\Ppr\Entities\PprCondition;
 use Modules\Ppr\Entities\PprConditionNonFixed;
+use Modules\Ppr\Entities\PprLampiran;
 use Modules\Ppr\Entities\PprScoring;
 use Modules\Ppr\Entities\PprScoringAtrFixedIncome;
 use Modules\Ppr\Entities\PprScoringAtrNonFixedIncome;
@@ -105,6 +106,11 @@ class FormPprPembiayaan extends Model
     public function dokumen()
     {
         return $this->belongsTo(PprClDokumen::class, 'ppr_cl_dokumen_id', 'id');
+    }
+
+    public function lampiran()
+    {
+        return $this->belongsTo(PprLampiran::class, 'ppr_lampiran_id', 'id');
     }
 
     //Scoring Fixed

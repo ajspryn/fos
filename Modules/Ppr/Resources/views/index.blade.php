@@ -18,12 +18,29 @@ $ditolak = Modules\Ppr\Entities\PprPembiayaanHistory::select()
     ->get()
     ->count();
 
-$review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+$komites = Modules\Form\Entities\FormPprPembiayaan::select()
     ->where('user_id', Auth::user()->id)
-    ->where('status_id', 7)
-    ->orderby('created_at', 'desc')
-    ->get()
-    ->count();
+    ->whereNotNull('dilengkapi_ao')
+    ->latest()
+    ->get();
+
+$review = 0;
+foreach ($komites as $komite) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $komite->id)
+        ->latest()
+        ->get()
+        ->first();
+
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+
+    if ($history->status_id == 7) {
+        $review++;
+    }
+}
 
 $diterima = Modules\Akad\Entities\Pembiayaan::select()
     ->where('ao_id', Auth::user()->id)
@@ -44,25 +61,86 @@ $diterima = Modules\Akad\Entities\Pembiayaan::select()
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
                         <!-- Medal Card -->
+                        @php
+                            $targetNominal = 1500000000;
+                            
+                            $cair = 0;
+                            foreach ($targets as $target) {
+                                $hargaJual = $target->form_permohonan_nilai_ppr_dimohon;
+                            
+                                $cair = $cair + $hargaJual;
+                            }
+                            
+                            $pprs = Modules\Form\Entities\FormPprPembiayaan::select()
+                                ->where('user_id', auth::user()->id)
+                                ->get();
+                            
+                            $pipeline = 0;
+                            foreach ($pprs as $ppr) {
+                                $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                    ->where('form_ppr_pembiayaan_id', $ppr->id)
+                                    ->latest()
+                                    ->get()
+                                    ->first();
+                            
+                                $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                    ->where('id', $history->form_ppr_pembiayaan_id)
+                                    ->get()
+                                    ->first();
+                                if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                                    if ($history->status_id != 9) {
+                                        $pipeline++;
+                                    }
+                                }
+                            }
+                        @endphp
                         <div class="col-xl-4 col-md-6 col-12">
                             <div class="card card-congratulation-medal">
-                                <div class="card-body">
-                                    <h5>{{ Auth::user()->name }}</h5>
-                                    <p class="card-text font-small-3">Kamu Belum Mencapai Target</p>
-                                    <h3 class="mb-75 mt-2 pt-50">
-                                        <a href="#"></a>
-                                    </h3>
-                                    <img src="../../../app-assets/images/illustration/badge.svg"
-                                        class="congratulation-medal" alt="Medal Pic" />
-                                </div>
+                                @if ($cair < $targetNominal)
+                                    <div class="card-body -ml-6 rounded bg-danger">
+                                        <h5 style="color: white">{{ Auth::user()->name }}</h5>
+                                        <p class="card-text font-small-3" style="color: white">Kamu Belum Mencapai Target!
+                                        </p>
+                                        <h3 class="mb-75 mt-2 pt-50">
+                                            <a href="#"></a>
+                                        </h3>
+                                        <div class="col-xl-12 col-md-6 col-12">
+                                            <div class="card-body -ml-6 rounded bg-white">
+                                                <span class="fw-bolder">Disburse VS Target </span>
+                                                <span class="fw-bolder"><br />{{ number_format($cair) }} VS
+                                                    {{ number_format($targetNominal) }}</span>
+                                            </div>
+                                        </div>
+                                        <iframe
+                                            src="https://github.com/anars/blank-audio/blob/master/250-milliseconds-of-silence.mp3"
+                                            allow="autoplay" id="audio" style="display: none"></iframe>
+                                        <audio id="player" autoplay>
+                                            <source src="https://github.com/devyFatmawati/audio/blob/main/info.mp3?raw=true"
+                                                type="audio/mp3">
+                                        </audio>
+                                    </div>
+                                @else
+                                    <div class="card-body">
+                                        <h5>{{ Auth::user()->name }}</h5>
+                                        <p class="card-text font-small-3">Selamat, Kamu Sudah Mencapai Target!</p>
+                                        <h3 class="mb-75 mt-2 pt-50">
+                                            <a href="#"></a>
+                                        </h3>
+                                        <div class="col-xl-12 col-md-6 col-12">
+                                            <div class="card-body -ml-6 rounded bg-success">
+                                                <span class="fw-bolder" style="color: white"> Disburse VS Target </span>
+                                                <span class="fw-bolder" style="color: white"> <br>{{ number_format($cair) }}
+                                                    VS {{ number_format($targetNominal) }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <img src="../../../app-assets/images/illustration/badge.svg"
+                                            class="congratulation-medal" alt="Medal Pic" />
+                                    </div>
+                                @endif
                             </div>
 
-                            <iframe src="https://github.com/anars/blank-audio/blob/master/250-milliseconds-of-silence.mp3"
-                                allow="autoplay" id="audio" style="display: none"></iframe>
-                            <audio id="player" autoplay>
-                                <source src="https://github.com/devyFatmawati/audio/blob/main/info.mp3?raw=true"
-                                    type="audio/mp3">
-                            </audio>
+
                         </div>
                         <!--/ Medal Card -->
                         <!-- Statistics Card -->
@@ -75,6 +153,23 @@ $diterima = Modules\Akad\Entities\Pembiayaan::select()
                                     </div>
                                 </div>
                                 <div class="card-body statistics-body">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-1" style="margin: auto; margin-top:-25px;">
+                                            <div class="d-flex flex-row">
+                                                <div class="avatar bg-light-info me-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="git-commit" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="my-auto">
+                                                    <h4 class="fw-bolder mb-0">{{ $pipeline }}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Pipeline</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <br />
                                     <div class="row">
                                         <div class="col-xl-3 col-sm-6 col-12 mb-2">
                                             <div class="d-flex flex-row">
@@ -129,6 +224,7 @@ $diterima = Modules\Akad\Entities\Pembiayaan::select()
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

@@ -8,21 +8,20 @@
             ->get()
             ->count();
 
-        $pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-            ->where('status_id', 3)
-            ->get();
+        $pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
         $proposalppr = 0;
         foreach ($pprs as $ppr) {
-            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                ->where('id', $ppr->form_ppr_pembiayaan_id)
+            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $ppr->id)
+                ->latest()
                 ->get()
                 ->first();
 
-            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
-                ->orderBy('created_at', 'desc')
+            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                ->where('id', $history->form_ppr_pembiayaan_id)
                 ->get()
                 ->first();
+
             if ($history->status_id == 3 && $history->jabatan_id == 1) {
                 $proposalppr++;
             }
@@ -33,11 +32,50 @@
             ->get()
             ->count();
 
-        $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-            ->where('status_id', 7)
-            ->orderby('created_at', 'desc')
-            ->get()
-            ->count();
+        $komites = Modules\Form\Entities\FormPprPembiayaan::select()
+            ->where('user_id', Auth::user()->id)
+            ->whereNotNull('dilengkapi_ao')
+            ->latest()
+            ->get();
+
+        $review = 0;
+        foreach ($komites as $komite) {
+            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $komite->id)
+                ->latest()
+                ->get()
+                ->first();
+
+            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                ->where('id', $history->form_ppr_pembiayaan_id)
+                ->get()
+                ->first();
+
+            if ($history->status_id == 7) {
+                $review++;
+            }
+        }
+
+        $pprPipelines = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+
+        $pipeline = 0;
+        foreach ($pprPipelines as $pprPipeline) {
+            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $pprPipeline->id)
+                ->latest()
+                ->get()
+                ->first();
+
+            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                ->where('id', $history->form_ppr_pembiayaan_id)
+                ->get()
+                ->first();
+            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                if ($history->status_id != 9) {
+                    $pipeline++;
+                }
+            }
+        }
     @endphp
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -61,6 +99,23 @@
                                     </div>
                                 </div>
                                 <div class="card-body statistics-body">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-1" style="margin: auto; margin-top:-25px;">
+                                            <div class="d-flex flex-row">
+                                                <div class="avatar bg-light-info me-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="git-commit" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="my-auto">
+                                                    <h4 class="fw-bolder mb-0">{{ $pipeline }}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Pipeline</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <br />
                                     <div class="row">
                                         <div class="col-xl-3 col-sm-6 col-12 mb-2">
                                             <div class="d-flex flex-row">

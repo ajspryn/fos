@@ -122,22 +122,22 @@
                                                 </td>
                                                 <td style="text-align: center">{{ $proposal_ppr->user->name }}</td>
                                                 <td>
-                                                    <a href="/ppr/revisi/{{ $proposal_ppr->id }}/edit"
-                                                        class="btn btn-outline-info round">Detail</a>
+                                                    @if ($proposal_ppr->dilengkapi_ao == 'Butuh revisi')
+                                                        <a href="/ppr/revisi/{{ $proposal_ppr->id }}/edit"
+                                                            class="btn btn-outline-info round">Revisi Form, Check List, dan
+                                                            Score</a>
+                                                    @elseif ($proposal_ppr->form_cl == 'Butuh revisi' && $proposal_ppr->form_score == 'Butuh revisi')
+                                                        <a href="/ppr/revisi/{{ $proposal_ppr->id }}/edit"
+                                                            class="btn btn-outline-info round">Revisi Check List dan
+                                                            Score</a>
+                                                    @elseif ($proposal_ppr->form_score == 'Butuh revisi')
+                                                        <a href="/ppr/revisi/{{ $proposal_ppr->id }}/edit"
+                                                            class="btn btn-outline-info round">Revisi Score</a>
+                                                    @else
+                                                        <a href="/ppr/revisi/{{ $proposal_ppr->id }}/edit"
+                                                            class="btn btn-outline-info round">Detail</a>
+                                                    @endif
                                                 </td>
-                                                {{-- <td style="text-align: center">
-                                                @if ($proposal->form_cl == '' && $proposal->form_score == '')
-                                                    <a href="/ppr/proposal/{{ $proposal->id }}"
-                                                        class="btn btn-outline-info round">Lengkapi Check List dan Score</a>
-                                                @elseif ($proposal->form_score == '')
-                                                    <a href="/ppr/proposal/{{ $proposal->id }}"
-                                                        class="btn btn-outline-info round">Lengkapi Score</a>
-                                                @else
-                                                    <a href="/ppr/proposal/{{ $proposal->id }}"
-                                                        class="btn btn-outline-info round">Lengkapi Check List</a>
-                                                @endif
-
-                                            </td> --}}
                                             </tr>
                                         @endif
                                     @endforeach

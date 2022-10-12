@@ -1,9 +1,5 @@
 <!-- BEGIN: Main Menu-->
 @php
-$proposal = Modules\Form\Entities\FormPprPembiayaan::select()
-    ->where('user_id', Auth::user()->id)
-    ->get()
-    ->first();
 
 $proposalppr = Modules\Form\Entities\FormPprPembiayaan::select()
     ->where('user_id', Auth::user()->id)
@@ -22,11 +18,28 @@ $komiteppr = Modules\Form\Entities\FormPprPembiayaan::select()
     ->get()
     ->count();
 
-$revisi = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+$proposals = Modules\Form\Entities\FormPprPembiayaan::select()
     ->where('user_id', Auth::user()->id)
-    ->where('status_id', 7)
-    ->get()
-    ->count();
+    ->get();
+
+$notifRevisi = 0;
+foreach ($proposals as $proposal) {
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $proposal->id)
+        ->latest()
+        ->get()
+        ->first();
+
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
+        ->get()
+        ->first();
+
+    if ($history->status_id == 7) {
+        $notifRevisi++;
+    }
+}
+
 @endphp
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
@@ -79,9 +92,9 @@ $revisi = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                     <li class="{{ Request::is('ppr/revisi*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/ppr/revisi"><i data-feather="circle"></i><span
                                 class="menu-title text-truncate" data-i18n="home">Revisi Proposal</span>
-                            @if ($revisi > 0)
+                            @if ($notifRevisi > 0)
                                 <span
-                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $revisi }}</span>
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notifRevisi }}</span>
                             @endif
                         </a>
                     </li>

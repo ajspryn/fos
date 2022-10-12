@@ -101,6 +101,7 @@ use Modules\Ppr\Entities\PprScoringCollateralNonFixedIncome;
 use Modules\Ppr\Entities\PprScoringWtrFixedIncome;
 use Modules\Ppr\Entities\PprScoringWtrNonFixedIncome;
 use Modules\Ppr\Entities\PprScoring;
+use Modules\Ppr\Entities\PprLampiran;
 
 class PprProposalController extends Controller
 {
@@ -110,8 +111,6 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        // $test = FormPprPembiayaan::select()->where('user_id', Auth::user()->id)->where('form_cl', null)->get();
-        // return $test;
         return view('ppr::proposal.index', [
             'title' => 'Proposal PPR',
             'proposals' => FormPprPembiayaan::select()
@@ -198,16 +197,6 @@ class PprProposalController extends Controller
             'pinjaman_lainnyas' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
             'if_pinjaman_lainnya' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
 
-            // 'kekayaan_simpanan' => FormPprDataKekayaanSimpanan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            // 'kekayaan_tanah_bangunan' => FormPprDataKekayaanTanahBangunan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            // 'kekayaan_kendaraan' => FormPprDataKekayaanKendaraan::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            // 'kekayaan_saham' => FormPprDataKekayaanSaham::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            // 'kekayaan_lainnya' => FormPprDataKekayaanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            // 'pinjaman' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            // 'pinjaman_kartu_kredit' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            // 'pinjaman_lainnya' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            // 'persyaratans' => PprClPersyaratan::all(),
-
             //Kategori Scoring Fixed Income
             'character_tempat_bekerjas' => PprCharacterTempatBekerja::all(),
             'character_konsistensis' => PprCharacterKonsistensi::all(),
@@ -273,7 +262,6 @@ class PprProposalController extends Controller
             'collateral_nf_pertumbuhan_agunans' => PprCollateralNfPertumbuhanAgunan::all(),
             'collateral_nf_daya_tarik_agunans' => PprCollateralNfDayaTarikAgunan::all(),
             'collateral_nf_jangka_waktu_likuidasis' => PprCollateralNfJangkaWaktuLikuidasi::all(),
-
         ]);
     }
 
@@ -295,29 +283,7 @@ class PprProposalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // if (request('form_cl') == 'Telah diisi') {
-        //     FormPprPembiayaan::where('id', $id)
-        //         ->update([
-        //             'form_score' => 'Telah dinilai',
-        //         ]);
-        // } elseif (request('form_score') == 'Telah dinilai') {
-        //     FormPprPembiayaan::where('id', $id)
-        //         ->update([
-        //             'form_cl' => 'Telah diisi',
-        //         ]);
-        // } else {
-        //     FormPprPembiayaan::where('id', $id)
-        //         ->update([
-        //             'form_cl' => $request->form_cl,
-        //             'form_score' => $request->form_score,
-        //         ]);
-        // }
-        // dd($request);
-
         $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
-        // dd($request);
-        // $hitungDataKekayaanSimpanan = FormPprDataKekayaanSimpanan::select()->where('id', $pembiayaan->kekayaan_simpanan[0]['id'])->get()->first();
-        // $idDataKekayaanSimpanan = $hitungDataKekayaanSimpanan;
 
         FormPprPembiayaan::where('id', $id)
             ->update([
@@ -532,7 +498,8 @@ class PprProposalController extends Controller
                 ->update([
                     'form_agunan_1_jenis' => $request->form_agunan_1_jenis,
                     'form_agunan_1_jenis_lain' => $request->form_agunan_1_jenis_lain,
-                    'form_agunan_1_nilai_harga_jual' => $request->form_agunan_1_nilai_harga_jual,
+                    'form_agunan_1_nilai_harga_jual' => str_replace(",", "", $request->form_agunan_1_nilai_harga_jual),
+                    'form_agunan_1_nilai_harga_taksasi_kjpp' => str_replace(",", "", $request->form_agunan_1_nilai_harga_taksasi_kjpp),
                     'form_agunan_1_alamat' => $request->form_agunan_1_alamat,
                     'form_agunan_1_alamat_rt' => $request->form_agunan_1_alamat_rt,
                     'form_agunan_1_alamat_rw' => $request->form_agunan_1_alamat_rw,
@@ -556,7 +523,8 @@ class PprProposalController extends Controller
 
                     'form_agunan_2_jenis' => $request->form_agunan_2_jenis,
                     'form_agunan_2_jenis_lain' => $request->form_agunan_2_jenis_lain,
-                    'form_agunan_2_nilai_harga_jual' => $request->form_agunan_2_nilai_harga_jual,
+                    'form_agunan_2_nilai_harga_jual' => str_replace(",", "", $request->form_agunan_2_nilai_harga_jual),
+                    'form_agunan_2_nilai_harga_taksasi_kjpp' => str_replace(",", "", $request->form_agunan_2_nilai_harga_taksasi_kjpp),
                     'form_agunan_2_alamat' => $request->form_agunan_2_alamat,
                     'form_agunan_2_alamat_rt' => $request->form_agunan_2_alamat_rt,
                     'form_agunan_2_alamat_rw' => $request->form_agunan_2_alamat_rw,
@@ -706,9 +674,13 @@ class PprProposalController extends Controller
                             'form_pinjaman_nama_bank' => $value['form_pinjaman_nama_bank'],
                             'form_pinjaman_jenis' => $value['form_pinjaman_jenis'],
                             'form_pinjaman_sejak_tahun' => $value['form_pinjaman_sejak_tahun'],
-                            'form_pinjaman_jangka_waktu_bulan' => $value['form_pinjaman_jangka_waktu_bulan'],
                             'form_pinjaman_plafond' => str_replace(",", "", $value['form_pinjaman_plafond']),
+                            'form_pinjaman_outstanding' => str_replace(",", "", $value['form_pinjaman_outstanding']),
+                            'form_pinjaman_jangka_waktu_bulan' => $value['form_pinjaman_jangka_waktu_bulan'],
+                            'form_pinjaman_bunga_margin' => $value['form_pinjaman_bunga_margin'],
                             'form_pinjaman_angsuran_per_bulan' => str_replace(",", "", $value['form_pinjaman_angsuran_per_bulan']),
+                            'form_pinjaman_agunan' => $value['form_pinjaman_agunan'],
+                            'form_pinjaman_kolektibilitas' => $value['form_pinjaman_kolektibilitas'],
                         ]
                     );
                 }
@@ -730,6 +702,12 @@ class PprProposalController extends Controller
                             'form_pinjaman_kartu_kredit_nama_bank' => $value['form_pinjaman_kartu_kredit_nama_bank'],
                             'form_pinjaman_kartu_kredit_sejak_tahun' => $value['form_pinjaman_kartu_kredit_sejak_tahun'],
                             'form_pinjaman_kartu_kredit_plafond' => str_replace(",", "", $value['form_pinjaman_kartu_kredit_plafond']),
+                            'form_pinjaman_kartu_kredit_outstanding' => str_replace(",", "", $value['form_pinjaman_kartu_kredit_outstanding']),
+                            'form_pinjaman_kartu_kredit_jangka_waktu_bulan' => $value['form_pinjaman_kartu_kredit_jangka_waktu_bulan'],
+                            'form_pinjaman_kartu_kredit_bunga_margin' => $value['form_pinjaman_kartu_kredit_bunga_margin'],
+                            'form_pinjaman_kartu_kredit_angsuran_per_bulan' => str_replace(",", "", $value['form_pinjaman_kartu_kredit_angsuran_per_bulan']),
+                            'form_pinjaman_kartu_kredit_agunan' => $value['form_pinjaman_kartu_kredit_agunan'],
+                            'form_pinjaman_kartu_kredit_kolektibilitas' => $value['form_pinjaman_kartu_kredit_kolektibilitas'],
                         ]
                     );
                 }
@@ -737,7 +715,7 @@ class PprProposalController extends Controller
             }
 
             //Pinjaman lainnya
-            if ($request->repeater_pinjaman_lainnya[0]['form_pinjaman_lainnya']) {
+            if ($request->repeater_pinjaman_lainnya[0]['form_pinjaman_lainnya_nama']) {
 
                 // FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->delete();
 
@@ -748,13 +726,30 @@ class PprProposalController extends Controller
                         ],
                         [
                             'form_ppr_pembiayaan_id' => $id,
-                            'form_pinjaman_lainnya' => $value['form_pinjaman_lainnya'],
-                            'form_pinjaman_lainnya_rp' => str_replace(",", "", $value['form_pinjaman_lainnya_rp']),
+                            'form_pinjaman_lainnya_nama' => $value['form_pinjaman_lainnya_nama'],
+                            'form_pinjaman_lainnya_sejak_tahun' => $value['form_pinjaman_lainnya_sejak_tahun'],
+                            'form_pinjaman_lainnya_plafond' => str_replace(",", "", $value['form_pinjaman_lainnya_plafond']),
+                            'form_pinjaman_lainnya_outstanding' => str_replace(",", "", $value['form_pinjaman_lainnya_outstanding']),
+                            'form_pinjaman_lainnya_jangka_waktu_bulan' => $value['form_pinjaman_lainnya_jangka_waktu_bulan'],
+                            'form_pinjaman_lainnya_bunga_margin' => $value['form_pinjaman_lainnya_bunga_margin'],
+                            'form_pinjaman_lainnya_agunan' => $value['form_pinjaman_lainnya_agunan'],
+                            'form_pinjaman_lainnya_kolektibilitas' => $value['form_pinjaman_lainnya_kolektibilitas'],
                         ]
                     );
                 }
             } else {
             }
+
+            //Lampiran
+            PprLampiran::where('form_ppr_pembiayaan_id', $id)
+                ->update([
+                    'dokumen_pemohon' => $request->file('dokumen_pemohon')->store('ppr-lampiran'),
+                    'dokumen_agunan' => $request->file('dokumen_agunan')->store('ppr-lampiran'),
+                    'ots_agunan' => $request->file('ots_agunan')->store('ppr-lampiran'),
+                    'ots_tempat_usaha' => $request->file('ots_tempat_usaha')->store('ppr-lampiran'),
+                    'hasil_wawancara' => $request->file('hasil_wawancara')->store('ppr-lampiran'),
+                    'appraisal_kjpp' => $request->file('appraisal_kjpp')->store('ppr-lampiran'),
+                ]);
         } elseif ($pembiayaan->form_cl != 'Telah diisi' && $pembiayaan->dilengkapi_ao == 'Telah dilengkapi') {
             //Check List
             PprClPersyaratan::where('form_ppr_pembiayaan_id', $id)

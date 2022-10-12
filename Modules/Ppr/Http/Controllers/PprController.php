@@ -66,8 +66,24 @@ class PprController extends Controller
         $labelNoaProyekPerumahan = $noaProyekPerumahan->keys();
         $dataNoaProyekPerumahan = $noaProyekPerumahan->values();
 
+        //Target
+        $targets = FormPprPembiayaan::join('ppr_pembiayaan_histories', 'form_ppr_pembiayaans.id', '=', 'ppr_pembiayaan_histories.form_ppr_pembiayaan_id')
+            ->select()
+            ->where('form_ppr_pembiayaans.user_id',  Auth::user()->id)
+            ->where('ppr_pembiayaan_histories.status_id', 9)
+            ->whereYear('form_ppr_pembiayaans.created_at', date('Y'))
+            ->get();
+
+        //Pipeline
+        $pipelines = FormPprPembiayaan::select()
+            ->where('user_id',  Auth::user()->id)
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
         return view('ppr::index', [
             'title' => 'Dashboard PPR',
+            'targets' => $targets,
+            'pipelines' => $pipelines,
         ], compact(
             'bulans',
             'hitungPerBulan',

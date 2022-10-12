@@ -165,7 +165,7 @@
     <script src="../../../app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
     <script src="../../../app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
     <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js"></script>
-    {{-- <script src="../../../app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script> --}}
+    <script src="../../../app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <script src="../../../app-assets/vendors/js/forms/wizard/bs-stepper.min.js"></script>
     <script src="../../../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
     <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>

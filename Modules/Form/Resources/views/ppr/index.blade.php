@@ -92,6 +92,35 @@
             overflow: hidden;
         }
 
+        /* Akad Lain use Margin */
+        #ifAkadLain {
+            width: 100%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifAkadLain.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #formPermohonanJmlMarginAkadLain {
+            margin-bottom: 13px;
+            width: 100%;
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #formPermohonanJmlMarginAkadLain.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
         /* Show and hide fields style */
         #ifJenisAkadLain {
             width: 50%;
@@ -571,15 +600,15 @@
                                     </div>
 
                                     <div class="mb-1 col-md-6 hide" id="ifMurabahah">
-                                        <label class="form-label " for="form_permohonan_jml_margin"><small
+                                        <label class="form-label" for="form_permohonan_jml_margin"><small
                                                 class="text-danger">*
                                             </small>Jumlah Margin</label>
                                         <input type="text" name="form_permohonan_jml_margin"
                                             id="formPermohonanJmlMargin" class="form-control numeral-mask4 hide"
-                                            placeholder="Masukkan Jumlah Margin" required />
+                                            placeholder="Masukkan Jumlah Margin" required disabled />
                                     </div>
                                     <div class="mb-1 col-md-6 hide" id="ifImbt">
-                                        <label class="form-label " for="form_permohonan_jml_sewa"><small
+                                        <label class="form-label" for="form_permohonan_jml_sewa"><small
                                                 class="text-danger">*
                                             </small>Jumlah Sewa</label>
                                         <input type="text" name="form_permohonan_jml_sewa" id="formPermohonanJmlSewa"
@@ -587,13 +616,21 @@
                                             required />
                                     </div>
                                     <div class="mb-1 col-md-6 hide" id="ifMmq">
-                                        <label class="form-label " for="form_permohonan_jml_bagi_hasil"><small
+                                        <label class="form-label" for="form_permohonan_jml_bagi_hasil"><small
                                                 class="text-danger">*
                                             </small>Jumlah Bagi
                                             Hasil</label>
                                         <input type="text" name="form_permohonan_jml_bagi_hasil"
                                             id="formPermohonanJmlBagiHasil" class="form-control numeral-mask6 hide"
                                             placeholder="Masukkan Jumlah Bagi" required />
+                                    </div>
+                                    <div class="mb-1 col-md-6 hide" id="ifAkadLain">
+                                        <label class="form-label" for="form_permohonan_jml_margin_akad_lain"><small
+                                                class="text-danger">*
+                                            </small>Jumlah Margin (Akad Lain)</label>
+                                        <input type="text" name="form_permohonan_jml_margin"
+                                            id="formPermohonanJmlMarginAkadLain" class="form-control numeral-mask36 hide"
+                                            placeholder="Masukkan Jumlah Margin (Akad Lain)" required disabled />
                                     </div>
 
                                     <div class="mb-1 col-md-6">
@@ -2419,6 +2456,15 @@
                                             id="form_agunan_1_nilai_harga_jual" class="form-control numeral-mask17"
                                             placeholder="Masukkan Nilai/Harga Jual" required />
                                     </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="form_agunan_1_nilai_harga_taksasi_kjpp"><small
+                                                class="text-danger">*
+                                            </small><b>Nilai/Harga Taksasi KJPP</b></label>
+                                        <input type="text" name="form_agunan_1_nilai_harga_taksasi_kjpp"
+                                            id="form_agunan_1_nilai_harga_taksasi_kjpp"
+                                            class="form-control numeral-mask29"
+                                            placeholder="Masukkan Nilai/Harga Taksasi KJPP" required />
+                                    </div>
 
                                     <div class="mb-1 col-md-12">
                                         <div data-repeater-list="form_agunan_1_alamat">
@@ -2567,8 +2613,7 @@
                                                             for="form_agunan_1_status_bukti_kepemilikan_tgl_berakhir"><small
                                                                 class="text-danger">*
                                                             </small>Tanggal Berakhir</label>
-                                                        <input type="date"
-                                                            id="form_agunan_1_status_bukti_kepemilikan_tgl_berakhir"
+                                                        <input type="date" id="tglBerakhirShgbAgunan1"
                                                             class="form-control flatpickr-basic"
                                                             name="form_agunan_1_status_bukti_kepemilikan_tgl_berakhir"
                                                             placeholder="YYYY-MM-DD" required />
@@ -2714,6 +2759,15 @@
                                             id="form_agunan_2_nilai_harga_jual" class="form-control numeral-mask18"
                                             placeholder="Masukkan Nilai/Harga Jual" />
                                     </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label"
+                                            for="form_agunan_2_nilai_harga_taksasi_kjpp">Nilai/Harga
+                                            Taksasi KJPP</label>
+                                        <input type="text" name="form_agunan_2_nilai_harga_taksasi_kjpp"
+                                            id="form_agunan_2_nilai_harga_taksasi_kjpp"
+                                            class="form-control numeral-mask30"
+                                            placeholder="Masukkan Nilai/Harga Taksasi KJPP" />
+                                    </div>
                                     <div class="mb-1 col-md-12">
                                         <div data-repeater-list="form_agunan_2_alamat">
                                             <div data-repeater-item>
@@ -2781,8 +2835,7 @@
                                                     <div class="col-md-2 col-12">
                                                         <div class="mb-1">
                                                             <label class="form-label"
-                                                                for="form_agunan_2_alamat_dati2">Kabupaten/Kota
-                                                                2</label>
+                                                                for="form_agunan_2_alamat_dati2">Kabupaten/Kota</label>
                                                             <input type="text" class="form-control"
                                                                 name="form_agunan_2_alamat_dati2"
                                                                 id="form_agunan_2_alamat_dati2"
@@ -3026,7 +3079,6 @@
                                                                         <option value="Tabungan">Tabungan</option>
                                                                         <option value="Deposito">Deposito</option>
                                                                         <option value="Giro">Giro</option>
-                                                                        {{-- <option value="Lainnya">Lainnya --}}
                                                                         </option>
                                                                     </select>
                                                                 </div>
@@ -3098,7 +3150,7 @@
                                     <div class="row">
                                         <div class="mb-1 col-md-12">
                                             <div class="repeater-default">
-                                                <div data-repeater-list="kekayaan_tanah_bangunan">
+                                                <div data-repeater-list="repeater_kekayaan_tanah_bangunan">
                                                     <h6>Tanah dan
                                                         Bangunan</h6>
                                                     <div data-repeater-item>
@@ -3215,7 +3267,7 @@
                                     <div class="row">
                                         <div class="mb-1 col-md-12">
                                             <div class="repeater-default">
-                                                <div data-repeater-list="kekayaan_kendaraan">
+                                                <div data-repeater-list="repeater_kekayaan_kendaraan">
                                                     <h6>Kendaraan</h6>
                                                     <div data-repeater-item>
                                                         <div class="row d-flex align-items-end">
@@ -3301,7 +3353,7 @@
                                     <div class="row">
                                         <div class="mb-1 col-md-12">
                                             <div class="repeater-default">
-                                                <div data-repeater-list="kekayaan_saham">
+                                                <div data-repeater-list="repeater_kekayaan_saham">
                                                     <h6>Saham</h6>
                                                     <div data-repeater-item>
                                                         <div class="row d-flex align-items-end">
@@ -3368,7 +3420,7 @@
                                     <div class="row">
                                         <div class="mb-1 col-md-12">
                                             <div class="repeater-default">
-                                                <div data-repeater-list="kekayaan_lainnya">
+                                                <div data-repeater-list="repeater_kekayaan_lainnya">
                                                     <div data-repeater-item>
                                                         <div class="row d-flex align-items-end">
                                                             <div class="col-md-2 col-12">
@@ -3432,14 +3484,13 @@
                                     <div class="row">
                                         <div class="mb-1 col-md-12">
                                             <div class="repeater-default">
-                                                <div data-repeater-list="pinjaman">
+                                                <div data-repeater-list="repeater_pinjaman">
                                                     <h6>
                                                         Pinjaman
                                                     </h6>
                                                     <div data-repeater-item>
                                                         <div class="row d-flex align-items-end">
                                                             <div class="col-md-2 col-12">
-
                                                                 <div class="mb-1">
                                                                     <label class="form-label"
                                                                         for="form_pinjaman_nama_bank">Nama
@@ -3467,7 +3518,6 @@
                                                                         <option value="Modal Kerja">Modal Kerja</option>
                                                                         <option value="Investasi">Investasi</option>
                                                                         <option value="Konsumtif">Konsumtif</option>
-
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -3488,6 +3538,32 @@
                                                             <div class="col-md-2 col-12">
                                                                 <div class="mb-1">
                                                                     <label class="form-label"
+                                                                        for="form_pinjaman_plafond">Plafond</label>
+                                                                    <input type="text"
+                                                                        class="form-control numeral-mask25"
+                                                                        name="form_pinjaman_plafond"
+                                                                        id="form_pinjaman_plafond"
+                                                                        aria-describedby="form_pinjaman_plafond"
+                                                                        placeholder="Plafond (Rp)" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_outstanding">Outstanding</label>
+                                                                    <input type="text"
+                                                                        class="form-control numeral-mask31"
+                                                                        name="form_pinjaman_outstanding"
+                                                                        id="form_pinjaman_outstanding"
+                                                                        aria-describedby="form_pinjaman_outstanding"
+                                                                        placeholder="Outstanding (Rp)" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
                                                                         for="form_pinjaman_jangka_waktu_bulan">Jangka
                                                                         Waktu (Bulan)</label>
                                                                     <input type="number" class="form-control"
@@ -3501,13 +3577,13 @@
                                                             <div class="col-md-2 col-12">
                                                                 <div class="mb-1">
                                                                     <label class="form-label"
-                                                                        for="form_pinjaman_plafond">Plafond</label>
-                                                                    <input type="text"
-                                                                        class="form-control numeral-mask25"
-                                                                        name="form_pinjaman_plafond"
-                                                                        id="form_pinjaman_plafond"
-                                                                        aria-describedby="form_pinjaman_plafond"
-                                                                        placeholder="Plafond (Rp)" />
+                                                                        for="form_pinjaman_bunga_margin">Bunga/Margin
+                                                                        (%)</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="form_pinjaman_bunga_margin"
+                                                                        id="form_pinjaman_bunga_margin"
+                                                                        aria-describedby="form_pinjaman_bunga_margin"
+                                                                        placeholder="Bunga/Margin (%)" />
                                                                 </div>
                                                             </div>
 
@@ -3524,6 +3600,30 @@
                                                                 </div>
                                                             </div>
 
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_agunan">Agunan</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="form_pinjaman_agunan"
+                                                                        id="form_pinjaman_agunan"
+                                                                        aria-describedby="form_pinjaman_agunan"
+                                                                        placeholder="Agunan" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_kolektibilitas">Kolektibilitas</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="form_pinjaman_kolektibilitas"
+                                                                        id="form_pinjaman_kolektibilitas"
+                                                                        aria-describedby="form_pinjaman_kolektibilitas"
+                                                                        placeholder="Kolektibilitas" />
+                                                                </div>
+                                                            </div>
+
                                                             <div class="col-md-1 col-12">
                                                                 <div class="mb-1">
                                                                     <button
@@ -3534,6 +3634,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div style="margin-bottom:8px;"></div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -3550,13 +3651,14 @@
                                         </div>
                                     </div>
                                 </section>
+                                <!-- /Pinjaman-->
 
                                 <!-- Kartu Kredit -->
                                 <section id="form-repeater-form_pinjaman_kartu_kredit">
                                     <div class="row">
                                         <div class="mb-1 col-md-12">
                                             <div class="repeater-default">
-                                                <div data-repeater-list="pinjaman_kartu_kredit">
+                                                <div data-repeater-list="repeater_pinjaman_kartu_kredit">
                                                     <h6>Kartu
                                                         Kredit</h6>
                                                     <div data-repeater-item>
@@ -3601,6 +3703,83 @@
                                                                 </div>
                                                             </div>
 
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_kartu_kredit_outstanding">Outstanding
+                                                                    </label>
+                                                                    <input type="text"
+                                                                        class="form-control numeral-mask32"
+                                                                        name="form_pinjaman_kartu_kredit_outstanding"
+                                                                        id="form_pinjaman_kartu_kredit_outstanding"
+                                                                        aria-describedby="form_pinjaman_kartu_kredit_outstanding"
+                                                                        placeholder="Outstanding (Rp)" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_kartu_kredit_jangka_waktu_bulan">Jangka
+                                                                        Waktu (Bulan)</label>
+                                                                    <input type="number" class="form-control"
+                                                                        name="form_pinjaman_kartu_kredit_jangka_waktu_bulan"
+                                                                        id="form_pinjaman_kartu_kredit_jangka_waktu_bulan"
+                                                                        aria-describedby="form_pinjaman_kartu_kredit_jangka_waktu_bulan"
+                                                                        placeholder="Jangka Waktu (Bulan)" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_kartu_kredit_bunga_margin">Bunga/Margin
+                                                                        (%)</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="form_pinjaman_kartu_kredit_bunga_margin"
+                                                                        id="form_pinjaman_kartu_kredit_bunga_margin"
+                                                                        aria-describedby="form_pinjaman_kartu_kredit_bunga_margin"
+                                                                        placeholder="Bunga/Margin (%)" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_kartu_kredit_angsuran_per_bulan">Angsuran/Bulan</label>
+                                                                    <input type="text"
+                                                                        class="form-control numeral-mask33"
+                                                                        name="form_pinjaman_kartu_kredit_angsuran_per_bulan"
+                                                                        id="form_pinjaman_kartu_kredit_angsuran_per_bulan"
+                                                                        aria-describedby="form_pinjaman_kartu_kredit_angsuran_per_bulan"
+                                                                        placeholder="Angsuran/Bulan (Rp)" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_kartu_kredit_nama_bank">Agunan</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="form_pinjaman_kartu_kredit_agunan"
+                                                                        id="form_pinjaman_kartu_kredit_agunan"
+                                                                        aria-describedby="form_pinjaman_kartu_kredit_agunan"
+                                                                        placeholder="Agunan" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_kartu_kredit_kolektibilitas">Kolektibilitas</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="form_pinjaman_kartu_kredit_kolektibilitas"
+                                                                        id="form_pinjaman_kartu_kredit_kolektibilitas"
+                                                                        aria-describedby="form_pinjaman_kartu_kredit_kolektibilitas"
+                                                                        placeholder="Kolektibilitas" />
+                                                                </div>
+                                                            </div>
+
                                                             <div class="col-md-1 col-12">
                                                                 <div class="mb-1">
                                                                     <button
@@ -3611,6 +3790,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div style="margin-bottom:8px;"></div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -3627,35 +3807,131 @@
                                         </div>
                                     </div>
                                 </section>
+                                <!-- /Kartu Kredit -->
 
+                                <!-- Lainnya -->
                                 <section id="form-repeater-form_pinjaman_lainnya">
                                     <div class="row">
                                         <div class="mb-1 col-md-12">
                                             <div class="repeater-default">
-                                                <div data-repeater-list="pinjaman_lainnya">
+                                                <div data-repeater-list="repeater_pinjaman_lainnya">
+                                                    <h6>Lainnya</h6>
                                                     <div data-repeater-item>
                                                         <div class="row d-flex align-items-end">
                                                             <div class="col-md-2 col-12">
                                                                 <div class="mb-1">
                                                                     <label class="form-label"
-                                                                        for="form_pinjaman_lainnya">Lainnya</label>
+                                                                        for="form_pinjaman_lainnya_nama">Nama</label>
                                                                     <input type="text" class="form-control"
-                                                                        name="form_pinjaman_lainnya"
-                                                                        id="form_pinjaman_lainnya"
-                                                                        aria-describedby="form_pinjaman_lainnya"
-                                                                        placeholder="Lainnya" />
+                                                                        name="form_pinjaman_lainnya_nama"
+                                                                        id="form_pinjaman_lainnya_nama"
+                                                                        aria-describedby="form_pinjaman_lainnya_nama"
+                                                                        placeholder="Nama" />
                                                                 </div>
                                                             </div>
 
-                                                            <div class="mb-1 col-md-3">
-                                                                <label class="form-label"
-                                                                    for="form_pinjaman_lainnya_rp">Rupiah</label>
-                                                                <input type="text"
-                                                                    class="form-control numeral-mask28"
-                                                                    name="form_pinjaman_lainnya_rp"
-                                                                    id="form_pinjaman_lainnya_rp"
-                                                                    aria-describedby="form_pinjaman_lainnya_rp"
-                                                                    placeholder="Rupiah" />
+                                                            <div class="col-md-1 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_lainnya_sejak_tahun">Sejak
+                                                                        Tahun</label>
+                                                                    <input type="number" class="form-control"
+                                                                        name="form_pinjaman_lainnya_sejak_tahun"
+                                                                        id="form_pinjaman_lainnya_sejak_tahun"
+                                                                        aria-describedby="form_pinjaman_lainnya_sejak_tahun"
+                                                                        placeholder="Tahun" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_lainnya_plafond">Plafond
+                                                                    </label>
+                                                                    <input type="text"
+                                                                        class="form-control numeral-mask27"
+                                                                        name="form_pinjaman_lainnya_plafond"
+                                                                        id="form_pinjaman_lainnya_plafond"
+                                                                        aria-describedby="form_pinjaman_lainnya_plafond"
+                                                                        placeholder="Plafond (Rp)" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_lainnya_outstanding">Outstanding
+                                                                    </label>
+                                                                    <input type="text"
+                                                                        class="form-control numeral-mask34"
+                                                                        name="form_pinjaman_lainnya_outstanding"
+                                                                        id="form_pinjaman_lainnya_outstanding"
+                                                                        aria-describedby="form_pinjaman_lainnya_outstanding"
+                                                                        placeholder="Outstanding (Rp)" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_lainnya_jangka_waktu_bulan">Jangka
+                                                                        Waktu (Bulan)</label>
+                                                                    <input type="number" class="form-control"
+                                                                        name="form_pinjaman_lainnya_jangka_waktu_bulan"
+                                                                        id="form_pinjaman_lainnya_jangka_waktu_bulan"
+                                                                        aria-describedby="form_pinjaman_lainnya_jangka_waktu_bulan"
+                                                                        placeholder="Jangka Waktu (Bulan)" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_lainnya_bunga_margin">Bunga/Margin
+                                                                        (%)</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="form_pinjaman_lainnya_bunga_margin"
+                                                                        id="form_pinjaman_lainnya_bunga_margin"
+                                                                        aria-describedby="form_pinjaman_lainnya_bunga_margin"
+                                                                        placeholder="Bunga/Margin (%)" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_lainnya_angsuran_per_bulan">Angsuran/Bulan</label>
+                                                                    <input type="text"
+                                                                        class="form-control numeral-mask35"
+                                                                        name="form_pinjaman_lainnya_angsuran_per_bulan"
+                                                                        id="form_pinjaman_lainnya_angsuran_per_bulan"
+                                                                        aria-describedby="form_pinjaman_lainnya_angsuran_per_bulan"
+                                                                        placeholder="Angsuran/Bulan (Rp)" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_lainnya_agunan">Agunan</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="form_pinjaman_lainnya_agunan"
+                                                                        id="form_pinjaman_lainnya_agunan"
+                                                                        aria-describedby="form_pinjaman_lainnya_agunan"
+                                                                        placeholder="Agunan" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label"
+                                                                        for="form_pinjaman_lainnya_kolektibilitas">Kolektibilitas</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="form_pinjaman_lainnya_kolektibilitas"
+                                                                        id="form_pinjaman_lainnya_kolektibilitas"
+                                                                        aria-describedby="form_pinjaman_lainnya_kolektibilitas"
+                                                                        placeholder="Kolektibilitas" />
+                                                                </div>
                                                             </div>
 
                                                             <div class="col-md-1 col-12">
@@ -3668,6 +3944,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div style="margin-bottom:8px;"></div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -3683,6 +3960,7 @@
                                         </div>
                                     </div>
                                 </section>
+                                <!-- /Lainnya -->
 
 
 
@@ -4086,14 +4364,19 @@
             var jenisAkadPembayaran = document.getElementById("formPermohonanJenisAkadPembayaran").value;
             if (jenisAkadPembayaran == "Akad Lainnya") {
                 document.getElementById("ifJenisAkadLain").classList.toggle("hide"),
-                    formPermohonanJmlMargin.classList.add("form-control"),
-                    document.getElementById("ifMurabahah").classList.toggle("hide"),
-                    document.getElementById("formPermohonanJmlMargin").classList.toggle("hide"),
+                    formPermohonanJmlMarginAkadLain.classList.add("form-control"),
+                    document.getElementById("ifAkadLain").classList.toggle("hide"),
+                    document.getElementById("formPermohonanJmlMarginAkadLain").classList.toggle("hide"),
+                    document.getElementById("formPermohonanJmlMargin").classList = "hide",
                     document.getElementById("formPermohonanJmlSewa").classList = "hide",
                     document.getElementById("formPermohonanJmlBagiHasil").classList = "hide",
+                    document.getElementById("ifMurabahah").classList = "hide",
                     document.getElementById("ifImbt").classList = "hide",
                     document.getElementById("ifMmq").classList = "hide",
-                    document.getElementById("formPermohonanJmlMargin").setAttribute("required", "required"),
+                    document.getElementById("formPermohonanJmlMarginAkadLain").setAttribute("required", "required"),
+                    document.getElementById("formPermohonanJmlMarginAkadLain").removeAttribute("disabled"),
+                    document.getElementById("formPermohonanJmlMargin").setAttribute("disabled", "disabled"),
+                    document.getElementById("formPermohonanJmlMargin").removeAttribute("required"),
                     document.getElementById("formPermohonanJmlSewa").removeAttribute("required"),
                     document.getElementById("formPermohonanJmlBagiHasil").removeAttribute("required");
             } else if (jenisAkadPembayaran == "Murabahah") {
@@ -4102,39 +4385,58 @@
                     document.getElementById("formPermohonanJmlMargin").classList.toggle("hide"),
                     document.getElementById("formPermohonanJmlSewa").classList = "hide",
                     document.getElementById("formPermohonanJmlBagiHasil").classList = "hide",
+                    document.getElementById("formPermohonanJmlMarginAkadLain").classList = "hide",
                     document.getElementById("ifImbt").classList = "hide",
                     document.getElementById("ifMmq").classList = "hide",
+                    document.getElementById("ifAkadLain").classList = "hide",
                     document.getElementById("ifJenisAkadLain").classList = "hide",
+                    document.getElementById("formPermohonanJmlMargin").removeAttribute("disabled"),
                     document.getElementById("formPermohonanJmlMargin").setAttribute("required", "required"),
+                    document.getElementById("formPermohonanJmlMarginAkadLain").setAttribute("disabled", "disabled"),
                     document.getElementById("formPermohonanJmlSewa").removeAttribute("required"),
+                    document.getElementById("formPermohonanJmlMarginAkadLain").removeAttribute("required"),
                     document.getElementById("formPermohonanJmlBagiHasil").removeAttribute("required");
             } else if (jenisAkadPembayaran == "IMBT") {
                 formPermohonanJmlSewa.classList.add("form-control"),
                     document.getElementById("ifImbt").classList.toggle("hide"),
                     document.getElementById("formPermohonanJmlSewa").classList.toggle("hide"),
                     document.getElementById("formPermohonanJmlMargin").classList = "hide",
+                    document.getElementById("formPermohonanJmlMarginAkadLain").classList = "hide",
                     document.getElementById("formPermohonanJmlBagiHasil").classList = "hide",
                     document.getElementById("ifMurabahah").classList = "hide",
                     document.getElementById("ifMmq").classList = "hide",
+                    document.getElementById("ifAkadLain").classList = "hide",
                     document.getElementById("ifJenisAkadLain").classList = "hide",
                     document.getElementById("formPermohonanJmlSewa").setAttribute("required", "required"),
+                    document.getElementById("formPermohonanJmlMargin").setAttribute("disabled", "disabled"),
+                    document.getElementById("formPermohonanJmlMarginAkadLain").setAttribute("disabled", "disabled"),
                     document.getElementById("formPermohonanJmlMargin").removeAttribute("required"),
+                    document.getElementById("formPermohonanJmlMarginAkadLain").removeAttribute("required"),
                     document.getElementById("formPermohonanJmlBagiHasil").removeAttribute("required");
             } else if (jenisAkadPembayaran == "MMQ") {
                 formPermohonanJmlBagiHasil.classList.add("form-control"),
                     document.getElementById("ifMmq").classList.toggle("hide"),
                     document.getElementById("formPermohonanJmlBagiHasil").classList.toggle("hide"),
                     document.getElementById("formPermohonanJmlMargin").classList = "hide",
+                    document.getElementById("formPermohonanJmlMarginAkadLain").classList = "hide",
                     document.getElementById("formPermohonanJmlSewa").classList = "hide",
                     document.getElementById("ifImbt").classList = "hide",
                     document.getElementById("ifMurabahah").classList = "hide",
+                    document.getElementById("ifAkadLain").classList = "hide",
                     document.getElementById("ifJenisAkadLain").classList = "hide",
                     document.getElementById("formPermohonanJmlBagiHasil").setAttribute("required", "required"),
+                    document.getElementById("formPermohonanJmlMargin").setAttribute("disabled", "disabled"),
+                    document.getElementById("formPermohonanJmlMarginAkadLain").setAttribute("disabled", "disabled"),
                     document.getElementById("formPermohonanJmlMargin").removeAttribute("required"),
+                    document.getElementById("formPermohonanJmlMarginAkadLain").removeAttribute("required"),
                     document.getElementById("formPermohonanJmlSewa").removeAttribute("required");
             } else {
+                document.getElementById("ifAkadLain").classList = "hide",
                 document.getElementById("ifJenisAkadLain").classList = "hide",
+                    document.getElementById("formPermohonanJmlMargin").setAttribute("disabled", "disabled"),
+                    document.getElementById("formPermohonanJmlMarginAkadLain").setAttribute("disabled", "disabled"),
                     document.getElementById("formPermohonanJmlMargin").removeAttribute("required"),
+                    document.getElementById("formPermohonanJmlMarginAkadLain").removeAttribute("required"),
                     document.getElementById("formPermohonanJmlSewa").removeAttribute("required"),
                     document.getElementById("formPermohonanJmlBagiHasil").removeAttribute("required");
             }
@@ -4312,10 +4614,12 @@
             if (shgbAgunan1.value == "SHGB") {
                 document.getElementById("ifShgbAgunan1Expired").classList.toggle("hide"),
                     document.getElementById("ifShgbAgunan1Hak").classList.toggle("hide"),
+                    document.getElementById("tglBerakhirShgbAgunan1").setAttribute("required", "required"),
                     document.getElementById("statusBuktiHakAgunan1").setAttribute("required", "required");
             } else {
                 document.getElementById("ifShgbAgunan1Expired").classList = "hide",
                     document.getElementById("ifShgbAgunan1Hak").classList = "hide",
+                    document.getElementById("tglBerakhirShgbAgunan1").removeAttribute("required"),
                     document.getElementById("statusBuktiHakAgunan1").removeAttribute("required");
             }
         }
