@@ -186,11 +186,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //Jabatan
-        DB::table('keterangan_jabatans')->insert([
-            'id' => 0,
-            'jabatan_id' => 0,
-            'keterangan' => 'Nasabah',
-        ]);
+        // DB::table('keterangan_jabatans')->insert([
+        //     'id' => 0,
+        //     'jabatan_id' => 0,
+        //     'keterangan' => 'Nasabah',
+        // ]);
 
         DB::table('keterangan_jabatans')->insert([
             'id' => 1,
@@ -220,6 +220,11 @@ class DatabaseSeeder extends Seeder
             'id' => 5,
             'jabatan_id' => 5,
             'keterangan' => 'Direktur Utama',
+        ]);
+
+        DB::table('keterangan_jabatans')->insert([
+            'jabatan_id' => 0,
+            'keterangan' => 'Nasabah',
         ]);
     }
 }
