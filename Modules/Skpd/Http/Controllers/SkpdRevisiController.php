@@ -217,7 +217,7 @@ class SkpdRevisiController extends Controller
         }
 
 
-        SkpdPembiayaanHistory::where('skpd_pembiayaan_id', $id)->update([
+        SkpdPembiayaanHistory::create([
             'skpd_pembiayaan_id' => $id,
             'status_id' => 2,
             'jabatan_id' => 1,

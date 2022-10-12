@@ -39,7 +39,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request -> validate([
             'user_id'=> 'required',
             'role_id'=> 'required',
@@ -60,7 +60,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-      
+
     }
 
     /**
@@ -71,7 +71,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user=User::select()->where('id',$id)->get()->first();
-        return view('admin::show',[
+        return view('admin::user.lihat',[
             'user'=>$user,
             'title'=>'Data User',
         ]);
@@ -94,7 +94,7 @@ class UserController extends Controller
 
         $input=$request->all();
 
-        Role::create($input);
+        Role::update($input);
         return redirect()->back()->with('success', 'Data User Berhasil Ditambahkan');
     }
 
@@ -105,6 +105,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return redirect('/admin/user')->alert()->warning('WarningAlert', 'Lorem ipsum dolor sit amet.');
+        return $id;
+        Role::where('user_id',$id)->delete();
+        User::where('id',$id)->delete();
+        return redirect()->back()->with('success', 'Data User Berhasil Ditambahkan Dihapus');
     }
 }
