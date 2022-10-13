@@ -125,7 +125,7 @@ class SkpdKomiteController extends Controller
         //DSR(rasio total angsuran terhadap pendapatan bersih)
         if ($data->skpd_golongan_id == 18) {
             $dsr = number_format($angsuran / $total_pemasukan * 100);
-        }else{
+        } else {
             $dsr = number_format($angsuran / $gaji_tpp * 100);
         }
 
@@ -137,7 +137,7 @@ class SkpdKomiteController extends Controller
 
         //proses menentukan rating
         $proses_bendahara = SkpdBendahara::select()->where('skpd_instansi_id', $data->skpd_instansi_id)->get()->first();
-        if ($dsr > 36) {
+        if ($dsr >= 36) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 1)->get()->first();
         }
         if ($dsr <= 35 && $dsr >= 31) {
