@@ -850,8 +850,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                                             Nasabah</span>
                                     </p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Gaji/Pendapatan
-                                            Suami/istri</span></p>
+                                            style='font-size:12.0pt;font-family:"Times New Roman",serif'>Gaji/Pendapatan</span></p>
                                     <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
                                             style='font-size:12.0pt;font-family:"Times New Roman",serif'>Pendapatan
                                             TPP</span></p>
