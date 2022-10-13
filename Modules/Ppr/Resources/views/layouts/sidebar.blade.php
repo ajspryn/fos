@@ -12,10 +12,17 @@ $proposalppr = Modules\Form\Entities\FormPprPembiayaan::select()
     ->get()
     ->count();
 
-$komiteppr = Modules\Form\Entities\FormPprPembiayaan::select()
-    ->where('user_id', Auth::user()->id)
-    ->whereNotNull(['dilengkapi_ao', 'form_cl', 'form_score'])
-    ->get()
+// $komiteppr = Modules\Form\Entities\FormPprPembiayaan::select()
+//     ->where('user_id', Auth::user()->id)
+//     ->whereNotNull(['dilengkapi_ao', 'form_cl', 'form_score'])
+//     ->where('status_id', '>', 8)
+//     ->get()
+//     ->count();
+
+$komiteppr = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    ->latest()
+    ->where('status_id', '<', 9)
+    ->groupBy('form_ppr_pembiayaan_id')
     ->count();
 
 $proposals = Modules\Form\Entities\FormPprPembiayaan::select()
@@ -78,7 +85,12 @@ foreach ($proposals as $proposal) {
                 </a>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="clipboard"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span>
+                    @if ($proposalppr + $notifRevisi > 0)
+                        <span
+                            class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr + $notifRevisi }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('ppr/proposal*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/ppr/proposal"><i data-feather="clipboard"></i><span

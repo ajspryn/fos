@@ -88,13 +88,21 @@ class PprKomiteController extends Controller
     {
         $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
 
-        PprPembiayaanHistory::create([
-            'form_ppr_pembiayaan_id' => $id,
-            'status_id' => 4,
-            'jabatan_id' => 2,
-            'divisi_id' => 0,
-            'user_id' => Auth::user()->$id,
-        ]);
+        $cek = PprPembiayaanHistory::select()
+            ->where('form_ppr_pembiayaan_id', $id)
+            ->latest()
+            ->get()
+            ->first();
+
+        if ($cek->status_id == 3 && $cek->jabatan_id == 1) {
+            PprPembiayaanHistory::create([
+                'form_ppr_pembiayaan_id' => $id,
+                'status_id' => 4,
+                'jabatan_id' => 2,
+                'divisi_id' => 0,
+                'user_id' => Auth::user()->$id,
+            ]);
+        }
 
         //Timeline
         $waktuawal = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();

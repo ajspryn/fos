@@ -71,19 +71,12 @@ class PprController extends Controller
             ->select()
             ->where('form_ppr_pembiayaans.user_id',  Auth::user()->id)
             ->where('ppr_pembiayaan_histories.status_id', 9)
-            ->whereYear('form_ppr_pembiayaans.created_at', date('Y'))
+            ->whereMonth('form_ppr_pembiayaans.created_at', Carbon::now()->month)
             ->get();
-
-        //Pipeline
-        $pipelines = FormPprPembiayaan::select()
-            ->where('user_id',  Auth::user()->id)
-            ->whereYear('created_at', date('Y'))
-            ->count();
 
         return view('ppr::index', [
             'title' => 'Dashboard PPR',
             'targets' => $targets,
-            'pipelines' => $pipelines,
         ], compact(
             'bulans',
             'hitungPerBulan',

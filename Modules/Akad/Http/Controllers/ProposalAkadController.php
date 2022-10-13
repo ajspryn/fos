@@ -72,6 +72,7 @@ use Modules\Form\Entities\FormPprDataPinjaman;
 use Modules\Form\Entities\FormPprDataPinjamanKartuKredit;
 use Modules\Form\Entities\FormPprDataPinjamanLainnya;
 use Modules\Form\Entities\FormPprDataPribadi;
+use Modules\Ppr\Entities\PprLampiran;
 use Modules\Ppr\Entities\PprScoring;
 
 class ProposalAkadController extends Controller
@@ -313,17 +314,7 @@ class ProposalAkadController extends Controller
      */
     public function showPpr($id)
     {
-
-        $historystatus = PprPembiayaanHistory::select()
-            ->where('form_ppr_pembiayaan_id', $id)
-            ->orderby('created_at', 'desc')
-            ->get()
-            ->first();
-
-        $data = FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
-
-        $nasabah = FormPprDataPribadi::select()->where('id', $id)->get()->first();
-        $pekerjaan_nasabah = FormPprDataPekerjaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
+        $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
 
         //Timeline
         $waktuawal = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();
@@ -331,9 +322,11 @@ class ProposalAkadController extends Controller
 
         $waktumulai = Carbon::parse($waktuawal->created_at);
         $waktuberakhir = Carbon::parse($waktuakhir->created_at);
+
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
 
-        $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
+        //Plafond
+        $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
 
         //Perhitungan Margin, Harga Jual & Angsuran
         $hpp = $pembiayaan->form_permohonan_nilai_hpp;
@@ -343,11 +336,32 @@ class ProposalAkadController extends Controller
         $hargaJual = $hpp + $marginRp;
         $angsuran = $hargaJual / $tenor;
         $plafondMaks = $hpp;
+        $kemampuanMengangsur = $pembiayaan->form_penghasilan_pengeluaran_kemampuan_mengangsur;
+
+        //Idir
+        $penghasilanBersih = $pembiayaan->form_penghasilan_pengeluaran_sisa_penghasilan;
+        $kewajibanAngsuran = $pembiayaan->form_penghasilan_pengeluaran_kewajiban_angsuran;
+        $idir = (($kewajibanAngsuran + $kemampuanMengangsur) / $penghasilanBersih) * 100;
+
+        //FTV
+        $hargaJualAgunan = $pembiayaan->agunan->form_agunan_1_nilai_harga_jual;
+        $hargaTaksasiKjpp = $pembiayaan->agunan->form_agunan_1_nilai_harga_taksasi_kjpp;
+        if ($hargaJualAgunan > $hargaTaksasiKjpp) {
+            $ftv = ($plafond / $hargaTaksasiKjpp) * 100;
+            $pembagi = "Taksasi KJPP";
+        } else {
+            $ftv = ($plafond / $hargaJualAgunan) * 100;
+            $pembagi = "Harga Jual Agunan";
+        }
+
+        //DP
+        $persenDp = 100 - $ftv;
+        $dp = $hpp - $plafond;
 
         //Usia Nasabah
         $usiaNasabah = Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir)->age;
 
-        return view('dirbis::ppr.komite.lihat', [
+        return view('akad::proposal.lihat', [
             'segmen' => 'PPR',
             'title' => 'Detail Proposal',
             'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
@@ -362,6 +376,15 @@ class ProposalAkadController extends Controller
             'hargaJual' => $hargaJual,
             'angsuran' => $angsuran,
             'plafondMaks' => $plafondMaks,
+            'idir' => $idir,
+            'idebs' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'idebKartuKredits' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'idebLains' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'lampiran' => PprLampiran::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'ftv' => $ftv,
+            'pembagi' => $pembagi,
+            'persenDp' => $persenDp,
+            'dp' => $dp,
 
             'aos' => Role::select()->where('jabatan_id', 1)->get(),
             'pekerjaans' => FormPprDataPekerjaan::all(),
@@ -704,9 +727,9 @@ class ProposalAkadController extends Controller
 
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
         // return $proses_dsr;
-        $no = Pembiayaan::select()->where('status','Selesai Akad')->get()->count();
+        $no = Pembiayaan::select()->where('status', 'Selesai Akad')->get()->count();
 
-        $no_surat = (2298 - $no) + ($no+1);
+        $no_surat = (2298 - $no) + ($no + 1);
 
 
         return $no_surat;
@@ -835,7 +858,7 @@ class ProposalAkadController extends Controller
         // else{
         //     $prosesslik=PasarScoreSlik::select()->where('kol',$data_slik->kol)->get()->first();
         // }
-        //score 
+        //score
 
         $score_jenisdagang = $proses_jenisdagang->rating;
         $score_sukubangsa = $proses_sukubangsa->rating;
@@ -866,7 +889,7 @@ class ProposalAkadController extends Controller
 
 
         $score_idir = $proses_idir->rating;
-        //slik 
+        //slik
 
         $data_slik = UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->orderBy('kol', 'desc')->get()->first();
 

@@ -66,20 +66,18 @@ foreach ($umkms as $umkm) {
     }
 }
 
-$pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-    ->where('status_id', 3)
-    ->get();
+$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
 
 $proposalppr = 0;
 foreach ($pprs as $ppr) {
-    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-        ->where('id', $ppr->form_ppr_pembiayaan_id)
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->latest()
         ->get()
         ->first();
 
-    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
-        ->orderBy('created_at', 'desc')
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
         ->get()
         ->first();
     if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {

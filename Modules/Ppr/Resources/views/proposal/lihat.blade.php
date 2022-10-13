@@ -1067,9 +1067,11 @@
                                                         class="text-danger">*
                                                     </small>Pendidikan</label>
                                                 <select class="select2 w-100" name="form_pribadi_pemohon_pendidikan"
-                                                    id="form_pribadi_pemohon_pendidikan">
-                                                    <option label="form_pribadi_pemohon_pendidikan" selected disabled>Pilih
-                                                        Pendidikan</option>
+                                                    id="form_pribadi_pemohon_pendidikan"
+                                                    data-placeholder="Pilih
+                                                    Pendidikan"
+                                                    required>
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pemohon->form_pribadi_pemohon_pendidikan == 'SD' ? 'selected' : '' }}
                                                         value="SD">SD</option>
@@ -1146,9 +1148,9 @@
                                                     </small>Status Pernikahan</label>
                                                 <select class="select2 w-100"
                                                     name="form_pribadi_pemohon_status_pernikahan"
-                                                    id="form_pribadi_pemohon_status_pernikahan" onChange="changeStatus()">
-                                                    <option label="status" selected disabled>Pilih Status Pernikahan
-                                                    </option>
+                                                    id="form_pribadi_pemohon_status_pernikahan" onChange="changeStatus()"
+                                                    data-placeholder="Pilih Status Pernikahan" required>
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan == 'Belum Menikah' ? 'selected' : '' }}
                                                         value="Belum Menikah">Belum Menikah</option>
@@ -1311,7 +1313,7 @@
                                                                             name="form_pribadi_pemohon_alamat_ktp_kode_pos"
                                                                             id="form_pribadi_pemohon_alamat_ktp_kode_pos"
                                                                             aria-describedby="form_pribadi_pemohon_alamat_ktp_kode_pos"
-                                                                            placeholder="16XXXX"
+                                                                            placeholder="16XXX"
                                                                             value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_alamat_ktp_kode_pos }}" />
                                                                     </div>
                                                                 </div>
@@ -1443,7 +1445,7 @@
                                                                                 name="form_pribadi_pemohon_alamat_domisili_kode_pos"
                                                                                 id="form_pribadi_pemohon_alamat_domisili_kode_pos"
                                                                                 aria-describedby="form_pribadi_pemohon_alamat_domisili_kode_pos"
-                                                                                placeholder="16XXXX"
+                                                                                placeholder="16XXX"
                                                                                 value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_alamat_domisili_kode_pos }}" />
                                                                         </div>
                                                                     </div>
@@ -1483,13 +1485,11 @@
                                                                             Tinggal</label>
                                                                         <select class="select2 w-200"
                                                                             name="form_pribadi_pemohon_status_tempat_tinggal"
-                                                                            id="form_pribadi_pemohon_status_tempat_tinggal">
-                                                                            <option
-                                                                                label="form_pribadi_pemohon_status_tempat_tinggal"
-                                                                                selected disabled>
-                                                                                Pilih Status
-                                                                                Tempat Tinggal
-                                                                            </option>
+                                                                            id="form_pribadi_pemohon_status_tempat_tinggal"
+                                                                            data-placeholder="Pilih Status
+                                                                            Tempat Tinggal"
+                                                                            required>
+                                                                            <option value=""></option>
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal == 'Milik Sendiri' ? 'selected' : '' }}
                                                                                 value="Milik Sendiri">Milik Sendiri
@@ -1504,7 +1504,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Orangtua/Keluarga'
+                                                                                                                                                                                                                                            Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1514,7 +1514,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1559,12 +1559,9 @@
                                                                         <select class="select2 w-100"
                                                                             name="form_pribadi_pemohon_status_tempat_tinggal_dijaminkan"
                                                                             id="formPribadiPemohonStatusTempatTinggalDijaminkan"
-                                                                            onChange="changeDijaminkan()">
-                                                                            <option
-                                                                                label="form_pribadi_pemohon_status_tempat_tinggal_dijaminkan"
-                                                                                selected disabled>
-                                                                                Pilih
-                                                                            </option>
+                                                                            onChange="changeDijaminkan()"
+                                                                            data-placeholder="Pilih" required>
+                                                                            <option value=""></option>
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal_dijaminkan == 'Ya' ? 'selected' : '' }}
                                                                                 value="Ya">Ya</option>
@@ -1587,7 +1584,8 @@
                                                                                 id="formPribadiPemohonStatusTempatTinggalDijaminkanYa"
                                                                                 aria-describedby="formPribadiPemohonStatusTempatTinggalDijaminkanYa"
                                                                                 placeholder="Dijaminkan Kepada"
-                                                                                value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada }}" />
+                                                                                value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada }}"
+                                                                                required />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1603,9 +1601,9 @@
                                                             Korespondensi</label>
                                                         <select class="select2 w-100"
                                                             name="form_pribadi_pemohon_alamat_korespondensi"
-                                                            id="form_pribadi_pemohon_alamat_korespondensi">
-                                                            <option label="form_pribadi_pemohon_alamat_korespondensi"
-                                                                selected disabled>Pilih Alamat Korespondensi</option>
+                                                            id="form_pribadi_pemohon_alamat_korespondensi"
+                                                            data-placeholder="Pilih Alamat Korespondensi">
+                                                            <option value=""></option>
                                                             <option
                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_alamat_korespondensi == 'Alamat Sesuai KTP' ? 'selected' : '' }}
                                                                 value="Alamat Sesuai KTP">Alamat Sesuai KTP</option>
@@ -1647,21 +1645,35 @@
                                                             </button>
                                                         @endif
                                                     </div>
-                                                    <div class="mb-1 col-md-6">
-                                                        <label class="form-label" for="perbaruiFotoPemohon">Perbarui Foto
-                                                            Pemohon
-                                                            @if ($pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan == 'Menikah')
-                                                                dan Pasangan
-                                                            @endif
-                                                        </label>
-                                                        <select class="select2 w-100" name="perbarui_foto_pemohon"
-                                                            id="perbaruiFotoPemohon"
-                                                            onChange="changePerbaruiFotoPemohon()">
-                                                            <option value="Ya">Ya</option>
-                                                            <option value="Tidak" selected>Tidak
-                                                            </option>
-                                                        </select>
-                                                    </div>
+                                                    @if ($pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan == 'Menikah')
+                                                        <div class="mb-1 col-md-6">
+                                                            <label class="form-label"
+                                                                for="perbaruiFotoPemohonPasangan">Perbarui Foto
+                                                                Pemohon dan Pasangan
+                                                            </label>
+                                                            <select class="select2 w-100" name="perbarui_foto_pemohon"
+                                                                id="perbaruiFotoPemohonPasangan"
+                                                                onChange="changePerbaruiFotoPemohonPasangan()">
+                                                                <option value="Ya">Ya</option>
+                                                                <option value="Tidak" selected>Tidak
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    @else
+                                                        <div class="mb-1 col-md-6">
+                                                            <label class="form-label" for="perbaruiFotoPemohon">Perbarui
+                                                                Foto
+                                                                Pemohon
+                                                            </label>
+                                                            <select class="select2 w-100" name="perbarui_foto_pemohon"
+                                                                id="perbaruiFotoPemohon"
+                                                                onChange="changePerbaruiFotoPemohon()">
+                                                                <option value="Ya">Ya</option>
+                                                                <option value="Tidak" selected>Tidak
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    @endif
                                                     <div class="mb-1 col-md-6 hide" id="ifPerbaruiFotoPemohon">
                                                         <label class="form-label" for="fotoPemohon">Foto Terbaru
                                                             Pemohon</label>
@@ -1749,7 +1761,8 @@
                                                         <label class="form-label"
                                                             for="form_pribadi_istri_suami_tempat_lahir">Tempat
                                                             Lahir</label>
-                                                        <input type="text" name="form_pribadi_istri_suami_tempat_lahir"
+                                                        <input type="text"
+                                                            name="form_pribadi_istri_suami_tempat_lahir"
                                                             id="form_pribadi_istri_suami_tempat_lahir"
                                                             class="form-control"
                                                             placeholder="Masukkan Tempat Lahir Istri/Suami"
@@ -1780,10 +1793,11 @@
                                                             for="form_pribadi_istri_suami_pendidikan">Pendidikan</label>
                                                         <select class="select2 w-100"
                                                             name="form_pribadi_istri_suami_pendidikan"
-                                                            id="form_pribadi_istri_suami_pendidikan">
-                                                            <option label="pendidikanis" selected disabled>Pilih
-                                                                Pendidikan
-                                                            </option>
+                                                            id="form_pribadi_istri_suami_pendidikan"
+                                                            data-placeholder="Pilih
+                                                            Pendidikan"
+                                                            required>
+                                                            <option value=""></option>
                                                             <option
                                                                 {{ $pembiayaan->pemohon->form_pribadi_istri_suami_pendidikan == 'SD' ? 'selected' : '' }}
                                                                 value="SD">SD</option>
@@ -1885,63 +1899,68 @@
                                                         serumah).</small>
                                                 </div>
                                                 <div>
-                                                    <div class="mb-1 col-md-6">
-                                                        <label class="form-label"
-                                                            for="form_pribadi_keluarga_terdekat_nama_lengkap"><small
-                                                                class="text-danger">*
-                                                            </small>Nama Lengkap</label>
-                                                        <input type="text"
-                                                            name="form_pribadi_keluarga_terdekat_nama_lengkap"
-                                                            id="form_pribadi_keluarga_terdekat_nama_lengkap"
-                                                            class="form-control" placeholder="Nama Lengkap"
-                                                            value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_nama_lengkap }}" />
+                                                    <div class="row">
+                                                        <div class="mb-1 col-md-6">
+                                                            <label class="form-label"
+                                                                for="form_pribadi_keluarga_terdekat_nama_lengkap"><small
+                                                                    class="text-danger">*
+                                                                </small>Nama Lengkap</label>
+                                                            <input type="text"
+                                                                name="form_pribadi_keluarga_terdekat_nama_lengkap"
+                                                                id="form_pribadi_keluarga_terdekat_nama_lengkap"
+                                                                class="form-control" placeholder="Nama Lengkap"
+                                                                value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_nama_lengkap }}" />
+                                                        </div>
                                                     </div>
-                                                    <div class="mb-1 col-md-6">
-                                                        <label class="form-label"
-                                                            for="form_pribadi_keluarga_terdekat_hubungan"><small
-                                                                class="text-danger">*
-                                                            </small>Hubungan Dengan Pemohon</label>
-                                                        <select class="select2 w-100"
-                                                            name="form_pribadi_keluarga_terdekat_hubungan"
-                                                            id="hubunganKeluargaTerdekatLain"
-                                                            onChange="changeHubunganKeluargaTerdekat()">
-                                                            <option label="form_pribadi_keluarga_terdekat_hubungan"
-                                                                selected disabled>Pilih Hubungan Dengan Pemohon</option>
-                                                            <option
-                                                                {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Orangtua' ? 'selected' : '' }}
-                                                                value="Orangtua">Orangtua</option>
-                                                            <option
-                                                                {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Mertua' ? 'selected' : '' }}
-                                                                value="Mertua">Mertua</option>
-                                                            <option
-                                                                {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Sdr. Kandung' ? 'selected' : '' }}
-                                                                value="Sdr. Kandung">Sdr. Kandung</option>
-                                                            <option
-                                                                {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Anak' ? 'selected' : '' }}
-                                                                value="Anak">Anak</option>
-                                                            <option
-                                                                {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Ipar' ? 'selected' : '' }}
-                                                                value="Ipar">Ipar</option>
-                                                            <option
-                                                                {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Sdr. Kandung dari Orangtua' ? 'selected' : '' }}
-                                                                value="Sdr. Kandung dari Orangtua">Sdr. Kandung dari
-                                                                Orangtua
-                                                            </option>
-                                                            <option
-                                                                {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Lainnya' ? 'selected' : '' }}
-                                                                value="Lainnya">Lainnya</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-1 col-md-6 {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Lainnya' ? 'show' : 'hide' }}"
-                                                        id=ifHubunganLainnya>
-                                                        <label class="form-label" for="hubunganLainnya"><small
-                                                                class="text-danger">*
-                                                            </small>Hubungan Lainnya</label>
-                                                        <input type="text"
-                                                            name="form_pribadi_keluarga_terdekat_hubungan_lain"
-                                                            id="hubunganLainnya" class="form-control"
-                                                            placeholder="Hubungan Lainnya"
-                                                            value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan_lain }}" />
+                                                    <div class="row">
+                                                        <div class="mb-1 col-md-6">
+                                                            <label class="form-label"
+                                                                for="form_pribadi_keluarga_terdekat_hubungan"><small
+                                                                    class="text-danger">*
+                                                                </small>Hubungan Dengan Pemohon</label>
+                                                            <select class="select2 w-100"
+                                                                name="form_pribadi_keluarga_terdekat_hubungan"
+                                                                id="hubunganKeluargaTerdekatLain"
+                                                                onChange="changeHubunganKeluargaTerdekat()"
+                                                                data-placeholder="Pilih Hubungan Dengan Pemohon" required>
+                                                                <option value=""></option>
+                                                                <option
+                                                                    {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Orangtua' ? 'selected' : '' }}
+                                                                    value="Orangtua">Orangtua</option>
+                                                                <option
+                                                                    {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Mertua' ? 'selected' : '' }}
+                                                                    value="Mertua">Mertua</option>
+                                                                <option
+                                                                    {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Sdr. Kandung' ? 'selected' : '' }}
+                                                                    value="Sdr. Kandung">Sdr. Kandung</option>
+                                                                <option
+                                                                    {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Anak' ? 'selected' : '' }}
+                                                                    value="Anak">Anak</option>
+                                                                <option
+                                                                    {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Ipar' ? 'selected' : '' }}
+                                                                    value="Ipar">Ipar</option>
+                                                                <option
+                                                                    {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Sdr. Kandung dari Orangtua' ? 'selected' : '' }}
+                                                                    value="Sdr. Kandung dari Orangtua">Sdr. Kandung dari
+                                                                    Orangtua
+                                                                </option>
+                                                                <option
+                                                                    {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Lainnya' ? 'selected' : '' }}
+                                                                    value="Lainnya">Lainnya</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-1 col-md-6 {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Lainnya' ? 'show' : 'hide' }}"
+                                                            id=ifHubunganLainnya>
+                                                            <label class="form-label" for="hubunganLainnya"><small
+                                                                    class="text-danger">*
+                                                                </small>Hubungan Lainnya</label>
+                                                            <input type="text"
+                                                                name="form_pribadi_keluarga_terdekat_hubungan_lain"
+                                                                id="hubunganLainnya" class="form-control"
+                                                                placeholder="Hubungan Lainnya"
+                                                                value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan_lain }}"
+                                                                required />
+                                                        </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="mb-1 col-md-12">
@@ -2079,7 +2098,7 @@
                                                                                     name="form_pribadi_keluarga_terdekat_alamat_kode_pos"
                                                                                     id="form_pribadi_keluarga_terdekat_alamat_kode_pos"
                                                                                     aria-describedby="form_pribadi_keluarga_terdekat_alamat_kode_pos"
-                                                                                    placeholder="16XXXX"
+                                                                                    placeholder="16XXX"
                                                                                     value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_alamat_kode_pos }}"
                                                                                     required />
                                                                             </div>
@@ -2153,11 +2172,9 @@
                                                         class="text-danger">*
                                                     </small>Badan Hukum Perusahaan/Instansi</label>
                                                 <select class="select2 w-100" name="form_pekerjaan_pemohon_badan_hukum"
-                                                    id="form_pekerjaan_pemohon_badan_hukum" required>
-                                                    <option label="form_pekerjaan_pemohon_badan_hukum" selected disabled>
-                                                        Pilih
-                                                        Badan Hukum Perusahaan/Instansi
-                                                    </option>
+                                                    id="form_pekerjaan_pemohon_badan_hukum"
+                                                    data-placeholder="Pilih Badan Hukum Perusahaan/Instansi" required>
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_badan_hukum == 'Departemen' ? 'selected' : '' }}
                                                         value="Departemen">Departemen</option>
@@ -2259,10 +2276,11 @@
                                                     </small>Bidang Usaha Perusahaan/Instansi</label>
                                                 <select class="select2 w-100" name="form_pekerjaan_pemohon_bidang_usaha"
                                                     id="formPekerjaanPemohonBidangUsaha"
-                                                    onChange="changePemohonBidangUsaha()" required>
-                                                    <option label="form_pekerjaan_pemohon_bidang_usaha" selected disabled>
-                                                        Pilih
-                                                        Bidang Usaha Perusahaan</option>
+                                                    onChange="changePemohonBidangUsaha()"
+                                                    data-placeholder="Pilih
+                                                    Bidang Usaha"
+                                                    required>
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_bidang_usaha == 'Pemerintahan' ? 'selected' : '' }}
                                                         value="Pemerintahan">Pemerintahan</option>
@@ -2315,7 +2333,8 @@
                                                 <input type="text" name="form_pekerjaan_pemohon_bidang_usaha_lain"
                                                     id="pemohonBidangUsahaLain" class="form-control"
                                                     placeholder="Bidang Usaha Lainnya"
-                                                    value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_bidang_usaha_lain }}" />
+                                                    value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_bidang_usaha_lain }}"
+                                                    required />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -2325,10 +2344,11 @@
                                                 <select class="select2 w-100"
                                                     name="form_pekerjaan_pemohon_jenis_pekerjaan"
                                                     id="formPekerjaanPemohonJenisPekerjaan"
-                                                    onChange="changePemohonJenisPekerjaan()" required>
-                                                    <option label="form_pekerjaan_pemohon_jenis_pekerjaan" selected
-                                                        disabled>Pilih
-                                                        Jenis Pekerjaan</option>
+                                                    onChange="changePemohonJenisPekerjaan()"
+                                                    data-placeholder="Pilih
+                                                    Jenis Pekerjaan"
+                                                    required>
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_jenis_pekerjaan == 'Akunting/Keuangan' ? 'selected' : '' }}
                                                         value="Akunting/Keuangan">Akunting/Keuangan</option>
@@ -2390,7 +2410,8 @@
                                                 <input type="text" name="form_pekerjaan_pemohon_jenis_pekerjaan_lain"
                                                     id="pemohonJenisPekerjaanLain" class="form-control"
                                                     placeholder="Jenis Pekerjaan Lainnya"
-                                                    value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_jenis_pekerjaan_lain }}" />
+                                                    value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_jenis_pekerjaan_lain }}"
+                                                    required />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -2398,10 +2419,11 @@
                                                         class="text-danger">*
                                                     </small>Jumlah Karyawan</label>
                                                 <select class="select2 w-100" name="form_pekerjaan_pemohon_jml_karyawan"
-                                                    id="form_pekerjaan_pemohon_jml_karyawan" required>
-                                                    <option label="form_pekerjaan_pemohon_jml_karyawan" selected disabled>
-                                                        Pilih
-                                                        Jumlah Karyawan</option>
+                                                    id="form_pekerjaan_pemohon_jml_karyawan"
+                                                    data-placeholder="Pilih
+                                                    Jumlah Karyawan"
+                                                    required>
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_jml_karyawan == '<= 5 Karyawan' ? 'selected' : '' }}
                                                         value="<= 5 Karyawan">
@@ -2454,7 +2476,7 @@
                                                         class="form-control" placeholder="NIP/NRP" required />
                                                 @else
                                                     <label class="form-label"
-                                                        for="form_pekerjaan_pemohon_nip_nrp">>NIP/NRP</label>
+                                                        for="form_pekerjaan_pemohon_nip_nrp">NIP/NRP</label>
                                                     <input type="number" name="form_pekerjaan_pemohon_nip_nrp"
                                                         id="form_pekerjaan_pemohon_nip_nrp"
                                                         value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_nip_nrp }}"
@@ -2666,11 +2688,9 @@
                                                     Hukum Perusahaan</label>
                                                 <select class="select2 w-100"
                                                     name="form_pekerjaan_istri_suami_badan_hukum"
-                                                    id="form_pekerjaan_istri_suami_badan_hukum">
-                                                    <option label="form_pekerjaan_istri_suami_badan_hukum"
-                                                        selected_disabled>Pilih
-                                                        Badan Hukum
-                                                        Perusahaan</option>
+                                                    id="form_pekerjaan_istri_suami_badan_hukum"
+                                                    data-placeholder="Pilih Badan Hukum Perusahaan/Instansi">
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_badan_hukum == 'Departemen' ? 'selected' : '' }}
                                                         value="Departemen">Departemen</option>
@@ -2770,14 +2790,10 @@
                                                 <select class="select2 w-100"
                                                     name="form_pekerjaan_istri_suami_bidang_usaha"
                                                     id="formPekerjaanPasanganBidangUsaha"
-                                                    onChange="changePasanganBidangUsaha()">
-                                                    <option label="form_pekerjaan_istri_suami_bidang_usaha" selected
-                                                        disabled>
-                                                        Pilih Bidang Usaha
-                                                        Perusahaan</option>
-                                                    <option label="form_pekerjaan_pemohon_bidang_usaha" selected disabled>
-                                                        Pilih
-                                                        Bidang Usaha Perusahaan</option>
+                                                    onChange="changePasanganBidangUsaha()"
+                                                    data-placeholder="Pilih
+                                                    Bidang Usaha">
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_bidang_usaha == 'Pemerintahan' ? 'selected' : '' }}
                                                         value="Pemerintahan">Pemerintahan</option>
@@ -2831,7 +2847,8 @@
                                                     name="form_pekerjaan_istri_suami_bidang_usaha_lain"
                                                     id="pasanganBidangUsahaLain" class="form-control"
                                                     placeholder="Bidang Usaha Lainnya"
-                                                    value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_bidang_usaha_lain }}" />
+                                                    value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_bidang_usaha_lain }}"
+                                                    required />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -2840,11 +2857,10 @@
                                                 <select class="select2 w-100"
                                                     name="form_pekerjaan_istri_suami_jenis_pekerjaan"
                                                     id="formPekerjaanPasanganJenisPekerjaan"
-                                                    onChange="changePasanganJenisPekerjaan()">
-                                                    <option label="form_pekerjaan_istri_suami_jenis_pekerjaan" selected
-                                                        disabled>
-                                                        Pilih Jenis
-                                                        Pekerjaan</option>
+                                                    onChange="changePasanganJenisPekerjaan()"
+                                                    data-placeholder="Pilih
+                                                    Jenis Pekerjaan">
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_jenis_pekerjaan == 'Akunting/Keuangan' ? 'selected' : '' }}
                                                         value="Akunting/Keuangan">Akunting/Keuangan</option>
@@ -2907,7 +2923,8 @@
                                                     name="form_pekerjaan_istri_suami_jenis_pekerjaan_lain"
                                                     id="pasanganJenisPekerjaanLain" class="form-control"
                                                     placeholder="Jenis Pekerjaan Lainnya"
-                                                    value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_jenis_pekerjaan }}" />
+                                                    value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_jenis_pekerjaan }}"
+                                                    required />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -2915,11 +2932,11 @@
                                                     Karyawan</label>
                                                 <select class="select2 w-100"
                                                     name="form_pekerjaan_istri_suami_jml_karyawan"
-                                                    id="form_pekerjaan_istri_suami_jml_karyawan">
-                                                    <option label="form_pekerjaan_istri_suami_jml_karyawan" selected
-                                                        disabled>
-                                                        Pilih Jumlah Karyawan
-                                                    </option>
+                                                    id="form_pekerjaan_istri_suami_jml_karyawan"
+                                                    data-placeholder="Pilih
+                                                    Jumlah Karyawan"
+                                                    required>
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_jml_karyawan == '<= 5 Karyawan' ? 'selected' : '' }}
                                                         value="<= 5 Karyawan">
@@ -3336,10 +3353,9 @@
                                                         class="text-danger">*
                                                     </small>Jenis Agunan</label>
                                                 <select class="select2 w-100" name="form_agunan_1_jenis"
-                                                    id="formAgunan1Jenis" onChange="changeJenisAgunan1()">
-                                                    <option label="form_agunan_1_jenis" selected disabled>Pilih Jenis
-                                                        Agunan
-                                                    </option>
+                                                    id="formAgunan1Jenis" onChange="changeJenisAgunan1()"
+                                                    data-placeholder="Pilih Jenis Agunan" required>
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->agunan->form_agunan_1_jenis == 'Tanah' ? 'selected' : '' }}
                                                         value="Tanah">Tanah</option>
@@ -3374,7 +3390,8 @@
                                                 <input type="text" name="form_agunan_1_jenis_lain"
                                                     id="jenisAgunan1Lain" class="form-control"
                                                     placeholder="Jenis Agunan Lainnya"
-                                                    value="{{ $pembiayaan->agunan->form_agunan_1_jenis_lain }}" />
+                                                    value="{{ $pembiayaan->agunan->form_agunan_1_jenis_lain }}"
+                                                    required />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_agunan_1_nilai_harga_jual"><small
@@ -3703,8 +3720,9 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_agunan_2_jenis">Jenis Agunan</label>
                                                 <select class="select2 w-100" name="form_agunan_2_jenis"
-                                                    id="formAgunan2Jenis" onChange="changeJenisAgunan2()">
-                                                    <option label="form_agunan_2_jenis">Pilih Jenis Agunan</option>
+                                                    id="formAgunan2Jenis" onChange="changeJenisAgunan2()"
+                                                    data-placeholder="Pilih Jenis Agunan">
+                                                    <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->agunan->form_agunan_2_jenis == 'Tanah' ? 'selected' : '' }}
                                                         value="Tanah">Tanah</option>
@@ -11676,14 +11694,23 @@
             }
         }
 
-        function changePerbaruiFotoPemohon() {
-            var perbaruiFotoPemohon = document.getElementById("perbaruiFotoPemohon");
-            if (perbaruiFotoPemohon.value == "Ya") {
+        function changePerbaruiFotoPemohonPasangan() {
+            var perbaruiFotoPemohonPasangan = document.getElementById("perbaruiFotoPemohonPasangan");
+            if (perbaruiFotoPemohonPasangan.value == "Ya") {
                 document.getElementById("ifPerbaruiFotoPemohon").classList.toggle("hide"),
                     document.getElementById("ifPerbaruiFotoPasanganPemohon").classList.toggle("hide");
             } else {
                 document.getElementById("ifPerbaruiFotoPemohon").classList = "hide",
                     document.getElementById("ifPerbaruiFotoPasanganPemohon").classList = "hide";
+            }
+        }
+
+        function changePerbaruiFotoPemohon() {
+            var perbaruiFotoPemohon = document.getElementById("perbaruiFotoPemohon");
+            if (perbaruiFotoPemohon.value == "Ya") {
+                document.getElementById("ifPerbaruiFotoPemohon").classList.toggle("hide");
+            } else {
+                document.getElementById("ifPerbaruiFotoPemohon").classList = "hide";
             }
         }
 

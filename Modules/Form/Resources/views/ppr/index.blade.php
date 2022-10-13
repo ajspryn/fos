@@ -1291,9 +1291,11 @@
                                                 <label class="form-label"
                                                     for="form_pribadi_istri_suami_pendidikan">Pendidikan</label>
                                                 <select class="select2 w-100" name="form_pribadi_istri_suami_pendidikan"
-                                                    id="form_pribadi_istri_suami_pendidikan">
-                                                    <option label="pendidikanis" selected disabled>Pilih Pendidikan
-                                                    </option>
+                                                    id="form_pribadi_istri_suami_pendidikan"
+                                                    data-placeholder="Pilih
+                                                    Pendidikan"
+                                                    required>
+                                                    <option value=""></option>
                                                     <option value="SD">SD</option>
                                                     <option value="SLTP">SLTP</option>
                                                     <option value="SLTA">SLTA</option>
@@ -1551,8 +1553,7 @@
                                         <select class="select2 w-100" name="form_pekerjaan_pemohon_badan_hukum"
                                             id="form_pekerjaan_pemohon_badan_hukum"
                                             data-placeholder="Pilih Badan Hukum Perusahaan/Instansi"required>
-                                            <option value="">
-                                            </option>
+                                            <option value=""></option>
                                             <option value="Departemen">Departemen</option>
                                             <option value="Pemerintahan">Pemerintahan</option>
                                             <option value="Perusahaan Daerah">Perusahaan Daerah</option>
@@ -4432,7 +4433,7 @@
                     document.getElementById("formPermohonanJmlSewa").removeAttribute("required");
             } else {
                 document.getElementById("ifAkadLain").classList = "hide",
-                document.getElementById("ifJenisAkadLain").classList = "hide",
+                    document.getElementById("ifJenisAkadLain").classList = "hide",
                     document.getElementById("formPermohonanJmlMargin").setAttribute("disabled", "disabled"),
                     document.getElementById("formPermohonanJmlMarginAkadLain").setAttribute("disabled", "disabled"),
                     document.getElementById("formPermohonanJmlMargin").removeAttribute("required"),

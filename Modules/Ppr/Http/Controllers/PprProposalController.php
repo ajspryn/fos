@@ -320,6 +320,55 @@ class PprProposalController extends Controller
                     'form_penghasilan_pengeluaran_kemampuan_mengangsur' => str_replace(",", "", $request->form_penghasilan_pengeluaran_kemampuan_mengangsur),
                 ]);
 
+            if (request('perbarui_foto_pemohon') == 'Ya') {
+                if ($pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan == 'Menikah') {
+                    foreach ($request->foto as $key => $value) {
+                        if ($value['foto']) {
+                            Storage::delete($value['foto_lama']);
+                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
+
+                            FormPprFoto::where('form_ppr_pembiayaan_id', $id)->where('id', $value['id'])->update([
+                                'form_ppr_pembiayaan_id' => $id,
+                                'kategori' => $value['kategori'],
+                                'foto' => $foto,
+                            ]);
+                        } else {
+                        }
+                    }
+                } elseif (request('form_pribadi_pemohon_status_pernikahan') == 'Menikah') {
+                    foreach ($request->foto as $key => $value) {
+                        if ($value['foto']) {
+                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
+                        } else {
+                        }
+
+                        FormPprFoto::create([
+                            'form_ppr_pembiayaan_id' => $id,
+                            'kategori' => $value['kategori'],
+                            'foto' => $foto,
+                        ]);
+                    }
+                } else {
+                }
+            } else {
+                //Kondisi tidak update foto pemohon yang statusnya selain menikah,
+                //kemudian statusnya diubah menjadi menikah (untuk upload foto pasangan)
+                if (request('form_pribadi_pemohon_status_pernikahan') == 'Menikah' && $pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan != 'Menikah') {
+                    foreach ($request->foto as $key => $value) {
+                        if ($value['foto']) {
+                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
+                        }
+
+                        FormPprFoto::create([
+                            'form_ppr_pembiayaan_id' => $id,
+                            'kategori' => $value['kategori'],
+                            'foto' => $foto,
+                        ]);
+                    }
+                } else {
+                }
+            }
+
             FormPprDataPribadi::where('id', $id)
                 ->update([
                     'form_pribadi_pemohon_nama_lengkap' => $request->form_pribadi_pemohon_nama_lengkap,
@@ -385,54 +434,7 @@ class PprProposalController extends Controller
                     'form_pribadi_keluarga_terdekat_no_telp' => $request->form_pribadi_keluarga_terdekat_no_telp,
                 ]);
 
-            if (request('perbarui_foto_pemohon') == 'Ya') {
-                if ($pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan == 'Menikah') {
-                    foreach ($request->foto as $key => $value) {
-                        if ($value['foto']) {
-                            Storage::delete($value['foto_lama']);
-                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
 
-                            FormPprFoto::where('form_ppr_pembiayaan_id', $id)->where('id', $value['id'])->update([
-                                'form_ppr_pembiayaan_id' => $id,
-                                'kategori' => $value['kategori'],
-                                'foto' => $foto,
-                            ]);
-                        } else {
-                        }
-                    }
-                } elseif (request('form_pribadi_pemohon_status_pernikahan') == 'Menikah') {
-                    foreach ($request->foto as $key => $value) {
-                        if ($value['foto']) {
-                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
-                        } else {
-                        }
-
-                        FormPprFoto::create([
-                            'form_ppr_pembiayaan_id' => $id,
-                            'kategori' => $value['kategori'],
-                            'foto' => $foto,
-                        ]);
-                    }
-                } else {
-                }
-            } else {
-                //Kondisi tidak update foto pemohon yang statusnya selain menikah,
-                //kemudian statusnya diubah menjadi menikah (untuk upload foto pasangan)
-                if (request('form_pribadi_pemohon_status_pernikahan') == 'Menikah' && $pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan != 'Menikah') {
-                    foreach ($request->foto as $key => $value) {
-                        if ($value['foto']) {
-                            $foto = $value['foto']->store('foto-ppr-pembiayaan');
-                        }
-
-                        FormPprFoto::create([
-                            'form_ppr_pembiayaan_id' => $id,
-                            'kategori' => $value['kategori'],
-                            'foto' => $foto,
-                        ]);
-                    }
-                } else {
-                }
-            }
 
 
             FormPprDataPekerjaan::where('form_ppr_data_pribadi_id', $id)

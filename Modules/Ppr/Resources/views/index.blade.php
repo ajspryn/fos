@@ -47,6 +47,13 @@ $diterima = Modules\Akad\Entities\Pembiayaan::select()
     ->where('status', 'Selesai Akad')
     ->get()
     ->count();
+
+$batalAkad = Modules\Akad\Entities\Pembiayaan::select()
+    ->where('ao_id', Auth::user()->id)
+    ->where('status', 'Akad Batal')
+    ->get()
+    ->count();
+
 @endphp
 @section('content')
     <!-- BEGIN: Content-->
@@ -60,21 +67,20 @@ $diterima = Modules\Akad\Entities\Pembiayaan::select()
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
-                        <!-- Medal Card -->
                         @php
                             $targetNominal = 1500000000;
-                            
+
                             $cair = 0;
                             foreach ($targets as $target) {
-                                $hargaJual = $target->form_permohonan_nilai_ppr_dimohon;
-                            
-                                $cair = $cair + $hargaJual;
+                                $plafond = $target->form_permohonan_nilai_ppr_dimohon;
+
+                                $cair = $cair + $plafond;
                             }
-                            
+
                             $pprs = Modules\Form\Entities\FormPprPembiayaan::select()
                                 ->where('user_id', auth::user()->id)
                                 ->get();
-                            
+
                             $pipeline = 0;
                             foreach ($pprs as $ppr) {
                                 $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
@@ -82,13 +88,13 @@ $diterima = Modules\Akad\Entities\Pembiayaan::select()
                                     ->latest()
                                     ->get()
                                     ->first();
-                            
+
                                 $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
                                     ->where('id', $history->form_ppr_pembiayaan_id)
                                     ->get()
                                     ->first();
                                 if ($history->status_id != 5 || $history->jabatan_id != 4) {
-                                    if ($history->status_id != 9) {
+                                    if ($history->status_id < 9) {
                                         $pipeline++;
                                     }
                                 }
@@ -192,8 +198,17 @@ $diterima = Modules\Akad\Entities\Pembiayaan::select()
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Ditolak</p>
+                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}
+                                                        <span
+                                                            style="font-weight: normal; font-size:12px; vertical-align:middle;">
+                                                            Ditolak</span>
+                                                    </h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $batalAkad }}
+                                                        <span
+                                                            style="font-weight: normal; font-size:12px; vertical-align:middle;">
+                                                            Batal
+                                                            Akad</span>
+                                                    </h4>
                                                 </div>
                                             </div>
                                         </div>
