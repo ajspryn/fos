@@ -1139,7 +1139,7 @@ font-family:"Times New Roman",serif'>&nbsp;</span></p>
                         line-height:normal'>
                                                     <b><span
                                                             style='font-size:12.0pt;font-family:"Times New Roman",serif'>INFORMASI
-                                                            DEBITUR</span></b>
+                                                            DEBITUR PASANGAN</span></b>
                                                 </p>
                                             </td>
                                         </tr>
