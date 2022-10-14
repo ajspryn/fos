@@ -71,10 +71,27 @@
                 ->get()
                 ->first();
             if ($history->status_id != 5 || $history->jabatan_id != 4) {
-                if ($history->status_id != 9) {
+                if ($history->status_id < 9) {
                     $pipeline++;
                 }
             }
+        }
+
+        $batalAkad = Modules\Akad\Entities\Pembiayaan::select()
+            ->where('segmen', 'PPR')
+            ->where('status', 'Akad Batal')
+            ->get()
+            ->count();
+
+        //Total Disburse & Margin
+        $jmlDisburse = 0;
+        $jmlMargin = 0;
+        foreach ($proposalSelesais as $proposalSelesai) {
+            $plafond = $proposalSelesai->form_permohonan_nilai_ppr_dimohon;
+            $jmlDisburse = $jmlDisburse + $plafond;
+
+            $margin = $proposalSelesai->form_permohonan_jml_margin;
+            $jmlMargin = $jmlMargin + $margin;
         }
     @endphp
     <!-- BEGIN: Content-->
@@ -90,7 +107,7 @@
                     <div class="row match-height">
 
                         <!-- Statistics Card -->
-                        <div class="col-xl-12 col-md-6 col-12">
+                        <div class="col-xl-9 col-md-6 col-12">
                             <div class="card card-statistics">
                                 <div class="card-header">
                                     <h4 class="card-title">Statistik PPR</h4>
@@ -138,8 +155,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Ditolak</p>
+                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}
+                                                        <span
+                                                            style="font-weight: normal; font-size:12px; vertical-align:middle;">
+                                                            Ditolak</span>
+                                                    </h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $batalAkad }}
+                                                        <span
+                                                            style="font-weight: normal; font-size:12px; vertical-align:middle;">
+                                                            Batal
+                                                            Akad</span>
+                                                    </h4>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -170,6 +197,27 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="avatar bg-light-info p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="activity" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">{{ number_format($jmlDisburse) }}</h2>
+                                    <p class="card-text" style="margin-bottom: -7px;">Disburse</p>
+                                    <hr />
+                                    <div class="avatar bg-light-info p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="dollar-sign" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">{{ number_format($jmlMargin) }}</h2>
+                                    <p class="card-text">Margin</p>
                                 </div>
                             </div>
                         </div>

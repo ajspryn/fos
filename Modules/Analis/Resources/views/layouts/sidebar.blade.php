@@ -206,17 +206,20 @@ foreach ($pprs as $ppr) {
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/skpd/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/skpd/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
+                            class="d-flex align-items-center" href="/analis/skpd/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate" data-i18n="Account">Data
+                                Nasabah</span></a>
                     </li>
                     <li class="{{ Request::is('analis/skpd/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/skpd/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span><span
+                            class="d-flex align-items-center" href="/analis/skpd/komite"><i
+                                data-feather="clipboard"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Komite</span><span
                                 class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteskpd }}</span></a>
                     </li>
                     <li class="{{ Request::is('analis/skpd/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/skpd/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>
+                            class="d-flex align-items-center" href="/analis/skpd/proposal"><i
+                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Proposal</span>
                             @if ($proposalskpd > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
@@ -233,19 +236,22 @@ foreach ($pprs as $ppr) {
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/pasar/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/pasar/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span>
+                            class="d-flex align-items-center" href="/analis/pasar/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate"
+                                data-i18n="Account">Data Nasabah</span>
 
                         </a>
                     </li>
                     <li class="{{ Request::is('analis/pasar/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/pasar/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span><span
+                            class="d-flex align-items-center" href="/analis/pasar/komite"><i
+                                data-feather="clipboard"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Komite</span><span
                                 class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komite }}</span></a>
                     </li>
                     <li class="{{ Request::is('analis/pasar/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/pasar/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>
+                            class="d-flex align-items-center" href="/analis/pasar/proposal"><i
+                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Proposal</span>
                             @if ($data > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
@@ -295,8 +301,9 @@ foreach ($pprs as $ppr) {
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/ppr/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/ppr/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
+                            class="d-flex align-items-center" href="/analis/ppr/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate"
+                                data-i18n="Account">Data Nasabah</span></a>
                     </li>
                     <li class="{{ Request::is('analis/ppr/komite') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/analis/ppr/komite"><i
