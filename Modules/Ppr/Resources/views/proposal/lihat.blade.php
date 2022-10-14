@@ -1504,7 +1504,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1514,7 +1514,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1675,14 +1675,16 @@
                                                         </div>
                                                     @endif
                                                     <div class="mb-1 col-md-6 hide" id="ifPerbaruiFotoPemohon">
-                                                        <label class="form-label" for="fotoPemohon">Foto Terbaru
+                                                        <label class="form-label" for="fotoPemohon"><small
+                                                                class="text-danger">*
+                                                            </small>Foto Terbaru
                                                             Pemohon</label>
                                                         <input type="hidden" name="foto[1][foto_lama]"
                                                             value="{{ old('foto', $fotoPemohon->foto) }}">
                                                         <input type="hidden" name="foto[1][id]" class="form-control"
                                                             value="{{ $fotoPemohon->id }}">
                                                         <input type="file" class="form-control" name="foto[1][foto]"
-                                                            id="fotoPemohon" aria-describedby="fotoPemohon" required />
+                                                            id="fotoPemohon" aria-describedby="fotoPemohon" />
                                                         <input type="hidden" name="foto[1][kategori]"
                                                             value="Foto Pemohon">
 
@@ -1786,8 +1788,7 @@
                                                             name="form_pribadi_istri_suami_pendidikan"
                                                             id="form_pribadi_istri_suami_pendidikan"
                                                             data-placeholder="Pilih
-                                                            Pendidikan"
-                                                            required>
+                                                            Pendidikan">
                                                             <option value=""></option>
                                                             <option
                                                                 {{ $pembiayaan->pemohon->form_pribadi_istri_suami_pendidikan == 'SD' ? 'selected' : '' }}
@@ -1822,7 +1823,9 @@
                                                     @if ($pembiayaan->pemohon->form_pribadi_pemohon_status_pernikahan == 'Menikah')
                                                         <div class="mb-1 col-md-6 hide"
                                                             id="ifPerbaruiFotoPasanganPemohon">
-                                                            <label class="form-label" for="fotoPasanganPemohon">Foto
+                                                            <label class="form-label" for="fotoPasanganPemohon"><small
+                                                                    class="text-danger">*
+                                                                </small>Foto
                                                                 Terbaru
                                                                 Istri/Suami Pemohon</label>
                                                             <input type="hidden" name="foto[2][foto_lama]"
@@ -1834,7 +1837,7 @@
                                                                 id="kategoriOldPasanganPemohon">
                                                             <input type="file" class="form-control"
                                                                 name="foto[2][foto]" id="fotoPasanganPemohon"
-                                                                aria-describedby="fotoPasanganPemohon" required />
+                                                                aria-describedby="fotoPasanganPemohon" />
                                                             <input type="hidden" name="foto[2][kategori]"
                                                                 id="kategoriPasanganPemohon"
                                                                 value="Foto Pasangan Pemohon">
@@ -1865,7 +1868,9 @@
                                                         </div>
                                                     @else
                                                         <div class="mb-1 col-md-6 hide" id="ifFotoPasanganPemohon">
-                                                            <label class="form-label" for="fotoPasanganPemohon">Foto
+                                                            <label class="form-label" for="fotoPasanganPemohon"><small
+                                                                    class="text-danger">*
+                                                                </small>Foto
                                                                 Terbaru
                                                                 Istri/Suami Pemohon</label>
                                                             <input type="file" class="form-control"
@@ -2325,7 +2330,7 @@
                                                     id="pemohonBidangUsahaLain" class="form-control"
                                                     placeholder="Bidang Usaha Lainnya"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_bidang_usaha_lain }}"
-                                                    required />
+                                                     />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -2402,7 +2407,7 @@
                                                     id="pemohonJenisPekerjaanLain" class="form-control"
                                                     placeholder="Jenis Pekerjaan Lainnya"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_jenis_pekerjaan_lain }}"
-                                                    required />
+                                                     />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -2839,7 +2844,7 @@
                                                     id="pasanganBidangUsahaLain" class="form-control"
                                                     placeholder="Bidang Usaha Lainnya"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_bidang_usaha_lain }}"
-                                                    required />
+                                                     />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -2915,7 +2920,7 @@
                                                     id="pasanganJenisPekerjaanLain" class="form-control"
                                                     placeholder="Jenis Pekerjaan Lainnya"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_jenis_pekerjaan }}"
-                                                    required />
+                                                     />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -2926,7 +2931,7 @@
                                                     id="form_pekerjaan_istri_suami_jml_karyawan"
                                                     data-placeholder="Pilih
                                                     Jumlah Karyawan"
-                                                    required>
+                                                    >
                                                     <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_jml_karyawan == '<= 5 Karyawan' ? 'selected' : '' }}
@@ -4036,9 +4041,9 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_agunan_3_jenis">Jenis Agunan</label>
                                                 <select class="select2 w-100" name="form_agunan_3_jenis"
-                                                    id="form_agunan_3_jenis">
-                                                    <option label="form_agunan_3_jenis">Pilih
-                                                        Jenis Agunan
+                                                    id="form_agunan_3_jenis" data-placeholder="Pilih
+                                                    Jenis Agunan">
+                                                    <option value="">
                                                     </option>
                                                     <option
                                                         {{ $pembiayaan->agunan->form_agunan_3_jenis == 'Deposito' ? 'selected' : '' }}
@@ -4157,7 +4162,7 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="col-md-3 col-12">
+                                                                        <div class="col-md-2 col-12">
                                                                             <div class="mb-1">
                                                                                 <label class="form-label"
                                                                                     for="form_kekayaan_simpanan_sejak_tahun">Sejak
@@ -4258,7 +4263,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-md-1 col-12">
+                                                            <div class="col-md-2 col-12">
                                                                 <div class="mb-1">
                                                                     <label class="form-label"
                                                                         for="form_kekayaan_simpanan_sejak_tahun">Sejak
@@ -11695,19 +11700,27 @@
             var perbaruiFotoPemohonPasangan = document.getElementById("perbaruiFotoPemohonPasangan");
             if (perbaruiFotoPemohonPasangan.value == "Ya") {
                 document.getElementById("ifPerbaruiFotoPemohon").classList.toggle("hide"),
-                    document.getElementById("ifPerbaruiFotoPasanganPemohon").classList.toggle("hide");
+                    document.getElementById("ifPerbaruiFotoPasanganPemohon").classList.toggle("hide"),
+                    document.getElementById("fotoPemohon").setAttribute("required", "required"),
+                    document.getElementById("fotoPasanganPemohon").setAttribute("required", "required");
             } else {
                 document.getElementById("ifPerbaruiFotoPemohon").classList = "hide",
-                    document.getElementById("ifPerbaruiFotoPasanganPemohon").classList = "hide";
+                    document.getElementById("ifPerbaruiFotoPasanganPemohon").classList = "hide",
+                    document.getElementById("fotoPemohon").removeAttribute("required"),
+                    document.getElementById("fotoPasanganPemohon").removeAttribute("required");
             }
         }
 
         function changePerbaruiFotoPemohon() {
             var perbaruiFotoPemohon = document.getElementById("perbaruiFotoPemohon");
             if (perbaruiFotoPemohon.value == "Ya") {
-                document.getElementById("ifPerbaruiFotoPemohon").classList.toggle("hide");
+                document.getElementById("ifPerbaruiFotoPemohon").classList.toggle("hide"),
+                    document.getElementById("fotoPemohon").setAttribute("required", "required");
+
             } else {
-                document.getElementById("ifPerbaruiFotoPemohon").classList = "hide";
+                document.getElementById("ifPerbaruiFotoPemohon").classList = "hide",
+                    document.getElementById("fotoPemohon").removeAttribute("required"),
+                    document.getElementById("fotoPasanganPemohon").removeAttribute("required");
             }
         }
 
