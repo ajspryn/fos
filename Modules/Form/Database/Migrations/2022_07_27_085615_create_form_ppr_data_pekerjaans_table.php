@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('form_pekerjaan_pemohon_jml_karyawan');
             $table->string('form_pekerjaan_pemohon_departemen');
             $table->string('form_pekerjaan_pemohon_pangkat_gol_jabatan');
-            $table->string('form_pekerjaan_pemohon_nip_nrp');
+            $table->string('form_pekerjaan_pemohon_nip_nrp')->nullable();
             $table->date('form_pekerjaan_pemohon_mulai_bekerja');
             $table->integer('form_pekerjaan_pemohon_usia_pensiun');
             $table->integer('form_pekerjaan_pemohon_masa_kerja');
