@@ -10,10 +10,12 @@ $notif_proposal = Modules\Skpd\Entities\SkpdPembiayaan::select()
     ->get()
     ->count();
 $revisi = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    ->where('user_id', Auth::user()->id)
     ->where('status_id', 7)
-    ->orderby('created_at','desc')
+    ->orderby('created_at', 'desc')
     ->get()
     ->count();
+    $notif=$notif_proposal+$revisi;
 @endphp
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
@@ -48,18 +50,30 @@ $revisi = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
                         data-i18n="home">Komite</span></a>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="clipboard"></i><span
-                        class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span></a>
+                        class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span>
+                    @if ($notif_proposal+$notif > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal+$notif }}</span>
+                    @endif
+                </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('skpd/proposal*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/skpd/proposal"><i
                                 data-feather="clipboard"></i><span class="menu-title text-truncate"
-                                data-i18n="home">Proposal</span><span
-                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal }}</span></a>
+                                data-i18n="home">Proposal</span>
+                            @if ($notif_proposal > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal }}</span>
+                            @endif
+                        </a>
                     </li>
                     <li class="{{ Request::is('skpd/revisi*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/skpd/revisi"><i data-feather="circle"></i><span
-                                class="menu-title text-truncate" data-i18n="home">Revisi Proposal</span><span
-                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $revisi }}</span></a>
+                                class="menu-title text-truncate" data-i18n="home">Revisi Proposal</span>
+                            @if ($revisi > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $revisi }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>

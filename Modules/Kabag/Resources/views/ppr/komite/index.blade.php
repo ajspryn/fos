@@ -96,8 +96,8 @@
                                                     {{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
                                                 </td>
                                                 <td style="text-align: center">
-                                                    {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}
-                                                    Bulan
+                                                    {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }} Tahun
+                                                    ({{ $proposal_ppr->form_permohonan_jml_bulan }} Bulan)
                                                 </td>
                                                 <td style="text-align: center"
                                                     value=" {{ $history->statusHistory->id }}, {{ $history->jabatan->jabatan_id }}">

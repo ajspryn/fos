@@ -29,18 +29,18 @@
                 <section id="knowledge-base-content">
                     <div class="row kb-search-content-info center-layout match-height">
 
-                        <!-- sales card -->
+                        <!-- SKPD -->
                         <div class="col-md-3 col-sm-6 col-12 kb-search-content">
                             <div class="card">
                                 <a href="/form/skpd">
                                     <img src="../../../Bogor.png"
-                                        style="width: 77%; display: block; margin: 0 auto; padding-bottom: 15px"
-                                        class="card-img-top" alt="pasar-image" />
+                                        style="width: 77%; display: block; margin: 0 auto;  padding-top: 36px;"
+                                        class="card-img-top" alt="skpd-image" />
 
                                     <div class="card-body text-center">
                                         <h4>Pembiayaan SKPD</h4>
                                         <p class="text-body mt-1 mb-0">
-                                            PNS Kabupaten Bogor.
+                                            PNS Kabupaten Bogor
                                         </p>
                                     </div>
                                 </a>
@@ -73,7 +73,7 @@
 
                                     <img src="../../../Pasar_Tohaga.jpeg"
                                         style="width: 77%; display: block; margin: 0 auto; padding-bottom: 15px"
-                                        class="card-img-top" alt="pasar-image" />
+                                        class="card-img-top" alt="umkm-image" />
 
                                     <div class="card-body text-center">
                                         <h4>Pembiayaan Modal Kerja</h4>
@@ -97,13 +97,13 @@
                             </div>
                         </div> --}}
 
-                        <!-- Pembiayaan PPR -->
+                        <!-- PPR -->
                         <div class="col-md-3 col-sm-6 col-12 kb-search-content">
                             <div class="card">
                                 <a data-bs-toggle="modal" data-bs-target="#pilihPendapatan">
                                     <img src="../../../PPR.jpeg"
-                                        style="width: 60%; display: block; margin: 0 auto; padding-top: 30px"
-                                        class="card-img-top" alt="knowledge-base-image" />
+                                        style="width: 60%; display: block; margin: 0 auto; padding-top: 30px;"
+                                        class="card-img-top" alt="ppr-image" />
 
                                     <div class="card-body text-center">
                                         <h4>PPR</h4>

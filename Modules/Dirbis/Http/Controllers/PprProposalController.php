@@ -2,9 +2,11 @@
 
 namespace Modules\Dirbis\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Form\Entities\FormPprPembiayaan;
 use Illuminate\Support\Facades\DB;
 
@@ -72,8 +74,15 @@ class PprProposalController extends Controller
         $labelNoaProyekPerumahan = $noaProyekPerumahan->keys();
         $dataNoaProyekPerumahan = $noaProyekPerumahan->values();
 
+        //Proposal Berhasil Akad
+        $proposalSelesais = FormPprPembiayaan::join('ppr_pembiayaan_histories', 'form_ppr_pembiayaans.id', '=', 'ppr_pembiayaan_histories.form_ppr_pembiayaan_id')
+            ->select()
+            ->where('ppr_pembiayaan_histories.status_id', 9)
+            ->get();
+
         return view('dirbis::ppr.index', [
             'title' => 'Dashboard Direktur Bisnis',
+            'proposalSelesais' => $proposalSelesais,
         ], compact(
             'bulans',
             'hitungPerBulan',

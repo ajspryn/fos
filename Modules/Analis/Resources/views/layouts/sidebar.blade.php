@@ -107,25 +107,23 @@ foreach ($umkms as $umkm) {
         ->where('id', $history->umkm_pembiayaan_id)
         ->get()
         ->first();
-        if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
+    if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
         $a++;
     }
 }
 
-$pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-    ->where('status_id', 3)
-    ->get();
+$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
 
 $komiteppr = 0;
 foreach ($pprs as $ppr) {
-    $komite_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-        ->where('id', $ppr->form_ppr_pembiayaan_id)
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->latest()
         ->get()
         ->first();
 
-    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('form_ppr_pembiayaan_id', $komite_ppr->id)
-        ->orderBy('created_at', 'desc')
+    $komite_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
         ->get()
         ->first();
     if ($history->status_id == 5 && $history->jabatan_id == 3) {
@@ -135,14 +133,14 @@ foreach ($pprs as $ppr) {
 
 $proposalppr = 0;
 foreach ($pprs as $ppr) {
-    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-        ->where('id', $ppr->form_ppr_pembiayaan_id)
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->latest()
         ->get()
         ->first();
 
-    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
-        ->orderBy('created_at', 'desc')
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
         ->get()
         ->first();
     if (($history->status_id == 5 && $history->jabatan_id == 2) || ($history->status_id == 4 && $history->jabatan_id == 3)) {
@@ -208,17 +206,20 @@ foreach ($pprs as $ppr) {
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/skpd/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/skpd/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
+                            class="d-flex align-items-center" href="/analis/skpd/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate" data-i18n="Account">Data
+                                Nasabah</span></a>
                     </li>
                     <li class="{{ Request::is('analis/skpd/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/skpd/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span><span
+                            class="d-flex align-items-center" href="/analis/skpd/komite"><i
+                                data-feather="clipboard"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Komite</span><span
                                 class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteskpd }}</span></a>
                     </li>
                     <li class="{{ Request::is('analis/skpd/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/skpd/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>
+                            class="d-flex align-items-center" href="/analis/skpd/proposal"><i
+                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Proposal</span>
                             @if ($proposalskpd > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
@@ -235,19 +236,22 @@ foreach ($pprs as $ppr) {
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/pasar/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/pasar/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span>
+                            class="d-flex align-items-center" href="/analis/pasar/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate"
+                                data-i18n="Account">Data Nasabah</span>
 
                         </a>
                     </li>
                     <li class="{{ Request::is('analis/pasar/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/pasar/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span><span
+                            class="d-flex align-items-center" href="/analis/pasar/komite"><i
+                                data-feather="clipboard"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Komite</span><span
                                 class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komite }}</span></a>
                     </li>
                     <li class="{{ Request::is('analis/pasar/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/pasar/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>
+                            class="d-flex align-items-center" href="/analis/pasar/proposal"><i
+                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Proposal</span>
                             @if ($data > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $data }}</span>
@@ -297,17 +301,24 @@ foreach ($pprs as $ppr) {
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('analis/ppr/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/ppr/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
+                            class="d-flex align-items-center" href="/analis/ppr/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate"
+                                data-i18n="Account">Data Nasabah</span></a>
                     </li>
                     <li class="{{ Request::is('analis/ppr/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/ppr/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span><span
-                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteppr }}</span></a>
+                            class="d-flex align-items-center" href="/analis/ppr/komite"><i
+                                data-feather="clipboard"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Komite</span>
+                            @if ($komiteppr > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteppr }}</span>
+                            @endif
+                        </a>
                     </li>
                     <li class="{{ Request::is('analis/ppr/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/analis/ppr/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span>
+                            class="d-flex align-items-center" href="/analis/ppr/proposal"><i
+                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Proposal</span>
                             @if ($proposalppr > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>

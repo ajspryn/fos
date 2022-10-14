@@ -63,6 +63,18 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($proposals as $proposal)
+                                        @php
+                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                                ->where('form_ppr_pembiayaan_id', $proposal->id)
+                                                ->orderBy('created_at', 'desc')
+                                                ->get()
+                                                ->first();
+                                            
+                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                ->where('id', $history->form_ppr_pembiayaan_id)
+                                                ->get()
+                                                ->first();
+                                        @endphp
                                         <tr>
                                             <td style="text-align: center">
                                                 <button type="button"
@@ -71,30 +83,33 @@
                                                 </button>
                                             </td>
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
-                                            <td style="text-align: center">{{ date_format($proposal->created_at, 'd-m-Y') }}
-                                            </td>
-                                            <td style="text-align: center">{{ $proposal->jenis_nasabah }}</td>
                                             <td style="text-align: center">
-                                                {{ $proposal->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
+                                                {{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
+                                            </td>
+                                            <td style="text-align: center">{{ $proposal_ppr->jenis_nasabah }}</td>
                                             <td style="text-align: center">
-                                                Rp. {{ number_format($proposal->form_permohonan_nilai_ppr_dimohon) }}
+                                                {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
+                                            <td style="text-align: center">
+                                                Rp. {{ number_format($proposal_ppr->form_permohonan_nilai_ppr_dimohon) }}
                                             </td>
-                                            <td style="text-align: center">{{ $proposal->form_permohonan_peruntukan_ppr }}
+                                            <td style="text-align: center">
+                                                {{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
                                             </td>
-                                            <td style="text-align: center">{{ $proposal->form_permohonan_jangka_waktu_ppr }}
+                                            <td style="text-align: center">
+                                                {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}
                                                 Tahun
                                                 <br />
-                                                ({{ $proposal->form_permohonan_jml_bulan }} Bulan)
+                                                ({{ $proposal_ppr->form_permohonan_jml_bulan }} Bulan)
                                             </td>
                                             <td style="text-align: center">
-                                                @if ($proposal->form_cl == '' && $proposal->form_score == '')
-                                                    <a href="/ppr/proposal/{{ $proposal->id }}"
+                                                @if ($proposal_ppr->form_cl == '' && $proposal_ppr->form_score == '')
+                                                    <a href="/ppr/proposal/{{ $proposal_ppr->id }}"
                                                         class="btn btn-outline-info round">Lengkapi Check List dan Score</a>
-                                                @elseif ($proposal->form_score == '')
-                                                    <a href="/ppr/proposal/{{ $proposal->id }}"
+                                                @elseif ($proposal_ppr->form_score == '')
+                                                    <a href="/ppr/proposal/{{ $proposal_ppr->id }}"
                                                         class="btn btn-outline-info round">Lengkapi Score</a>
                                                 @else
-                                                    <a href="/ppr/proposal/{{ $proposal->id }}"
+                                                    <a href="/ppr/proposal/{{ $proposal_ppr->id }}"
                                                         class="btn btn-outline-info round">Lengkapi Check List</a>
                                                 @endif
 

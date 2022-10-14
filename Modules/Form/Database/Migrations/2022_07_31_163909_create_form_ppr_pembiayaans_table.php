@@ -40,6 +40,7 @@ return new class extends Migration
             // $table->integer('ppr_pemberkasan_memo_id')->nullable();
             $table->integer('ppr_cl_dokumen_id')->nullable();
             $table->integer('ppr_scoring_id')->nullable();
+            $table->integer('ppr_lampiran_id')->nullable();
 
             $table->string('dilengkapi_ao')->nullable();
             $table->string('form_cl')->nullable();

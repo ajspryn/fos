@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('user_id')->nullable();
             $table->string('jabatan_id')->nullable();
             $table->string('divisi_id')->nullable();
+            $table->string('cek_staff_akad')->nullable();
             $table->timestamps();
         });
     }

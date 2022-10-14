@@ -648,7 +648,7 @@ class ProposalAkadController extends Controller
         }
         //proses menentukan rating
         $proses_bendahara = SkpdBendahara::select()->where('skpd_instansi_id', $data->skpd_instansi_id)->get()->first();
-        if ($dsr > 36) {
+        if ($dsr >= 36) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 1)->get()->first();
         }
         if ($dsr <= 35 && $dsr >= 31) {
@@ -835,7 +835,7 @@ class ProposalAkadController extends Controller
         // else{
         //     $prosesslik=PasarScoreSlik::select()->where('kol',$data_slik->kol)->get()->first();
         // }
-        //score 
+        //score
 
         $score_jenisdagang = $proses_jenisdagang->rating;
         $score_sukubangsa = $proses_sukubangsa->rating;
@@ -866,7 +866,7 @@ class ProposalAkadController extends Controller
 
 
         $score_idir = $proses_idir->rating;
-        //slik 
+        //slik
 
         $data_slik = UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->orderBy('kol', 'desc')->get()->first();
 

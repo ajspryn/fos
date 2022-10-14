@@ -64,18 +64,17 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
-                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                                                ->where('id', $proposal->form_ppr_pembiayaan_id)
+                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                                ->where('form_ppr_pembiayaan_id', $proposal->id)
+                                                ->latest()
                                                 ->get()
                                                 ->first();
 
-                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                                                ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
-                                                ->orderBy('created_at', 'desc')
+                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                ->where('id', $history->form_ppr_pembiayaan_id)
                                                 ->get()
                                                 ->first();
                                         @endphp
-
                                         @if (($history->status_id == 5 && $history->jabatan_id == 2) ||
                                             ($history->status_id == 4 && $history->jabatan_id == 3))
                                             <tr>

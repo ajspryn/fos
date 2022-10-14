@@ -17,7 +17,8 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        $proposal = PprPembiayaanHistory::select()->where('jabatan_id', 2)->where('status_id', 5)->orderby('created_at', 'desc')->get();
+        $proposal = FormPprPembiayaan::select()->get();
+
         return view('analis::ppr.proposal.index', [
             'title' => 'Proposal PPR',
             'proposals' => $proposal,
@@ -73,8 +74,15 @@ class PprProposalController extends Controller
         $labelNoaProyekPerumahan = $noaProyekPerumahan->keys();
         $dataNoaProyekPerumahan = $noaProyekPerumahan->values();
 
+        //Proposal Berhasil Akad
+        $proposalSelesais = FormPprPembiayaan::join('ppr_pembiayaan_histories', 'form_ppr_pembiayaans.id', '=', 'ppr_pembiayaan_histories.form_ppr_pembiayaan_id')
+            ->select()
+            ->where('ppr_pembiayaan_histories.status_id', 9)
+            ->get();
+
         return view('analis::ppr.index', [
             'title' => 'Dashboard Analis',
+            'proposalSelesais' => $proposalSelesais,
         ], compact(
             'bulans',
             'hitungPerBulan',

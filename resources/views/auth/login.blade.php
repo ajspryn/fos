@@ -171,13 +171,14 @@
                                         </div>
                                     </div>
                                     <div class="mb-1">
-                                        <div class="form-check">
+                                        {{-- <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="remember-me"
                                                 tabindex="3" name="remember" id="remember"
                                                 {{ old('remember') ? 'checked' : '' }} />
                                             <label class="form-check-label" for="remember-me"> Ingatkan Saya </label>
-                                        </div>
+                                        </div> --}}
                                     </div>
+                                    <br />
                                     <button type="submit" class="btn btn-primary w-100" tabindex="4">Sign
                                         in</button>
                                 </form>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('status_id');
             $table->string('user_id')->nullable();
             $table->string('jabatan_id');
+            $table->string('cek_staff_akad')->nullable();
             $table->timestamps();
         });
     }

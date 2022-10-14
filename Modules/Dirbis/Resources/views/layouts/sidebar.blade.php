@@ -66,20 +66,18 @@ foreach ($umkms as $umkm) {
     }
 }
 
-$pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-    ->where('status_id', 3)
-    ->get();
+$pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
 
 $proposalppr = 0;
 foreach ($pprs as $ppr) {
-    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-        ->where('id', $ppr->form_ppr_pembiayaan_id)
+    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('form_ppr_pembiayaan_id', $ppr->id)
+        ->latest()
         ->get()
         ->first();
 
-    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
-        ->orderBy('created_at', 'desc')
+    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('id', $history->form_ppr_pembiayaan_id)
         ->get()
         ->first();
     if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
@@ -142,12 +140,14 @@ foreach ($pprs as $ppr) {
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('dirbis/skpd/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/skpd/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
+                            class="d-flex align-items-center" href="/dirbis/skpd/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate" data-i18n="Account">Data
+                                Nasabah</span></a>
                     </li>
                     <li class="{{ Request::is('dirbis/skpd/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/skpd/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span>
+                            class="d-flex align-items-center" href="/dirbis/skpd/komite"><i
+                                data-feather="clipboard"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Komite</span>
                             @if ($proposalskpd > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
@@ -155,8 +155,9 @@ foreach ($pprs as $ppr) {
                         </a>
                     </li>
                     <li class="{{ Request::is('dirbis/skpd/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/skpd/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span> </a>
+                            class="d-flex align-items-center" href="/dirbis/skpd/proposal"><i
+                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Proposal</span> </a>
                     </li>
                 </ul>
             </li>
@@ -168,12 +169,14 @@ foreach ($pprs as $ppr) {
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('dirbis/pasar/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/pasar/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
+                            class="d-flex align-items-center" href="/dirbis/pasar/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate" data-i18n="Account">Data
+                                Nasabah</span></a>
                     </li>
                     <li class="{{ Request::is('dirbis/pasar/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/pasar/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span>
+                            class="d-flex align-items-center" href="/dirbis/pasar/komite"><i
+                                data-feather="clipboard"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Komite</span>
 
                             @if ($data > 0)
                                 <span
@@ -182,8 +185,9 @@ foreach ($pprs as $ppr) {
                         </a>
                     </li>
                     <li class="{{ Request::is('dirbis/pasar/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/pasar/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span></a>
+                            class="d-flex align-items-center" href="/dirbis/pasar/proposal"><i
+                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Proposal</span></a>
                     </li>
                 </ul>
             </li>
@@ -195,12 +199,14 @@ foreach ($pprs as $ppr) {
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('dirbis/umkm/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/umkm/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
+                            class="d-flex align-items-center" href="/dirbis/umkm/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate"
+                                data-i18n="Account">Data Nasabah</span></a>
                     </li>
                     <li class="{{ Request::is('dirbis/umkm/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/umkm/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span>
+                            class="d-flex align-items-center" href="/dirbis/umkm/komite"><i
+                                data-feather="clipboard"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Komite</span>
                             @if ($b > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $b }}</span>
@@ -208,8 +214,9 @@ foreach ($pprs as $ppr) {
                         </a>
                     </li>
                     <li class="{{ Request::is('dirbis/umkm/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/umkm/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span></a>
+                            class="d-flex align-items-center" href="/dirbis/umkm/proposal"><i
+                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Proposal</span></a>
                     </li>
                 </ul>
             </li>
@@ -221,12 +228,14 @@ foreach ($pprs as $ppr) {
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('dirbis/ppr/nasabah') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/ppr/nasabah"><span
-                                class="menu-item text-truncate" data-i18n="Account">Data Nasabah</span></a>
+                            class="d-flex align-items-center" href="/dirbis/ppr/nasabah"><i
+                                data-feather="users"></i><span class="menu-item text-truncate"
+                                data-i18n="Account">Data Nasabah</span></a>
                     </li>
                     <li class="{{ Request::is('dirbis/ppr/komite') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/ppr/komite"><span
-                                class="menu-item text-truncate" data-i18n="Security">Komite</span>
+                            class="d-flex align-items-center" href="/dirbis/ppr/komite"><i
+                                data-feather="clipboard"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Komite</span>
                             @if ($proposalppr > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
@@ -234,8 +243,9 @@ foreach ($pprs as $ppr) {
                         </a>
                     </li>
                     <li class="{{ Request::is('dirbis/ppr/proposal') ? 'active' : '' }}"><a
-                            class="d-flex align-items-center" href="/dirbis/ppr/proposal"><span
-                                class="menu-item text-truncate" data-i18n="Security">Proposal</span></a>
+                            class="d-flex align-items-center" href="/dirbis/ppr/proposal"><i
+                                data-feather="file-text"></i><span class="menu-item text-truncate"
+                                data-i18n="Security">Proposal</span></a>
                     </li>
                 </ul>
             </li>

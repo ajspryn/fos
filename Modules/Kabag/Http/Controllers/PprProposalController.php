@@ -72,9 +72,15 @@ class PprProposalController extends Controller
         $labelNoaProyekPerumahan = $noaProyekPerumahan->keys();
         $dataNoaProyekPerumahan = $noaProyekPerumahan->values();
 
+        //Proposal Berhasil Akad
+        $proposalSelesais = FormPprPembiayaan::join('ppr_pembiayaan_histories', 'form_ppr_pembiayaans.id', '=', 'ppr_pembiayaan_histories.form_ppr_pembiayaan_id')
+            ->select()
+            ->where('ppr_pembiayaan_histories.status_id', 9)
+            ->get();
 
         return view('kabag::ppr.index', [
             'title' => 'Dashboard Kabag',
+            'proposalSelesais' => $proposalSelesais,
         ], compact(
             'bulans',
             'hitungPerBulan',
