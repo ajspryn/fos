@@ -1516,7 +1516,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1526,7 +1526,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -3641,7 +3641,8 @@
                                                     class="form-control flatpickr-basic"
                                                     name="form_agunan_1_no_sertifikat_tgl_penerbitan"
                                                     placeholder="YYYY-MM-DD"
-                                                    value="{{ $pembiayaan->agunan->form_agunan_1_no_sertifikat_tgl_penerbitan }}" />
+                                                    value="{{ $pembiayaan->agunan->form_agunan_1_no_sertifikat_tgl_penerbitan }}"
+                                                    required />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_agunan_1_no_imb"><small
@@ -3650,7 +3651,7 @@
                                                 <input type="text" name="form_agunan_1_no_imb"
                                                     id="form_agunan_1_no_imb" class="form-control"
                                                     placeholder="Masukkan Nomor IMB"
-                                                    value="{{ $pembiayaan->agunan->form_agunan_1_no_imb }}" />
+                                                    value="{{ $pembiayaan->agunan->form_agunan_1_no_imb }}" required />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_agunan_1_peruntukan_bangunan"><small
@@ -3659,7 +3660,8 @@
                                                 <input type="text" name="form_agunan_1_peruntukan_bangunan"
                                                     id="form_agunan_1_peruntukan_bangunan" class="form-control"
                                                     placeholder="Masukkan Peruntukan Bangunan"
-                                                    value="{{ $pembiayaan->agunan->form_agunan_1_peruntukan_bangunan }}" />
+                                                    value="{{ $pembiayaan->agunan->form_agunan_1_peruntukan_bangunan }}"
+                                                    required />
                                             </div>
                                             <div class="mb-1 col-md-12">
                                                 <div data-repeater-list="form_agunan_1_status_bukti_kepemilikan">
@@ -3673,7 +3675,8 @@
                                                                 <input type="number" name="form_agunan_1_luas_tanah"
                                                                     id="form_agunan_1_luas_tanah" class="form-control"
                                                                     placeholder="Masukkan Luas Tanah"
-                                                                    value="{{ $pembiayaan->agunan->form_agunan_1_luas_tanah }}" />
+                                                                    value="{{ $pembiayaan->agunan->form_agunan_1_luas_tanah }}"
+                                                                    required />
                                                             </div>
                                                             <div class="mb-1 col-md-6">
                                                                 <label class="form-label"
@@ -3684,7 +3687,8 @@
                                                                     id="form_agunan_1_luas_bangunan"
                                                                     class="form-control"
                                                                     placeholder="Masukkan Luas Bangunan"
-                                                                    value="{{ $pembiayaan->agunan->form_agunan_1_luas_bangunan }}" />
+                                                                    value="{{ $pembiayaan->agunan->form_agunan_1_luas_bangunan }}"
+                                                                    required />
                                                             </div>
                                                             <div class="mb-1 col-md-6">
                                                                 <label class="form-label"
@@ -3694,7 +3698,8 @@
                                                                 <input type="text" name="form_agunan_1_atas_nama"
                                                                     id="form_agunan_1_atas_nama" class="form-control"
                                                                     placeholder="Atas Nama"
-                                                                    value="{{ $pembiayaan->agunan->form_agunan_1_atas_nama }}" />
+                                                                    value="{{ $pembiayaan->agunan->form_agunan_1_atas_nama }}"
+                                                                    required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -3719,7 +3724,8 @@
                                                 <input type="text" name="form_agunan_1_nama_proyek_perumahan"
                                                     id="form_agunan_1_nama_proyek_perumahan" class="form-control"
                                                     placeholder="Masukkan Nama Proyek Perumahan"
-                                                    value="{{ $pembiayaan->agunan->form_agunan_1_nama_proyek_perumahan }}" />
+                                                    value="{{ $pembiayaan->agunan->form_agunan_1_nama_proyek_perumahan }}"
+                                                    required />
                                             </div>
                                         </div>
 
@@ -4172,7 +4178,7 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="col-md-2 col-12">
+                                                                        <div class="col-md-3 col-12">
                                                                             <div class="mb-1">
                                                                                 <label class="form-label"
                                                                                     for="form_kekayaan_simpanan_sejak_tahun">Sejak

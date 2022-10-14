@@ -169,7 +169,7 @@ class PprProposalController extends Controller
             'nasabah' => FormPprDataPribadi::select()->where('id', $id)->get()->first(),
             'fotoPemohon' => FormPprFoto::select()->where('form_ppr_pembiayaan_id', $id)->where('kategori', 'Foto Pemohon')->get()->first(),
             'fotoPasanganPemohon' => FormPprFoto::select()->where('form_ppr_pembiayaan_id', $id)->where('kategori', 'Foto Pasangan Pemohon')->get()->first(),
-            'aos' => Role::select()->where('jabatan_id', 1)->get(),
+            'aos' => Role::select()->where('jabatan_id', 1)->where('divisi_id', 4)->get(),
             'pekerjaans' => FormPprDataPekerjaan::all(),
             'agunans' => FormPprDataAgunan::all(),
 

@@ -105,7 +105,7 @@ $batalAkad = Modules\Akad\Entities\Pembiayaan::select()
                                 @if ($cair < $targetNominal)
                                     <div class="card-body -ml-6 rounded bg-danger">
                                         <h5 style="color: white">{{ Auth::user()->name }}</h5>
-                                        <p class="card-text font-small-3" style="color: white">Kamu Belum Mencapai Target!
+                                        <p class="card-text font-small-3" style="color: white">Kamu Belum Mencapai Target Bulan Ini!
                                         </p>
                                         <h3 class="mb-75 mt-2 pt-50">
                                             <a href="#"></a>
@@ -128,7 +128,7 @@ $batalAkad = Modules\Akad\Entities\Pembiayaan::select()
                                 @else
                                     <div class="card-body">
                                         <h5>{{ Auth::user()->name }}</h5>
-                                        <p class="card-text font-small-3">Selamat, Kamu Sudah Mencapai Target!</p>
+                                        <p class="card-text font-small-3">Selamat, Kamu Sudah Mencapai Target Bulan Ini!</p>
                                         <h3 class="mb-75 mt-2 pt-50">
                                             <a href="#"></a>
                                         </h3>

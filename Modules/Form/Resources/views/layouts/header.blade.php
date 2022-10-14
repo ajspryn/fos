@@ -1,14 +1,15 @@
-
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-  <!-- BEGIN: Head-->
-  <head>
+<!-- BEGIN: Head-->
+
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bank Pembiayaan Rakyat Syariah Bogor Tegar Beriman</title>
     <link rel="apple-touch-icon" href="../../../faviconBTB.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../faviconBTB.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+        rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
@@ -34,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/charts/chart-apex.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-validation.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-wizard.min.css">
-     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/pickers/form-flat-pickr.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/pickers/form-flat-pickr.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/pickers/form-pickadate.min.css">
     <!-- END: Page CSS-->
 
@@ -42,11 +43,13 @@
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
     <!-- END: Custom CSS-->
 
-  </head>
-  <!-- END: Head-->
+</head>
+<!-- END: Head-->
 
-  <!-- BEGIN: Body-->
-  <body class="horizontal-layout horizontal-menu  navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="">
+<!-- BEGIN: Body-->
+
+<body class="horizontal-layout horizontal-menu  navbar-floating footer-static  " data-open="hover"
+    data-menu="horizontal-menu" data-col="">
 
 
     <div class="row col-12">
@@ -63,9 +66,8 @@
 
     <nav class="bg-gradient-primary mb-0">
         <div class="col-md-6 col-lg-12 mb-0">
-                <div class="card-body text-center">
-                    <h2 class="mb-0 mt-0" style="color: white">Formulir Pendaftaran Nasabah</h2>
-                </div>
+            <div class="card-body text-center">
+                <h2 class="mb-0 mt-0" style="color: white">Formulir Pengajuan Pembiayaan</h2>
+            </div>
         </div>
     </nav>
-
