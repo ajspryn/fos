@@ -493,8 +493,6 @@
             <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
             lang=EN-ID style='font-size:10.0pt;font-family:"Times New Roman",serif'>&nbsp;{{ $pembiayaan->nasabahh->desa_kelurahan }},{{ $pembiayaan->nasabahh->kecamatan }}</span></p>
             <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
-            lang=EN-ID style='font-size:10.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
-            <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
             lang=EN-ID style='font-size:10.0pt;font-family:"Times New Roman",serif'>: {{ $pembiayaan->nasabahh->no_ktp }}</span></p>
             @php
                                     $tgl = strtotime($pembiayaan->nasabahh->tgl_lahir);
