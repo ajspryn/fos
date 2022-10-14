@@ -20,9 +20,13 @@ return new class extends Migration
             $table->string('form_pinjaman_nama_bank')->nullable();
             $table->string('form_pinjaman_jenis')->nullable();
             $table->string('form_pinjaman_sejak_tahun')->nullable();
-            $table->integer('form_pinjaman_jangka_waktu_bulan')->nullable();
             $table->string('form_pinjaman_plafond')->nullable();
+            $table->string('form_pinjaman_outstanding')->nullable();
+            $table->integer('form_pinjaman_jangka_waktu_bulan')->nullable();
+            $table->string('form_pinjaman_bunga_margin')->nullable();
             $table->string('form_pinjaman_angsuran_per_bulan')->nullable();
+            $table->string('form_pinjaman_agunan')->nullable();
+            $table->string('form_pinjaman_kolektibilitas')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

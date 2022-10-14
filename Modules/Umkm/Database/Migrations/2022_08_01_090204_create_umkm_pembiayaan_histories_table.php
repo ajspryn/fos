@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('umkm_pembiayaan_id');
             $table->string('status_id');
             $table->string('jabatan_id');
+            $table->string('cek_staff_akad')->nullable();
             $table->timestamps();
         });
     }

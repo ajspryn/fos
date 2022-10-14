@@ -244,7 +244,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_motivasis')->insert([
             'id' => 3,
             'kode' => 'CM3',
-            'keterangan' => 'Nasabah mempunyai tempat tinggal tetap dengan status kepemilikan orangtua/mertua/rumah dinas',
+            'keterangan' => 'Nasabah mempunyai tempat tinggal tetap dengan status kepemilikan orangtua/mertua',
             'rating' => '3',
             'bobot' => '0.20',
         ]);
@@ -252,7 +252,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_motivasis')->insert([
             'id' => 4,
             'kode' => 'CM4',
-            'keterangan' => 'Selama ini tinggal menumpang dengan saudara/kerabat, Rumah pertama',
+            'keterangan' => 'Selama ini tinggal di rumah dinas/menumpang dengan saudara/kerabat dan pengajuan PPR sebagai rumah pertama',
             'rating' => '4',
             'bobot' => '0.20',
         ]);
@@ -260,7 +260,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_motivasis')->insert([
             'id' => 5,
             'kode' => 'CM5',
-            'keterangan' => 'Selama ini tinggal di kontrakan/sewa, Rumah pertama',
+            'keterangan' => 'Selama ini tinggal di kontrakan/sewa dan pengajuan PPR sebagai rumah pertama',
             'rating' => '5',
             'bobot' => '0.20',
         ]);
@@ -269,7 +269,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_referensis')->insert([
             'id' => 1,
             'kode' => 'CR1',
-            'keterangan' => 'Nasabah tidak memiliki kebiasaan hidup mewah dan tidak mempunyai permasalahan pribadi yang akan mempengaruhi pembayaran',
+            'keterangan' => 'Nasabah memiliki kebiasaan hidup mewah dan mempunyai permasalahan pribadi yang akan mempengaruhi pembayaran',
             'rating' => '1',
             'bobot' => '0.15',
         ]);
@@ -285,7 +285,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_referensis')->insert([
             'id' => 3,
             'kode' => 'CR3',
-            'keterangan' => 'Nasabah baru',
+            'keterangan' => 'Nasabah  memiliki kebiasaan hidup mewah, namun tidak mempunyai permasalahan pribadi yang akan mempengaruhi pembayaran',
             'rating' => '3',
             'bobot' => '0.15',
         ]);
@@ -293,7 +293,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_character_referensis')->insert([
             'id' => 4,
             'kode' => 'CR4',
-            'keterangan' => 'Nasabah tidak memiliki gaya hidup mewah',
+            'keterangan' => 'Nasabah tidak memiliki kebiasaan hidup mewah, namun mempunyai permasalahan pribadi yang akan mempengaruhi pembayaran',
             'rating' => '4',
             'bobot' => '0.15',
         ]);
@@ -318,7 +318,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capital_pekerjaans')->insert([
             'id' => 2,
             'kode' => 'CAPP2',
-            'keterangan' => 'Kepemilikan Perseroan Terbatas/Instansi/Yayasan yang belum didaftarkan pada MENKUNHAM',
+            'keterangan' => 'Kepemilikan instansi yang bukan preferensi perbankan (TNI, Polri, Pengacara)',
             'rating' => '2',
             'bobot' => '0.08',
         ]);
@@ -334,7 +334,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capital_pekerjaans')->insert([
             'id' => 4,
             'kode' => 'CAPP4',
-            'keterangan' => 'Kepemilikan Perusahaan BUMN dan BUMD',
+            'keterangan' => 'Kepemilikan Perusahaan Swasta Bonafid/sudah Go Public',
             'rating' => '4',
             'bobot' => '0.08',
         ]);
@@ -342,7 +342,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capital_pekerjaans')->insert([
             'id' => 5,
             'kode' => 'CAPP5',
-            'keterangan' => 'Kepemilikan instansi Pemerintah, TNI Polri, Perusahaan yang sudah Go Public',
+            'keterangan' => 'Kepemilikan instansi Pemerintah (Kementrian dan Dinas Kabupaten/Kota)/BUMN/BUMD',
             'rating' => '5',
             'bobot' => '0.08',
         ]);
@@ -351,7 +351,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capital_pengalaman_pembiayaans')->insert([
             'id' => 1,
             'kode' => 'CAPRP1',
-            'keterangan' => 'Pembiayaan macet',
+            'keterangan' => 'Pembiayaan macet/hapus buku (Kol 5)',
             'rating' => '1',
             'bobot' => '0.08',
         ]);
@@ -375,7 +375,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capital_pengalaman_pembiayaans')->insert([
             'id' => 4,
             'kode' => 'CAPRP4',
-            'keterangan' => 'Nasabah baru, tidak memiliki riwayat pembiayaan',
+            'keterangan' => 'Nasabah baru, tidak memiliki riwayat pembiayaan (Tidak ditemukan di slik)',
             'rating' => '4',
             'bobot' => '0.08',
         ]);
@@ -383,7 +383,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capital_pengalaman_pembiayaans')->insert([
             'id' => 5,
             'kode' => 'CAPRP5',
-            'keterangan' => 'Pembayaran angsuran selalu ditepati dan tidak menunggak',
+            'keterangan' => 'Pembayaran angsuran selalu ditepati dan tidak menunggak (Kol 1)',
             'rating' => '5',
             'bobot' => '0.08',
         ]);
@@ -1797,7 +1797,7 @@ class PprDatabaseSeeder extends Seeder
         DB::table('ppr_capacity_nf_situasi_persaingans')->insert([
             'id' => 2,
             'kode' => '2',
-            'keterangan' => 'Pasar tidak berkembang, peluuang untuk mendapatkan laba menurun, dan jumlah pesaing meningkat',
+            'keterangan' => 'Pasar tidak berkembang, peluang untuk mendapatkan laba menurun, dan jumlah pesaing meningkat',
             'rating' => '2',
             'bobot' => '0.14',
         ]);

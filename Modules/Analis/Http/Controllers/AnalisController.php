@@ -167,7 +167,7 @@ class AnalisController extends Controller
         // return $pprditerima;
 
         return view('analis::index', [
-            'title' => 'Dasboard Analis',
+            'title' => 'Dashboard Analis',
             'proposal' => $pasarproposal + $skpdproposal + $umkmproposal + $pprproposal,
             'diterima' => $pasarditerima + $skpdditerima + $umkmditerima + $pprditerima,
             'tolak' => $pasarditolak + $skpdditolak + $umkmditolak + $pprditolak,

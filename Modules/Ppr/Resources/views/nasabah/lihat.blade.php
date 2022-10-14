@@ -147,9 +147,9 @@
                                 <th style="text-align: center" class="py-1">
                                     Angsuran
                                 </th>
-                                <th style="text-align: center" class="py-1">
+                                {{-- <th style="text-align: center" class="py-1">
                                     Agunan
-                                </th>
+                                </th> --}}
                                 <th style="text-align: center" class="py-1">
                                     Detail
                                 </th>
@@ -167,14 +167,14 @@
                                     <td style="text-align: center">{{ $data->form_permohonan_jml_bulan }} Bulan
                                     </td>
                                     <td style="text-align: center">
-                                        %
+                                        0.9%
                                     </td>
                                     <td style="text-align: center">Rp.
                                         {{ number_format($data->form_penghasilan_pengeluaran_kemampuan_mengangsur) }}
                                     </td>
-                                    <td style="text-align: center">
+                                    {{-- <td style="text-align: center">
 
-                                    </td>
+                                    </td> --}}
                                     <td style="text-align: center">
                                         <a href="/ppr/komite/{{ $data->id }}" class="btn btn-outline-info round">Detail
                                         </a>

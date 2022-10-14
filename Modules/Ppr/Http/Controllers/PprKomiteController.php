@@ -10,8 +10,11 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Form\Entities\FormPprDataPinjaman;
+use Modules\Form\Entities\FormPprDataPinjamanKartuKredit;
+use Modules\Form\Entities\FormPprDataPinjamanLainnya;
 use Modules\Form\Entities\FormPprDataPribadi;
 use Modules\Form\Entities\FormPprPembiayaan;
+use Modules\Ppr\Entities\PprLampiran;
 use Modules\Ppr\Entities\PprPembiayaanHistory;
 use Modules\Ppr\Entities\PprScoring;
 use Modules\Ppr\Entities\PprScoringFixedIncome;
@@ -51,8 +54,6 @@ class PprKomiteController extends Controller
      */
     public function store(Request $request)
     {
-        // $data = PprScoring::select()->where('', id)->get()->first();
-        // $score = $data->scoring->ppr_total_score;
         $role = Role::select()->where('user_id', Auth::user()->id)->get()->first();
 
         PprPembiayaanHistory::create([
@@ -64,14 +65,17 @@ class PprKomiteController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        //         if (request('revisi') == 'Ya') {
-        // FormPprPembiayaan::update
-        //         }
         if ($request->status_id == 3) {
             return redirect('/ppr/komite/')->with('success', 'Proposal Berhasil Diajukan!');
         } elseif ($request->status_id == 6) {
             return redirect('/ppr/komite/')->with('success', 'Proposal Berhasil Ditolak!');
         } elseif ($request->status_id == 7) {
+            FormPprPembiayaan::where('id', $request->form_ppr_pembiayaan_id)
+                ->update([
+                    'dilengkapi_ao' => 'Butuh Revisi',
+                    'form_cl' => 'Butuh Revisi',
+                    'form_score' => 'Butuh Revisi',
+                ]);
             return redirect('/ppr/komite/')->with('success', 'Proposal Diajukan Untuk Revisi!');
         } else {
         }
@@ -84,6 +88,8 @@ class PprKomiteController extends Controller
      */
     public function show($id)
     {
+        $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
+
         $cek = PprPembiayaanHistory::select()
             ->where('form_ppr_pembiayaan_id', $id)
             ->where('user_id', Auth::user()->id)
@@ -99,7 +105,6 @@ class PprKomiteController extends Controller
                 'user_id' => Auth::user()->$id,
             ]);
         }
-        $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
 
         //SLA & Timeline
         //Timeline
@@ -109,8 +114,10 @@ class PprKomiteController extends Controller
         $waktumulai = Carbon::parse($waktuawal->created_at);
         $waktuberakhir = Carbon::parse($waktuakhir->created_at);
 
-
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
+
+        //Plafond
+        $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
 
         //Perhitungan Margin, Harga Jual & Angsuran
         $hpp = $pembiayaan->form_permohonan_nilai_hpp;
@@ -120,22 +127,27 @@ class PprKomiteController extends Controller
         $hargaJual = $hpp + $marginRp;
         $angsuran = $hargaJual / $tenor;
         $plafondMaks = $hpp;
+        $kemampuanMengangsur = $pembiayaan->form_penghasilan_pengeluaran_kemampuan_mengangsur;
 
         //Idir
         $penghasilanBersih = $pembiayaan->form_penghasilan_pengeluaran_sisa_penghasilan;
         $kewajibanAngsuran = $pembiayaan->form_penghasilan_pengeluaran_kewajiban_angsuran;
-        $idir = (($kewajibanAngsuran + $angsuran) / $penghasilanBersih) * 100;
+        $idir = (($kewajibanAngsuran + $kemampuanMengangsur) / $penghasilanBersih) * 100;
 
-        // $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $plafond) * 100 / 12;
-        // $margin = $pembiayaan->form_permohonan_jml_margin / 100;
-        // $margin = $hpp * $persenMargin * $tenor;
-        // $marginBulan = $persenMargin / 100;
-        // $marginBulan = $persenMargin;
-        //Angsuran
-        // $angsuran = ($plafond * $marginBulan) / (1 - (1 / (1 + $marginBulan)) ** $tenor);
+        //FTV
+        $hargaJualAgunan = $pembiayaan->agunan->form_agunan_1_nilai_harga_jual;
+        $hargaTaksasiKjpp = $pembiayaan->agunan->form_agunan_1_nilai_harga_taksasi_kjpp;
+        if ($hargaJualAgunan > $hargaTaksasiKjpp) {
+            $ftv = ($plafond / $hargaTaksasiKjpp) * 100;
+            $pembagi = "Taksasi KJPP";
+        } else {
+            $ftv = ($plafond / $hargaJualAgunan) * 100;
+            $pembagi = "Harga Jual Agunan";
+        }
 
-        //Plafond
-        // $plafondMaks = ($angsuran / $marginBulan) * (1 - (1 / (1 + $marginBulan)) ** $tenor);
+        //DP
+        $persenDp = 100 - $ftv;
+        $dp = $hpp - $plafond;
 
         //Usia Nasabah
         $usiaNasabah = Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir)->age;
@@ -154,6 +166,13 @@ class PprKomiteController extends Controller
             'plafondMaks' => $plafondMaks,
             'idir' => $idir,
             'idebs' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'idebKartuKredits' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'idebLains' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'lampiran' => PprLampiran::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'ftv' => $ftv,
+            'pembagi' => $pembagi,
+            'persenDp' => $persenDp,
+            'dp' => $dp,
 
             //History
             'history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),

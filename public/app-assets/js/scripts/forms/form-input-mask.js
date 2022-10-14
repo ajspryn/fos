@@ -125,6 +125,11 @@ $(function () {
         numeralMask108 = $(".numeral-mask108"),
         numeralMask109 = $(".numeral-mask109"),
         numeralMask110 = $(".numeral-mask110"),
+        numeralMask111 = $(".numeral-mask111"),
+        numeralMask112 = $(".numeral-mask112"),
+        numeralMask113 = $(".numeral-mask113"),
+        numeralMask114 = $(".numeral-mask114"),
+        numeralMask115 = $(".numeral-mask115"),
         
         blockMask = $(".block-mask"),
         delimiterMask = $(".delimiter-mask"),
@@ -849,7 +854,37 @@ $(function () {
         });
     }
     if (numeralMask.length) {
-        new Cleave(numeralMask0, {
+        new Cleave(numeralMask110, {
+            numeral: true,
+            numeralThousandsGroupStyle: "thousand",
+        });
+    }
+    if (numeralMask.length) {
+        new Cleave(numeralMask111, {
+            numeral: true,
+            numeralThousandsGroupStyle: "thousand",
+        });
+    }
+    if (numeralMask.length) {
+        new Cleave(numeralMask112, {
+            numeral: true,
+            numeralThousandsGroupStyle: "thousand",
+        });
+    }
+    if (numeralMask.length) {
+        new Cleave(numeralMask113, {
+            numeral: true,
+            numeralThousandsGroupStyle: "thousand",
+        });
+    }
+    if (numeralMask.length) {
+        new Cleave(numeralMask114, {
+            numeral: true,
+            numeralThousandsGroupStyle: "thousand",
+        });
+    }
+    if (numeralMask.length) {
+        new Cleave(numeralMask115, {
             numeral: true,
             numeralThousandsGroupStyle: "thousand",
         });

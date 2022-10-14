@@ -8,22 +8,20 @@
             ->get()
             ->count();
 
-        $pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-            ->where('status_id', 3)
-            ->get();
-
+        $pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
         $proposalppr = 0;
         foreach ($pprs as $ppr) {
-            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                ->where('id', $ppr->form_ppr_pembiayaan_id)
+            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $ppr->id)
+                ->latest()
                 ->get()
                 ->first();
 
-            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
-                ->orderBy('created_at', 'desc')
+            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                ->where('id', $history->form_ppr_pembiayaan_id)
                 ->get()
                 ->first();
+
             if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
                 $proposalppr++;
             }
@@ -34,11 +32,68 @@
             ->get()
             ->count();
 
-        $review = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-            ->where('status_id', 7)
-            ->orderby('created_at', 'desc')
+        $komites = Modules\Form\Entities\FormPprPembiayaan::select()
+            ->where('user_id', Auth::user()->id)
+            ->whereNotNull('dilengkapi_ao')
+            ->latest()
+            ->get();
+
+        $review = 0;
+        foreach ($komites as $komite) {
+            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $komite->id)
+                ->latest()
+                ->get()
+                ->first();
+
+            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                ->where('id', $history->form_ppr_pembiayaan_id)
+                ->get()
+                ->first();
+
+            if ($history->status_id == 7) {
+                $review++;
+            }
+        }
+
+        $pprPipelines = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+
+        $pipeline = 0;
+        foreach ($pprPipelines as $pprPipeline) {
+            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $pprPipeline->id)
+                ->latest()
+                ->get()
+                ->first();
+
+            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                ->where('id', $history->form_ppr_pembiayaan_id)
+                ->get()
+                ->first();
+            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                if ($history->status_id < 9) {
+                    $pipeline++;
+                }
+            }
+        }
+
+        $batalAkad = Modules\Akad\Entities\Pembiayaan::select()
+            ->where('segmen', 'PPR')
+            ->where('status', 'Akad Batal')
             ->get()
             ->count();
+
+        //Total Disburse & Margin
+        $jmlDisburse = 0;
+        $jmlMargin = 0;
+        foreach ($proposalSelesais as $proposalSelesai) {
+            $plafond = $proposalSelesai->form_permohonan_nilai_ppr_dimohon;
+            $jmlDisburse = $jmlDisburse + $plafond;
+
+            $margin = $proposalSelesai->form_permohonan_jml_margin;
+            $jmlMargin = $jmlMargin + $margin;
+        }
+
     @endphp
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -52,7 +107,7 @@
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
                         <!-- Statistics Card -->
-                        <div class="col-xl-12 col-md-6 col-12">
+                        <div class="col-xl-9 col-md-6 col-12">
                             <div class="card card-statistics">
                                 <div class="card-header">
                                     <h4 class="card-title">Statistik PPR</h4>
@@ -61,6 +116,23 @@
                                     </div>
                                 </div>
                                 <div class="card-body statistics-body">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-1" style="margin: auto; margin-top:-25px;">
+                                            <div class="d-flex flex-row">
+                                                <div class="avatar bg-light-info me-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="git-commit" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="my-auto">
+                                                    <h4 class="fw-bolder mb-0">{{ $pipeline }}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Pipeline</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <br />
                                     <div class="row">
                                         <div class="col-xl-3 col-sm-6 col-12 mb-2">
                                             <div class="d-flex flex-row">
@@ -83,8 +155,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Ditolak</p>
+                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}
+                                                        <span
+                                                            style="font-weight: normal; font-size:12px; vertical-align:middle;">
+                                                            Ditolak</span>
+                                                    </h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $batalAkad }}
+                                                        <span
+                                                            style="font-weight: normal; font-size:12px; vertical-align:middle;">
+                                                            Batal
+                                                            Akad</span>
+                                                    </h4>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -118,38 +200,30 @@
                                 </div>
                             </div>
                         </div>
-                        <!--/ Statistics Card -->
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-6 col-md-4 col-sm-6">
+                        <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="avatar bg-light-info p-50 mb-1">
                                         <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
+                                            <i data-feather="activity" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Pipeline</p>
+                                    <h2 class="fw-bolder">{{ number_format($jmlDisburse) }}</h2>
+                                    <p class="card-text" style="margin-bottom: -7px;">Disburse</p>
+                                    <hr />
+                                    <div class="avatar bg-light-info p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="dollar-sign" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">{{ number_format($jmlMargin) }}</h2>
+                                    <p class="card-text">Margin</p>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-xl-6 col-md-4 col-sm-6">
-                            <div class="card text-center">
-                                <div class="card-body">
-                                    <div class="avatar bg-light-info p-50 mb-1">
-                                        <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="fw-bolder">0</h2>
-                                    <p class="card-text">Disburse</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
+                    <div class="row match-height">
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">

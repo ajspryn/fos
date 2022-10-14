@@ -27,11 +27,11 @@
                                             <a class="nav-link" id="ftv-tab" data-bs-toggle="tab" href="#ftv"
                                                 role="tab" aria-controls="ftv-just" aria-selected="true">FTV</a>
                                         </li>
-                                        {{-- <li class="nav-item">
-                                            <a class="nav-link" id="dokumentasi-tab" data-bs-toggle="tab"
-                                                href="#dokumentasi" role="tab" aria-controls="dokumentasi-just"
-                                                aria-selected="true">Dokumentasi Perkembangan</a>
-                                        </li> --}}
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="lampiran-tab" data-bs-toggle="tab" href="#lampiran"
+                                                role="tab" aria-controls="lampiran-just"
+                                                aria-selected="true">Lampiran</a>
+                                        </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="timeline-tab" data-bs-toggle="tab" href="#timeline"
                                                 role="tab" aria-controls="timeline-just"
@@ -77,6 +77,28 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
+                                                                            <td class="pe-1">Plafond</td>
+                                                                            <td>:
+                                                                                Rp.
+                                                                                {{ number_format($pembiayaan->form_permohonan_nilai_ppr_dimohon) }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Tenor</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->form_permohonan_jangka_waktu_ppr }}
+                                                                                Tahun
+                                                                                ({{ $pembiayaan->form_permohonan_jml_bulan }}
+                                                                                Bulan)
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Margin</td>
+                                                                            <td>:
+                                                                                {{ $persenMargin }}% per Bulan
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
                                                                             <td class="pe-1">Peruntukan</td>
                                                                             <td>:
                                                                                 {{ $pembiayaan->form_permohonan_peruntukan_ppr }}
@@ -101,9 +123,9 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="pe-1">No. Telp</td>
+                                                                            <td class="pe-1">No. HP</td>
                                                                             <td>:
-                                                                                {{ $pembiayaan->pemohon->form_pribadi_pemohon_no_telp }}
+                                                                                {{ $pembiayaan->pemohon->form_pribadi_pemohon_no_handphone }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
@@ -126,6 +148,24 @@
                                                                                     $tgl_lahir = Carbon\Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir);
                                                                                 @endphp
                                                                                 {{ date_format($tgl_lahir, 'd-m-Y') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Nama Tempat Bekerja</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_nama }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Dept./Bagian/Divisi</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_departemen }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Jabatan</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_pangkat_gol_jabatan }}
                                                                             </td>
                                                                         </tr>
                                                                         {{-- <tr>
@@ -216,7 +256,7 @@
                                                                 </h6>
                                                                 <hr />
                                                                 <h6 style="text-align: center;">IDIR :
-                                                                    {{ number_format((float) $idir, 2, '.', '') }} %
+                                                                    {{ number_format((float) $idir, 2, '.', '') }}%
                                                                     &emsp; &emsp; &emsp;
                                                                     <small
                                                                         class="{{ $idir > 70 ? 'text-danger' : 'text-success' }}">*
@@ -237,29 +277,45 @@
                                                                 <!-- Tabel Pinjaman/Ideb -->
                                                                 <h4>Informasi Debitur Nasabah</h4>
                                                                 <div class="table-responsive mt-1">
+                                                                    {{-- IDEB Pinjaman --}}
                                                                     <table class="table">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th style="text-align: center; width: 5%;"
-                                                                                    class="py-1">No</th>
-                                                                                <th style="text-align: center"
+                                                                                <th style="text-align: center; vertical-align:middle; width: 5%;"
+                                                                                    class="py-1">
+                                                                                    No
+                                                                                </th>
+                                                                                <th style="text-align: center; vertical-align:middle;"
                                                                                     class="py-1">Nama
-                                                                                    Bank</th>
-                                                                                <th style="text-align: center"
+                                                                                    Bank
+                                                                                </th>
+                                                                                <th style="text-align: center; vertical-align:middle; width: 18%;"
                                                                                     class="py-1">
                                                                                     Plafond
                                                                                 </th>
-                                                                                <th style="text-align: center"
+                                                                                <th style="text-align: center; vertical-align:middle;"
                                                                                     class="py-1">
-                                                                                    Tenor
+                                                                                    Outstanding
                                                                                 </th>
-                                                                                <th style="text-align: center"
+                                                                                <th style="text-align: center; vertical-align:middle;"
+                                                                                    class="py-1">
+                                                                                    Tenor (Bulan)
+                                                                                </th>
+                                                                                <th style="text-align: center; vertical-align:middle; width: 5%;"
                                                                                     class="py-1">
                                                                                     Margin
                                                                                 </th>
-                                                                                <th style="text-align: center"
+                                                                                <th style="text-align: center; vertical-align:middle;"
                                                                                     class="py-1">
                                                                                     Angsuran
+                                                                                </th>
+                                                                                <th style="text-align: center; vertical-align:middle;"
+                                                                                    class="py-1">
+                                                                                    Agunan
+                                                                                </th>
+                                                                                <th style="text-align: center; vertical-align:middle;"
+                                                                                    class="py-1">
+                                                                                    Kol.
                                                                                 </th>
                                                                             </tr>
                                                                         </thead>
@@ -268,25 +324,37 @@
                                                                                 @foreach ($idebs as $ideb)
                                                                                     <tr>
                                                                                         <td style="text-align: center">
-                                                                                            {{ $loop->iteration }}</td>
-                                                                                        <td>{{ $ideb->nama_bank }}</td>
-                                                                                        <td>Rp.
-                                                                                            {{ number_format($ideb->plafond) }}
+                                                                                            {{ $loop->iteration }}
                                                                                         </td>
                                                                                         <td style="text-align: center">
-                                                                                            {{ $ideb->tenor }}
-                                                                                        </td>
-                                                                                        <td style="text-align: center">
-                                                                                            {{ number_format($ideb->margin) }}%
+                                                                                            {{ $ideb->form_pinjaman_nama_bank }}
                                                                                         </td>
                                                                                         <td>Rp.
-                                                                                            {{ number_format($ideb->angsuran) }}
+                                                                                            {{ number_format($ideb->form_pinjaman_plafond) }}
+                                                                                        </td>
+                                                                                        <td>Rp.
+                                                                                            {{ number_format($ideb->form_pinjaman_outstanding) }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $ideb->form_pinjaman_jangka_waktu_bulan }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ number_format($ideb->form_pinjaman_bunga_margin) }}%
+                                                                                        </td>
+                                                                                        <td>Rp.
+                                                                                            {{ number_format($ideb->form_pinjaman_angsuran_per_bulan) }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $ideb->form_pinjaman_agunan }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $ideb->form_pinjaman_kolektibilitas }}
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
                                                                             @else
                                                                                 <tr>
-                                                                                    <td colspan="6"
+                                                                                    <td colspan="9"
                                                                                         style="text-align: center;">
                                                                                         No Data
                                                                                         Available
@@ -296,6 +364,171 @@
                                                                         </tbody>
                                                                     </table>
                                                                     <hr style="margin-top:-1px;" />
+
+                                                                    {{-- IDEB Pinjaman Kartu Kredit --}}
+                                                                    @if ($idebKartuKredits->first())
+                                                                        <br />
+                                                                        <h6>Pinjaman Kartu Kredit</h6>
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th style="text-align: center; vertical-align:middle; width: 5%;"
+                                                                                        class="py-1">
+                                                                                        No
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">Nama
+                                                                                        Bank
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle; width: 18%;"
+                                                                                        class="py-1">
+                                                                                        Plafond
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">
+                                                                                        Outstanding
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">
+                                                                                        Tenor (Bulan)
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle; width: 5%;"
+                                                                                        class="py-1">
+                                                                                        Margin
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">
+                                                                                        Angsuran
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">
+                                                                                        Agunan
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">
+                                                                                        Kol.
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @foreach ($idebKartuKredits as $idebKartuKredit)
+                                                                                    <tr>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $loop->iteration }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $idebKartuKredit->form_pinjaman_kartu_kredit_nama_bank }}
+                                                                                        </td>
+                                                                                        <td>Rp.
+                                                                                            {{ number_format($idebKartuKredit->form_pinjaman_kartu_kredit_plafond) }}
+                                                                                        </td>
+                                                                                        <td>Rp.
+                                                                                            {{ number_format($idebKartuKredit->form_pinjaman_kartu_kredit_outstanding) }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $idebKartuKredit->form_pinjaman_kartu_kredit_jangka_waktu_bulan }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ number_format($idebKartuKredit->form_pinjaman_kartu_kredit_bunga_margin) }}%
+                                                                                        </td>
+                                                                                        <td>Rp.
+                                                                                            {{ number_format($idebKartuKredit->form_pinjaman_kartu_kredit_angsuran_per_bulan) }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $idebKartuKredit->form_pinjaman_kartu_kredit_agunan }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $idebKartuKredit->form_pinjaman_kartu_kredit_kolektibilitas }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <hr style="margin-top:-1px;" />
+                                                                    @endif
+
+                                                                    {{-- IDEB Pinjaman Kartu Kredit --}}
+                                                                    @if ($idebLains->first())
+                                                                        <br />
+                                                                        <h6>Pinjaman Lainnya (Lembaga Keuangan Non-Bank)
+                                                                        </h6>
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th style="text-align: center; vertical-align:middle; width: 5%;"
+                                                                                        class="py-1">
+                                                                                        No
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">Nama
+                                                                                        Bank
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle; width: 18%;"
+                                                                                        class="py-1">
+                                                                                        Plafond
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">
+                                                                                        Outstanding
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">
+                                                                                        Tenor (Bulan)
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle; width: 5%;"
+                                                                                        class="py-1">
+                                                                                        Margin
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">
+                                                                                        Angsuran
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">
+                                                                                        Agunan
+                                                                                    </th>
+                                                                                    <th style="text-align: center; vertical-align:middle;"
+                                                                                        class="py-1">
+                                                                                        Kol.
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @foreach ($idebLains as $idebLain)
+                                                                                    <tr>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $loop->iteration }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $idebLain->form_pinjaman_lainnya_nama }}
+                                                                                        </td>
+                                                                                        <td>Rp.
+                                                                                            {{ number_format($idebLain->form_pinjaman_lainnya_plafond) }}
+                                                                                        </td>
+                                                                                        <td>Rp.
+                                                                                            {{ number_format($idebLain->form_pinjaman_lainnya_outstanding) }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $idebLain->form_pinjaman_lainnya_jangka_waktu_bulan }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ number_format($idebLain->form_pinjaman_lainnya_bunga_margin) }}%
+                                                                                        </td>
+                                                                                        <td>Rp.
+                                                                                            {{ number_format($idebLain->form_pinjaman_lainnya_angsuran_per_bulan) }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $idebLain->form_pinjaman_lainnya_agunan }}
+                                                                                        </td>
+                                                                                        <td style="text-align: center">
+                                                                                            {{ $idebLain->form_pinjaman_lainnya_kolektibilitas }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <hr style="margin-top:-1px;" />
+                                                                    @endif
                                                                 </div>
                                                                 <!-- /Tabel Pinjaman/Ideb -->
                                                             </div>
@@ -347,12 +580,12 @@
                                                                                     </td>
                                                                                     <td style="text-align: center">
                                                                                         @if ($scoring->scoringAtrFixedIncome->atr_fixed_score >= 1.7)
-                                                                                            <strong>Sangat Baik</strong>
+                                                                                            <strong>Risiko Rendah</strong>
                                                                                         @elseif($scoring->scoringAtrFixedIncome->atr_fixed_score >= 1.4 &&
                                                                                             $scoring->scoringAtrFixedIncome->atr_fixed_score < 1.7)
-                                                                                            <strong>Cukup Baik</strong>
+                                                                                            <strong>Risiko Sedang</strong>
                                                                                         @else
-                                                                                            <strong>Kurang</strong>
+                                                                                            <strong>Risiko Tinggi</strong>
                                                                                         @endif
                                                                                     </td>
                                                                                 </tr>
@@ -479,12 +712,12 @@
                                                                                     </td>
                                                                                     <td style="text-align: center">
                                                                                         @if ($scoring->scoringWtrFixedIncome->wtr_fixed_score >= 0.9)
-                                                                                            <strong>Sangat Baik</strong>
+                                                                                            <strong>Risiko Rendah</strong>
                                                                                         @elseif($scoring->scoringWtrFixedIncome->wtr_fixed_score >= 0.75 &&
                                                                                             $scoring->scoringWtrFixedIncome->wtr_fixed_score < 0.9)
-                                                                                            <strong>Cukup Baik</strong>
+                                                                                            <strong>Risiko Sedang</strong>
                                                                                         @else
-                                                                                            <strong>Kurang</strong>
+                                                                                            <strong>Risiko Tinggi</strong>
                                                                                         @endif
                                                                                     </td>
                                                                                 </tr>
@@ -581,12 +814,12 @@
                                                                                     </td>
                                                                                     <td style="text-align: center">
                                                                                         @if ($scoring->scoringCollateralFixedIncome->cc_fixed_score >= 0.9)
-                                                                                            <strong>Sangat Baik</strong>
+                                                                                            <strong>Risiko Rendah</strong>
                                                                                         @elseif($scoring->scoringCollateralFixedIncome->cc_fixed_score >= 0.75 &&
                                                                                             $scoring->scoringCollateralFixedIncome->cc_fixed_score < 0.9)
-                                                                                            <strong>Cukup Baik</strong>
+                                                                                            <strong>Risiko Sedang</strong>
                                                                                         @else
-                                                                                            <strong>Kurang</strong>
+                                                                                            <strong>Risiko Tinggi</strong>
                                                                                         @endif
                                                                                     </td>
                                                                                 </tr>
@@ -665,12 +898,12 @@
                                                                                     </td>
                                                                                     <td style="text-align: center">
                                                                                         @if ($scoring->scoringAtrNonFixedIncome->atr_non_fixed_score >= 1.7)
-                                                                                            <strong>Sangat Baik</strong>
+                                                                                            <strong>Risiko Rendah</strong>
                                                                                         @elseif($scoring->scoringAtrNonFixedIncome->atr_non_fixed_score >= 1.4 &&
                                                                                             $scoring->scoringAtrNonFixedIncome->atr_non_fixed_score < 1.7)
-                                                                                            <strong>Cukup Baik</strong>
+                                                                                            <strong>Risiko Sedang</strong>
                                                                                         @else
-                                                                                            <strong>Kurang</strong>
+                                                                                            <strong>Risiko Tinggi</strong>
                                                                                         @endif
                                                                                     </td>
                                                                                 </tr>
@@ -769,12 +1002,12 @@
                                                                                     </td>
                                                                                     <td style="text-align: center">
                                                                                         @if ($scoring->scoringWtrNonFixedIncome->wtr_non_fixed_score >= 0.9)
-                                                                                            <strong>Sangat Baik</strong>
+                                                                                            <strong>Risiko Rendah</strong>
                                                                                         @elseif($scoring->scoringWtrNonFixedIncome->wtr_non_fixed_score >= 0.75 &&
                                                                                             $scoring->scoringWtrNonFixedIncome->wtr_non_fixed_score < 0.9)
-                                                                                            <strong>Cukup Baik</strong>
+                                                                                            <strong>Risiko Sedang</strong>
                                                                                         @else
-                                                                                            <strong>Kurang</strong>
+                                                                                            <strong>Risiko Tinggi</strong>
                                                                                         @endif
                                                                                     </td>
                                                                                 </tr>
@@ -843,12 +1076,12 @@
                                                                                     </td>
                                                                                     <td style="text-align: center">
                                                                                         @if ($scoring->scoringCollateralNonFixedIncome->cc_non_fixed_score >= 0.9)
-                                                                                            <strong>Sangat Baik</strong>
+                                                                                            <strong>Risiko Rendah</strong>
                                                                                         @elseif($scoring->scoringCollateralNonFixedIncome->cc_non_fixed_score >= 0.75 &&
                                                                                             $scoring->scoringCollateralNonFixedIncome->cc_non_fixed_score < 0.9)
-                                                                                            <strong>Cukup Baik</strong>
+                                                                                            <strong>Risiko Sedang</strong>
                                                                                         @else
-                                                                                            <strong>Kurang</strong>
+                                                                                            <strong>Risiko Tinggi</strong>
                                                                                         @endif
                                                                                     </td>
                                                                                 </tr>
@@ -924,7 +1157,6 @@
                                                                         <div class="col-xl-7 p-0">
                                                                             <table>
                                                                                 <tbody>
-
                                                                                     <tr>
                                                                                         <td class="pe-1">Total Nilai
                                                                                         </td>
@@ -1000,43 +1232,68 @@
                                                             </div>
                                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
                                                                 @if ($history->status_id == 2)
-                                                                    @if ($score >= 3.5)
-                                                                        <div class="card-body">
-                                                                            <button class="btn btn-success w-100 mb-75"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#lanjutKomite">
-                                                                                Lanjut Komite
-                                                                            </button>
-                                                                            {{-- <form action="/ppr/komite">
-                                                                            </form> --}}
-                                                                        </div>
-                                                                    @elseif ($score >= 2.9 && $score < 3.5)
-                                                                        <div class="card-body">
-                                                                            <button class="btn btn-warning w-100 mb-75"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#editProposal">
-                                                                                Edit Proposal
-                                                                            </button>
-                                                                            {{-- <form action="/ppr/komite">
-                                                                                <input type="hidden" name="form_cl"
-                                                                                    value="Butuh Revisi">
-                                                                                <input type="hidden" name="form_score"
-                                                                                    value="Butuh Revisi">
-                                                                            </form> --}}
-                                                                        </div>
+                                                                    @if ($idir <= 70)
+                                                                        @if ($score >= 3.5)
+                                                                            <div class="card-body">
+                                                                                <button type="button"
+                                                                                    class="btn btn-success w-100 mb-75"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#lanjutKomite"><i
+                                                                                        data-feather="check-square"></i>
+                                                                                    Lanjut Komite
+                                                                                </button>
+                                                                            </div>
+                                                                        @elseif ($score >= 2.9 && $score < 3.5)
+                                                                            <div class="card-body">
+                                                                                <button type="button"
+                                                                                    class="btn btn-warning w-100 mb-75"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#editProposal"><i
+                                                                                        data-feather="edit"></i>
+                                                                                    Edit Proposal
+                                                                                </button>
+                                                                            </div>
+                                                                        @else
+                                                                            <div class="card-body">
+                                                                                <button type="button"
+                                                                                    class="btn btn-danger w-100 mb-75"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#tolakProposal"><i
+                                                                                        data-feather="x-square"></i>
+                                                                                    Tolak Proposal
+                                                                                </button>
+                                                                            </div>
+                                                                        @endif
                                                                     @else
                                                                         <div class="card-body">
-                                                                            <button class="btn btn-danger w-100 mb-75"
+                                                                            <button type="button"
+                                                                                class="btn btn-success w-100 mb-75"
                                                                                 data-bs-toggle="modal"
-                                                                                data-bs-target="#ditolak">
-                                                                                Ditolak
+                                                                                data-bs-target="#lanjutKomite" disabled><i
+                                                                                    data-feather="check-square"></i>
+                                                                                Lanjut Komite
                                                                             </button>
-                                                                            {{-- <form action="/ppr/komite">
-                                                                                <input type="hidden" name="form_cl"
-                                                                                    value="Butuh Revisi">
-                                                                                <input type="hidden" name="form_score"
-                                                                                    value="Butuh Revisi">
-                                                                            </form> --}}
+                                                                            <center>
+                                                                                <h5 class="text-danger"><strong>Tidak
+                                                                                        bisa dilanjut karena IDIR lebih dari
+                                                                                        70%!</strong></h5>
+                                                                            </center>
+                                                                            <br />
+                                                                            <button type="button"
+                                                                                class="btn btn-warning w-100 mb-75"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#editProposal"><i
+                                                                                    data-feather="edit"></i>
+                                                                                Edit Proposal
+                                                                            </button>
+
+                                                                            <button type="button"
+                                                                                class="btn btn-danger w-100 mb-75"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#tolakProposal"><i
+                                                                                    data-feather="x-square"></i>
+                                                                                Tolak Proposal
+                                                                            </button>
                                                                         </div>
                                                                     @endif
                                                                 @endif
@@ -1044,7 +1301,7 @@
                                                         </div>
                                                     </div>
                                                     <!-- Invoice Note ends -->
-                                                    <!-- Lanjut Koimte  -->
+                                                    <!-- Lanjut Komite  -->
                                                     <div class="modal fade" id="lanjutKomite" tabindex="-1"
                                                         aria-labelledby="addNewCardTitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
@@ -1060,8 +1317,8 @@
                                                                     </h1>
                                                                     <p class="text-center"></p>
 
-                                                                    <!-- form -->
-                                                                    <form id="addNewCardValidation"
+                                                                    <!-- Form Catatan Lanjut -->
+                                                                    <form id="formLanjutProposal"
                                                                         class="row gy-1 gx-2 mt-75" method="POST"
                                                                         action="/ppr/komite">
                                                                         @csrf
@@ -1089,6 +1346,7 @@
                                                                             </button>
                                                                         </div>
                                                                     </form>
+                                                                    <!-- /Form Catatan Lanjut -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1111,13 +1369,11 @@
                                                                     </h1>
                                                                     <p class="text-center"></p>
 
-                                                                    <!-- form -->
+                                                                    <!-- Form Catatan Edit -->
                                                                     <form id="formEditProposal"
                                                                         class="row gy-1 gx-2 mt-75" method="POST"
                                                                         action="/ppr/komite">
                                                                         @csrf
-                                                                        {{-- <input type="hidden" name="revisi"
-                                                                            value="Ya"> --}}
                                                                         <div class="col-md-12">
                                                                             <label class="form-label"
                                                                                 for="catatan">Catatan</label>
@@ -1142,6 +1398,7 @@
                                                                             </button>
                                                                         </div>
                                                                     </form>
+                                                                    <!-- /Form Catatan Edit -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1149,7 +1406,7 @@
                                                     <!--/ Edit Proposal -->
 
                                                     <!-- Ditolak -->
-                                                    <div class="modal fade" id="ditolak" tabindex="-1"
+                                                    <div class="modal fade" id="tolakProposal" tabindex="-1"
                                                         aria-labelledby="addNewCardTitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
@@ -1164,8 +1421,8 @@
                                                                     </h1>
                                                                     <p class="text-center"></p>
 
-                                                                    <!-- form -->
-                                                                    <form id="addNewCardValidation"
+                                                                    <!-- Form Catatan Tolak -->
+                                                                    <form id="formTolakProposal"
                                                                         class="row gy-1 gx-2 mt-75" method="POST"
                                                                         action="/ppr/komite">
                                                                         @csrf
@@ -1194,6 +1451,7 @@
                                                                             </button>
                                                                         </div>
                                                                     </form>
+                                                                    <!-- /Form Catatan Tolak -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1242,9 +1500,63 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td class="pe-1">
-                                                                                    &ensp;Usia Nasabah</td>
+                                                                                    &ensp;</td>
+                                                                                <td>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1 mt-2">
+                                                                                    &ensp;HPP</td>
                                                                                 <td>:
-                                                                                    {{ $usiaNasabah }} Tahun
+                                                                                    Rp.
+                                                                                    {{ number_format($hpp) }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1 mt-2">
+                                                                                    &ensp;Plafond</td>
+                                                                                <td>:
+                                                                                    Rp.
+                                                                                    {{ number_format($pembiayaan->form_permohonan_nilai_ppr_dimohon) }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1">
+                                                                                    &ensp;Tenor</td>
+                                                                                <td>:
+                                                                                    {{ $pembiayaan->form_permohonan_jangka_waktu_ppr }}
+                                                                                    Tahun
+                                                                                    ({{ $pembiayaan->form_permohonan_jml_bulan }}
+                                                                                    Bulan)
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1">
+                                                                                    &ensp;Margin</td>
+                                                                                <td>:
+                                                                                    {{ $persenMargin }}% per Bulan
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1">
+                                                                                    &ensp;Persentase FTV</td>
+                                                                                <td>:
+                                                                                    <strong>{{ number_format($ftv) }}%</strong>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1">
+                                                                                    &ensp;Pembagi</td>
+                                                                                <td>:
+                                                                                    {{ $pembagi }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1">
+                                                                                    &ensp;DP Nasabah</td>
+                                                                                <td>:
+                                                                                    {{ $persenDp }}%, yaitu sebesar
+                                                                                    Rp. {{ number_format($dp) }}
                                                                                 </td>
                                                                             </tr>
                                                                     </table>
@@ -1274,8 +1586,11 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Margin (% Per Bulan)</td>
-                                                                                <td>{{ number_format((float) $persenMargin, 2, '.', '') }}
-                                                                                    %
+                                                                                {{-- <td>{{ number_format((float) $persenMargin, 2, '.', '') }}
+                                                                                   %
+                                                                                </td> --}}
+                                                                                <td>
+                                                                                    {{ $persenMargin }}%
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -1294,7 +1609,8 @@
                                                                                     <strong>Besarnya Angsuran Per
                                                                                         Bulan</strong>
                                                                                 </td>
-                                                                                <td>Rp. {{ number_format($angsuran) }}</td>
+                                                                                <td>Rp. {{ number_format($angsuran) }}
+                                                                                </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -1325,8 +1641,8 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Margin (% Per Bulan)</td>
-                                                                                <td>{{ number_format((float) $persenMargin, 2, '.', '') }}
-                                                                                    %
+                                                                                <td>
+                                                                                    {{ $persenMargin }}%
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -1362,10 +1678,220 @@
                                             </div>
                                         </div>
 
-                                        <div class="tab-pane" id="dokumentasi" role="tabpanel"
-                                            aria-labelledby="dokumentasi-tab">
+                                        <div class="tab-pane" id="lampiran" role="tabpanel"
+                                            aria-labelledby="lampiran-tab">
                                             <div class="col-xl-12 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
                                                 <div class="card">
+                                                    <div class="card-body invoice-padding pb-0">
+                                                        <!-- Header starts -->
+                                                        <div
+                                                            class="d-flex justify-content-center  flex-column invoice-spacing mt-0 col-xl-12 col-md-8 col-12">
+                                                            <div>
+                                                                <center>
+                                                                    <h4>Lampiran</h4>
+                                                                </center>
+                                                                <br />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="mb-1 col-md-4">
+                                                                <button type="button"
+                                                                    class="btn btn-md btn-primary w-100"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#dokumenPemohon">
+                                                                    Dokumen Pemohon
+                                                                </button>
+                                                            </div>
+                                                            <div class="mb-1 col-md-4">
+                                                                <button type="button"
+                                                                    class="btn btn-md btn-primary w-100"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#dokumenWawancara">
+                                                                    Dokumen Hasil Wawancara
+                                                                </button>
+                                                            </div>
+                                                            <div class="mb-1 col-md-4">
+                                                                <button type="button"
+                                                                    class="btn btn-md btn-primary w-100"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#dokumenAgunan">
+                                                                    Dokumen Agunan
+                                                                </button>
+                                                            </div>
+                                                            <div class="mb-1 col-md-4">
+                                                                <button type="button"
+                                                                    class="btn btn-md btn-primary w-100"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#dokumenOtsAgunan">
+                                                                    Dokumen OTS Agunan
+                                                                </button>
+                                                            </div>
+                                                            <div class="mb-1 col-md-4">
+                                                                <button type="button"
+                                                                    class="btn btn-md btn-primary w-100"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#dokumenOtsTempatUsaha">
+                                                                    Dokumen OTS Tempat Usaha
+                                                                </button>
+                                                            </div>
+                                                            <div class="mb-1 col-md-4">
+                                                                <button type="button"
+                                                                    class="btn btn-md btn-primary w-100"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#dokumenAppraisalKjpp">
+                                                                    Dokumen Appraisal Agunan KJPP
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Modal Lampiran -->
+
+                                                    <!-- Dokumen Pemohon -->
+                                                    <div class="modal fade" id="dokumenPemohon" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h4 class="text-center mb-1"
+                                                                        style="margin-top:-40px;">
+                                                                        <strong>Dokumen Pemohon</strong>
+                                                                    </h4>
+                                                                    <iframe
+                                                                        src="{{ asset('storage/' . $lampiran->dokumen_pemohon) }}"
+                                                                        class="d-block w-100" height="600"></iframe>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ Dokumen Pemohon  -->
+
+                                                    <!-- Dokumen Hasil Wawancara -->
+                                                    <div class="modal fade" id="dokumenWawancara" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h4 class="text-center mb-1"
+                                                                        style="margin-top:-40px;">
+                                                                        <strong>Dokumen Hasil Wawancara</strong>
+                                                                    </h4>
+                                                                    <iframe
+                                                                        src="{{ asset('storage/' . $lampiran->hasil_wawancara) }}"
+                                                                        class="d-block w-100" height="600"></iframe>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ Dokumen Hasil Wawancara  -->
+
+                                                    <!-- Dokumen Agunan -->
+                                                    <div class="modal fade" id="dokumenAgunan" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h4 class="text-center mb-1"
+                                                                        style="margin-top:-40px;">
+                                                                        <strong>Dokumen Agunan</strong>
+                                                                    </h4>
+                                                                    <iframe
+                                                                        src="{{ asset('storage/' . $lampiran->dokumen_agunan) }}"
+                                                                        class="d-block w-100" height="600"></iframe>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ Dokumen Agunan  -->
+
+                                                    <!-- Dokumen OTS Agunan -->
+                                                    <div class="modal fade" id="dokumenOtsAgunan" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h4 class="text-center mb-1"
+                                                                        style="margin-top:-40px;">
+                                                                        <strong>Dokumen OTS Agunan</strong>
+                                                                    </h4>
+                                                                    <iframe
+                                                                        src="{{ asset('storage/' . $lampiran->ots_agunan) }}"
+                                                                        class="d-block w-100" height="600"></iframe>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ Dokumen OTS Agunan  -->
+
+                                                    <!-- Dokumen OTS Tempat Usaha -->
+                                                    <div class="modal fade" id="dokumenOtsTempatUsaha" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h4 class="text-center mb-1"
+                                                                        style="margin-top:-40px;">
+                                                                        <strong>Dokumen OTS Tempat Usaha</strong>
+                                                                    </h4>
+                                                                    <iframe
+                                                                        src="{{ asset('storage/' . $lampiran->ots_tempat_usaha) }}"
+                                                                        class="d-block w-100" height="600"></iframe>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ Dokumen OTS Tempat Usaha  -->
+
+                                                    <!-- Dokumen Appraisal Agunan KJPP -->
+                                                    <div class="modal fade" id="dokumenAppraisalKjpp" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h4 class="text-center mb-1"
+                                                                        style="margin-top:-40px;">
+                                                                        <strong>Dokumen Appraisal Agunan KJPP</strong>
+                                                                    </h4>
+                                                                    <iframe
+                                                                        src="{{ asset('storage/' . $lampiran->appraisal_kjpp) }}"
+                                                                        class="d-block w-100" height="600"></iframe>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ Dokumen Appraisal Agunan KJPP  -->
+
+                                                    <!-- /Modal Lampiran -->
 
                                                 </div>
                                             </div>
@@ -1444,62 +1970,9 @@
                                 <!-- Justified Tabs ends -->
                             </div>
                 </section>
-                <!-- Idir -->
-                <div class="modal fade" id="dsr" tabindex="-1" aria-labelledby="addNewCardTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            {{-- <div class="modal-body px-sm-5 mx-50 pb-5">
-                                <h3 class="text-center">Nilai DSR </h3>
-                                <hr class="invoice-spacing" />
-                                <div class="card-body">
-                                    <div class="col-md-12 d-flex order-md-2 order-1">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="pe-1">Harga Beli</td>
-                                                    <td><span class="fw-bold">: Rp.
-                                                            {{ number_format($pembiayaan->nominal_pembiayaan) }}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Harga Jual</td>
-                                                    <td>: Rp. {{ number_format($harga_jual) }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Jangka Waktu</td>
-                                                    <td>: {{ $tenor }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Equivalen Rate</td>
-                                                    <td>: {{ $pembiayaan->rate }} %</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1">Angsuran</td>
-                                                    <td>: Rp. {{ number_format($angsuran1) }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pe-1 mt-1">DSR</td>
-                                                    <td><span class="fw-bold">:
-                                                            {{ $nilai_dsr1 }}
-                                                            %</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div> --}}
-                        </div>
-                    </div>
-                </div>
 
 
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
