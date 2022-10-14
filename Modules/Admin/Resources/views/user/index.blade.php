@@ -85,9 +85,9 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center"></th>
-                                            <th style="text-align: center">No</th>
-                                            <th style="text-align: center">Nama</th>
-                                            <th style="text-align: center">Email</th>
+                                            <th style="text-align: center">ID User</th>
+                                            <th>Nama</th>
+                                            <th>Email</th>
                                             <th style="text-align: center">Role</th>
                                             <th style="text-align: center">Divisi</th>
                                             <th style="text-align: center">Jabatan</th>
@@ -96,15 +96,48 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($users as $user)
-
                                             <tr>
                                                 <td style="text-align: center"></td>
                                                 <td style="text-align: center">{{ $user->id }}</td>
-                                                <td style="text-align: center">{{ $user->name }}</td>
-                                                <td style="text-align: center">{{ $user->email }}</td>
-                                                <td style="text-align: center">{{ $user->role_id }}</td>
-                                                <td style="text-align: center">{{ $user->divisi_id }}</td>
-                                                <td style="text-align: center">{{ $user->jabatan_id }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td style="text-align: center">
+                                                    @if ($user->role_id == 1)
+                                                        Admin
+                                                    @elseif ($user->role_id == 2)
+                                                        User
+                                                    @endif
+                                                </td>
+                                                <td style="text-align: center">
+                                                    @if ($user->divisi_id == 0)
+                                                        Admin
+                                                    @elseif ($user->divisi_id == 1)
+                                                        SKPD
+                                                    @elseif ($user->divisi_id == 2)
+                                                        Pasar
+                                                    @elseif ($user->divisi_id == 3)
+                                                        UMKM
+                                                    @elseif ($user->divisi_id == 4)
+                                                        PPR
+                                                    @else
+                                                    @endif
+                                                </td>
+                                                <td style="text-align: center">
+                                                    @if ($user->jabatan_id == 0)
+                                                        Admin
+                                                    @elseif ($user->jabatan_id == 1)
+                                                        Staff/AO
+                                                    @elseif ($user->jabatan_id == 2)
+                                                        Kabag
+                                                    @elseif ($user->jabatan_id == 3)
+                                                        Analis
+                                                    @elseif ($user->jabatan_id == 4)
+                                                        Direktur Bisnis
+                                                    @elseif ($user->jabatan_id == 5)
+                                                        Direktur Utama
+                                                    @else
+                                                    @endif
+                                                </td>
                                                 <td style="text-align: center">
                                                     <div class="dropdown">
                                                         <button type="button"
@@ -113,21 +146,21 @@
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item"
-                                                                href="/admin/user/{{ $user->id }}/edit">
+                                                            <a class="dropdown-item" href="/admin/user/{{ $user->id }}">
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
-                                                            <a class="dropdown-item" href="">
-                                                                <i onclick="event.preventDefault(); document.getElementById('delete_user').submit();"
-                                                                    data-feather="trash" class="me-50"></i>
+                                                            <a class="dropdown-item"
+                                                                onclick="event.preventDefault(); document.getElementById('delete').submit();">
+                                                                <i data-feather="trash" class="me-50"></i>
                                                                 <span>Delete</span>
-                                                                <form id="delete_user" action="/admin/user/{{ $user->id }}" class="d-none"
-                                                                    method="POST">
-                                                                    @method('delete')
-                                                                    @csrf
-                                                                </form>
                                                             </a>
+                                                            <form id="delete"
+                                                                action="/admin/user/{{ $user->id }}" class="d-none"
+                                                                method="POST">
+                                                                @method('delete')
+                                                                @csrf
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </td>
