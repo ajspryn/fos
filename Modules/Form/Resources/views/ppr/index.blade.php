@@ -1293,8 +1293,7 @@
                                                 <select class="select2 w-100" name="form_pribadi_istri_suami_pendidikan"
                                                     id="form_pribadi_istri_suami_pendidikan"
                                                     data-placeholder="Pilih
-                                                    Pendidikan"
-                                                    required>
+                                                    Pendidikan">
                                                     <option value=""></option>
                                                     <option value="SD">SD</option>
                                                     <option value="SLTP">SLTP</option>
@@ -1647,7 +1646,7 @@
                                             </small>Bidang Usaha Lainnya</label>
                                         <input type="text" name="form_pekerjaan_pemohon_bidang_usaha_lain"
                                             id="pemohonBidangUsahaLain" class="form-control"
-                                            placeholder="Bidang Usaha Lainnya" required />
+                                            placeholder="Bidang Usaha Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_pemohon_jenis_pekerjaan"><small
@@ -1687,7 +1686,7 @@
                                             </small>Jenis Pekerjaan Lainnya</label>
                                         <input type="text" name="form_pekerjaan_pemohon_jenis_pekerjaan_lain"
                                             id="pemohonJenisPekerjaanLain" class="form-control"
-                                            placeholder="Jenis Pekerjaan Lainnya" required />
+                                            placeholder="Jenis Pekerjaan Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_pemohon_jml_karyawan"><small
@@ -2014,7 +2013,7 @@
                                             </small>Bidang Usaha Lainnya</label>
                                         <input type="text" name="form_pekerjaan_istri_suami_bidang_usaha_lain"
                                             id="pasanganBidangUsahaLain" class="form-control"
-                                            placeholder="Bidang Usaha Lainnya" required />
+                                            placeholder="Bidang Usaha Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_istri_suami_jenis_pekerjaan">Jenis
@@ -2053,7 +2052,7 @@
                                             </small>Jenis Pekerjaan Lainnya</label>
                                         <input type="text" name="form_pekerjaan_istri_suami_jenis_pekerjaan_lain"
                                             id="pasanganJenisPekerjaanLain" class="form-control"
-                                            placeholder="Jenis Pekerjaan Lainnya" required />
+                                            placeholder="Jenis Pekerjaan Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_istri_suami_jml_karyawan">Jumlah

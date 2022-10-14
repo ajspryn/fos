@@ -307,8 +307,12 @@ foreach ($pprs as $ppr) {
                     <li class="{{ Request::is('kabag/ppr/komite') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/kabag/ppr/komite"><i
                                 data-feather="clipboard"></i><span class="menu-item text-truncate"
-                                data-i18n="Security">Komite</span><span
-                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteppr }}</span></a>
+                                data-i18n="Security">Komite</span>
+                            @if ($komiteppr > 0)
+                                <span
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteppr }}</span>
+                            @endif
+                        </a>
                     </li>
                     <li class="{{ Request::is('kabag/ppr/proposal') ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="/kabag/ppr/proposal"><i

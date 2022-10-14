@@ -21,6 +21,7 @@ $proposalppr = Modules\Form\Entities\FormPprPembiayaan::select()
 
 $komiteppr = Modules\Ppr\Entities\PprPembiayaanHistory::select()
     ->latest()
+    ->where('status_id', '!=', 1)
     ->where('status_id', '<', 9)
     ->groupBy('form_ppr_pembiayaan_id')
     ->count();

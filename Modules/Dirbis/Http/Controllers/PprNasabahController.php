@@ -54,7 +54,7 @@ class PprNasabahController extends Controller
         $nasabah = FormPprDataPribadi::select()->where('id', $id)->get()->first();
         $pekerjaan_nasabah = FormPprDataPekerjaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
 
-        return view('analis::ppr.nasabah.lihat', [
+        return view('dirbis::ppr.nasabah.lihat', [
             'title' => 'Nasabah',
             'pembiayaan' => FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first(),
             'nasabah' => $nasabah,

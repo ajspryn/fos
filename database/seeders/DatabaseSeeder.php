@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        //Users
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'Admin',
@@ -78,6 +79,38 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('staff123'),
         ]);
 
+        //Divisi
+        DB::table('divisis')->insert([
+            'id' => 1,
+            'divisi_id' => 0,
+            'nama_divisi' => 'Admin',
+        ]);
+
+        DB::table('divisis')->insert([
+            'id' => 2,
+            'divisi_id' => 1,
+            'nama_divisi' => 'SKPD',
+        ]);
+
+        DB::table('divisis')->insert([
+            'id' => 3,
+            'divisi_id' => 2,
+            'nama_divisi' => 'Pasar',
+        ]);
+
+        DB::table('divisis')->insert([
+            'id' => 4,
+            'divisi_id' => 3,
+            'nama_divisi' => 'UMKM',
+        ]);
+
+        DB::table('divisis')->insert([
+            'id' => 5,
+            'divisi_id' => 4,
+            'nama_divisi' => 'PPR',
+        ]);
+
+        //Roles
         DB::table('roles')->insert([
             'user_id' => 1,
             'role_id' => 1,
