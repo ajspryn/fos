@@ -7,7 +7,7 @@
             ->where('status', 'Selesai Akad')
             ->get()
             ->count();
-
+        
         $pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
         $proposalppr = 0;
         foreach ($pprs as $ppr) {
@@ -16,28 +16,28 @@
                 ->latest()
                 ->get()
                 ->first();
-
+        
             $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
                 ->where('id', $history->form_ppr_pembiayaan_id)
                 ->get()
                 ->first();
-
+        
             if ($history->status_id == 3 && $history->jabatan_id == 1) {
                 $proposalppr++;
             }
         }
-
+        
         $ditolak = Modules\Ppr\Entities\PprPembiayaanHistory::select()
             ->where('status_id', 6)
             ->get()
             ->count();
-
+        
         $komites = Modules\Form\Entities\FormPprPembiayaan::select()
             ->where('user_id', Auth::user()->id)
             ->whereNotNull('dilengkapi_ao')
             ->latest()
             ->get();
-
+        
         $review = 0;
         foreach ($komites as $komite) {
             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
@@ -45,19 +45,19 @@
                 ->latest()
                 ->get()
                 ->first();
-
+        
             $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
                 ->where('id', $history->form_ppr_pembiayaan_id)
                 ->get()
                 ->first();
-
+        
             if ($history->status_id == 7) {
                 $review++;
             }
         }
-
+        
         $pprPipelines = Modules\Form\Entities\FormPprPembiayaan::select()->get();
-
+        
         $pipeline = 0;
         foreach ($pprPipelines as $pprPipeline) {
             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
@@ -65,7 +65,7 @@
                 ->latest()
                 ->get()
                 ->first();
-
+        
             $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
                 ->where('id', $history->form_ppr_pembiayaan_id)
                 ->get()
@@ -76,20 +76,20 @@
                 }
             }
         }
-
+        
         $batalAkad = Modules\Akad\Entities\Pembiayaan::select()
             ->where('segmen', 'PPR')
             ->where('status', 'Akad Batal')
             ->get()
             ->count();
-
+        
         //Total Disburse & Margin
         $jmlDisburse = 0;
         $jmlMargin = 0;
         foreach ($proposalSelesais as $proposalSelesai) {
             $plafond = $proposalSelesai->form_permohonan_nilai_ppr_dimohon;
             $jmlDisburse = $jmlDisburse + $plafond;
-
+        
             $margin = $proposalSelesai->form_permohonan_jml_margin;
             $jmlMargin = $jmlMargin + $margin;
         }
@@ -166,7 +166,6 @@
                                                             Batal
                                                             Akad</span>
                                                     </h4>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -224,7 +223,7 @@
                         <!--/ Statistics Card -->
                     </div>
 
-                    <div class="row">
+                    <div class="row match-height">
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="card text-center">
                                 <div class="card-body">

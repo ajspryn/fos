@@ -49,7 +49,7 @@
                                 <thead>
                                     <tr>
                                         <th class="midCenter" style="vertical-align: middle;"></th>
-                                        <th class="midCenter" style="vertical-align: middle;">No</th>
+                                        <th class="midCenter" style="vertical-align: middle;">No.</th>
                                         <th class="midCenter" style="vertical-align: middle;">Tanggal Pengajuan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jenis Nasabah</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nama Nasabah</th>
@@ -64,13 +64,13 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
-                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $proposal->id)
-                                                ->latest()
-                                                ->first();
-
                                             $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                                                ->where('id', $history->form_ppr_pembiayaan_id)
+                                                ->where('id', $proposal->form_ppr_pembiayaan_id)
                                                 ->get()
+                                                ->first();
+                                            
+                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $proposal_ppr->id)
+                                                ->latest()
                                                 ->first();
                                         @endphp
                                         @if ($history->status_id == 5 || $history->status_id == 4 || $history->status_id >= 9)
@@ -135,7 +135,12 @@
                                     @endforeach
                                     @foreach ($proposals as $forCatatanModal)
                                         @php
-                                            $historyCatatan = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $forCatatanModal->id)
+                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                ->where('id', $forCatatanModal->form_ppr_pembiayaan_id)
+                                                ->get()
+                                                ->first();
+                                            
+                                            $historyCatatan = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->latest()
                                                 ->first();
                                         @endphp
