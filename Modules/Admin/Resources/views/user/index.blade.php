@@ -85,7 +85,7 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center"></th>
-                                            <th style="text-align: center">No</th>
+                                            <th style="text-align: center">No.</th>
                                             <th style="text-align: center">Nama</th>
                                             <th style="text-align: center">Email</th>
                                             <th style="text-align: center">Role</th>
@@ -96,7 +96,6 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($users as $user)
-
                                             <tr>
                                                 <td style="text-align: center"></td>
                                                 <td style="text-align: center">{{ $user->id }}</td>
@@ -122,8 +121,9 @@
                                                                 <i onclick="event.preventDefault(); document.getElementById('delete_user').submit();"
                                                                     data-feather="trash" class="me-50"></i>
                                                                 <span>Delete</span>
-                                                                <form id="delete_user" action="/admin/user/{{ $user->id }}" class="d-none"
-                                                                    method="POST">
+                                                                <form id="delete_user"
+                                                                    action="/admin/user/{{ $user->id }}"
+                                                                    class="d-none" method="POST">
                                                                     @method('delete')
                                                                     @csrf
                                                                 </form>
