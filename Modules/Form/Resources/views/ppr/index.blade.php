@@ -646,7 +646,6 @@
                                             <option value="Rusun">Rusun</option>
                                             <option value="Ruko">Ruko</option>
                                             <option value="Rukan">Rukan</option>
-                                            <option value="Kios">Kios</option>
                                         </select>
                                     </div>
                                     <div class="mb-1 col-md-6">
@@ -1211,12 +1210,14 @@
 
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
-                                                    for="form_pribadi_pemohon_alamat_korespondensi">Alamat
+                                                    for="form_pribadi_pemohon_alamat_korespondensi"><small
+                                                        class="text-danger">*
+                                                    </small>Alamat
                                                     Korespondensi</label>
                                                 <select class="select2 w-100"
                                                     name="form_pribadi_pemohon_alamat_korespondensi"
                                                     id="form_pribadi_pemohon_alamat_korespondensi"
-                                                    data-placeholder="Pilih Alamat Korespondensi">
+                                                    data-placeholder="Pilih Alamat Korespondensi" required>
                                                     <option value=""></option>
                                                     <option value="Alamat Sesuai KTP">Alamat Sesuai KTP</option>
                                                     <option value="Alamat Tempat Tinggal">Alamat Tempat Tinggal</option>
@@ -1357,9 +1358,6 @@
                                                         <option value="Sdr. Kandung">Sdr. Kandung</option>
                                                         <option value="Anak">Anak</option>
                                                         <option value="Ipar">Ipar</option>
-                                                        <option value="Sdr. Kandung dari Orangtua">Sdr. Kandung dari
-                                                            Orangtua
-                                                        </option>
                                                         <option value="Lainnya">Lainnya</option>
                                                     </select>
                                                 </div>
@@ -2436,7 +2434,6 @@
                                             <option value="Rusun">Rusun</option>
                                             <option value="Ruko">Ruko</option>
                                             <option value="Rukan">Rukan</option>
-                                            <option value="Kios">Kios</option>
                                             <option value="Lain-lain">Lain-lain</option>
                                         </select>
                                     </div>
@@ -2658,9 +2655,9 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_agunan_1_no_imb"><small
                                                 class="text-danger">*
-                                            </small>Nomor IMB</label>
+                                            </small>Nomor IMB/PBG</label>
                                         <input type="text" name="form_agunan_1_no_imb" id="form_agunan_1_no_imb"
-                                            class="form-control" placeholder="Masukkan Nomor IMB" required />
+                                            class="form-control" placeholder="Masukkan Nomor IMB/PBG" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_agunan_1_peruntukan_bangunan"><small
@@ -2739,7 +2736,6 @@
                                             <option value="Rusun">Rusun</option>
                                             <option value="Ruko">Ruko</option>
                                             <option value="Rukan">Rukan</option>
-                                            <option value="Kios">Kios</option>
                                             <option value="Lain-lain">Lain-lain</option>
                                         </select>
                                     </div>
@@ -2937,9 +2933,9 @@
                                             placeholder="YYYY-MM-DD" />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="form_agunan_2_no_imb">Nomor IMB</label>
+                                        <label class="form-label" for="form_agunan_2_no_imb">Nomor IMB/PBG</label>
                                         <input type="text" name="form_agunan_2_no_imb" id="form_agunan_2_no_imb"
-                                            class="form-control" placeholder="Masukkan Nomor IMB" />
+                                            class="form-control" placeholder="Masukkan Nomor IMB/PBG" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_agunan_2_peruntukan_bangunan">Peruntukan
@@ -3200,11 +3196,7 @@
                                                                         <option value="Rusun">Rusun</option>
                                                                         <option value="Ruko">Ruko</option>
                                                                         <option value="Rukan">Rukan</option>
-                                                                        <option value="Kios">Kios</option>
                                                                         <option value="Lain-lain">Lain-lain</option>
-
-                                                                        {{-- if Lainnya is selected then create new option --}}
-
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -4284,7 +4276,7 @@
                                                 </td>
                                                 <td style="vertical-align: middle;">
                                                     Dokumen Kepemilikan Agunan (Foto Copy Sertifikat Tanah dan
-                                                    IMB)
+                                                    IMB/PBG)
                                                 </td>
                                                 <td style="vertical-align: middle;">
                                                     <center>✓</center>
