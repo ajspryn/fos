@@ -25,51 +25,39 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $role=Role::select()->where('user_id',Auth::user()->id)->get()->first();
-        $url='/';
+        $role = Role::select()->where('user_id', Auth::user()->id)->get()->first();
+        $url = '/';
 
-        if ($role){
-            if ($role->divisi_id==0) {
-                if ($role->jabatan_id==0){
-                    $url='/admin';
+        if ($role) {
+            if ($role->divisi_id == 0) {
+                if ($role->jabatan_id == 0) {
+                    $url = '/admin';
+                } elseif ($role->jabatan_id == 1) {
+                    $url = '/staff';
+                } elseif ($role->jabatan_id == 2) {
+                    $url = '/kabag';
+                } elseif ($role->jabatan_id == 3) {
+                    $url = '/analis';
+                } elseif ($role->jabatan_id == 4) {
+                    $url = '/dirbis';
+                } elseif ($role->jabatan_id == 5) {
+                    $url = '/dirut';
+                } else {
+                    $url = '/';
                 }
-                elseif ($role->jabatan_id==1){
-                    $url='/staff';
-                }
-                elseif ($role->jabatan_id==2){
-                    $url='/kabag';
-                }
-                elseif ($role->jabatan_id==3){
-                    $url='/analis';
-                }
-                elseif ($role->jabatan_id==4){
-                    $url='/dirbis';
-                }
-                else{
-                    $url='/';
-                }
+            } elseif ($role->divisi_id == 1) {
+                $url = '/skpd';
+            } elseif ($role->divisi_id == 2) {
+                $url = '/pasar';
+            } elseif ($role->divisi_id == 3) {
+                $url = '/umkm';
+            } elseif ($role->divisi_id == 4) {
+                $url = '/ppr';
+            } elseif ($role->divisi_id == 5) {
+                $url = '/staff';
+            } else {
+                $url = '/';
             }
-            elseif ($role->divisi_id==1) {
-                    $url='/skpd';
-            }
-            elseif ($role->divisi_id==2) {
-                    $url='/pasar';
-            }
-            elseif ($role->divisi_id==3) {
-                    $url='/umkm';
-            }
-            elseif ($role->divisi_id==4) {
-                    $url='/ppr';
-            }
-            elseif ($role->divisi_id==5) {
-                    $url='/staff';
-            }
-            else{
-                    $url='/';
-
-            }
-
-
         }
 
 
