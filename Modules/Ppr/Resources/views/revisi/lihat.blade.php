@@ -284,6 +284,20 @@
             overflow: hidden;
         }
 
+        #ifFotoPasanganPemohon {
+            width: 50%;
+            height: 63px;
+            margin-bottom: 13px;
+            transition: all 0.5s;
+        }
+
+        #ifFotoPasanganPemohon.hide {
+            margin-top: -15px;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
         #ifPemohonBidangUsahaLain {
             width: 50%;
             height: 40px;
@@ -847,7 +861,7 @@
                                                     id="formPermohonanJmlMargin"
                                                     class="form-control numeral-mask4 {{ $pembiayaan->form_permohonan_jenis_akad_pembayaran == 'Murabahah' ? 'show' : 'hide' }}"
                                                     placeholder="Masukkan Jumlah Margin"
-                                                    value="{{ $pembiayaan->form_permohonan_jml_margin }}" required />
+                                                    value="{{ $pembiayaan->form_permohonan_jml_margin }}" />
                                             </div>
                                             <div class="mb-1 col-md-6 {{ $pembiayaan->form_permohonan_jenis_akad_pembayaran == 'IMBT' ? 'show' : 'hide' }}"
                                                 id="ifImbt">
@@ -858,7 +872,7 @@
                                                     id="formPermohonanJmlSewa"
                                                     class="form-control numeral-mask5 {{ $pembiayaan->form_permohonan_jenis_akad_pembayaran == 'IMBT' ? 'show' : 'hide' }}"
                                                     placeholder="Masukkan Jumlah Sewa"
-                                                    value="{{ $pembiayaan->form_permohonan_jml_sewa }}" required />
+                                                    value="{{ $pembiayaan->form_permohonan_jml_sewa }}" />
                                             </div>
                                             <div class="mb-1 col-md-6 {{ $pembiayaan->form_permohonan_jenis_akad_pembayaran == 'MMQ' ? 'show' : 'hide' }}"
                                                 id="ifMmq">
@@ -870,7 +884,7 @@
                                                     id="formPermohonanJmlBagiHasil"
                                                     class="form-control numeral-mask6 {{ $pembiayaan->form_permohonan_jenis_akad_pembayaran == 'MMQ' ? 'show' : 'hide' }}"
                                                     placeholder="Masukkan Jumlah Bagi"
-                                                    value="{{ $pembiayaan->form_permohonan_jml_bagi_hasil }}" required />
+                                                    value="{{ $pembiayaan->form_permohonan_jml_bagi_hasil }}" />
                                             </div>
                                             <div class="mb-1 col-md-6 {{ $pembiayaan->form_permohonan_jenis_akad_pembayaran == 'Akad Lainnya' ? 'show' : 'hide' }}"
                                                 id="ifAkadLain">
@@ -882,7 +896,7 @@
                                                     id="formPermohonanJmlMarginAkadLain"
                                                     class="form-control numeral-mask105 {{ $pembiayaan->form_permohonan_jenis_akad_pembayaran == 'Akad Lainnya' ? 'show' : 'hide' }}"
                                                     placeholder="Masukkan Jumlah Margin (Akad Lain)"
-                                                    value="{{ $pembiayaan->form_permohonan_jml_margin }}" required />
+                                                    value="{{ $pembiayaan->form_permohonan_jml_margin }}" />
                                             </div>
 
                                             <div class="mb-1 col-md-6">
@@ -910,9 +924,6 @@
                                                     <option
                                                         {{ $pembiayaan->form_permohonan_peruntukan_ppr == 'Rukan' ? 'selected' : '' }}
                                                         value="Rukan">Rukan</option>
-                                                    <option
-                                                        {{ $pembiayaan->form_permohonan_peruntukan_ppr == 'Kios' ? 'selected' : '' }}
-                                                        value="Kios">Kios</option>
                                                 </select>
                                             </div>
 
@@ -1023,7 +1034,7 @@
                                                     </small>Berlaku s/d.</label>
                                                 <input type="date" id="form_pribadi_pemohon_no_ktp_berlaku_sd"
                                                     class="form-control flatpickr-basic"
-                                                    name="form_pribadi_pemohon_no_ktp_berlaku_sd" placeholder="YYYY-MM-DDYY" />
+                                                    name="form_pribadi_pemohon_no_ktp_berlaku_sd" placeholder="YYYY-MM-DD" />
                                             </div> --}}
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_pribadi_pemohon_jenis_kelamin"><small
@@ -1062,7 +1073,7 @@
                                                     </small>Tanggal Lahir</label>
                                                 <input type="date" id="form_pribadi_pemohon_tanggal_lahir"
                                                     class="form-control flatpickr-basic"
-                                                    name="form_pribadi_pemohon_tanggal_lahir" placeholder="YYYY-MM-DDYY"
+                                                    name="form_pribadi_pemohon_tanggal_lahir" placeholder="YYYY-MM-DD"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir }}" />
                                             </div>
                                             <div class="mb-1 col-md-6">
@@ -1084,7 +1095,7 @@
                                                     Pendidikan"
                                                     required>
                                                     <option value=""></option>
-                                                    <option>
+                                                    <option
                                                         {{ $pembiayaan->pemohon->form_pribadi_pemohon_pendidikan == 'SD' ? 'selected' : '' }}
                                                         value="SD">SD</option>
                                                     <option
@@ -1325,7 +1336,7 @@
                                                                             name="form_pribadi_pemohon_alamat_ktp_kode_pos"
                                                                             id="form_pribadi_pemohon_alamat_ktp_kode_pos"
                                                                             aria-describedby="form_pribadi_pemohon_alamat_ktp_kode_pos"
-                                                                            placeholder="16XXXX"
+                                                                            placeholder="16XXX"
                                                                             value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_alamat_ktp_kode_pos }}" />
                                                                     </div>
                                                                 </div>
@@ -1457,7 +1468,7 @@
                                                                                 name="form_pribadi_pemohon_alamat_domisili_kode_pos"
                                                                                 id="form_pribadi_pemohon_alamat_domisili_kode_pos"
                                                                                 aria-describedby="form_pribadi_pemohon_alamat_domisili_kode_pos"
-                                                                                placeholder="16XXXX"
+                                                                                placeholder="16XXX"
                                                                                 value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_alamat_domisili_kode_pos }}" />
                                                                         </div>
                                                                     </div>
@@ -1516,7 +1527,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1526,7 +1537,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1596,8 +1607,7 @@
                                                                                 id="formPribadiPemohonStatusTempatTinggalDijaminkanYa"
                                                                                 aria-describedby="formPribadiPemohonStatusTempatTinggalDijaminkanYa"
                                                                                 placeholder="Dijaminkan Kepada"
-                                                                                value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada }}"
-                                                                                required />
+                                                                                value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal_dijaminkan_ya_kepada }}" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1614,7 +1624,7 @@
                                                         <select class="select2 w-100"
                                                             name="form_pribadi_pemohon_alamat_korespondensi"
                                                             id="form_pribadi_pemohon_alamat_korespondensi"
-                                                            data-placeholder="Pilih Alamat Korespondensi">
+                                                            data-placeholder="Pilih Alamat Korespondensi" required>
                                                             <option value=""></option>
                                                             <option
                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_alamat_korespondensi == 'Alamat Sesuai KTP' ? 'selected' : '' }}
@@ -1781,7 +1791,7 @@
                                                             id="form_pribadi_istri_suami_tanggal_lahir"
                                                             class="form-control flatpickr-basic"
                                                             name="form_pribadi_istri_suami_tanggal_lahir"
-                                                            placeholder="YYYY-MM-DDYY"
+                                                            placeholder="YYYY-MM-DD"
                                                             value="{{ $pembiayaan->pemohon->form_pribadi_istri_suami_tanggal_lahir }}" />
                                                     </div>
                                                     <div class="mb-1 col-md-6">
@@ -1948,11 +1958,6 @@
                                                                     {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Ipar' ? 'selected' : '' }}
                                                                     value="Ipar">Ipar</option>
                                                                 <option
-                                                                    {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Sdr. Kandung dari Orangtua' ? 'selected' : '' }}
-                                                                    value="Sdr. Kandung dari Orangtua">Sdr. Kandung dari
-                                                                    Orangtua
-                                                                </option>
-                                                                <option
                                                                     {{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan == 'Lainnya' ? 'selected' : '' }}
                                                                     value="Lainnya">Lainnya</option>
                                                             </select>
@@ -1966,8 +1971,7 @@
                                                                 name="form_pribadi_keluarga_terdekat_hubungan_lain"
                                                                 id="hubunganLainnya" class="form-control"
                                                                 placeholder="Hubungan Lainnya"
-                                                                value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan_lain }}"
-                                                                required />
+                                                                value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_hubungan_lain }}" />
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -2106,7 +2110,7 @@
                                                                                     name="form_pribadi_keluarga_terdekat_alamat_kode_pos"
                                                                                     id="form_pribadi_keluarga_terdekat_alamat_kode_pos"
                                                                                     aria-describedby="form_pribadi_keluarga_terdekat_alamat_kode_pos"
-                                                                                    placeholder="16XXXX"
+                                                                                    placeholder="16XXX"
                                                                                     value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_alamat_kode_pos }}"
                                                                                     required />
                                                                             </div>
@@ -2505,7 +2509,7 @@
                                                                         id="form_pekerjaan_pemohon_mulai_bekerja"
                                                                         name="form_pekerjaan_pemohon_mulai_bekerja"
                                                                         aria-describedby="form_pekerjaan_pemohon_mulai_bekerja"
-                                                                        placeholder="YYYY-MM-DDYY"
+                                                                        placeholder="YYYY-MM-DD"
                                                                         value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_mulai_bekerja }}"
                                                                         required />
                                                                 </div>
@@ -3000,7 +3004,7 @@
                                                                         name="form_pekerjaan_istri_suami_mulai_bekerja"
                                                                         id="form_pekerjaan_istri_suami_mulai_bekerja"
                                                                         aria-describedby="form_pekerjaan_istri_suami_mulai_bekerja"
-                                                                        placeholder="YYYY-MM-DDYY"
+                                                                        placeholder="YYYY-MM-DD"
                                                                         value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_mulai_bekerja }}" />
                                                                 </div>
                                                             </div>
@@ -3357,7 +3361,7 @@
                                                     </small>Jenis Agunan</label>
                                                 <select class="select2 w-100" name="form_agunan_1_jenis"
                                                     id="formAgunan1Jenis" onChange="changeJenisAgunan1()"
-                                                    data-placeholder="Pilih Jenis Agunan">
+                                                    data-placeholder="Pilih Jenis Agunan" required>
                                                     <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->agunan->form_agunan_1_jenis == 'Tanah' ? 'selected' : '' }}
@@ -3378,9 +3382,6 @@
                                                         {{ $pembiayaan->agunan->form_agunan_1_jenis == 'Rukan' ? 'selected' : '' }}
                                                         value="Rukan">Rukan</option>
                                                     <option
-                                                        {{ $pembiayaan->agunan->form_agunan_1_jenis == 'Kios' ? 'selected' : '' }}
-                                                        value="Kios">Kios</option>
-                                                    <option
                                                         {{ $pembiayaan->agunan->form_agunan_1_jenis == 'Lain-lain' ? 'selected' : '' }}
                                                         value="Lain-lain">Lain-lain</option>
                                                 </select>
@@ -3393,8 +3394,7 @@
                                                 <input type="text" name="form_agunan_1_jenis_lain"
                                                     id="jenisAgunan1Lain" class="form-control"
                                                     placeholder="Jenis Agunan Lainnya"
-                                                    value="{{ $pembiayaan->agunan->form_agunan_1_jenis_lain }}"
-                                                    required />
+                                                    value="{{ $pembiayaan->agunan->form_agunan_1_jenis_lain }}" />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_agunan_1_nilai_harga_jual"><small
@@ -3541,7 +3541,7 @@
                                                                         name="form_agunan_1_alamat_kode_pos"
                                                                         id="form_agunan_1_alamat_kode_pos"
                                                                         aria-describedby="form_agunan_1_alamat_kode_pos"
-                                                                        placeholder="16XXXX"
+                                                                        placeholder="16XXX"
                                                                         value="{{ $pembiayaan->agunan->form_agunan_1_alamat_kode_pos }}" />
                                                                 </div>
                                                             </div>
@@ -3586,8 +3586,7 @@
                                                                     class="form-control flatpickr-basic"
                                                                     name="form_agunan_1_status_bukti_kepemilikan_tgl_berakhir"
                                                                     placeholder="YYYY-MM-DD"
-                                                                    value="{{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan_tgl_berakhir }}"
-                                                                    required />
+                                                                    value="{{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan_tgl_berakhir }}" />
                                                             </div>
 
                                                             <div class="mb-1 col-md-3 {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan == 'SHGB' ? 'show' : 'hide' }}"
@@ -3599,7 +3598,7 @@
                                                                 <select class="select2 w-100"
                                                                     name="form_agunan_1_status_bukti_kepemilikan_hak"
                                                                     id="statusBuktiHakAgunan1"
-                                                                    data-placholder="Pilih Hak Kepemilikan" required>
+                                                                    data-placholder="Pilih Hak Kepemilikan">
                                                                     <option value=""></option>
                                                                     <option
                                                                         {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan_hak == 'Hak Pakai' ? 'selected' : '' }}
@@ -3621,7 +3620,8 @@
                                                 <input type="text" name="form_agunan_1_no_sertifikat"
                                                     id="form_agunan_1_no_sertifikat" class="form-control"
                                                     placeholder="Masukkan Nomor Sertifikat"
-                                                    value="{{ $pembiayaan->agunan->form_agunan_1_no_sertifikat }}" />
+                                                    value="{{ $pembiayaan->agunan->form_agunan_1_no_sertifikat }}"
+                                                    required />
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label"
@@ -3638,10 +3638,10 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="form_agunan_1_no_imb"><small
                                                         class="text-danger">*
-                                                    </small>Nomor IMB</label>
+                                                    </small>Nomor IMB/PBG</label>
                                                 <input type="text" name="form_agunan_1_no_imb"
                                                     id="form_agunan_1_no_imb" class="form-control"
-                                                    placeholder="Masukkan Nomor IMB"
+                                                    placeholder="Masukkan Nomor IMB/PBG"
                                                     value="{{ $pembiayaan->agunan->form_agunan_1_no_imb }}" required />
                                             </div>
                                             <div class="mb-1 col-md-6">
@@ -3750,9 +3750,6 @@
                                                     <option
                                                         {{ $pembiayaan->agunan->form_agunan_2_jenis == 'Rukan' ? 'selected' : '' }}
                                                         value="Rukan">Rukan</option>
-                                                    <option
-                                                        {{ $pembiayaan->agunan->form_agunan_2_jenis == 'Kios' ? 'selected' : '' }}
-                                                        value="Kios">Kios</option>
                                                     <option
                                                         {{ $pembiayaan->agunan->form_agunan_2_jenis == 'Lain-lain' ? 'selected' : '' }}
                                                         value="Lain-lain">Lain-lain</option>
@@ -3980,14 +3977,15 @@
                                                 <input type="date" id="form_agunan_2_no_sertifikat_tgl_penerbitan"
                                                     class="form-control flatpickr-basic"
                                                     name="form_agunan_2_no_sertifikat_tgl_penerbitan"
-                                                    placeholder="YYYY-MM-DDYY"
+                                                    placeholder="YYYY-MM-DD"
                                                     value="{{ $pembiayaan->agunan->form_agunan_2_no_sertifikat_tgl_penerbitan }}" />
                                             </div>
                                             <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="form_agunan_2_no_imb">Nomor IMB</label>
+                                                <label class="form-label" for="form_agunan_2_no_imb">Nomor
+                                                    IMB/PBG</label>
                                                 <input type="text" name="form_agunan_2_no_imb"
                                                     id="form_agunan_2_no_imb" class="form-control"
-                                                    placeholder="Masukkan Nomor IMB"
+                                                    placeholder="Masukkan Nomor IMB/PBG"
                                                     value="{{ $pembiayaan->agunan->form_agunan_2_no_imb }}" />
                                             </div>
                                             <div class="mb-1 col-md-6">
@@ -4193,7 +4191,7 @@
                                                                                 id="form_kekayaan_simpanan_saldo_per_tanggal"
                                                                                 class="form-control flatpickr-basic"
                                                                                 name="form_kekayaan_simpanan_saldo_per_tanggal"
-                                                                                placeholder="YYYY-MM-DDYY"
+                                                                                placeholder="YYYY-MM-DD"
                                                                                 value="{{ $kekayaan_simpanan->form_kekayaan_simpanan_saldo_per_tanggal }}" />
                                                                         </div>
 
@@ -4409,9 +4407,6 @@
                                                                                     {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Rukan' ? 'selected' : '' }}
                                                                                     value="Rukan">Rukan</option>
                                                                                 <option
-                                                                                    {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Kios' ? 'selected' : '' }}
-                                                                                    value="Kios">Kios</option>
-                                                                                <option
                                                                                     {{ $kekayaan_tanah_bangunan->form_kekayaan_tanah_bangunan_jenis == 'Lain-lain' ? 'selected' : '' }}
                                                                                     value="Lain-lain">Lain-lain
                                                                                 </option>
@@ -4529,7 +4524,6 @@
                                                                     <option value="Rusun">Rusun</option>
                                                                     <option value="Ruko">Ruko</option>
                                                                     <option value="Rukan">Rukan</option>
-                                                                    <option value="Kios">Kios</option>
                                                                     <option value="Lain-lain">Lain-lain
                                                                     </option>
                                                                 </select>
@@ -4795,7 +4789,7 @@
                                                             <input type="date" id="form_kekayaan_saham_per_tanggal"
                                                                 class="form-control flatpickr-basic"
                                                                 name="form_kekayaan_saham_per_tanggal"
-                                                                placeholder="YYYY-MM-DDYY"
+                                                                placeholder="YYYY-MM-DD"
                                                                 value="{{ $kekayaan_saham->form_kekayaan_saham_per_tanggal }}" />
                                                         </div>
 
@@ -4856,7 +4850,7 @@
                                                     Tanggal</label>
                                                 <input type="date" id="form_kekayaan_saham_per_tanggal"
                                                     class="form-control flatpickr-basic"
-                                                    name="form_kekayaan_saham_per_tanggal" placeholder="YYYY-MM-DDYY" />
+                                                    name="form_kekayaan_saham_per_tanggal" placeholder="YYYY-MM-DD" />
                                             </div>
 
                                             <div class="mb-1 col-md-3">
@@ -5012,6 +5006,7 @@
                                     <div data-repeater-item>
                                         <div class="row d-flex align-items-end">
                                             <div class="col-md-2 col-6">
+
                                                 <div class="mb-1">
                                                     <label class="form-label" for="form_pinjaman_nama_bank">Nama
                                                         Bank</label>
@@ -5916,49 +5911,40 @@
             <small>Upload lampiran dengan format PDF</small>
             <hr />
         </div>
-        {{-- @if ($pembiayaan->dilengkapi_ao == 'Telah dilengkapi')
-            <br />
-            <br />
-            <center>
-                <h3 class="text-success">Lampiran telah diupload <i data-feather="check-circle"
-                        class="font-medium-3"></i>
-                </h3>
-            </center> --}}
-        {{-- @else --}}
         <div class="row mt-2">
             <div class="mb-1 col-md-4">
                 <button type="button" class="btn btn-md btn-primary w-100" data-bs-toggle="modal"
-                    data-bs-target="#dokumenPemohon">
+                    data-bs-target="#modalDokumenPemohon">
                     Dokumen Pemohon
                 </button>
             </div>
             <div class="mb-1 col-md-4">
                 <button type="button" class="btn btn-md btn-primary w-100" data-bs-toggle="modal"
-                    data-bs-target="#dokumenWawancara">
+                    data-bs-target="#modalDokumenWawancara">
                     Dokumen Hasil Wawancara
                 </button>
             </div>
             <div class="mb-1 col-md-4">
                 <button type="button" class="btn btn-md btn-primary w-100" data-bs-toggle="modal"
-                    data-bs-target="#dokumenAgunan">
+                    data-bs-target="#modalDokumenAgunan">
                     Dokumen Agunan
                 </button>
             </div>
             <div class="mb-1 col-md-4">
                 <button type="button" class="btn btn-md btn-primary w-100" data-bs-toggle="modal"
-                    data-bs-target="#dokumenOtsAgunan">
+                    data-bs-target="#modalDokumenOtsAgunan">
                     Dokumen OTS Agunan
                 </button>
             </div>
             <div class="mb-1 col-md-4">
                 <button type="button" class="btn btn-md btn-primary w-100" data-bs-toggle="modal"
-                    data-bs-target="#dokumenOtsTempatUsaha">
+                    data-bs-target="#modalDokumenOtsTempatUsaha">
                     Dokumen OTS Tempat Usaha
                 </button>
             </div>
             <div class="mb-1 col-md-4">
                 <button type="button" class="btn btn-md btn-primary w-100" data-bs-toggle="modal"
-                    data-bs-target="#dokumenAppraisalKjpp">
+                    data-bs-target="#modalDokumenAppraisalKjpp">
                     Dokumen Appraisal Agunan KJPP
                 </button>
             </div>
@@ -5982,171 +5968,168 @@
                 <label class="form-label" for="dokumen_pemohon"><small class="text-danger">*
                     </small>Upload Dokumen Pemohon
                 </label>
-                <input type="file" name="dokumen_pemohon" id="dokumenPemohon" class="form-control" required />
+                <input type="file" name="dokumen_pemohon" id="dokumenPemohon" class="form-control" />
             </div>
             <div class="mb-1 col-md-6">
                 <label class="form-label" for="dokumen_agunan"><small class="text-danger">*
                     </small>Upload Dokumen Agunan</label>
-                <input type="file" name="dokumen_agunan" id="dokumenAgunan" class="form-control" required />
+                <input type="file" name="dokumen_agunan" id="dokumenAgunan" class="form-control" />
             </div>
             <div class="mb-1 col-md-6">
                 <label class="form-label" for="ots_agunan"><small class="text-danger">*
                     </small>Upload OTS Agunan
                 </label>
-                <input type="file" name="ots_agunan" id="otsAgunan" class="form-control" required />
+                <input type="file" name="ots_agunan" id="otsAgunan" class="form-control" />
             </div>
             <div class="mb-1 col-md-6">
                 <label class="form-label" for="ots_tempat_usaha"><small class="text-danger">*
                     </small>Upload OTS Tempat
                     Usaha </label>
-                <input type="file" name="ots_tempat_usaha" id="otsTempatUsaha" class="form-control" required />
+                <input type="file" name="ots_tempat_usaha" id="otsTempatUsaha" class="form-control" />
             </div>
             <div class="mb-1 col-md-6">
                 <label class="form-label" for="hasil_wawancara"><small class="text-danger">*
                     </small>Upload Hasil Wawancara
                 </label>
-                <input type="file" name="hasil_wawancara" id="hasilWawancara" class="form-control" required />
+                <input type="file" name="hasil_wawancara" id="hasilWawancara" class="form-control" />
             </div>
             <div class="mb-1 col-md-6">
                 <label class="form-label" for="appraisal_kjpp"><small class="text-danger">*
                     </small>Upload Appraisal KJPP
                 </label>
-                <input type="file" name="appraisal_kjpp" id="appraisalKjpp" class="form-control" required />
+                <input type="file" name="appraisal_kjpp" id="appraisalKjpp" class="form-control" />
             </div>
         </div>
-        <div>
+        <!-- Modal Lampiran -->
 
-            <!-- Modal Lampiran -->
-
-            <!-- Dokumen Pemohon -->
-            <div class="modal fade" id="dokumenPemohon" tabindex="-1" aria-labelledby="addNewCardTitle"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header bg-transparent">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body px-sm-5 mx-50 pb-5">
-                            <h4 class="text-center mb-1" style="margin-top:-40px;">
-                                <strong>Dokumen Pemohon</strong>
-                            </h4>
-                            <iframe src="{{ asset('storage/' . $lampiran->dokumen_pemohon) }}" class="d-block w-100"
-                                height="600"></iframe>
-                        </div>
+        <!-- Dokumen Pemohon -->
+        <div class="modal fade" id="modalDokumenPemohon" tabindex="-1" aria-labelledby="addNewCardTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                        <h4 class="text-center mb-1" style="margin-top:-40px;">
+                            <strong>Dokumen Pemohon</strong>
+                        </h4>
+                        <iframe src="{{ asset('storage/' . $lampiran->dokumen_pemohon) }}" class="d-block w-100"
+                            height="600"></iframe>
                     </div>
                 </div>
             </div>
-            <!--/ Dokumen Pemohon  -->
-
-            <!-- Dokumen Hasil Wawancara -->
-            <div class="modal fade" id="dokumenWawancara" tabindex="-1" aria-labelledby="addNewCardTitle"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header bg-transparent">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body px-sm-5 mx-50 pb-5">
-                            <h4 class="text-center mb-1" style="margin-top:-40px;">
-                                <strong>Dokumen Hasil Wawancara</strong>
-                            </h4>
-                            <iframe src="{{ asset('storage/' . $lampiran->hasil_wawancara) }}" class="d-block w-100"
-                                height="600"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/ Dokumen Hasil Wawancara  -->
-
-            <!-- Dokumen Agunan -->
-            <div class="modal fade" id="dokumenAgunan" tabindex="-1" aria-labelledby="addNewCardTitle"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header bg-transparent">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body px-sm-5 mx-50 pb-5">
-                            <h4 class="text-center mb-1" style="margin-top:-40px;">
-                                <strong>Dokumen Agunan</strong>
-                            </h4>
-                            <iframe src="{{ asset('storage/' . $lampiran->dokumen_agunan) }}" class="d-block w-100"
-                                height="600"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/ Dokumen Agunan  -->
-
-            <!-- Dokumen OTS Agunan -->
-            <div class="modal fade" id="dokumenOtsAgunan" tabindex="-1" aria-labelledby="addNewCardTitle"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header bg-transparent">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body px-sm-5 mx-50 pb-5">
-                            <h4 class="text-center mb-1" style="margin-top:-40px;">
-                                <strong>Dokumen OTS Agunan</strong>
-                            </h4>
-                            <iframe src="{{ asset('storage/' . $lampiran->ots_agunan) }}" class="d-block w-100"
-                                height="600"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/ Dokumen OTS Agunan  -->
-
-            <!-- Dokumen OTS Tempat Usaha -->
-            <div class="modal fade" id="dokumenOtsTempatUsaha" tabindex="-1" aria-labelledby="addNewCardTitle"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header bg-transparent">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body px-sm-5 mx-50 pb-5">
-                            <h4 class="text-center mb-1" style="margin-top:-40px;">
-                                <strong>Dokumen OTS Tempat Usaha</strong>
-                            </h4>
-                            <iframe src="{{ asset('storage/' . $lampiran->ots_tempat_usaha) }}" class="d-block w-100"
-                                height="600"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/ Dokumen OTS Tempat Usaha  -->
-
-            <!-- Dokumen Appraisal Agunan KJPP -->
-            <div class="modal fade" id="dokumenAppraisalKjpp" tabindex="-1" aria-labelledby="addNewCardTitle"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header bg-transparent">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body px-sm-5 mx-50 pb-5">
-                            <h4 class="text-center mb-1" style="margin-top:-40px;">
-                                <strong>Dokumen Appraisal Agunan KJPP</strong>
-                            </h4>
-                            <iframe src="{{ asset('storage/' . $lampiran->appraisal_kjpp) }}" class="d-block w-100"
-                                height="600"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/ Dokumen Appraisal Agunan KJPP  -->
-
-            <!-- /Modal Lampiran -->
-
         </div>
+        <!--/ Dokumen Pemohon  -->
+
+        <!-- Dokumen Hasil Wawancara -->
+        <div class="modal fade" id="modalDokumenWawancara" tabindex="-1" aria-labelledby="addNewCardTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                        <h4 class="text-center mb-1" style="margin-top:-40px;">
+                            <strong>Dokumen Hasil Wawancara</strong>
+                        </h4>
+                        <iframe src="{{ asset('storage/' . $lampiran->hasil_wawancara) }}" class="d-block w-100"
+                            height="600"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Dokumen Hasil Wawancara  -->
+
+        <!-- Dokumen Agunan -->
+        <div class="modal fade" id="modalDokumenAgunan" tabindex="-1" aria-labelledby="addNewCardTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                        <h4 class="text-center mb-1" style="margin-top:-40px;">
+                            <strong>Dokumen Agunan</strong>
+                        </h4>
+                        <iframe src="{{ asset('storage/' . $lampiran->dokumen_agunan) }}" class="d-block w-100"
+                            height="600"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Dokumen Agunan  -->
+
+        <!-- Dokumen OTS Agunan -->
+        <div class="modal fade" id="modalDokumenOtsAgunan" tabindex="-1" aria-labelledby="addNewCardTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                        <h4 class="text-center mb-1" style="margin-top:-40px;">
+                            <strong>Dokumen OTS Agunan</strong>
+                        </h4>
+                        <iframe src="{{ asset('storage/' . $lampiran->ots_agunan) }}" class="d-block w-100"
+                            height="600"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Dokumen OTS Agunan  -->
+
+        <!-- Dokumen OTS Tempat Usaha -->
+        <div class="modal fade" id="modalDokumenOtsTempatUsaha" tabindex="-1" aria-labelledby="addNewCardTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                        <h4 class="text-center mb-1" style="margin-top:-40px;">
+                            <strong>Dokumen OTS Tempat Usaha</strong>
+                        </h4>
+                        <iframe src="{{ asset('storage/' . $lampiran->ots_tempat_usaha) }}" class="d-block w-100"
+                            height="600"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Dokumen OTS Tempat Usaha  -->
+
+        <!-- Dokumen Appraisal Agunan KJPP -->
+        <div class="modal fade" id="modalDokumenAppraisalKjpp" tabindex="-1" aria-labelledby="addNewCardTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                        <h4 class="text-center mb-1" style="margin-top:-40px;">
+                            <strong>Dokumen Appraisal Agunan KJPP</strong>
+                        </h4>
+                        <iframe src="{{ asset('storage/' . $lampiran->appraisal_kjpp) }}" class="d-block w-100"
+                            height="600"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Dokumen Appraisal Agunan KJPP  -->
+
+        <!-- /Modal Lampiran -->
+
         <div class="d-flex justify-content-between mt-3">
             <button class="btn btn-primary btn-prev" type="button">
                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
@@ -6466,7 +6449,7 @@
                         </td>
                         <td style="vertical-align: middle;">
                             Dokumen Kepemilikan Agunan (Foto Copy Sertifikat Tanah dan
-                            IMB)
+                            IMB/PBG)
                         </td>
                         <td style="vertical-align: middle;">
                             <center>✓</center>
@@ -6507,7 +6490,7 @@
                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
             </button>
             @if ($pembiayaan->dilengkapi_ao != 'Telah dilengkapi')
-                <button class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
             @endif
         </div>
     </div>
@@ -9317,7 +9300,7 @@
                                     <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                 </button>
                                 @if ($pembiayaan->form_cl != 'Telah diisi')
-                                    <button class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
                                 @endif
                             </div>
                         </div>
@@ -10979,7 +10962,7 @@
                                                         @foreach ($condition_sharia_nf_kualitas_produk_jasas as $condition_sharia_nf_kualitas_produk_jasa)
                                                             <option
                                                                 value="{{ $condition_sharia_nf_kualitas_produk_jasa->rating * $condition_sharia_nf_kualitas_produk_jasa->bobot }}"
-                                                                {{ $conditionNf->condition_sharia_nf_kualitas_produk_jasa / $condition_sharia_nf_kualitas_produk_jasa->bobot == $condition_sharia_nf_kualitas_produk_jasa->id ? 'selected' : '' }}>
+                                                                {{ $conditionNf->condition_nf_kualitas_produk_jasa / $condition_sharia_nf_kualitas_produk_jasa->bobot == $condition_sharia_nf_kualitas_produk_jasa->id ? 'selected' : '' }}>
                                                                 {{ $condition_sharia_nf_kualitas_produk_jasa->keterangan }}
                                                             </option>
                                                         @endforeach
@@ -11001,7 +10984,7 @@
                                                         @foreach ($condition_sharia_nf_sistem_pembayarans as $condition_sharia_nf_sistem_pembayaran)
                                                             <option
                                                                 value="{{ $condition_sharia_nf_sistem_pembayaran->rating * $condition_sharia_nf_sistem_pembayaran->bobot }}"
-                                                                {{ $conditionNf->condition_sharia_nf_sistem_pembayaran / $condition_sharia_nf_sistem_pembayaran->bobot == $condition_sharia_nf_sistem_pembayaran->id ? 'selected' : '' }}>
+                                                                {{ $conditionNf->condition_nf_sistem_pembayaran / $condition_sharia_nf_sistem_pembayaran->bobot == $condition_sharia_nf_sistem_pembayaran->id ? 'selected' : '' }}>
                                                                 {{ $condition_sharia_nf_sistem_pembayaran->keterangan }}
                                                             </option>
                                                         @endforeach
@@ -11023,7 +11006,7 @@
                                                         @foreach ($condition_sharia_nf_lokasi_usahas as $condition_sharia_nf_lokasi_usaha)
                                                             <option
                                                                 value="{{ $condition_sharia_nf_lokasi_usaha->rating * $condition_sharia_nf_lokasi_usaha->bobot }}"
-                                                                {{ $conditionNf->condition_sharia_nf_lokasi_usaha / $condition_sharia_nf_lokasi_usaha->bobot == $condition_sharia_nf_lokasi_usaha->id ? 'selected' : '' }}>
+                                                                {{ $conditionNf->condition_nf_lokasi_usaha / $condition_sharia_nf_lokasi_usaha->bobot == $condition_sharia_nf_lokasi_usaha->id ? 'selected' : '' }}>
                                                                 {{ $condition_sharia_nf_lokasi_usaha->keterangan }}
                                                             </option>
                                                         @endforeach
@@ -11455,7 +11438,9 @@
                                     <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                     <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                 </button>
-                                <button class="btn btn-success">Submit</button>
+                                @if ($pembiayaan->form_score != 'Telah dinilai')
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                @endif
                             </div>
                         </div>
 
@@ -11616,7 +11601,7 @@
                 <div class="modal-header bg-transparent">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/ppr/proposal/{{ $pembiayaan->id }}" method="POST">
+                <form action="/ppr/revisi/{{ $pembiayaan->id }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <div class="modal-body px-sm-5 mx-50 pb-5">
@@ -11648,7 +11633,7 @@
                 <div class="modal-header bg-transparent">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/ppr/proposal/{{ $pembiayaan->id }}" method="POST">
+                <form action="/ppr/revisi/{{ $pembiayaan->id }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <div class="modal-body px-sm-5 mx-50 pb-5">
@@ -11680,7 +11665,7 @@
                 <div class="modal-header bg-transparent">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/ppr/proposal/{{ $pembiayaan->id }}" method="POST">
+                <form action="/ppr/revisi/{{ $pembiayaan->id }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <div class="modal-body px-sm-5 mx-50 pb-5">
@@ -11712,7 +11697,7 @@
                 <div class="modal-header bg-transparent">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/ppr/proposal/{{ $pembiayaan->id }}" method="POST">
+                <form action="/ppr/revisi/{{ $pembiayaan->id }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <div class="modal-body px-sm-5 mx-50 pb-5">
@@ -12594,6 +12579,18 @@
             document.getElementById("totalPenghasilanBersihPerBulanDummy").value =
                 totalPenghasilanBersihPerBulanDummy;
         }
+
+        // function SumAngsuran(value) {
+        //     var plafond, tenor, margin, angsuran, angsuran1, angsuran2, angsuran3;
+
+        //     plafond = document.getElementById("plafond").value;
+        //     tenor = document.getElementById("tenor").value;
+        //     margin = document.getElementById("margin").value / 100;
+
+        //     angsuran = plafond * margin * tenor + +plafond / tenor;
+
+        //     document.getElementById("angsuran").value = Math.round(angsuran);
+        // }
     </script>
 
 @endsection
