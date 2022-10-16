@@ -5,6 +5,7 @@ namespace Modules\Analis\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Ppr\Entities\PprPembiayaanHistory;
 use Modules\Form\Entities\FormPprPembiayaan;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,21 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        $proposal = FormPprPembiayaan::select()->get();
+        $proposal = PprPembiayaanHistory::select()
+            ->latest()
+            ->groupBy('form_ppr_pembiayaan_id')
+            ->where(function ($query) {
+                $query
+                    ->where('status_id', 5)
+                    ->where('jabatan_id', 2);
+            })
+            ->orWhere(function ($query) {
+                $query
+                    ->where('status_id', 4)
+                    ->where('jabatan_id', 3)
+                    ->where('user_id', Auth::user()->id);
+            })
+            ->get();
 
         return view('analis::ppr.proposal.index', [
             'title' => 'Proposal PPR',
