@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('kode_jaminan')->nullable();
             $table->string('nama_jaminan');
+            $table->string('rating');
+            $table->string('bobot');
             $table->timestamps();
         });
     }
