@@ -72,6 +72,7 @@ use Modules\Form\Entities\FormPprDataPinjaman;
 use Modules\Form\Entities\FormPprDataPinjamanKartuKredit;
 use Modules\Form\Entities\FormPprDataPinjamanLainnya;
 use Modules\Form\Entities\FormPprDataPribadi;
+use Modules\Ppr\Entities\PprLampiran;
 use Modules\Ppr\Entities\PprScoring;
 
 class ProposalAkadController extends Controller
@@ -335,14 +336,42 @@ class ProposalAkadController extends Controller
 
         $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
 
+        //Plafond
+        $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
+
+        //Tenor
+        $tenorTahun = $pembiayaan->form_permohonan_jangka_waktu_ppr;
+        $tenorBulan = $pembiayaan->form_permohonan_jml_bulan;
+
         //Perhitungan Margin, Harga Jual & Angsuran
         $hpp = $pembiayaan->form_permohonan_nilai_hpp;
-        $tenor = $pembiayaan->form_permohonan_jml_bulan;
-        $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $hpp);
-        $marginRp = $hpp * $persenMargin;
-        $hargaJual = $hpp + $marginRp;
-        $angsuran = $hargaJual / $tenor;
-        $plafondMaks = $hpp;
+        $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $plafond) / $tenorBulan * 100;
+        $marginRp = $plafond * $persenMargin / 100 * $tenorBulan;
+        $hargaJual = $plafond + $marginRp;
+        $angsuran = $hargaJual / $tenorBulan;
+        $plafondMaks = $hpp * 0.9; //Maks pembiayaan 90% dari HPP
+        $kemampuanMengangsur = $pembiayaan->form_penghasilan_pengeluaran_kemampuan_mengangsur;
+
+        //Idir
+        $penghasilanBersih = $pembiayaan->form_penghasilan_pengeluaran_sisa_penghasilan;
+        $kewajibanAngsuran = $pembiayaan->form_penghasilan_pengeluaran_kewajiban_angsuran;
+        $idir = (($kewajibanAngsuran + $kemampuanMengangsur) / $penghasilanBersih) * 100;
+
+
+        //FTV
+        $hargaJualAgunan = $pembiayaan->agunan->form_agunan_1_nilai_harga_jual;
+        $hargaTaksasiKjpp = $pembiayaan->agunan->form_agunan_1_nilai_harga_taksasi_kjpp;
+        if ($hargaJualAgunan > $hargaTaksasiKjpp) {
+            $ftv = ($plafond / $hargaTaksasiKjpp) * 100;
+            $pembagi = "Taksasi KJPP";
+        } else {
+            $ftv = ($plafond / $hargaJualAgunan) * 100;
+            $pembagi = "Harga Jual Agunan";
+        }
+
+        //DP
+        $persenDp = 100 - $ftv;
+        $dp = $hpp - $plafond;
 
         //Usia Nasabah
         $usiaNasabah = Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir)->age;
@@ -356,12 +385,23 @@ class ProposalAkadController extends Controller
             'usiaNasabah' => $usiaNasabah,
             'scoring' => PprScoring::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
             'hpp' => $hpp,
-            'tenor' => $tenor,
+            'tenorTahun' => $tenorTahun,
+            'tenorBulan' => $tenorBulan,
             'persenMargin' => $persenMargin,
             'marginRp' => $marginRp,
             'hargaJual' => $hargaJual,
             'angsuran' => $angsuran,
+            'plafond' => $plafond,
             'plafondMaks' => $plafondMaks,
+            'idir' => $idir,
+            'idebs' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'idebKartuKredits' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'idebLains' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'lampiran' => PprLampiran::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
+            'ftv' => $ftv,
+            'pembagi' => $pembagi,
+            'persenDp' => $persenDp,
+            'dp' => $dp,
 
             'aos' => Role::select()->where('jabatan_id', 1)->get(),
             'pekerjaans' => FormPprDataPekerjaan::all(),
