@@ -709,13 +709,12 @@
                                             <hr style="margin-top: 7px;" />
 
                                             <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="form_permohonan_nilai_ppr_dimohon"><small
+                                                <label class="form-label" for="formPermohonanPlafond"><small
                                                         class="text-danger">*
                                                     </small>Nilai PPR Syariah
                                                     Dimohon</label>
                                                 <input type="text" name="form_permohonan_nilai_ppr_dimohon"
-                                                    id="form_permohonan_nilai_ppr_dimohon"
-                                                    class="form-control numeral-mask"
+                                                    id="formPermohonanPlafond" class="form-control numeral-mask"
                                                     placeholder="Nilai PPR Syariah Dimohon"
                                                     value="{{ $pembiayaan->form_permohonan_nilai_ppr_dimohon }}" />
                                             </div>
@@ -831,9 +830,10 @@
                                                         </small>Jumlah
                                                         Bulan</label>
                                                     <input type="number" name="form_permohonan_jml_bulan"
-                                                        id="formPermohonanJumlahBulan" class="form-control"
-                                                        placeholder="Jumlah Bulan"
+                                                         id="formPermohonanJumlahBulan"
+                                                        class="form-control" placeholder="Jumlah Bulan"
                                                         value="{{ $pembiayaan->form_permohonan_jml_bulan }}" />
+                                                        {{-- oninput="hitungMargin();" --}}
                                                 </div>
                                                 <div class="col-auto" style="margin-top: 32px;">
                                                     <span class="form-text-beside">Bulan</span>
@@ -845,11 +845,18 @@
                                                 <label class="form-label" for="form_permohonan_jml_margin"><small
                                                         class="text-danger">*
                                                     </small>Jumlah Margin</label>
-                                                <input type="text" name="form_permohonan_jml_margin"
+                                                    <input type="text" name="form_permohonan_jml_margin"
                                                     id="formPermohonanJmlMargin"
                                                     class="form-control numeral-mask4 {{ $pembiayaan->form_permohonan_jenis_akad_pembayaran == 'Murabahah' ? 'show' : 'hide' }}"
                                                     placeholder="Masukkan Jumlah Margin"
                                                     value="{{ $pembiayaan->form_permohonan_jml_margin }}" />
+                                                {{-- <input type="text" id="formPermohonanJmlMarginDummy"
+                                                    class="form-control numeral-mask4 {{ $pembiayaan->form_permohonan_jenis_akad_pembayaran == 'Murabahah' ? 'show' : 'hide' }}"
+                                                    placeholder="Jumlah Margin"
+                                                    value="{{ $pembiayaan->form_permohonan_jml_margin }}" disabled />
+                                                <input type="hidden" name="form_permohonan_jml_margin"
+                                                    id="formPermohonanJmlMargin" class="form-control"
+                                                    value="{{ $pembiayaan->form_permohonan_jml_margin }}" /> --}}
                                             </div>
                                             <div class="mb-1 col-md-6 {{ $pembiayaan->form_permohonan_jenis_akad_pembayaran == 'IMBT' ? 'show' : 'hide' }}"
                                                 id="ifImbt">
@@ -1515,7 +1522,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1525,7 +1532,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -3772,7 +3779,7 @@
                                                         KJPP</b></label>
                                                 <input type="text" name="form_agunan_2_nilai_harga_taksasi_kjpp"
                                                     id="form_agunan_2_nilai_harga_taksasi_kjpp"
-                                                    class="form-control numeral-mask112"
+                                                    class="form-control numeral-mask113"
                                                     placeholder="Masukkan Nilai/Harga Taksasi KJPP"
                                                     value="{{ $pembiayaan->agunan->form_agunan_2_nilai_harga_taksasi_kjpp }}" />
                                             </div>
@@ -8542,7 +8549,7 @@
                                             <tr style="height: 25px"></tr>
                                             <tr>
                                                 <td style="vertical-align: middle;" colspan="4">
-                                                    <b>Biaya Administrasi</b>
+                                                    <b>Biaya Operasional</b>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -8690,7 +8697,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="vertical-align: middle;">
-                                                    6. Biaya Administrasi lain-lain
+                                                    6. Biaya Operasional lain-lain
                                                 </td>
                                                 <td style="vertical-align: middle;">
                                                     <input type="text" id="biayaAdmLainNF1"
@@ -8717,7 +8724,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="vertical-align: middle;">
-                                                    <b>Jumlah Biaya Administrasi</b>
+                                                    <b>Jumlah Biaya Operasional</b>
                                                 </td>
                                                 <td style="vertical-align: middle;">
                                                     <input type="text" id="jmlBiayaAdmNF1Dummy"
@@ -11644,6 +11651,26 @@
             }
         }
 
+        // function hitungMargin() {
+        //     var plafond = document.getElementById("formPermohonanPlafond").value.replace(
+        //         /,/g, "");
+        //     var tenorBulan = document.getElementById("formPermohonanJumlahBulan").value.replace(
+        //         /,/g, "");
+        //     var margin = 0.009;
+        //     var jmlMargin;
+
+        //     jmlMargin = plafond * margin * tenorBulan;
+        //     document.getElementById("formPermohonanJmlMargin").value = jmlMargin;
+
+        //     jmlMarginDummy = jmlMargin;
+        //     document.getElementById("formPermohonanJmlMarginDummy").value =
+        //         jmlMargin;
+        //     jmlMarginDummy = document.getElementById("formPermohonanJmlMarginDummy").value
+        //         .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //     document.getElementById("formPermohonanJmlMarginDummy").value =
+        //         jmlMarginDummy;
+
+        // }
 
         function changeAgama() {
             var agamaLain = document.getElementById("formPribadiAgamaLain");
@@ -12187,8 +12214,8 @@
             document.getElementById("labaKotorNFPDummy").value =
                 labaKotorNFPDummy;
 
-            //Biaya Administrasi
-            //Biaya Administrasi dan Laba Usaha 1
+            //Biaya Operasional
+            //Biaya Operasional dan Laba Usaha 1
             biayaPenjualanNF1 = document.getElementById("biayaPenjualanNF1").value.replace(/,/g, "");
             biayaGajiKomisarisDireksiStaffNF1 = document.getElementById("biayaGajiKomisarisDireksiStaffNF1").value.replace(
                 /,/g, "");
@@ -12230,7 +12257,7 @@
             document.getElementById("labaSetelahPajakNF1Dummy").value =
                 labaSetelahPajakNF1Dummy;
 
-            //Biaya Administrasi dan Laba Usaha 2
+            //Biaya Operasional dan Laba Usaha 2
             biayaPenjualanNF2 = document.getElementById("biayaPenjualanNF2").value.replace(/,/g, "");
             biayaGajiKomisarisDireksiStaffNF2 = document.getElementById("biayaGajiKomisarisDireksiStaffNF2").value.replace(
                 /,/g, "");
@@ -12272,7 +12299,7 @@
             document.getElementById("labaSetelahPajakNF2Dummy").value =
                 labaSetelahPajakNF2Dummy;
 
-            //Biaya Administrasi dan Laba Usaha Pasangan
+            //Biaya Operasional dan Laba Usaha Pasangan
             biayaPenjualanNFP = document.getElementById("biayaPenjualanNFP").value;
             biayaGajiKomisarisDireksiStaffNFP = document.getElementById("biayaGajiKomisarisDireksiStaffNFP").value.replace(
                 /,/g, "");
