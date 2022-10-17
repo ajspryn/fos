@@ -54,6 +54,12 @@
                                                                 <table>
                                                                     <tbody>
                                                                         <tr>
+                                                                            <td class="pe-1">Nama AO</td>
+                                                                            <td>:<span class="fw-bold">
+                                                                                    {{ $pembiayaan->user->name }}</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
                                                                             <td class="pe-1">Jenis Nasabah</td>
                                                                             <td>:
                                                                                 {{ $pembiayaan->jenis_nasabah }}
@@ -1838,7 +1844,7 @@
                                                                         $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                         $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                     }
-
+                                                                    
                                                                 @endphp
 
                                                                 <li class="timeline-item">
@@ -3321,7 +3327,7 @@
                                                                             <ul class="timeline">
                                                                                 @foreach ($timelines as $timeline)
                                                                                     @php
-
+                                                                                        
                                                                                         $arr = $loop->iteration;
                                                                                         if ($arr == -2) {
                                                                                             $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
@@ -4830,7 +4836,7 @@
                                                                     <ul class="timeline">
                                                                         @foreach ($timelines as $timeline)
                                                                             @php
-
+                                                                                
                                                                                 $arr = $loop->iteration;
                                                                                 if ($arr == -2) {
                                                                                     $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
@@ -4845,7 +4851,7 @@
                                                                                     $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                                     $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                                 }
-
+                                                                                
                                                                             @endphp
                                                                             <li class="timeline-item">
                                                                                 <span
@@ -6092,7 +6098,7 @@
                                                                 <ul class="timeline">
                                                                     @foreach ($timelines as $timeline)
                                                                         @php
-
+                                                                            
                                                                             $arr = $loop->iteration;
                                                                             if ($arr == -2) {
                                                                                 $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
@@ -6107,7 +6113,7 @@
                                                                                 $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                                 $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                             }
-
+                                                                            
                                                                         @endphp
                                                                         <li class="timeline-item">
                                                                             <span

@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Form\Entities\FormPprPembiayaan;
 use Illuminate\Support\Facades\DB;
+use Modules\Ppr\Entities\PprPembiayaanHistory;
 
 class PprProposalController extends Controller
 {
@@ -18,7 +19,15 @@ class PprProposalController extends Controller
      */
     public function index()
     {
-        $proposal = FormPprPembiayaan::select()->get();
+        $proposal = PprPembiayaanHistory::select()
+            ->latest()
+            ->groupBy('form_ppr_pembiayaan_id')
+            ->where(function ($query) {
+                $query
+                    ->where('status_id', '<', 5)
+                    ->where('jabatan_id', '<', 4);
+            })
+            ->get();
         return view('dirbis::ppr.proposal.index', [
             'title' => 'Proposal PPR',
             'proposals' => $proposal,

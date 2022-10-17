@@ -33,7 +33,19 @@ class PprKomiteController extends Controller
      */
     public function index()
     {
-        $komite = FormPprPembiayaan::select()->get();
+        $komite = PprPembiayaanHistory::select()
+            ->latest()
+            ->groupBy('form_ppr_pembiayaan_id')
+            ->where(function ($query) {
+                $query
+                    ->where('status_id', 5)
+                    ->where('user_id', Auth::user()->id);
+            })
+            ->orWhere(function ($query) {
+                $query
+                    ->where('status_id', '>=', 9);
+            })
+            ->get();
 
         return view('analis::ppr.komite.index', [
             'title' => 'Data Komite PPR',

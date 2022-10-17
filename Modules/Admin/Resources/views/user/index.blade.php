@@ -85,9 +85,9 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center"></th>
-                                            <th style="text-align: center">ID User</th>
-                                            <th>Nama</th>
-                                            <th>Email</th>
+                                            <th style="text-align: center">No.</th>
+                                            <th style="text-align: center">Nama</th>
+                                            <th style="text-align: center">Email</th>
                                             <th style="text-align: center">Role</th>
                                             <th style="text-align: center">Divisi</th>
                                             <th style="text-align: center">Jabatan</th>
@@ -154,10 +154,15 @@
                                                                 onclick="event.preventDefault(); document.getElementById('delete').submit();">
                                                                 <i data-feather="trash" class="me-50"></i>
                                                                 <span>Delete</span>
+                                                                <form id="delete_user"
+                                                                    action="/admin/user/{{ $user->id }}"
+                                                                    class="d-none" method="POST">
+                                                                    @method('delete')
+                                                                    @csrf
+                                                                </form>
                                                             </a>
-                                                            <form id="delete"
-                                                                action="/admin/user/{{ $user->id }}" class="d-none"
-                                                                method="POST">
+                                                            <form id="delete" action="/admin/user/{{ $user->id }}"
+                                                                class="d-none" method="POST">
                                                                 @method('delete')
                                                                 @csrf
                                                             </form>

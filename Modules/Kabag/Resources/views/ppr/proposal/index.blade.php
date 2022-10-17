@@ -50,7 +50,7 @@
                                 <thead>
                                     <tr>
                                         <th class="midCenter" style="vertical-align: middle;"></th>
-                                        <th class="midCenter" style="vertical-align: middle;">No</th>
+                                        <th class="midCenter" style="vertical-align: middle;">No.</th>
                                         <th class="midCenter" style="vertical-align: middle;">Tanggal Pengajuan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jenis Nasabah</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nama Nasabah</th>
@@ -64,18 +64,19 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
-                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                                                ->where('form_ppr_pembiayaan_id', $proposal->id)
-                                                ->orderBy('created_at', 'desc')
+                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                ->where('id', $proposal->form_ppr_pembiayaan_id)
                                                 ->get()
                                                 ->first();
                                             
-                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                                                ->where('id', $history->form_ppr_pembiayaan_id)
+                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                                ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
+                                                ->latest()
                                                 ->get()
                                                 ->first();
                                         @endphp
-                                        @if ($history->status_id == 3 && $history->jabatan_id == 1)
+                                        @if (($history->status_id == 3 && $history->jabatan_id == 1) ||
+                                            ($history->status_id == 4 && $history->jabatan_id == 2))
                                             <tr>
                                                 <td style="text-align: center">
                                                     <button type="button"

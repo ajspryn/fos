@@ -283,7 +283,7 @@
                                                                             <tr>
                                                                                 <th style="text-align: center; vertical-align:middle; width: 5%;"
                                                                                     class="py-1">
-                                                                                    No
+                                                                                    No.
                                                                                 </th>
                                                                                 <th style="text-align: center; vertical-align:middle;"
                                                                                     class="py-1">Nama
@@ -374,7 +374,7 @@
                                                                                 <tr>
                                                                                     <th style="text-align: center; vertical-align:middle; width: 5%;"
                                                                                         class="py-1">
-                                                                                        No
+                                                                                        No.
                                                                                     </th>
                                                                                     <th style="text-align: center; vertical-align:middle;"
                                                                                         class="py-1">Nama
@@ -457,7 +457,7 @@
                                                                                 <tr>
                                                                                     <th style="text-align: center; vertical-align:middle; width: 5%;"
                                                                                         class="py-1">
-                                                                                        No
+                                                                                        No.
                                                                                     </th>
                                                                                     <th style="text-align: center; vertical-align:middle;"
                                                                                         class="py-1">Nama
@@ -548,7 +548,7 @@
                                                                         <thead>
                                                                             <tr>
                                                                                 <th style="text-align: center"
-                                                                                    width="2%">No
+                                                                                    width="2%">No.
                                                                                 </th>
                                                                                 <th style="text-align: center">
                                                                                     Parameter
@@ -1462,7 +1462,8 @@
                                                                                 <td class="pe-1">
                                                                                     &ensp;DP Nasabah</td>
                                                                                 <td>:
-                                                                                    {{ $persenDp }}%, yaitu sebesar
+                                                                                    {{ number_format($persenDp) }}%, yaitu
+                                                                                    sebesar
                                                                                     Rp. {{ number_format($dp) }}
                                                                                 </td>
                                                                             </tr>
@@ -1826,7 +1827,7 @@
                                                                         $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                         $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                     }
-
+                                                                    
                                                                 @endphp
 
                                                                 <li class="timeline-item">

@@ -49,7 +49,7 @@
                                 <thead>
                                     <tr>
                                         <th class="midCenter" style="vertical-align: middle;"></th>
-                                        <th class="midCenter" style="vertical-align: middle;">No</th>
+                                        <th class="midCenter" style="vertical-align: middle;">No.</th>
                                         <th class="midCenter" style="vertical-align: middle;">Tanggal Pengajuan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jenis Nasabah</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nama Nasabah</th>
@@ -62,36 +62,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @php
-                                        $i = 1;
-                                    @endphp --}}
 
                                     @foreach ($komites as $komite)
                                         @php
-                                            // $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                                            //     ->where('form_ppr_pembiayaan_id', $komite->id)
-                                            //     ->orderBy('created_at', 'desc')
-                                            //     ->get()
-                                            //     ->first();
-
-                                            // if ($history) {
-                                            //     $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                                            //         ->where('id', $history->form_ppr_pembiayaan_id)
-                                            //         ->get()
-                                            //         ->first();
-                                            // }
-
-                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $komite->id)
-                                                ->latest()
-                                                ->first();
-
                                             $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                                                ->where('id', $history->form_ppr_pembiayaan_id)
+                                                ->where('id', $komite->form_ppr_pembiayaan_id)
                                                 ->get()
                                                 ->first();
-                                            // dd($history);
+                                            
+                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $proposal_ppr->id)
+                                                ->latest()
+                                                ->first();
+                                            
                                         @endphp
-                                        {{-- @if ($history) --}}
                                         @if ($history->jabatan_id == 4 ||
                                             ($history->jabatan_id == 3 && $history->status_id == 5) ||
                                             ($history->jabatan_id == 1 && $history->status_id >= 9))
@@ -102,7 +85,6 @@
                                                         <i data-feather="eye"></i>
                                                     </button>
                                                 </td>
-                                                {{-- <td style="text-align: center">{{ $loop->iteration }}</td> --}}
                                                 <td style="text-align: center">{{ $loop->iteration }}</td>
                                                 <td style="text-align: center">
                                                     {{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
@@ -157,7 +139,12 @@
                                     @endforeach
                                     @foreach ($komites as $forCatatanModal)
                                         @php
-                                            $historyCatatan = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $forCatatanModal->id)
+                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                ->where('id', $forCatatanModal->form_ppr_pembiayaan_id)
+                                                ->get()
+                                                ->first();
+                                            
+                                            $historyCatatan = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->latest()
                                                 ->first();
                                         @endphp
