@@ -3573,6 +3573,9 @@
                                                                     <option
                                                                         {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan == 'SHGB' ? 'selected' : '' }}
                                                                         value="SHGB">SHGB</option>
+                                                                        <option
+                                                                        {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan == 'PPJB' ? 'selected' : '' }}
+                                                                        value="PPJB">PPJB</option>
                                                                 </select>
                                                             </div>
 
@@ -3924,6 +3927,9 @@
                                                                     <option
                                                                         {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan == 'SHGB' ? 'selected' : '' }}
                                                                         value="SHGB">SHGB</option>
+                                                                        <option
+                                                                        {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan == 'PPJB' ? 'selected' : '' }}
+                                                                        value="PPJB">PPJB</option>
                                                                 </select>
                                                             </div>
 

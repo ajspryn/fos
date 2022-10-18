@@ -830,10 +830,10 @@
                                                         </small>Jumlah
                                                         Bulan</label>
                                                     <input type="number" name="form_permohonan_jml_bulan"
-                                                         id="formPermohonanJumlahBulan"
-                                                        class="form-control" placeholder="Jumlah Bulan"
+                                                        id="formPermohonanJumlahBulan" class="form-control"
+                                                        placeholder="Jumlah Bulan"
                                                         value="{{ $pembiayaan->form_permohonan_jml_bulan }}" />
-                                                        {{-- oninput="hitungMargin();" --}}
+                                                    {{-- oninput="hitungMargin();" --}}
                                                 </div>
                                                 <div class="col-auto" style="margin-top: 32px;">
                                                     <span class="form-text-beside">Bulan</span>
@@ -845,7 +845,7 @@
                                                 <label class="form-label" for="form_permohonan_jml_margin"><small
                                                         class="text-danger">*
                                                     </small>Jumlah Margin</label>
-                                                    <input type="text" name="form_permohonan_jml_margin"
+                                                <input type="text" name="form_permohonan_jml_margin"
                                                     id="formPermohonanJmlMargin"
                                                     class="form-control numeral-mask4 {{ $pembiayaan->form_permohonan_jenis_akad_pembayaran == 'Murabahah' ? 'show' : 'hide' }}"
                                                     placeholder="Masukkan Jumlah Margin"
@@ -1522,7 +1522,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1532,7 +1532,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -3568,6 +3568,9 @@
                                                                     <option
                                                                         {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan == 'SHGB' ? 'selected' : '' }}
                                                                         value="SHGB">SHGB</option>
+                                                                    <option
+                                                                        {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan == 'PPJB' ? 'selected' : '' }}
+                                                                        value="PPJB">PPJB</option>
                                                                 </select>
                                                             </div>
 
@@ -3919,6 +3922,9 @@
                                                                     <option
                                                                         {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan == 'SHGB' ? 'selected' : '' }}
                                                                         value="SHGB">SHGB</option>
+                                                                    <option
+                                                                        {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan == 'PPJB' ? 'selected' : '' }}
+                                                                        value="PPJB">PPJB</option>
                                                                 </select>
                                                             </div>
 

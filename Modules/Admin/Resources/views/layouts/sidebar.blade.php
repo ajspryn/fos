@@ -20,14 +20,14 @@
                     href="/admin"><i data-feather="home"></i><span class="menu-title text-truncate"
                         data-i18n="home">Dashboard</span></a>
             </li>
-            <li class=" navigation-header"><span data-i18n="Forms &amp; Tables">Forms &amp; Tables</span><i
-                    data-feather="more-horizontal"></i>
+            <li class=" navigation-header"><span>User & Bobot</span><i data-feather="more-horizontal"></i>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span
                         class="menu-title text-truncate" data-i18n="User">User</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="/admin/user"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate" data-i18n="List">Data User</span></a>
+                    <li class="{{ Request::is('admin/user') ? 'active' : '' }} "><a class="d-flex align-items-center"
+                            href="/admin/user"><i data-feather="sliders"></i><span class="menu-item text-truncate"
+                                data-i18n="List">Role User</span></a>
                     </li>
                 </ul>
             </li>
