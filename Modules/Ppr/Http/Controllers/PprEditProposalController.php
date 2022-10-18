@@ -112,7 +112,6 @@ class PprEditProposalController extends Controller
     public function index()
     {
         $proposal = PprPembiayaanHistory::select()
-            ->where('user_id', Auth::user()->id)
             ->latest()
             ->where('status_id', 7)
             ->get();
