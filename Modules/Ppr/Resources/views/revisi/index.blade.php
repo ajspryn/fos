@@ -68,8 +68,10 @@
                                         @php
                                             $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
                                                 ->where('id', $proposal->form_ppr_pembiayaan_id)
+                                                ->where('user_id', Auth::user()->id)
                                                 ->get()
                                                 ->first();
+                                            
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                                 ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->orderBy('created_at', 'desc')
