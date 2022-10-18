@@ -11,7 +11,12 @@ class Role extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id','id' );
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function keterangan_jabatan()
+    {
+        return $this->belongsTo(keterangan_jabatan::class, 'jabatan_id', 'id');
     }
     protected $guarded = [
         'created_at'
