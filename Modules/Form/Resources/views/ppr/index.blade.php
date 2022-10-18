@@ -2602,6 +2602,7 @@
                                                             </option>
                                                             <option value="SHM">SHM</option>
                                                             <option value="SHGB">SHGB</option>
+                                                            <option value="PPJB">PPJB</option>
                                                         </select>
                                                     </div>
 
@@ -2886,6 +2887,7 @@
                                                             <option value=""></option>
                                                             <option value="SHM">SHM</option>
                                                             <option value="SHGB">SHGB</option>
+                                                            <option value="PPJB">PPJB</option>
                                                         </select>
                                                     </div>
 
