@@ -1,93 +1,93 @@
 @extends('dirbis::layouts.main')
 @php
-$proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-    ->where('user_id', Auth::user()->id)
-    ->where('skpd_sektor_ekonomi_id', null)
-    ->get()
-    ->count();
-
-$proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-    ->where('status_id', 3)
-    ->get();
-
-$proposalskpd = 0;
-foreach ($proposals as $proposal) {
     $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-        ->where('id', $proposal->skpd_pembiayaan_id)
+        ->where('user_id', Auth::user()->id)
+        ->where('skpd_sektor_ekonomi_id', null)
         ->get()
-        ->first();
-    $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-        ->where('skpd_pembiayaan_id', $proposal_skpd->id)
-        ->orderby('created_at', 'desc')
-        ->get()
-        ->first();
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
-        $proposalskpd++;
+        ->count();
+    
+    $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+        ->where('status_id', 3)
+        ->get();
+    
+    $proposalskpd = 0;
+    foreach ($proposals as $proposal) {
+        $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+            ->where('id', $proposal->skpd_pembiayaan_id)
+            ->get()
+            ->first();
+        $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+            ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+            ->orderby('created_at', 'desc')
+            ->get()
+            ->first();
+        if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+            $proposalskpd++;
+        }
     }
-}
-
-$pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
-
-$data = 0;
-foreach ($pasars as $pasar) {
-    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-        ->where('pasar_pembiayaan_id', $pasar->id)
-        ->orderby('created_at', 'desc')
-        ->get()
-        ->first();
-
-    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
-        ->where('id', $history->pasar_pembiayaan_id)
-        ->get()
-        ->first();
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
-        $data++;
+    
+    $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
+    
+    $data = 0;
+    foreach ($pasars as $pasar) {
+        $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+            ->where('pasar_pembiayaan_id', $pasar->id)
+            ->orderby('created_at', 'desc')
+            ->get()
+            ->first();
+    
+        $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+            ->where('id', $history->pasar_pembiayaan_id)
+            ->get()
+            ->first();
+        if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+            $data++;
+        }
     }
-}
-
-$umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-    ->where('status_id', 3)
-    ->get();
-
-$b = 0;
-foreach ($umkms as $umkm) {
-    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
-        ->where('id', $umkm->umkm_pembiayaan_id)
-        ->get()
-        ->first();
-
-    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-        ->where('umkm_pembiayaan_id', $proposal_umkm->id)
-        ->orderby('created_at', 'desc')
-        ->get()
-        ->first();
-
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
-        $b++;
+    
+    $umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->where('status_id', 3)
+        ->get();
+    
+    $b = 0;
+    foreach ($umkms as $umkm) {
+        $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+            ->where('id', $umkm->umkm_pembiayaan_id)
+            ->get()
+            ->first();
+    
+        $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+            ->where('umkm_pembiayaan_id', $proposal_umkm->id)
+            ->orderby('created_at', 'desc')
+            ->get()
+            ->first();
+    
+        if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+            $b++;
+        }
     }
-}
-
-$pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-    ->where('status_id', 3)
-    ->get();
-
-$proposalppr = 0;
-foreach ($pprs as $ppr) {
-    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-        ->where('id', $ppr->form_ppr_pembiayaan_id)
-        ->get()
-        ->first();
-
-    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
-        ->orderBy('created_at', 'desc')
-        ->get()
-        ->first();
-    if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
-        $proposalppr++;
+    
+    $pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->where('status_id', 3)
+        ->get();
+    
+    $proposalppr = 0;
+    foreach ($pprs as $ppr) {
+        $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+            ->where('id', $ppr->form_ppr_pembiayaan_id)
+            ->get()
+            ->first();
+    
+        $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+            ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->first();
+        if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+            $proposalppr++;
+        }
     }
-}
-
+    
 @endphp
 @section('content')
     <!-- BEGIN: Content-->
@@ -134,8 +134,17 @@ foreach ($pprs as $ppr) {
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $tolak }}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Ditolak</p>
+                                                    <h4 class="fw-bolder mb-0">{{ $ditolak }}
+                                                        <span
+                                                            style="font-weight: normal; font-size:12px; vertical-align:middle;">
+                                                            Ditolak</span>
+                                                    </h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $batalAkad }}
+                                                        <span
+                                                            style="font-weight: normal; font-size:12px; vertical-align:middle;">
+                                                            Batal
+                                                            Akad</span>
+                                                    </h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -197,67 +206,70 @@ foreach ($pprs as $ppr) {
                         
                         $disburseppr = 0;
                         foreach ($cairpprs as $cairppr) {
-                            $harga = $cairppr->form_permohonan_nilai_hpp;
+                            $plafond = $cairppr->form_permohonan_nilai_ppr_dimohon;
                         
-                            $disburseppr = $disburseppr + $harga;
+                            $disburseppr = $disburseppr + $plafond;
                         }
                         $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
-                            
-                                $pipelinepasar = 0;
-                                foreach ($pasars as $pasar) {
-                                    $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-                                        ->where('pasar_pembiayaan_id', $pasar->id)
-                                        ->orderby('created_at', 'desc')
-                                        ->get()
-                                        ->first();
-                            
-                                    $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                        ->where('id', $history->pasar_pembiayaan_id)
-                                        ->get()
-                                        ->first();
-                                    if ($history->status_id != 5 || $history->jabatan_id != 4) {
-                                        if($history->status_id != 9)
-                                        $pipelinepasar++;
-                                    }
+                        
+                        $pipelinepasar = 0;
+                        foreach ($pasars as $pasar) {
+                            $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+                                ->where('pasar_pembiayaan_id', $pasar->id)
+                                ->orderby('created_at', 'desc')
+                                ->get()
+                                ->first();
+                        
+                            $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+                                ->where('id', $history->pasar_pembiayaan_id)
+                                ->get()
+                                ->first();
+                            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                                if ($history->status_id != 9) {
+                                    $pipelinepasar++;
                                 }
+                            }
+                        }
                         
-                                $skpds = Modules\Skpd\Entities\SkpdPembiayaan::select()->get();
-                            
-                            $pipelineskpd = 0;
-                            foreach ($skpds as $skpd) {
-                                $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-                                    ->where('skpd_pembiayaan_id', $skpd->id)
-                                    ->orderby('created_at', 'desc')
-                                    ->get()
-                                    ->first();
+                        $skpds = Modules\Skpd\Entities\SkpdPembiayaan::select()->get();
                         
-                                $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-                                    ->where('id', $history->skpd_pembiayaan_id)
-                                    ->get()
-                                    ->first();
-                                if ($history->status_id != 5 || $history->jabatan_id != 4) {
-                                    if($history->status_id != 9)
+                        $pipelineskpd = 0;
+                        foreach ($skpds as $skpd) {
+                            $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                                ->where('skpd_pembiayaan_id', $skpd->id)
+                                ->orderby('created_at', 'desc')
+                                ->get()
+                                ->first();
+                        
+                            $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                ->where('id', $history->skpd_pembiayaan_id)
+                                ->get()
+                                ->first();
+                            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                                if ($history->status_id != 9) {
                                     $pipelineskpd++;
                                 }
                             }
-                            $datas = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
+                        }
+                        $datas = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
                         
-                            $pipelineumkm = 0;
-                                foreach ($datas as $data) {
-                                    $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-                                        ->where('umkm_pembiayaan_id', $data->id)
-                                        ->orderby('created_at', 'desc')
-                                        ->get()
-                                        ->first();
-                                    $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                        ->where('id', $history->umkm_pembiayaan_id)
-                                        ->get()
-                                        ->first();
-                                    if ($history->status_id != 5 && $history->jabatan_id != 4) {
-                                        if($history->status_id != 9)
-                                        $pipelineumkm++;
-                                    }
+                        $pipelineumkm = 0;
+                        foreach ($datas as $data) {
+                            $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+                                ->where('umkm_pembiayaan_id', $data->id)
+                                ->orderby('created_at', 'desc')
+                                ->get()
+                                ->first();
+                            $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                ->where('id', $history->umkm_pembiayaan_id)
+                                ->get()
+                                ->first();
+                            if ($history->status_id != 5 && $history->jabatan_id != 4) {
+                                if ($history->status_id != 9) {
+                                    $pipelineumkm++;
                                 }
+                            }
+                        }
                     @endphp
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">
@@ -268,7 +280,7 @@ foreach ($pprs as $ppr) {
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ $pipelineumkm+ $pipelineskpd+$pipelinepasar }}</h2>
+                                    <h2 class="fw-bolder">{{ $pipelineumkm + $pipelineskpd + $pipelinepasar }}</h2>
                                     <p class="card-text">Pipeline</p>
                                 </div>
                             </div>
@@ -317,7 +329,7 @@ foreach ($pprs as $ppr) {
                             </div>
                         </div>
                     </div>
-                  
+
                 </section>
                 <!-- Dashboard Ecommerce ends -->
 

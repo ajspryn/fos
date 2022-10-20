@@ -3,8 +3,8 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto">
-                <a class="navbar-brand" href="{{ url('') }}/html/ltr/vertical-menu-template/index.html">
-                    <img src="{{ url('') }}/logo_form.png" height="30" alt="">
+                <a class="navbar-brand" href="../../../html/ltr/vertical-menu-template/index.html">
+                    <img src="../../../logo_sidebar.png" height="30" alt="">
                 </a>
             </li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i
@@ -20,15 +20,14 @@
                     href="/admin"><i data-feather="home"></i><span class="menu-title text-truncate"
                         data-i18n="home">Dashboard</span></a>
             </li>
-            <li class=" navigation-header"><span data-i18n="Forms &amp; Tables">Forms &amp; Tables</span><i
-                    data-feather="more-horizontal"></i>
+            <li class=" navigation-header"><span>User & Bobot</span><i data-feather="more-horizontal"></i>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span
                         class="menu-title text-truncate" data-i18n="User">User</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="/admin/user"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="List">Data User</span></a>
+                    <li class="{{ Request::is('admin/user') ? 'active' : '' }} "><a class="d-flex align-items-center"
+                            href="/admin/user"><i data-feather="sliders"></i><span class="menu-item text-truncate"
+                                data-i18n="List">Role User</span></a>
                     </li>
                 </ul>
             </li>
@@ -72,8 +71,7 @@
                             </li>
                             <li class="{{ Request::is('admin/skpd/tanggungan') ? 'active' : '' }}"><a
                                     class="d-flex align-items-center" href="/admin/skpd/tanggungan"><span
-                                        class="menu-item text-truncate"
-                                        data-i18n="Notifications">Tanggungan</span></a>
+                                        class="menu-item text-truncate" data-i18n="Notifications">Tanggungan</span></a>
                             </li>
                             <li class="{{ Request::is('admin/skpd/statusperkawinan') ? 'active' : '' }}"><a
                                     class="d-flex align-items-center" href="/admin/skpd/statusperkawinan"><span

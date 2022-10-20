@@ -15,11 +15,12 @@ class UserController extends Controller
      * @return Renderable
      */
     public function index()
-    {   $user=Role::Rightjoin('users','roles.user_id','=','users.id')->select()->get();
+    {
+        $user = Role::Rightjoin('users', 'roles.user_id', '=', 'users.id')->select()->get();
         // return $user;
-        return view('admin::user.index',[
-            'title'=>'Data User',
-            'users'=>$user,
+        return view('admin::user.index', [
+            'title' => 'Data User',
+            'users' => $user,
         ]);
     }
 
@@ -39,18 +40,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $request -> validate([
-            'user_id'=> 'required',
-            'role_id'=> 'required',
-            'divisi_id'=> 'required',
-            'jabatan_id'=> 'required',
+        $request->validate([
+            'user_id' => 'required',
+            'role_id' => 'required',
+            'divisi_id' => 'required',
+            'jabatan_id' => 'required',
         ]);
 
-        $input=$request->all();
+        $input = $request->all();
 
         Role::create($input);
-        return redirect()->back()->with('success', 'Data User Berhasil Ditambahkan');
+        return redirect()->back()->with('success', 'Data User Berhasil Ditambahkan!');
     }
 
     /**
@@ -60,7 +60,6 @@ class UserController extends Controller
      */
     public function show($id)
     {
-      
     }
 
     /**
@@ -70,11 +69,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user=User::select()->where('id',$id)->get()->first();
-        return view('admin::show',[
-            'user'=>$user,
-            'title'=>'Data User',
-        ]);
+        // $user = User::select()->where('id', $id)->get()->first();
+        // return view('admin::show', [
+        //     'user' => $user,
+        //     'title' => 'Data User',
+        // ]);
     }
 
     /**
@@ -85,17 +84,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request -> validate([
-            'user_id'=> 'required',
-            'role_id'=> 'required',
-            'divisi_id'=> 'required',
-            'jabatan_id'=> 'required',
-        ]);
+        Role::where('user_id', $id)
+            ->update([
+                'role_id' => $request->role_id,
+                'divisi_id' => $request->divisi_id,
+                'jabatan_id' => $request->jabatan_id,
+            ]);
 
-        $input=$request->all();
-
-        Role::create($input);
-        return redirect()->back()->with('success', 'Data User Berhasil Ditambahkan');
+        return redirect('/admin/user')->with('success', 'Data User Berhasil Diubah!');
     }
 
     /**
@@ -105,6 +101,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return redirect('/admin/user')->alert()->warning('WarningAlert', 'Lorem ipsum dolor sit amet.');
+        Role::select()->where('user_id', $id)->delete();
+
+        return redirect('/admin/user')->with('success', 'Role User Berhasil Dihapus!');
     }
 }

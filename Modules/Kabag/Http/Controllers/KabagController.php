@@ -24,19 +24,31 @@ class KabagController extends Controller
      */
     public function index()
     {
+        //Proposal
         $pasarproposal = PasarPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get()->count();
         $skpdproposal = SkpdPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get()->count();
         $umkmproposal = UmkmPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get()->count();
         $pprproposal = PprPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get()->count();
-        $pasarditerima = PasarPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get()->count();
-        $skpdditerima = SkpdPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get()->count();
-        $umkmditerima = UmkmPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get()->count();
-        $pprditerima = PprPembiayaanHistory::select()->where('status_id', 5)->where('jabatan_id', 4)->get()->count();
-        $pasarditolak = PasarPembiayaanHistory::select()->where('status_id', 6)->get()->count();
-        $skpdditolak = SkpdPembiayaanHistory::select()->where('status_id', 6)->get()->count();
-        $umkmditolak = UmkmPembiayaanHistory::select()->where('status_id', 6)->get()->count();
-        $pprditolak = PprPembiayaanHistory::select()->where('status_id', 6)->get()->count();
-        $pprreview = PprPembiayaanHistory::select()->where('status_id', 7)->orderby('created_at', 'desc')->get()->count();
+
+        //Diterima (Selesai Akad)
+        $pasarditerima = Pembiayaan::select()->where('segmen', 'Pasar')->where('status', 'Selesai Akad')->get()->count();
+        $skpdditerima = Pembiayaan::select()->where('segmen', 'SKPD')->where('status', 'Selesai Akad')->get()->count();
+        $umkmditerima = Pembiayaan::select()->where('segmen', 'UMKM')->where('status', 'Selesai Akad')->get()->count();
+        $pprditerima = Pembiayaan::select()->where('segmen', 'PPR')->where('status', 'Selesai Akad')->get()->count();
+
+        //Ditolak
+        $pasarditolak = PasarPembiayaanHistory::select()->latest()->where('status_id', 6)->get()->count();
+        $skpdditolak = SkpdPembiayaanHistory::select()->latest()->where('status_id', 6)->get()->count();
+        $umkmditolak = UmkmPembiayaanHistory::select()->latest()->where('status_id', 6)->get()->count();
+        $pprditolak = PprPembiayaanHistory::select()->latest()->where('status_id', 6)->get()->count();
+
+        //Batal Akad
+        $pasarBatal = Pembiayaan::select()->where('segmen', 'Pasar')->where('status', 'Akad Batal')->get()->count();
+        $skpdBatal = Pembiayaan::select()->where('segmen', 'SKPD')->where('status', 'Akad Batal')->get()->count();
+        $umkmBatal = Pembiayaan::select()->where('segmen', 'UMKM')->where('status', 'Akad Batal')->get()->count();
+        $pprBatal = Pembiayaan::select()->where('segmen', 'PPR')->where('status', 'Akad Batal')->get()->count();
+
+        //Review
         $komites = UmkmPembiayaan::select()
             ->whereNotNull('sektor_id')
             ->orderby('updated_at', 'desc')
@@ -97,6 +109,27 @@ class KabagController extends Controller
                 ->first();
             if ($history->status_id == 7) {
                 $skpdreview++;
+            }
+        }
+
+        $pprs = FormPprPembiayaan::select()
+            ->get();
+
+        $pprreview = 0;
+        foreach ($pprs as $ppr) {
+            $history = PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $ppr->id)
+                ->latest()
+                ->get()
+                ->first();
+
+            $proposal_ppr = FormPprPembiayaan::select()
+                ->where('id', $history->form_ppr_pembiayaan_id)
+                ->get()
+                ->first();
+
+            if ($history->status_id == 7) {
+                $pprreview++;
             }
         }
 
@@ -175,7 +208,8 @@ class KabagController extends Controller
             'title' => 'Dashboard Kabag',
             'proposal' => $pasarproposal + $skpdproposal + $umkmproposal + $pprproposal,
             'diterima' => $pasarditerima + $skpdditerima + $umkmditerima + $pprditerima,
-            'tolak' => $pasarditolak + $skpdditolak + $umkmditolak + $pprditolak,
+            'ditolak' => $pasarditolak + $skpdditolak + $umkmditolak + $pprditolak,
+            'batalAkad' => $pasarBatal + $skpdBatal + $umkmBatal + $pprBatal,
             'review' => $pasarreview + $skpdreview + $umkmreview + $pprreview,
             'cairpasars' => $cairpasar,
             'cairumkms' => $cairumkm,

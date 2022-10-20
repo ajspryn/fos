@@ -50,7 +50,7 @@
                                 <thead>
                                     <tr>
                                         <th class="midCenter" style="vertical-align: middle;"></th>
-                                        <th class="midCenter" style="vertical-align: middle;">No</th>
+                                        <th class="midCenter" style="vertical-align: middle;">No.</th>
                                         <th class="midCenter" style="vertical-align: middle;">Tanggal Pengajuan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jenis Nasabah</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nama Nasabah</th>
@@ -64,26 +64,19 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
-
-                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $proposal->id)
-                                                ->whereNot(function ($query) {
-                                                    $query->where('status_id', '>', 5)->where('jabatan_id', '<', 4);
-                                                })
-                                                ->latest()
+                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                ->where('id', $proposal->form_ppr_pembiayaan_id)
+                                                ->get()
                                                 ->first();
-
-                                            if ($history) {
-                                                $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                                                    ->where('id', $history->form_ppr_pembiayaan_id)
-                                                    ->get()
-                                                    ->first();
-                                            }
-
+                                            
+                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                                ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
+                                                ->latest()
+                                                ->get()
+                                                ->first();
                                         @endphp
                                         @if ($history)
-                                            @if ($history->jabatan_id == 1 ||
-                                                $history->jabatan_id == 2 ||
-                                                $history->jabatan_id == 0 ||
+                                            @if (($history->jabatan_id == 1 && $history->status_id < 5) ||
                                                 ($history->jabatan_id == 3 && $history->status_id == 4))
                                                 <tr>
                                                     <td style="text-align: center">

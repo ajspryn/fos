@@ -54,7 +54,8 @@
 
     <div class="row col-12">
         <div class="col-md-6 col-sm-12 col-6 ml-3 ">
-            <img src="../../../logo_form.png" height="100" class="mt-2 mb-2 right-3" alt="logo">
+            <a href="/"><img src="../../../logo_form.png" height="100" class="mt-2 mb-2 right-3"
+                    alt="logo"></a>
         </div>
         {{-- <div class="col-md-3 col-sm-6 col-12">
             <img src="../../../logo_form.png" height="100" class="mt-2 mb-2" alt="logo">

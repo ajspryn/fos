@@ -33,7 +33,25 @@ class PprKomiteController extends Controller
      */
     public function index()
     {
-        $komite = FormPprPembiayaan::select()->get();
+        $komite = PprPembiayaanHistory::select()
+            ->latest()
+            ->groupBy('form_ppr_pembiayaan_id')
+            ->where(function ($query) {
+                $query
+                    ->where('status_id', 5)
+                    ->where('user_id', Auth::user()->id);
+            })
+            ->orWhere(function ($query) {
+                $query
+                    ->where('status_id', 4)
+                    ->where('jabatan_id', '>', 2);
+            })
+            ->orWhere(function ($query) {
+                $query
+                    ->where('status_id', '>=', 9);
+            })
+            ->get();
+
         return view('kabag::ppr.komite.index', [
             'title' => 'Data Komite PPR',
             'proposals' => $komite,
@@ -118,14 +136,17 @@ class PprKomiteController extends Controller
         //Plafond
         $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
 
+        //Tenor
+        $tenorTahun = $pembiayaan->form_permohonan_jangka_waktu_ppr;
+        $tenorBulan = $pembiayaan->form_permohonan_jml_bulan;
+
         //Perhitungan Margin, Harga Jual & Angsuran
         $hpp = $pembiayaan->form_permohonan_nilai_hpp;
-        $tenor = $pembiayaan->form_permohonan_jml_bulan;
-        $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $hpp);
-        $marginRp = $hpp * $persenMargin;
-        $hargaJual = $hpp + $marginRp;
-        $angsuran = $hargaJual / $tenor;
-        $plafondMaks = $hpp;
+        $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $plafond) / $tenorBulan * 100;
+        $marginRp = $plafond * $persenMargin / 100 * $tenorBulan;
+        $hargaJual = $plafond + $marginRp;
+        $angsuran = $hargaJual / $tenorBulan;
+        $plafondMaks = $hpp * 0.9; //Maks pembiayaan 90% dari HPP
         $kemampuanMengangsur = $pembiayaan->form_penghasilan_pengeluaran_kemampuan_mengangsur;
 
         //Idir
@@ -158,11 +179,13 @@ class PprKomiteController extends Controller
             'usiaNasabah' => $usiaNasabah,
             'scoring' => PprScoring::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
             'hpp' => $hpp,
-            'tenor' => $tenor,
+            'tenorTahun' => $tenorTahun,
+            'tenorBulan' => $tenorBulan,
             'persenMargin' => $persenMargin,
             'marginRp' => $marginRp,
             'hargaJual' => $hargaJual,
             'angsuran' => $angsuran,
+            'plafond' => $plafond,
             'plafondMaks' => $plafondMaks,
             'idir' => $idir,
             'idebs' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get(),

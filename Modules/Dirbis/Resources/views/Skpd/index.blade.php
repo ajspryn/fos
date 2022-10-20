@@ -2,6 +2,8 @@
 
 @section('content')
     @php
+        $skpds = Modules\Skpd\Entities\SkpdPembiayaan::select()->get();
+        
         $diterima = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
             ->where('status_id', 5)
             ->where('jabatan_id', 4)
@@ -126,27 +128,28 @@
                             $harga_jual = $target->nominal_pembiayaan;
                         
                             $cair = $cair + $harga_jual;
-
+                        
                             $skpds = Modules\Skpd\Entities\SkpdPembiayaan::select()->get();
-                            
-                                $pipeline1 = 0;
-                                foreach ($skpds as $skpd) {
-                                    $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-                                        ->where('skpd_pembiayaan_id', $skpd->id)
-                                        ->orderby('created_at', 'desc')
-                                        ->get()
-                                        ->first();
-                            
-                                    $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-                                        ->where('id', $history->skpd_pembiayaan_id)
-                                        ->get()
-                                        ->first();
-                                    if ($history->status_id != 5 || $history->jabatan_id != 4) {
-                                        if($history->status_id != 9)
-                                        $pipeline1++;
-                                    }
-                                }
                         }
+                        $pipeline1 = 0;
+                        foreach ($skpds as $skpd) {
+                            $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                                ->where('skpd_pembiayaan_id', $skpd->id)
+                                ->orderby('created_at', 'desc')
+                                ->get()
+                                ->first();
+                        
+                            $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                ->where('id', $history->skpd_pembiayaan_id)
+                                ->get()
+                                ->first();
+                            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                                if ($history->status_id != 9) {
+                                    $pipeline1++;
+                                }
+                            }
+                        }
+                        
                     @endphp
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">

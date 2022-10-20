@@ -15,8 +15,8 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">User
                                     </li>
-                                    <li class="breadcrumb-item active">Data User
-                                    </li>
+                                    {{-- <li class="breadcrumb-item active">Data User
+                                    </li> --}}
                                     <li class="breadcrumb-item active"><a href="#">Role User</a>
                                     </li>
                                 </ol>
@@ -35,7 +35,7 @@
                                     <h4 class="card-title">Form Role User</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form class="form" method="post" action="/admin/user">
+                                    <form class="form" method="POST" action="/admin/user">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6 col-12">
@@ -66,9 +66,10 @@
                                                         placeholder="Isikan Jabatan" name="jabatan_id" />
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <button type="submit" class="btn btn-primary me-1">Submit</button>
+                                            <div class="col-12"
+                                                style="text-align: right; margin-top:10px; padding-right:30px;">
                                                 <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                                <button type="submit" class="btn btn-primary me-1">Submit</button>
                                             </div>
                                         </div>
                                     </form>
@@ -85,7 +86,7 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center"></th>
-                                            <th style="text-align: center">No</th>
+                                            <th style="text-align: center">No.</th>
                                             <th style="text-align: center">Nama</th>
                                             <th style="text-align: center">Email</th>
                                             <th style="text-align: center">Role</th>
@@ -96,7 +97,6 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($users as $user)
-
                                             <tr>
                                                 <td style="text-align: center"></td>
                                                 <td style="text-align: center">{{ $user->id }}</td>
@@ -104,7 +104,8 @@
                                                 <td style="text-align: center">{{ $user->email }}</td>
                                                 <td style="text-align: center">{{ $user->role_id }}</td>
                                                 <td style="text-align: center">{{ $user->divisi_id }}</td>
-                                                <td style="text-align: center">{{ $user->jabatan_id }}</td>
+                                                <td style="text-align: center">{{ $user->jabatan_id }}
+                                                </td>
                                                 <td style="text-align: center">
                                                     <div class="dropdown">
                                                         <button type="button"
@@ -113,21 +114,19 @@
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item"
-                                                                href="/admin/user/{{ $user->id }}/edit">
+                                                            <a class="dropdown-item"data-bs-toggle="modal"
+                                                                data-bs-target="#modalEditUser-{{ $user->id }}">
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
-                                                            <a class="dropdown-item" href="">
-                                                                <i onclick="event.preventDefault(); document.getElementById('delete_user').submit();"
-                                                                    data-feather="trash" class="me-50"></i>
+
+                                                            <a class="dropdown-item"data-bs-toggle="modal"
+                                                                data-bs-target="#modalDeleteRole-{{ $user->id }}">
+                                                                <i data-feather="trash" class="me-50"></i>
                                                                 <span>Delete</span>
-                                                                <form id="delete_user" action="/admin/user/{{ $user->id }}" class="d-none"
-                                                                    method="POST">
-                                                                    @method('delete')
-                                                                    @csrf
-                                                                </form>
                                                             </a>
+
+
                                                         </div>
                                                     </div>
                                                 </td>
@@ -135,6 +134,128 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
+                                @foreach ($users as $userForModal)
+                                    <!-- Modal Edit User -->
+                                    <div class="modal fade" id="modalEditUser-{{ $userForModal->id }}" tabindex="-1"
+                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-transparent">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                    <h3 class="text-center">Edit Role User</h3>
+                                                    <br />
+                                                    {{-- <textarea class="form-control" name="catatan" rows="3" placeholder="Catatan">{{ $historyCatatan->catatan }}</textarea> --}}
+                                                    <form class="form" method="POST"
+                                                        action="/admin/user/{{ $userForModal->id }}">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label" for="first-name-column">User
+                                                                        ID</label>
+                                                                    <input type="number" id="first-name-column"
+                                                                        class="form-control" placeholder="Isikan User ID"
+                                                                        name="user_id" value="{{ $userForModal->id }}"
+                                                                        disabled />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label" for="roleId">Role
+                                                                        ID</label>
+                                                                    <input type="text" id="roleId"
+                                                                        class="form-control" placeholder="Isikan Role"
+                                                                        name="role_id"
+                                                                        value="{{ $userForModal->role_id }}" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label" for="divisiId">Divisi
+                                                                        ID</label>
+                                                                    <input type="text" id="divisiId"
+                                                                        class="form-control" placeholder="Isikan Divisi"
+                                                                        name="divisi_id"
+                                                                        value="{{ $userForModal->divisi_id }}" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-12">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label" for="jabatanId">Jabatan
+                                                                        ID</label>
+                                                                    <input type="text" id="jabatanId"
+                                                                        class="form-control" placeholder="Isikan Jabatan"
+                                                                        name="jabatan_id"
+                                                                        value="{{ $userForModal->jabatan_id }}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <div class="col-md-6" style="width:150px; margin:0 auto;">
+                                                                <button type="reset"
+                                                                    class="btn btn-outline-secondary w-100">Reset</button>
+                                                            </div>
+                                                            <div class="col-md-6" style="width:150px; margin:0 auto;">
+                                                                <button type="submit"
+                                                                    class="btn btn-primary me-1 w-100">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Modal Edit User -->
+
+                                    <!-- Modal Delete Role -->
+                                    <div class="modal fade" id="modalDeleteRole-{{ $userForModal->id }}" tabindex="-1"
+                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-transparent">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                    <h3 class="text-center">Apakah Anda yakin untuk menghapus Role dari
+                                                        User ini?</h3>
+                                                    <br />
+                                                    <form class="form" method="POST"
+                                                        action="/admin/user/{{ $userForModal->id }}">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <div>
+                                                            <br />
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <button class="btn btn-primary form-control"
+                                                                        type="submit">Ya
+                                                                        <input type="hidden" name="delete_repeater"
+                                                                            value="Hapus Kekayaan Simpanan">
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <button type="button"
+                                                                        class="btn btn-outline-danger form-control"
+                                                                        data-bs-dismiss="modal">Tidak</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Modal Delete Role -->
+                                @endforeach
+
                             </div>
                         </div>
                     </div>

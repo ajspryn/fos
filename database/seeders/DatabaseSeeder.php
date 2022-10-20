@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'Admin',
-            'email' => 'Admin@btb.com',
+            'email' => 'Admin@bprsbtb.com',
             'password' => bcrypt('admin123'),
         ]);
 
@@ -53,27 +53,34 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'id' => 5,
-            'name' => 'Guswanto',
-            'email' => 'Guswanto@bprsbtb.com',
-            'password' => bcrypt('guswanto123'),
+            'name' => 'Kepala Bagian',
+            'email' => 'Kabag@bprsbtb.com',
+            'password' => bcrypt('kabag123'),
         ]);
 
         DB::table('users')->insert([
             'id' => 6,
-            'name' => 'Fattah Yasin',
-            'email' => 'Yasin@bprsbtb.com',
-            'password' => bcrypt('yasin123'),
+            'name' => 'Analis',
+            'email' => 'Analis@bprsbtb.com',
+            'password' => bcrypt('analis123'),
         ]);
 
         DB::table('users')->insert([
             'id' => 7,
-            'name' => 'Arie Wibowo Irawan',
-            'email' => 'Arie@bprsbtb.com',
-            'password' => bcrypt('ariebtb123'),
+            'name' => 'Dirbis',
+            'email' => 'Dirbis@bprsbtb.com',
+            'password' => bcrypt('dirbis123'),
         ]);
 
         DB::table('users')->insert([
             'id' => 8,
+            'name' => 'Direktur Utama',
+            'email' => 'Dirut@bprsbtb.com',
+            'password' => bcrypt('dirut123'),
+        ]);
+
+        DB::table('users')->insert([
+            'id' => 9,
             'name' => 'Staff Akad',
             'email' => 'staffakad@bprsbtb.com',
             'password' => bcrypt('staff123'),
@@ -162,6 +169,13 @@ class DatabaseSeeder extends Seeder
 
         DB::table('roles')->insert([
             'user_id' => 8,
+            'role_id' => 2,
+            'divisi_id' => 0,
+            'jabatan_id' => 5,
+        ]);
+
+        DB::table('roles')->insert([
+            'user_id' => 9,
             'role_id' => 1,
             'divisi_id' => 5,
             'jabatan_id' => 1,

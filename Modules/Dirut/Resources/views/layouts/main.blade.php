@@ -1,0 +1,6 @@
+@include('dirut::layouts.head')
+@include('sweetalert::alert')
+@include('dirut::layouts.navbar')
+@include('dirut::layouts.sidebar')
+@yield('content')
+@include('dirut::layouts.footer')

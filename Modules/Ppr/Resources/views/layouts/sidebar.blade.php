@@ -1,52 +1,73 @@
 <!-- BEGIN: Main Menu-->
 @php
 
-$proposalppr = Modules\Form\Entities\FormPprPembiayaan::select()
-    ->where('user_id', Auth::user()->id)
-    ->where(function ($query) {
-        $query
-            ->whereNull('dilengkapi_ao')
-            ->orWhereNull('form_cl')
-            ->orWhereNull('form_score');
-    })
-    ->get()
-    ->count();
-
-// $komiteppr = Modules\Form\Entities\FormPprPembiayaan::select()
-//     ->where('user_id', Auth::user()->id)
-//     ->whereNotNull(['dilengkapi_ao', 'form_cl', 'form_score'])
-//     ->where('status_id', '>', 8)
-//     ->get()
-//     ->count();
-
-$komiteppr = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-    ->latest()
-    ->where('status_id', '!=', 1)
-    ->where('status_id', '<', 9)
-    ->groupBy('form_ppr_pembiayaan_id')
-    ->count();
-
-$proposals = Modules\Form\Entities\FormPprPembiayaan::select()
-    ->where('user_id', Auth::user()->id)
-    ->get();
-
-$notifRevisi = 0;
-foreach ($proposals as $proposal) {
-    $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-        ->where('form_ppr_pembiayaan_id', $proposal->id)
-        ->latest()
+    $proposalPpr = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('user_id', Auth::user()->id)
+        ->where(function ($query) {
+            $query
+                ->whereNull('dilengkapi_ao')
+                ->orWhereNull('form_cl')
+                ->orWhereNull('form_score');
+        })
         ->get()
-        ->first();
+        ->count();
 
-    $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-        ->where('id', $history->form_ppr_pembiayaan_id)
-        ->get()
-        ->first();
+    // $komitePpr = Modules\Form\Entities\FormPprPembiayaan::select()
+    //     ->where('user_id', Auth::user()->id)
+    //     ->whereNotNull(['dilengkapi_ao', 'form_cl', 'form_score'])
+    //     ->where('status_id', '>', 8)
+    //     ->get()
+    //     ->count();
 
-    if ($history->status_id == 7) {
-        $notifRevisi++;
+    // $komitePpr = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    //     ->groupBy('form_ppr_pembiayaan_id')
+    //     ->latest()
+    //     ->where(function ($query) {
+    //         $query->where('status_id', '>', 1)->where('status_id', '<', 9);
+    //     })
+    //     ->get()
+    //     ->count();
+
+    $proposals = Modules\Form\Entities\FormPprPembiayaan::select()
+        ->where('user_id', Auth::user()->id)
+        ->get();
+
+    // $komitePpr = 0;
+    // foreach ($proposals as $proposal) {
+    //     $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+    //         ->where('form_ppr_pembiayaan_id', $proposal->id)
+    //         // ->groupBy('form_ppr_pembiayaan_id')
+    //         ->latest()
+    //         ->get()
+    //         ->first();
+
+    //     $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+    //         ->where('id', $history->form_ppr_pembiayaan_id)
+    //         ->get()
+    //         ->first();
+
+    //     if ($history->status_id > 1 || $history->status_id < 9) {
+    //         $komitePpr++;
+    //     }
+    // }
+
+    $notifRevisi = 0;
+    foreach ($proposals as $proposal) {
+        $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+            ->where('form_ppr_pembiayaan_id', $proposal->id)
+            ->latest()
+            ->get()
+            ->first();
+
+        $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+            ->where('id', $history->form_ppr_pembiayaan_id)
+            ->get()
+            ->first();
+
+        if ($history->status_id == 7) {
+            $notifRevisi++;
+        }
     }
-}
 
 @endphp
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
@@ -80,25 +101,25 @@ foreach ($proposals as $proposal) {
             <li class="{{ Request::is('ppr/komite*') ? 'active' : 'nav-item' }} "><a class="d-flex align-items-center"
                     href="/ppr/komite"><i data-feather="file-text"></i><span class="menu-title text-truncate"
                         data-i18n="home">Komite</span>
-                    @if ($komiteppr > 0)
-                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komiteppr }}</span>
-                    @endif
+                    {{-- @if ($komitePpr > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $komitePpr }}</span>
+                    @endif --}}
                 </a>
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="clipboard"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span>
-                    @if ($proposalppr + $notifRevisi > 0)
+                    @if ($proposalPpr + $notifRevisi > 0)
                         <span
-                            class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr + $notifRevisi }}</span>
+                            class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalPpr + $notifRevisi }}</span>
                     @endif
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('ppr/proposal*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/ppr/proposal"><i data-feather="clipboard"></i><span
                                 class="menu-title text-truncate" data-i18n="home">Proposal</span>
-                            @if ($proposalppr > 0)
+                            @if ($proposalPpr > 0)
                                 <span
-                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalppr }}</span>
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalPpr }}</span>
                             @endif
                         </a>
                     </li>

@@ -51,9 +51,10 @@
         <div class="navbar-header d-xl-block d-none">
             <ul class="nav navbar-nav">
                 <li class="nav-item">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/">
                         <img src="Logo_BPRS_BTB.png" height="70" alt="logo">
                     </a>
+                    <hr style="margin-top:-13px;" />
                 </li>
             </ul>
         </div>

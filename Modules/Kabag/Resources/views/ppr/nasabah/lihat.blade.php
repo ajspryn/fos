@@ -152,6 +152,18 @@
                         </thead>
                         <tbody>
                             @foreach ($datas as $data)
+                                @php
+                                    //Plafond
+                                    $plafond = $data->form_permohonan_nilai_ppr_dimohon;
+                                    
+                                    //Tenor
+                                    $tenorTahun = $data->form_permohonan_jangka_waktu_ppr;
+                                    $tenorBulan = $data->form_permohonan_jml_bulan;
+                                    
+                                    //Perhitungan Margin, Harga Jual & Angsuran
+                                    $hpp = $data->form_permohonan_nilai_hpp;
+                                    $persenMargin = ($data->form_permohonan_jml_margin / $plafond / $tenorBulan) * 100;
+                                @endphp
                                 <tr>
                                     <td style="text-align: center">
                                         {{ $loop->iteration }}</td>
@@ -162,7 +174,7 @@
                                     <td style="text-align: center">{{ $data->form_permohonan_jml_bulan }} Bulan
                                     </td>
                                     <td style="text-align: center">
-                                        0.9%
+                                        {{ number_format((float) $persenMargin, 2, '.', '') }}%
                                     </td>
                                     <td style="text-align: center">Rp.
                                         {{ number_format($data->form_penghasilan_pengeluaran_kemampuan_mengangsur) }}

@@ -50,7 +50,7 @@
                                 <thead>
                                     <tr>
                                         <th class="midCenter" style="vertical-align: middle;"></th>
-                                        <th class="midCenter" style="vertical-align: middle;">No</th>
+                                        <th class="midCenter" style="vertical-align: middle;">No.</th>
                                         <th class="midCenter" style="vertical-align: middle;">Tanggal Pengajuan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jenis Nasabah</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nama Nasabah</th>
@@ -68,8 +68,10 @@
                                         @php
                                             $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
                                                 ->where('id', $proposal->form_ppr_pembiayaan_id)
+                                                ->where('user_id', Auth::user()->id)
                                                 ->get()
                                                 ->first();
+                                            
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                                 ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->orderBy('created_at', 'desc')

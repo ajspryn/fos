@@ -95,7 +95,8 @@
                                                                         <tr>
                                                                             <td class="pe-1">Margin</td>
                                                                             <td>:
-                                                                                {{ $persenMargin }}% per Bulan
+                                                                                {{ number_format((float) $persenMargin, 2, '.', '') }}%
+                                                                                per Bulan
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
@@ -168,12 +169,6 @@
                                                                                 {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_pangkat_gol_jabatan }}
                                                                             </td>
                                                                         </tr>
-                                                                        {{-- <tr>
-                                                                            <td class="pe-1">Kantor/Dinas</td>
-                                                                            <td>:
-                                                                                {{ $pembiayaan->instansi->nama_instansi }}
-                                                                            </td>
-                                                                        </tr> --}}
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -207,12 +202,6 @@
                                                                                 {{ number_format($pembiayaan->form_penghasilan_pengeluaran_penghasilan_lain_istri_suami) }}
                                                                             </td>
                                                                         </tr>
-                                                                        {{-- <tr>
-                                                                            <td class="pe-1">Gaji TPP</td>
-                                                                            <td>: Rp.
-                                                                                {{ number_format($pembiayaan->gaji_tpp) }}
-                                                                            </td>
-                                                                        </tr> --}}
                                                                         <tr>
                                                                             <td class="pe-1 mt-2">Total Penghasilan</td>
                                                                             <td>: <span class="fw-bold">Rp.
@@ -283,7 +272,7 @@
                                                                             <tr>
                                                                                 <th style="text-align: center; vertical-align:middle; width: 5%;"
                                                                                     class="py-1">
-                                                                                    No
+                                                                                    No.
                                                                                 </th>
                                                                                 <th style="text-align: center; vertical-align:middle;"
                                                                                     class="py-1">Nama
@@ -374,7 +363,7 @@
                                                                                 <tr>
                                                                                     <th style="text-align: center; vertical-align:middle; width: 5%;"
                                                                                         class="py-1">
-                                                                                        No
+                                                                                        No.
                                                                                     </th>
                                                                                     <th style="text-align: center; vertical-align:middle;"
                                                                                         class="py-1">Nama
@@ -457,7 +446,7 @@
                                                                                 <tr>
                                                                                     <th style="text-align: center; vertical-align:middle; width: 5%;"
                                                                                         class="py-1">
-                                                                                        No
+                                                                                        No.
                                                                                     </th>
                                                                                     <th style="text-align: center; vertical-align:middle;"
                                                                                         class="py-1">Nama
@@ -548,7 +537,7 @@
                                                                         <thead>
                                                                             <tr>
                                                                                 <th style="text-align: center"
-                                                                                    width="2%">No
+                                                                                    width="2%">No.
                                                                                 </th>
                                                                                 <th style="text-align: center">
                                                                                     Parameter
@@ -1524,9 +1513,9 @@
                                                                                 <td class="pe-1">
                                                                                     &ensp;Tenor</td>
                                                                                 <td>:
-                                                                                    {{ $pembiayaan->form_permohonan_jangka_waktu_ppr }}
+                                                                                    {{ $tenorTahun }}
                                                                                     Tahun
-                                                                                    ({{ $pembiayaan->form_permohonan_jml_bulan }}
+                                                                                    ({{ $tenorBulan }}
                                                                                     Bulan)
                                                                                 </td>
                                                                             </tr>
@@ -1534,7 +1523,16 @@
                                                                                 <td class="pe-1">
                                                                                     &ensp;Margin</td>
                                                                                 <td>:
-                                                                                    {{ $persenMargin }}% per Bulan
+                                                                                    Rp. {{ number_format($marginRp) }}
+                                                                                    ({{ number_format((float) $persenMargin, 2, '.', '') }}%
+                                                                                    per Bulan)
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1">
+                                                                                    &ensp;Harga Jual</td>
+                                                                                <td>:
+                                                                                    Rp. {{ number_format($hargaJual) }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -1555,7 +1553,8 @@
                                                                                 <td class="pe-1">
                                                                                     &ensp;DP Nasabah</td>
                                                                                 <td>:
-                                                                                    {{ $persenDp }}%, yaitu sebesar
+                                                                                    {{ number_format($persenDp) }}%, yaitu
+                                                                                    sebesar
                                                                                     Rp. {{ number_format($dp) }}
                                                                                 </td>
                                                                             </tr>
@@ -1575,12 +1574,12 @@
                                                                             <tr>
                                                                                 <td>Harga Beli</td>
                                                                                 <td>Rp.
-                                                                                    {{ number_format($pembiayaan->form_permohonan_nilai_hpp) }}
+                                                                                    {{ number_format($plafond) }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Tenor</td>
-                                                                                <td>{{ $tenor }}
+                                                                                <td>{{ $tenorBulan }}
                                                                                     Bulan
                                                                                 </td>
                                                                             </tr>
@@ -1590,7 +1589,7 @@
                                                                                    %
                                                                                 </td> --}}
                                                                                 <td>
-                                                                                    {{ $persenMargin }}%
+                                                                                    {{ number_format((float) $persenMargin, 2, '.', '') }}%
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -1635,14 +1634,14 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Tenor</td>
-                                                                                <td>{{ $tenor }}
+                                                                                <td>{{ $tenorBulan }}
                                                                                     Bulan
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Margin (% Per Bulan)</td>
                                                                                 <td>
-                                                                                    {{ $persenMargin }}%
+                                                                                    {{ number_format((float) $persenMargin, 2, '.', '') }}%
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>

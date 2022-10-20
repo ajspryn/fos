@@ -50,7 +50,7 @@
                                 <thead>
                                     <tr>
                                         <th class="midCenter" style="vertical-align: middle;"></th>
-                                        <th class="midCenter" style="vertical-align: middle;">No</th>
+                                        <th class="midCenter" style="vertical-align: middle;">No.</th>
                                         <th class="midCenter" style="vertical-align: middle;">Tanggal Pengajuan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jenis Nasabah</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nama Nasabah</th>
@@ -64,16 +64,16 @@
                                 <tbody>
                                     @foreach ($proposals as $proposal)
                                         @php
+                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                ->where('id', $proposal->form_ppr_pembiayaan_id)
+                                                ->get()
+                                                ->first();
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                                                ->where('form_ppr_pembiayaan_id', $proposal->id)
+                                                ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->latest()
                                                 ->get()
                                                 ->first();
 
-                                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
-                                                ->where('id', $history->form_ppr_pembiayaan_id)
-                                                ->get()
-                                                ->first();
                                         @endphp
                                         @if (($history->status_id == 5 && $history->jabatan_id == 2) ||
                                             ($history->status_id == 4 && $history->jabatan_id == 3))
