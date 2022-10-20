@@ -43,28 +43,28 @@ $(function () {
 
   // Bootstrap Validation
   // --------------------------------------------------------------------
-  if (bootstrapForm.length) {
-    Array.prototype.filter.call(bootstrapForm, function (form) {
-      form.addEventListener('submit', function (event) {
-        if (form.checkValidity() === false) {
-          form.classList.add('invalid');
-        }
-        form.classList.add('was-validated');
-        event.preventDefault();
-        // if (inputGroupValidation) {
-        //   inputGroupValidation(form);
-        // }
-      });
-      // bootstrapForm.find('input, textarea').on('focusout', function () {
-      //   $(this)
-      //     .removeClass('is-valid is-invalid')
-      //     .addClass(this.checkValidity() ? 'is-valid' : 'is-invalid');
-      //   if (inputGroupValidation) {
-      //     inputGroupValidation(this);
-      //   }
-      // });
-    });
-  }
+//   if (bootstrapForm.length) {
+//     Array.prototype.filter.call(bootstrapForm, function (form) {
+//       form.addEventListener('submit', function (event) {
+//         if (form.checkValidity() === false) {
+//           form.classList.add('invalid');
+//         }
+//         form.classList.add('was-validated');
+//         event.preventDefault();
+//         // if (inputGroupValidation) {
+//         //   inputGroupValidation(form);
+//         // }
+//       });
+//       // bootstrapForm.find('input, textarea').on('focusout', function () {
+//       //   $(this)
+//       //     .removeClass('is-valid is-invalid')
+//       //     .addClass(this.checkValidity() ? 'is-valid' : 'is-invalid');
+//       //   if (inputGroupValidation) {
+//       //     inputGroupValidation(this);
+//       //   }
+//       // });
+//     });
+//   }
 
   // jQuery Validation
   // --------------------------------------------------------------------
