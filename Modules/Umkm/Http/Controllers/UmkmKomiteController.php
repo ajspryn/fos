@@ -85,6 +85,21 @@ class UmkmKomiteController extends Controller
         return redirect('/umkm/komite')->with('success', 'Pengajuan Berhasil Diproses AO');
     }
 
+    public function upload(Request $request)
+    {
+        if($request->file('Foto_Bon_Murabahah')){
+            $bonmurabahah=$request->file('Foto_Bon_Murabahah')->store('foto-umkm-pembiayaan');
+            UmkmFoto::create([
+                'umkm_pembiayaan_id'=> $request->umkm_pembiayaan_id,
+                'kategori' => 'Foto Bon Murabahah',
+                'foto' => $bonmurabahah,
+            ]);
+        }
+
+
+        return redirect('/umkm/komite')->with('success', 'Lampiran Berhasil di Upload AO');
+    }
+
     /**
      * Show the specified resource.
      * @param int $id
@@ -228,6 +243,7 @@ class UmkmKomiteController extends Controller
             'fototoko'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto toko')->get()->first(),
             'fotodiri'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->get()->first(),
             'fotoktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
+            'bon_murabahah'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Bon Murabahah')->get()->first(),
             'fotodiribersamaktp'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
             'fotokk'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
             'nota'=>UmkmFoto::select()->where('umkm_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),

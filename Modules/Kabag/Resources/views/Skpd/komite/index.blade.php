@@ -41,6 +41,7 @@
                                         <th style="text-align: center">Nominal Pembiayaan</th>
                                         <th style="text-align: center">Status</th>
                                         <th style="text-align: center">Tanggal Pengajuan</th>
+                                        <th style="text-align: center">Bon Murabahah</th>
                                         <th style="text-align: center">AO Yang Menangani</th>
                                         <th style="text-align: center">Action</th>
                                     </tr>
@@ -50,6 +51,7 @@
                                         @php
                                             $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                                                 ->where('id', $proposal->skpd_pembiayaan_id)
+                                                ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
                                             $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
@@ -57,8 +59,13 @@
                                                 ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
+                                            $bonmurabahah = Modules\Skpd\Entities\SkpdFoto::select()
+                                                ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+                                                ->where('kategori', 'Foto Bon Murabahah')
+                                                ->get()
+                                                ->first();
                                         @endphp
-                                        @if ($history->status_id == 5 || $history->status_id == 4)
+                                        @if ($history->status_id == 5 || $history->status_id == 4 || $history->status_id == 9)
                                             <tr>
                                                 <td style="text-align: center">
                                                     <button type="button"
@@ -91,6 +98,39 @@
                                                     @endif
                                                 </td>
                                                 <td style="text-align: center">{{ $proposal_skpd->tanggal_pengajuan }}</td>
+                                                <td style="text-align: center">
+                                                    @if ($bonmurabahah)
+                                                        <div class="mb-0 mt-1 col-md-1">
+                                                            <button type="butt  on" class="btn btn-success"
+                                                                data-bs-toggle="modal" data-bs-target="#bon">
+                                                                Telah Terlampir
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal fade" id="bon" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                       Bon Murabahah
+                                                                    </h1>
+                                                                    <p class="text-center">Lampiran Foto Bon Murabahah</p>
+                                                                    <div class="card-body">
+                                                                        <img src="{{ asset('storage/' . $bonmurabahah->foto) }}"
+                                                                            class="d-block w-100" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @else
+                                                        Belum Terlampir
+                                                    @endif
+                                                </td>
                                                 <td style="text-align: center">{{ $proposal_skpd->user->name }}</td>
                                                 <td style="text-align: center">
                                                     <a href="/kabag/skpd/komite/{{ $proposal_skpd->id }}"

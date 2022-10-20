@@ -80,6 +80,21 @@ class SkpdKomiteController extends Controller
         return redirect('/skpd/komite');
     }
 
+    public function upload(Request $request)
+    {
+        if($request->file('Foto_Bon_Murabahah')){
+            $bonmurabahah=$request->file('Foto_Bon_Murabahah')->store('foto-skpd-pembiayaan');
+            SkpdFoto::create([
+                'skpd_pembiayaan_id'=> $request->skpd_pembiayaan_id,
+                'kategori' => 'Foto Bon Murabahah',
+                'foto' => $bonmurabahah,
+            ]);
+        }
+
+
+        return redirect('/skpd/komite')->with('success', 'Lmapiran Behasil di Upload AO');
+    }
+
     /**
      * Show the specified resource.
      * @param int $id
@@ -251,6 +266,7 @@ class SkpdKomiteController extends Controller
 
             //identitas pribadi
             'fotos' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->get(),
+            'bon_murabahah' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Foto Bon Murabahah')->get()->first(),
             'jaminans' => SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->get(),
             'jaminanlainnyas' => SkpdJaminanLainnya::select()->where('skpd_pembiayaan_id', $id)->get(),
             'skpengangkatans' => SkpdPembiayaan::select()->where('id', $id)->get(),

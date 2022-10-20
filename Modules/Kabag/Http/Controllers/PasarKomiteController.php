@@ -40,11 +40,12 @@ class PasarKomiteController extends Controller
      * @return Renderable
      */
     public function index()
-    {
-         $komite=PasarPembiayaanHistory::select()->where('status_id', 3 )->orderby('created_at','desc')->get();
+    {   
+        $komite=PasarPembiayaanHistory::select()->where('status_id', 3 )->orderby('created_at','desc')->get();
             return view('kabag::pasar.komite.index',[
             'title'=>'Data Nasabah',
             'komites'=>$komite,
+            
         ]);
     }
 
@@ -233,6 +234,7 @@ class PasarKomiteController extends Controller
             'title'=>'Detail Calon Nasabah',
             // 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->get()->first(),
             'deviasi'=>PasarDeviasi::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
+            'bon_murabahah'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Bon Murabahah')->get()->first(),
             'timelines'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->get(),
             'history'=>PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->first(),
             'waktuawal'=>PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id',$id)->orderby('created_at','desc')->get()->last(),
