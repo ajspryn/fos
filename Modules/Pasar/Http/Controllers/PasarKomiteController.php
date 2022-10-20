@@ -88,11 +88,33 @@ class PasarKomiteController extends Controller
                 'dokumen_deviasi'=> $dokumen_deviasi,
             ]);
         }
+        if($request->file('Foto_Bon_Murabahah')){
+            $bonmurabahah=$request->file('Foto_Bon_Murabahah')->store('foto-pasar-pembiayaan');
+            PasarFoto::create([
+                'pasar_pembiayaan_id'=> $request->pasar_pembiayaan_id,
+                'kategori' => 'Foto Bon Murabahah',
+                'foto' => $bonmurabahah,
+            ]);
+        }
 
 
         return redirect('/pasar/komite')->with('success', 'Pengajuan Diproses AO');
     }
 
+    public function upload(Request $request)
+    {
+        if($request->file('Foto_Bon_Murabahah')){
+            $bonmurabahah=$request->file('Foto_Bon_Murabahah')->store('foto-pasar-pembiayaan');
+            PasarFoto::create([
+                'pasar_pembiayaan_id'=> $request->pasar_pembiayaan_id,
+                'kategori' => 'Foto Bon Murabahah',
+                'foto' => $bonmurabahah,
+            ]);
+        }
+
+
+        return redirect('/pasar/komite')->with('success', 'Pengajuan Diproses AO');
+    }
     /**
      * Show the specified resource.
      * @param int $id
@@ -243,6 +265,7 @@ class PasarKomiteController extends Controller
             'fotoktp'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto KTP')->get()->first(),
             'fotodiribersamaktp'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
             'fotokk'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'bon_murabahah'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Bon Murabahah')->get()->first(),
             'nota'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Nota Pembelanjaan')->get()->first(),
             'jaminanusahas'=>PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get(),
             'jaminanlainusahas'=>PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get(),

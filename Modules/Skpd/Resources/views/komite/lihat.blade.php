@@ -690,6 +690,17 @@
                                                                         </button>
                                                                     </div>
                                                                 </form>
+                                                                @if($bon_murabahah)
+                                                                @else
+                                                                @if ($history->status_id == 9)
+                                                                <div class="card-body">
+                                                                    <button class="btn btn-danger w-100 mb-75"
+                                                                        data-bs-toggle="modal" data-bs-target="#bon">
+                                                                        Upload Bon Murabahah
+                                                                    </button>
+                                                                </div>
+                                                                @endif
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -753,6 +764,48 @@
                                                         </div>
                                                     </div>
                                                     <!--/ add new card modal  -->
+
+                                                    <div class="modal fade" id="bon" tabindex="-1"
+                                                aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-transparent">
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                            <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                Upload Bon Murabahah
+                                                            </h1>
+                                                            <p class="text-center"></p>
+
+                                                            <!-- form -->
+                                                            <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"
+                                                                method="POST" action="/skpd/bonmurabahah"
+                                                                enctype="multipart/form-data">
+                                                                @csrf
+                                                                <label class="form-label" for="fotokk"><small
+                                                                        class="text-danger">*
+                                                                    </small>Upload Bon Murabahah</label>
+                                                                <input type="hidden" name="skpd_pembiayaan_id"
+                                                                    value="{{ $pembiayaan->id }}">
+                                                                <input type="file" name="Foto_Bon_Murabahah"
+                                                                    id="fotokk" rows="3" class="form-control"
+                                                                    required />
+                                                                <div class="col-12 text-center">
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary me-1 mt-1">Submit</button>
+                                                                    <button type="reset"
+                                                                        class="btn btn-outline-secondary mt-1"
+                                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                                        Cancel
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                                     <!-- add new card modal  -->
                                                     <div class="modal fade" id="edit_proposal" tabindex="-1"

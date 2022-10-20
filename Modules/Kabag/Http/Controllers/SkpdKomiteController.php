@@ -210,6 +210,7 @@ class SkpdKomiteController extends Controller
             'total_pendapatan' => $data->pendapatan_lainnya + $data->gaji_pokok + $data->pendapatan_lainnya,
             'cekcicilanpasangan' => $cekcicilanpasangan,
             'ideppasangans' => SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->get(),
+            'bon_murabahah'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'Foto Bon Murabahah')->get()->first(),
 
             'bendahara' => $proses_bendahara,
             'dsr' => $proses_dsr,

@@ -15,7 +15,7 @@ foreach ($proposals as $proposal) {
         ->orderby('created_at', 'desc')
         ->get()
         ->first();
-    if ($history->jabatan_id == 4 && $history->status_id == 5) {
+    if ($history->jabatan_id == 4 && $history->status_id == 5  && $history->cek_staff_akad == 'Belum') {
         $proposalskpd++;
     }
 }
@@ -34,7 +34,7 @@ foreach ($pasars as $pasar) {
         ->where('id', $history->pasar_pembiayaan_id)
         ->get()
         ->first();
-    if ($history->jabatan_id == 4 && $history->status_id == 5) {
+    if ($history->jabatan_id == 4 && $history->status_id == 5  && $history->cek_staff_akad == 'Belum') {
         $proposalpasar++;
     }
 }
@@ -56,7 +56,7 @@ foreach ($umkms as $umkm) {
         ->get()
         ->first();
 
-    if ($history->jabatan_id == 4 && $history->status_id == 5) {
+    if ($history->jabatan_id == 4 && $history->status_id == 5  && $history->cek_staff_akad == 'Belum') {
         $proposalumkm++;
     }
 }
@@ -77,7 +77,7 @@ foreach ($pprs as $ppr) {
         ->orderBy('created_at', 'desc')
         ->get()
         ->first();
-    if ($history->jabatan_id == 4 && $history->status_id == 5) {
+    if ($history->jabatan_id == 4 && $history->status_id == 5 && $history->cek_staff_akad == 'Belum') {
         $proposalppr++;
     }
 }

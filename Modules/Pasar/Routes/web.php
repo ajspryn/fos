@@ -23,6 +23,7 @@ use Modules\Pasar\Http\Controllers\PasarProposalController;
 // });
 Route::prefix('pasar')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:2',])->group(function() {
     Route::get('/', 'PasarController@index');
+    Route::post('/bonmurabahah', 'PasarKomiteController@upload');
     Route::resource('/nasabah', PasarNasabahController::class);
     Route::resource('/komite', PasarKomiteController::class);
     Route::resource('/proposal', PasarProposalController::class);

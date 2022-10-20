@@ -21,7 +21,8 @@ Route::prefix('umkm')->group(function() {
     Route::resource('/form', UmkmController::class);
 });
 Route::prefix('umkm')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:3'])->group(function() {
-    Route::get('/', 'umkmController@index');
+    Route::get('/', 'UmkmController@index');
+    Route::post('/bonmurabahah', 'UmkmKomiteController@upload');
     Route::resource('/nasabah', UmkmNasabahController::class);
     Route::resource('/komite', UmkmKomiteController::class);
     Route::resource('/proposal', UmkmProposalController::class);
