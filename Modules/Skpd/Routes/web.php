@@ -27,4 +27,5 @@ Route::prefix('skpd')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi
     Route::resource('/proposal', SkpdProposalController::class);
     Route::resource('/revisi', SkpdRevisiController::class);
     Route::resource('/cetak', SkpdCetakProposalController::class);
+    Route::post('/bonmurabahah', 'SkpdKomiteController@upload');
 });
