@@ -69,11 +69,11 @@
                                                 ->where('id', $komite->form_ppr_pembiayaan_id)
                                                 ->get()
                                                 ->first();
-                                            
+
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->latest()
                                                 ->first();
-                                            
+
                                         @endphp
                                         @if ($history->jabatan_id == 4 ||
                                             ($history->jabatan_id == 3 && $history->status_id == 5) ||
@@ -101,7 +101,9 @@
                                                 </td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}
-                                                    Bulan
+                                                    Tahun
+                                                    <br />
+                                                    ({{ $proposal_ppr->form_permohonan_jml_bulan }} Bulan)
                                                 </td>
                                                 <td style="text-align: center"
                                                     value=" {{ $history->statusHistory->id }}, {{ $history->jabatan->jabatan_id }}">
@@ -143,7 +145,7 @@
                                                 ->where('id', $forCatatanModal->form_ppr_pembiayaan_id)
                                                 ->get()
                                                 ->first();
-                                            
+
                                             $historyCatatan = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->latest()
                                                 ->first();
