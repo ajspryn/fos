@@ -121,7 +121,8 @@
                         </div>
                     </div>
                     <div class="bs-stepper-content">
-                        <form method='post' action="/skpd/pembiayaan" enctype="multipart/form-data">
+                        <form method='post' action="/skpd/pembiayaan"
+                            enctype="multipart/form-data">
                             @csrf
                             <div id="form" class="content" role="tabpanel"
                                 aria-labelledby="account-details-trigger">
@@ -140,12 +141,16 @@
                                                 <option value="{{ $ao->user->id }}">{{ $ao->user->name }}</option>
                                             @endforeach
                                         </select>
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="tanggal"><small class="text-danger">*
                                             </small>Tanggal Pengajuan</label>
                                         <input type="text" id="tanggal" class="form-control flatpickr-basic"
                                             name="tanggal_pengajuan" placeholder="YYYY-MM-DD" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jenispenggunaan"><small class="text-danger">*
@@ -158,6 +163,8 @@
                                                 </option>
                                             @endforeach
                                         </select>
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="sektor"><small class="text-danger">*
@@ -188,6 +195,8 @@
                                         <input type="text" name="nominal_pembiayaan"
                                             class="form-control numeral-mask4" placeholder="Rp." id="nominal_pembiayaan"
                                             required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-4">
                                         <label class="form-label" for="tenor"><small class="text-danger">*
@@ -210,6 +219,8 @@
                                             <option value="48">48 Bulan</option>
                                             <option value="60">60 Bulan</option>
                                         </select>
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-2">
                                         <label class="form-label" for="rate"><small class="text-danger">*
@@ -245,77 +256,99 @@
                                             </small>Nama Lengkap Nasabah</label>
                                         <input type="text" name="nama_nasabah" id="nama" class="form-control"
                                             placeholder="Nama Lengkap" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="noktp"><small class="text-danger">* </small>No
                                             KTP</label>
                                         <input type="number" name="no_ktp" id="noktp" class="form-control"
                                             placeholder="Masukan Nomor KTP Anda" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="nama">Nama Lengkap Pasangan Nasabah</label>
-                                        <input type="text" name="nama_pasangan_nasabah" id="nama" class="form-control"
-                                            placeholder="Nama Lengkap Pasangan Anda"/>
+                                        <input type="text" name="nama_pasangan_nasabah" id="nama"
+                                            class="form-control" placeholder="Nama Lengkap Pasangan Anda" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="noktp">No
                                             KTP Pasangan</label>
                                         <input type="number" name="no_ktp_pasangan" id="noktp" class="form-control"
-                                            placeholder="Masukan Nomor KTP pasangan Anda"/>
+                                            placeholder="Masukan Nomor KTP pasangan Anda" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="tempatlahir"><small class="text-danger">*
                                             </small>Tempat Lahir</label>
                                         <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control"
                                             placeholder="Maukan Tempat Lahir Anda" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="tgllahir"><small class="text-danger">*
                                             </small>Tanggal Lahir</label>
                                         <input type="date" id="tgl_lahir" class="form-control flatpickr-basic"
                                             name="tgl_lahir" placeholder="YYYY-MM-DD" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="exampleFormControlTextarea1"><small
                                                 class="text-danger">* </small>Alamat Sesuai KTP</label>
                                         <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat"
                                             required></textarea>
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-1">
                                         <label class="form-label" for="rt"><small class="text-danger">*
                                             </small>RT</label>
                                         <input type="number" name="rt" id="rt" class="form-control"
                                             placeholder="RT" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-1">
                                         <label class="form-label" for="rw"><small class="text-danger">*
                                             </small>RW</label>
                                         <input type="number" name="rw" id="rw" class="form-control"
                                             placeholder="RW" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-4">
                                         <label class="form-label" for="desa_kelurahan"><small class="text-danger">*
                                             </small>Desa / Kelurahan</label>
                                         <input type="text" name="desa_kelurahan" id="desa_kelurahan"
                                             class="form-control" placeholder="Desa / Kelurahan" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-4">
                                         <label class="form-label" for="kecamatan"><small class="text-danger">*
                                             </small>Kecamatan</label>
                                         <input type="text" name="kecamatan" id="kecamatan" class="form-control"
                                             placeholder="Kecamatan" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-4">
                                         <label class="form-label" for="kabkota"><small class="text-danger">*
                                             </small>Kabupaten / Kota</label>
                                         <input type="text" name="kabkota" id="kabkota" class="form-control"
                                             placeholder="Kabupaten / Kota" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-4">
                                         <label class="form-label" for="provinsi"><small class="text-danger">*
                                             </small>Provinsi</label>
                                         <input type="text" name="provinsi" id="provinsi" class="form-control"
                                             placeholder="Provinsi" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="exampleFormControlTextarea1">Alamat
@@ -328,12 +361,14 @@
                                             </small>Status</label>
                                         <select class="select2 w-100" name="skpd_status_perkawinan_id" id="status"
                                             required>
-                                            <option label="status"></option>
+                                            <option label=""></option>
                                             @foreach ($statusperkawinans as $statusperkawinan)
                                                 <option value="{{ $statusperkawinan->id }}">
                                                     {{ $statusperkawinan->nama_status_perkawinan }}</option>
                                             @endforeach
                                         </select>
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jumlahanak"><small class="text-danger">*
@@ -345,6 +380,8 @@
                                                     {{ $tanggungan->banyak_tanggungan }}</option>
                                             @endforeach
                                         </select>
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="nonpwp">No NPWP</label>
@@ -357,6 +394,8 @@
                                         <input type="text" name="no_telp" id="notelp"
                                             class="form-control prefix-mask" placeholder="Masukan Nomor telepon Anda"
                                             required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
@@ -388,6 +427,8 @@
                                             class="form-control" required />
                                         <input type="hidden" name="foto[1][kategori]" value="Foto Diri" rows="3"
                                             class="form-control" />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="fotopasangan"><small class="text-danger">
@@ -404,6 +445,8 @@
                                             class="form-control" required />
                                         <input type="hidden" name="foto[2][kategori]" value="Foto KTP" rows="3"
                                             class="form-control" />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="fotodiriktp"><small class="text-danger">*
@@ -412,6 +455,8 @@
                                             class="form-control" required />
                                         <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
                                             rows="3" class="form-control" />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="fotokk"><small class="text-danger">*
@@ -420,6 +465,8 @@
                                             class="form-control" required />
                                         <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga"
                                             rows="3" class="form-control" />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="fotoaktanikah"><small class="text-danger">
@@ -457,6 +504,8 @@
                                             </small>Nama</label>
                                         <input type="text" name="nama_orang_terdekat" id="namaot"
                                             class="form-control" placeholder="Masukan Nama Orang Terdekat" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="notelpot"><small class="text-danger">* </small>No
@@ -464,48 +513,64 @@
                                         <input type="text" name="no_telp_orang_terdekat" id="notelpot"
                                             class="form-control prefix-mask1"
                                             placeholder="Masukan Nomor Telepon Orang Terdekat" />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="exampleFormControlTextarea1"><small
                                                 class="text-danger">* </small>Alamat</label>
                                         <textarea class="form-control" name="alamat_orang_terdekat" id="exampleFormControlTextarea1" rows="3"
-                                            placeholder="Alamat Orang Terdekat"></textarea>
+                                            placeholder="Alamat Orang Terdekat" required></textarea>
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-1">
                                         <label class="form-label" for="rt"><small class="text-danger">*
                                             </small>RT</label>
                                         <input type="number" name="rt_orang_terdekat" id="rt"
                                             class="form-control" placeholder="RT" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-1">
                                         <label class="form-label" for="rw"><small class="text-danger">*
                                             </small>RW</label>
                                         <input type="number" name="rw_orang_terdekat" id="rw"
                                             class="form-control" placeholder="RW" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-4">
                                         <label class="form-label" for="desa_kelurahan"><small class="text-danger">*
                                             </small>Desa / Kelurahan</label>
                                         <input type="text" name="desa_kelurahan_orang_terdekat" id="desa_kelurahan"
                                             class="form-control" placeholder="Desa / Kelurahan" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-4">
                                         <label class="form-label" for="kecamatan"><small class="text-danger">*
                                             </small>Kecamatan</label>
                                         <input type="text" name="kecamatan_orang_terdekat" id="kecamatan"
                                             class="form-control" placeholder="Kecamatan" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-4">
                                         <label class="form-label" for="kabkota"><small class="text-danger">*
                                             </small>Kabupaten / Kota</label>
                                         <input type="text" name="kabkota_orang_terdekat" id="kabkota"
                                             class="form-control" placeholder="Kabupaten / Kota" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-4">
                                         <label class="form-label" for="provinsi"><small class="text-danger">*
                                             </small>Provinsi</label>
                                         <input type="text" name="provinsi_orang_terdekat" id="provinsi"
                                             class="form-control" placeholder="Provinsi" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
@@ -533,30 +598,36 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="namainstansi"><small class="text-danger">*
                                             </small>Nama Instansi</label>
-                                        <select class="select2 w-100" name="skpd_instansi_id" id="namainstansi">
+                                        <select class="select2 w-100" name="skpd_instansi_id" id="namainstansi" required>
                                             <option label="namainstansi"></option>
-                                            <@foreach ($instansis as $instansi)
+                                            @foreach ($instansis as $instansi)
                                                 <option value="{{ $instansi->id }}">{{ $instansi->nama_instansi }}
                                                 </option>
-                                                @endforeach
+                                            @endforeach
                                         </select>
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="golongan"><small class="text-danger">*
                                             </small>Golongan</label>
-                                        <select class="select2 w-100" name="skpd_golongan_id" id="golongan">
+                                        <select class="select2 w-100" name="skpd_golongan_id" id="golongan" required>
                                             <option label="golongan"></option>
                                             @foreach ($golongans as $golongan)
                                                 <option value="{{ $golongan->id }}">{{ $golongan->nama_golongan }}
                                                 </option>
                                             @endforeach
                                         </select>
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="skpengangkatan"><small class="text-danger">*
                                             </small>Upload Softcopy SK Pengangkatan / SK Terakhir</label>
                                         <input type="file" name="sk_pengangkatan" id="skpengangkatan" rows="3"
                                             class="form-control" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
@@ -584,18 +655,23 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jaminan"><small class="text-danger">*
                                             </small>Jenis Jaminan</label>
-                                        <select class="select2 w-100" name="skpd_jenis_jaminan_id" id="jaminan">
+                                        <select class="select2 w-100" name="skpd_jenis_jaminan_id" id="jaminan"
+                                            required>
                                             <option label="jaminan"></option>
                                             @foreach ($jaminans as $jaminan)
                                                 <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}</option>
                                             @endforeach
                                         </select>
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jaminan_dokumen"><small class="text-danger">*
                                             </small>Upload Jaminan</label>
                                         <input type="file" name="dokumen_jaminan" id="jaminan_dokumen"
-                                            class="form-control" />
+                                            class="form-control" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="notelpot">Jaminan Lainya</label>
@@ -634,32 +710,42 @@
                                         <label class="form-label" for="gaji_pokok"><small class="text-danger">*
                                             </small>Gaji Pokok (Per Bulan)</label>
                                         <input type="text" name="gaji_pokok" class="form-control numeral-mask1"
-                                            placeholder="Rp." id="gaji_pokok" />
+                                            placeholder="Rp." id="gaji_pokok" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="pendapatan_lainnya"><small class="text-danger">*
                                             </small>Gaji / Pendapatan Lainnya (Per Bulan)</label>
                                         <input type="text" name="pendapatan_lainnya"
                                             class="form-control numeral-mask2" placeholder="0 Jika Tidak ada"
-                                            id="pendapatan_lainnya" required/>
+                                            id="pendapatan_lainnya" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="pendapatan_tpp"><small class="text-danger">*
                                             </small>Pendapatan TPP (Per Bulan)</label>
                                         <input type="text" name="gaji_tpp" class="form-control numeral-mask3"
                                             placeholder="Rp." id="pendapatan_tpp" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="lampiran_keuangan"><small class="text-danger">*
                                             </small>Upload Lampiran Keuangan</label>
                                         <input type="file" name="dokumen_keuangan" id="lampiran_keuangan"
-                                            rows="3" class="form-control" required/>
+                                            rows="3" class="form-control" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="slip_gaji"><small class="text-danger">*
                                             </small>Upload Slip Gaji</label>
                                         <input type="file" name="dokumen_slip_gaji" id="slip_gaji" rows="3"
-                                            class="form-control" required/>
+                                            class="form-control" required />
+                                        <div class="valid-feedback">Ok!</div>
+                                        <div class="invalid-feedback">Wajib Diisi.</div>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between">
@@ -683,13 +769,15 @@
                                     <h5 class="mb-0">Data Pengeluaran Anda</h5>
                                     <small>Data Pengeluaran Nasabah Anda</small>
                                 </div>
-                                
+
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting"><small class="text-danger">*
                                         </small>Pengeluaran Lainnya (Per
                                         Bulan)</label>
                                     <input type="text" name="pengeluaran_lainnya" class="form-control numeral-mask"
                                         placeholder="Jika tidak ada isikan 0" id="Pendapatan TPP" required />
+                                    <div class="valid-feedback">Ok!</div>
+                                    <div class="invalid-feedback">Wajib Diisi.</div>
                                 </div>
                                 <div class="mb-1 col-md-6">
                                     <label class="form-label" for="numeral-formatting">Keterangan Pengeluaran Lainnya (Per
@@ -702,7 +790,7 @@
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                     </button>
-                                    <button type="submit" class="btn btn-success btn-submit">Submit</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>
                         </form>
