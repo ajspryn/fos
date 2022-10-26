@@ -167,7 +167,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+            <li><a class="d-flex align-items-center" href="#"><i data-feather="menu"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">Dashboard</span></a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('kabag') ? 'active' : '' }}"><a class="d-flex align-items-center"

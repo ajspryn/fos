@@ -928,6 +928,26 @@
                                             <embed type="application/pdf"
                                                 src="{{ asset('storage/' . $pembiayaan->dokumen_slip_gaji) }}"
                                                 width="1000" height="900">
+                                                @if ($bon_murabahah)
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-start align-items-center mb-1">
+                                                            <div>
+                                                                <h6 class="mb-0">
+                                                                    {{ $bon_murabahah->kategori }}
+                                                                </h6>
+                                                                <small class="text-muted">Diupload Pada :
+                                                                    {{ $bon_murabahah->created_at->diffForhumans() }}</small>
+                                                            </div>
+                                                        </div>
+                                                        <!-- post img -->
+                                                        <img class="img-fluid rounded mb-75"
+                                                            src="{{ asset('storage/' . $bon_murabahah->foto) }}"
+                                                            alt="avatar img" />
+                                                        <!--/ post img -->
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="tab-pane" id="ideb" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">

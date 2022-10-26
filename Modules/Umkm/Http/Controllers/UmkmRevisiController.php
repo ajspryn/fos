@@ -41,7 +41,7 @@ class UmkmRevisiController extends Controller
     public function index()
     {
         $komite = UmkmPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->orderby('updated_at','desc')->get();
-        return view('umkm::Revisi.index', [
+        return view('umkm::revisi.index', [
             'title' => 'Data  Revisi Proposal Nasabah',
             'komites' => $komite,
         ]);

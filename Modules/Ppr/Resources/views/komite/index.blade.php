@@ -109,6 +109,10 @@
                                                     <a class="badge rounded-pill badge-light-danger" data-bs-toggle="modal"
                                                         data-bs-target="#modalCatatanAkadBatal-{{ $history->id }}">{{ $history->statusHistory->keterangan }}
                                                     </a>
+                                                @elseif ($history->statusHistory->id == 6)
+                                                    <span
+                                                        class="badge rounded-pill badge-light-danger">{{ $history->statusHistory->keterangan }}
+                                                        {{ $history->jabatan->keterangan }}</span>
                                                 @else
                                                     <span
                                                         class="badge rounded-pill badge-light-warning">{{ $history->statusHistory->keterangan }}

@@ -1025,25 +1025,47 @@
 
                                         <div class="tab-pane" id="keuangan"
                                             role="tabpanel"aria-labelledby="messages-tab-justified">
-
-                                            <!-- post 1 -->
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="d-flex justify-content-start align-items-center mb-1">
-                                                        <div>
-                                                            <h6 class="mb-0">
-                                                                {{ $nota->kategori }}
-                                                            </h6>
-                                                            <small class="text-muted">Diupload Pada :
-                                                                {{ $nota->created_at->diffForhumans() }}</small>
+                                            @if ($nota)
+                                                <!-- post 1 -->
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-start align-items-center mb-1">
+                                                            <div>
+                                                                <h6 class="mb-0">
+                                                                    {{ $nota->kategori }}
+                                                                </h6>
+                                                                <small class="text-muted">Diupload Pada :
+                                                                    {{ $nota->created_at->diffForhumans() }}</small>
+                                                            </div>
                                                         </div>
+                                                        <!-- post img -->
+                                                        <img class="img-fluid rounded mb-75"
+                                                            src="{{ asset('storage/' . $nota->foto) }}"
+                                                            alt="avatar img" />
+                                                        <!--/ post img -->
                                                     </div>
-                                                    <!-- post img -->
-                                                    <img class="img-fluid rounded mb-75"
-                                                        src="{{ asset('storage/' . $nota->foto) }}" alt="avatar img" />
-                                                    <!--/ post img -->
                                                 </div>
-                                            </div>
+                                            @endif
+                                            @if ($bon_murabahah)
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-start align-items-center mb-1">
+                                                            <div>
+                                                                <h6 class="mb-0">
+                                                                    {{ $bon_murabahah->kategori }}
+                                                                </h6>
+                                                                <small class="text-muted">Diupload Pada :
+                                                                    {{ $bon_murabahah->created_at->diffForhumans() }}</small>
+                                                            </div>
+                                                        </div>
+                                                        <!-- post img -->
+                                                        <img class="img-fluid rounded mb-75"
+                                                            src="{{ asset('storage/' . $bon_murabahah->foto) }}"
+                                                            alt="avatar img" />
+                                                        <!--/ post img -->
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
 
                                         <div class="tab-pane" id="legalitas-usaha"
@@ -1086,24 +1108,24 @@
                                                     <div class="card-body">
                                                         <ul class="timeline">
                                                             @foreach ($timelines as $timeline)
-                                                            @php
+                                                                @php
+                                                                    
+                                                                    $arr = $loop->iteration;
+                                                                    if ($arr == -2) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr == $banyak_history) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    } elseif ($arr >= 0) {
+                                                                        $waktu_mulai = Carbon\Carbon::parse($timelines[$arr]->created_at);
+                                                                        $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
+                                                                        $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
+                                                                    }
+                                                                @endphp
 
-                                                            $arr=$loop->iteration;
-                                                            if ($arr== -2) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }elseif ($arr== $banyak_history) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[0]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }elseif ($arr>=0) {
-                                                                $waktu_mulai=Carbon\Carbon::parse($timelines[$arr]->created_at);
-                                                            $waktu_selesai=Carbon\Carbon::parse($timeline->created_at);
-                                                            $selisih=$waktu_selesai->diffAsCarbonInterval($waktu_mulai);
-                                                            }
-                                                            @endphp
-                                                           
                                                                 <li class="timeline-item">
                                                                     <span
                                                                         class="timeline-point timeline-point-success timeline-point-indicator"></span>
@@ -1115,19 +1137,20 @@
                                                                                 {{ $timeline->statushistory->keterangan }}
                                                                                 {{ $timeline->jabatan->keterangan }}
                                                                             </h6>
-                                                                            <span
-                                                                            class="timeline-event-time" style="text-align: right">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }} 
-                                                                            <br>{{ $timeline->created_at->isoformat('HH:mm:ss') }}
-                                                                        </span>
+                                                                            <span class="timeline-event-time"
+                                                                                style="text-align: right">{{ $timeline->created_at->isoformat('dddd, D MMMM Y') }}
+                                                                                <br>{{ $timeline->created_at->isoformat('HH:mm:ss') }}
+                                                                            </span>
                                                                         </div>
                                                                         @if ($timeline->catatan)
                                                                             <p value="{{ $timeline->id }}"> <br>Catatan :
                                                                                 {{ $timeline->catatan }}
                                                                             <p>
                                                                         @endif
-                                                                        @if($arr==-1)
+                                                                        @if ($arr == -1)
                                                                         @else
-                                                                        <span class="timeline-event-time" >Waktu Diproses : {{ $selisih }}</span>
+                                                                            <span class="timeline-event-time">Waktu
+                                                                                Diproses : {{ $selisih }}</span>
                                                                         @endif
                                                                         {{-- <span
                                                                             class="timeline-event-time">{{ $timeline->created_at->diffForHumans() }}</span> --}}

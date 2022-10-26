@@ -98,85 +98,85 @@
                                                                                 Bulan)
                                                                             </td>
                                                                         </tr>
-                                                                        <<tr>
+                                                                        <tr>
                                                                             <td class="pe-1">Margin</td>
                                                                             <td>:
                                                                                 {{ number_format((float) $persenMargin, 2, '.', '') }}%
                                                                                 per Bulan
                                                                             </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="pe-1">Peruntukan</td>
-                                                                                <td>:
-                                                                                    {{ $pembiayaan->form_permohonan_peruntukan_ppr }}
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="pe-1">Nama Nasabah</td>
-                                                                                <td>:<span class="fw-bold">
-                                                                                        {{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_lengkap }}</span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="pe-1">Jenis Kelamin</td>
-                                                                                <td>:
-                                                                                    {{ $pembiayaan->pemohon->form_pribadi_pemohon_jenis_kelamin }}
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="pe-1">Usia</td>
-                                                                                <td>:
-                                                                                    {{ $usiaNasabah }} Tahun
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="pe-1">No. HP</td>
-                                                                                <td>:
-                                                                                    {{ $pembiayaan->pemohon->form_pribadi_pemohon_no_handphone }}
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="pe-1">Alamat</td>
-                                                                                <td>:
-                                                                                    {{ $pembiayaan->pemohon->form_pribadi_pemohon_alamat_domisili }}
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="pe-1">No. KTP</td>
-                                                                                <td>:
-                                                                                    {{ $pembiayaan->pemohon->form_pribadi_pemohon_no_ktp }}
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="pe-1">Tempat, tanggal lahir
-                                                                                </td>
-                                                                                <td>:
-                                                                                    {{ $pembiayaan->pemohon->form_pribadi_pemohon_tempat_lahir }},
-                                                                                    @php
-                                                                                        $tgl_lahir = Carbon\Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir);
-                                                                                    @endphp
-                                                                                    {{ date_format($tgl_lahir, 'd-m-Y') }}
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="pe-1">Nama Tempat Bekerja</td>
-                                                                                <td>:
-                                                                                    {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_nama }}
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="pe-1">Dept./Bagian/Divisi</td>
-                                                                                <td>:
-                                                                                    {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_departemen }}
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="pe-1">Jabatan</td>
-                                                                                <td>:
-                                                                                    {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_pangkat_gol_jabatan }}
-                                                                                </td>
-                                                                            </tr>
-                                                                            {{-- <tr>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Peruntukan</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->form_permohonan_peruntukan_ppr }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Nama Nasabah</td>
+                                                                            <td>:<span class="fw-bold">
+                                                                                    {{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_lengkap }}</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Jenis Kelamin</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->pemohon->form_pribadi_pemohon_jenis_kelamin }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Usia</td>
+                                                                            <td>:
+                                                                                {{ $usiaNasabah }} Tahun
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">No. HP</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->pemohon->form_pribadi_pemohon_no_handphone }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Alamat</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->pemohon->form_pribadi_pemohon_alamat_domisili }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">No. KTP</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->pemohon->form_pribadi_pemohon_no_ktp }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Tempat, tanggal lahir
+                                                                            </td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->pemohon->form_pribadi_pemohon_tempat_lahir }},
+                                                                                @php
+                                                                                    $tgl_lahir = Carbon\Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir);
+                                                                                @endphp
+                                                                                {{ date_format($tgl_lahir, 'd-m-Y') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Nama Tempat Bekerja</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_nama }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Dept./Bagian/Divisi</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_departemen }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="pe-1">Jabatan</td>
+                                                                            <td>:
+                                                                                {{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_pangkat_gol_jabatan }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        {{-- <tr>
                                                                         <td class="pe-1">Kantor/Dinas</td>
                                                                         <td>:
                                                                             {{ $pembiayaan->instansi->nama_instansi }}
@@ -1857,7 +1857,7 @@
                                                                         $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                         $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                     }
-                                                                    
+
                                                                 @endphp
 
                                                                 <li class="timeline-item">
@@ -3340,7 +3340,7 @@
                                                                             <ul class="timeline">
                                                                                 @foreach ($timelines as $timeline)
                                                                                     @php
-                                                                                        
+
                                                                                         $arr = $loop->iteration;
                                                                                         if ($arr == -2) {
                                                                                             $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
@@ -4849,7 +4849,7 @@
                                                                     <ul class="timeline">
                                                                         @foreach ($timelines as $timeline)
                                                                             @php
-                                                                                
+
                                                                                 $arr = $loop->iteration;
                                                                                 if ($arr == -2) {
                                                                                     $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
@@ -4864,7 +4864,7 @@
                                                                                     $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                                     $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                                 }
-                                                                                
+
                                                                             @endphp
                                                                             <li class="timeline-item">
                                                                                 <span
@@ -6111,7 +6111,7 @@
                                                                 <ul class="timeline">
                                                                     @foreach ($timelines as $timeline)
                                                                         @php
-                                                                            
+
                                                                             $arr = $loop->iteration;
                                                                             if ($arr == -2) {
                                                                                 $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
@@ -6126,7 +6126,7 @@
                                                                                 $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                                 $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                             }
-                                                                            
+
                                                                         @endphp
                                                                         <li class="timeline-item">
                                                                             <span

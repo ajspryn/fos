@@ -68,7 +68,7 @@
                                                 ->where('id', $proposal->form_ppr_pembiayaan_id)
                                                 ->get()
                                                 ->first();
-                                            
+
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->latest()
                                                 ->first();
@@ -96,7 +96,9 @@
                                                     {{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
                                                 </td>
                                                 <td style="text-align: center">
-                                                    {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }} Tahun
+                                                    {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}
+                                                    Tahun
+                                                    <br />
                                                     ({{ $proposal_ppr->form_permohonan_jml_bulan }} Bulan)
                                                 </td>
                                                 <td style="text-align: center"
@@ -139,7 +141,7 @@
                                                 ->where('id', $forCatatanModal->form_ppr_pembiayaan_id)
                                                 ->get()
                                                 ->first();
-                                            
+
                                             $historyCatatan = Modules\Ppr\Entities\PprPembiayaanHistory::where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->latest()
                                                 ->first();
