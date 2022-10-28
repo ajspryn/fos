@@ -1527,7 +1527,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1537,7 +1537,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -3573,6 +3573,9 @@
                                                                     <option
                                                                         {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan == 'SHGB' ? 'selected' : '' }}
                                                                         value="SHGB">SHGB</option>
+                                                                    <option
+                                                                        {{ $pembiayaan->agunan->form_agunan_1_status_bukti_kepemilikan == 'PPJB' ? 'selected' : '' }}
+                                                                        value="PPJB">PPJB</option>
                                                                 </select>
                                                             </div>
 
@@ -3784,7 +3787,7 @@
                                                         KJPP</b></label>
                                                 <input type="text" name="form_agunan_2_nilai_harga_taksasi_kjpp"
                                                     id="form_agunan_2_nilai_harga_taksasi_kjpp"
-                                                    class="form-control numeral-mask112"
+                                                    class="form-control numeral-mask113"
                                                     placeholder="Masukkan Nilai/Harga Taksasi KJPP"
                                                     value="{{ $pembiayaan->agunan->form_agunan_2_nilai_harga_taksasi_kjpp }}" />
                                             </div>
@@ -3924,6 +3927,9 @@
                                                                     <option
                                                                         {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan == 'SHGB' ? 'selected' : '' }}
                                                                         value="SHGB">SHGB</option>
+                                                                    <option
+                                                                        {{ $pembiayaan->agunan->form_agunan_2_status_bukti_kepemilikan == 'PPJB' ? 'selected' : '' }}
+                                                                        value="PPJB">PPJB</option>
                                                                 </select>
                                                             </div>
 
@@ -8720,7 +8726,7 @@
                                             <tr style="height: 25px"></tr>
                                             <tr>
                                                 <td style="vertical-align: middle;" colspan="4">
-                                                    <b>Biaya Administrasi</b>
+                                                    <b>Biaya Operasional</b>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -8868,7 +8874,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="vertical-align: middle;">
-                                                    6. Biaya Administrasi lain-lain
+                                                    6. Biaya Operasional lain-lain
                                                 </td>
                                                 <td style="vertical-align: middle;">
                                                     <input type="text" id="biayaAdmLainNF1"
@@ -8895,7 +8901,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="vertical-align: middle;">
-                                                    <b>Jumlah Biaya Administrasi</b>
+                                                    <b>Jumlah Biaya Operasional</b>
                                                 </td>
                                                 <td style="vertical-align: middle;">
                                                     <input type="text" id="jmlBiayaAdmNF1Dummy"
@@ -11352,7 +11358,7 @@
                                                         @foreach ($collateral_nf_kontribusi_pemohons as $collateral_nf_kontribusi_pemohon)
                                                             <option
                                                                 value="{{ $collateral_nf_kontribusi_pemohon->rating * $collateral_nf_kontribusi_pemohon->bobot }}"
-                                                                {{ $collateralNf->collateral_nf_kontribusi_pemohon / $collateral_nf_kontribusi_pemohon->bobot == $collateral_nf_kontribusi_pemohon->id ? 'selected' : '' }}>
+                                                                {{ $collateralNf->collateral_nf_kontribusi_pemohon_ftv / $collateral_nf_kontribusi_pemohon->bobot == $collateral_nf_kontribusi_pemohon->id ? 'selected' : '' }}>
                                                                 {{ $collateral_nf_kontribusi_pemohon->keterangan }}
                                                             </option>
                                                         @endforeach
@@ -12442,8 +12448,8 @@
             document.getElementById("labaKotorNFPDummy").value =
                 labaKotorNFPDummy;
 
-            //Biaya Administrasi
-            //Biaya Administrasi dan Laba Usaha 1
+            //Biaya Operasional
+            //Biaya Operasional dan Laba Usaha 1
             biayaPenjualanNF1 = document.getElementById("biayaPenjualanNF1").value.replace(/,/g, "");
             biayaGajiKomisarisDireksiStaffNF1 = document.getElementById("biayaGajiKomisarisDireksiStaffNF1").value.replace(
                 /,/g, "");
@@ -12485,7 +12491,7 @@
             document.getElementById("labaSetelahPajakNF1Dummy").value =
                 labaSetelahPajakNF1Dummy;
 
-            //Biaya Administrasi dan Laba Usaha 2
+            //Biaya Operasional dan Laba Usaha 2
             biayaPenjualanNF2 = document.getElementById("biayaPenjualanNF2").value.replace(/,/g, "");
             biayaGajiKomisarisDireksiStaffNF2 = document.getElementById("biayaGajiKomisarisDireksiStaffNF2").value.replace(
                 /,/g, "");
@@ -12527,7 +12533,7 @@
             document.getElementById("labaSetelahPajakNF2Dummy").value =
                 labaSetelahPajakNF2Dummy;
 
-            //Biaya Administrasi dan Laba Usaha Pasangan
+            //Biaya Operasional dan Laba Usaha Pasangan
             biayaPenjualanNFP = document.getElementById("biayaPenjualanNFP").value;
             biayaGajiKomisarisDireksiStaffNFP = document.getElementById("biayaGajiKomisarisDireksiStaffNFP").value.replace(
                 /,/g, "");

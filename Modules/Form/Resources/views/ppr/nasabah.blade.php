@@ -774,14 +774,6 @@
                                             placeholder="Masukkan Nomor KTP Anda"
                                             value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_no_ktp }}" />
                                     </div>
-                                    {{-- <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="form_pribadi_pemohon_no_ktp_berlaku_sd"><small
-                                                class="text-danger">*
-                                            </small>Berlaku s/d.</label>
-                                        <input type="date" id="form_pribadi_pemohon_no_ktp_berlaku_sd"
-                                            class="form-control flatpickr-basic"
-                                            name="form_pribadi_pemohon_no_ktp_berlaku_sd" placeholder="YYYY-MM-DD" />
-                                    </div> --}}
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pribadi_pemohon_jenis_kelamin"><small
                                                 class="text-danger">*
@@ -1266,7 +1258,7 @@
                                                                     <option
                                                                         {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                         'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
                                                                             ? 'selected'
                                                                             : '' }}
                                                                         value="Milik
@@ -1276,7 +1268,7 @@
                                                                     <option
                                                                         {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                         'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
                                                                             ? 'selected'
                                                                             : '' }}
                                                                         value="Milik
@@ -1457,8 +1449,7 @@
                                                 <select class="select2 w-100" name="form_pribadi_istri_suami_pendidikan"
                                                     id="form_pribadi_istri_suami_pendidikan"
                                                     data-placeholder="Pilih
-                                                    Pendidikan"
-                                                    required>
+                                                    Pendidikan">
                                                     <option value=""></option>
                                                     <option
                                                         {{ $pembiayaan->pemohon->form_pribadi_istri_suami_pendidikan == 'SD' ? 'selected' : '' }}
@@ -1497,7 +1488,7 @@
                                                     Istri/Suami Pemohon</label>
                                                 <input type="file" class="form-control" name="foto[2][foto]"
                                                     id="fotoPasanganPemohon" aria-describedby="fotoPasanganPemohon"
-                                                    disabled required />
+                                                    disabled />
                                                 <input type="hidden" name="foto[2][kategori]"
                                                     id="kategoriPasanganPemohon" value="Foto Pasangan Pemohon" disabled>
                                             </div>
@@ -1884,8 +1875,6 @@
                                             <option value="Konsultan">Konsultan</option>
                                             <option value="Marketing8">Marketing</option>
                                             <option value="Pendidikan">Pendidikan</option>
-                                            {{-- <option value="10">Pemerintahan</option>
-                                            <option value="11">Militer</option> --}}
                                             <option value="ASN">ASN</option>
                                             <option value="TNI">TNI</option>
                                             <option value="Polri">Polri</option>
@@ -2229,7 +2218,7 @@
                                             </small>Bidang Usaha Lainnya</label>
                                         <input type="text" name="form_pekerjaan_istri_suami_bidang_usaha_lain"
                                             id="pasanganBidangUsahaLain" class="form-control"
-                                            placeholder="Bidang Usaha Lainnya" required />
+                                            placeholder="Bidang Usaha Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_istri_suami_jenis_pekerjaan">Jenis
@@ -2268,7 +2257,7 @@
                                             </small>Jenis Pekerjaan Lainnya</label>
                                         <input type="text" name="form_pekerjaan_istri_suami_jenis_pekerjaan_lain"
                                             id="pasanganJenisPekerjaanLain" class="form-control"
-                                            placeholder="Jenis Pekerjaan Lainnya" required />
+                                            placeholder="Jenis Pekerjaan Lainnya" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="form_pekerjaan_istri_suami_jml_karyawan">Jumlah
@@ -2820,6 +2809,7 @@
                                                             </option>
                                                             <option value="SHM">SHM</option>
                                                             <option value="SHGB">SHGB</option>
+                                                            <option value="PPJB">PPJB</option>
                                                         </select>
                                                     </div>
 
@@ -3104,6 +3094,7 @@
                                                             <option value=""></option>
                                                             <option value="SHM">SHM</option>
                                                             <option value="SHGB">SHGB</option>
+                                                            <option value="PPJB">PPJB</option>
                                                         </select>
                                                     </div>
 

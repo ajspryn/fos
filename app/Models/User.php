@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function keterangan_jabatan()
+    {
+        return $this->belongsTo(keterangan_jabatan::class);
+    }
 }

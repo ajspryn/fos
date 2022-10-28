@@ -99,7 +99,10 @@
                                                     {{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
                                                 </td>
                                                 <td style="text-align: center">
-                                                    {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }} Bulan
+                                                    {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}
+                                                    Tahun
+                                                    <br />
+                                                    ({{ $proposal_ppr->form_permohonan_jml_bulan }} Bulan)
                                                 </td>
                                                 <td>
                                                     <a href="/analis/ppr/komite/{{ $proposal_ppr->id }}"

@@ -112,8 +112,8 @@ class PprEditProposalController extends Controller
     public function index()
     {
         $proposal = PprPembiayaanHistory::select()
-            ->where('user_id', Auth::user()->id)
             ->latest()
+            ->groupBy('form_ppr_pembiayaan_id')
             ->where('status_id', 7)
             ->get();
 
@@ -1141,7 +1141,7 @@ class PprEditProposalController extends Controller
                 PprCollateralNonFixed::where('form_ppr_pembiayaan_id', $id)
                     ->update([
                         'collateral_nf_marketabilitas' => $request->collateral_nf_marketabilitas,
-                        'collateral_nf_kontribusi_pemohon_ftv' => $request->collateral_nf_kontribusi_pemohon,
+                        'collateral_nf_kontribusi_pemohon_ftv' => $request->collateral_nf_kontribusi_pemohon_ftv,
                         'collateral_nf_pertumbuhan_agunan' => $request->collateral_nf_pertumbuhan_agunan,
                         'collateral_nf_daya_tarik_agunan' => $request->collateral_nf_daya_tarik_agunan,
                         'collateral_nf_jangka_waktu_likuidasi' => $request->collateral_nf_jangka_waktu_likuidasi,

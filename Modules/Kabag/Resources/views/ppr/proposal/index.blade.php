@@ -68,7 +68,7 @@
                                                 ->where('id', $proposal->form_ppr_pembiayaan_id)
                                                 ->get()
                                                 ->first();
-                                            
+
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                                 ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->latest()
@@ -99,7 +99,10 @@
                                                     {{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
                                                 </td>
                                                 <td style="text-align: center">
-                                                    {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }} Bulan
+                                                    {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}
+                                                    Tahun
+                                                    <br />
+                                                    ({{ $proposal_ppr->form_permohonan_jml_bulan }} Bulan)
                                                 </td>
                                                 <td>
                                                     <a href="/kabag/ppr/komite/{{ $proposal_ppr->id }}"

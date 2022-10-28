@@ -101,7 +101,8 @@
                                                                         <tr>
                                                                             <td class="pe-1">Margin</td>
                                                                             <td>:
-                                                                                {{ $persenMargin }}% per Bulan
+                                                                                {{ number_format((float) $persenMargin, 2, '.', '') }}%
+                                                                                per Bulan
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
@@ -147,7 +148,8 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="pe-1">Tempat, tanggal lahir</td>
+                                                                            <td class="pe-1">Tempat, tanggal lahir
+                                                                            </td>
                                                                             <td>:
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_tempat_lahir }},
                                                                                 @php
@@ -1449,9 +1451,9 @@
                                                                                 <td class="pe-1">
                                                                                     &ensp;Tenor</td>
                                                                                 <td>:
-                                                                                    {{ $pembiayaan->form_permohonan_jangka_waktu_ppr }}
+                                                                                    {{ $tenorTahun }}
                                                                                     Tahun
-                                                                                    ({{ $pembiayaan->form_permohonan_jml_bulan }}
+                                                                                    ({{ $tenorBulan }}
                                                                                     Bulan)
                                                                                 </td>
                                                                             </tr>
@@ -1459,7 +1461,16 @@
                                                                                 <td class="pe-1">
                                                                                     &ensp;Margin</td>
                                                                                 <td>:
-                                                                                    {{ $persenMargin }}% per Bulan
+                                                                                    Rp. {{ number_format($marginRp) }}
+                                                                                    ({{ number_format((float) $persenMargin, 2, '.', '') }}%
+                                                                                    per Bulan)
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="pe-1">
+                                                                                    &ensp;Harga Jual</td>
+                                                                                <td>:
+                                                                                    Rp. {{ number_format($hargaJual) }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -1480,7 +1491,8 @@
                                                                                 <td class="pe-1">
                                                                                     &ensp;DP Nasabah</td>
                                                                                 <td>:
-                                                                                    {{ $persenDp }}%, yaitu sebesar
+                                                                                    {{ number_format($persenDp) }}%, yaitu
+                                                                                    sebesar
                                                                                     Rp. {{ number_format($dp) }}
                                                                                 </td>
                                                                             </tr>
@@ -1500,22 +1512,22 @@
                                                                             <tr>
                                                                                 <td>Harga Beli</td>
                                                                                 <td>Rp.
-                                                                                    {{ number_format($pembiayaan->form_permohonan_nilai_hpp) }}
+                                                                                    {{ number_format($plafond) }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Tenor</td>
-                                                                                <td>{{ $tenor }}
+                                                                                <td>{{ $tenorBulan }}
                                                                                     Bulan
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Margin (% Per Bulan)</td>
                                                                                 {{-- <td>{{ number_format((float) $persenMargin, 2, '.', '') }}
-                                                                               %
-                                                                            </td> --}}
+                                                                                   %
+                                                                                </td> --}}
                                                                                 <td>
-                                                                                    {{ $persenMargin }}%
+                                                                                    {{ number_format((float) $persenMargin, 2, '.', '') }}%
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -1560,14 +1572,14 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Tenor</td>
-                                                                                <td>{{ $tenor }}
+                                                                                <td>{{ $tenorBulan }}
                                                                                     Bulan
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>Margin (% Per Bulan)</td>
                                                                                 <td>
-                                                                                    {{ $persenMargin }}%
+                                                                                    {{ number_format((float) $persenMargin, 2, '.', '') }}%
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -1602,6 +1614,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
 
                                         <div class="tab-pane" id="lampiran" role="tabpanel"
                                             aria-labelledby="lampiran-tab">
@@ -1844,7 +1857,7 @@
                                                                         $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                         $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                     }
-                                                                    
+
                                                                 @endphp
 
                                                                 <li class="timeline-item">
@@ -3327,7 +3340,7 @@
                                                                             <ul class="timeline">
                                                                                 @foreach ($timelines as $timeline)
                                                                                     @php
-                                                                                        
+
                                                                                         $arr = $loop->iteration;
                                                                                         if ($arr == -2) {
                                                                                             $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
@@ -4836,7 +4849,7 @@
                                                                     <ul class="timeline">
                                                                         @foreach ($timelines as $timeline)
                                                                             @php
-                                                                                
+
                                                                                 $arr = $loop->iteration;
                                                                                 if ($arr == -2) {
                                                                                     $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
@@ -4851,7 +4864,7 @@
                                                                                     $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                                     $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                                 }
-                                                                                
+
                                                                             @endphp
                                                                             <li class="timeline-item">
                                                                                 <span
@@ -6098,7 +6111,7 @@
                                                                 <ul class="timeline">
                                                                     @foreach ($timelines as $timeline)
                                                                         @php
-                                                                            
+
                                                                             $arr = $loop->iteration;
                                                                             if ($arr == -2) {
                                                                                 $waktu_mulai = Carbon\Carbon::parse($timelines[0]->created_at);
@@ -6113,7 +6126,7 @@
                                                                                 $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                                 $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                             }
-                                                                            
+
                                                                         @endphp
                                                                         <li class="timeline-item">
                                                                             <span

@@ -68,7 +68,7 @@
                                                 ->where('id', $proposal->form_ppr_pembiayaan_id)
                                                 ->get()
                                                 ->first();
-                                            
+
                                             $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
                                                 ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
                                                 ->latest()
@@ -101,7 +101,9 @@
                                                     </td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}
-                                                        Bulan
+                                                        Tahun
+                                                        <br />
+                                                        ({{ $proposal_ppr->form_permohonan_jml_bulan }} Bulan)
                                                     </td>
                                                     <td style="text-align: center"
                                                         value=" {{ $history->statusHistory->id }}, {{ $history->jabatan->jabatan_id }}">
