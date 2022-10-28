@@ -4,11 +4,11 @@
         ->where('skpd_sektor_ekonomi_id', null)
         ->get()
         ->count();
-    
+
     $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
         ->where('status_id', 3)
         ->get();
-    
+
     $proposalskpd = 0;
     foreach ($proposals as $proposal) {
         $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
@@ -20,13 +20,13 @@
             ->orderby('created_at', 'desc')
             ->get()
             ->first();
-        if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+        if (($history->jabatan_id == 3 && $history->status_id == 5) && ($history->jabatan_id == 4 && $history->status_id == 4)) {
             $proposalskpd++;
         }
     }
-    
+
     $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
-    
+
     $data = 0;
     foreach ($pasars as $pasar) {
         $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
@@ -34,7 +34,7 @@
             ->orderby('created_at', 'desc')
             ->get()
             ->first();
-    
+
         $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
             ->where('id', $history->pasar_pembiayaan_id)
             ->get()
@@ -43,31 +43,31 @@
             $data++;
         }
     }
-    
+
     $umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
         ->where('status_id', 3)
         ->get();
-    
+
     $b = 0;
     foreach ($umkms as $umkm) {
         $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
             ->where('id', $umkm->umkm_pembiayaan_id)
             ->get()
             ->first();
-    
+
         $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
             ->where('umkm_pembiayaan_id', $proposal_umkm->id)
             ->orderby('created_at', 'desc')
             ->get()
             ->first();
-    
+
         if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
             $b++;
         }
     }
-    
+
     $pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
-    
+
     $proposalppr = 0;
     foreach ($pprs as $ppr) {
         $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
@@ -75,7 +75,7 @@
             ->latest()
             ->get()
             ->first();
-    
+
         $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
             ->where('id', $history->form_ppr_pembiayaan_id)
             ->get()
