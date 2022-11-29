@@ -114,6 +114,7 @@ class PprEditProposalController extends Controller
         $proposal = PprPembiayaanHistory::select()
             ->latest()
             ->groupBy('form_ppr_pembiayaan_id')
+            ->where('user_id', Auth::user()->id)
             ->where('status_id', 7)
             ->get();
 

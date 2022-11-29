@@ -699,6 +699,7 @@
                                             </small>Nama Lengkap</label>
                                         <input type="text" name="form_pribadi_pemohon_nama_lengkap"
                                             id="form_pribadi_pemohon_nama_lengkap" class="form-control"
+                                            oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                             placeholder="Nama Lengkap" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
@@ -707,6 +708,7 @@
                                             </small>Nama Sesuai KTP</label>
                                         <input type="text" name="form_pribadi_pemohon_nama_ktp"
                                             id="form_pribadi_pemohon_nama_ktp" class="form-control"
+                                            oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                             placeholder="Nama Sesuai KTP" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
@@ -718,6 +720,7 @@
                                         <label class="form-label" for="form_pribadi_pemohon_nama_alias">Nama Alias</label>
                                         <input type="text" name="form_pribadi_pemohon_nama_alias"
                                             id="form_pribadi_pemohon_nama_alias" class="form-control"
+                                            oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                             placeholder="Nama Alias" />
                                     </div>
                                     <div class="mb-1 col-md-6">
@@ -848,6 +851,7 @@
                                             Gadis Ibu Kandung</label>
                                         <input type="text" name="form_pribadi_pemohon_nama_gadis_ibu_kandung"
                                             id="form_pribadi_pemohon_nama_gadis_ibu_kandung" class="form-control"
+                                            oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                             placeholder="Nama Gadis Ibu Kandung" />
                                     </div>
                                     <div>
@@ -1248,6 +1252,7 @@
                                                     Lengkap</label>
                                                 <input type="text" name="form_pribadi_istri_suami_nama_lengkap"
                                                     id="form_pribadi_istri_suami_nama_lengkap" class="form-control"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     placeholder="Nama Lengkap" />
                                             </div>
                                             <div class="mb-1 col-md-6">
@@ -1255,6 +1260,7 @@
                                                     for="form_pribadi_istri_suami_gelar">Gelar</label>
                                                 <input type="text" name="form_pribadi_istri_suami_gelar"
                                                     id="form_pribadi_istri_suami_gelar" class="form-control"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     placeholder="Gelar" />
                                             </div>
                                             <div class="mb-1 col-md-6">
@@ -1338,6 +1344,7 @@
                                                     <input type="text"
                                                         name="form_pribadi_keluarga_terdekat_nama_lengkap"
                                                         id="form_pribadi_keluarga_terdekat_nama_lengkap"
+                                                        oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                         class="form-control" placeholder="Nama Lengkap" required />
                                                 </div>
                                             </div>

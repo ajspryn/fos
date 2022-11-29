@@ -1,45 +1,45 @@
 @extends('skpd::layouts.main')
 @php
-$proposal1 = Modules\Skpd\Entities\SkpdPembiayaan::select()
-    ->where('user_id', Auth::user()->id)
-    ->get();
+    $proposal1 = Modules\Skpd\Entities\SkpdPembiayaan::select()
+        ->where('user_id', Auth::user()->id)
+        ->get();
 
-$datas = Modules\Skpd\Entities\SkpdPembiayaan::select()
-    ->where('user_id', Auth::user()->id)
-    ->get();
-$diterima = 0;
-foreach ($datas as $data) {
-    $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-        ->where('skpd_pembiayaan_id', $data->id)
+    $datas = Modules\Skpd\Entities\SkpdPembiayaan::select()
+        ->where('user_id', Auth::user()->id)
+        ->get();
+    $diterima = 0;
+    foreach ($datas as $data) {
+        $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+            ->where('skpd_pembiayaan_id', $data->id)
+            ->orderby('created_at', 'desc')
+            ->get()
+            ->first();
+        $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+            ->where('id', $history->skpd_pembiayaan_id)
+            ->get()
+            ->first();
+        if ($history->status_id == 5 && $history->jabatan_id == 4) {
+            $diterima++;
+        }
+    }
+
+    $proposal = Modules\Skpd\Entities\SkpdPembiayaan::select()
+        ->where('skpd_akad_id', null)
+        ->where('user_id', auth::user()->id)
+        ->get()
+        ->count();
+
+    $ditolak = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+        ->where('status_id', 6)
+        ->where('user_id', auth::user()->id)
+        ->get()
+        ->count();
+
+    $review = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+        ->where('status_id', 7)
         ->orderby('created_at', 'desc')
         ->get()
-        ->first();
-    $proposal_umkm = Modules\Skpd\Entities\SkpdPembiayaan::select()
-        ->where('id', $history->skpd_pembiayaan_id)
-        ->get()
-        ->first();
-    if ($history->status_id == 5 && $history->jabatan_id == 4) {
-        $diterima++;
-    }
-}
-
-$proposal = Modules\Skpd\Entities\SkpdPembiayaan::select()
-    ->where('skpd_akad_id', null)
-    ->where('user_id', auth::user()->id)
-    ->get()
-    ->count();
-
-$ditolak = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-    ->where('status_id', 6)
-    ->where('user_id', auth::user()->id)
-    ->get()
-    ->count();
-
-$review = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-    ->where('status_id', 7)
-    ->orderby('created_at', 'desc')
-    ->get()
-    ->count();
+        ->count();
 @endphp
 @section('content')
     <!-- BEGIN: Content-->
@@ -58,10 +58,10 @@ $review = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
                             $cair = 0;
                             foreach ($target1 as $target) {
                                 $harga = $target->nominal_pembiayaan;
-                            
+
                                 $cair = $cair + $harga;
                             }
-                            
+
                             $datas = Modules\Skpd\Entities\SkpdPembiayaan::select()
                                 ->where('user_id', Auth::user()->id)
                                 ->get();
@@ -72,13 +72,14 @@ $review = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
                                     ->orderby('created_at', 'desc')
                                     ->get()
                                     ->first();
-                                $proposal_umkm = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                                     ->where('id', $history->skpd_pembiayaan_id)
                                     ->get()
                                     ->first();
                                 if ($history->status_id != 5 && $history->jabatan_id != 4) {
-                                    if($history->status_id != 6)
-                                    $pipeline1++;
+                                    if ($history->status_id != 6) {
+                                        $pipeline1++;
+                                    }
                                 }
                             }
                         @endphp

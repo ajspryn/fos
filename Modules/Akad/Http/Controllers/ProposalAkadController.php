@@ -74,6 +74,7 @@ use Modules\Form\Entities\FormPprDataPinjamanLainnya;
 use Modules\Form\Entities\FormPprDataPribadi;
 use Modules\Ppr\Entities\PprLampiran;
 use Modules\Ppr\Entities\PprScoring;
+use Modules\Skpd\Entities\SkpdJenisNasabah;
 
 class ProposalAkadController extends Controller
 {
@@ -162,6 +163,7 @@ class ProposalAkadController extends Controller
                 'segmen' => "PPR",
                 'ao_id' => $request->ao_id,
                 'cif' => $request->cif,
+                'nama_nasabah' => $request->nama_nasabah,
                 'kode_tabungan' => $request->kode_tabungan,
                 'plafond' => $request->plafond,
                 'tenor' => $request->tenor,
@@ -198,6 +200,7 @@ class ProposalAkadController extends Controller
                 'segmen' => "SKPD",
                 'ao_id' => $request->ao_id,
                 'cif' => $request->cif,
+                'nama_nasabah' => $request->nama_nasabah,
                 'kode_tabungan' => $request->kode_tabungan,
                 'plafond' => $request->plafond,
                 'tenor' => $request->tenor,
@@ -234,6 +237,7 @@ class ProposalAkadController extends Controller
                 'segmen' => "Pasar",
                 'ao_id' => $request->ao_id,
                 'cif' => $request->cif,
+                'nama_nasabah' => $request->nama_nasabah,
                 'kode_tabungan' => $request->kode_tabungan,
                 'plafond' => $request->plafond,
                 'tenor' => $request->tenor,
@@ -270,6 +274,7 @@ class ProposalAkadController extends Controller
                 'segmen' => "UMKM",
                 'ao_id' => $request->ao_id,
                 'cif' => $request->cif,
+                'nama_nasabah' => $request->nama_nasabah,
                 'kode_tabungan' => $request->kode_tabungan,
                 'plafond' => $request->plafond,
                 'tenor' => $request->tenor,
@@ -501,17 +506,11 @@ class ProposalAkadController extends Controller
 
         if ($idir <= 50) {
             $proses_idir = PasarScoreIdir::select()->where('rating', 4)->get()->first();
-        }
-
-        if ($idir >= 50 && $idir <= 60) {
+        } else if ($idir >= 50 && $idir <= 60) {
             $proses_idir = PasarScoreIdir::select()->where('rating', 3)->get()->first();
-        }
-
-        if ($idir >= 60 && $idir <= 69) {
+        } else if ($idir >= 60 && $idir <= 69) {
             $proses_idir = PasarScoreIdir::select()->where('rating', 2)->get()->first();
-        }
-
-        if ($idir >= 70) {
+        } else {
             $proses_idir = PasarScoreIdir::select()->where('rating', 1)->get()->first();
         }
 
@@ -678,14 +677,11 @@ class ProposalAkadController extends Controller
         $proses_bendahara = SkpdBendahara::select()->where('skpd_instansi_id', $data->skpd_instansi_id)->get()->first();
         if ($dsr > 36) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 1)->get()->first();
-        }
-        if ($dsr <= 35 && $dsr >= 31) {
+        } else if ($dsr <= 35 && $dsr >= 31) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 2)->get()->first();
-        }
-        if ($dsr <= 30 && $dsr >= 21) {
+        } else if ($dsr <= 30 && $dsr >= 21) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 3)->get()->first();
-        }
-        if ($dsr < 20) {
+        } else {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 4)->get()->first();
         }
 
@@ -696,7 +692,7 @@ class ProposalAkadController extends Controller
         }
         // $proses_slik=SkpdScoreSlik::select()->where('kol',$slik)->get()->first();
         $proses_jaminan = SkpdJenisJaminan::select()->where('id', $jaminan->skpd_jenis_jaminan_id)->get()->first();
-        $proses_nasabah = 'Nasabah Baru';
+        $proses_nasabah = SkpdJenisNasabah::select()->where('id', $data->skpd_jenis_nasabah_id)->get()->first();
         $proses_instansi = SkpdInstansi::select()->where('id', $data->skpd_instansi_id)->get()->first();
 
         // return $dsr;
@@ -709,7 +705,7 @@ class ProposalAkadController extends Controller
         // $rating_slik=$proses_slik->rating;
         $rating_bendahara = $proses_bendahara->rating;
         $rating_jaminan = $proses_jaminan->rating;
-        $rating_nasabah = 2;
+        $rating_nasabah = $proses_nasabah->rating;
         $rating_instansi = $proses_instansi->rating;
 
         // $angsuran1=$angsuran;
@@ -737,7 +733,7 @@ class ProposalAkadController extends Controller
         $no_surat = (2298 - $no) + ($no + 1);
 
 
-        return $no_surat;
+        // return $no_surat;
         return view('akad::proposal.lihat', [
             'segmen' => 'SKPD',
             'title' => 'Detail Proposal',
@@ -762,7 +758,7 @@ class ProposalAkadController extends Controller
             'dsr' => $proses_dsr,
             'slik' => $proses_slik,
             'jaminan' => $proses_jaminan,
-            'nasabah' => $proses_nasabah,
+            'jenis_nasabah' => $proses_nasabah->keterangan,
             'instansi' => $proses_instansi,
             'rating_bendahara' => $rating_bendahara,
             'rating_dsr' => $rating_dsr,
@@ -773,6 +769,7 @@ class ProposalAkadController extends Controller
             'nilai_bendahara' => $rating_bendahara * $proses_bendahara->bobot,
             'nilai_dsr' => $rating_dsr * $proses_dsr->bobot,
             'nilai_slik' => $nilai_slik,
+            'nilaiSlikDeviasi' => 3 * 0.20, //Ada deviasi rating slik menjadi 3
             'nilai_jaminan' => $rating_jaminan * $proses_jaminan->bobot,
             'nilai_nasabah' => $rating_nasabah * 0.10,
             'nilai_instansi' => $rating_instansi * $proses_instansi->bobot,
@@ -783,6 +780,7 @@ class ProposalAkadController extends Controller
             'jaminanlainnyas' => SkpdJaminanLainnya::select()->where('skpd_pembiayaan_id', $id)->get(),
             'skpengangkatans' => SkpdPembiayaan::select()->where('id', $id)->get(),
             'ideb' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'IDEB')->get()->first(),
+            'idebPasangan' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'IDEB Pasangan')->get()->first(),
             'konfirmasi' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Konfirmasi Bendahara')->get()->first(),
 
 

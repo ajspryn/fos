@@ -2,6 +2,8 @@
 
     $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
         ->where('status_id', 3)
+        ->groupBy('skpd_pembiayaan_id')
+        ->latest()
         ->get();
 
     $proposalSkpd = 0;
@@ -15,32 +17,38 @@
             ->orderby('created_at', 'desc')
             ->get()
             ->first();
-        if ($history->jabatan_id == 4 && $history->status_id == 5) {
+        if ($history->jabatan_id == 4 && $history->status_id == 5 && $history->cek_staff_akad == 'Belum') {
             $proposalSkpd++;
         }
     }
 
-    $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
+    $pasars = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->where('status_id', 3)
+        ->groupBy('pasar_pembiayaan_id')
+        ->latest()
+        ->get();
 
     $proposalPasar = 0;
     foreach ($pasars as $pasar) {
-        $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-            ->where('pasar_pembiayaan_id', $pasar->id)
-            ->orderby('created_at', 'desc')
+        $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+            ->where('id', $pasar->pasar_pembiayaan_id)
             ->get()
             ->first();
 
-        $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
-            ->where('id', $history->pasar_pembiayaan_id)
+        $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+            ->where('pasar_pembiayaan_id', $proposal_pasar->id)
+            ->orderby('created_at', 'desc')
             ->get()
             ->first();
-        if ($history->jabatan_id == 4 && $history->status_id == 5) {
+        if ($history->jabatan_id == 4 && $history->status_id == 5 && $history->cek_staff_akad == 'Belum') {
             $proposalPasar++;
         }
     }
 
     $umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
         ->where('status_id', 3)
+        ->groupBy('umkm_pembiayaan_id')
+        ->latest()
         ->get();
 
     $proposalUmkm = 0;
@@ -56,13 +64,15 @@
             ->get()
             ->first();
 
-        if ($history->jabatan_id == 4 && $history->status_id == 5) {
+        if ($history->jabatan_id == 4 && $history->status_id == 5 && $history->cek_staff_akad == 'Belum') {
             $proposalUmkm++;
         }
     }
 
     $pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
         ->where('status_id', 3)
+        ->groupBy('form_ppr_pembiayaan_id')
+        ->latest()
         ->get();
 
     $proposalPpr = 0;
@@ -77,7 +87,7 @@
             ->orderBy('created_at', 'desc')
             ->get()
             ->first();
-        if ($history->jabatan_id == 4 && $history->status_id == 5) {
+        if ($history->jabatan_id == 4 && $history->status_id == 5 && $history->cek_staff_akad == 'Belum') {
             $proposalPpr++;
         }
     }

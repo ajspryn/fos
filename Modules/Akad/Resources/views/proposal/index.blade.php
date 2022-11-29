@@ -53,6 +53,7 @@
                                             <tr>
                                                 <th style="text-align: center">No</th>
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
+                                                <th style="text-align: center">NIK</th>
                                                 <th style="text-align: center">Nama Nasabah</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
@@ -69,8 +70,11 @@
                                                 <tr>
 
                                                     <td style="text-align: center">{{ $loop->iteration }}</td>
-                                                    <td style="text-align: center">{{ $proposal_skpd->tanggal_pengajuan }}
+                                                    <td style="text-align: center">
+                                                        {{ date('d F Y', strtotime($proposal_skpd->tanggal_pengajuan)) }}
                                                     </td>
+                                                    <td style="text-align: center">
+                                                        {{ $proposal_skpd->nasabah->no_ktp }}</td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_skpd->nasabah->nama_nasabah }}</td>
                                                     <td style="text-align: center">
@@ -102,6 +106,7 @@
                                             <tr>
                                                 <th style="text-align: center">No</th>
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
+                                                <th style="text-align: center">NIK</th>
                                                 <th style="text-align: center">Nama Nasabah</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
@@ -118,8 +123,11 @@
                                                 <tr>
 
                                                     <td style="text-align: center">{{ $loop->iteration }}</td>
-                                                    <td style="text-align: center">{{ $proposal_pasar->tgl_pembiayaan }}
+                                                    <td style="text-align: center">
+                                                        {{ date('d F Y', strtotime($proposal_pasar->tgl_pembiayaan)) }}
                                                     </td>
+                                                    <td style="text-align: center">
+                                                        {{ $proposal_pasar->nasabahh->no_ktp }}</td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_pasar->nasabahh->nama_nasabah }}</td>
                                                     <td style="text-align: center">
@@ -151,6 +159,7 @@
                                             <tr>
                                                 <th style="text-align: center">No</th>
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
+                                                <th style="text-align: center">NIK</th>
                                                 <th style="text-align: center">Nama Nasabah</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
@@ -165,8 +174,11 @@
                                                 @endphp
                                                 <tr>
                                                     <td style="text-align: center">{{ $loop->iteration }}</td>
-                                                    <td style="text-align: center">{{ $proposal_umkm->tgl_pembiayaan }}
+                                                    <td style="text-align: center">
+                                                        {{ date('d F Y', strtotime($proposal_umkm->tgl_pembiayaan)) }}
                                                     </td>
+                                                    <td style="text-align: center">
+                                                        {{ $proposal_umkm->nasabahh->no_ktp }}</td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_umkm->nasabahh->nama_nasabah }}</td>
                                                     <td style="text-align: center">
@@ -198,6 +210,7 @@
                                             <tr>
                                                 <th style="text-align: center">No</th>
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
+                                                <th style="text-align: center">NIK</th>
                                                 <th style="text-align: center">Nama Nasabah</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
@@ -214,7 +227,10 @@
                                                 <tr>
                                                     <td style="text-align: center">{{ $loop->iteration }}</td>
                                                     <td style="text-align: center">
-                                                        {{ date_format($proposal_ppr->created_at, 'd-m-Y') }}
+                                                        {{ date_format($proposal_ppr->created_at, 'd F Y') }}
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        {{ $proposal_ppr->pemohon->form_pribadi_pemohon_no_ktp }}
                                                     </td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}

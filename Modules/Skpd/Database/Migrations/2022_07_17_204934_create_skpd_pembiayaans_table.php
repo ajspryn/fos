@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string("skpd_sektor_ekonomi_id")->nullable();
             $table->string("skpd_akad_id")->nullable();
             $table->integer("skpd_nasabah_id");
+            $table->integer("skpd_jenis_nasabah_id")->nullable();
             $table->integer("skpd_instansi_id");
             $table->integer("skpd_golongan_id");
             $table->string("sk_pengangkatan");

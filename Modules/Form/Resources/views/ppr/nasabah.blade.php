@@ -739,6 +739,7 @@
                                             </small>Nama Lengkap</label>
                                         <input type="text" name="form_pribadi_pemohon_nama_lengkap"
                                             id="form_pribadi_pemohon_nama_lengkap" class="form-control"
+                                            oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                             placeholder="Nama Lengkap"
                                             value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_lengkap }}" />
                                     </div>
@@ -748,6 +749,7 @@
                                             </small>Nama Sesuai KTP</label>
                                         <input type="text" name="form_pribadi_pemohon_nama_ktp"
                                             id="form_pribadi_pemohon_nama_ktp" class="form-control"
+                                            oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                             placeholder="Nama Sesuai KTP"
                                             value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_ktp }}" />
                                     </div>
@@ -755,6 +757,7 @@
                                         <label class="form-label" for="form_pribadi_pemohon_gelar">Gelar</label>
                                         <input type="text" name="form_pribadi_pemohon_gelar"
                                             id="form_pribadi_pemohon_gelar" class="form-control" placeholder="Gelar"
+                                            oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                             value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_gelar }}" />
                                     </div>
                                     <div class="mb-1 col-md-6">
@@ -762,6 +765,7 @@
                                             Alias</label>
                                         <input type="text" name="form_pribadi_pemohon_nama_alias"
                                             id="form_pribadi_pemohon_nama_alias" class="form-control"
+                                            oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                             placeholder="Nama Alias"
                                             value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_alias }}" />
                                     </div>
@@ -1258,7 +1262,7 @@
                                                                     <option
                                                                         {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                         'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Orangtua/Keluarga'
                                                                             ? 'selected'
                                                                             : '' }}
                                                                         value="Milik
@@ -1268,7 +1272,7 @@
                                                                     <option
                                                                         {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                         'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Perusahaan/Instansi/Dinas'
                                                                             ? 'selected'
                                                                             : '' }}
                                                                         value="Milik

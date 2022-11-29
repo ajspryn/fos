@@ -34,13 +34,13 @@
                                     <tr>
                                         <th style="text-align: center"></th>
                                         <th style="text-align: center">No</th>
+                                        <th style="text-align: center">Tanggal Pengajuan</th>
                                         <th style="text-align: center">Nama Nasabah</th>
-                                        <th style="text-align: center">Alamat</th>
+                                        {{-- <th style="text-align: center">Alamat</th> --}}
                                         <th style="text-align: center">Instansi</th>
                                         {{-- <th style="text-align: center">Golongan</th> --}}
                                         <th style="text-align: center">Nominal Pembiayaan</th>
                                         <th style="text-align: center">Status</th>
-                                        <th style="text-align: center">Tanggal Pengajuan</th>
                                         <th style="text-align: center">Bon Murabahah</th>
                                         <th style="text-align: center">AO Yang Menangani</th>
                                         <th style="text-align: center">Action</th>
@@ -54,18 +54,17 @@
                                                 ->orderby('created_at', 'desc')
                                                 ->get()
                                                 ->first();
-                                            $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-                                                ->where('skpd_pembiayaan_id', $proposal_skpd->id)
-                                                ->orderby('created_at', 'desc')
-                                                ->get()
+                                            $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::where('skpd_pembiayaan_id', $proposal_skpd->id)
+                                                ->latest()
                                                 ->first();
-                                            $bonmurabahah = Modules\Skpd\Entities\SkpdFoto::select()
+                                            $bonMurabahah = Modules\Skpd\Entities\SkpdFoto::select()
                                                 ->where('skpd_pembiayaan_id', $proposal_skpd->id)
-                                                ->where('kategori', 'Foto Bon Murabahah')
+                                                ->where('kategori', 'Bon Murabahah')
                                                 ->get()
                                                 ->first();
                                         @endphp
-                                        @if ($history->status_id == 5 || $history->status_id == 4 || $history->status_id == 9)
+
+                                        @if ($history->status_id == 5 || $history->status_id == 4 || $history->status_id >= 9)
                                             <tr>
                                                 <td style="text-align: center">
                                                     <button type="button"
@@ -74,8 +73,10 @@
                                                     </button>
                                                 </td>
                                                 <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                <td>{{ date('d F Y', strtotime($proposal_skpd->tanggal_pengajuan)) }}
+                                                </td>
                                                 <td>{{ $proposal_skpd->nasabah->nama_nasabah }}</td>
-                                                <td>{{ $proposal_skpd->nasabah->alamat }}</td>
+                                                {{-- <td>{{ $proposal_skpd->nasabah->alamat }}</td> --}}
                                                 <td style="text-align: center">
                                                     {{ $proposal_skpd->instansi->nama_instansi }}
                                                 </td>
@@ -85,50 +86,37 @@
                                                 <td style="text-align: center">
                                                     @if ($history->statushistory->id == 5)
                                                         <span
-                                                            class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
+                                                            class="badge rounded-pill badge-light-success">{{ $history->statusHistory->keterangan }}
                                                             {{ $history->jabatan->keterangan }}</span>
+                                                    @elseif ($history->statusHistory->id == 9)
+                                                        <span class="badge rounded-pill badge-light-success">
+                                                            {{ $history->statusHistory->keterangan }}</span>
                                                     @elseif ($history->statushistory->id == 4)
                                                         <span
-                                                            class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                            class="badge rounded-pill badge-light-info">{{ $history->statusHistory->keterangan }}
                                                             {{ $history->jabatan->keterangan }}</span>
+                                                    @elseif ($history->statusHistory->id == 10)
+                                                        <a class="badge rounded-pill badge-light-danger"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalCatatanAkadBatal-{{ $history->id }}">{{ $history->statusHistory->keterangan }}
+                                                        </a>
                                                     @else
                                                         <span
-                                                            class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                            class="badge rounded-pill badge-light-warning">{{ $history->statusHistory->keterangan }}
                                                             {{ $history->jabatan->keterangan }}</span>
                                                     @endif
                                                 </td>
-                                                <td style="text-align: center">{{ $proposal_skpd->tanggal_pengajuan }}</td>
                                                 <td style="text-align: center">
-                                                    @if ($bonmurabahah)
-                                                        <div class="mb-0 mt-1 col-md-1">
-                                                            <button type="butt  on" class="btn btn-success"
-                                                                data-bs-toggle="modal" data-bs-target="#bon">
-                                                                Telah Terlampir
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal fade" id="bon" tabindex="-1"
-                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header bg-transparent">
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
-                                                                    <h1 class="text-center mb-1" id="addNewCardTitle">
-                                                                       Bon Murabahah
-                                                                    </h1>
-                                                                    <p class="text-center">Lampiran Foto Bon Murabahah</p>
-                                                                    <div class="card-body">
-                                                                        <img src="{{ asset('storage/' . $bonmurabahah->foto) }}"
-                                                                            class="d-block w-100" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    @if ($bonMurabahah)
+                                                        <a class="badge rounded-pill badge-light-success"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#bonMurabahah-{{ $history->id }}">
+                                                            Sudah Terlampir
+                                                        </a>
                                                     @else
-                                                        Belum Terlampir
+                                                        <span class="badge rounded-pill badge-light-danger">
+                                                            Belum Terlampir
+                                                        </span>
                                                     @endif
                                                 </td>
                                                 <td style="text-align: center">{{ $proposal_skpd->user->name }}</td>
@@ -138,6 +126,91 @@
                                                 </td>
                                             </tr>
                                         @endif
+                                    @endforeach
+
+                                    @foreach ($proposals as $forBon)
+                                        @php
+                                            $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                                ->where('id', $forBon->skpd_pembiayaan_id)
+                                                ->latest()
+                                                ->get()
+                                                ->first();
+
+                                            $histForBon = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                                                ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+                                                ->latest()
+                                                ->first();
+
+                                            $bon = Modules\Skpd\Entities\SkpdFoto::select()
+                                                ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+                                                ->where('kategori', 'Bon Murabahah')
+                                                ->get()
+                                                ->first();
+                                        @endphp
+                                        {{-- Modal Bon Murabahah --}}
+                                        @if ($bon)
+                                            <div class="modal fade" id="bonMurabahah-{{ $histForBon->id }}" tabindex="-1"
+                                                aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-transparent">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                            <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                Bon Murabahah
+                                                            </h1>
+                                                            <div class="card-body">
+                                                                <p class="text-center">Diupload pada tanggal
+                                                                    {{ date_format($bon->created_at, 'd F Y') }}
+                                                                </p>
+                                                                <img src="{{ asset('storage/' . $bon->foto) }}"
+                                                                    class="d-block w-100" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        {{-- End Modal Bon Murabahah --}}
+                                    @endforeach
+                                    @foreach ($proposals as $forCatatanModal)
+                                        @php
+                                            $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                                ->where('id', $forBon->skpd_pembiayaan_id)
+                                                ->latest()
+                                                ->get()
+                                                ->first();
+                                            $historyCatatan = Modules\Skpd\Entities\SkpdPembiayaanHistory::where('skpd_pembiayaan_id', $proposal_skpd->id)
+                                                ->latest()
+                                                ->first();
+                                        @endphp
+                                        <!-- Modal Catatan Akad Batal -->
+                                        <div class="modal fade" id="modalCatatanAkadBatal-{{ $historyCatatan->id }}"
+                                            tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-transparent">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                        <h5 class="text-center">Catatan</h5>
+                                                        <br />
+                                                        <textarea class="form-control" name="catatan" rows="3" placeholder="Catatan">{{ $historyCatatan->catatan }}</textarea>
+                                                        <br />
+                                                        <div class="row">
+                                                            <div class="col-md-6" style="width:150px; margin:0 auto;">
+                                                                <button type="button" class="btn btn-primary w-100"
+                                                                    data-bs-dismiss="modal">Tutup</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /Modal Catatan Akad Batal -->
                                     @endforeach
                                 </tbody>
                             </table>

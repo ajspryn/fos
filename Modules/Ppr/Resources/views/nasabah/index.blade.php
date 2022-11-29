@@ -38,7 +38,7 @@
                                         <th style="text-align: center">Nama Nasabah</th>
                                         <th style="text-align: center">NIK</th>
                                         <th style="text-align: center">Alamat</th>
-                                        <th style="text-align: center">No. Telepon</th>
+                                        <th style="text-align: center">No. Telepon/HP</th>
                                         <th style="text-align: center">Detail</th>
 
 
@@ -55,9 +55,12 @@
                                             </td>
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
                                             <td>{{ $proposal->form_pribadi_pemohon_nama_lengkap }}</td>
-                                            <td>{{ $proposal->form_pribadi_pemohon_alamat_ktp }}</td>
-                                            <td>{{ $proposal->form_pribadi_pemohon_alamat_ktp_rt }},
-                                                {{ $proposal->form_pribadi_pemohon_alamat_ktp_rw }}</td>
+                                            <td>{{ $proposal->form_pribadi_pemohon_no_ktp }}</td>
+                                            <td>{{ $proposal->form_pribadi_pemohon_alamat_ktp }}
+                                                RT {{ $proposal->form_pribadi_pemohon_alamat_ktp_rt }},
+                                                RW {{ $proposal->form_pribadi_pemohon_alamat_ktp_rw }},
+                                                KEL. {{ $proposal->form_pribadi_pemohon_alamat_ktp_kelurahan }},
+                                                KEC. {{ $proposal->form_pribadi_pemohon_alamat_ktp_kecamatan }}</td>
                                             <td>{{ $proposal->form_pribadi_pemohon_no_handphone }}</td>
                                             <td style="text-align: center">
                                                 <a href="/ppr/nasabah/{{ $proposal->id }}"

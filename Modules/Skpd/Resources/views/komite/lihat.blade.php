@@ -46,7 +46,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" id="settings-tab-justified" data-bs-toggle="tab"
                                                 href="#ideb" role="tab" aria-controls="settings-just"
-                                                aria-selected="false">Ideb</a>
+                                                aria-selected="false">IDEB</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="settings-tab-justified" data-bs-toggle="tab"
@@ -63,7 +63,7 @@
                                                 <div class="card invoice-preview-card">
 
 
-                                                    <!-- Address and Contact starts -->
+                                                    <!-- Summary Identitas Nasabah -->
                                                     <div class="card-body invoice-padding pt-0">
                                                         <div class="row invoice-spacing">
                                                             <div class="col-xl-8 p-0">
@@ -71,57 +71,61 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td class="pe-1">Tanggal Pengajuan</td>
-                                                                            <td>: {{ $pembiayaan->tanggal_pengajuan }}
+                                                                            <td>:
+                                                                                {{ strtoupper(date('d F Y', strtotime($pembiayaan->tanggal_pengajuan))) }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1">Penggunaan</td>
                                                                             <td>:
-                                                                                {{ $pembiayaan->jenis_penggunaan->jenis_penggunaan }}
+                                                                                {{ strtoupper($pembiayaan->jenis_penggunaan->jenis_penggunaan) }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1">Sektor</td>
                                                                             <td>:
-                                                                                {{ $pembiayaan->sektor->nama_sektor_ekonomi }}
+                                                                                {{ strtoupper($pembiayaan->sektor->nama_sektor_ekonomi) }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1">Akad</td>
-                                                                            <td>: {{ $pembiayaan->akad->nama_akad }}
+                                                                            <td>:
+                                                                                {{ strtoupper($pembiayaan->akad->nama_akad) }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1">Nama Nasabah</td>
                                                                             <td><span class="fw-bold">:
-                                                                                    {{ $pembiayaan->nasabah->nama_nasabah }}</span>
+                                                                                    {{ strtoupper($pembiayaan->nasabah->nama_nasabah) }}</span>
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="pe-1">No Tlp</td>
+                                                                            <td class="pe-1">No. Telepon</td>
                                                                             <td>: {{ $pembiayaan->nasabah->no_telp }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1">Alamat</td>
-                                                                            <td>: {{ $pembiayaan->nasabah->alamat }}
+                                                                            <td>:
+                                                                                {{ strtoupper($pembiayaan->nasabah->alamat) }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="pe-1">No KTP</td>
+                                                                            <td class="pe-1">No. KTP</td>
                                                                             <td>: {{ $pembiayaan->nasabah->no_ktp }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="pe-1">Tempat/Tgl Lahir</td>
+                                                                            <td class="pe-1">Tempat, Tanggal Lahir</td>
                                                                             <td>:
-                                                                                {{ $pembiayaan->nasabah->tempat_lahir }}/{{ $pembiayaan->nasabah->tgl_lahir }}
+                                                                                {{ strtoupper($pembiayaan->nasabah->tempat_lahir) }},
+                                                                                {{ strtoupper(date('d F Y', strtotime($pembiayaan->nasabah->tgl_lahir))) }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="pe-1">Kantor/Dinas</td>
                                                                             <td>:
-                                                                                {{ $pembiayaan->instansi->nama_instansi }}
+                                                                                {{ strtoupper($pembiayaan->instansi->nama_instansi) }}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -170,7 +174,7 @@
                                                                         <tr>
                                                                             <td class="pe-1">Potongan Lainnya</td>
                                                                             <td>: Rp.
-                                                                                {{ number_format($pembiayaan->pengeluaran_lainnya) }}
+                                                                                {{ number_format($pembiayaan->potongan_lainnya) }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
@@ -179,11 +183,11 @@
                                                                                 {{ number_format($biayakeluarga) }}
                                                                             </td>
                                                                         </tr>
-                                                                        <tr>
+                                                                        <tr>nita
                                                                             <td class="pe-1 mt-1">Total Pengeluaran
                                                                             </td>
                                                                             <td><span class="fw-bold">: Rp.
-                                                                                    {{ number_format($total_pengeluaran) }}</span>
+                                                                                    {{ number_format($cicilan + $pembiayaan->potongan_lainnya + $biayakeluarga) }}</span>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -195,36 +199,44 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- Address and Contact ends -->
+                                                    <!--/ Summary Identitas Nasabah -->
 
-                                                    <!-- Invoice Description starts -->
+                                                    <!-- Informasi Debitur Nasabah -->
                                                     <div class="table-responsive">
-                                                        <small>Informasi Debitur Nasabah</small>
+                                                        <h4>Informasi Debitur Nasabah</h4>
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th style="text-align: center; width: 5%;"
+                                                                    <th style="text-align: center;  vertical-align:middle;; width: 5%;"
                                                                         class="py-1">No</th>
-                                                                    <th style="text-align: center" class="py-1">Nama
+                                                                    <th style="text-align: center;  vertical-align:middle;"
+                                                                        class="py-1">Nama
                                                                         Bank</th>
-                                                                    <th style="text-align: center" class="py-1">
+                                                                    <th style="text-align: center;  vertical-align:middle;"
+                                                                        class="py-1">
                                                                         Plafond
                                                                     </th>
-                                                                    <th style="text-align: center" class="py-1">
+                                                                    <th style="text-align: center;  vertical-align:middle;"
+                                                                        class="py-1">
                                                                         Outstanding</th>
-                                                                    <th style="text-align: center" class="py-1">
+                                                                    <th style="text-align: center;  vertical-align:middle;"
+                                                                        class="py-1">
                                                                         Tenor
                                                                     </th>
-                                                                    <th style="text-align: center" class="py-1">
+                                                                    <th style="text-align: center;  vertical-align:middle;"
+                                                                        class="py-1">
                                                                         Margin
                                                                     </th>
-                                                                    <th style="text-align: center" class="py-1">
+                                                                    <th style="text-align: center;  vertical-align:middle;"
+                                                                        class="py-1">
                                                                         Angsuran
                                                                     </th>
-                                                                    <th style="text-align: center" class="py-1">
+                                                                    <th style="text-align: center;  vertical-align:middle;"
+                                                                        class="py-1">
                                                                         Agunan
                                                                     </th>
-                                                                    <th style="text-align: center" class="py-1">Kol
+                                                                    <th style="text-align: center;  vertical-align:middle;"
+                                                                        class="py-1">Kol
                                                                         Tertinggi</th>
                                                                 </tr>
                                                             </thead>
@@ -264,6 +276,7 @@
 
                                                             </tbody>
                                                         </table>
+                                                        <hr style="margin-top:-1px;" />
                                                     </div>
                                                     @if ($cekcicilanpasangan > 0)
                                                         <br>
@@ -337,6 +350,7 @@
                                                             </table>
                                                         </div>
                                                     @endif
+
                                                     <div class="card-body invoice-padding pb-0">
                                                         <div class="row invoice-sales-total-wrapper">
                                                             <div class="col-md-8 order-md-1 order-2 mt-md-0 mt-3">
@@ -381,34 +395,47 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- Invoice Description ends -->
+                                                    <!--/ Informasi Debitur Nasabah -->
 
                                                     <hr class="invoice-spacing" />
 
+                                                    <!-- Summary Score -->
                                                     <div class="card-body invoice-padding pb-0">
-                                                        <!-- Header starts -->
                                                         <div
                                                             class="d-flex justify-content-center flex-md-row flex-column invoice-spacing mt-0">
                                                             <div>
-                                                                <h4>Summary </h4>
+                                                                <h4>Summary</h4>
                                                                 <hr>
                                                                 <div class="table-responsive mt-1">
                                                                     <table class="table">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th style="text-align: center">No</th>
-                                                                                <th style="text-align: center">
+                                                                                <th
+                                                                                    style="text-align: center; vertical-align:middle;">
+                                                                                    No</th>
+                                                                                <th
+                                                                                    style="text-align: center; vertical-align:middle;">
                                                                                     Parameter
                                                                                 </th>
-                                                                                <th style="text-align: center">Kategori
+                                                                                <th
+                                                                                    style="text-align: center; vertical-align:middle;">
+                                                                                    Kategori
                                                                                 </th>
-                                                                                <th style="text-align: center">Bobot
+                                                                                <th
+                                                                                    style="text-align: center; vertical-align:middle;">
+                                                                                    Bobot
                                                                                 </th>
-                                                                                <th style="text-align: center">Rating
+                                                                                <th
+                                                                                    style="text-align: center; vertical-align:middle;">
+                                                                                    Rating
                                                                                 </th>
-                                                                                <th style="text-align: center">Nilai
+                                                                                <th
+                                                                                    style="text-align: center; vertical-align:middle;">
+                                                                                    Nilai
                                                                                 </th>
-                                                                                <th style="text-align: center">Detail
+                                                                                <th
+                                                                                    style="text-align: center; vertical-align:middle;">
+                                                                                    Detail
                                                                                 </th>
                                                                             </tr>
                                                                         </thead>
@@ -424,7 +451,14 @@
                                                                                     {{ $rating_bendahara }}</td>
                                                                                 <td style="text-align: center">
                                                                                     {{ $nilai_bendahara }}</td>
-
+                                                                                <td style="text-align: center">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-icon btn-icon rounded-circle btn-flat-success"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#modalKonfirmasiBendahara">
+                                                                                        <i data-feather="eye"></i>
+                                                                                    </button>
+                                                                                </td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="text-align: center">2</td>
@@ -523,7 +557,7 @@
                                                                             <tr>
                                                                                 <td style="text-align: center">5</td>
                                                                                 <td>Jenis Nasabah</td>
-                                                                                <td>{{ $nasabah }}</td>
+                                                                                <td>{{ $jenis_nasabah }}</td>
                                                                                 <td style="text-align: center">
                                                                                     {{ 0.1 * 100 }}%</td>
                                                                                 <td style="text-align: center">
@@ -543,15 +577,30 @@
                                                                                     {{ $rating_instansi }}</td>
                                                                                 <td style="text-align: center">
                                                                                     {{ $nilai_instansi }}</td>
-
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
+                                                                    <hr style="margin-top:-1px;" />
                                                                 </div>
-
+                                                                @if ($deviasi)
+                                                                    <div class="card-body invoice-padding pt-0">
+                                                                        <div class="mb-0 mt-1 col-md-4">
+                                                                            <button type="button" class="btn btn-primary"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#dokumendeviasi">Dokumen
+                                                                                Deviasi
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
                                                                 @php
-                                                                    $total_score = $nilai_bendahara + $nilai_dsr + $nilai_slik + $nilai_jaminan + $nilai_nasabah + $nilai_instansi;
+                                                                    if ($deviasi) {
+                                                                        $total_score = $nilai_bendahara + $nilai_dsr + $nilaiSlikDeviasi + $nilai_jaminan + $nilai_nasabah + $nilai_instansi;
+                                                                    } else {
+                                                                        $total_score = $nilai_bendahara + $nilai_dsr + $nilai_slik + $nilai_jaminan + $nilai_nasabah + $nilai_instansi;
+                                                                    }
                                                                 @endphp
+
                                                                 <div class="card-body invoice-padding pt-0">
                                                                     <div class="row invoice-spacing">
                                                                         <div class="col-xl-7 p-0">
@@ -565,24 +614,21 @@
                                                                                     <tr>
                                                                                         <td class="pe-1">Status</td>
                                                                                         <td>:
-                                                                                            @if ($nilai_dsr1 >= 40 || ($nilai_dsr1 < 0 && $total_score > 3))
-                                                                                                @if ($nilai_dsr1 >= 40 && $total_score > 3)
+                                                                                            @if ($nilai_dsr >= 40 || ($nilai_dsr1 < 0 && $total_score > 3.01))
+                                                                                                @if ($nilai_dsr >= 40 && $total_score > 3.01)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
-                                                                                                        class="text-danger">*Catatan
-                                                                                                        : DSR
-                                                                                                        >
-                                                                                                        40%</small>
-                                                                                                @elseif($nilai_dsr1 < 0 && $total_score > 3)
+                                                                                                        class="text-danger">*DSR
+                                                                                                        > 80%</small>
+                                                                                                @elseif($nilai_dsr < 0 && $total_score > 3.01)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                     <small
-                                                                                                        class="text-danger">*Catatan
-                                                                                                        : Pengeluaran
+                                                                                                        class="text-danger">*Pengeluaran
                                                                                                         >
                                                                                                         Pendapatan</small>
-                                                                                                @elseif($total_score > 2 || $total_score > 3)
+                                                                                                @elseif($total_score > 2 || $total_score < 3)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-warning">Tinjau
                                                                                                         Ulang</span>
@@ -591,7 +637,7 @@
                                                                                                         class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
                                                                                                 @endif
                                                                                             @else
-                                                                                                @if ($total_score > 3)
+                                                                                                @if ($total_score > 3.01)
                                                                                                     <span
                                                                                                         class="badge rounded-pill badge-glow bg-success">Diterima</span>
                                                                                                 @elseif($total_score > 2 || $total_score > 3)
@@ -603,6 +649,7 @@
                                                                                                         class="badge rounded-pill badge-glow bg-danger">Ditolak</span>
                                                                                                 @endif
                                                                                             @endif
+
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
@@ -647,6 +694,7 @@
                                                         </div>
                                                         <!-- Header ends -->
                                                     </div>
+                                                    <!--/ Summary Score -->
 
                                                     <hr class="invoice-spacing" />
                                                     <!-- Invoice Note starts -->
@@ -656,7 +704,7 @@
                                                             </div>
                                                             <div class="col-xl-5 p-0 mt-xl-0 mt-2">
                                                                 @if ($history->status_id == 2)
-                                                                    @if ($total_score < 3)
+                                                                    @if ($total_score < 3.01)
                                                                         <div class="card-body">
                                                                             <button class="btn btn-danger w-100 mb-75"
                                                                                 data-bs-toggle="modal"
@@ -664,10 +712,24 @@
                                                                                 Ditolak
                                                                             </button>
                                                                         </div>
+                                                                        @if ($ideps->count() > 0)
+                                                                            @if ($slik->kol > 3)
+                                                                                <div class="card-body">
+                                                                                    <button
+                                                                                        class="btn btn-info w-100 mb-75"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#modalUploadDeviasi"><i
+                                                                                            data-feather="file"></i>
+                                                                                        Upload Dokumen Deviasi
+                                                                                    </button>
+                                                                                </div>
+                                                                            @endif
+                                                                        @endif
                                                                     @else
                                                                         <div class="card-body">
                                                                             <button class="btn btn-success w-100 mb-75"
-                                                                                data-bs-toggle="modal"data-bs-target="#lanjut_komite"><i data-feather="check-square"></i>
+                                                                                data-bs-toggle="modal"data-bs-target="#lanjut_komite"><i
+                                                                                    data-feather="check-square"></i>
                                                                                 Lanjut Komite
                                                                             </button>
                                                                         </div>
@@ -675,7 +737,8 @@
                                                                     <div class="card-body">
                                                                         <button class="btn btn-warning w-100 mb-75"
                                                                             data-bs-toggle="modal"
-                                                                            data-bs-target="#edit_proposal"><i data-feather="edit"></i>
+                                                                            data-bs-target="#edit_proposal"><i
+                                                                                data-feather="edit"></i>
                                                                             Edit Proposal
                                                                         </button>
                                                                     </div>
@@ -685,27 +748,29 @@
                                                                         value="{{ $pembiayaan->id }}">
                                                                     <div class="card-body">
                                                                         <button action="sumbit"
-                                                                            class="btn btn-info w-100 mb-75"><i data-feather="printer"></i>
+                                                                            class="btn btn-info w-100 mb-75"><i
+                                                                                data-feather="printer"></i>
                                                                             Cetak Proposal
                                                                         </button>
                                                                     </div>
                                                                 </form>
-                                                                @if($bon_murabahah)
+                                                                @if ($bonMurabahah)
                                                                 @else
-                                                                @if ($history->status_id == 9)
-                                                                <div class="card-body">
-                                                                    <button class="btn btn-danger w-100 mb-75"
-                                                                        data-bs-toggle="modal" data-bs-target="#bon">
-                                                                        Upload Bon Murabahah
-                                                                    </button>
-                                                                </div>
-                                                                @endif
+                                                                    @if ($history->status_id == 9)
+                                                                        <div class="card-body">
+                                                                            <button class="btn btn-danger w-100 mb-75"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#bonMurabahah">
+                                                                                Upload Bon Murabahah
+                                                                            </button>
+                                                                        </div>
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- Invoice Note ends -->
-                                                    <!-- add new card modal  -->
+                                                    <!-- Modal Setuju  -->
                                                     <div class="modal fade" id="lanjut_komite" tabindex="-1"
                                                         aria-labelledby="addNewCardTitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
@@ -763,51 +828,53 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!--/ add new card modal  -->
+                                                    <!--/ Modal Setuju  -->
 
-                                                    <div class="modal fade" id="bon" tabindex="-1"
-                                                aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header bg-transparent">
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body px-sm-5 mx-50 pb-5">
-                                                            <h1 class="text-center mb-1" id="addNewCardTitle">
-                                                                Upload Bon Murabahah
-                                                            </h1>
-                                                            <p class="text-center"></p>
-
-                                                            <!-- form -->
-                                                            <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"
-                                                                method="POST" action="/skpd/bonmurabahah"
-                                                                enctype="multipart/form-data">
-                                                                @csrf
-                                                                <label class="form-label" for="fotokk"><small
-                                                                        class="text-danger">*
-                                                                    </small>Upload Bon Murabahah</label>
-                                                                <input type="hidden" name="skpd_pembiayaan_id"
-                                                                    value="{{ $pembiayaan->id }}">
-                                                                <input type="file" name="Foto_Bon_Murabahah"
-                                                                    id="fotokk" rows="3" class="form-control"
-                                                                    required />
-                                                                <div class="col-12 text-center">
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary me-1 mt-1">Submit</button>
-                                                                    <button type="reset"
-                                                                        class="btn btn-outline-secondary mt-1"
-                                                                        data-bs-dismiss="modal" aria-label="Close">
-                                                                        Cancel
-                                                                    </button>
+                                                    <div class="modal fade" id="bonMurabahah" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
                                                                 </div>
-                                                            </form>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                        Upload Bon Murabahah
+                                                                    </h1>
+                                                                    <p class="text-center"></p>
+
+                                                                    <!-- form -->
+                                                                    <form id="addNewCardValidation"
+                                                                        class="row gy-1 gx-2 mt-75" method="POST"
+                                                                        action="/skpd/bonMurabahah"
+                                                                        enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        <label class="form-label" for="bonMurabahah">*File
+                                                                            berupa gambar .jpg/jpeg/png</label>
+                                                                        <input type="hidden" name="skpd_pembiayaan_id"
+                                                                            value="{{ $pembiayaan->id }}">
+                                                                        <input type="file" name="bon_murabahah"
+                                                                            id="bonMurabahah" rows="3"
+                                                                            class="form-control" required />
+                                                                        <div class="col-12 text-center">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary me-1 mt-1">Submit</button>
+                                                                            <button type="reset"
+                                                                                class="btn btn-outline-secondary mt-1"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                                Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                                    <!-- add new card modal  -->
+                                                    <!-- Modal Revisi  -->
                                                     <div class="modal fade" id="edit_proposal" tabindex="-1"
                                                         aria-labelledby="addNewCardTitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
@@ -855,7 +922,32 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!--/ add new card modal  -->
+                                                    <!--/ Modal Revisi  -->
+
+                                                    @if ($deviasi)
+                                                        <div class="modal fade" id="dokumendeviasi" tabindex="-1"
+                                                            aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header bg-transparent">
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                        <h3 class="text-center">Lampiran Dokumen Deviasi
+                                                                        </h3>
+                                                                        <div class="card-body">
+                                                                            <iframe
+                                                                                src="{{ asset('storage/' . $deviasi->dokumen_deviasi) }}"
+                                                                                class="d-block w-100"
+                                                                                height="500"></iframe>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
 
                                                     <!-- Invoice Note ends -->
 
@@ -908,6 +1000,54 @@
                                                         </div>
                                                     </div>
                                                     <!-- /Invoice Actions -->
+
+                                                    <!-- Modal Upload Deviasi  -->
+                                                    <div class="modal fade" id="modalUploadDeviasi" tabindex="-1"
+                                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-transparent">
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body px-sm-5 mx-50 pb-5">
+                                                                    <h1 class="text-center mb-1" id="addNewCardTitle">
+                                                                        Upload Lembar Deviasi
+                                                                    </h1>
+                                                                    <p class="text-center"></p>
+
+                                                                    <!-- form -->
+                                                                    <form id="formDeviasi" class="row gy-1 gx-2 mt-75"
+                                                                        method="POST" action="/skpd/komite"
+                                                                        enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        <input type="hidden" name="skpd_pembiayaan_id"
+                                                                            value="{{ $pembiayaan->id }}">
+                                                                        <input type="hidden" name="status_id" value=2>
+                                                                        <input type="hidden" name="jabatan_id" value=1>
+                                                                        <input type="hidden" name="user_id"
+                                                                            value="{{ Auth::user()->id }}">
+                                                                        <input type="file" name="dokumen_deviasi"
+                                                                            id="dokumenDeviasi" class="form-control"
+                                                                            required />
+
+                                                                        <div class="col-12 text-center">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary me-1 mt-1">Submit</button>
+                                                                            <button type="reset"
+                                                                                class="btn btn-outline-secondary mt-1"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                                Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ Modal Upload Deviasi  -->
 
                                                 </div>
                                             </div>
@@ -1019,10 +1159,27 @@
                                         </div>
                                         <div class="tab-pane" id="ideb" role="tabpanel"
                                             aria-labelledby="settings-tab-justified">
-                                            <iframe src="{{ asset('storage/' . $ideb->foto) }}" frameborder="0"
-                                                width="1000" height="900"></iframe>
-                                            <embed type="application/pdf" src="{{ asset('storage/' . $ideb->foto) }}"
-                                                width="1000" height="900">
+                                            <center>
+                                                <h4>IDEB Pemohon</h4>
+                                            </center>
+                                            <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
+                                                height="600"></iframe>
+                                            @if ($pembiayaan->nasabah->skpd_status_perkawinan_id == 2)
+                                                <br /> <br />
+                                                <hr />
+                                                <center>
+                                                    <h4>IDEB Pasangan</h4>
+                                                </center>
+                                                @if ($idebPasangan)
+                                                    <iframe src="{{ asset('storage/' . $idebPasangan->foto) }}"
+                                                        class="d-block w-100" height="600"></iframe>
+                                                @else
+                                                    <center>
+                                                        <br />
+                                                        <p>IDEB Pasangan tidak ada/belum di-upload</p>
+                                                    </center>
+                                                @endif
+                                            @endif
                                         </div>
 
                                         <div class="tab-pane" id="timeline" role="tabpanel"
@@ -1164,7 +1321,10 @@
                 </div>
 
                 <!--akhir idir -->
-                <!-- ideb  -->
+
+
+
+                <!-- jaminan  -->
                 <div class="modal fade" id="ijazah" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -1183,7 +1343,8 @@
                         </div>
                     </div>
                 </div>
-                <!--/ ideb  -->
+                <!--/ jaminan  -->
+
                 <!-- ideb  -->
                 <div class="modal fade" id="slik" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
@@ -1205,28 +1366,35 @@
                 </div>
                 <!--/ ideb  -->
 
-                @if ($konfirmasi)
-                    <!-- ideb  -->
-                    <div class="modal fade" id="konfirmasibendahara" tabindex="-1" aria-labelledby="addNewCardTitle"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header bg-transparent">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body px-sm-12 mx-50 pb-5">
-                                    <h3 class="text-center">Lampiran Konfirmasi Bendahara</h3>
-                                    <div class="card-body">
-                                        <img src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
-                                            height='500'>
-                                    </div>
+                <!-- Modal Konfirmasi Bendahara  -->
+                <div class="modal fade" id="modalKonfirmasiBendahara" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-12 mx-50 pb-5">
+                                <h3 class="text-center">Konfirmasi Bendahara</h3>
+                                <div class="card-body">
+                                    @if ($konfirmasi)
+                                        <iframe src="{{ asset('storage/' . $konfirmasi->foto) }}" class="d-block w-100"
+                                            height='500' weight='800'></iframe>
+                                    @else
+                                        <br />
+                                        <center>
+                                            <h5>Tidak ada/belum di-Upload</h5>
+                                        </center>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        <!--/ ideb  -->
-                @endif
-                <!-- jaminan  -->
+                    </div>
+                </div>
+                <!--/ Modal Konfirmasi Bendahara  -->
+
+                <!-- Jaminan  -->
                 <div class="modal fade" id="iii" tabindex="-1" aria-labelledby="addNewCardTitle"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -1245,6 +1413,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--/ Jaminan  -->
 
 
                 </div>

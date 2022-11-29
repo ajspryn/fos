@@ -23,6 +23,7 @@ use Modules\Admin\Entities\SkpdSektorEkonomi;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
 use Modules\Admin\Entities\SkpdJenisPenggunaan;
 use Modules\Admin\Entities\SkpdStatusPerkawinan;
+use Modules\Skpd\Entities\SkpdJenisNasabah;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
 use Modules\Skpd\Entities\SkpdSlikPasangan;
 
@@ -80,7 +81,7 @@ class SkpdRevisiController extends Controller
         $datafoto = SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->get();
         $foto = $datafoto;
         return view('skpd::revisi.lihat', [
-            'title' => 'Detail Calon Nasabah',
+            'title' => 'Revisi Proposal',
             'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
             'nasabah' => SkpdNasabah::select()->where('id', $id)->get()->first(),
             'fotodiri' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'foto diri')->get()->first(),
@@ -101,6 +102,7 @@ class SkpdRevisiController extends Controller
             'tanggungans' => SkpdTanggungan::all(),
             'idebs' => SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->get(),
             'idebpasangans' => SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->get(),
+            'jenisNasabahs' => SkpdJenisNasabah::all(),
         ]);
     }
 
@@ -129,6 +131,7 @@ class SkpdRevisiController extends Controller
             'skpd_sektor_ekonomi_id' => $request->skpd_sektor_ekonomi_id,
             'skpd_akad_id' => $request->skpd_akad_id,
             'skpd_nasabah_id' => $id,
+            'skpd_jenis_nasabah_id' => $request->skpd_jenis_nasabah_id,
             'skpd_instansi_id' => $request->skpd_instansi_id,
             'skpd_golongan_id' => $request->skpd_golongan_id,
             'gaji_pokok' => str_replace(",", "", $request->gaji_pokok),
@@ -305,7 +308,7 @@ class SkpdRevisiController extends Controller
         } else {
         }
 
-        return redirect('/skpd/komite')->with('success', 'Pengajuan Anda Sedang Di Proses Silahkan Hubungi AO');
+        return redirect('/skpd/komite')->with('success', 'Proposal Berhasil Diperbarui!');
     }
 
     /**

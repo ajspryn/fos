@@ -15,8 +15,10 @@ class SelesaiAkadController extends Controller
      */
     public function index()
     {
-        $akadBerhasil = Pembiayaan::select()->get();
-        // return $pasar;
+        $akadBerhasil = Pembiayaan::select()
+            ->latest()
+            ->get();
+
         return view('akad::selesai.index', [
             'title' => 'Dashboard Akad Selesai',
             'akadBerhasils' => $akadBerhasil,

@@ -41,8 +41,8 @@ class EditProposalController extends Controller
      */
     public function index()
     {
-        $komite = PasarPembiayaan::select()->where('AO_id',Auth::user()->id)->whereNotNull('sektor_id')->orderby('updated_at','desc')->get();
-        return view('pasar::Revisi.index', [
+        $komite = PasarPembiayaan::select()->where('AO_id', Auth::user()->id)->whereNotNull('sektor_id')->orderby('updated_at', 'desc')->get();
+        return view('pasar::revisi.index', [
             'title' => 'Data  Revisi Proposal Nasabah',
             'komites' => $komite,
         ]);
@@ -86,10 +86,10 @@ class EditProposalController extends Controller
     {
         $datafoto = PasarFoto::select()->where('pasar_pembiayaan_id', $id)->get();
         $foto = $datafoto;
-        $data = PasarPembiayaan::select()->where('id',$id)->get()->first();
+        $data = PasarPembiayaan::select()->where('id', $id)->get()->first();
 
         // return $data;
-        return view('pasar::Revisi.lihat', [
+        return view('pasar::revisi.lihat', [
             'title' => 'Detail Calon Nasabah',
             'pembiayaan' => PasarPembiayaan::select()->where('id', $id)->get()->first(),
             'nasabah' => PasarNasabahh::select()->where('id', $id)->get()->first(),
@@ -99,8 +99,8 @@ class EditProposalController extends Controller
             'fotokk' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
             'fototoko' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto toko')->get()->first(),
             'usahas' => PasarKeteranganUsaha::all(), //udah
-            'jaminanutama' => PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->get()->first(), //udah
-            'jaminanlain' => PasarJaminanLain::select()->where('pasar_pembiayaan_id',$id)->get()->first(), //udah
+            'jaminanutama' => PasarJaminan::select()->where('pasar_pembiayaan_id', $id)->get()->first(), //udah
+            'jaminanlain' => PasarJaminanLain::select()->where('pasar_pembiayaan_id', $id)->get()->first(), //udah
             'akads' => PasarAkad::all(),
             'sektors' => PasarSektorEkonomi::all(),
             'pasars' => PasarJenisPasar::all(),
@@ -112,21 +112,20 @@ class EditProposalController extends Controller
             'jaminans' => PasarJenisJaminan::all(),
             'nasabahs' => PasarJenisNasabah::all(),
             'sukus' => PasarSukuBangsa::all(),
-            'akads'=>PasarAkad::all(),
-            'penggunaans'=>PasarPenggunaan::all(),
-            'sektors'=>PasarSektorEkonomi::all(),
-            'pasars'=>PasarJenisPasar::all(),
-            'lamas'=>PasarLamaBerdagang::all(),
-            'rumahs'=>PasarJaminanRumahh::all(),
-            'dagangs'=>PasarJenisDagang::all(),
-            'aos'=>Role::select()->where('jabatan_id',1)->get(),
-            'tanggungans'=>PasarTanggungan::all(),
-            'statuss'=>PasarStatusPerkawinan::all(),
-            'jaminans'=>PasarJenisJaminan::all(),
-            'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
-            'idebpasangans'=>PasarSlikPasangan::select()->where('pasar_pembiayaan_id',$id)->get(),
+            'akads' => PasarAkad::all(),
+            'penggunaans' => PasarPenggunaan::all(),
+            'sektors' => PasarSektorEkonomi::all(),
+            'pasars' => PasarJenisPasar::all(),
+            'lamas' => PasarLamaBerdagang::all(),
+            'rumahs' => PasarJaminanRumahh::all(),
+            'dagangs' => PasarJenisDagang::all(),
+            'aos' => Role::select()->where('jabatan_id', 1)->get(),
+            'tanggungans' => PasarTanggungan::all(),
+            'statuss' => PasarStatusPerkawinan::all(),
+            'jaminans' => PasarJenisJaminan::all(),
+            'idebs' => PasarSlik::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'idebpasangans' => PasarSlikPasangan::select()->where('pasar_pembiayaan_id', $id)->get(),
         ]);
-
     }
 
     /**
@@ -136,164 +135,160 @@ class EditProposalController extends Controller
      * @return Renderable
      */
     public function update(Request $request, $id)
-    { 
-            // return $request;
-            $data = PasarPembiayaan::select()->where('id',$id)->get()->first();
-            PasarPembiayaan::where('id',$id)->update([
-                'id' => $id,
-                'tgl_pembiayaan' => $request->tgl_pembiayaan,
-                'AO_id' => $request->AO_id,
-                'penggunaan_id' => $request->penggunaan_id,
-                'pesanan_blok' => $request->pesanan_blok,
-                'tenor' => $request->tenor,
-                'luas' => $request->luas,
-                'harga' => str_replace(",", "", $request->harga),
-                'jaminan_id' => $id,
-                'jaminanlain_id' => $id,
-                'pasar_legalitas_rumah_id' => $id,
-                'pasar_keterangan_usaha_id' => $id,
-                'omset' => str_replace(",", "", $request->omset),
-                'hpp' => str_replace(",", "", $request->hpp),
-                'listrik' => str_replace(",", "", $request->listrik),
-                'trasport' => str_replace(",", "", $request->trasport),
-                'karyawan' => str_replace(",", "", $request->karyawan),
-                'telpon' => str_replace(",", "", $request->telpon),
-                'sewa' => str_replace(",", "", $request->sewa),
-                'slik_id' => $id,
-                'keb_keluarga' => str_replace(",", "", $request->keb_keluarga),
-                'kesanggupan_angsuran' => str_replace(",", "", $request->kesanggupan_angsuran),
-                'keterangan_keb_keluarga' => $request->keterangan_keb_keluarga,
-                'aset' => $request->aset,
+    {
+        // return $request;
+        $data = PasarPembiayaan::select()->where('id', $id)->get()->first();
+        PasarPembiayaan::where('id', $id)->update([
+            'id' => $id,
+            'tgl_pembiayaan' => $request->tgl_pembiayaan,
+            'AO_id' => $request->AO_id,
+            'penggunaan_id' => $request->penggunaan_id,
+            'pesanan_blok' => $request->pesanan_blok,
+            'tenor' => $request->tenor,
+            'luas' => $request->luas,
+            'harga' => str_replace(",", "", $request->harga),
+            'jaminan_id' => $id,
+            'jaminanlain_id' => $id,
+            'pasar_legalitas_rumah_id' => $id,
+            'pasar_keterangan_usaha_id' => $id,
+            'omset' => str_replace(",", "", $request->omset),
+            'hpp' => str_replace(",", "", $request->hpp),
+            'listrik' => str_replace(",", "", $request->listrik),
+            'trasport' => str_replace(",", "", $request->trasport),
+            'karyawan' => str_replace(",", "", $request->karyawan),
+            'telpon' => str_replace(",", "", $request->telpon),
+            'sewa' => str_replace(",", "", $request->sewa),
+            'slik_id' => $id,
+            'keb_keluarga' => str_replace(",", "", $request->keb_keluarga),
+            'kesanggupan_angsuran' => str_replace(",", "", $request->kesanggupan_angsuran),
+            'keterangan_keb_keluarga' => $request->keterangan_keb_keluarga,
+            'aset' => $request->aset,
+        ]);
+
+        if ($request->file('dokumen_keuangan')) {
+            if ($request->dokumen_keuangan_lama) {
+                Storage::delete($request->dokumen_keuangan_lama);
+            }
+            $dokumen_keuangan = $request->file('dokumen_keuangan')->store('pasar-dokumen-keuangan');
+            PasarPembiayaan::where('id', $id)->update([
+                'dokumen_keuangan' => $dokumen_keuangan,
             ]);
+        } else {
+        }
 
-            if ($request->file('dokumen_keuangan')) {
-                if ($request->dokumen_keuangan_lama) {
-                    Storage::delete($request->dokumen_keuangan_lama);
-                }
-                $dokumen_keuangan=$request->file('dokumen_keuangan')->store('pasar-dokumen-keuangan');
-                PasarPembiayaan::where('id',$id)->update([
-                        'dokumen_keuangan' => $dokumen_keuangan,
-                    ]);
+        PasarNasabahh::where('id', $data->nasabah_id)->update([
+            'nama_nasabah' => $request->nama_nasabah,
+            'no_ktp' => $request->no_ktp,
+            'tmp_lahir' => $request->tmp_lahir,
+            'tgl_lahir' => $request->tgl_lahir,
+            'alamat' => $request->alamat,
+            'rt' => $request->rt,
+            'rw' => $request->rw,
+            'desa_kelurahan' => $request->desa_kelurahan,
+            'kecamatan' => $request->kecamatan,
+            'kabkota' => $request->kabkota,
+            'provinsi' => $request->provinsi,
+            'alamat_domisili' => $request->provinsi,
+            'lama_tinggal' => $request->lama_tinggal,
+            'nama_pasangan' => $request->nama_pasangan,
+            'nama_ibu' => $request->nama_ibu,
+            'agama_id' => $request->agama_id,
+            'status_id' => $request->status_id,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'pendidikan' => $request->pendidikan,
+            'jumlah_anak' => $request->jumlah_anak,
+            'npwp' => $request->npwp,
+            'no_tlp' => str_replace("+62 0", "", $request->no_tlp),
+            'namaot' => $request->namaot,
+            'alamat_ot' => $request->alamat_ot,
+            'telp_ot' => str_replace("+62 0", "", $request->telp_ot),
+            'foto_id' => $id,
+        ]);
+
+
+        PasarJaminan::where('pasar_pembiayaan_id', $id)->update([
+            'pasar_pembiayaan_id' => $id,
+            'no_ktb' => $request->no_ktb,
+            'jaminanlain' => $request->jaminanlain,
+        ]);
+
+        if ($request->file('dokumenktb')) {
+            if ($request->dokumenlama) {
+                Storage::delete($request->dokumenlama);
             }
-            else {
+            $dokumenktb = $request->file('dokumenktb')->store('pasar-dokumen-ktb');
 
-            }
-
-            PasarNasabahh::where('id',$data->nasabah_id)->update([
-                'nama_nasabah' => $request->nama_nasabah,
-                'no_ktp' => $request->no_ktp,
-                'tmp_lahir' => $request->tmp_lahir,
-                'tgl_lahir' => $request->tgl_lahir,
-                'alamat' => $request->alamat,
-                'rt' => $request->rt,
-                'rw' => $request->rw,
-                'desa_kelurahan' => $request->desa_kelurahan,
-                'kecamatan' => $request->kecamatan,
-                'kabkota' => $request->kabkota,
-                'provinsi' => $request->provinsi,
-                'alamat_domisili' => $request->provinsi,
-                'lama_tinggal' => $request->lama_tinggal,
-                'nama_pasangan' => $request->nama_pasangan,
-                'nama_ibu' => $request->nama_ibu,
-                'agama_id' => $request->agama_id,
-                'status_id' => $request->status_id,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'pendidikan' => $request->pendidikan,
-                'jumlah_anak' => $request->jumlah_anak,
-                'npwp' => $request->npwp,
-                'no_tlp' => str_replace("+62 0", "", $request->no_tlp),
-                'namaot' => $request->namaot,
-                'alamat_ot' => $request->alamat_ot,
-                'telp_ot' => str_replace("+62 0", "", $request->telp_ot),
-                'foto_id' => $id,
+            PasarJaminan::where('pasar_pembiayaan_id', $id)->update([
+                'dokumenktb' => $dokumenktb,
             ]);
+        } else {
+        }
 
-
-            PasarJaminan::where('pasar_pembiayaan_id',$id)->update([
-                'pasar_pembiayaan_id'=> $id,
-                'no_ktb'=> $request ->no_ktb,  
-                'jaminanlain'=> $request ->jaminanlain,
-            ]);
-
-            if ($request->file('dokumenktb')) {
-                if ($request->dokumenlama) {
-                    Storage::delete($request->dokumenlama);
-                }
-                $dokumenktb = $request->file('dokumenktb')->store('pasar-dokumen-ktb');
-
-                PasarJaminan::where('pasar_pembiayaan_id',$id)->update([
-                    'dokumenktb'=> $dokumenktb,
-                ]);
-            }
-            else{
-
-            }
-           
-            if ($request->file('dokumen_jaminan')) {
-                if ($request->dokumenjaminanlama) {
-                    Storage::delete($request->dokumenjaminanlama);
-                }
-
-                $dokumen_jaminan=$request->file('dokumen_jaminan')->store('pasar-dokumen_jaminan');
-                PasarJaminanLain::create([
-                    'pasar_pembiayaan_id'=> $id,
-                    'dokumen_jaminan'=>$dokumen_jaminan,
-                ]);
+        if ($request->file('dokumen_jaminan')) {
+            if ($request->dokumenjaminanlama) {
+                Storage::delete($request->dokumenjaminanlama);
             }
 
-            PasarLegalitasRumah::where('pasar_pembiayaan_id',$id)->update([
+            $dokumen_jaminan = $request->file('dokumen_jaminan')->store('pasar-dokumen_jaminan');
+            PasarJaminanLain::create([
                 'pasar_pembiayaan_id' => $id,
-                'kepemilikan_rumah' => $request->kepemilikan_rumah,
-                'legalitas_kepemilikan_rumah' => $request->legalitas_kepemilikan_rumah,
-                'dokumen_legalitas_kepemilikan_rumah' => $request->dokumen_legalitas_kepemilikan_rumah,
+                'dokumen_jaminan' => $dokumen_jaminan,
             ]);
+        }
 
-            PasarPembiayaanHistory::create([
-                'pasar_pembiayaan_id' => $id,
-                'status_id' => 2,
-                'user_id' => auth::user()->id,
-                'jabatan_id' => 1,
-                'divisi_id' => null,
-            ]);
+        PasarLegalitasRumah::where('pasar_pembiayaan_id', $id)->update([
+            'pasar_pembiayaan_id' => $id,
+            'kepemilikan_rumah' => $request->kepemilikan_rumah,
+            'legalitas_kepemilikan_rumah' => $request->legalitas_kepemilikan_rumah,
+            'dokumen_legalitas_kepemilikan_rumah' => $request->dokumen_legalitas_kepemilikan_rumah,
+        ]);
 
-            PasarKeteranganUsaha::where('pasar_pembiayaan_id',$id)->update([
-                'pasar_pembiayaan_id' => $id,
-                'jenispasar_id' => $request->jenispasar_id,
-                'nama_usaha' => $request->nama_usaha,
-                'lama_usaha' => $request->lama_usaha,
-                'kep_toko_id' => $request->kep_toko_id,
-                'leg_toko_id' => $request->leg_toko_id,
-                'jenisdagang_id' => $request->jenisdagang_id,
-                'no_blok' => $request->blok,
-                'foto_id' => $id,
-            ]);
-          
-            // $request->validate([
-            //     'foto.*.kategori' => 'required',
-            //     'foto.*.foto' => 'required',
-            // ]);
-            
-            if (request('perbarui_lampiran') == 'Ya') {
+        PasarPembiayaanHistory::create([
+            'pasar_pembiayaan_id' => $id,
+            'status_id' => 2,
+            'user_id' => auth::user()->id,
+            'jabatan_id' => 1,
+            'divisi_id' => null,
+        ]);
+
+        PasarKeteranganUsaha::where('pasar_pembiayaan_id', $id)->update([
+            'pasar_pembiayaan_id' => $id,
+            'jenispasar_id' => $request->jenispasar_id,
+            'nama_usaha' => $request->nama_usaha,
+            'lama_usaha' => $request->lama_usaha,
+            'kep_toko_id' => $request->kep_toko_id,
+            'leg_toko_id' => $request->leg_toko_id,
+            'jenisdagang_id' => $request->jenisdagang_id,
+            'no_blok' => $request->blok,
+            'foto_id' => $id,
+        ]);
+
+        // $request->validate([
+        //     'foto.*.kategori' => 'required',
+        //     'foto.*.foto' => 'required',
+        // ]);
+
+        if (request('perbarui_lampiran') == 'Ya') {
             foreach ($request->foto as $key => $value) {
                 if ($value['foto']) {
                     Storage::delete($value['foto_lama']);
                     $foto = $value['foto']->store('foto-pasar-pembiayaan');
-    
-                    PasarFoto::where('pasar_pembiayaan_id', $id)->where('id',$value['id'])->update([
+
+                    PasarFoto::where('pasar_pembiayaan_id', $id)->where('id', $value['id'])->update([
                         'pasar_pembiayaan_id' => $id,
                         'kategori' => $value['kategori'],
                         'foto' => $foto,
                     ]);
                 }
-            }} else{
-
             }
+        } else {
+        }
 
-            if ($request->slik[0]['nama_bank']){
+        if ($request->slik[0]['nama_bank']) {
 
-                PasarSlik::select()->where('pasar_pembiayaan_id',$id)->delete();
-            
-                foreach ($request->slik as $key => $value) {
+            PasarSlik::select()->where('pasar_pembiayaan_id', $id)->delete();
+
+            foreach ($request->slik as $key => $value) {
 
                 PasarSlik::create([
                     'pasar_pembiayaan_id' => $id,
@@ -307,43 +302,37 @@ class EditProposalController extends Controller
                     'kol' => $value['kol'],
                 ]);
             }
+        } else {
         }
-            else{
 
-            }
 
-            
-            if ($request->slikpasangan[0]['nama_bank']){
+        if ($request->slikpasangan[0]['nama_bank']) {
 
-                PasarSlikPasangan::select()->where('pasar_pembiayaan_id',$id)->delete();
-                foreach ($request->slikpasangan as $key => $value) {
+            PasarSlikPasangan::select()->where('pasar_pembiayaan_id', $id)->delete();
+            foreach ($request->slikpasangan as $key => $value) {
 
 
                 // return $value;
                 PasarSlikPasangan::create([
-                    'pasar_pembiayaan_id'=>$id,
-                    'nama_bank'=> $value['nama_bank'],
-                    'plafond'=> $value['plafond'],
-                    'outstanding'=> $value['outstanding'],
-                    'tenor'=> $value['tenor'],
-                    'margin'=> $value['margin'],
-                    'angsuran'=> $value['angsuran'],
-                    'agunan'=> $value['agunan'],
-                    'kol'=> $value['kol'],
+                    'pasar_pembiayaan_id' => $id,
+                    'nama_bank' => $value['nama_bank'],
+                    'plafond' => $value['plafond'],
+                    'outstanding' => $value['outstanding'],
+                    'tenor' => $value['tenor'],
+                    'margin' => $value['margin'],
+                    'angsuran' => $value['angsuran'],
+                    'agunan' => $value['agunan'],
+                    'kol' => $value['kol'],
                 ]);
             }
-        }
-
-        else{
-                
+        } else {
         }
 
 
-            
-            
 
-            return redirect('/pasar/komite/'.$id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
-        
+
+
+        return redirect('/pasar/komite/' . $id)->with('success', 'Proposal Pengajuan Sedang Dalam Proses Komite');
     }
 
     /**

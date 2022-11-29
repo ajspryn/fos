@@ -66,7 +66,7 @@
                                                         ->get();
                                                 }
 
-                                                if ($role->divisi_id == 1) {
+                                                if ($role->divisi_id == 1 && $role->jabatan_id == 1) {
                                                     $proposal_disetujuis = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
                                                         ->where('status_id', 3)
                                                         ->where('user_id', $user->id)
@@ -93,57 +93,61 @@
                                                 }
 
                                                 $i = 0;
-                                                foreach ($proposal_disetujuis as $proposal_disetujui) {
-                                                    if ($role->divisi_id == 1) {
-                                                        $proposal_notif = Modules\Skpd\Entities\SkpdPembiayaan::select()
-                                                            ->where('id', $proposal_disetujui->skpd_pembiayaan_id)
-                                                            ->where('user_id', $user->id)
-                                                            ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
-                                                            ->get()
-                                                            ->first();
-                                                        $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-                                                            ->where('skpd_pembiayaan_id', $proposal_notif->id)
-                                                            ->orderby('created_at', 'desc')
-                                                            ->get()
-                                                            ->first();
-                                                    } elseif ($role->divisi_id == 2) {
-                                                        $proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
-                                                            ->where('AO_id', $user->id)
-                                                            ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
-                                                            ->get()
-                                                            ->first();
-                                                        $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-                                                            ->where('pasar_pembiayaan_id', $proposal->id)
-                                                            ->orderby('created_at', 'desc')
-                                                            ->get()
-                                                            ->first();
-                                                    } elseif ($role->divisi_id == 3) {
-                                                        $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
-                                                            ->where('AO_id', $user->id)
-                                                            ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
-                                                            ->get()
-                                                            ->first();
-                                                        $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
-                                                            ->where('umkm_pembiayaan_id', $proposal->id)
-                                                            ->orderby('created_at', 'desc')
-                                                            ->get()
-                                                            ->first();
-                                                    } elseif ($role->divisi_id == 4) {
-                                                        $proposal = Modules\Form\Entities\FormPprPembiayaan::select()
-                                                            ->where('user_id', $user->id)
-                                                            ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
-                                                            ->get()
-                                                            ->first();
-                                                        $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
-                                                            ->where('form_ppr_pembiayaan_id', $proposal->id)
-                                                            ->orderby('created_at', 'desc')
-                                                            ->get()
-                                                            ->first();
-                                                    }
+                                                if ($role->divisi_id == 1 && $role->jabatan_id != 1) {
+                                                    //kondisi selain staff proposal
+                                                    foreach ($proposal_disetujuis as $proposal_disetujui) {
+                                                        if ($role->divisi_id == 1) {
+                                                            $proposal_notif = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                                                                ->where('id', $proposal_disetujui->skpd_pembiayaan_id)
+                                                                ->where('user_id', $user->id)
+                                                                ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
+                                                                ->get()
+                                                                ->first();
+                                                            $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                                                                ->where('skpd_pembiayaan_id', $proposal_notif->id)
+                                                                ->orderby('created_at', 'desc')
+                                                                ->get()
+                                                                ->first();
+                                                        } elseif ($role->divisi_id == 2) {
+                                                            $proposal = Modules\Pasar\Entities\PasarPembiayaan::select()
+                                                                ->where('AO_id', $user->id)
+                                                                ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
+                                                                ->get()
+                                                                ->first();
+                                                            $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+                                                                ->where('pasar_pembiayaan_id', $proposal->id)
+                                                                ->orderby('created_at', 'desc')
+                                                                ->get()
+                                                                ->first();
+                                                        } elseif ($role->divisi_id == 3) {
+                                                            $proposal = Modules\Umkm\Entities\UmkmPembiayaan::select()
+                                                                ->where('AO_id', $user->id)
+                                                                ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
+                                                                ->get()
+                                                                ->first();
+                                                            $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+                                                                ->where('umkm_pembiayaan_id', $proposal->id)
+                                                                ->orderby('created_at', 'desc')
+                                                                ->get()
+                                                                ->first();
+                                                        } elseif ($role->divisi_id == 4) {
+                                                            $proposal = Modules\Form\Entities\FormPprPembiayaan::select()
+                                                                ->where('user_id', $user->id)
+                                                                ->whereyear('created_at', Carbon\Carbon::now()->format('Y'))
+                                                                ->get()
+                                                                ->first();
+                                                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                                                ->where('form_ppr_pembiayaan_id', $proposal->id)
+                                                                ->orderby('created_at', 'desc')
+                                                                ->get()
+                                                                ->first();
+                                                        }
 
-                                                    if ($history->status_id == 5 || $history->jabatan_id == 4) {
-                                                        $i++;
+                                                        if ($history->status_id == 5 || $history->jabatan_id == 4) {
+                                                            $i++;
+                                                        }
                                                     }
+                                                } else {
                                                 }
                                             @endphp
                                             <div class="d-flex align-items-start me-2">
@@ -330,10 +334,10 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($data_debiturumkms as $data_debiturumkm)
-                                                    
                                                     <tr>
                                                         <td style="text-align: center">{{ $loop->iteration }}</td>
-                                                        <td style="text-align: center">{{ $data_debiturumkm->penggunaan_id }}</td>
+                                                        <td style="text-align: center">
+                                                            {{ $data_debiturumkm->penggunaan_id }}</td>
                                                         <td style="text-align: center">{{ $data_debiturumkm->noa }}</td>
                                                         <td style="text-align: center">Rp.
                                                             {{ number_format($data_debiturumkm->plafond) }}</td>

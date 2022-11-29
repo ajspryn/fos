@@ -17,6 +17,7 @@ use Modules\Skpd\Entities\SkpdDeviasi;
 use Modules\Skpd\Entities\SkpdFoto;
 use Modules\Skpd\Entities\SkpdJaminan;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
+use Modules\Skpd\Entities\SkpdJenisNasabah;
 use Modules\Skpd\Entities\SkpdNasabah;
 use Modules\Skpd\Entities\SkpdPembiayaan;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
@@ -31,7 +32,25 @@ class SkpdKomiteController extends Controller
      */
     public function index()
     {
-        $komite = SkpdPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->get();
+        $komite = SkpdPembiayaanHistory::select()
+
+            ->groupBy('skpd_pembiayaan_id')
+            ->where(function ($query) {
+                $query
+                    ->where('status_id', 5)
+                    ->where('user_id', Auth::user()->id);
+            })
+            ->orWhere(function ($query) {
+                $query
+                    ->where('status_id', 4)
+                    ->where('jabatan_id', '>', 2);
+            })
+            ->orWhere(function ($query) {
+                $query
+                    ->where('status_id', '>=', 9);
+            })
+            ->orderBy('updated_at', 'desc')
+            ->get();
         return view('kabag::skpd.komite.index', [
             'title' => 'Data Komite',
             'proposals' => $komite,
@@ -58,10 +77,16 @@ class SkpdKomiteController extends Controller
             'catatan' => $request->catatan,
             'status_id' => $request->status_id,
             'user_id' => Auth::user()->id,
-            'jabatan_id' => 2
+            'jabatan_id' => $request->jabatan_id,
+            'divisi_id' => null,
         ]);
 
-        return redirect('/kabag/skpd/komite')->with('success', 'Pengajuan Berhasil Diproses');
+        if ($request->status_id == 5) {
+            return redirect('/kabag/skpd/komite/')->with('success', 'Proposal Berhasil Disetujui!');
+        } elseif ($request->status_id == 7) {
+            return redirect('/kabag/skpd/komite/')->with('success', 'Proposal Diajukan Untuk Revisi!');
+        } else {
+        }
     }
 
     /**
@@ -125,7 +150,7 @@ class SkpdKomiteController extends Controller
         //DSR(rasio total angsuran terhadap pendapatan bersih)
         if ($data->skpd_golongan_id == 18) {
             $dsr = number_format($angsuran / $total_pemasukan * 100);
-        }else{
+        } else {
             $dsr = number_format($angsuran / $gaji_tpp * 100);
         }
 
@@ -139,14 +164,11 @@ class SkpdKomiteController extends Controller
         $proses_bendahara = SkpdBendahara::select()->where('skpd_instansi_id', $data->skpd_instansi_id)->get()->first();
         if ($dsr > 36) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 1)->get()->first();
-        }
-        if ($dsr <= 35 && $dsr >= 31) {
+        } else if ($dsr <= 35 && $dsr >= 31) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 2)->get()->first();
-        }
-        if ($dsr <= 30 && $dsr >= 21) {
+        } else if ($dsr <= 30 && $dsr >= 21) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 3)->get()->first();
-        }
-        if ($dsr < 20) {
+        } else {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 4)->get()->first();
         }
 
@@ -157,7 +179,7 @@ class SkpdKomiteController extends Controller
         }
         // $proses_slik=SkpdScoreSlik::select()->where('kol',$slik)->get()->first();
         $proses_jaminan = SkpdJenisJaminan::select()->where('id', $jaminan->skpd_jenis_jaminan_id)->get()->first();
-        $proses_nasabah = 'Nasabah Baru';
+        $proses_nasabah = SkpdJenisNasabah::select()->where('id', $data->skpd_jenis_nasabah_id)->get()->first();
         $proses_instansi = SkpdInstansi::select()->where('id', $data->skpd_instansi_id)->get()->first();
 
         // return $dsr;
@@ -170,7 +192,7 @@ class SkpdKomiteController extends Controller
         // $rating_slik=$proses_slik->rating;
         $rating_bendahara = $proses_bendahara->rating;
         $rating_jaminan = $proses_jaminan->rating;
-        $rating_nasabah = 2;
+        $rating_nasabah = $proses_nasabah->rating;
         $rating_instansi = $proses_instansi->rating;
 
         // $angsuran1=$angsuran;
@@ -210,13 +232,13 @@ class SkpdKomiteController extends Controller
             'total_pendapatan' => $data->pendapatan_lainnya + $data->gaji_pokok + $data->pendapatan_lainnya,
             'cekcicilanpasangan' => $cekcicilanpasangan,
             'ideppasangans' => SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->get(),
-            'bon_murabahah'=>SkpdFoto::select()->where('skpd_pembiayaan_id',$id)->where('kategori', 'Foto Bon Murabahah')->get()->first(),
+            'bonMurabahah' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Bon Murabahah')->get()->first(),
 
             'bendahara' => $proses_bendahara,
             'dsr' => $proses_dsr,
             'slik' => $proses_slik,
             'jaminan' => $proses_jaminan,
-            'nasabah' => $proses_nasabah,
+            'jenis_nasabah' => $proses_nasabah->keterangan,
             'instansi' => $proses_instansi,
             'rating_bendahara' => $rating_bendahara,
             'rating_dsr' => $rating_dsr,
@@ -227,6 +249,7 @@ class SkpdKomiteController extends Controller
             'nilai_bendahara' => $rating_bendahara * $proses_bendahara->bobot,
             'nilai_dsr' => $rating_dsr * $proses_dsr->bobot,
             'nilai_slik' => $nilai_slik,
+            'nilaiSlikDeviasi' => 3 * 0.20, //Ada deviasi rating slik menjadi 3
             'nilai_jaminan' => $rating_jaminan * $proses_jaminan->bobot,
             'nilai_nasabah' => $rating_nasabah * 0.10,
             'nilai_instansi' => $rating_instansi * $proses_instansi->bobot,
@@ -237,6 +260,7 @@ class SkpdKomiteController extends Controller
             'jaminanlainnyas' => SkpdJaminanLainnya::select()->where('skpd_pembiayaan_id', $id)->get(),
             'skpengangkatans' => SkpdPembiayaan::select()->where('id', $id)->get(),
             'ideb' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'IDEB')->get()->first(),
+            'idebPasangan' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'IDEB Pasangan')->get()->first(),
             'konfirmasi' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Konfirmasi Bendahara')->get()->first(),
             'deviasi' => SkpdDeviasi::select()->where('skpd_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
 

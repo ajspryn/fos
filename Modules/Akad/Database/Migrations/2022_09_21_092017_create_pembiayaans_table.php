@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('segmen');
             $table->string('ao_id');
             $table->string('cif');
+            $table->string('nama_nasabah')->nullable();
             $table->string('kode_tabungan');
             $table->string('plafond')->nullable();
             $table->integer('tenor')->nullable();

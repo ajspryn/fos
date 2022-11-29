@@ -52,9 +52,9 @@
                                         <th class="midCenter" style="vertical-align: middle;">No.</th>
                                         <th class="midCenter" style="vertical-align: middle;">Tanggal Pengajuan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jenis Nasabah</th>
+                                        <th class="midCenter" style="vertical-align: middle;">NIK</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nama Nasabah</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nilai yang Dimohon</th>
-                                        <th class="midCenter" style="vertical-align: middle;">Peruntukan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jangka Waktu</th>
                                         <th class="midCenter" style="vertical-align: middle;">Status</th>
                                         <th class="midCenter" style="vertical-align: middle;">AO yang Menangani</th>
@@ -90,13 +90,12 @@
                                                 </td>
                                                 <td>{{ $proposal_ppr->jenis_nasabah }}</td>
                                                 <td style="text-align: center">
+                                                    {{ $proposal_ppr->pemohon->form_pribadi_pemohon_no_ktp }}</td>
+                                                <td style="text-align: center">
                                                     {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
                                                 <td style="text-align: center">
                                                     Rp.
                                                     {{ number_format($proposal_ppr->form_permohonan_nilai_ppr_dimohon) }}
-                                                </td>
-                                                <td style="text-align: center">
-                                                    {{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
                                                 </td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}

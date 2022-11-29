@@ -59,6 +59,7 @@ class KabagController extends Controller
             $history = UmkmPembiayaanHistory::select()
                 ->where('umkm_pembiayaan_id', $komite->id)
                 ->orderby('created_at', 'desc')
+                ->groupBy('umkm_pembiayaan_id')
                 ->get()
                 ->first();
             $proposal_pasar = UmkmPembiayaan::select()
@@ -80,6 +81,7 @@ class KabagController extends Controller
             $history = PasarPembiayaanHistory::select()
                 ->where('pasar_pembiayaan_id', $pasar->id)
                 ->orderby('created_at', 'desc')
+                ->groupBy('pasar_pembiayaan_id')
                 ->get()
                 ->first();
             $proposal_pasar = PasarPembiayaan::select()
@@ -101,6 +103,7 @@ class KabagController extends Controller
             $history = SkpdPembiayaanHistory::select()
                 ->where('skpd_pembiayaan_id', $skpd->id)
                 ->orderby('created_at', 'desc')
+                ->groupBy('skpd_pembiayaan_id')
                 ->get()
                 ->first();
             $proposal_pasar = SkpdPembiayaan::select()
@@ -120,6 +123,7 @@ class KabagController extends Controller
             $history = PprPembiayaanHistory::select()
                 ->where('form_ppr_pembiayaan_id', $ppr->id)
                 ->latest()
+                ->groupBy('form_ppr_pembiayaan_id')
                 ->get()
                 ->first();
 

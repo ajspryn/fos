@@ -2,44 +2,87 @@
 
 @section('content')
     @php
-        $skpds = Modules\Skpd\Entities\SkpdPembiayaan::select()->get();
-        
-        $diterima = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-            ->where('status_id', 5)
-            ->where('jabatan_id', 4)
+        $diterima = Modules\Akad\Entities\Pembiayaan::select()
+            ->where('segmen', 'SKPD')
+            ->where('status', 'Selesai Akad')
             ->get()
             ->count();
-        
-        $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-            ->where('status_id', 3)
-            ->get();
-        
-        $a = 0;
-        foreach ($proposals as $proposal) {
-            $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-                ->where('id', $proposal->skpd_pembiayaan_id)
-                ->get()
-                ->first();
+
+        $skpds = Modules\Skpd\Entities\SkpdPembiayaan::select()->get();
+        $proposalskpd = 0;
+        foreach ($skpds as $skpd) {
             $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-                ->where('skpd_pembiayaan_id', $proposal_skpd->id)
-                ->orderby('created_at', 'desc')
+                ->where('skpd_pembiayaan_id', $skpd->id)
+                ->latest()
                 ->get()
                 ->first();
+
+            $proposal_ppr = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                ->where('id', $history->skpd_pembiayaan_id)
+                ->get()
+                ->first();
+
             if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
-                $a++;
+                $proposalskpd++;
             }
         }
-        
+
         $ditolak = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
             ->where('status_id', 6)
             ->get()
             ->count();
-        
-        $revisi = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-            ->where('status_id', 7)
-            ->orderby('created_at', 'desc')
+
+        $komites = Modules\Skpd\Entities\SkpdPembiayaan::select()
+            ->where('user_id', Auth::user()->id)
+            ->whereNotNull('skpd_sektor_ekonomi_id')
+            ->latest()
+            ->get();
+
+        $review = 0;
+        foreach ($komites as $komite) {
+            $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                ->where('skpd_pembiayaan_id', $komite->id)
+                ->latest()
+                ->get()
+                ->first();
+
+            $proposal_ppr = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                ->where('id', $history->skpd_pembiayaan_id)
+                ->get()
+                ->first();
+
+            if ($history->status_id == 7) {
+                $review++;
+            }
+        }
+
+        $pprPipelines = Modules\Skpd\Entities\SkpdPembiayaan::select()->get();
+
+        $pipeline = 0;
+        foreach ($pprPipelines as $pprPipeline) {
+            $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+                ->where('skpd_pembiayaan_id', $pprPipeline->id)
+                ->latest()
+                ->get()
+                ->first();
+
+            $proposal_ppr = Modules\Skpd\Entities\SkpdPembiayaan::select()
+                ->where('id', $history->skpd_pembiayaan_id)
+                ->get()
+                ->first();
+            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                if ($history->status_id < 9) {
+                    $pipeline++;
+                }
+            }
+        }
+
+        $batalAkad = Modules\Akad\Entities\Pembiayaan::select()
+            ->where('segmen', 'SKPD')
+            ->where('status', 'Akad Batal')
             ->get()
             ->count();
+
     @endphp
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -72,7 +115,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $a }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $proposalskpd }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pengajuan</p>
                                                 </div>
                                             </div>
@@ -98,7 +141,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h4 class="fw-bolder mb-0">{{ $revisi }}</h4>
+                                                    <h4 class="fw-bolder mb-0">{{ $review }}</h4>
                                                     <p class="card-text font-small-3 mb-0">Review</p>
                                                 </div>
                                             </div>
@@ -126,9 +169,9 @@
                         $cair = 0;
                         foreach ($target1 as $target) {
                             $harga_jual = $target->nominal_pembiayaan;
-                        
+
                             $cair = $cair + $harga_jual;
-                        
+
                             $skpds = Modules\Skpd\Entities\SkpdPembiayaan::select()->get();
                         }
                         $pipeline1 = 0;
@@ -138,7 +181,7 @@
                                 ->orderby('created_at', 'desc')
                                 ->get()
                                 ->first();
-                        
+
                             $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                                 ->where('id', $history->skpd_pembiayaan_id)
                                 ->get()
@@ -149,7 +192,7 @@
                                 }
                             }
                         }
-                        
+
                     @endphp
                     <div class="row">
                         <div class="col-xl-6 col-md-4 col-sm-6">

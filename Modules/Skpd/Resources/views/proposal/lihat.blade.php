@@ -1,6 +1,27 @@
 @extends('skpd::layouts.main')
 
 @section('content')
+    <style>
+        /* Validate style for Select2 class */
+        .was-validated select.select2:invalid+.select2 .select2-selection {
+            border-color: #dc3545 !important;
+        }
+
+        .was-validated select.select2:valid+.select2 .select2-selection {
+            border-color: #28a745 !important;
+        }
+
+        #ifIdebPasangan {
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifIdebPasangan.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+    </style>
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -57,9 +78,9 @@
                             </div>
                         </div>
                         <div class="bs-stepper-content">
-                            <form method='post' action="/skpd/proposal/{{ $pembiayaan->id }}"
-                                enctype="multipart/form-data">
-                                @method('put')
+                            <form method='POST' action="/skpd/proposal/{{ $pembiayaan->id }}" class="needs-validation"
+                                enctype="multipart/form-data" novalidate>
+                                @method('PUT')
                                 @csrf
                                 <div id="form1" class="content" role="tabpanel"
                                     aria-labelledby="account-details-trigger">
@@ -96,8 +117,8 @@
                                             <label class="form-label" for="sektor"><small class="text-danger">*
                                                 </small>Sektor Ekonomi</label>
                                             <select class="select2 w-100" name="skpd_sektor_ekonomi_id" id="sektor"
-                                                required>
-                                                <option label="sektor"></option>
+                                                data-placeholder="Pilih Sektor Ekonomi" required>
+                                                <option value=""></option>
                                                 @foreach ($sektors as $sektor)
                                                     <option value="{{ $sektor->id }}">{{ $sektor->nama_sektor_ekonomi }}
                                                     </option>
@@ -248,12 +269,25 @@
                                                 placeholder="Masukan Nomor NPWP Anda"
                                                 value="{{ $pembiayaan->nasabah->no_npwp }}" />
                                         </div>
+
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="notelp"><small class="text-danger">*
                                                 </small>No Telepon</label>
                                             <input type="text" name="no_telp" id="notelp"
                                                 class="form-control prefix-mask" placeholder="Masukan Nomor telepon Anda"
                                                 value="{{ $pembiayaan->nasabah->no_telp }}" disabled />
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="jenisNasabah"><small class="text-danger">*
+                                                </small>Jenis Nasabah</label>
+                                            <select class="select2 w-100" name="skpd_jenis_nasabah_id" id="jenisNasabah"
+                                                data-placeholder="Pilih Jenis Nasabah" required>
+                                                <option value=""></option>
+                                                @foreach ($jenisNasabahs as $jenisNasabah)
+                                                    <option value="{{ $jenisNasabah->id }}">
+                                                        {{ $jenisNasabah->keterangan }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="mb-0 mt-2 col-md-2">
                                             <button type="butt  on" class="btn btn-primary" data-bs-toggle="modal"
@@ -744,12 +778,20 @@
                                     </section>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="ideb"><small class="text-danger">*
-                                            </small>Upload IDEB</label>
-                                        <input type="file" name="foto[1][foto]" id="ideb" rows="3"
-                                            class="form-control">
-                                        <input type="hidden" name="foto[1][kategori]" value="IDEB" rows="3"
-                                            class="form-control" />
+                                            </small>Upload IDEB Pemohon</label>
+                                        <input type="file" name="foto[1][foto]" id="ideb" class="form-control"
+                                            required>
+                                        <input type="hidden" name="foto[1][kategori]" value="IDEB" />
                                     </div>
+                                    @if ($pembiayaan->nasabah->skpd_status_perkawinan_id == 2)
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="ifIdebPasangan"><small class="text-danger">*
+                                                </small>Upload IDEB Pasangan</label>
+                                            <input type="file" name="foto[2][foto]" id="ifIdebPasangan"
+                                                class="form-control" required>
+                                            <input type="hidden" name="foto[2][kategori]" value="IDEB Pasangan" />
+                                        </div>
+                                    @endif
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting">Pengeluaran Lainnya (Per
                                             Bulan)</label>
@@ -770,7 +812,7 @@
                                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                             <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                         </button>
-                                        <button type="submit" class="btn btn-success btn-submit">Submit</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -893,24 +935,25 @@
     </div>
     <!-- END: Content-->
 
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        function SumAngsuran(value) {
-            var plafond, tenor, margin, angsuran, getmargin, getplafond;
+        //Form Validation (Bootstrap)
+        var bootstrapForm = $('.needs-validation');
 
-            plafond = document.getElementById("plafond").value;
-            tenor = document.getElementById("tenor").value;
-            margin = document.getElementById("margin").value;
+        Array.prototype.filter.call(bootstrapForm, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    form.classList.add('invalid');
+                    // form.bootstrapValidator('defaultSubmit');
 
-            getmargin = margin / 12 / 100;
-            getplafond = plafond * getmargin * tenor + +plafond;
-            angsuran = getplafond / tenor;
+                } else {
+                    form.classList.add('was-validated');
+                    form.bootstrapValidator('defaultSubmit');
 
-            // angsuran = plafond * margin * tenor + +plafond / tenor;
-            // angsuran = angsuran4 / tenor;
-
-            document.getElementById("angsuran").value = angsuran;
-
-        }
-    </script> --}}
+                }
+                form.classList.add('was-validated');
+                event.preventDefault();
+            });
+        });
+    </script>
 @endsection

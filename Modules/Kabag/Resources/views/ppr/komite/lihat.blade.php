@@ -1825,7 +1825,7 @@
                                                                         $waktu_selesai = Carbon\Carbon::parse($timeline->created_at);
                                                                         $selisih = $waktu_selesai->diffAsCarbonInterval($waktu_mulai);
                                                                     }
-                                                                    
+
                                                                 @endphp
 
                                                                 <li class="timeline-item">

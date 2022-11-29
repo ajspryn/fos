@@ -25,14 +25,14 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Data Proposal</h2>
+                            <h2 class="content-header-title float-start mb-0">Data Komite</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/dirbis/ppr">PPR</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Proposal</a>
+                                    <li class="breadcrumb-item"><a href="#">Komite</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Data Pengajuan
+                                    <li class="breadcrumb-item active">Data Komite
                                     </li>
                                 </ol>
                             </div>
@@ -52,9 +52,9 @@
                                         <th class="midCenter" style="vertical-align: middle;">No.</th>
                                         <th class="midCenter" style="vertical-align: middle;">Tanggal Pengajuan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jenis Nasabah</th>
+                                        <th class="midCenter" style="vertical-align: middle;">NIK</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nama Nasabah</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nilai yang Dimohon</th>
-                                        <th class="midCenter" style="vertical-align: middle;">Peruntukan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jangka Waktu</th>
                                         <th class="midCenter" style="vertical-align: middle;">Status</th>
                                         <th class="midCenter" style="vertical-align: middle;">AO yang Menangani</th>
@@ -91,13 +91,12 @@
                                                 </td>
                                                 <td>{{ $proposal_ppr->jenis_nasabah }}</td>
                                                 <td style="text-align: center">
+                                                    {{ $proposal_ppr->pemohon->form_pribadi_pemohon_no_ktp }}</td>
+                                                <td style="text-align: center">
                                                     {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
                                                 <td style="text-align: center">
                                                     Rp.
                                                     {{ number_format($proposal_ppr->form_permohonan_nilai_ppr_dimohon) }}
-                                                </td>
-                                                <td style="text-align: center">
-                                                    {{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
                                                 </td>
                                                 <td style="text-align: center">
                                                     {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}

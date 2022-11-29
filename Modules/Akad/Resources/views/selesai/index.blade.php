@@ -36,14 +36,15 @@
                                         <tr>
                                             <th style="text-align: center"></th>
                                             <th style="text-align: center">No</th>
-                                            <th style="text-align: center">Tanggal</th>
+                                            <th style="text-align: center">Tanggal Akad</th>
                                             <th style="text-align: center">Kode Kontrak</th>
                                             <th style="text-align: center">Akad</th>
                                             <th style="text-align: center">Segmen</th>
                                             <th style="text-align: center">CIF</th>
+                                            <th style="text-align: center">Nama Nasabah</th>
                                             <th style="text-align: center">Kode Tabungan</th>
                                             <th style="text-align: center">Plafond</th>
-                                            <th style="text-align: center">Harga Jual</th>
+                                            {{-- <th style="text-align: center">Harga Jual</th> --}}
                                             <th style="text-align: center">Status</th>
                                             {{-- <th style="text-align: center">Action</th> --}}
                                         </tr>
@@ -64,11 +65,13 @@
                                                 <td style="text-align: center">
                                                     {{ $akadBerhasil->cif }}</td>
                                                 <td style="text-align: center">
+                                                    {{ $akadBerhasil->nama_nasabah }}</td>
+                                                <td style="text-align: center">
                                                     {{ $akadBerhasil->kode_tabungan }}</td>
                                                 <td style="text-align: center">
                                                     {{ number_format($akadBerhasil->plafond) }}</td>
-                                                <td style="text-align: center">
-                                                    {{ number_format($akadBerhasil->harga_jual) }}</td>
+                                                {{-- <td style="text-align: center">
+                                                    {{ number_format($akadBerhasil->harga_jual) }}</td> --}}
                                                 <td style="text-align: center">
                                                     @if ($akadBerhasil->status == 'Selesai Akad')
                                                         <span class="badge rounded-pill badge-light-success">

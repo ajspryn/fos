@@ -17,15 +17,15 @@ use Modules\Skpd\Http\Controllers\SkpdCetakProposalController;
 |
 */
 
-Route::prefix('skpd')->group(function() {
+Route::prefix('skpd')->group(function () {
     Route::resource('/pembiayaan', SkpdController::class);
 });
-Route::prefix('skpd')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:1', 'jabatan:1'])->group(function() {
+Route::prefix('skpd')->middleware(['auth:sanctum', 'verified', 'role:2', 'divisi:1', 'jabatan:1'])->group(function () {
     Route::get('/', 'SkpdController@index');
     Route::resource('/nasabah', SkpdNasabahController::class);
     Route::resource('/komite', SkpdKomiteController::class);
     Route::resource('/proposal', SkpdProposalController::class);
     Route::resource('/revisi', SkpdRevisiController::class);
     Route::resource('/cetak', SkpdCetakProposalController::class);
-    Route::post('/bonmurabahah', 'SkpdKomiteController@upload');
+    Route::post('/bonMurabahah', 'SkpdKomiteController@uploadBonMurabahah');
 });

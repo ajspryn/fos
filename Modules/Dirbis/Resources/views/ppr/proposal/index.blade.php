@@ -53,9 +53,9 @@
                                         <th class="midCenter" style="vertical-align: middle;">No.</th>
                                         <th class="midCenter" style="vertical-align: middle;">Tanggal Pengajuan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jenis Nasabah</th>
+                                        <th class="midCenter" style="vertical-align: middle;">NIK</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nama Nasabah</th>
                                         <th class="midCenter" style="vertical-align: middle;">Nilai yang Dimohon</th>
-                                        <th class="midCenter" style="vertical-align: middle;">Peruntukan</th>
                                         <th class="midCenter" style="vertical-align: middle;">Jangka Waktu</th>
                                         <th class="midCenter" style="vertical-align: middle;">Status</th>
                                         <th class="midCenter" style="vertical-align: middle;">AO yang Menangani</th>
@@ -91,13 +91,12 @@
                                                     </td>
                                                     <td>{{ $proposal_ppr->jenis_nasabah }}</td>
                                                     <td style="text-align: center">
+                                                        {{ $proposal_ppr->pemohon->form_pribadi_pemohon_no_ktp }}</td>
+                                                    <td style="text-align: center">
                                                         {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}</td>
                                                     <td style="text-align: center">
                                                         Rp.
                                                         {{ number_format($proposal_ppr->form_permohonan_nilai_ppr_dimohon) }}
-                                                    </td>
-                                                    <td style="text-align: center">
-                                                        {{ $proposal_ppr->form_permohonan_peruntukan_ppr }}
                                                     </td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_ppr->form_permohonan_jangka_waktu_ppr }}
@@ -109,23 +108,23 @@
                                                         value=" {{ $history->statusHistory->id }}, {{ $history->jabatan->jabatan_id }}">
                                                         @if ($history->statushistory->id == 5)
                                                             <span
-                                                                class="badge rounded-pill badge-light-success">{{ $history->statushistory->keterangan }}
+                                                                class="badge rounded-pill badge-light-success">{{ $history->statusHistory->keterangan }}
                                                                 {{ $history->jabatan->keterangan }}</span>
+                                                        @elseif ($history->statusHistory->id == 9)
+                                                            <span class="badge rounded-pill badge-light-success">
+                                                                {{ $history->statusHistory->keterangan }}</span>
                                                         @elseif ($history->statushistory->id == 4)
                                                             <span
-                                                                class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
+                                                                class="badge rounded-pill badge-light-info">{{ $history->statusHistory->keterangan }}
                                                                 {{ $history->jabatan->keterangan }}</span>
-                                                        @elseif ($history->statushistory->id == 7)
-                                                            <span
-                                                                class="badge rounded-pill badge-light-warning">{{ $history->statushistory->keterangan }}
-                                                                {{ $history->jabatan->keterangan }}</span>
-                                                        @elseif ($history->statushistory->id == 6)
-                                                            <span
-                                                                class="badge rounded-pill badge-light-danger">{{ $history->statushistory->keterangan }}
-                                                                {{ $history->jabatan->keterangan }}</span>
+                                                        @elseif ($history->statusHistory->id == 10)
+                                                            <a class="badge rounded-pill badge-light-danger"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#modalCatatanAkadBatal-{{ $history->id }}">{{ $history->statusHistory->keterangan }}
+                                                            </a>
                                                         @else
                                                             <span
-                                                                class="badge rounded-pill badge-light-info">{{ $history->statushistory->keterangan }}
+                                                                class="badge rounded-pill badge-light-warning">{{ $history->statusHistory->keterangan }}
                                                                 {{ $history->jabatan->keterangan }}</span>
                                                         @endif
                                                     </td>

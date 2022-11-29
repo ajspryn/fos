@@ -50,6 +50,11 @@ class PprKomiteController extends Controller
                     ->where('status_id', 5)
                     ->where('jabatan_id', 3);
             })
+            ->orWhere(function ($query) {
+                $query
+                    ->where('status_id', 4)
+                    ->where('jabatan_id', 4);
+            })
             ->get();
         return view('dirbis::ppr.komite.index', [
             'title' => 'Data Komite PPR',

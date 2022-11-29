@@ -1,6 +1,16 @@
 @extends('form::layouts.main')
 
 @section('content')
+    <style>
+        /* Validate style for Select2 class */
+        .was-validated select.select2:invalid+.select2 .select2-selection {
+            border-color: #dc3545 !important;
+        }
+
+        .was-validated select.select2:valid+.select2 .select2-selection {
+            border-color: #28a745 !important;
+        }
+    </style>
     <!-- BEGIN: Content-->
     <div class="content-wrapper container-xxl">
         <div class="content-body">
@@ -121,7 +131,8 @@
                         </div>
                     </div>
                     <div class="bs-stepper-content">
-                        <form method='post' action="/skpd/pembiayaan" enctype="multipart/form-data">
+                        <form method="POST" action="/skpd/pembiayaan" class="needs-validation"
+                            enctype="multipart/form-data" novalidate>
                             @csrf
                             <div id="form" class="content" role="tabpanel"
                                 aria-labelledby="account-details-trigger">
@@ -254,14 +265,14 @@
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="nama">Nama Lengkap Pasangan Nasabah</label>
-                                        <input type="text" name="nama_pasangan_nasabah" id="nama" class="form-control"
-                                            placeholder="Nama Lengkap Pasangan Anda"/>
+                                        <input type="text" name="nama_pasangan_nasabah" id="nama"
+                                            class="form-control" placeholder="Nama Lengkap Pasangan Anda" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="noktp">No
                                             KTP Pasangan</label>
                                         <input type="number" name="no_ktp_pasangan" id="noktp" class="form-control"
-                                            placeholder="Masukan Nomor KTP pasangan Anda"/>
+                                            placeholder="Masukan Nomor KTP pasangan Anda" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="tempatlahir"><small class="text-danger">*
@@ -326,9 +337,10 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="status"><small class="text-danger">*
                                             </small>Status</label>
-                                        <select class="select2 w-100" name="skpd_status_perkawinan_id" id="status"
-                                            required>
-                                            <option label="status"></option>
+                                        <select class="select2 w-100" name="skpd_status_perkawinan_id"
+                                            id="statusPernikahan" onChange="changeStatusPernikahan()"
+                                            data-placeholder="Pilih Status Pernikahan" required>
+                                            <option value=""></option>
                                             @foreach ($statusperkawinans as $statusperkawinan)
                                                 <option value="{{ $statusperkawinan->id }}">
                                                     {{ $statusperkawinan->nama_status_perkawinan }}</option>
@@ -384,50 +396,50 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="fotodiri"><small class="text-danger">*
                                             </small>Upload Foto Diri</label>
-                                        <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
-                                            class="form-control" required />
-                                        <input type="hidden" name="foto[1][kategori]" value="Foto Diri" rows="3"
+                                        <input type="file" name="foto[1][foto]" id="fotodiri" class="form-control"
+                                            required />
+                                        <input type="hidden" name="foto[1][kategori]" value="Foto Diri"
                                             class="form-control" />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotopasangan"><small class="text-danger">
+                                        <label class="form-label" for="fotoPasanganPemohon"><small class="text-danger">
                                             </small>Upload Foto Pasangan</label>
-                                        <input type="file" name="foto[6][foto]" id="fotopasangan" rows="3"
+                                        <input type="file" name="foto[6][foto]" id="fotoPasanganPemohon"
                                             class="form-control" />
-                                        <input type="hidden" name="foto[6][kategori]" value="Foto Pasangan"
-                                            rows="3" class="form-control" />
+                                        <input type="hidden" name="foto[6][kategori]" id="kategoriPasanganPemohon"
+                                            value="Foto Pasangan" class="form-control" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="fotoktp"><small class="text-danger">*
                                             </small>Upload Foto KTP</label>
-                                        <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
-                                            class="form-control" required />
-                                        <input type="hidden" name="foto[2][kategori]" value="Foto KTP" rows="3"
+                                        <input type="file" name="foto[2][foto]" id="fotoktp" class="form-control"
+                                            required />
+                                        <input type="hidden" name="foto[2][kategori]" value="Foto KTP"
                                             class="form-control" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="fotodiriktp"><small class="text-danger">*
                                             </small>Upload Foto Diri Bersama KTP</label>
-                                        <input type="file" name="foto[3][foto]" id="fotodiriktp" rows="3"
-                                            class="form-control" required />
+                                        <input type="file" name="foto[3][foto]" id="fotodiriktp" class="form-control"
+                                            required />
                                         <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
-                                            rows="3" class="form-control" />
+                                            class="form-control" />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="fotokk"><small class="text-danger">*
                                             </small>Upload Foto Kartu Keluarga</label>
-                                        <input type="file" name="foto[4][foto]" id="fotokk" rows="3"
-                                            class="form-control" required />
+                                        <input type="file" name="foto[4][foto]" id="fotokk" class="form-control"
+                                            required />
                                         <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga"
-                                            rows="3" class="form-control" />
+                                            class="form-control" />
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="fotoaktanikah"><small class="text-danger">
+                                        <label class="form-label" for="fotoAktaNikahCerai"><small class="text-danger">
                                             </small>Upload Akta Nikah/Cerai</label>
-                                        <input type="file" name="foto[5][foto]" id="fotoaktanikah" rows="3"
+                                        <input type="file" name="foto[5][foto]" id="fotoAktaNikahCerai"
                                             class="form-control" />
-                                        <input type="hidden" name="foto[5][kategori]" value="Akta Status Pekawinan"
-                                            rows="3" class="form-control" />
+                                        <input type="hidden" name="foto[5][kategori]" id="kategoriAktaNikahCerai"
+                                            value="Akta Status Pekawinan" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
@@ -463,13 +475,13 @@
                                             Telepon</label>
                                         <input type="text" name="no_telp_orang_terdekat" id="notelpot"
                                             class="form-control prefix-mask1"
-                                            placeholder="Masukan Nomor Telepon Orang Terdekat" />
+                                            placeholder="Masukan Nomor Telepon Orang Terdekat" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="exampleFormControlTextarea1"><small
                                                 class="text-danger">* </small>Alamat</label>
                                         <textarea class="form-control" name="alamat_orang_terdekat" id="exampleFormControlTextarea1" rows="3"
-                                            placeholder="Alamat Orang Terdekat"></textarea>
+                                            placeholder="Alamat Orang Terdekat" required></textarea>
                                     </div>
                                     <div class="mb-1 col-md-1">
                                         <label class="form-label" for="rt"><small class="text-danger">*
@@ -533,7 +545,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="namainstansi"><small class="text-danger">*
                                             </small>Nama Instansi</label>
-                                        <select class="select2 w-100" name="skpd_instansi_id" id="namainstansi">
+                                        <select class="select2 w-100" name="skpd_instansi_id" id="namainstansi" required>
                                             <option label="namainstansi"></option>
                                             <@foreach ($instansis as $instansi)
                                                 <option value="{{ $instansi->id }}">{{ $instansi->nama_instansi }}
@@ -544,7 +556,7 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="golongan"><small class="text-danger">*
                                             </small>Golongan</label>
-                                        <select class="select2 w-100" name="skpd_golongan_id" id="golongan">
+                                        <select class="select2 w-100" name="skpd_golongan_id" id="golongan" required>
                                             <option label="golongan"></option>
                                             @foreach ($golongans as $golongan)
                                                 <option value="{{ $golongan->id }}">{{ $golongan->nama_golongan }}
@@ -584,7 +596,8 @@
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="jaminan"><small class="text-danger">*
                                             </small>Jenis Jaminan</label>
-                                        <select class="select2 w-100" name="skpd_jenis_jaminan_id" id="jaminan">
+                                        <select class="select2 w-100" name="skpd_jenis_jaminan_id" id="jaminan"
+                                            required>
                                             <option label="jaminan"></option>
                                             @foreach ($jaminans as $jaminan)
                                                 <option value="{{ $jaminan->id }}">{{ $jaminan->nama_jaminan }}</option>
@@ -595,7 +608,7 @@
                                         <label class="form-label" for="jaminan_dokumen"><small class="text-danger">*
                                             </small>Upload Jaminan</label>
                                         <input type="file" name="dokumen_jaminan" id="jaminan_dokumen"
-                                            class="form-control" />
+                                            class="form-control" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="notelpot">Jaminan Lainya</label>
@@ -634,14 +647,14 @@
                                         <label class="form-label" for="gaji_pokok"><small class="text-danger">*
                                             </small>Gaji Pokok (Per Bulan)</label>
                                         <input type="text" name="gaji_pokok" class="form-control numeral-mask1"
-                                            placeholder="Rp." id="gaji_pokok" />
+                                            placeholder="Rp." id="gaji_pokok" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="pendapatan_lainnya"><small class="text-danger">*
                                             </small>Gaji / Pendapatan Lainnya (Per Bulan)</label>
                                         <input type="text" name="pendapatan_lainnya"
                                             class="form-control numeral-mask2" placeholder="0 Jika Tidak ada"
-                                            id="pendapatan_lainnya" required/>
+                                            id="pendapatan_lainnya" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="pendapatan_tpp"><small class="text-danger">*
@@ -653,13 +666,13 @@
                                         <label class="form-label" for="lampiran_keuangan"><small class="text-danger">*
                                             </small>Upload Lampiran Keuangan</label>
                                         <input type="file" name="dokumen_keuangan" id="lampiran_keuangan"
-                                            rows="3" class="form-control" required/>
+                                            rows="3" class="form-control" required />
                                     </div>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="slip_gaji"><small class="text-danger">*
                                             </small>Upload Slip Gaji</label>
                                         <input type="file" name="dokumen_slip_gaji" id="slip_gaji" rows="3"
-                                            class="form-control" required/>
+                                            class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between">
@@ -701,7 +714,7 @@
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                     </button>
-                                    <button type="submit" class="btn btn-success btn-submit">Submit</button>
+                                    <button class="btn btn-success">Submit</button>
                                 </div>
                             </div>
                         </form>
@@ -713,4 +726,45 @@
         <!-- END: Content-->
     </div>
     <!-- END: Content-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        //Form Validation (Bootstrap)
+        var bootstrapForm = $('.needs-validation');
+
+        Array.prototype.filter.call(bootstrapForm, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    form.classList.add('invalid');
+                    // form.bootstrapValidator('defaultSubmit');
+
+                } else {
+                    form.classList.add('was-validated');
+                    form.bootstrapValidator('defaultSubmit');
+
+                }
+                form.classList.add('was-validated');
+                event.preventDefault();
+            });
+        });
+
+        function changeStatusPernikahan() {
+            var status = document.getElementById("statusPernikahan");
+            if (status.value == 1) {
+                document.getElementById("fotoPasanganPemohon").setAttribute("disabled", "disabled"),
+                    document.getElementById("fotoPasanganPemohon").removeAttribute("required"),
+                    document.getElementById("kategoriPasanganPemohon").setAttribute("disabled", "disabled"),
+                    document.getElementById("fotoAktaNikahCerai").setAttribute("disabled", "disabled"),
+                    document.getElementById("fotoAktaNikahCerai").removeAttribute("required"),
+                    document.getElementById("kategoriAktaNikahCerai").setAttribute("disabled", "disabled");
+            } else {
+                document.getElementById("fotoPasanganPemohon").setAttribute("required", "required"),
+                    document.getElementById("fotoPasanganPemohon").removeAttribute("disabled"),
+                    document.getElementById("kategoriPasanganPemohon").removeAttribute("disabled"),
+                    document.getElementById("fotoAktaNikahCerai").setAttribute("required", "required"),
+                    document.getElementById("fotoAktaNikahCerai").removeAttribute("disabled"),
+                    document.getElementById("kategoriAktaNikahCerai").removeAttribute("disabled");
+            }
+        }
+    </script>
 @endsection

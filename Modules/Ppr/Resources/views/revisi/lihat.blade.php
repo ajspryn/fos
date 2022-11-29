@@ -993,6 +993,7 @@
                                                 <input type="text" name="form_pribadi_pemohon_nama_lengkap"
                                                     id="form_pribadi_pemohon_nama_lengkap" class="form-control"
                                                     placeholder="Nama Lengkap"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_lengkap }}" />
                                             </div>
                                             <div class="mb-1 col-md-6">
@@ -1002,6 +1003,7 @@
                                                 <input type="text" name="form_pribadi_pemohon_nama_ktp"
                                                     id="form_pribadi_pemohon_nama_ktp" class="form-control"
                                                     placeholder="Nama Sesuai KTP"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_ktp }}" />
                                             </div>
                                             <div class="mb-1 col-md-6">
@@ -1009,6 +1011,7 @@
                                                 <input type="text" name="form_pribadi_pemohon_gelar"
                                                     id="form_pribadi_pemohon_gelar" class="form-control"
                                                     placeholder="Gelar"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_gelar }}" />
                                             </div>
                                             <div class="mb-1 col-md-6">
@@ -1017,6 +1020,7 @@
                                                 <input type="text" name="form_pribadi_pemohon_nama_alias"
                                                     id="form_pribadi_pemohon_nama_alias" class="form-control"
                                                     placeholder="Nama Alias"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_alias }}" />
                                             </div>
                                             <div class="mb-1 col-md-6">
@@ -1213,6 +1217,7 @@
                                                 <input type="text" name="form_pribadi_pemohon_nama_gadis_ibu_kandung"
                                                     id="form_pribadi_pemohon_nama_gadis_ibu_kandung" class="form-control"
                                                     placeholder="Nama Gadis Ibu Kandung"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_gadis_ibu_kandung }}" />
                                             </div>
                                             <div>
@@ -1527,7 +1532,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Orangtua/Keluarga'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1537,7 +1542,7 @@
                                                                             <option
                                                                                 {{ $pembiayaan->pemohon->form_pribadi_pemohon_status_tempat_tinggal ==
                                                                                 'Milik
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Perusahaan/Instansi/Dinas'
                                                                                     ? 'selected'
                                                                                     : '' }}
                                                                                 value="Milik
@@ -1753,6 +1758,7 @@
                                                         <input type="text" name="form_pribadi_istri_suami_nama_lengkap"
                                                             id="form_pribadi_istri_suami_nama_lengkap"
                                                             class="form-control" placeholder="Nama Lengkap"
+                                                            oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                             value="{{ $pembiayaan->pemohon->form_pribadi_istri_suami_nama_lengkap }}" />
                                                     </div>
                                                     <div class="mb-1 col-md-6">
@@ -1927,6 +1933,7 @@
                                                                 name="form_pribadi_keluarga_terdekat_nama_lengkap"
                                                                 id="form_pribadi_keluarga_terdekat_nama_lengkap"
                                                                 class="form-control" placeholder="Nama Lengkap"
+                                                                oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                                 value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_nama_lengkap }}" />
                                                         </div>
                                                     </div>
@@ -2568,6 +2575,7 @@
                                                 <input type="text" name="form_pekerjaan_pemohon_nama_atasan_langsung"
                                                     id="form_pekerjaan_pemohon_nama_atasan_langsung"
                                                     class="form-control" placeholder="Nama Atasan Langsung"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_nama_atasan_langsung }}"
                                                     required />
                                             </div>
@@ -3059,6 +3067,7 @@
                                                     name="form_pekerjaan_istri_suami_nama_atasan_langsung"
                                                     id="form_pekerjaan_istri_suami_nama_atasan_langsung"
                                                     class="form-control" placeholder="Nama Atasan Langsung"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_nama_atasan_langsung }}" />
                                             </div>
                                             <div class="mb-1 col-md-6">

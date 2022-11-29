@@ -1,15 +1,18 @@
 @extends('dirbis::layouts.main')
 @php
-    $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-        ->where('user_id', Auth::user()->id)
-        ->where('skpd_sektor_ekonomi_id', null)
-        ->get()
-        ->count();
-    
+
+    // $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+    //     ->where('user_id', Auth::user()->id)
+    //     ->where('skpd_sektor_ekonomi_id', null)
+    //     ->get()
+    //     ->count();
+
     $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+        ->latest()
+        ->groupBy('skpd_pembiayaan_id')
         ->where('status_id', 3)
         ->get();
-    
+
     $proposalskpd = 0;
     foreach ($proposals as $proposal) {
         $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
@@ -25,59 +28,67 @@
             $proposalskpd++;
         }
     }
-    
-    $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
-    
+
+    $pasars = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+        ->latest()
+        ->groupBy('pasar_pembiayaan_id')
+        ->where('status_id', 3)
+        ->get();
+
     $data = 0;
     foreach ($pasars as $pasar) {
-        $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
-            ->where('pasar_pembiayaan_id', $pasar->id)
-            ->orderby('created_at', 'desc')
+        $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
+            ->where('id', $pasar->pasar_pembiayaan_id)
             ->get()
             ->first();
-    
-        $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
-            ->where('id', $history->pasar_pembiayaan_id)
+
+        $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
+            ->where('pasar_pembiayaan_id', $proposal_pasar->id)
+            ->orderby('created_at', 'desc')
             ->get()
             ->first();
         if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
             $data++;
         }
     }
-    
+
     $umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
+        ->latest()
+        ->groupBy('umkm_pembiayaan_id')
         ->where('status_id', 3)
         ->get();
-    
+
     $b = 0;
     foreach ($umkms as $umkm) {
         $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
             ->where('id', $umkm->umkm_pembiayaan_id)
             ->get()
             ->first();
-    
+
         $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
             ->where('umkm_pembiayaan_id', $proposal_umkm->id)
             ->orderby('created_at', 'desc')
             ->get()
             ->first();
-    
+
         if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
             $b++;
         }
     }
-    
+
     $pprs = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+        ->latest()
+        ->groupBy('form_ppr_pembiayaan_id')
         ->where('status_id', 3)
         ->get();
-    
+
     $proposalppr = 0;
     foreach ($pprs as $ppr) {
         $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
             ->where('id', $ppr->form_ppr_pembiayaan_id)
             ->get()
             ->first();
-    
+
         $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
             ->where('form_ppr_pembiayaan_id', $proposal_ppr->id)
             ->orderBy('created_at', 'desc')
@@ -87,7 +98,7 @@
             $proposalppr++;
         }
     }
-    
+
 @endphp
 @section('content')
     <!-- BEGIN: Content-->
@@ -185,41 +196,41 @@
                     @php
                         $disbursepasar = 0;
                         foreach ($cairpasars as $cairpasar) {
-                            $harga = $cairpasar->harga;
-                        
-                            $disbursepasar = $disbursepasar + $harga;
+                            $harga_jual = $cairpasar->harga;
+
+                            $disbursepasar = $disbursepasar + $harga_jual;
                         }
-                        
+
                         $disburseumkm = 0;
                         foreach ($cairumkms as $cairumkm) {
-                            $harga = $cairumkm->harga;
-                        
-                            $disburseumkm = $disburseumkm + $harga;
+                            $harga_jual = $cairumkm->nominal_pembiayaan;
+
+                            $disburseumkm = $disburseumkm + $harga_jual;
                         }
-                        
+
                         $disburseskpd = 0;
                         foreach ($cairskpds as $cairskpd) {
-                            $harga = $cairskpd->harga;
-                        
-                            $disburseskpd = $disburseskpd + $harga;
+                            $harga_jual = $cairskpd->nominal_pembiayaan;
+
+                            $disburseskpd = $disburseskpd + $harga_jual;
                         }
-                        
+
                         $disburseppr = 0;
                         foreach ($cairpprs as $cairppr) {
                             $plafond = $cairppr->form_permohonan_nilai_ppr_dimohon;
-                        
+
                             $disburseppr = $disburseppr + $plafond;
                         }
                         $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
-                        
+
                         $pipelinepasar = 0;
                         foreach ($pasars as $pasar) {
                             $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                                 ->where('pasar_pembiayaan_id', $pasar->id)
-                                ->orderby('created_at', 'desc')
+                                ->latest()
                                 ->get()
                                 ->first();
-                        
+
                             $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
                                 ->where('id', $history->pasar_pembiayaan_id)
                                 ->get()
@@ -230,17 +241,17 @@
                                 }
                             }
                         }
-                        
+
                         $skpds = Modules\Skpd\Entities\SkpdPembiayaan::select()->get();
-                        
+
                         $pipelineskpd = 0;
                         foreach ($skpds as $skpd) {
                             $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
                                 ->where('skpd_pembiayaan_id', $skpd->id)
-                                ->orderby('created_at', 'desc')
+                                ->latest()
                                 ->get()
                                 ->first();
-                        
+
                             $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                                 ->where('id', $history->skpd_pembiayaan_id)
                                 ->get()
@@ -252,12 +263,12 @@
                             }
                         }
                         $datas = Modules\Umkm\Entities\UmkmPembiayaan::select()->get();
-                        
+
                         $pipelineumkm = 0;
                         foreach ($datas as $data) {
                             $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
                                 ->where('umkm_pembiayaan_id', $data->id)
-                                ->orderby('created_at', 'desc')
+                                ->latest()
                                 ->get()
                                 ->first();
                             $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
@@ -267,6 +278,27 @@
                             if ($history->status_id != 5 && $history->jabatan_id != 4) {
                                 if ($history->status_id != 9) {
                                     $pipelineumkm++;
+                                }
+                            }
+                        }
+
+                        $pprPipelines = Modules\Form\Entities\FormPprPembiayaan::select()->get();
+
+                        $pipelinePpr = 0;
+                        foreach ($pprPipelines as $pprPipeline) {
+                            $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
+                                ->where('form_ppr_pembiayaan_id', $pprPipeline->id)
+                                ->latest()
+                                ->get()
+                                ->first();
+
+                            $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
+                                ->where('id', $history->form_ppr_pembiayaan_id)
+                                ->get()
+                                ->first();
+                            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                                if ($history->status_id != 9) {
+                                    $pipelinePpr++;
                                 }
                             }
                         }
@@ -280,7 +312,8 @@
                                             <i data-feather="eye" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">{{ $pipelineumkm + $pipelineskpd + $pipelinepasar }}</h2>
+                                    <h2 class="fw-bolder">
+                                        {{ $pipelineumkm + $pipelineskpd + $pipelinepasar + $pipelinePpr }}</h2>
                                     <p class="card-text">Pipeline</p>
                                 </div>
                             </div>

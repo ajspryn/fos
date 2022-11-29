@@ -987,6 +987,7 @@
                                                     </small>Nama Lengkap</label>
                                                 <input type="text" name="form_pribadi_pemohon_nama_lengkap"
                                                     id="form_pribadi_pemohon_nama_lengkap" class="form-control"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     placeholder="Nama Lengkap"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_lengkap }}" />
                                             </div>
@@ -996,6 +997,7 @@
                                                     </small>Nama Sesuai KTP</label>
                                                 <input type="text" name="form_pribadi_pemohon_nama_ktp"
                                                     id="form_pribadi_pemohon_nama_ktp" class="form-control"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     placeholder="Nama Sesuai KTP"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_ktp }}" />
                                             </div>
@@ -1003,6 +1005,7 @@
                                                 <label class="form-label" for="form_pribadi_pemohon_gelar">Gelar</label>
                                                 <input type="text" name="form_pribadi_pemohon_gelar"
                                                     id="form_pribadi_pemohon_gelar" class="form-control"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     placeholder="Gelar"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_gelar }}" />
                                             </div>
@@ -1011,6 +1014,7 @@
                                                     Alias</label>
                                                 <input type="text" name="form_pribadi_pemohon_nama_alias"
                                                     id="form_pribadi_pemohon_nama_alias" class="form-control"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     placeholder="Nama Alias"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_alias }}" />
                                             </div>
@@ -1207,6 +1211,7 @@
                                                     Gadis Ibu Kandung</label>
                                                 <input type="text" name="form_pribadi_pemohon_nama_gadis_ibu_kandung"
                                                     id="form_pribadi_pemohon_nama_gadis_ibu_kandung" class="form-control"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     placeholder="Nama Gadis Ibu Kandung"
                                                     value="{{ $pembiayaan->pemohon->form_pribadi_pemohon_nama_gadis_ibu_kandung }}" />
                                             </div>
@@ -1748,6 +1753,7 @@
                                                         <input type="text" name="form_pribadi_istri_suami_nama_lengkap"
                                                             id="form_pribadi_istri_suami_nama_lengkap"
                                                             class="form-control" placeholder="Nama Lengkap"
+                                                            oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                             value="{{ $pembiayaan->pemohon->form_pribadi_istri_suami_nama_lengkap }}" />
                                                     </div>
                                                     <div class="mb-1 col-md-6">
@@ -1755,6 +1761,7 @@
                                                             for="form_pribadi_istri_suami_gelar">Gelar</label>
                                                         <input type="text" name="form_pribadi_istri_suami_gelar"
                                                             id="form_pribadi_istri_suami_gelar" class="form-control"
+                                                            oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                             placeholder="Gelar"
                                                             value="{{ $pembiayaan->pemohon->form_pribadi_istri_suami_gelar }}" />
                                                     </div>
@@ -1922,6 +1929,7 @@
                                                                 name="form_pribadi_keluarga_terdekat_nama_lengkap"
                                                                 id="form_pribadi_keluarga_terdekat_nama_lengkap"
                                                                 class="form-control" placeholder="Nama Lengkap"
+                                                                oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                                 value="{{ $pembiayaan->pemohon->form_pribadi_keluarga_terdekat_nama_lengkap }}" />
                                                         </div>
                                                     </div>
@@ -2563,6 +2571,7 @@
                                                 <input type="text" name="form_pekerjaan_pemohon_nama_atasan_langsung"
                                                     id="form_pekerjaan_pemohon_nama_atasan_langsung"
                                                     class="form-control" placeholder="Nama Atasan Langsung"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_pemohon_nama_atasan_langsung }}"
                                                     required />
                                             </div>
@@ -3054,6 +3063,7 @@
                                                     name="form_pekerjaan_istri_suami_nama_atasan_langsung"
                                                     id="form_pekerjaan_istri_suami_nama_atasan_langsung"
                                                     class="form-control" placeholder="Nama Atasan Langsung"
+                                                    oninput="this.value=this.value.toUpperCase().replace(/[^A-Z.]/g,'');"
                                                     value="{{ $pembiayaan->pekerjaan->form_pekerjaan_istri_suami_nama_atasan_langsung }}" />
                                             </div>
                                             <div class="mb-1 col-md-6">

@@ -25,18 +25,18 @@ class SkpdController extends Controller
      */
     public function index()
     {
-        $target1 = SkpdPembiayaan::join('skpd_pembiayaan_histories','skpd_pembiayaans.id','=','skpd_pembiayaan_histories.skpd_pembiayaan_id')
-        ->select()
-        ->where('skpd_pembiayaans.user_id',  Auth::user()->id)
-        ->where('skpd_pembiayaan_histories.jabatan_id', 4)
-        ->where('skpd_pembiayaan_histories.status_id', 5)
-        ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
-        ->get();
+        $target1 = SkpdPembiayaan::join('skpd_pembiayaan_histories', 'skpd_pembiayaans.id', '=', 'skpd_pembiayaan_histories.skpd_pembiayaan_id')
+            ->select()
+            ->where('skpd_pembiayaans.user_id',  Auth::user()->id)
+            ->where('skpd_pembiayaan_histories.jabatan_id', 4)
+            ->where('skpd_pembiayaan_histories.status_id', 5)
+            ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
+            ->get();
 
         $pipeline = SkpdPembiayaan::select()
-        ->where('user_id',  Auth::user()->id)
-        ->whereYear('tanggal_pengajuan', date('Y'))
-        ->count();
+            ->where('user_id',  Auth::user()->id)
+            ->whereYear('tanggal_pengajuan', date('Y'))
+            ->count();
 
 
         $pasars = SkpdPembiayaan::selectRaw('count(id) as total, created_at')->where('user_id', Auth::user()->id)->groupBy('created_at')->get();
@@ -49,7 +49,7 @@ class SkpdController extends Controller
         }
 
 
-        //piechart 
+        //piechart
         $rttotals = DB::table('skpd_instansis as jp')
             ->join('skpd_pembiayaans as pp', 'pp.skpd_instansi_id', '=', 'jp.id')
             ->select('jp.*', 'pp.*', DB::raw('count(*) as total_noa'))
@@ -64,16 +64,16 @@ class SkpdController extends Controller
             $pdatainstansi[] = $rttotal->total_noa;
         }
 
-        $plafonds = SkpdPembiayaan::join('skpd_pembiayaan_histories','skpd_pembiayaans.id','=','skpd_pembiayaan_histories.skpd_pembiayaan_id')
-        ->select(DB::raw("MONTHNAME(skpd_pembiayaans.tanggal_pengajuan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
-        ->where('skpd_pembiayaan_histories.jabatan_id', 4)
-        ->where('skpd_pembiayaan_histories.status_id', 5)
-        ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
-        ->groupBy(DB::raw("nama_bulan"))
-        ->orderBy('skpd_pembiayaans.id', 'ASC')
-        ->pluck('jml_plafond', 'nama_bulan');
+        $plafonds = SkpdPembiayaan::join('skpd_pembiayaan_histories', 'skpd_pembiayaans.id', '=', 'skpd_pembiayaan_histories.skpd_pembiayaan_id')
+            ->select(DB::raw("MONTHNAME(skpd_pembiayaans.tanggal_pengajuan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
+            ->where('skpd_pembiayaan_histories.jabatan_id', 4)
+            ->where('skpd_pembiayaan_histories.status_id', 5)
+            ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
+            ->groupBy(DB::raw("nama_bulan"))
+            ->orderBy('skpd_pembiayaans.id', 'ASC')
+            ->pluck('jml_plafond', 'nama_bulan');
 
-   
+
         $bulanplafonds = $plafonds->keys();
         $hitungPerBulan = $plafonds->values();
 
@@ -92,16 +92,16 @@ class SkpdController extends Controller
         // return $bulans;
         return view('skpd::index', [
             'title' => 'Dashboard SKPD',
-            'target1'=>$target1,
-            'pipeline'=>$pipeline,
+            'target1' => $target1,
+            'pipeline' => $pipeline,
             'labels' => $labels,
             'datainstansi' => $datapasar,
             'plabels' => $plabel,
             'pdatainstansis' => $pdatainstansi,
-            'labelplafonds'=>$bulanplafonds,
-            'dataplafonds'=>$hitungPerBulan,
-            'bulans'=>$bulans,
-            'hitungBulan'=>$hitungBulan,
+            'labelplafonds' => $bulanplafonds,
+            'dataplafonds' => $hitungPerBulan,
+            'bulans' => $bulans,
+            'hitungBulan' => $hitungBulan,
 
         ]);
     }
@@ -228,7 +228,7 @@ class SkpdController extends Controller
             ]);
         }
 
-        return redirect('/')->with('success', 'Pengajuan Anda Sedang Di Proses Silahkan Hubungi AO');
+        return redirect('/')->with('success', 'Pengajuan Anda Akan Segera Diproses, Silakan Hubungi AO');
     }
 
     /**

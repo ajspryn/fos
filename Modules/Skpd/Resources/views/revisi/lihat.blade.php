@@ -1,6 +1,27 @@
 @extends('skpd::layouts.main')
 
 @section('content')
+    <style>
+        /* Validate style for Select2 class */
+        .was-validated select.select2:invalid+.select2 .select2-selection {
+            border-color: #dc3545 !important;
+        }
+
+        .was-validated select.select2:valid+.select2 .select2-selection {
+            border-color: #28a745 !important;
+        }
+
+        #ifIdebPasangan {
+            height: 40px;
+            transition: all 0.5s;
+        }
+
+        #ifIdebPasangan.hide {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+    </style>
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -17,7 +38,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Proposal</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Lengkapi Proposal
+                                    <li class="breadcrumb-item active">Revisi Proposal
                                     </li>
                                 </ol>
                             </div>
@@ -57,8 +78,9 @@
                             </div>
                         </div>
                         <div class="bs-stepper-content">
-                            <form method='post' action="/skpd/revisi/{{ $pembiayaan->id }}" enctype="multipart/form-data">
-                                @method('put')
+                            <form method='POST' action="/skpd/revisi/{{ $pembiayaan->id }}" class="needs-validation"
+                                enctype="multipart/form-data" novalidate>
+                                @method('PUT')
                                 @csrf
                                 <div id="form1" class="content" role="tabpanel"
                                     aria-labelledby="account-details-trigger">
@@ -103,9 +125,8 @@
                                             <label class="form-label" for="sektor"><small class="text-danger">*
                                                 </small>Sektor Ekonomi</label>
                                             <select class="select2 w-100" name="skpd_sektor_ekonomi_id" id="sektor"
-                                                required>
-                                                <option value="{{ $pembiayaan->sektor->id }}">
-                                                    {{ $pembiayaan->sektor->jenis_penggunaan }}</option>
+                                                data-placeholder="Pilih Sektor Ekonomi" required>
+                                                <option value=""></option>
                                                 @foreach ($sektors as $sektor)
                                                     <option value="{{ $sektor->id }}">{{ $sektor->nama_sektor_ekonomi }}
                                                     </option>
@@ -197,8 +218,7 @@
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="exampleFormControlTextarea1"><small
                                                     class="text-danger">* </small>Alamat Sesuai KTP</label>
-                                            <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat"
-                                                value="{{ $pembiayaan->nasabah->alamat }}"></textarea>
+                                            <textarea name="alamat" class="form-control" id="alamat" rows="3" placeholder="Alamat">{{ $pembiayaan->nasabah->alamat }}</textarea>
                                         </div>
                                         <div class="mb-1 col-md-1">
                                             <label class="form-label" for="rt"><small class="text-danger">*
@@ -278,6 +298,18 @@
                                                 class="form-control prefix-mask" placeholder="Masukan Nomor telepon Anda"
                                                 value="{{ $pembiayaan->nasabah->no_telp }}" required />
                                         </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="jenisNasabah"><small class="text-danger">*
+                                                </small>Jenis Nasabah</label>
+                                            <select class="select2 w-100" name="skpd_jenis_nasabah_id" id="jenisNasabah"
+                                                data-placeholder="Pilih Jenis Nasabah" required>
+                                                <option value=""></option>
+                                                @foreach ($jenisNasabahs as $jenisNasabah)
+                                                    <option value="{{ $jenisNasabah->id }}">
+                                                        {{ $jenisNasabah->keterangan }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
                                         @php
                                             $fotodiri = Modules\Skpd\Entities\SkpdFoto::Select()
@@ -316,12 +348,10 @@
                                                 </small>Upload Foto Diri</label>
                                             <input type="hidden" name="foto[1][foto_lama]"
                                                 value="{{ $fotodiri->foto }}">
-                                            <input type="hidden" name="foto[1][id]" rows="3" class="form-control"
-                                                value="{{ $fotodiri->id }}">
+                                            <input type="hidden" name="foto[1][id]" value="{{ $fotodiri->id }}">
                                             <input type="file" name="foto[1][foto]" id="fotodiri" rows="3"
-                                                class="form-control">
-                                            <input type="hidden" name="foto[1][kategori]" value="Foto Diri"
-                                                rows="3" class="form-control" />
+                                                class="form-control" required>
+                                            <input type="hidden" name="foto[1][kategori]" value="Foto Diri" />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="fotoktp"><small class="text-danger">*
@@ -330,8 +360,8 @@
                                                 value="{{ $fotoktp->foto }}">
                                             <input type="hidden" name="foto[2][id]" rows="3" class="form-control"
                                                 value="{{ $fotoktp->id }}">
-                                            <input type="file" name="foto[2][foto]" id="fotoktp" rows="3"
-                                                class="form-control">
+                                            <input type="file" name="foto[2][foto]" id="fotoktp"
+                                                class="form-control" required>
                                             <input type="hidden" name="foto[2][kategori]" value="Foto KTP"
                                                 rows="3" class="form-control" />
                                         </div>
@@ -340,37 +370,36 @@
                                                 </small>Upload Foto Diri Bersama KTP</label>
                                             <input type="hidden" name="foto[3][foto_lama]"
                                                 value="{{ $fotodiriktp->foto }}">
-                                            <input type="hidden" name="foto[3][id]" rows="3" class="form-control"
-                                                value="{{ $fotodiriktp->id }}">
-                                            <input type="file" name="foto[3][foto]" id="fotodiriktp" rows="3"
-                                                class="form-control">
-                                            <input type="hidden" name="foto[3][kategori]" value="Foto Diri Bersama KTP"
-                                                rows="3" class="form-control" />
+                                            <input type="hidden" name="foto[3][id]" value="{{ $fotodiriktp->id }}">
+                                            <input type="file" name="foto[3][foto]" id="fotodiriktp"
+                                                class="form-control" required>
+                                            <input type="hidden" name="foto[3][kategori]"
+                                                value="Foto Diri Bersama KTP" />
 
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="fotokk"><small class="text-danger">*
                                                 </small>Upload Foto Kartu Keluarga</label>
                                             <input type="hidden" name="foto[4][foto_lama]" value="{{ $fotokk->foto }}">
-                                            <input type="hidden" name="foto[4][id]" rows="3" class="form-control"
-                                                value="{{ $fotokk->id }}">
-                                            <input type="file" name="foto[4][foto]" id="fotokk" rows="3"
-                                                class="form-control">
-                                            <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga"
-                                                rows="3" class="form-control" />
+                                            <input type="hidden" name="foto[4][id]" value="{{ $fotokk->id }}">
+                                            <input type="file" name="foto[4][foto]" id="fotokk"
+                                                class="form-control" required>
+                                            <input type="hidden" name="foto[4][kategori]" value="Foto Kartu Keluarga" />
                                         </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="fotokk"><small class="text-danger">*
-                                                </small>Upload Akta Nikah/Cerai</label>
-                                            <input type="hidden" name="foto[5][foto_lama]"
-                                                value="{{ $fotostatus->foto }}">
-                                            <input type="hidden" name="foto[5][id]" rows="3" class="form-control"
-                                                value="{{ $fotostatus->id }}">
-                                            <input type="file" name="foto[5][foto]" id="fotokk" rows="3"
-                                                class="form-control" required />
-                                            <input type="hidden" name="foto[5][kategori]" value="Akta Status Pekawinan"
-                                                rows="3" class="form-control" />
-                                        </div>
+                                        @if ($pembiayaan->nasabah->skpd_status_perkawinan_id == 2)
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label" for="fotoAktaNikah"><small
+                                                        class="text-danger">*
+                                                    </small>Upload Akta Nikah/Cerai</label>
+                                                <input type="hidden" name="foto[5][foto_lama]"
+                                                    value="{{ $fotostatus->foto }}">
+                                                <input type="hidden" name="foto[5][id]" value="{{ $fotostatus->id }}">
+                                                <input type="file" name="foto[5][foto]" id="fotoAktaNikah"
+                                                    class="form-control" />
+                                                <input type="hidden" name="foto[5][kategori]"
+                                                    value="Akta Status Pekawinan" />
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="content-header">
                                         <h5 class="mb-0 mt-2">Data Orang Terdekat</h5>
@@ -515,9 +544,9 @@
                                             <label class="form-label" for="jaminan_dokumen"><small class="text-danger">*
                                                 </small>Upload Jaminan</label>
                                             <input type="file" name="dokumen_jaminan" id="jaminan_dokumen"
-                                                class="form-control" />
+                                                class="form-control" required />
                                             <input type="hidden" name="dokumen_jaminan_lama" id="jaminan_dokumen"
-                                                value="{{ $skpd_jaminan->dokumen_jaminan }}" class="form-control" />
+                                                value="{{ $skpd_jaminan->dokumen_jaminan }}" />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="notelpot">Jaminan Lainya</label>
@@ -573,19 +602,21 @@
                                                 required />
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="lampiran_keuangan">Upload Lampiran
+                                            <label class="form-label" for="lampiran_keuangan"><small
+                                                    class="text-danger">*
+                                                </small>Upload Lampiran
                                                 Keuangan</label>
                                             <input type="file" name="dokumen_keuangan" id="lampiran_keuangan"
-                                                rows="3" class="form-control" />
+                                                class="form-control" required />
                                             <input type="hidden" name="dokumen_keuangan_lama"
-                                                value="{{ $pembiayaan->dokumen_keuangan }}" rows="3"
-                                                class="form-control" />
+                                                value="{{ $pembiayaan->dokumen_keuangan }}" />
                                         </div>
                                     </div>
                                     <div class="mb-1 col-md-6">
-                                        <label class="form-label" for="slip_gaji">Upload Slip Gaji</label>
-                                        <input type="file" name="dokumen_slip_gaji" id="slip_gaji" rows="3"
-                                            class="form-control" value="{{ $pembiayaan->dokumen_slip_gaji }}">
+                                        <label class="form-label" for="slip_gaji"><small class="text-danger">*
+                                            </small>Upload Slip Gaji</label>
+                                        <input type="file" name="dokumen_slip_gaji" id="slip_gaji"
+                                            class="form-control" value="{{ $pembiayaan->dokumen_slip_gaji }}" required>
                                         <input type="hidden" id="EditUserFirstName" name="dokumen_slip_gaji_lama"
                                             value="{{ $pembiayaan->dokumen_slip_gaji }}" class="form-control" />
                                     </div>
@@ -977,16 +1008,26 @@
                                     </section>
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="ideb"><small class="text-danger">*
-                                            </small>Upload PDF IDEB</label>
+                                            </small>Upload IDEB</label>
                                         <input type="hidden" name="foto[6][foto_lama]"
                                             value="{{ old('foto', $ideb->foto) }}">
-                                        <input type="hidden" name="foto[6][id]" rows="3" class="form-control"
-                                            value="{{ $ideb->id }}">
-                                        <input type="file" name="foto[6][foto]" id="fotodiri" rows="3"
-                                            class="form-control">
-                                        <input type="hidden" name="foto[6][kategori]" value="Foto Diri" rows="3"
-                                            class="form-control" />
+                                        <input type="hidden" name="foto[6][id]" value="{{ $ideb->id }}">
+                                        <input type="file" name="foto[6][foto]" id="ideb" class="form-control"
+                                            required>
+                                        <input type="hidden" name="foto[6][kategori]" value="IDEB" />
                                     </div>
+                                    @if ($pembiayaan->nasabah->skpd_status_perkawinan_id == 2)
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="ifIdebPasangan"><small class="text-danger">*
+                                                </small>Upload IDEB Pasangan</label>
+                                            <input type="hidden" name="foto[7][foto_lama]"
+                                                value="{{ old('foto', $idebPasangan->foto) }}">
+                                            <input type="hidden" name="foto[7][id]" value="{{ $idebPasangan->id }}">
+                                            <input type="file" name="foto[7][foto]" id="ifIdebPasangan"
+                                                class="form-control" required>
+                                            <input type="hidden" name="foto[7][kategori]" value="IDEB Pasangan" />
+                                        </div>
+                                    @endif
 
                                     <div class="mb-1 col-md-6">
                                         <label class="form-label" for="numeral-formatting">Pengeluaran Lainnya (Per
@@ -1007,7 +1048,7 @@
                                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                             <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                         </button>
-                                        <button type="submit" class="btn btn-success btn-submit">Submit</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
                                     </div>
                                 </div>
                         </div>
@@ -1020,24 +1061,25 @@
     </div>
     <!-- END: Content-->
 
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        function SumAngsuran(value) {
-            var plafond, tenor, margin, angsuran, getmargin, getplafond;
+        //Form Validation (Bootstrap)
+        var bootstrapForm = $('.needs-validation');
 
-            plafond = document.getElementById("plafond").value;
-            tenor = document.getElementById("tenor").value;
-            margin = document.getElementById("margin").value;
+        Array.prototype.filter.call(bootstrapForm, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    form.classList.add('invalid');
+                    // form.bootstrapValidator('defaultSubmit');
 
-            getmargin = margin / 12 / 100;
-            getplafond = plafond * getmargin * tenor + +plafond;
-            angsuran = getplafond / tenor;
+                } else {
+                    form.classList.add('was-validated');
+                    form.bootstrapValidator('defaultSubmit');
 
-            // angsuran = plafond * margin * tenor + +plafond / tenor;
-            // angsuran = angsuran4 / tenor;
-
-            document.getElementById("angsuran").value = angsuran;
-
-        }
-    </script> --}}
+                }
+                form.classList.add('was-validated');
+                event.preventDefault();
+            });
+        });
+    </script>
 @endsection

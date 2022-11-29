@@ -1,32 +1,50 @@
 @php
-    $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-        ->where('user_id', Auth::user()->id)
-        ->where('skpd_sektor_ekonomi_id', null)
-        ->get()
-        ->count();
-    
-    $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-        ->where('status_id', 3)
-        ->get();
-    
-    $proposalskpd = 0;
-    foreach ($proposals as $proposal) {
-        $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
-            ->where('id', $proposal->skpd_pembiayaan_id)
+    $skpds = Modules\Skpd\Entities\SkpdPembiayaan::select()->get();
+
+    $proposalSkpd = 0;
+    foreach ($skpds as $skpd) {
+        $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+            ->where('skpd_pembiayaan_id', $skpd->id)
+            ->latest()
             ->get()
             ->first();
-        $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
-            ->where('skpd_pembiayaan_id', $proposal_skpd->id)
-            ->orderby('created_at', 'desc')
+
+        $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+            ->where('id', $history->skpd_pembiayaan_id)
             ->get()
             ->first();
         if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
-            $proposalskpd++;
+            $proposalSkpd++;
         }
     }
-    
+    // $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+    //     ->where('user_id', Auth::user()->id)
+    //     ->where('skpd_sektor_ekonomi_id', null)
+    //     ->get()
+    //     ->count();
+
+    // $proposals = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    //     ->where('status_id', 3)
+    //     ->get();
+
+    // $proposalskpd = 0;
+    // foreach ($proposals as $proposal) {
+    //     $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
+    //         ->where('id', $proposal->skpd_pembiayaan_id)
+    //         ->get()
+    //         ->first();
+    //     $history = Modules\Skpd\Entities\SkpdPembiayaanHistory::select()
+    //         ->where('skpd_pembiayaan_id', $proposal_skpd->id)
+    //         ->orderby('created_at', 'desc')
+    //         ->get()
+    //         ->first();
+    //     if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+    //         $proposalskpd++;
+    //     }
+    // }
+
     $pasars = Modules\Pasar\Entities\PasarPembiayaan::select()->get();
-    
+
     $data = 0;
     foreach ($pasars as $pasar) {
         $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
@@ -34,7 +52,7 @@
             ->orderby('created_at', 'desc')
             ->get()
             ->first();
-    
+
         $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
             ->where('id', $history->pasar_pembiayaan_id)
             ->get()
@@ -43,31 +61,31 @@
             $data++;
         }
     }
-    
+
     $umkms = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
         ->where('status_id', 3)
         ->get();
-    
+
     $b = 0;
     foreach ($umkms as $umkm) {
         $proposal_umkm = Modules\Umkm\Entities\UmkmPembiayaan::select()
             ->where('id', $umkm->umkm_pembiayaan_id)
             ->get()
             ->first();
-    
+
         $history = Modules\Umkm\Entities\UmkmPembiayaanHistory::select()
             ->where('umkm_pembiayaan_id', $proposal_umkm->id)
             ->orderby('created_at', 'desc')
             ->get()
             ->first();
-    
+
         if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
             $b++;
         }
     }
-    
+
     $pprs = Modules\Form\Entities\FormPprPembiayaan::select()->get();
-    
+
     $proposalppr = 0;
     foreach ($pprs as $ppr) {
         $history = Modules\Ppr\Entities\PprPembiayaanHistory::select()
@@ -75,7 +93,7 @@
             ->latest()
             ->get()
             ->first();
-    
+
         $proposal_ppr = Modules\Form\Entities\FormPprPembiayaan::select()
             ->where('id', $history->form_ppr_pembiayaan_id)
             ->get()
@@ -134,8 +152,8 @@
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">SKPD</span>
-                    @if ($proposalskpd > 0)
-                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
+                    @if ($proposalSkpd > 0)
+                        <span class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalSkpd }}</span>
                     @endif
                 </a>
                 <ul class="menu-content">
@@ -148,9 +166,9 @@
                             class="d-flex align-items-center" href="/dirbis/skpd/komite"><i
                                 data-feather="clipboard"></i><span class="menu-item text-truncate"
                                 data-i18n="Security">Komite</span>
-                            @if ($proposalskpd > 0)
+                            @if ($proposalSkpd > 0)
                                 <span
-                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalskpd }}</span>
+                                    class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalSkpd }}</span>
                             @endif
                         </a>
                     </li>

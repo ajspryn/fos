@@ -19,13 +19,21 @@ class SkpdProposalController extends Controller
     public function index()
     {
 
-        $proposal=SkpdPembiayaan::all();
+        // $proposal = SkpdPembiayaanHistory::select()
+        //     ->latest()
+        //     ->groupBy('skpd_pembiayaan_id')
+        //     ->where(function ($query) {
+        //         $query
+        //             ->where('status_id', '<', 5)
+        //             ->where('jabatan_id', '<', 4);
+        //     })
+        //     ->get();
+        // // return $proposal[0];
+        $proposal = SkpdPembiayaan::select()->get();
 
-        // return $proposal[0];
-
-        return view('dirbis::skpd.proposal.index',[
-            'title'=>'Proposal SKPD',
-            'proposals'=>$proposal,
+        return view('dirbis::skpd.proposal.index', [
+            'title' => 'Proposal SKPD',
+            'proposals' => $proposal,
         ]);
     }
 
@@ -35,17 +43,17 @@ class SkpdProposalController extends Controller
      */
     public function create()
     {
-        $pasars = SkpdPembiayaan::selectRaw('count(id) as total, created_at')->groupBy('created_at')->get();
+        $skpds = SkpdPembiayaan::selectRaw('count(id) as total, created_at')->groupBy('created_at')->get();
 
         $labels = [];
-        $datapasar = [];
-        foreach ($pasars as $pasar) {
-            $labels[] = $pasar['created_at'];
-            $datapasar[] = $pasar['total'];
+        $dataskpd = [];
+        foreach ($skpds as $skpd) {
+            $labels[] = $skpd['created_at'];
+            $dataskpd[] = $skpd['total'];
         }
 
 
-        //piechart 
+        //piechart
         $rttotals = DB::table('skpd_instansis as jp')
             ->join('skpd_pembiayaans as pp', 'pp.skpd_instansi_id', '=', 'jp.id')
             ->select('jp.*', 'pp.*', DB::raw('count(*) as total_noa'))
@@ -59,16 +67,16 @@ class SkpdProposalController extends Controller
             $pdatainstansi[] = $rttotal->total_noa;
         }
 
-        $plafonds = SkpdPembiayaan::join('skpd_pembiayaan_histories','skpd_pembiayaans.id','=','skpd_pembiayaan_histories.skpd_pembiayaan_id')
-        ->select(DB::raw("MONTHNAME(skpd_pembiayaans.tanggal_pengajuan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
-        ->where('skpd_pembiayaan_histories.jabatan_id', 4)
-        ->where('skpd_pembiayaan_histories.status_id', 5)
-        ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
-        ->groupBy(DB::raw("nama_bulan"))
-        ->orderBy('skpd_pembiayaans.id', 'ASC')
-        ->pluck('jml_plafond', 'nama_bulan');
+        $plafonds = SkpdPembiayaan::join('skpd_pembiayaan_histories', 'skpd_pembiayaans.id', '=', 'skpd_pembiayaan_histories.skpd_pembiayaan_id')
+            ->select(DB::raw("MONTHNAME(skpd_pembiayaans.tanggal_pengajuan) as nama_bulan, sum(nominal_pembiayaan) as jml_plafond"))
+            ->where('skpd_pembiayaan_histories.jabatan_id', 4)
+            ->where('skpd_pembiayaan_histories.status_id', 5)
+            ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
+            ->groupBy(DB::raw("nama_bulan"))
+            ->orderBy('skpd_pembiayaans.id', 'ASC')
+            ->pluck('jml_plafond', 'nama_bulan');
 
-   
+
         $bulanplafonds = $plafonds->keys();
         $hitungPerBulan = $plafonds->values();
 
@@ -84,29 +92,29 @@ class SkpdProposalController extends Controller
             $hitungBulan[] = count($values);
         }
 
-        $target1 = SkpdPembiayaan::join('skpd_pembiayaan_histories','skpd_pembiayaans.id','=','skpd_pembiayaan_histories.skpd_pembiayaan_id')
-        ->select()
-        ->where('skpd_pembiayaan_histories.jabatan_id', 4)
-        ->where('skpd_pembiayaan_histories.status_id', 5)
-        ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
-        ->get();
+        $target1 = SkpdPembiayaan::join('skpd_pembiayaan_histories', 'skpd_pembiayaans.id', '=', 'skpd_pembiayaan_histories.skpd_pembiayaan_id')
+            ->select()
+            ->where('skpd_pembiayaan_histories.jabatan_id', 4)
+            ->where('skpd_pembiayaan_histories.status_id', 5)
+            ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
+            ->get();
 
         $pipeline = SkpdPembiayaan::select()
-        ->whereYear('tanggal_pengajuan', date('Y'))
-        ->count();
-        
-        return view('dirbis::skpd.index',[
+            ->whereYear('tanggal_pengajuan', date('Y'))
+            ->count();
+
+        return view('dirbis::skpd.index', [
             'title' => 'Dasboard Direksi SKPD',
             'labels' => $labels,
-            'datainstansi' => $datapasar,
+            'datainstansi' => $dataskpd,
             'plabels' => $plabel,
             'pdatainstansis' => $pdatainstansi,
-            'labelplafonds'=>$bulanplafonds,
-            'dataplafonds'=>$hitungPerBulan,
-            'bulans'=>$bulans,
-            'hitungBulan'=>$hitungBulan,
-            'target1'=>$target1,
-            'pipeline'=>$pipeline
+            'labelplafonds' => $bulanplafonds,
+            'dataplafonds' => $hitungPerBulan,
+            'bulans' => $bulans,
+            'hitungBulan' => $hitungBulan,
+            'target1' => $target1,
+            'pipeline' => $pipeline
 
         ]);
     }
