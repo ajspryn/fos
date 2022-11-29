@@ -84,9 +84,10 @@ class SkpdRevisiController extends Controller
             'title' => 'Revisi Proposal',
             'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->get()->first(),
             'nasabah' => SkpdNasabah::select()->where('id', $id)->get()->first(),
-            'fotodiri' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'foto diri')->get()->first(),
-            'fotoktp' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'foto ktp')->get()->first(),
-            'fotodiribersamaktp' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'foto diri bersama ktp')->get()->first(),
+            'fotodiri' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Foto Diri')->get()->first(),
+            'fotopasangan' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Foto Pasangan')->get()->first(),
+            'fotoktp' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotodiriktp' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Foto Diri Bersama KTP')->get()->first(),
             'fotokk' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
             'fotostatus' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Akta Status Perkawinan')->get()->first(),
             // 'ideb' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'IDEB')->get()->first(),
@@ -94,6 +95,7 @@ class SkpdRevisiController extends Controller
             'akads' => SkpdAkad::all(), //udah
             'golongans' => SkpdGolongan::all(), //udah
             'skpd_jaminan' => SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->get()->first(),
+            'skpd_jaminan_lainnya' => SkpdJaminanLainnya::select()->where('skpd_pembiayaan_id', $id)->get()->first(),
             'instansis' => SkpdInstansi::all(), //udah
             'jaminans' => SkpdJenisJaminan::all(), //udah
             'penggunaans' => SkpdJenisPenggunaan::all(), //udah
@@ -114,6 +116,7 @@ class SkpdRevisiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return($request->foto);
         // return($request);
         // $sk_pengangkatan = $request->file('sk_pengangkatan')->store('skpd-sk_pengangkatan');
         // $dokumen_jaminan = $request->file('dokumen_jaminan')->store('skpd-dokumen_jaminan');
@@ -217,11 +220,11 @@ class SkpdRevisiController extends Controller
         }
 
 
-        SkpdPembiayaanHistory::where('skpd_pembiayaan_id', $id)->update([
+        SkpdPembiayaanHistory::create([
             'skpd_pembiayaan_id' => $id,
             'status_id' => 2,
             'jabatan_id' => 1,
-            'user_id' => null,
+            'user_id' => Auth::user()->id,
         ]);
 
         if ($request->file('dokumen_jaminan_lainnya')) {
@@ -234,23 +237,26 @@ class SkpdRevisiController extends Controller
         }
 
 
-        $request->validate([
-            'foto.*.kategori' => 'required',
-            'foto.*.foto' => 'required',
-        ]);
+        // $request->validate([
+        //     'foto.*.kategori' => 'required',
+        //     'foto.*.foto' => 'required',
+        // ]);
 
         foreach ($request->foto as $key => $value) {
-            if ($value['foto'] != null) {
+            if (isset($value['foto'])) {
                 if ($value['foto_lama']) {
                     Storage::delete($value['foto_lama']);
                 }
                 $foto = $value['foto']->store('foto-skpd-pembiayaan');
 
-                SkpdFoto::where('skpd_pembiayaan_id', $id)->where('id', $value['id'])->update([
-                    'skpd_pembiayaan_id' => $id,
-                    'kategori' => $value['kategori'],
-                    'foto' => $foto,
-                ]);
+                SkpdFoto::where('skpd_pembiayaan_id', $id)->where('id', $value['id'])->updateorcreate(
+                    ['id' => $value['id']],
+                    [
+                        'skpd_pembiayaan_id' => $id,
+                        'kategori' => $value['kategori'],
+                        'foto' => $foto,
+                    ]
+                );
             }
         }
 
@@ -266,30 +272,33 @@ class SkpdRevisiController extends Controller
         //     ]);
         // }
 
-        if ($request->slik[0]['nama_bank']) {
+        if ($request->slik) {
 
-            SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->delete();
+            // SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->delete();
 
             foreach ($request->slik as $key => $value) {
 
-                SkpdSlik::create([
-                    'skpd_pembiayaan_id' => $id,
-                    'nama_bank' => $value['nama_bank'],
-                    'plafond' => $value['plafond'],
-                    'outstanding' => $value['outstanding'],
-                    'tenor' => $value['tenor'],
-                    'margin' => $value['margin'],
-                    'angsuran' => $value['angsuran'],
-                    'agunan' => $value['agunan'],
-                    'kol_tertinggi' => $value['kol_tertinggi'],
-                ]);
+                SkpdSlik::updateorcreate(
+                    ['id' => $value['slik_id']],
+                    [
+                        'skpd_pembiayaan_id' => $id,
+                        'nama_bank' => $value['nama_bank'],
+                        'plafond' => $value['plafond'],
+                        'outstanding' => $value['outstanding'],
+                        'tenor' => $value['tenor'],
+                        'margin' => $value['margin'],
+                        'angsuran' => $value['angsuran'],
+                        'agunan' => $value['agunan'],
+                        'kol_tertinggi' => $value['kol_tertinggi'],
+                    ]
+                );
             }
         } else {
         }
 
-        if ($request->slikpasangan[0]['nama_bank']) {
+        if ($request->slikpasangan) {
 
-            SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->delete();
+            // SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->delete();
 
             foreach ($request->slik as $key => $value) {
 

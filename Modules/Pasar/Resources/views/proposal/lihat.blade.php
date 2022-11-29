@@ -998,7 +998,7 @@
                                                     class="text-danger">*</small>Kesanggupan Angsuran</label>
                                             <input type="text" class="form-control numeral-mask8"
                                                 name="kesanggupan_angsuran" placeholder="Rp." id="kesanggupan_angsuran"
-                                                value="{{ $pembiayaan->kesanggupan_angsuran }}" disabled>
+                                                value="{{ number_format($pembiayaan->kesanggupan_angsuran) }}" disabled>
                                         </div><br>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="dokumen_keuangan"><small

@@ -3,16 +3,20 @@
 namespace Modules\Skpd\Entities;
 
 use App\Models\User;
+use Modules\Skpd\Entities\SkpdFoto;
+use Modules\Admin\Entities\SkpdAkad;
+use Modules\Skpd\Entities\SkpdDeviasi;
+use Modules\Skpd\Entities\SkpdJaminan;
 use Modules\Skpd\Entities\SkpdNasabah;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Admin\Entities\SkpdGolongan;
 use Modules\Admin\Entities\SkpdInstansi;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Modules\Admin\Entities\SkpdAkad;
-use Modules\Admin\Entities\SkpdJenisPenggunaan;
-use Modules\Admin\Entities\SkpdSektorEkonomi;
-use Modules\Admin\Entities\SkpdStatusPerkawinan;
 use Modules\Admin\Entities\SkpdTanggungan;
+use Modules\Admin\Entities\SkpdSektorEkonomi;
+use Modules\Skpd\Entities\SkpdJaminanLainnya;
+use Modules\Admin\Entities\SkpdJenisPenggunaan;
+use Modules\Admin\Entities\SkpdStatusPerkawinan;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SkpdPembiayaan extends Model
 {
@@ -60,6 +64,10 @@ class SkpdPembiayaan extends Model
     public function jaminan()
     {
         return $this->belongsTo(SkpdJaminan::class, 'id', 'skpd_pembiayaan_id');
+    }
+    public function jaminan_lainnya()
+    {
+        return $this->belongsTo(SkpdJaminanLainnya::class, 'id', 'skpd_pembiayaan_id');
     }
     public function deviasi()
     {

@@ -7,7 +7,7 @@ deployment:
     - /bin/cp -R bootstrap $DEPLOYPATH
     - /bin/cp -R config $DEPLOYPATH
     - /bin/cp -R database $DEPLOYPATH
-    - /bin/cp -R lang/en $DEPLOYPATH
+    - /bin/cp -R lang $DEPLOYPATH
     - /bin/cp -R public $DEPLOYPATH
     - /bin/cp -R resources $DEPLOYPATH
     - /bin/cp -R routes $DEPLOYPATH
@@ -21,7 +21,6 @@ deployment:
     - /bin/cp composer.json $DEPLOYPATH
     - /bin/cp composer.lock $DEPLOYPATH
     - /bin/cp modules_statuses.json $DEPLOYPATH
-    - /bin/cp tambah module simulas $DEPLOYPATH
     - /bin/cp package-lock.json $DEPLOYPATH
     - /bin/cp package.json $DEPLOYPATH
     - /bin/cp phpunit.xml $DEPLOYPATH

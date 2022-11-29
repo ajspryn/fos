@@ -106,16 +106,16 @@
        ul
            {margin-bottom:0cm;}
        </style>
-       
+
        </head>
-       
+
        <body lang=EN-US style='word-wrap:break-word'>
        <div class="center-layout">
                <div class="card-app-design">
                <div class="WordSection1">
-       
+
                    <p class=MsoNormal>&nbsp;</p>
-       
+
                    <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;border:none'>
                        <tr style='height:28.05pt'>
                            <td width=570
@@ -130,11 +130,11 @@
                            </td>
                        </tr>
                    </table>
-       
+
                    <p class=MsoNormal style='text-align:justify'><span
                            style='font-family:"Times New Roman",serif'>&nbsp;</span>
                    </p>
-       
+
                    <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse;border:none'>
                        <tr style='height:160.8pt'>
                            <td width=189 valign=top style='width:141.5pt;padding:0cm 5.4pt 0cm 5.4pt;
@@ -186,11 +186,11 @@
                            </td>
                        </tr>
                    </table>
-       
+
                    <p class=MsoNormal><span
                            style='font-size:12.0pt;line-height:106%;font-family:
        "Times New Roman",serif'>&nbsp;</span></p>
-       
+
                    <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;border:none'>
                        <tr style='height:25.85pt'>
                            <td width=570 colspan=3
@@ -263,11 +263,11 @@
                            </td>
                        </tr>
                    </table>
-       
+
                    <p class=MsoNormal style='line-height:normal'><span
                            style='font-size:12.0pt;
        font-family:"Times New Roman",serif'>&nbsp;</span></p>
-       
+
                    <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
                        style='border-collapse:collapse;border:none'>
                        <tr style='height:27.45pt'>
@@ -367,11 +367,11 @@
                            </td>
                        </tr>
                    </table>
-       
+
                    <p class=MsoNormal style='text-align:justify'>&nbsp;</p>
-       
+
                </div>
-       
+
                <div class="WordSection2">
        <div class = "row">
                    <div class="row col-12">
@@ -383,7 +383,7 @@
                        </div>
                    </div>
                </div>
-       
+
        <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=756
         style='width:567.05pt;margin-left:13.9pt;border-collapse:collapse;border:none'>
         <tr style='height:27.55pt'>
@@ -1045,35 +1045,35 @@
            lang=EN-ID style='font-size:10.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
            </td>
           </tr>
-       
+
          </table>
          <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'></p>
          </td>
         </tr>
        </table>
-       
+
        <p class=MsoNormal><span lang=EN-ID style='font-size:10.0pt;line-height:107%;
        font-family:"Times New Roman",serif'>&nbsp;</span></p>
-       
+
        </div>
-       
-       
+
+
        <!-- BEGIN: Vendor JS-->
        <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
        <!-- BEGIN Vendor JS-->
-       
+
        <!-- BEGIN: Page Vendor JS-->
        <!-- END: Page Vendor JS-->
-       
+
        <!-- BEGIN: Theme JS-->
        <script src="../../../app-assets/js/core/app-menu.min.js"></script>
        <script src="../../../app-assets/js/core/app.min.js"></script>
        <!-- END: Theme JS-->
-       
+
        <!-- BEGIN: Page JS-->
        <script src="../../../app-assets/js/scripts/pages/app-invoice-print.min.js"></script>
        <!-- END: Page JS-->
-       
+
        <script>
            $(window).on('load', function() {
                if (feather) {
@@ -1086,5 +1086,5 @@
        </script>
        </body>
        <!-- END: Body-->
-       
+
        </html>

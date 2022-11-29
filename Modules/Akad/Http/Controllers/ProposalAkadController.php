@@ -72,7 +72,6 @@ use Modules\Form\Entities\FormPprDataPinjaman;
 use Modules\Form\Entities\FormPprDataPinjamanKartuKredit;
 use Modules\Form\Entities\FormPprDataPinjamanLainnya;
 use Modules\Form\Entities\FormPprDataPribadi;
-use Modules\Ppr\Entities\PprLampiran;
 use Modules\Ppr\Entities\PprScoring;
 use Modules\Skpd\Entities\SkpdJenisNasabah;
 
@@ -319,7 +318,17 @@ class ProposalAkadController extends Controller
      */
     public function showPpr($id)
     {
-        $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
+
+        $historystatus = PprPembiayaanHistory::select()
+            ->where('form_ppr_pembiayaan_id', $id)
+            ->orderby('created_at', 'desc')
+            ->get()
+            ->first();
+
+        $data = FormPprPembiayaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
+
+        $nasabah = FormPprDataPribadi::select()->where('id', $id)->get()->first();
+        $pekerjaan_nasabah = FormPprDataPekerjaan::select()->where('form_ppr_data_pribadi_id', $id)->get()->first();
 
         //Timeline
         $waktuawal = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();
@@ -327,11 +336,9 @@ class ProposalAkadController extends Controller
 
         $waktumulai = Carbon::parse($waktuawal->created_at);
         $waktuberakhir = Carbon::parse($waktuakhir->created_at);
-
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
 
-        //Plafond
-        $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
+        $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->get()->first();
 
         //Tenor
         $tenorTahun = $pembiayaan->form_permohonan_jangka_waktu_ppr;
@@ -369,7 +376,7 @@ class ProposalAkadController extends Controller
         //Usia Nasabah
         $usiaNasabah = Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir)->age;
 
-        return view('akad::proposal.lihat', [
+        return view('dirbis::ppr.komite.lihat', [
             'segmen' => 'PPR',
             'title' => 'Detail Proposal',
             'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
@@ -386,15 +393,6 @@ class ProposalAkadController extends Controller
             'angsuran' => $angsuran,
             'plafond' => $plafond,
             'plafondMaks' => $plafondMaks,
-            'idir' => $idir,
-            'idebs' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get(),
-            'idebKartuKredits' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get(),
-            'idebLains' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
-            'lampiran' => PprLampiran::select()->where('form_ppr_pembiayaan_id', $id)->get()->first(),
-            'ftv' => $ftv,
-            'pembagi' => $pembagi,
-            'persenDp' => $persenDp,
-            'dp' => $dp,
 
             'aos' => Role::select()->where('jabatan_id', 1)->get(),
             'pekerjaans' => FormPprDataPekerjaan::all(),
@@ -675,7 +673,7 @@ class ProposalAkadController extends Controller
         }
         //proses menentukan rating
         $proses_bendahara = SkpdBendahara::select()->where('skpd_instansi_id', $data->skpd_instansi_id)->get()->first();
-        if ($dsr > 36) {
+        if ($dsr >= 36) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 1)->get()->first();
         } else if ($dsr <= 35 && $dsr >= 31) {
             $proses_dsr = SkpdScoreDsr::select()->where('rating', 2)->get()->first();
@@ -728,9 +726,9 @@ class ProposalAkadController extends Controller
 
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
         // return $proses_dsr;
-        $no = Pembiayaan::select()->where('status', 'Selesai Akad')->get()->count();
+        // $no = Pembiayaan::select()->where('status','Selesai Akad')->get()->count();
 
-        $no_surat = (2298 - $no) + ($no + 1);
+        // $no_surat = (2298 - 12) + ($no+1);
 
 
         // return $no_surat;

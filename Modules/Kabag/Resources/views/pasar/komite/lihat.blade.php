@@ -346,7 +346,7 @@
                                                                             {{ $idep->agunan }}
                                                                         </td>
                                                                         <td style="text-align: center">
-                                                                            {{ $idep->kol_tertinggi }}</td>
+                                                                            {{ $idep->kol }}</td>
                                                                     </tr>
                                                                 @endforeach
 

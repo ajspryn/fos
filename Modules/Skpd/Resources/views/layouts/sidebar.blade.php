@@ -63,29 +63,44 @@
             </li>
             <li><a class="d-flex align-items-center" href="#"><i data-feather="clipboard"></i><span
                         class="menu-item text-truncate" data-i18n="Account Settings">Proposal</span>
-                    @if ($proposalSkpd + $notifRevisi > 0)
+                    <<<<<<< HEAD @if ($proposalSkpd + $notifRevisi > 0)
                         <span
                             class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalSkpd + $notifRevisi }}</span>
-                    @endif
+                        =======
+                        @if ($notif_proposal + $notif > 0)
+                            <span
+                                class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal + $notif }}</span>
+                            >>>>>>> 184d48cc72ae8ef466a8f41aa9c19b185ea5874a
+                        @endif
                 </a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('skpd/proposal*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/skpd/proposal"><i
                                 data-feather="clipboard"></i><span class="menu-title text-truncate"
                                 data-i18n="home">Proposal</span>
-                            @if ($proposalSkpd > 0)
+                            <<<<<<< HEAD @if ($proposalSkpd > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $proposalSkpd }}</span>
-                            @endif
+                                =======
+                                @if ($notif_proposal > 0)
+                                    <span
+                                        class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notif_proposal }}</span>
+                                    >>>>>>> 184d48cc72ae8ef466a8f41aa9c19b185ea5874a
+                                @endif
                         </a>
                     </li>
                     <li class="{{ Request::is('skpd/revisi*') ? 'active' : 'nav-item' }} "><a
                             class="d-flex align-items-center" href="/skpd/revisi"><i data-feather="circle"></i><span
                                 class="menu-title text-truncate" data-i18n="home">Revisi Proposal</span>
-                            @if ($notifRevisi > 0)
+                            <<<<<<< HEAD @if ($notifRevisi > 0)
                                 <span
                                     class="badge badge-light-success rounded-pill ms-auto me-1">{{ $notifRevisi }}</span>
-                            @endif
+                                =======
+                                @if ($revisi > 0)
+                                    <span
+                                        class="badge badge-light-success rounded-pill ms-auto me-1">{{ $revisi }}</span>
+                                    >>>>>>> 184d48cc72ae8ef466a8f41aa9c19b185ea5874a
+                                @endif
                         </a>
                     </li>
                 </ul>
