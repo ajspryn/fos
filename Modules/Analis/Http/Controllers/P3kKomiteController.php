@@ -62,10 +62,12 @@ class P3kKomiteController extends Controller
     // new code
     public function index()
     {
+        $search = request('search');
+
         $latestSub = P3kPembiayaanHistory::selectRaw('p3k_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('p3k_pembiayaan_id');
 
-        $latestHistoriesAll = P3kPembiayaanHistory::with([
+        $query = P3kPembiayaanHistory::with([
             'p3kPembiayaan.nasabah.pekerjaan',
             'statusHistory',
             'jabatan',
@@ -74,18 +76,29 @@ class P3kKomiteController extends Controller
             ->joinSub($latestSub, 'lh', function ($join) {
                 $join->on('p3k_pembiayaan_histories.id', '=', 'lh.latest_id');
             })
-            ->get();
+            ->where(function ($q) {
+                $q->where(function ($q2) {
+                    $q2->where('p3k_pembiayaan_histories.status_id', '!=', 3)
+                        ->orWhere('p3k_pembiayaan_histories.jabatan_id', '!=', 1);
+                })->where(function ($q2) {
+                    $q2->where('p3k_pembiayaan_histories.status_id', '!=', 4)
+                        ->orWhere('p3k_pembiayaan_histories.jabatan_id', '!=', 3);
+                });
+            });
 
-        $proposals = $latestHistoriesAll->filter(function ($history) {
-            return !(
-                ($history->status_id == 3 && $history->jabatan_id == 1)
-                || ($history->status_id == 4 && $history->jabatan_id == 3)
-            );
-        })->sortByDesc('updated_at')->values();
+        if ($search) {
+            $query->whereHas('p3kPembiayaan.nasabah', function ($q) use ($search) {
+                $q->where('nama_nasabah', 'like', "%{$search}%")
+                    ->orWhere('no_ktp', 'like', "%{$search}%");
+            });
+        }
+
+        $proposals = $query->orderByDesc('p3k_pembiayaan_histories.id')->paginate(10)->withQueryString();
 
         return view('analis::p3k.komite.index', [
             'title' => 'Data Komite',
             'proposals' => $proposals,
+            'search' => $search,
         ]);
     }
 
@@ -148,26 +161,26 @@ class P3kKomiteController extends Controller
         }
 
         //Angsuran
-        $nominalPembiayaan = $data->nominal_pembiayaan;
-        $tenor = $data->tenor;
-        $rate = $data->rate / 100;
+        $nominalPembiayaan = (float)str_replace('.', '', $data->nominal_pembiayaan ?? '0');
+        $tenor = (float)str_replace('.', '', $data->tenor ?? '0');
+        $rate = (float)str_replace('.', '', $data->rate ?? '0') / 100;
 
         $hargaJual = ($nominalPembiayaan * $rate * $tenor) + $nominalPembiayaan;
-        $angsuran = $hargaJual / $tenor;
-        $totalAngsuranBtbFasAktif = $data->total_angsuran_btb_fas_aktif;
+        $angsuran = $tenor > 0 ? $hargaJual / $tenor : 0;
+        $totalAngsuranBtbFasAktif = (float)str_replace('.', '', $data->total_angsuran_btb_fas_aktif ?? '0');
 
         //Biaya Administrasi
         $byAdm = 1.5 / 100 * $nominalPembiayaan;
 
         //Pendapatan
-        $gajiPokok = $data->gaji_pokok;
-        $gajiTpp = $data->gaji_tpp;
-        $gajiPasangan = $data->gaji_pasangan;
+        $gajiPokok = (float)str_replace('.', '', $data->gaji_pokok ?? '0');
+        $gajiTpp = (float)str_replace('.', '', $data->gaji_tpp ?? '0');
+        $gajiPasangan = (float)str_replace('.', '', $data->gaji_pasangan ?? '0');
         $totalPendapatan = $gajiPokok + $gajiTpp;
         $totalPendapatanJoinIncome = $gajiPokok + $gajiTpp + $gajiPasangan;
 
         //Pengeluaran
-        $pengeluaranLainnya = $data->pengeluaran_lainnya;
+        $pengeluaranLainnya = (float)str_replace('.', '', $data->pengeluaran_lainnya ?? '0');
 
         //Pendapatan bersih
         $pendapatanBersih = $totalPendapatan - $totalAngsuranBtbFasAktif - $pengeluaranLainnya;

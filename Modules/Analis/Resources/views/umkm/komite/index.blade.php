@@ -30,11 +30,17 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-datatable table-responsive pt-0">
-                                <table class="datatables-basic table">
+                            <div class="card-header">
+                                <form method="GET" action="/analis/umkm/komite" class="d-flex gap-2">
+                                    <input type="text" name="search" class="form-control" placeholder="Cari nama / alamat..." value="{{ request('search') }}">
+                                    <button type="submit" class="btn btn-primary">Cari</button>
+                                    <a href="/analis/umkm/komite" class="btn btn-secondary">Reset</a>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
                                 <thead>
                                     <tr>
-                                        <th></th>
                                         <th style="text-align: center">No</th>
                                         <th style="text-align: center">Nama Nasabah</th>
                                         <th style="text-align: center">Alamat</th>
@@ -47,45 +53,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($komites as $komite)
+                                    @forelse ($komites as $komite)
                                         @php
                                             $history = $histories[$komite->id] ?? null;
                                         @endphp
-                                        @if ($history && $history->status_id == 11 && $history->jabatan_id == 3)
                                         <tr>
-                                            <td></td>
-                                            <td style="text-align: center">{{ $loop->iteration }}</td>
+                                            <td style="text-align: center">{{ $loop->iteration + ($komites->currentPage() - 1) * $komites->perPage() }}</td>
                                             <td>{{ $komite->nasabahh->nama_nasabah }}</td>
                                             <td>{{ $komite->nasabahh->alamat }}</td>
                                             <td style="text-align: center">{{ $komite->keteranganusaha->nama_usaha }}</td>
-                                            <td style="text-align: center">{{ number_format($komite->nominal_pembiayaan) }}</td>
+                                            <td style="text-align: center">{{ number_format((float)str_replace('.', '', $komite->nominal_pembiayaan ?? '0')) }}</td>
                                             <td style="text-align: center">{{ $komite->tgl_pembiayaan }}</td>
-                                            <td style="text-align: center"
-                                                value="{{ $history?->statushistory?->id ?? '' }} ,{{ $history?->jabatan?->jabatan_id ?? '' }} ">
-                                                 @if ($history?->statushistory?->id ?? '' == 5)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-success">{{ $history?->statushistory?->keterangan ?? '' }}
-                                                        {{ $history?->jabatan?->keterangan ?? '' }}</span>
-                                                @elseif ($history?->statushistory?->id ?? '' == 4)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-warning">{{ $history?->statushistory?->keterangan ?? '' }}
-                                                        {{ $history?->jabatan?->keterangan ?? '' }}</span>
+                                            <td style="text-align: center">
+                                                @if (in_array($history?->status_id, [5, 11]))
+                                                    <span class="badge rounded-pill badge-light-success">{{ $history?->statushistory?->keterangan ?? '' }}</span>
+                                                @elseif ($history?->status_id == 9)
+                                                    <span class="badge rounded-pill badge-light-success">{{ $history?->statushistory?->keterangan ?? '' }}</span>
+                                                @elseif (in_array($history?->status_id, [6, 10]))
+                                                    <span class="badge rounded-pill badge-light-danger">{{ $history?->statushistory?->keterangan ?? '' }}</span>
+                                                @elseif ($history?->status_id == 7)
+                                                    <span class="badge rounded-pill badge-light-warning">{{ $history?->statushistory?->keterangan ?? '' }}</span>
                                                 @else
-                                                    <span
-                                                        class="badge rounded-pill badge-light-info">{{ $history?->statushistory?->keterangan ?? '' }}
-                                                        {{ $history?->jabatan?->keterangan ?? '' }}</span>
+                                                    <span class="badge rounded-pill badge-light-info">{{ $history?->statushistory?->keterangan ?? '' }} {{ $history?->jabatan?->keterangan ?? '' }}</span>
                                                 @endif
                                             </td>
-                                            <td style="text-align: center">{{ $komite->user->name }}</td>
+                                            <td style="text-align: center">{{ $komite->user->name ?? '-' }}</td>
                                             <td>
-                                                <a href="/analis/umkm/komite/{{ $komite->id }}"
-                                                    class="btn btn-outline-info round">Detail</a>
+                                                <a href="/analis/umkm/komite/{{ $komite->id }}" class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
-                                        @endif
-                                    @endforeach
+                                    @empty
+                                        <tr><td colspan="9" class="text-center">Tidak ada data komite.</td></tr>
+                                    @endforelse
                                 </tbody>
                                 </table>
+                            </div>
+                            <div class="card-body">
+                                {{ $komites->links() }}
                             </div>
                         </div>
                     </div>

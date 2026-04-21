@@ -20,33 +20,42 @@ class SkpdProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $latestSub = SkpdPembiayaanHistory::selectRaw('skpd_pembiayaan_id, MAX(id) as latest_id')
+        $search = $request->search;
+
+        $latestSub = DB::table('skpd_pembiayaan_histories')
+            ->selectRaw('skpd_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('skpd_pembiayaan_id');
 
-        $latestHistories = SkpdPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
-            $join->on('skpd_pembiayaan_histories.id', '=', 'lh.latest_id');
-        })
-            ->with(['statushistory', 'jabatan'])
-            ->get([
-                'skpd_pembiayaan_histories.skpd_pembiayaan_id',
-                'status_id',
-                'jabatan_id',
-                'user_id',
-            ]);
+        $proposalIds = DB::table('skpd_pembiayaan_histories as h')
+            ->joinSub($latestSub, 'lh', 'h.id', '=', 'lh.latest_id')
+            ->where(function ($q) {
+                $q->where(function ($q2) {
+                    $q2->where('h.status_id', 3)->where('h.jabatan_id', 1);
+                })->orWhere(function ($q2) {
+                    $q2->where('h.status_id', 4)->where('h.jabatan_id', 3);
+                });
+            })
+            ->pluck('h.skpd_pembiayaan_id');
 
-        $proposalIds = $latestHistories->filter(function ($history) {
-            return ($history->status_id == 11 && $history->jabatan_id == 1)
-                || ($history->status_id == 4 && $history->jabatan_id == 3);
-        })->pluck('skpd_pembiayaan_id')->unique();
-
-        $proposals = SkpdPembiayaan::with(['nasabah', 'instansi', 'golongan'])
+        $proposals = SkpdPembiayaan::with(['nasabah', 'instansi', 'golongan', 'user'])
             ->whereIn('id', $proposalIds)
+            ->when($search, fn($q) => $q->whereHas(
+                'nasabah',
+                fn($q2) =>
+                $q2->where('nama_nasabah', 'like', "%$search%")->orWhere('no_ktp', 'like', "%$search%")
+            ))
             ->orderBy('tanggal_pengajuan', 'desc')
-            ->get();
+            ->paginate(10)->withQueryString();
 
-        $histories = $latestHistories->keyBy('skpd_pembiayaan_id');
+        $histories = SkpdPembiayaanHistory::with(['statushistory', 'jabatan'])
+            ->whereIn('id', function ($q) {
+                $q->selectRaw('MAX(id)')->from('skpd_pembiayaan_histories')->groupBy('skpd_pembiayaan_id');
+            })
+            ->whereIn('skpd_pembiayaan_id', $proposalIds)
+            ->get()
+            ->keyBy('skpd_pembiayaan_id');
 
         return view('analis::skpd.proposal.index', [
             'title' => 'Proposal SKPD',

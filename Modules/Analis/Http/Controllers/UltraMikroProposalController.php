@@ -16,38 +16,38 @@ class UltraMikroProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $latestSub = UltraMikroPembiayaanHistory::selectRaw('ultra_mikro_pembiayaan_id, MAX(id) as latest_id')
+        $search = $request->search;
+
+        $latestSub = DB::table('ultra_mikro_pembiayaan_histories')
+            ->selectRaw('ultra_mikro_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('ultra_mikro_pembiayaan_id');
 
-        $latestHistories = UltraMikroPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
-            $join->on('ultra_mikro_pembiayaan_histories.id', '=', 'lh.latest_id');
-        })
-            ->with(['statushistory', 'jabatan'])
-            ->get([
-                'ultra_mikro_pembiayaan_histories.ultra_mikro_pembiayaan_id',
-                'status_id',
-                'jabatan_id',
-                'user_id',
-            ]);
-
-        $proposalIds = $latestHistories->filter(function ($history) {
-            return ($history->status_id == 3 && $history->jabatan_id == 1)
-                || ($history->status_id == 4 && $history->jabatan_id == 3);
-        })->pluck('ultra_mikro_pembiayaan_id')->unique();
+        $proposalIds = DB::table('ultra_mikro_pembiayaan_histories as h')
+            ->joinSub($latestSub, 'lh', 'h.id', '=', 'lh.latest_id')
+            ->where(function ($q) {
+                $q->where(function ($q2) {
+                    $q2->where('h.status_id', 3)->where('h.jabatan_id', 1);
+                })->orWhere(function ($q2) {
+                    $q2->where('h.status_id', 4)->where('h.jabatan_id', 3);
+                });
+            })
+            ->pluck('h.ultra_mikro_pembiayaan_id');
 
         $proposals = UltraMikroPembiayaan::with(['nasabah', 'user'])
             ->whereIn('id', $proposalIds)
+            ->when($search, fn($q) => $q->whereHas(
+                'nasabah',
+                fn($q2) =>
+                $q2->where('nama_nasabah', 'like', "%$search%")->orWhere('no_ktp', 'like', "%$search%")
+            ))
             ->orderBy('tanggal_pengajuan', 'desc')
-            ->get();
-
-        $histories = $latestHistories->keyBy('ultra_mikro_pembiayaan_id');
+            ->paginate(10)->withQueryString();
 
         return view('analis::ultra_mikro.proposal.index', [
             'title' => 'Proposal Ultra Mikro',
             'proposals' => $proposals,
-            'histories' => $histories,
         ]);
     }
 

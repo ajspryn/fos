@@ -144,33 +144,33 @@
                     <tr>
                         <td class="pe-1">Gaji Pokok</td>
                         <td><span class="fw-bold">: Rp
-                                {{ number_format((float)($pembiayaan->gaji_pokok ?? 0), 0, ',', '.') }}</span>
+                                {{ number_format((float)str_replace('.', '', $pembiayaan->gaji_pokok ?? '0'), 0, ',', '.') }}</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="pe-1">Gaji TPP</td>
                         <td>: Rp
-                            {{ number_format((float)($pembiayaan->gaji_tpp ?? 0), 0, ',', '.') }}
+                            {{ number_format((float)str_replace('.', '', $pembiayaan->gaji_tpp ?? '0'), 0, ',', '.') }}
                         </td>
                     </tr>
                     <tr>
                         <td class="pe-1 mt-2">Total Pendapatan</td>
                         <td><span class="fw-bold">: Rp
-                                {{ number_format((float)($pembiayaan->gaji_pokok ?? 0) + (float)($pembiayaan->gaji_tpp ?? 0), 0, ',', '.') }}</span>
+                                {{ number_format((float)str_replace('.', '', $pembiayaan->gaji_pokok ?? '0') + (float)str_replace('.', '', $pembiayaan->gaji_tpp ?? '0'), 0, ',', '.') }}</span>
                         </td>
                     </tr>
                     @if ($pembiayaan->nasabah->status_pernikahan == 'Menikah')
                         <tr>
                             <td class="pe-1">Gaji Pasangan</td>
                             <td>: Rp
-                                {{ number_format((float)($pembiayaan->gaji_pasangan ?? 0), 0, ',', '.') }}
+                                {{ number_format((float)str_replace('.', '', $pembiayaan->gaji_pasangan ?? '0'), 0, ',', '.') }}
                             </td>
                         </tr>
                         <tr>
                             <td class="pe-1 mt-2">Total Pendapatan Join
                                 Income</td>
                             <td><span class="fw-bold">: Rp
-                                    {{ number_format((float)($pembiayaan->gaji_pokok ?? 0) + (float)($pembiayaan->gaji_tpp ?? 0) + (float)($pembiayaan->gaji_pasangan ?? 0), 0, ',', '.') }}</span>
+                                    {{ number_format((float)str_replace('.', '', $pembiayaan->gaji_pokok ?? '0') + (float)str_replace('.', '', $pembiayaan->gaji_tpp ?? '0') + (float)str_replace('.', '', $pembiayaan->gaji_pasangan ?? '0'), 0, ',', '.') }}</span>
                             </td>
                         </tr>
                     @endif
@@ -183,19 +183,19 @@
                     <tr>
                         <td class="pe-1">Angsuran BTB (Fas. Aktif)</td>
                         <td>: Rp
-                            {{ number_format((float)($pembiayaan->total_angsuran_btb_fas_aktif ?? 0), 0, ',', '.') }}
+                            {{ number_format((float)str_replace('.', '', $pembiayaan->total_angsuran_btb_fas_aktif ?? '0'), 0, ',', '.') }}
                         </td>
                     </tr>
                     <tr>
                         <td class="pe-1">Pengeluaran Lainnya</td>
                         <td>: Rp
-                            {{ number_format((float)($pembiayaan->pengeluaran_lainnya ?? 0), 0, ',', '.') }}
+                            {{ number_format((float)str_replace('.', '', $pembiayaan->pengeluaran_lainnya ?? '0'), 0, ',', '.') }}
                         </td>
                     </tr>
                     <tr>
                         <td class="pe-1">Total Pengeluaran</td>
                         <td><span class="fw-bold">: Rp
-                                {{ number_format((float)($pembiayaan->total_angsuran_btb_fas_aktif ?? 0) + (float)($pembiayaan->pengeluaran_lainnya ?? 0), 0, ',', '.') }}</span>
+                                {{ number_format((float)str_replace('.', '', $pembiayaan->total_angsuran_btb_fas_aktif ?? '0') + (float)str_replace('.', '', $pembiayaan->pengeluaran_lainnya ?? '0'), 0, ',', '.') }}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -203,10 +203,10 @@
             <hr>
             @php
                 if (!isset($pendapatanBersih)) {
-                    $pendapatanBersih = ($pembiayaan->gaji_pokok ?? 0) + ($pembiayaan->gaji_tpp ?? 0) - (($pembiayaan->total_angsuran_btb_fas_aktif ?? 0) + ($pembiayaan->pengeluaran_lainnya ?? 0));
+                    $pendapatanBersih = (float)str_replace('.', '', $pembiayaan->gaji_pokok ?? '0') + (float)str_replace('.', '', $pembiayaan->gaji_tpp ?? '0') - ((float)str_replace('.', '', $pembiayaan->total_angsuran_btb_fas_aktif ?? '0') + (float)str_replace('.', '', $pembiayaan->pengeluaran_lainnya ?? '0'));
                 }
                 if (!isset($pendapatanBersihJoinIncome)) {
-                    $pendapatanBersihJoinIncome = $pendapatanBersih + ($pembiayaan->gaji_pasangan ?? 0);
+                    $pendapatanBersihJoinIncome = $pendapatanBersih + (float)str_replace('.', '', $pembiayaan->gaji_pasangan ?? '0');
                 }
             @endphp
 
@@ -427,7 +427,7 @@
                     <tr>
                         <td class="pe-1">Harga Beli</td>
                         <td><span class="fw-bold">: Rp
-                                {{ number_format((float)($pembiayaan->nominal_pembiayaan ?? 0), 0, ',', '.') }}</span>
+                                {{ number_format((float)str_replace('.', '', $pembiayaan->nominal_pembiayaan ?? '0'), 0, ',', '.') }}</span>
                         </td>
                     </tr>
                     <tr>
@@ -439,7 +439,7 @@
                             @endif
                         </td>
                         <td>: Rp
-                            {{ number_format($hargaJual - $pembiayaan->nominal_pembiayaan, 0, ',', '.') }}
+                            {{ number_format($hargaJual - (float)str_replace('.', '', $pembiayaan->nominal_pembiayaan ?? '0'), 0, ',', '.') }}
                         </td>
                     </tr>
                     <tr>

@@ -65,7 +65,7 @@
                 </tr>
                 <tr>
                     <td class="label">Plafond</td>
-                    <td class="value">Rp{{ number_format((float)($pembiayaan->nominal_pembiayaan ?? 0),0,',','.') }}</td>
+                    <td class="value">Rp{{ number_format((float)str_replace('.', '', $pembiayaan->nominal_pembiayaan ?? '0'),0,',','.') }}</td>
                 </tr>
                 <tr>
                     <td class="label">Margin</td>
@@ -204,15 +204,15 @@
                                 <table class="table small">
                                     <tr>
                                         <td class="label">Gaji Pokok</td>
-                                        <td class="value">Rp{{ number_format((float)($pembiayaan->gaji_pokok ?? 0),0,',','.') }}</td>
+                                        <td class="value">Rp{{ number_format((float)str_replace('.', '', $pembiayaan->gaji_pokok ?? '0'),0,',','.') }}</td>
                                     </tr>
                                     <tr>
                                         <td class="label">Gaji TPP</td>
-                                        <td class="value">Rp{{ number_format((float)($pembiayaan->gaji_tpp ?? 0),0,',','.') }}</td>
+                                        <td class="value">Rp{{ number_format((float)str_replace('.', '', $pembiayaan->gaji_tpp ?? '0'),0,',','.') }}</td>
                                     </tr>
                                     <tr>
                                         <td class="label">Pendapatan Pasangan</td>
-                                        <td class="value">Rp{{ number_format((float)($pembiayaan->gaji_pasangan ?? 0),0,',','.') }}</td>
+                                        <td class="value">Rp{{ number_format((float)str_replace('.', '', $pembiayaan->gaji_pasangan ?? '0'),0,',','.') }}</td>
                                     </tr>
                                     <tr>
                                         <td class="label">Jml. Pend. Join Income</td>
@@ -220,7 +220,7 @@
                                     </tr>
                                     <tr>
                                         <td class="label">Jumlah Pendapatan</td>
-                                        <td class="value">Rp{{ number_format((float)($pembiayaan->gaji_pokok ?? 0) + (float)($pembiayaan->gaji_tpp ?? 0) + (float)($pembiayaan->gaji_pasangan ?? 0),0,',','.') }}</td>
+                                        <td class="value">Rp{{ number_format((float)str_replace('.', '', $pembiayaan->gaji_pokok ?? '0') + (float)str_replace('.', '', $pembiayaan->gaji_tpp ?? '0') + (float)str_replace('.', '', $pembiayaan->gaji_pasangan ?? '0'),0,',','.') }}</td>
                                     </tr>
                                 </table>
                             </td>
@@ -229,15 +229,15 @@
                                 <table class="table small">
                                     <tr>
                                         <td class="label">Angsuran BTB (Fas. Aktif)</td>
-                                        <td class="value">Rp{{ number_format((float)($pembiayaan->total_angsuran_btb_fas_aktif ?? 0),0,',','.') }}</td>
+                                        <td class="value">Rp{{ number_format((float)str_replace('.', '', $pembiayaan->total_angsuran_btb_fas_aktif ?? '0'),0,',','.') }}</td>
                                     </tr>
                                     <tr>
                                         <td class="label">Pengeluaran Lainnya</td>
-                                        <td class="value">Rp{{ number_format((float)($pembiayaan->pengeluaran_lainnya ?? 0),0,',','.') }}</td>
+                                        <td class="value">Rp{{ number_format((float)str_replace('.', '', $pembiayaan->pengeluaran_lainnya ?? '0'),0,',','.') }}</td>
                                     </tr>
                                     <tr>
                                         <td class="label">Jumlah Pengeluaran</td>
-                                        <td class="value">Rp{{ number_format((float)($pembiayaan->total_angsuran_btb_fas_aktif ?? 0) + (float)($pembiayaan->pengeluaran_lainnya ?? 0),0,',','.') }}</td>
+                                        <td class="value">Rp{{ number_format((float)str_replace('.', '', $pembiayaan->total_angsuran_btb_fas_aktif ?? '0') + (float)str_replace('.', '', $pembiayaan->pengeluaran_lainnya ?? '0'),0,',','.') }}</td>
                                     </tr>
                                     <tr>
                                         <td class="label">Sisa Pendapatan Bersih</td>
@@ -260,7 +260,7 @@
                         </tr>
                         <tr>
                             <td class="label">Harga Beli</td>
-                            <td class="value">Rp{{ number_format((float)($pembiayaan->nominal_pembiayaan ?? 0),0,',','.') }}</td>
+                            <td class="value">Rp{{ number_format((float)str_replace('.', '', $pembiayaan->nominal_pembiayaan ?? '0'),0,',','.') }}</td>
                             <td class="label">Harga Jual</td>
                             <td class="value">Rp{{ number_format($hargaJual ?? 0,0,',','.') }}</td>
                         </tr>

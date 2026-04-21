@@ -35,39 +35,52 @@ class SkpdKomiteController extends Controller
      */
     public function index()
     {
-        $komite = SkpdPembiayaanHistory::select()
-            ->latest()
-            ->groupBy('skpd_pembiayaan_id')
-            ->where(function ($query) {
-                $query
-                    ->where('status_id', 11)
-                    ->where('jabatan_id', 3);
-            })
-            ->get();
-
-        $proposalIds = $komite->pluck('skpd_pembiayaan_id')->unique();
+        $search = request('search');
 
         $latestSub = SkpdPembiayaanHistory::selectRaw('skpd_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('skpd_pembiayaan_id');
+
+        $proposalIds = SkpdPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
+            $join->on('skpd_pembiayaan_histories.id', '=', 'lh.latest_id');
+        })
+            ->where(function ($q) {
+                $q->where(function ($q2) {
+                    $q2->where('skpd_pembiayaan_histories.status_id', 3)
+                        ->where('skpd_pembiayaan_histories.jabatan_id', 1);
+                })->orWhere(function ($q2) {
+                    $q2->where('skpd_pembiayaan_histories.status_id', 4)
+                        ->where('skpd_pembiayaan_histories.jabatan_id', 3);
+                });
+            })
+            ->pluck('skpd_pembiayaan_histories.skpd_pembiayaan_id');
 
         $latestHistories = SkpdPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
             $join->on('skpd_pembiayaan_histories.id', '=', 'lh.latest_id');
         })
             ->with(['statushistory', 'jabatan'])
-            ->whereIn('skpd_pembiayaan_histories.skpd_pembiayaan_id', $proposalIds)
+            ->whereNotIn('skpd_pembiayaan_histories.skpd_pembiayaan_id', $proposalIds)
             ->get(['skpd_pembiayaan_histories.skpd_pembiayaan_id', 'status_id', 'jabatan_id']);
 
         $histories = $latestHistories->keyBy('skpd_pembiayaan_id');
+        $komiteIds = $latestHistories->pluck('skpd_pembiayaan_id')->unique();
 
-        $proposals = SkpdPembiayaan::with(['nasabah', 'instansi', 'user'])
-            ->whereIn('id', $proposalIds)
-            ->orderBy('tanggal_pengajuan', 'desc')
-            ->get();
+        $query = SkpdPembiayaan::with(['nasabah', 'instansi', 'user'])
+            ->whereIn('id', $komiteIds);
+
+        if ($search) {
+            $query->whereHas('nasabah', function ($q) use ($search) {
+                $q->where('nama_nasabah', 'like', "%{$search}%")
+                    ->orWhere('no_ktp', 'like', "%{$search}%");
+            });
+        }
+
+        $proposals = $query->orderByDesc('tanggal_pengajuan')->paginate(10)->withQueryString();
 
         return view('analis::skpd.komite.index', [
             'title' => 'Data Komite',
             'proposals' => $proposals,
             'histories' => $histories,
+            'search' => $search,
         ]);
     }
 
@@ -145,9 +158,9 @@ class SkpdKomiteController extends Controller
         }
         $nasabah = SkpdNasabah::select()->where('id', $data->skpd_nasabah_id)->first();
         $jaminan = SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->first();
-        $nominal_pembiayaan = $data->nominal_pembiayaan;
-        $tenor = $data->tenor;
-        $rate = $data->rate / 100;
+        $nominal_pembiayaan = (float)str_replace('.', '', $data->nominal_pembiayaan ?? '0');
+        $tenor = (float)str_replace('.', '', $data->tenor ?? '0');
+        $rate = (float)str_replace('.', '', $data->rate ?? '0') / 100;
 
         //angsuran
         $harga_jual = $nominal_pembiayaan * $rate * $tenor + $nominal_pembiayaan;
@@ -170,9 +183,9 @@ class SkpdKomiteController extends Controller
 
 
         //pemasukan
-        $gaji_pokok = $data->gaji_pokok;
-        $pendapatan_lainnya = $data->pendapatan_lainnya;
-        $gaji_tpp = $data->gaji_tpp;
+        $gaji_pokok = (float)str_replace('.', '', $data->gaji_pokok ?? '0');
+        $pendapatan_lainnya = (float)str_replace('.', '', $data->pendapatan_lainnya ?? '0');
+        $gaji_tpp = (float)str_replace('.', '', $data->gaji_tpp ?? '0');
         $total_pemasukan = $gaji_pokok + $gaji_tpp + $pendapatan_lainnya;
 
         //pendapatan Bersih

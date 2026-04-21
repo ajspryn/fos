@@ -42,37 +42,52 @@ class UmkmKomiteController extends Controller
      */
     public function index()
     {
+        $search = request('search');
+
         $latestSub = UmkmPembiayaanHistory::selectRaw('umkm_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('umkm_pembiayaan_id');
 
-        $latestHistoriesAll = UmkmPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
+        $proposalIds = UmkmPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
+            $join->on('umkm_pembiayaan_histories.id', '=', 'lh.latest_id');
+        })
+            ->where(function ($q) {
+                $q->where(function ($q2) {
+                    $q2->where('umkm_pembiayaan_histories.status_id', 3)
+                        ->where('umkm_pembiayaan_histories.jabatan_id', 1);
+                })->orWhere(function ($q2) {
+                    $q2->where('umkm_pembiayaan_histories.status_id', 4)
+                        ->where('umkm_pembiayaan_histories.jabatan_id', 3);
+                });
+            })
+            ->pluck('umkm_pembiayaan_histories.umkm_pembiayaan_id');
+
+        $latestHistories = UmkmPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
             $join->on('umkm_pembiayaan_histories.id', '=', 'lh.latest_id');
         })
             ->with(['statushistory', 'jabatan'])
+            ->whereNotIn('umkm_pembiayaan_histories.umkm_pembiayaan_id', $proposalIds)
             ->get(['umkm_pembiayaan_histories.umkm_pembiayaan_id', 'status_id', 'jabatan_id']);
 
-        $proposalIds = $latestHistoriesAll->filter(function ($history) {
-            return ($history->status_id == 11 && $history->jabatan_id == 1)
-                || ($history->status_id == 4 && $history->jabatan_id == 3);
-        })->pluck('umkm_pembiayaan_id')->unique();
+        $histories = $latestHistories->keyBy('umkm_pembiayaan_id');
+        $komiteIds = $latestHistories->pluck('umkm_pembiayaan_id')->unique();
 
-        $komiteIds = $latestHistoriesAll->filter(function ($history) {
-            return $history->status_id == 11 && $history->jabatan_id == 3;
-        })->pluck('umkm_pembiayaan_id')->unique();
+        $query = UmkmPembiayaan::with(['nasabahh', 'keteranganusaha', 'user'])
+            ->whereIn('id', $komiteIds);
 
-        $histories = $latestHistoriesAll
-            ->whereIn('umkm_pembiayaan_id', $komiteIds)
-            ->keyBy('umkm_pembiayaan_id');
+        if ($search) {
+            $query->whereHas('nasabahh', function ($q) use ($search) {
+                $q->where('nama_nasabah', 'like', "%{$search}%")
+                    ->orWhere('alamat', 'like', "%{$search}%");
+            });
+        }
 
-        $proposals = UmkmPembiayaan::with(['nasabahh', 'keteranganusaha', 'user'])
-            ->whereIn('id', $komiteIds)
-            ->orderBy('tgl_pembiayaan', 'desc')
-            ->get();
+        $komites = $query->orderByDesc('tgl_pembiayaan')->paginate(10)->withQueryString();
 
         return view('analis::umkm.komite.index', [
-            'title' => 'Data Nasabah',
-            'komites' => $proposals,
+            'title' => 'Data Komite',
+            'komites' => $komites,
             'histories' => $histories,
+            'search' => $search,
         ]);
     }
 
@@ -141,30 +156,30 @@ class UmkmKomiteController extends Controller
         $usaha = UmkmKeteranganUsaha::select()->where('umkm_pembiayaan_id', $id)->first();
         $jaminanrumah = UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id', $id)->first();
         $jaminanlain = UmkmJaminan::select()->where('umkm_pembiayaan_id', $id)->first();
-        $tenor = $data->tenor;
-        $harga = $data->nominal_pembiayaan;
-        $rate = $data->rate;
-        $margin = ($rate * $tenor) / 100;
+        $tenor = (float)str_replace('.', '', $data->tenor ?? '0');
+        $harga = (float)str_replace('.', '', $data->nominal_pembiayaan ?? '0');
+        $rate = (float)str_replace('.', '', $data->rate ?? '0');
+        $margin = $tenor > 0 ? ($rate * $tenor) / 100 : 0;
         $cash = PasarCashPick::select()->first();
 
         //idir
         $harga1 = $harga * $margin;
         $harga_jual = $harga1 + $harga;
 
-        $angsuran1 = (int)($harga_jual / $tenor);
+        $angsuran1 = $tenor > 0 ? (int)($harga_jual / $tenor) : 0;
 
 
         //pemasukan
 
-        $omset = $data->omset;
-        $hpp = $data->hpp;
-        $listrik = $data->listrik;
-        $transport = $data->trasport;
-        $sewa = $data->sewa;
-        $karyawan = $data->karyawan;
-        $telpon = $data->telpon;
+        $omset = (float)str_replace('.', '', $data->omset ?? '0');
+        $hpp = (float)str_replace('.', '', $data->hpp ?? '0');
+        $listrik = (float)str_replace('.', '', $data->listrik ?? '0');
+        $transport = (float)str_replace('.', '', $data->trasport ?? '0');
+        $sewa = (float)str_replace('.', '', $data->sewa ?? '0');
+        $karyawan = (float)str_replace('.', '', $data->karyawan ?? '0');
+        $telpon = (float)str_replace('.', '', $data->telpon ?? '0');
         $laba_bersih = ($omset - ($hpp + $listrik + $sewa + $karyawan + $telpon + $transport));
-        $total_pendapatan_bersih = $laba_bersih + $data->pendapatan_lain;
+        $total_pendapatan_bersih = $laba_bersih + (float)str_replace('.', '', $data->pendapatan_lain ?? '0');
 
         //pengeluaran
 

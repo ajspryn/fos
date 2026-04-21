@@ -16,32 +16,43 @@ class PprProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $latestSub = PprPembiayaanHistory::selectRaw('form_ppr_pembiayaan_id, MAX(id) as latest_id')
+        $search = $request->search;
+
+        $latestSub = DB::table('ppr_pembiayaan_histories')
+            ->selectRaw('form_ppr_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('form_ppr_pembiayaan_id');
 
-        $latestHistories = PprPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
-            $join->on('ppr_pembiayaan_histories.id', '=', 'lh.latest_id');
-        })
-            ->with(['statushistory', 'jabatan'])
-            ->get([
-                'ppr_pembiayaan_histories.form_ppr_pembiayaan_id',
-                'status_id',
-                'jabatan_id',
-                'user_id',
-            ]);
-
-        $proposalIds = $latestHistories->filter(function ($history) {
-            return ($history->status_id == 11 && $history->jabatan_id == 1)
-                || ($history->status_id == 4 && $history->jabatan_id == 3);
-        })->pluck('form_ppr_pembiayaan_id')->unique();
+        $proposalIds = DB::table('ppr_pembiayaan_histories as h')
+            ->joinSub($latestSub, 'lh', 'h.id', '=', 'lh.latest_id')
+            ->where(function ($q) {
+                $q->where(function ($q2) {
+                    $q2->where('h.status_id', 3)->where('h.jabatan_id', 1);
+                })->orWhere(function ($q2) {
+                    $q2->where('h.status_id', 4)->where('h.jabatan_id', 3);
+                });
+            })
+            ->pluck('h.form_ppr_pembiayaan_id');
 
         $proposals = FormPprPembiayaan::with(['pemohon', 'user'])
             ->whereIn('id', $proposalIds)
-            ->get();
+            ->when($search, fn($q) => $q->whereHas(
+                'pemohon',
+                fn($q2) =>
+                $q2->where('form_pribadi_pemohon_nama_lengkap', 'like', "%$search%")
+                    ->orWhere('form_pribadi_pemohon_no_ktp', 'like', "%$search%")
+            ))
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)->withQueryString();
 
-        $histories = $latestHistories->keyBy('form_ppr_pembiayaan_id');
+        $histories = PprPembiayaanHistory::with(['statushistory', 'jabatan'])
+            ->whereIn('id', function ($q) {
+                $q->selectRaw('MAX(id)')->from('ppr_pembiayaan_histories')->groupBy('form_ppr_pembiayaan_id');
+            })
+            ->whereIn('form_ppr_pembiayaan_id', $proposalIds)
+            ->get()
+            ->keyBy('form_ppr_pembiayaan_id');
 
         return view('analis::ppr.proposal.index', [
             'title' => 'Proposal PPR',

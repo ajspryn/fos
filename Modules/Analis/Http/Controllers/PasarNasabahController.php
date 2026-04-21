@@ -18,11 +18,15 @@ class PasarNasabahController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+        $proposals = PasarNasabahh::when($search, fn($q) => $q->where('nama_nasabah', 'like', "%$search%")->orWhere('no_ktp', 'like', "%$search%"))
+            ->paginate(10)
+            ->withQueryString();
         return view('analis::pasar.nasabah.index', [
             'title' => 'Nasabah',
-            'proposals' => PasarNasabahh::select()->get(),
+            'proposals' => $proposals,
         ]);
     }
     /**

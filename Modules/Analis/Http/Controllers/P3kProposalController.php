@@ -17,85 +17,47 @@ class P3kProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        DB::enableQueryLog();
+        $search = $request->search;
 
-        // $proposal = P3kPembiayaanHistory::select()
-        //     ->latest()
-        //     ->groupBy('p3k_pembiayaan_id')
-        //     ->where(function ($query) {
-        //         $query
-        //             ->where('status_id', 3)
-        //             ->where('jabatan_id', 1);
-        //     })
-        //     ->orWhere(function ($query) {
-        //         $query
-        //             ->where('status_id', 4)
-        //             ->where('jabatan_id', 3)
-        //             ->where('user_id', Auth::user()->id);
-        //     })
-        //     ->get();
+        $latestSub = DB::table('p3k_pembiayaan_histories')
+            ->selectRaw('p3k_pembiayaan_id, MAX(id) as latest_id')
+            ->groupBy('p3k_pembiayaan_id');
 
-        // $proposals = P3kPembiayaanHistory::with(['p3kPembiayaan.nasabah.pekerjaan'])
-        //     ->where(function ($query) {
-        //         $query->where('status_id', 3)
-        //             ->where('jabatan_id', 1);
-        //     })
-        //     ->orWhere(function ($query) {
-        //         $query->where('status_id', 4)
-        //             ->where('jabatan_id', 3)
-        //             ->where('user_id', Auth::user()->id);
-        //     })
-        //     ->latest()
-        //     ->groupBy('p3k_pembiayaan_id')
-        //     ->get();
-
-        //optimize?
-        $latestHistories = P3kPembiayaanHistory::select('id', 'p3k_pembiayaan_id')
-            ->whereIn('id', function ($query) {
-                $query->select(DB::raw('MAX(id)'))
-                    ->from('p3k_pembiayaan_histories')
-                    ->groupBy('p3k_pembiayaan_id');
-            });
-
-        $proposals = P3kPembiayaanHistory::with(['p3kPembiayaan.nasabah.pekerjaan'])
-            ->joinSub($latestHistories, 'latest_histories', function ($join) {
-                $join->on('p3k_pembiayaan_histories.id', '=', 'latest_histories.id');
+        $proposalIds = DB::table('p3k_pembiayaan_histories as h')
+            ->joinSub($latestSub, 'lh', 'h.id', '=', 'lh.latest_id')
+            ->where(function ($q) {
+                $q->where(function ($q2) {
+                    $q2->where('h.status_id', 3)->where('h.jabatan_id', 1);
+                })->orWhere(function ($q2) {
+                    $q2->where('h.status_id', 4)->where('h.jabatan_id', 3);
+                });
             })
-            ->where(function ($query) {
-                $query->where('status_id', 3)
-                    ->where('jabatan_id', 1);
-            })
-            ->orWhere(function ($query) {
-                $query->where('status_id', 4)
-                    ->where('jabatan_id', 3);
-            })
-            ->latest('p3k_pembiayaan_histories.updated_at')
-            ->get();
+            ->pluck('h.p3k_pembiayaan_id');
 
-        // dd(DB::getQueryLog());
-        // Log::info(DB::getQueryLog());
+        $proposals = P3kPembiayaan::with(['nasabah.pekerjaan'])
+            ->whereIn('id', $proposalIds)
+            ->when($search, fn($q) => $q->whereHas(
+                'nasabah',
+                fn($q2) =>
+                $q2->where('nama_nasabah', 'like', "%$search%")->orWhere('no_ktp', 'like', "%$search%")
+            ))
+            ->orderBy('tanggal_pengajuan', 'desc')
+            ->paginate(10)->withQueryString();
 
-        // $proposal = P3kPembiayaanHistory::select()
-        // ->latest()
-        // ->groupBy('p3k_pembiayaan_id')
-        // ->where(function ($query) {
-        //     $query
-        //         ->where('status_id', 5)
-        //         ->where('jabatan_id', 2);
-        // })
-        // ->orWhere(function ($query) {
-        //     $query
-        //         ->where('status_id', 4)
-        //         ->where('jabatan_id', 3)
-        //         ->where('user_id', Auth::user()->id);
-        // })
-        // ->get();
+        $histories = P3kPembiayaanHistory::selectRaw('p3k_pembiayaan_id, status_id, jabatan_id')
+            ->whereIn('id', function ($q) {
+                $q->selectRaw('MAX(id)')->from('p3k_pembiayaan_histories')->groupBy('p3k_pembiayaan_id');
+            })
+            ->whereIn('p3k_pembiayaan_id', $proposalIds)
+            ->get()
+            ->keyBy('p3k_pembiayaan_id');
 
         return view('analis::p3k.proposal.index', [
             'title' => 'Proposal P3K',
             'proposals' => $proposals,
+            'histories' => $histories,
         ]);
     }
 

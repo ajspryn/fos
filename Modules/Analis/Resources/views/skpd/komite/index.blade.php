@@ -1,6 +1,10 @@
 @extends('analis::layouts.main')
 
 @section('content')
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="container-xxl flex-grow-1 container-p-y">
             <div class="content-header row">
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
@@ -25,16 +29,21 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-datatable table-responsive pt-0">
-                            <table class="datatables-basic table">
+                            <div class="card-header">
+                                <form method="GET" action="/analis/skpd/komite" class="d-flex gap-2">
+                                    <input type="text" name="search" class="form-control" placeholder="Cari nama / NIK..." value="{{ request('search') }}">
+                                    <button type="submit" class="btn btn-primary">Cari</button>
+                                    <a href="/analis/skpd/komite" class="btn btn-secondary">Reset</a>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                            <table class="table">
                                 <thead>
                                     <tr>
-                                        <th></th>
                                         <th style="text-align: center">No</th>
                                         <th style="text-align: center">Nama Nasabah</th>
                                         <th style="text-align: center">Alamat</th>
                                         <th style="text-align: center">Instansi</th>
-                                        {{-- <th style="text-align: center">Golongan</th> --}}
                                         <th style="text-align: center">Nominal Pembiayaan</th>
                                         <th style="text-align: center">Status</th>
                                         <th style="text-align: center">Tanggal Pengajuan</th>
@@ -43,55 +52,48 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($proposals as $proposal)
+                                    @forelse ($proposals as $proposal)
                                         @php
                                             $history = $histories[$proposal->id] ?? null;
-
                                         @endphp
-                                        @if ($history && $history->status_id == 11 && $history->jabatan_id == 3)
                                         <tr>
-                                            <td></td>
-                                            <td style="text-align: center">{{ $loop->iteration }}</td>
+                                            <td style="text-align: center">{{ $loop->iteration + ($proposals->currentPage() - 1) * $proposals->perPage() }}</td>
                                             <td>{{ $proposal->nasabah->nama_nasabah }}</td>
                                             <td>{{ $proposal->nasabah->alamat }}</td>
+                                            <td style="text-align: center">{{ $proposal->instansi->nama_instansi }}</td>
+                                            <td style="text-align: center">Rp.{{ number_format((float)str_replace('.', '', $proposal->nominal_pembiayaan ?? '0')) }}</td>
                                             <td style="text-align: center">
-                                                {{ $proposal->instansi->nama_instansi }}
-                                            </td>
-
-                                            <td style="text-align: center">
-                                                Rp.{{ number_format($proposal->nominal_pembiayaan) }}</td>
-                                            <td style="text-align: center"
-                                                value="{{ $history?->statushistory?->id ?? '' }} ,{{ $history?->jabatan?->jabatan_id ?? '' }} ">
-                                                @if ($history?->statushistory?->id ?? '' == 5)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-success">{{ $history?->statushistory?->keterangan ?? '' }}
-                                                        {{ $history?->jabatan?->keterangan ?? '' }}</span>
-                                                @elseif ($history?->statushistory?->id ?? '' == 4)
-                                                    <span
-                                                        class="badge rounded-pill badge-light-warning">{{ $history?->statushistory?->keterangan ?? '' }}
-                                                        {{ $history?->jabatan?->keterangan ?? '' }}</span>
+                                                @if (in_array($history?->status_id, [5, 11]))
+                                                    <span class="badge rounded-pill badge-light-success">{{ $history?->statushistory?->keterangan ?? '' }}</span>
+                                                @elseif ($history?->status_id == 9)
+                                                    <span class="badge rounded-pill badge-light-success">{{ $history?->statushistory?->keterangan ?? '' }}</span>
+                                                @elseif (in_array($history?->status_id, [6, 10]))
+                                                    <span class="badge rounded-pill badge-light-danger">{{ $history?->statushistory?->keterangan ?? '' }}</span>
+                                                @elseif ($history?->status_id == 7)
+                                                    <span class="badge rounded-pill badge-light-warning">{{ $history?->statushistory?->keterangan ?? '' }}</span>
                                                 @else
-                                                    <span
-                                                        class="badge rounded-pill badge-light-info">{{ $history?->statushistory?->keterangan ?? '' }}
-                                                        {{ $history?->jabatan?->keterangan ?? '' }}</span>
+                                                    <span class="badge rounded-pill badge-light-info">{{ $history?->statushistory?->keterangan ?? '' }} {{ $history?->jabatan?->keterangan ?? '' }}</span>
                                                 @endif
                                             </td>
                                             <td style="text-align: center">{{ $proposal->tanggal_pengajuan }}</td>
-                                            <td style="text-align: center">{{ $proposal->user->name }}</td>
+                                            <td style="text-align: center">{{ $proposal->user->name ?? '-' }}</td>
                                             <td style="text-align: center">
-                                                <a href="/analis/skpd/komite/{{ $proposal->id }}"
-                                                    class="btn btn-outline-info round">Detail</a>
+                                                <a href="/analis/skpd/komite/{{ $proposal->id }}" class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
-                                        @endif
-                                    @endforeach
-
+                                    @empty
+                                        <tr><td colspan="9" class="text-center">Tidak ada data komite.</td></tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+                            </div>
+                            <div class="card-body">
+                                {{ $proposals->links() }}
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <!--/ Basic table -->
+        </div>
+    </div>
 @endsection

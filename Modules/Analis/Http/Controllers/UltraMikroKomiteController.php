@@ -28,13 +28,30 @@ class UltraMikroKomiteController extends Controller
      */
     public function index()
     {
+        $search = request('search');
+
         $latestSub = UltraMikroPembiayaanHistory::selectRaw('ultra_mikro_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('ultra_mikro_pembiayaan_id');
 
-        $latestHistoriesAll = UltraMikroPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
+        $proposalIds = UltraMikroPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
+            $join->on('ultra_mikro_pembiayaan_histories.id', '=', 'lh.latest_id');
+        })
+            ->where(function ($q) {
+                $q->where(function ($q2) {
+                    $q2->where('ultra_mikro_pembiayaan_histories.status_id', 3)
+                        ->where('ultra_mikro_pembiayaan_histories.jabatan_id', 1);
+                })->orWhere(function ($q2) {
+                    $q2->where('ultra_mikro_pembiayaan_histories.status_id', 4)
+                        ->where('ultra_mikro_pembiayaan_histories.jabatan_id', 3);
+                });
+            })
+            ->pluck('ultra_mikro_pembiayaan_histories.ultra_mikro_pembiayaan_id');
+
+        $latestHistories = UltraMikroPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
             $join->on('ultra_mikro_pembiayaan_histories.id', '=', 'lh.latest_id');
         })
             ->with(['statushistory', 'jabatan'])
+            ->whereNotIn('ultra_mikro_pembiayaan_histories.ultra_mikro_pembiayaan_id', $proposalIds)
             ->get([
                 'ultra_mikro_pembiayaan_histories.ultra_mikro_pembiayaan_id',
                 'status_id',
@@ -43,28 +60,26 @@ class UltraMikroKomiteController extends Controller
                 'catatan',
             ]);
 
-        $proposalIds = $latestHistoriesAll->filter(function ($history) {
-            return ($history->status_id == 11 && $history->jabatan_id == 1)
-                || ($history->status_id == 4 && $history->jabatan_id == 3);
-        })->pluck('ultra_mikro_pembiayaan_id')->unique();
+        $histories = $latestHistories->keyBy('ultra_mikro_pembiayaan_id');
+        $komiteIds = $latestHistories->pluck('ultra_mikro_pembiayaan_id')->unique();
 
-        $komiteIds = $latestHistoriesAll->filter(function ($history) {
-            return $history->status_id == 11 && $history->jabatan_id == 3;
-        })->pluck('ultra_mikro_pembiayaan_id')->unique();
+        $query = UltraMikroPembiayaan::with(['nasabah', 'user'])
+            ->whereIn('id', $komiteIds);
 
-        $histories = $latestHistoriesAll
-            ->whereIn('ultra_mikro_pembiayaan_id', $komiteIds)
-            ->keyBy('ultra_mikro_pembiayaan_id');
+        if ($search) {
+            $query->whereHas('nasabah', function ($q) use ($search) {
+                $q->where('nama_nasabah', 'like', "%{$search}%")
+                    ->orWhere('no_ktp', 'like', "%{$search}%");
+            });
+        }
 
-        $proposals = UltraMikroPembiayaan::with(['nasabah', 'user'])
-            ->whereIn('id', $komiteIds)
-            ->orderBy('tanggal_pengajuan', 'desc')
-            ->get();
+        $proposals = $query->orderByDesc('tanggal_pengajuan')->paginate(10)->withQueryString();
 
         return view('analis::ultra_mikro.komite.index', [
             'title' => 'Data Komite',
             'proposals' => $proposals,
             'histories' => $histories,
+            'search' => $search,
         ]);
     }
 
@@ -127,8 +142,8 @@ class UltraMikroKomiteController extends Controller
         }
 
         //Angsuran
-        $nominalPembiayaan = $data->nominal_pembiayaan;
-        $tenor = $data->tenor;
+        $nominalPembiayaan = (float)str_replace('.', '', $data->nominal_pembiayaan ?? '0');
+        $tenor = (float)str_replace('.', '', $data->tenor ?? '0');
         // $rate = $data->rate / 100;
 
         if ($data->frekuensi_pembayaran == "Setiap 1 Minggu") {
@@ -144,22 +159,22 @@ class UltraMikroKomiteController extends Controller
 
 
         // $hargaJual = ($nominalPembiayaan * $rate * $tenor) + $nominalPembiayaan;
-        $angsuran = $nominalPembiayaan / $tenor;
-        $angsuranPerKunjungan = $angsuran /  $frekuensiPembayaran;
+        $angsuran = $tenor > 0 ? $nominalPembiayaan / $tenor : 0;
+        $angsuranPerKunjungan = $frekuensiPembayaran > 0 ? $angsuran / $frekuensiPembayaran : 0;
 
         //Biaya Administrasi
         // $byAdm = 1.5 / 100 * $nominalPembiayaan;
 
         //Pendapatan
-        $penghasilan = $data->penghasilan;
-        $pengeluaran = $data->pengeluaran;
+        $penghasilan = (float)str_replace('.', '', $data->penghasilan ?? '0');
+        $pengeluaran = (float)str_replace('.', '', $data->pengeluaran ?? '0');
 
         //Pendapatan bersih
         $pendapatanBersih = $penghasilan - $pengeluaran;
 
         //Proses Scoring
         //DSR
-        $dsr = number_format((($angsuran) / $pendapatanBersih) * 100);
+        $dsr = $pendapatanBersih > 0 ? number_format(($angsuran / $pendapatanBersih) * 100) : 0;
 
         //Usia
         $usia = Carbon::parse($data->nasabah->tgl_lahir)->age;

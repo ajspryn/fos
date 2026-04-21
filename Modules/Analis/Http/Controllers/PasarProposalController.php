@@ -39,37 +39,42 @@ class PasarProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $latestSub = PasarPembiayaanHistory::selectRaw('pasar_pembiayaan_id, MAX(id) as latest_id')
+        $search = $request->search;
+
+        $latestSub = DB::table('pasar_pembiayaan_histories')
+            ->selectRaw('pasar_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('pasar_pembiayaan_id');
 
-        $latestHistories = PasarPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
-            $join->on('pasar_pembiayaan_histories.id', '=', 'lh.latest_id');
-        })
-            ->with(['statushistory', 'jabatan'])
-            ->get([
-                'pasar_pembiayaan_histories.pasar_pembiayaan_id',
-                'status_id',
-                'jabatan_id',
-                'user_id',
-            ]);
-
-        $proposalIds = $latestHistories->filter(function ($history) {
-            return ($history->status_id == 3 && $history->jabatan_id == 1)
-                || (
-                    $history->status_id == 4
-                    && $history->jabatan_id == 3
-                    && $history->user_id == Auth::user()->id
-                );
-        })->pluck('pasar_pembiayaan_id')->unique();
+        $proposalIds = DB::table('pasar_pembiayaan_histories as h')
+            ->joinSub($latestSub, 'lh', 'h.id', '=', 'lh.latest_id')
+            ->where(function ($q) {
+                $q->where(function ($q2) {
+                    $q2->where('h.status_id', 3)->where('h.jabatan_id', 1);
+                })->orWhere(function ($q2) {
+                    $q2->where('h.status_id', 4)->where('h.jabatan_id', 3);
+                });
+            })
+            ->pluck('h.pasar_pembiayaan_id');
 
         $proposals = PasarPembiayaan::with(['nasabahh', 'keteranganusaha.jenispasar', 'user'])
             ->whereIn('id', $proposalIds)
+            ->when($search, fn($q) => $q->whereHas(
+                'nasabahh',
+                fn($q2) =>
+                $q2->where('nama_nasabah', 'like', "%$search%")->orWhere('alamat', 'like', "%$search%")
+            ))
             ->orderBy('tgl_pembiayaan', 'desc')
-            ->get();
+            ->paginate(10)->withQueryString();
 
-        $histories = $latestHistories->keyBy('pasar_pembiayaan_id');
+        $histories = PasarPembiayaanHistory::with(['statushistory', 'jabatan'])
+            ->whereIn('id', function ($q) {
+                $q->selectRaw('MAX(id)')->from('pasar_pembiayaan_histories')->groupBy('pasar_pembiayaan_id');
+            })
+            ->whereIn('pasar_pembiayaan_id', $proposalIds)
+            ->get()
+            ->keyBy('pasar_pembiayaan_id');
 
         return view('analis::pasar.proposal.index', [
             'title' => 'Data Nasabah',

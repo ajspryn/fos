@@ -40,26 +40,31 @@ class PasarKomiteController extends Controller
      */
     public function index()
     {
-        $komite = PasarPembiayaanHistory::select()
-            ->latest()
-            ->groupBy('pasar_pembiayaan_id')
-            ->where(function ($query) {
-                $query
-                    ->where('status_id', 5)
-                    ->where('jabatan_id', 3);
-            })
-            ->get();
-
-        $proposalIds = $komite->pluck('pasar_pembiayaan_id')->unique();
+        $search = request('search');
 
         $latestSub = PasarPembiayaanHistory::selectRaw('pasar_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('pasar_pembiayaan_id');
+
+        // IDs yang masih di antrian proposal (exclude dari komite)
+        $proposalIds = PasarPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
+            $join->on('pasar_pembiayaan_histories.id', '=', 'lh.latest_id');
+        })
+            ->where(function ($q) {
+                $q->where(function ($q2) {
+                    $q2->where('pasar_pembiayaan_histories.status_id', 3)
+                        ->where('pasar_pembiayaan_histories.jabatan_id', 1);
+                })->orWhere(function ($q2) {
+                    $q2->where('pasar_pembiayaan_histories.status_id', 4)
+                        ->where('pasar_pembiayaan_histories.jabatan_id', 3);
+                });
+            })
+            ->pluck('pasar_pembiayaan_histories.pasar_pembiayaan_id');
 
         $latestHistories = PasarPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
             $join->on('pasar_pembiayaan_histories.id', '=', 'lh.latest_id');
         })
             ->with(['statushistory', 'jabatan'])
-            ->whereIn('pasar_pembiayaan_histories.pasar_pembiayaan_id', $proposalIds)
+            ->whereNotIn('pasar_pembiayaan_histories.pasar_pembiayaan_id', $proposalIds)
             ->get([
                 'pasar_pembiayaan_histories.pasar_pembiayaan_id',
                 'status_id',
@@ -68,16 +73,25 @@ class PasarKomiteController extends Controller
             ]);
 
         $histories = $latestHistories->keyBy('pasar_pembiayaan_id');
+        $komiteIds = $latestHistories->pluck('pasar_pembiayaan_id')->unique();
 
-        $proposals = PasarPembiayaan::with(['nasabahh', 'keteranganusaha.jenispasar', 'user'])
-            ->whereIn('id', $proposalIds)
-            ->orderBy('tgl_pembiayaan', 'desc')
-            ->get();
+        $query = PasarPembiayaan::with(['nasabahh', 'keteranganusaha.jenispasar', 'user'])
+            ->whereIn('id', $komiteIds);
+
+        if ($search) {
+            $query->whereHas('nasabahh', function ($q) use ($search) {
+                $q->where('nama_nasabah', 'like', "%{$search}%")
+                    ->orWhere('alamat', 'like', "%{$search}%");
+            });
+        }
+
+        $komites = $query->orderByDesc('tgl_pembiayaan')->paginate(10)->withQueryString();
 
         return view('analis::pasar.komite.index', [
-            'title' => 'Data Nasabah',
-            'komites' => $proposals,
+            'title' => 'Data Komite',
+            'komites' => $komites,
             'histories' => $histories,
+            'search' => $search,
         ]);
     }
     /**
@@ -159,28 +173,28 @@ class PasarKomiteController extends Controller
         $pasar = PasarJenisPasar::select()->where('kode_pasar', $usaha->jenispasar_id)->first();
         $jaminanrumah = PasarLegalitasRumah::select()->where('pasar_pembiayaan_id', $id)->first();
         $jaminanlain = PasarJaminan::select()->where('pasar_pembiayaan_id', $id)->first();
-        $tenor = $data->tenor;
-        $harga = $data->harga;
-        $rate = $data->rate;
-        $margin = ($rate * $tenor) / 100;
+        $tenor = (float)str_replace('.', '', $data->tenor ?? '0');
+        $harga = (float)str_replace('.', '', $data->harga ?? '0');
+        $rate = (float)str_replace('.', '', $data->rate ?? '0');
+        $margin = $tenor > 0 ? ($rate * $tenor) / 100 : 0;
         $cash = PasarCashPick::select()->first();
 
         //idir
         $harga1 = $harga * $margin;
         $harga_jual = $harga1 + $harga;
 
-        $angsuran1 = (int)($harga_jual / $tenor);
+        $angsuran1 = $tenor > 0 ? (int)($harga_jual / $tenor) : 0;
 
 
         //pemasukan
 
-        $omset = $data->omset;
-        $hpp = $data->hpp;
-        $listrik = $data->listrik;
-        $transport = $data->trasport;
-        $sewa = $data->sewa;
-        $karyawan = $data->karyawan;
-        $telpon = $data->telpon;
+        $omset = (float)str_replace('.', '', $data->omset ?? '0');
+        $hpp = (float)str_replace('.', '', $data->hpp ?? '0');
+        $listrik = (float)str_replace('.', '', $data->listrik ?? '0');
+        $transport = (float)str_replace('.', '', $data->trasport ?? '0');
+        $sewa = (float)str_replace('.', '', $data->sewa ?? '0');
+        $karyawan = (float)str_replace('.', '', $data->karyawan ?? '0');
+        $telpon = (float)str_replace('.', '', $data->telpon ?? '0');
         $laba_bersih = ($omset - ($hpp + $listrik + $sewa + $karyawan + $telpon + $transport));
 
         //pengeluaran

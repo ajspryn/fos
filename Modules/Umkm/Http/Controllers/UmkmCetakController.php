@@ -65,8 +65,8 @@ class UmkmCetakController extends Controller
         $jaminanrumah = UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id', $id)->first();
         $jaminanlain = UmkmJaminan::select()->where('umkm_pembiayaan_id', $id)->first();
         $tenor = $data->tenor;
-        $harga = $data->nominal_pembiayaan;
-        $rate = $data->rate;
+        $harga = (float)str_replace('.', '', $data->nominal_pembiayaan ?? '0');
+        $rate = (float)($data->rate ?? 0);
         $margin = ($rate * $tenor) / 100;
         $cash = PasarCashPick::select()->first();
 
@@ -79,15 +79,15 @@ class UmkmCetakController extends Controller
 
         //pemasukan
 
-        $omset = $data->omset;
-        $hpp = $data->hpp;
-        $listrik = $data->listrik;
-        $transport = $data->trasport;
-        $sewa = $data->sewa;
-        $karyawan = $data->karyawan;
-        $telpon = $data->telpon;
+        $omset = (float)str_replace('.', '', $data->omset ?? '0');
+        $hpp = (float)str_replace('.', '', $data->hpp ?? '0');
+        $listrik = (float)str_replace('.', '', $data->listrik ?? '0');
+        $transport = (float)str_replace('.', '', $data->trasport ?? '0');
+        $sewa = (float)str_replace('.', '', $data->sewa ?? '0');
+        $karyawan = (float)str_replace('.', '', $data->karyawan ?? '0');
+        $telpon = (float)str_replace('.', '', $data->telpon ?? '0');
         $laba_bersih = ($omset - ($hpp + $listrik + $sewa + $karyawan + $telpon + $transport));
-        $total_pendapatan_bersih = $laba_bersih + $data->pendapatan_lain;
+        $total_pendapatan_bersih = $laba_bersih + (float)str_replace('.', '', $data->pendapatan_lain ?? '0');
 
         //pengeluaran
 

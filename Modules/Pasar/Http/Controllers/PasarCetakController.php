@@ -67,8 +67,8 @@ class PasarCetakController extends Controller
             $jaminanrumah = PasarLegalitasRumah::select()->where('pasar_pembiayaan_id', $id)->first();
             $jaminanlain = PasarJaminan::select()->where('pasar_pembiayaan_id', $id)->first();
             $tenor = $data->tenor;
-            $harga = $data->harga;
-            $rate = $data->rate;
+            $harga = (float)str_replace('.', '', $data->harga ?? '0');
+            $rate = (float)($data->rate ?? 0);
             $margin = ($rate * $tenor) / 100;
             $cash = PasarCashPick::select()->first();
 
@@ -81,13 +81,13 @@ class PasarCetakController extends Controller
 
             //pemasukan
 
-            $omset = $data->omset;
-            $hpp = $data->hpp;
-            $listrik = $data->listrik;
-            $transport = $data->trasport;
-            $sewa = $data->sewa;
-            $karyawan = $data->karyawan;
-            $telpon = $data->telpon;
+            $omset = (float)str_replace('.', '', $data->omset ?? '0');
+            $hpp = (float)str_replace('.', '', $data->hpp ?? '0');
+            $listrik = (float)str_replace('.', '', $data->listrik ?? '0');
+            $transport = (float)str_replace('.', '', $data->trasport ?? '0');
+            $sewa = (float)str_replace('.', '', $data->sewa ?? '0');
+            $karyawan = (float)str_replace('.', '', $data->karyawan ?? '0');
+            $telpon = (float)str_replace('.', '', $data->telpon ?? '0');
             $laba_bersih = ($omset - ($hpp + $listrik + $sewa + $karyawan + $telpon + $transport));
 
             //pengeluaran

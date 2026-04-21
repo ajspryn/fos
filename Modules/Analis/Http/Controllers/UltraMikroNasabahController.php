@@ -20,11 +20,16 @@ class UltraMikroNasabahController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+        $proposals = UltraMikroNasabah::when($search, fn($q) => $q->where('nama_nasabah', 'like', "%$search%")->orWhere('no_ktp', 'like', "%$search%"))
+            ->orderBy('nama_nasabah')
+            ->paginate(10)
+            ->withQueryString();
         return view('analis::ultra_mikro.nasabah.index', [
             'title' => 'Data Nasabah Ultra Mikro',
-            'proposals' => UltraMikroNasabah::select()->orderBy('nama_nasabah', 'ASC')->get(),
+            'proposals' => $proposals,
         ]);
     }
 

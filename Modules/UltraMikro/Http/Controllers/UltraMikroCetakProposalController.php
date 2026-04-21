@@ -54,7 +54,7 @@ class UltraMikroCetakProposalController extends Controller
         }
 
         //Angsuran
-        $nominalPembiayaan = $data->nominal_pembiayaan;
+        $nominalPembiayaan = (float)str_replace('.', '', $data->nominal_pembiayaan ?? '0');
         $tenor = $data->tenor;
         // $rate = $data->rate / 100;
 
@@ -65,8 +65,8 @@ class UltraMikroCetakProposalController extends Controller
         // $byAdm = 1.5 / 100 * $nominalPembiayaan;
 
         //Pendapatan
-        $penghasilan = $data->penghasilan;
-        $pengeluaran = $data->pengeluaran;
+        $penghasilan = (float)str_replace('.', '', $data->penghasilan ?? '0');
+        $pengeluaran = (float)str_replace('.', '', $data->pengeluaran ?? '0');
 
         //Pendapatan bersih
         $pendapatanBersih = $penghasilan - $pengeluaran;

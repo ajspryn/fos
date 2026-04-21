@@ -33,35 +33,30 @@ class PprKomiteController extends Controller
      */
     public function index()
     {
-        $komite = PprPembiayaanHistory::select()
-            ->latest()
-            ->groupBy('form_ppr_pembiayaan_id')
-            ->where(function ($query) {
-                $query
-                    ->where('status_id', 11)
-                    ->where('user_id', Auth::user()->id);
-            })
-            ->orWhere(function ($query) {
-                $query
-                    ->where('status_id', 4)
-                    ->where('jabatan_id', 2);
-            })
-            ->orWhere(function ($query) {
-                $query
-                    ->where('status_id', '>=', 9);
-            })
-            ->get();
-
-        $proposalIds = $komite->pluck('form_ppr_pembiayaan_id')->unique();
+        $search = request('search');
 
         $latestSub = PprPembiayaanHistory::selectRaw('form_ppr_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('form_ppr_pembiayaan_id');
+
+        $proposalIds = PprPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
+            $join->on('ppr_pembiayaan_histories.id', '=', 'lh.latest_id');
+        })
+            ->where(function ($q) {
+                $q->where(function ($q2) {
+                    $q2->where('ppr_pembiayaan_histories.status_id', 3)
+                        ->where('ppr_pembiayaan_histories.jabatan_id', 1);
+                })->orWhere(function ($q2) {
+                    $q2->where('ppr_pembiayaan_histories.status_id', 4)
+                        ->where('ppr_pembiayaan_histories.jabatan_id', 3);
+                });
+            })
+            ->pluck('ppr_pembiayaan_histories.form_ppr_pembiayaan_id');
 
         $latestHistories = PprPembiayaanHistory::joinSub($latestSub, 'lh', function ($join) {
             $join->on('ppr_pembiayaan_histories.id', '=', 'lh.latest_id');
         })
             ->with(['statushistory', 'jabatan'])
-            ->whereIn('ppr_pembiayaan_histories.form_ppr_pembiayaan_id', $proposalIds)
+            ->whereNotIn('ppr_pembiayaan_histories.form_ppr_pembiayaan_id', $proposalIds)
             ->get([
                 'ppr_pembiayaan_histories.form_ppr_pembiayaan_id',
                 'status_id',
@@ -71,15 +66,25 @@ class PprKomiteController extends Controller
             ]);
 
         $histories = $latestHistories->keyBy('form_ppr_pembiayaan_id');
+        $komiteIds = $latestHistories->pluck('form_ppr_pembiayaan_id')->unique();
 
-        $proposals = FormPprPembiayaan::with(['pemohon', 'user'])
-            ->whereIn('id', $proposalIds)
-            ->get();
+        $query = FormPprPembiayaan::with(['pemohon', 'user'])
+            ->whereIn('id', $komiteIds);
+
+        if ($search) {
+            $query->whereHas('pemohon', function ($q) use ($search) {
+                $q->where('form_pribadi_pemohon_nama_lengkap', 'like', "%{$search}%")
+                    ->orWhere('form_pribadi_pemohon_no_ktp', 'like', "%{$search}%");
+            });
+        }
+
+        $komites = $query->orderByDesc('created_at')->paginate(10)->withQueryString();
 
         return view('analis::ppr.komite.index', [
             'title' => 'Data Komite PPR',
-            'komites' => $proposals,
+            'komites' => $komites,
             'histories' => $histories,
+            'search' => $search,
         ]);
     }
 
@@ -161,34 +166,34 @@ class PprKomiteController extends Controller
         $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
 
         //Plafond
-        $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
+        $plafond = (float)str_replace('.', '', $pembiayaan->form_permohonan_nilai_ppr_dimohon ?? '0');
 
         //Tenor
-        $tenorTahun = $pembiayaan->form_permohonan_jangka_waktu_ppr;
-        $tenorBulan = $pembiayaan->form_permohonan_jml_bulan;
+        $tenorTahun = (float)str_replace('.', '', $pembiayaan->form_permohonan_jangka_waktu_ppr ?? '0');
+        $tenorBulan = (float)str_replace('.', '', $pembiayaan->form_permohonan_jml_bulan ?? '0');
 
         //Perhitungan Margin, Harga Jual & Angsuran
-        $hpp = $pembiayaan->form_permohonan_nilai_hpp;
-        $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $plafond) / $tenorBulan * 100;
+        $hpp = (float)str_replace('.', '', $pembiayaan->form_permohonan_nilai_hpp ?? '0');
+        $persenMargin = ($plafond > 0 && $tenorBulan > 0) ? ((float)str_replace('.', '', $pembiayaan->form_permohonan_jml_margin ?? '0') / $plafond) / $tenorBulan * 100 : 0;
         $marginRp = $plafond * $persenMargin / 100 * $tenorBulan;
         $hargaJual = $plafond + $marginRp;
-        $angsuran = $hargaJual / $tenorBulan;
+        $angsuran = $tenorBulan > 0 ? $hargaJual / $tenorBulan : 0;
         $plafondMaks = $hpp * 0.9; //Maks pembiayaan 90% dari HPP
-        $kemampuanMengangsur = $pembiayaan->form_penghasilan_pengeluaran_kemampuan_mengangsur;
+        $kemampuanMengangsur = (float)str_replace('.', '', $pembiayaan->form_penghasilan_pengeluaran_kemampuan_mengangsur ?? '0');
 
         //Idir
-        $penghasilanBersih = $pembiayaan->form_penghasilan_pengeluaran_sisa_penghasilan;
-        $kewajibanAngsuran = $pembiayaan->form_penghasilan_pengeluaran_kewajiban_angsuran;
-        $idir = (($kewajibanAngsuran + $kemampuanMengangsur) / $penghasilanBersih) * 100;
+        $penghasilanBersih = (float)str_replace('.', '', $pembiayaan->form_penghasilan_pengeluaran_sisa_penghasilan ?? '0');
+        $kewajibanAngsuran = (float)str_replace('.', '', $pembiayaan->form_penghasilan_pengeluaran_kewajiban_angsuran ?? '0');
+        $idir = $penghasilanBersih > 0 ? (($kewajibanAngsuran + $kemampuanMengangsur) / $penghasilanBersih) * 100 : 0;
 
         //FTV
-        $hargaJualAgunan = $pembiayaan->agunan->form_agunan_1_nilai_harga_jual;
-        $hargaTaksasiKjpp = $pembiayaan->agunan->form_agunan_1_nilai_harga_taksasi_kjpp;
+        $hargaJualAgunan = (float)str_replace('.', '', $pembiayaan->agunan->form_agunan_1_nilai_harga_jual ?? '0');
+        $hargaTaksasiKjpp = (float)str_replace('.', '', $pembiayaan->agunan->form_agunan_1_nilai_harga_taksasi_kjpp ?? '0');
         if ($hargaJualAgunan > $hargaTaksasiKjpp) {
-            $ftv = ($plafond / $hargaTaksasiKjpp) * 100;
+            $ftv = $hargaTaksasiKjpp > 0 ? ($plafond / $hargaTaksasiKjpp) * 100 : 0;
             $pembagi = "Taksasi KJPP";
         } else {
-            $ftv = ($plafond / $hargaJualAgunan) * 100;
+            $ftv = $hargaJualAgunan > 0 ? ($plafond / $hargaJualAgunan) * 100 : 0;
             $pembagi = "Harga Jual Agunan";
         }
 

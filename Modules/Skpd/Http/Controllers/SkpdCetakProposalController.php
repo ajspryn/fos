@@ -52,7 +52,7 @@ class SkpdCetakProposalController extends Controller
         $data = SkpdPembiayaan::select()->where('id', $id)->first();
         $nasabah = SkpdNasabah::select()->where('id', $data->skpd_nasabah_id)->first();
         $jaminan = SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->first();
-        $nominal_pembiayaan = $data->nominal_pembiayaan;
+        $nominal_pembiayaan = (float)str_replace('.', '', $data->nominal_pembiayaan ?? '0');
         $tenor = $data->tenor;
         $rate = $data->rate / 100;
 
@@ -76,9 +76,9 @@ class SkpdCetakProposalController extends Controller
         // }
 
         //pemasukan
-        $gaji_pokok = $data->gaji_pokok;
-        $pendapatan_lainnya = $data->pendapatan_lainnya;
-        $gaji_tpp = $data->gaji_tpp;
+        $gaji_pokok = (float)str_replace('.', '', $data->gaji_pokok ?? '0');
+        $pendapatan_lainnya = (float)str_replace('.', '', $data->pendapatan_lainnya ?? '0');
+        $gaji_tpp = (float)str_replace('.', '', $data->gaji_tpp ?? '0');
         $total_pemasukan = $gaji_pokok + $gaji_tpp + $pendapatan_lainnya;
 
         //pendapatan Bersih
@@ -193,7 +193,7 @@ class SkpdCetakProposalController extends Controller
             'angsuran1' => $angsuran,
             'nilai_dsr' => $dsr,
             'nilai_dsr1' => $dsr,
-            'total_pendapatan' => $data->pendapatan_lainnya + $data->gaji_pokok + $data->pendapatan_lainnya,
+            'total_pendapatan' => $pendapatan_lainnya + $gaji_pokok + $gaji_tpp,
             'total_pengeluaran' => $total_pengeluaran,
             'cekcicilanpasangan' => $cekcicilanpasangan,
 
