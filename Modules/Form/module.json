@@ -1,0 +1,13 @@
+{
+    "name": "Form",
+    "alias": "form",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Form\\Providers\\FormServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

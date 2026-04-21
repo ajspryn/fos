@@ -1,0 +1,440 @@
+/* App Email
+******************************************************************************* */
+
+@import "../_bootstrap-extended/include";
+@import "../_components/include";
+
+$email-sidebar-width: 16.25rem;
+$email-app-height: calc(100vh - 12rem);
+$email-app-height-with-no-navbar: calc(100vh - 7.5rem);
+$email-app-horizontal-height-diff: 2.3rem;
+$email-filter-padding-x: 1.5rem;
+
+.app-email {
+  position: relative;
+  overflow: hidden;
+  block-size: $email-app-height;
+  @include media-breakpoint-down("md") {
+    block-size: calc(100vh - 11rem);
+  }
+  .layout-navbar-hidden & {
+    block-size: $email-app-height-with-no-navbar;
+  }
+  .layout-horizontal & {
+    block-size: calc($email-app-height + calc($email-app-horizontal-height-diff / 1.9));
+    @include media-breakpoint-up($menu-collapsed-layout-breakpoint) {
+      block-size: calc($email-app-height - $email-app-horizontal-height-diff);
+    }
+  }
+
+  /* Email sidebar */
+  .app-email-sidebar {
+    @media (width >= 992px) {
+      position: static;
+      block-size: auto;
+    }
+    position: absolute;
+    z-index: 4;
+    flex-basis: $email-sidebar-width;
+    background-color: var(--#{$prefix}paper-bg);
+    block-size: 100%;
+    inline-size: $email-sidebar-width;
+    inset-inline-start: calc(-#{$email-sidebar-width} - 1.2rem);
+    transition: all .2s;
+
+    ul {
+      li {
+        &:not(.active) {
+          a {
+            color: var(--#{$prefix}heading-color);
+          }
+        }
+      }
+    }
+
+    .btn-compost-wrapper {
+      padding: 1.5rem;
+    }
+
+    &.show {
+      inset-inline-start: 0;
+    }
+
+    .email-filters {
+      block-size: calc(100vh - 16.6rem);
+      .layout-navbar-hidden & {
+        block-size: calc(100vh - 12.6rem);
+      }
+      .layout-horizontal & {
+        block-size: calc(100vh - 15.6rem);
+        @include media-breakpoint-up($menu-collapsed-layout-breakpoint) {
+          block-size: calc(100vh - 16.6rem - $email-app-horizontal-height-diff);
+        }
+      }
+
+      .email-filter-folders {
+        li {
+          &.active {
+            border-color: var(--#{#{$prefix}primary});
+          }
+        }
+      }
+      li {
+        border-inline-start: 3px solid transparent;
+        min-block-size: 1.875rem;
+        padding-block: .375rem;
+        padding-inline: $email-filter-padding-x;
+        padding-inline-start: calc($email-filter-padding-x - 3px);
+        h6 {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .email-filter-labels .badge-dot {
+      block-size: .6875rem;
+      inline-size: .6875rem;
+    }
+  }
+
+  /* Email compose */
+  .app-email-compose {
+    .modal-dialog {
+      position: fixed;
+      inline-size: 100%;
+      inset-block-end: 0;
+      inset-inline-end: 0;
+      .modal-header {
+        background-color: color-mix(in sRGB, var(--#{$prefix}base-color) 6%, var(--#{$prefix}paper-bg));
+      }
+      .modal-content {
+        overflow: hidden;
+        box-shadow: var(--#{$prefix}box-shadow-xl);
+      }
+    }
+
+    .email-compose-to {
+      .select2-selection {
+        border-color: transparent;
+        box-shadow: none;
+        padding-inline: calc($form-select-padding-x - $input-border-width);
+        .select2-selection__choice {
+          display: flex;
+          align-items: center;
+          line-height: 0;
+          padding-block: .125rem;
+        }
+        &__choice__remove {
+          inset-block-start: unset;
+        }
+      }
+      .select2-container--default {
+        &.select2-container--focus {
+          .select2-search--inline {
+            .select2-search__field {
+              margin-block-start: 6px;
+            }
+          }
+        }
+      }
+    }
+
+    .email-compose-toggle-wrapper {
+      inline-size: 80px;
+    }
+
+    .ql-editor {
+      block-size: 10rem;
+      min-block-size: 10rem;
+      padding-inline: calc($email-filter-padding-x + .25rem);
+    }
+    .ql-snow.ql-toolbar {
+      padding-block: .5rem;
+      padding-inline: 1rem;
+    }
+    .ql-editor.ql-blank {
+      padding-inline: 1.5rem;
+      &::before {
+        padding-inline-start: 0;
+      }
+    }
+  }
+
+  /* Email list */
+  .app-emails-list {
+    .emails-list-header {
+      .emails-list-header-hr {
+        margin-block: 0;
+      }
+      .input-group:focus-within::before,
+      .input-group:focus::before {
+        box-shadow: none;
+      }
+    }
+    .email-list {
+      @include media-breakpoint-up(lg) {
+        block-size: calc(100vh - 18.9rem);
+      }
+      @include media-breakpoint-down(lg) {
+        block-size: calc(100vh - 18.9rem);
+      }
+      @include media-breakpoint-down(md) {
+        block-size: calc(100vh - 18rem);
+      }
+      .layout-navbar-hidden & {
+        @include media-breakpoint-up(lg) {
+          block-size: calc(100vh - 15.5rem);
+        }
+        @include media-breakpoint-down(lg) {
+          block-size: calc(100vh - 15.5rem);
+        }
+      }
+      .layout-horizontal & {
+        block-size: calc(100vh - 18.2rem);
+        @include media-breakpoint-up(lg) {
+          block-size: calc(100vh - 17.75rem);
+        }
+        @include media-breakpoint-up($menu-collapsed-layout-breakpoint) {
+          block-size: calc(100vh - 18.75rem - $email-app-horizontal-height-diff);
+        }
+      }
+
+      li.email-list-item {
+        z-index: 1;
+        border-block-end: 1px solid var(--#{$prefix}border-color);
+        cursor: pointer;
+        min-block-size: 4.375rem;
+        padding-block: .875rem;
+        padding-inline: 1rem;
+        transition: all .2s ease-in-out;
+        &:last-child {
+          border-block-end: 0;
+        }
+        &.email-marked-read {
+          background-color: color-mix(in sRGB, var(--#{$prefix}base-color) 6%, var(--#{$prefix}paper-bg));
+        }
+        &:hover {
+          border-block-end-color: transparent;
+          box-shadow: var(--#{$prefix}box-shadow-sm);
+        }
+        .email-list-item-actions li {
+          box-shadow: none;
+        }
+        &[data-starred="true"] {
+          .email-list-item-bookmark {
+            color: var(--#{$prefix}warning);
+          }
+        }
+
+        .email-list-item-username {
+          font-weight: $font-weight-medium;
+        }
+        .email-list-item-time {
+          display: inline-block;
+          inline-size: 60px;
+          text-align: end;
+        }
+
+        .email-list-item-meta {
+          .email-list-item-actions {
+            display: none;
+
+            li {
+              padding: 0;
+              margin: 0;
+            }
+          }
+        }
+        .list-inline-item {
+          &:not(:last-child) {
+            margin-inline-end: .25rem;
+          }
+        }
+
+        &.email-list-item:not(.list-inline-item):hover {
+          z-index: 5;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  /* Email view */
+  .app-email-view {
+    position: absolute;
+    z-index: -1;
+    block-size: $email-app-height;
+    inline-size: 100%;
+    inset-block-start: 0;
+    inset-inline-end: -100%;
+    transition: all .25s ease;
+    @include media-breakpoint-down(md) {
+      block-size: calc($email-app-height + 2rem);
+    }
+    .layout-navbar-hidden & {
+      block-size: $email-app-height-with-no-navbar;
+    }
+    .layout-horizontal & {
+      block-size: calc($email-app-height + 1rem);
+      @include media-breakpoint-up(lg) {
+        block-size: calc($email-app-height + 1rem);
+      }
+      @include media-breakpoint-up($menu-collapsed-layout-breakpoint) {
+        block-size: calc($email-app-height - $email-app-horizontal-height-diff);
+      }
+    }
+
+    .email-card-last {
+      border: 1px solid var(--#{$prefix}card-border-color);
+      &::before,
+      &::after {
+        border: 1px solid var(--#{$prefix}border-color);
+        box-shadow: var(--#{$prefix}card-box-shadow);
+      }
+      &::before {
+        background-color: rgba(var(--#{$prefix}paper-bg-rgb), .4);
+      }
+
+      &::after {
+        background-color: rgba(var(--#{$prefix}paper-bg-rgb), .7);
+      }
+    }
+    .email-reply {
+      border: 1px solid var(--#{$prefix}border-color);
+    }
+
+    &.show {
+      z-index: 4;
+      inset-inline-end: -1px;
+    }
+
+    .app-email-view-content {
+      @include media-breakpoint-up(md) {
+        block-size: calc(100vh - 19.6rem);
+      }
+      @include media-breakpoint-down(md) {
+        block-size: calc(100vh - 17.65rem);
+      }
+      .layout-horizontal & {
+        block-size: calc(100vh - 18rem);
+        @include media-breakpoint-up($menu-collapsed-layout-breakpoint) {
+          block-size: calc(100vh - 19.2rem - $email-app-horizontal-height-diff);
+        }
+      }
+
+      .ql-container {
+        border: 0;
+
+        .ql-editor {
+          block-size: 7rem;
+          min-block-size: 7rem;
+        }
+      }
+      .ql-editor {
+        padding-inline-start: .5rem;
+      }
+
+      .email-card-prev {
+        display: none;
+      }
+
+      .email-card-last {
+        transition: all .25s ease-in-out;
+
+        &::before {
+          position: absolute;
+          z-index: -1;
+          @include border-radius(.375rem);
+          content: "";
+          inset-block: -2rem 1rem;
+          inset-inline: 2.5rem;
+        }
+
+        &::after {
+          position: absolute;
+          z-index: -1;
+          @include border-radius(.375rem);
+          content: "";
+          inset-block: -1rem .5rem;
+          inset-inline: 1rem;
+        }
+
+        &.hide-pseudo {
+          &::before,
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .app-email-compose .email-compose-actions .email-send-btn {
+    &::after {
+      display: none;
+    }
+  }
+
+  .email-compose-form {
+    .form-control {
+      padding-block: $input-padding-y;
+      padding-inline: $input-padding-x;
+    }
+  }
+
+  /* Responsive style */
+  @media (width >= 1199px) {
+    .email-list li {
+      .email-list-item-meta {
+        margin-inline-end: .45rem;
+      }
+    }
+  }
+
+  @media (width >= 992px) {
+
+    .email-list {
+      li.email-list-item:hover {
+        .email-list-item-meta {
+          .email-list-item-attachment,
+          .email-list-item-time,
+          .email-list-item-label {
+            display: none;
+          }
+
+          .email-list-item-actions {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .app-email-view {
+      inline-size: calc(100% - 16.2rem);
+    }
+  }
+
+  @media (width <= 576px) {
+    .app-emails-list {
+      .emails-list-header {
+        padding: 1rem;
+      }
+
+      .email-list {
+        li.email-list-item {
+          padding: 1rem;
+
+          .email-list-item-username {
+            font-size: .85rem;
+          }
+        }
+      }
+    }
+
+    .app-email-view {
+      .email-list-item-username {
+        font-size: 1rem;
+      }
+    }
+  }
+}

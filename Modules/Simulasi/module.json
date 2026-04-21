@@ -1,0 +1,13 @@
+{
+    "name": "Simulasi",
+    "alias": "simulasi",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Simulasi\\Providers\\SimulasiServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -1,0 +1,35 @@
+@import "../../scss/_bootstrap-extended/include";
+
+.maxLength-wrapper {
+  position: relative;
+  .maxLength {
+    display: none;
+    font-size: $badge-font-size;
+    font-weight: $badge-font-weight;
+    inset-inline-end: 0;
+    line-height: 1;
+    margin-block: auto;
+    margin-inline: 0;
+    padding-block: $badge-padding-y;
+    padding-inline: $badge-padding-x;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+
+    @include border-radius($badge-border-radius);
+
+    &.label-danger {
+      background: var(--#{$prefix}danger);
+      color: var(--#{$prefix}danger-contrast);
+    }
+
+    &.label-success {
+      background: var(--#{$prefix}success);
+      color: var(--#{$prefix}success-contrast);
+    }
+  }
+  .form-control:focus + .maxLength {
+    position: absolute;
+    display: inline-block;
+  }
+}

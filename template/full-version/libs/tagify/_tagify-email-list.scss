@@ -1,0 +1,59 @@
+.tagify-email-list {
+  display: inline-block;
+  border: none;
+  min-inline-size: 0;
+  &.tagify {
+    padding: 0;
+    margin-inline-start: calc(var(--tagify-item-margin) * -1);
+  }
+  &.tagify,
+  &.tagify--focus {
+    border: none;
+    box-shadow: none;
+    padding-block: 0 var(--tagify-item-margin);
+  }
+  .tagify__tag {
+    line-height: 1.7rem;
+    margin-block-end: 0;
+    margin-inline-end: .625rem;
+    > div {
+      padding-inline: calc(var(--tagify-item-padding) * 2);
+    }
+    &:only-of-type {
+      > div {
+        padding-inline: calc(var(--tagify-item-padding) * 2);
+      }
+
+      /* Do not show the "remove tag" (x) button when only a single tag remains */
+      .tagify__tag__removeBtn {
+        display: none;
+      }
+      &:hover {
+        padding-inline-end: 0;
+      }
+    }
+    &:hover {
+      padding-inline-end: .375rem;
+      .tagify__tag__removeBtn {
+        &:not(:hover) {
+          color: var(--tag-text-color);
+        }
+      }
+    }
+  }
+  .tagify__tag__removeBtn {
+    position: absolute;
+    z-index: 1;
+    font-size: inherit;
+    inset-inline-end: 0;
+    margin-inline: 0 .3125rem;
+    opacity: 0;
+  }
+  .tagify__tag:not(.tagify__tag--editable):hover .tagify__tag__removeBtn {
+    opacity: 1;
+    transform: none;
+  }
+  .tagify__input {
+    display: none;
+  }
+}

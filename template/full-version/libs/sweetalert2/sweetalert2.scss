@@ -1,0 +1,170 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "sweetalert2/src/sweetalert2";
+
+/* Sweet Alert2 Modal */
+
+.swal2-container {
+  $progress-bg-amoumnt: 15%;
+  $progress-mix-bg: var(--#{$prefix}white);
+  --#{$prefix}progress-bg-amount: #{$progress-bg-amoumnt};
+  --#{$prefix}progress-mix-bg: #{$progress-mix-bg};
+  --#{$prefix}modal-bg: #{$modal-content-bg};
+  --#{$prefix}modal-box-shadow: #{$modal-content-box-shadow-xs};
+  z-index: $zindex-modal;
+
+  .tooltip {
+    z-index: $zindex-modal + 2;
+  }
+  .popover {
+    z-index: $zindex-modal + 1;
+  }
+  &.swal2-shown {
+    background: rgba($modal-backdrop-bg, $modal-backdrop-opacity);
+  }
+
+  .swal2-modal.swal2-popup {
+    background-color: var(--#{$prefix}modal-bg);
+    box-shadow: var(--#{$prefix}modal-box-shadow);
+    font-family: $font-family-base;
+
+    @include border-radius($border-radius);
+
+    .swal2-title {
+      line-height: $line-height-base;
+      margin-block: 1.875rem 1rem;
+      max-inline-size: $swal2-width * .5;
+    }
+    .swal2-actions {
+      margin-block-start: 1rem;
+
+      button + button {
+        margin-inline-start: 1rem;
+      }
+    }
+
+    .swal2-input,
+    .swal2-file,
+    .swal2-textarea {
+      box-shadow: none;
+    }
+
+    .swal2-icon {
+      margin-block-end: 0;
+    }
+
+    .swal2-close {
+      color: var(--#{$prefix}secondary-color);
+      &:hover {
+        color: var(--#{$prefix}body-color);
+      }
+    }
+  }
+
+  .swal2-popup {
+    .swal2-title {
+      color: var(--#{$prefix}body-color);
+      font-size: $h2-font-size;
+      font-weight: $headings-font-weight;
+    }
+    .swal2-html-container {
+      color: var(--#{$prefix}body-color);
+      line-height: $line-height-base;
+    }
+
+    .swal2-input,
+    .swal2-file,
+    .swal2-textarea {
+      border: $input-border-width solid $input-border-color;
+      color: var(--#{$prefix}body-color);
+      font-size: $font-size-lg;
+      @include border-radius($border-radius-lg);
+    }
+
+    .swal2-validation-message {
+      background: var(--#{$prefix}gray-100);
+      color: var(--#{$prefix}body-color);
+    }
+
+    /*  Colors */
+    .swal2-icon.swal2-success {
+      border-color: var(--#{$prefix}success);
+      .swal2-success-ring {
+        border-color: rgba(var(--#{$prefix}success-rgb), .2);
+      }
+      [class^="swal2-success-line"] {
+        background-color: var(--#{$prefix}success);
+      }
+    }
+
+    .swal2-icon.swal2-question {
+      border-color: rgba(var(--#{$prefix}secondary-rgb), .4);
+      color: var(--#{$prefix}secondary);
+    }
+
+    .swal2-icon.swal2-info {
+      border-color: rgba(var(--#{$prefix}info-rgb), .4);
+      color: var(--#{$prefix}info);
+    }
+
+    .swal2-icon.swal2-warning {
+      border-color: rgba(var(--#{$prefix}warning-rgb), .8);
+      color: var(--#{$prefix}warning);
+    }
+
+    .swal2-icon.swal2-error {
+      border-color: rgba(var(--#{$prefix}danger-rgb), .6);
+
+      [class^="swal2-x-mark-line"] {
+        border-color: var(--#{$prefix}danger);
+      }
+    }
+    .swal2-footer {
+      border-block-start: 1px solid var(--#{$prefix}border-color);
+      color: var(--#{$prefix}body-color);
+    }
+  }
+  .swal2-progress-steps[class] {
+    .swal2-progress-step.swal2-active-progress-step,
+    .swal2-progress-step-line,
+    .swal2-active-progress-step,
+    .swal2-progress-step {
+      background: var(--#{$prefix}primary);
+      color: var(--#{$prefix}primary-contrast);
+    }
+    .swal2-progress-step.swal2-active-progress-step {
+      ~ .swal2-progress-step,
+      ~ .swal2-progress-step-line {
+        background: color-mix(in sRGB, var(--#{$prefix}primary) var(--#{$prefix}progress-bg-amount), var(--#{$prefix}progress-mix-bg));
+      }
+    }
+  }
+}
+
+/* Dark Style */
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+
+    .swal2-container {
+      --#{$prefix}progress-bg-amount: 45%;
+      --#{$prefix}progress-mix-bg: var(--#{$prefix}dark);
+    }
+  }
+}
+
+/* IE Specific */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .swal2-modal:not([style="display: none;"]),
+  .swal2-icon:not([style="display: none;"]),
+  .swal2-actions:not([style="display: none;"]),
+  .swal2-image:not([style="display: none;"]),
+  .swal2-input:not([style="display: none;"]),
+  .swal2-file:not([style="display: none;"]),
+  .swal2-range:not([style="display: none;"]),
+  .swal2-select:not([style="display: none;"]),
+  .swal2-radio:not([style="display: none;"]),
+  .swal2-checkbox:not([style="display: none;"]),
+  .swal2-textarea:not([style="display: none;"]),
+  .swal2-footer:not([style="display: none;"]) {
+    display: flex;
+  }
+}

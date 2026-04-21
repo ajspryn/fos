@@ -1,0 +1,13 @@
+{
+    "name": "Akad",
+    "alias": "akad",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Akad\\Providers\\AkadServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -1,0 +1,65 @@
+/* Suggestions items */
+.tagify__dropdown.users-list {
+  .tagify__dropdown__item {
+    display: grid;
+    gap: 0 1em;
+    grid-template-areas:
+      "avatar name"
+      "avatar email";
+    grid-template-columns: auto 1fr;
+
+    &__avatar-wrap {
+      overflow: hidden;
+      background: var(--#{$prefix}body-bg);
+      block-size: $tag-avatar-select-size;
+      grid-area: avatar;
+      inline-size: $tag-avatar-select-size;
+      transition: .1s ease-out;
+      @include border-radius(50%);
+    }
+    &__addAll {
+      border-block-end: 1px solid $border-color;
+      gap: 0;
+    }
+  }
+
+  img {
+    inline-size: 100%;
+    vertical-align: top;
+  }
+
+  strong {
+    align-self: center;
+    font-weight: 500;
+    grid-area: name;
+    inline-size: 100%;
+  }
+
+  span {
+    font-size: .9em;
+    grid-area: email;
+    inline-size: 100%;
+    opacity: .6;
+  }
+}
+
+/* Tags items */
+.tagify__tag {
+  white-space: nowrap;
+
+  .tagify__tag__avatar-wrap {
+    @include border-radius(50%);
+    background: var(--#{$prefix}body-bg);
+    block-size: $tag-avatar-size;
+    inline-size: $tag-avatar-size;
+    margin-inline-end: 5px;
+    transition: .12s ease-out;
+    vertical-align: middle;
+    white-space: normal;
+  }
+
+  img {
+    inline-size: 100%;
+    vertical-align: top;
+  }
+}

@@ -1,0 +1,170 @@
+// Bootstrap Select
+// *******************************************************************************
+
+@import "../../scss/_bootstrap-extended/include";
+@import "bootstrap-select/sass/bootstrap-select";
+
+/* Common Styles */
+.bootstrap-select *,
+.bootstrap-select .dropdown-toggle:focus {
+  outline: 0 !important;
+}
+.bootstrap-select {
+  --#{$prefix}bootstrap-select-arrow-position: 23px;
+  .bs-searchbox,
+  .bs-actionsbox,
+  .bs-donebutton {
+    padding-block: 0 .5rem;
+    padding-inline: 0;
+  }
+  > .dropdown-toggle {
+    &.bs-placeholder {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        color: $input-placeholder-color;
+      }
+    }
+  }
+  .dropdown-toggle {
+    border: $input-border-width solid $input-border-color;
+    @include border-radius($input-border-radius);
+    color: $input-color;
+    padding-block: calc($input-padding-y - $input-border-width);
+    padding-inline: $input-padding-x;
+    transition: none;
+    .filter-option {
+      float: inline-start;
+      inset-inline: 0 auto;
+      text-align: start;
+    }
+    &::after {
+      position: absolute;
+      margin: 0;
+      inset-block-start: 50%;
+      inset-inline-end: var(--#{$prefix}bootstrap-select-arrow-position);
+      transform: rotate(45deg) translateY(-100%);
+      :dir(rtl) & {
+        transform: rotate(-45deg) translateY(-100%);
+      }
+    }
+    &.show,
+    &:focus,
+    &:active {
+      border-width: $input-focus-border-width;
+      border-color: $input-focus-border-color;
+      box-shadow: $input-focus-box-shadow;
+      padding-block: calc($input-padding-y - $input-focus-border-width);
+      padding-inline: calc($input-padding-x - $input-border-width);
+      &::after {
+        inset-inline-end: calc(var(--#{$prefix}bootstrap-select-arrow-position) - $input-border-width);
+      }
+    }
+    .filter-option-inner-inner {
+      float: inline-start;
+      line-height: $input-line-height;
+    }
+  }
+  .dropdown-menu li small,
+  .filter-option small {
+    position: relative;
+    float: inline-end;
+    inset-block-start: 2px;
+    padding-inline: .5em 0;
+  }
+  .dropdown-menu {
+    .notify {
+      border-color: color-mix(in sRGB, var(--#{$prefix}base-color) 16%, var(--#{$prefix}paper-bg));
+      background: color-mix(in sRGB, var(--#{$prefix}base-color) 6%, var(--#{$prefix}paper-bg));
+    }
+
+    /* For header dropdown close btn */
+    .popover-header {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+      margin-inline: var(--#{$prefix}dropdown-item-padding-x);
+      button {
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: var(--#{$prefix}body-color);
+        font-size: $h4-font-size;
+      }
+    }
+    a[aria-selected="true"] {
+      background: $component-active-bg;
+      color: var(--#{$prefix}primary-contrast);
+    }
+    li.active small,
+    li:active small  {
+      color: var(--#{$prefix}primary-contrast) !important;
+    }
+    .dropdown-item.selected span::before,
+    .dropdown-item:active,
+    .dropdown-toggle.show {
+      background: $component-active-bg;
+      color: var(--#{$prefix}primary-contrast);
+    }
+  }
+  .btn {
+    &:disabled,
+    &.disabled {
+      color: $input-disabled-color;
+    }
+    &:hover {
+      transform: none;
+    }
+  }
+  .is-invalid {
+    ~ .dropdown-toggle {
+      &::after {
+        inset-inline-end: calc(var(--#{$prefix}bootstrap-select-arrow-position) - $input-border-width);
+      }
+    }
+  }
+  &.dropup {
+    --#{$prefix}bootstrap-select-arrow-position: 14px;
+    .dropdown-toggle {
+      &::after {
+        transform: rotate(317deg) translateY(-30%);
+        :dir(rtl) & {
+          transform: rotate(-317deg) translateY(-30%);
+        }
+      }
+    }
+  }
+
+  /* Menu Position */
+  &.show-tick {
+    .dropdown-menu {
+      li {
+        a {
+          position: relative;
+          span.text {
+            margin-inline: 0 2.125rem;
+          }
+        }
+      }
+      .selected span.check-mark {
+        inset-block-start: 50%;
+        inset-inline: auto 1rem;
+        inset-inline-end: 1rem;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  &:not(.input-group-btn),
+  &[class*="col-"] {
+    display: block;
+  }
+}
+
+html[class] .bootstrap-select.form-select {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  background: none;
+}

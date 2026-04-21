@@ -1,0 +1,164 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "@yaireo/tagify/src/tagify";
+
+:root {
+  --tagify-dd-color-primary: var(--#{$prefix}primary-rgb);
+  --tagify-dd-bg-color: var(--#{$prefix}paper-bg);
+  --tagify-item-margin: .375rem;
+  --tagify-item-padding: .4375rem;
+  --tagify-item-active-bg: color-mix(in sRGB, var(--#{$prefix}paper-bg) var(--#{$prefix}bg-label-tint-amount), var(--#{$prefix}primary));
+  --tagify-item-active-color: var(--#{$prefix}primary);
+  --tagify-item-active-border-color: var(--tagify-item-active-bg);
+  --tagify-dropdown-box-shadow: #{$dropdown-box-shadow};
+  --tagify-dropdown-border-width: #{$dropdown-border-width};
+}
+
+/* Height calc to match form-control height */
+$tag-line-height: 1.5rem !default;
+
+/* Override tagify vars */
+$tag-avatar-size: 22px !default;
+$tag-avatar-select-size: 36px !default;
+$tag-max-width: auto !default;
+
+.tagify {
+  --tags-border-color: #{$input-border-color};
+  --tags-hover-border-color: #{$input-hover-border-color};
+  --tag-border-radius: #{$border-radius-sm};
+  --tag-bg: color-mix(in sRGB, var(--#{$prefix}base-color) 8%, var(--#{$prefix}paper-bg));
+  --tag-hover: color-mix(in sRGB, var(--#{$prefix}base-color) 15%, var(--#{$prefix}paper-bg));
+  --tag-text-color: var(--#{$prefix}heading-color);
+  --tag-text-color--edit: var(--#{$prefix}heading-color);
+  --tag-pad: 0;
+  --tags-disabled-bg: #{$input-disabled-bg};
+  --tags-disabled-color: #{$input-disabled-color};
+  --tags-disabled-border-color: #{$input-disabled-border-color};
+
+  --tag-remove-bg: rgba(var(--#{$prefix}danger-rgb), .3);
+  --tag-remove-btn-color: color-mix(in sRGB, var(--#{$prefix}base-color) 35%, var(--#{$prefix}paper-bg));
+  --tag-remove-btn-bg--hover: transparent;
+  --placeholder-color: #{$input-placeholder-color};
+  --placeholder-color-focus: #{$input-placeholder-color};
+
+  padding: $input-border-width;
+  @include transition($input-transition);
+
+  &.tagify--focus,
+  &.form-control:focus,
+  &:focus {
+    padding: 0;
+    border-width: $input-focus-border-width;
+    border-color: $component-active-bg;
+    box-shadow: $input-focus-box-shadow;
+  }
+  &__tag,
+  &__input {
+    line-height: $tag-line-height;
+  }
+  &__input {
+    &:first-child {
+      padding-inline-start: calc($input-padding-x - $input-focus-border-width - 5px);
+    }
+  }
+  &__tag {
+    margin-inline: .625rem 0;
+    &:first-child {
+      margin-inline-start: var(--tagify-item-margin);
+    }
+    > div {
+      align-items: center;
+      padding-inline-start: var(--tagify-item-padding);
+      > * {
+        white-space: nowrap;
+      }
+    }
+    &__removeBtn {
+      background-color: var(--#{$prefix}gray-600);
+      block-size: .75rem;
+      inline-size: .75rem;
+      margin-inline: calc(var(--tagify-item-padding) * .3571) calc(var(--tagify-item-padding) * .5429);
+      opacity: .7;
+      &:hover {
+        background-color: var(--#{$prefix}danger);
+      }
+      &::after {
+        display: inline-block;
+        background-color: var(--#{$prefix}white);
+        block-size: .5rem;
+        content: "";
+        inline-size: .5rem;
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M18 6L6 18M6 6l12 12'/%3E%3C/svg%3E");
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+      }
+    }
+    &:hover:not([readonly]),
+    &:focus {
+      div::before {
+        inset: 0;
+      }
+    }
+  }
+  &__dropdown {
+    border: none;
+    box-shadow: var(--tagify-dropdown-box-shadow);
+    transform: translateY(0);
+    &__wrapper {
+      border-width: var(--tagify-dropdown-border-width);
+      border-color: var(--#{$prefix}border-color);
+      background-color: var(--#{$prefix}paper-bg);
+      color: var(--#{$prefix}heading-color);
+      @include border-bottom-radius($dropdown-border-radius);
+    }
+    &__item {
+      @include border-radius($border-radius-sm);
+    }
+  }
+  &[readonly],
+  &[disabled]{
+    &:not(.tagify--mix):not(.tagify--select){
+      .tagify__tag > div{
+        padding-inline: var(--tagify-item-padding);
+      }
+    }
+  }
+  &__tag-text {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+  }
+  &[readonly] {
+    &:not(.tagify--focus):not(.tagify--invalid) {
+      &,
+      &:hover,
+      &:focus {
+        border-color: var(--tags-border-color);
+        box-shadow: none;
+      }
+    }
+    &:not(.tagify--mix) {
+      .tagify__tag > div::before {
+        background: linear-gradient(45deg, var(--tags-border-color) 25%, transparent 25%, transparent 50%, var(--tags-border-color) 50%, var(--tags-border-color) 75%, transparent 75%, transparent) 0/5px 5px;
+      }
+    }
+  }
+  &[disabled] {
+    border-color: var(--tags-disabled-border-color);
+    > div {
+      color: var(--tags-disabled-color);
+    }
+    &:not(.tagify--mix) {
+      .tagify__tag > div::before {
+        background: linear-gradient(45deg, var(--tags-border-color) 25%, transparent 25%, transparent 50%, var(--tags-border-color) 50%, var(--tags-border-color) 75%, transparent 75%, transparent) 0/5px 5px;
+      }
+    }
+  }
+}
+
+@import "tagify-users-list";
+@import "tagify-inline-suggestion";
+@import "tagify-email-list";
+
+.tagify__dropdown__item--active {
+  background: var(--tagify-item-active-bg);
+  color: var(--tagify-item-active-color);
+}

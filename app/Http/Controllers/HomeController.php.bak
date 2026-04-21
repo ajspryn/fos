@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Role;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class HomeController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        $role = Role::select()->where('user_id', Auth::user()->id)->get()->first();
+        $url = '/';
+
+        if ($role) {
+            if ($role->divisi_id == 0) {
+                if ($role->jabatan_id == 0) {
+                    $url = '/admin';
+                } elseif ($role->jabatan_id == 1) {
+                    $url = '/staff';
+                } elseif ($role->jabatan_id == 2) {
+                    $url = '/kabag';
+                } elseif ($role->jabatan_id == 3) {
+                    $url = '/analis';
+                } elseif ($role->jabatan_id == 4) {
+                    $url = '/dirbis';
+                } elseif ($role->jabatan_id == 5) {
+                    $url = '/dirut';
+                } else {
+                    $url = '/';
+                }
+            } elseif ($role->divisi_id == 1) {
+                $url = '/skpd';
+            } elseif ($role->divisi_id == 2) {
+                $url = '/pasar';
+            } elseif ($role->divisi_id == 3) {
+                $url = '/umkm';
+            } elseif ($role->divisi_id == 4) {
+                $url = '/ppr';
+            } elseif ($role->divisi_id == 5) {
+                $url = '/staff';
+            } elseif ($role->divisi_id == 6) {
+                $url = '/p3k';
+            } elseif ($role->divisi_id == 7) {
+                $url = '/ultra_mikro';
+            } else {
+                $url = '/';
+            }
+        }
+
+
+        return Redirect($url);
+    }
+}

@@ -1,0 +1,41 @@
+/* Offcanvas
+******************************************************************************* */
+
+.offcanvas {
+  box-shadow: var(--#{$prefix}offcanvas-box-shadow);
+  .offcanvas-header {
+    .btn-close {
+      padding: .44rem;
+      background-size: .875rem;
+      margin-block: ($offcanvas-padding-y * -.5) ($offcanvas-padding-x * -.5);
+      margin-inline: auto ($offcanvas-padding-y * .167);
+    }
+  }
+  &.offcanvas-start {
+    inset-inline: 0 auto;
+  }
+  &.offcanvas-end {
+    inset-inline: auto 0;
+  }
+}
+
+// RTL
+// *******************************************************************************
+:dir(rtl) {
+  .offcanvas-start {
+    transform: translateX(100%);
+  }
+  .offcanvas-end {
+    transform: translateX(-100%);
+  }
+}
+
+// Dark theme
+// *******************************************************************************
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .offcanvas-backdrop {
+      @include overlay-backdrop($zindex-offcanvas-backdrop, $offcanvas-backdrop-bg-dark, $offcanvas-backdrop-opacity-dark);
+    }
+  }
+}

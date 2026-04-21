@@ -1,0 +1,31 @@
+$color-classes: $custom-theme-colors !default;
+
+@each $color, $value in $color-classes {
+  .bg-label-#{$color} {
+    background-color: color-mix(in sRGB, var(--#{$prefix}paper-bg) var(--#{$prefix}bg-label-tint-amount), var(--#{$prefix}#{$color})) if($enable-important-utilities, !important, null);
+    @if $color == "light" {
+      color: RGBA(color-contrast($value), var(--#{$prefix}bg-label-tint-amount)) if($enable-important-utilities, !important, null);
+    } @else {
+      color: var(--#{$prefix}#{$color}) if($enable-important-utilities, !important, null);
+    }
+    //TODO: this utility is not used in the master, will be refactored in the master-material
+    &.bg-label-hover {
+      &:hover {
+        background-color: var(--#{$prefix}#{$color}) if($enable-important-utilities, !important, null);
+        color: var(--#{$prefix}#{$color}-contrast) if($enable-important-utilities, !important, null);
+      }
+    }
+  }
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    @each $color, $value in $color-classes {
+      .bg-label-#{$color} {
+        @if $color == "dark" {
+          color: RGBA(color-contrast($value), var(--#{$prefix}bg-label-tint-amount)) if($enable-important-utilities, !important, null);
+        }
+      }
+    }
+  }
+}

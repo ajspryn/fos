@@ -1,0 +1,56 @@
+/* Typeahead
+******************************************************************************* */
+
+@import "../../scss/_bootstrap-extended/include";
+
+.twitter-typeahead {
+  display: block !important;
+
+  .tt-menu {
+    border: $dropdown-border-width solid $dropdown-border-color;
+    background-clip: padding-box;
+    background-color: $dropdown-bg;
+    box-shadow: $dropdown-box-shadow;
+    color: $dropdown-color;
+    font-size: $dropdown-font-size;
+    inset-inline: 0 auto !important;
+    margin-block: calc($dropdown-spacer + $dropdown-spacer);
+    min-inline-size: $dropdown-min-width;
+    padding-block: $dropdown-padding-y;
+    @include border-radius($border-radius);
+
+    .tt-suggestion {
+      color: $dropdown-link-color;
+      cursor: pointer;
+      padding-block: $dropdown-item-padding-y;
+      padding-inline: $dropdown-item-padding-x;
+      white-space: nowrap;
+      &:hover,
+      &:focus {
+        background-color: $dropdown-link-hover-bg;
+        color: $dropdown-link-hover-color;
+        text-decoration: none;
+      }
+      p {
+        margin: 0;
+      }
+      .tt-highlight {
+        font-weight: $font-weight-medium;
+      }
+    }
+    .tt-suggestion:active,
+    .tt-cursor {
+      background: $dropdown-link-active-bg;
+      color: $dropdown-link-active-color;
+    }
+  }
+  .tt-hint {
+    color: $input-placeholder-color;
+  }
+  .tt-input {
+    direction: ltr;
+    :dir(rtl) &{
+      direction: rtl;
+    }
+  }
+}

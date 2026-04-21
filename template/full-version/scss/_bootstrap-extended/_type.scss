@@ -1,0 +1,19 @@
+/* Type */
+
+.list-inline,
+.list-unstyled {
+  padding-inline-start: 0;
+}
+
+.list-inline-item:not(:last-child) {
+  margin-inline: 0 $list-inline-padding;
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark, true) {
+    color-scheme: dark;
+    .blockquote-footer {
+      color: $blockquote-footer-color-dark;
+    }
+  }
+}

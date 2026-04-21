@@ -1,0 +1,13 @@
+{
+    "name": "P3k",
+    "alias": "p3k",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\P3k\\Providers\\P3kServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -1,0 +1,114 @@
+@import "../../scss/_bootstrap-extended/include";
+@charset "UTF-8";
+@import "shepherd.js/dist/css/shepherd";
+
+$shepherd-header-content-padding-x: 1.25rem !default;
+$shepherd-header-content-padding-y: 1.25rem 0 !default;
+$shepherd-btn-padding-x: var(--#{$prefix}btn-padding-x) !default;
+$shepherd-btn-padding-y: var(--#{$prefix}btn-padding-y) !default;
+$shepherd-container-width: 15rem !default;
+
+.shepherd-element {
+  padding: 0;
+  border-width: 0;
+  background: var(--#{$prefix}paper-bg);
+  inset-inline-start: auto;
+  @include border-radius(var(--#{$prefix}border-radius-sm));
+
+  @include media-breakpoint-down(sm) {
+    max-inline-size: 300px;
+  }
+  .shepherd-arrow::before {
+    border-color: var(--#{$prefix}paper-bg) !important;
+    background: var(--#{$prefix}paper-bg);
+    border-block-end: 1px solid;
+    border-inline-end: 1px solid;
+  }
+
+  .shepherd-title {
+    color: var(--#{$prefix}body-color);
+    font-size: $h5-font-size;
+    font-weight: $font-weight-medium;
+  }
+  .shepherd-content {
+    min-inline-size: $shepherd-container-width;
+
+    .shepherd-header {
+      background-color: var(--#{$prefix}paper-bg);
+      padding-block: $shepherd-header-content-padding-y;
+      padding-inline: $shepherd-header-content-padding-x;
+
+      .shepherd-cancel-icon {
+        color: var(--#{$prefix}secondary);
+        font-size: 1.85rem;
+      }
+    }
+    .shepherd-text {
+      color: var(--#{$prefix}body-color);
+      font-size: $font-size-base !important;
+      padding-block: 1rem !important;
+      padding-inline: $shepherd-header-content-padding-x !important;
+    }
+
+    .shepherd-footer {
+      .shepherd-button {
+        background: var(--#{$prefix}btn-bg);
+        color: var(--#{$prefix}btn-color);
+        padding-block: $shepherd-btn-padding-y;
+        padding-inline: $shepherd-btn-padding-x;
+        &:hover {
+          background: var(--#{$prefix}btn-hover-bg);
+          color: var(--#{$prefix}btn-hover-color);
+        }
+      }
+      padding-block: 0 $shepherd-header-content-padding-y !important;
+      padding-inline: $shepherd-header-content-padding-x !important;
+    }
+  }
+
+  /* Ask before submit */
+  &[data-popper-placement="bottom"] {
+    margin-block-start: .8rem !important;
+    .shepherd-arrow::before {
+      border-color: var(--#{$prefix}paper-bg) !important;
+      background-color: var(--#{$prefix}paper-bg) !important;
+    }
+  }
+
+  &[data-popper-placement="top"] {
+    margin-block-start: -.8rem;
+  }
+
+  &[data-popper-placement="left"] {
+    margin-inline-start: -.8rem;
+
+    .shepherd-arrow::before {
+      border-block-end: 0;
+      border-block-start: 1px solid;
+    }
+  }
+
+  &[data-popper-placement="right"] {
+    margin-inline-start: .8rem;
+
+    .shepherd-arrow::before {
+      border-inline-end: 0;
+      border-inline-start: 1px solid;
+    }
+  }
+}
+
+/* RTL */
+:dir(rtl) {
+  .shepherd-element {
+    .shepherd-footer .btn-next {
+      margin-inline-start: .5rem;
+    }
+    &[data-popper-placement="left"] {
+      margin-inline-end: -.8rem;
+    }
+    &[data-popper-placement="right"] {
+      margin-inline-end: .8rem;
+    }
+  }
+}

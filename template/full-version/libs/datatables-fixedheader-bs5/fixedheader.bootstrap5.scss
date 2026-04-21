@@ -1,0 +1,36 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5";
+
+/* Fixed header Style */
+.dt-fixedheader {
+  &.table-bordered.table.dataTable {
+    &.fixedHeader-floating,
+    &.fixedHeader-locked {
+      thead > tr > th {
+        background-color: var(--#{$prefix}paper-bg);
+      }
+    }
+  }
+  &.dataTable.table-bordered thead tr th {
+    &:nth-child(2) {
+      border-inline-start-width: 0;
+    }
+    &:last-child {
+      border-inline-end: none;
+      :dir(rtl) & {
+        border-inline-start: none;
+      }
+    }
+  }
+}
+
+.dtfh-floatingparent-head {
+  border-block-end: 1px solid var(--#{$prefix}border-color);
+  > div {
+    padding: 0 !important;
+  }
+  .form-check-input {
+    block-size: $form-datatables-check-input-size;
+    inline-size: $form-datatables-check-input-size;
+  }
+}

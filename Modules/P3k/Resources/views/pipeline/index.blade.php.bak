@@ -1,0 +1,428 @@
+@extends('p3k::layouts.main')
+
+@section('content')
+    @push('page-css')
+        <style>
+            .table-sm th,
+            .table-sm td {
+                font-size: 0.8rem;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        </style>
+    @endpush
+
+    @if ($userPipelinesCurrentMonth->isEmpty())
+        <div class="alert alert-danger d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-1">
+            <div>
+                <div class="fw-semibold">Anda belum memiliki data pipeline bulan {{ $currentMonth . ' ' . $currentYear }}.</div>
+                <small>Silakan tambah pipeline.</small>
+            </div>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formTambahPipeline">
+                <i data-feather="plus-circle"></i>&nbsp;Tambah Pipeline
+            </button>
+        </div>
+    @endif
+
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="container-xxl flex-grow-1 container-p-y">
+
+            <div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row p">
+                <div class="col-12">
+                    <h3 class="content-header-title float-start mb-0">Data Pipeline {{ Auth::user()->name }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row match-height g-4">
+        <div class="col-xl-6 col-md-6 col-12 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Pipeline PPPK</h5>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <div class="mb-1">
+                                <input type="month" class="form-control" name="bulan" id="selectMonth"
+                                    oninput="filterData()" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <canvas id="chartPipeline" width="200" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <!--/ Medal Card -->
+                <!-- Statistics Card -->
+        <div class="col-xl-6 col-md-6 col-12 mb-4">
+            <div class="card card-statistics">
+                <h5 class="card-header">Ringkasan</h5>
+                <div class="card-body statistics-body">
+                    <div class="card-datatable table-responsive pt-0">
+                        <table id="pipelineTable" class="datatables-basic table table-sm">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center"></th>
+                                                <th class="text-center align-middle">No</th>
+                                    <th class="text-center align-middle">Nama</th>
+                                    <th class="d-none d-md-table-cell" class="text-center align-middle">Target</th>
+                                    <th class="text-center align-middle">Realisasi</th>
+                                    <th class="text-center align-middle">On Process</th>
+                                    <th class="text-center align-middle">Keterangan</th>
+                                <th style="text-align: center">Action</th>
+                                    </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                    </tbody>
+                            <tfoot>
+                                {{-- Data from js --}}
+                            </tfoot>
+                        </table>
+
+                                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ Statistics Card -->
+
+                
+
+                <!-- Basic table -->
+                <section>
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                                    <div class="card">
+                                        <h5 class="card-header">Ringkasan</h5>
+                                        <div class="card-body">
+                                            <div class="card-datatable table-responsive pt-0">
+
+                                                <table class="datatables-basic table">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center">No</th>
+                                            <th style="text-align: center">Tahun</th>
+                                            <th style="text-align: center">Bulan</th>
+                                            <th style="text-align: center">Target</th>
+                                            <th style="text-align: center">Realisasi</th>
+                                            <th style="text-align: center">On Process</th>
+                                            <th style="text-align: center">Keterangan</th>
+                                            <th style="text-align: center">Action</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                        @foreach ($userPipelines as $userPipeline)
+                                            <tr>
+                                                <td style="text-align: center">
+                                                    <a href="/resources/komite/{{ $proposal->id }}" class="btn btn-icon btn-icon rounded-circle btn-flat-success">
+                                                    <i data-feather="eye"></i>
+                                                </a>
+                                                </td>
+                                                <td style="text-align: center">{{ $loop->iteration }}</td>
+                                                <td style="text-align: center">{{ $userPipeline->tahun }}</td>
+                                                <td style="text-align: center">{{ $userPipeline->bulan }}</td>
+                                                <td style="text-align: center">
+                                                    Rp{{ number_format($userPipeline->nominal_target, 0, ',', '.') }}</td>
+                                                <td style="text-align: center">
+                                                    Rp{{ number_format($userPipeline->nominal_realisasi, 0, ',', '.') }}
+                                                </td>
+                                                <td style="text-align: center">
+                                                    Rp{{ number_format($userPipeline->nominal_on_process, 0, ',', '.') }}
+                                                </td>
+                                                <td style="text-align: center">
+                                                    @if ($userPipeline->nominal_realisasi >= $userPipeline->nominal_target)
+                                                        <span class="badge rounded-pill badge-light-success">Achieved</span>
+                                                    @else
+                                                        <span class="badge rounded-pill badge-light-danger">Belum
+                                                            Achieve</span>
+                                                    @endif
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <a href="/p3k/userPipeline/{{ $userPipeline->id }}"
+                                                        class="btn btn-outline-info round">Detail</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ Basic table -->
+
+        <!-- Modal Setuju  -->
+        <div class="modal fade" id="formTambahPipeline" tabindex="-1" aria-labelledby="addNewCardTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                        <h3 class="text-center mb-1" id="addNewCardTitle">
+                            Tambah Pipeline
+                        </h3>
+                        <!-- form -->
+                        <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" method="POST"
+                            action="/p3k/pipeline" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="inputBulanPipeline"><small class="text-danger">*
+                                    </small>Bulan</label>
+                                <input type="month" name="input_bulan_pipeline" class="form-control"
+                                    id="inputBulanPipeline" required disabled />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="nominalTarget"><small class="text-danger">*
+                                    </small>Masukkan Nominal Target</label>
+                                <input type="text" name="nominal_pembiayaan" class="form-control numeral-mask"
+                                    placeholder="Rp." id="nominalTarget" required />
+                            </div>
+                            {{-- <input type="hidden" name="p3k_pembiayaan_id"
+                            value="{{ $pembiayaan->id }}">
+                        <input type="hidden" name="status_id" value=3>
+                        <input type="hidden" name="user_id"
+                            value="{{ Auth::user()->id }}"> --}}
+
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary me-1 mt-1">Submit</button>
+                                <button type="reset" class="btn btn-outline-secondary mt-1" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Modal Setuju  -->
+
+    @push('page-js')
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+        {{-- set current month in input --}}
+        <script>
+            window.addEventListener('load', function() {
+                var currentDate = new Date();
+                var currentYear = currentDate.getFullYear();
+                var currentMonth = currentDate.getMonth() + 1;
+
+                var monthYearInput = currentYear + '-' + ('0' + currentMonth).slice(-2);
+                document.getElementById('selectMonth').value = monthYearInput;
+                document.getElementById('inputBulanPipeline').value = monthYearInput;
+                filterData();
+            });
+        </script>
+
+        <!-- Chart Pipeline -->
+        <script>
+            var currentDate = new Date();
+            var currentYear = currentDate.getFullYear();
+            var currentMonth = currentDate.getMonth() + 1;
+
+            document.getElementById('selectMonth').max = currentYear + '-' + ('0' + currentMonth).slice(-2);
+
+            var chartPipeline;
+
+            function filterData() {
+                var monthYear = document.getElementById('selectMonth').value;
+                var selectedDate = new Date(monthYear);
+                var monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                ];
+
+                var selectedMonth = monthNames[selectedDate.getMonth()];
+                var selectedYear = selectedDate.getFullYear();
+
+                $.ajax({
+                    url: '/p3k/pipeline/filter-by-month',
+                    type: 'GET',
+                    data: {
+                        bulan: selectedMonth,
+                        tahun: selectedYear
+                    },
+                    success: function(response) {
+                        if (chartPipeline) {
+                            chartPipeline.destroy();
+                        }
+                        populateChart(response);
+                        populateTable(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+            function populateChart(data) {
+                if (!data.datasets || data.datasets.length === 0) {
+                    var ctx = document.getElementById('chartPipeline').getContext('2d');
+                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    ctx.font = '14px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('Data tidak tersedia', ctx.canvas.width / 2, ctx.canvas.height / 2);
+                    return;
+                }
+
+                var labels = data.labels;
+                var datasets = data.datasets;
+                var targetData = datasets[0].data;
+                var realisasiData = datasets[1].data;
+                var processData = datasets[2].data;
+
+                var ctx = document.getElementById('chartPipeline').getContext('2d');
+                chartPipeline = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                                label: 'Target',
+                                data: targetData,
+                                backgroundColor: 'rgba(203, 38, 33, 0.7)',
+                                borderColor: 'rgba(203, 38, 33, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Realisasi',
+                                data: realisasiData,
+                                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'On Process',
+                                data: processData,
+                                backgroundColor: 'rgba(255, 206, 86, 0.7)',
+                                borderColor: 'rgba(255, 206, 86, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'right'
+                            }
+                        }
+                    }
+                });
+            }
+
+            function populateTable(data) {
+                var tableBody = document.querySelector('#pipelineTable tbody');
+                var tableFooter = document.querySelector('#pipelineTable tfoot');
+
+                tableBody.innerHTML = '';
+                tableFooter.innerHTML = '';
+
+                if (!data || !data.labels || !data.labels.length) {
+                    var messageRow = '<tr><td colspan="6" class="text-center">Data tidak tersedia</td></tr>';
+                    tableBody.innerHTML = messageRow;
+                    return;
+                }
+
+                data.labels.forEach(function(name, index) {
+                    var target = data.datasets[0].data[index];
+                    var realisasi = data.datasets[1].data[index];
+                    var onProcess = data.datasets[2].data[index];
+
+                    var row = `
+            <tr>
+                <td class="text-center">${index + 1}</td>
+                <td>${name}</td>
+                <td class="text-end">Rp${numberFormat(target)}</td>
+                <td class="text-end">Rp${numberFormat(realisasi)}</td>
+                <td class="text-end">Rp${numberFormat(onProcess)}</td>
+                <td class="text-center">
+                    ${+realisasi >= +target ?
+                        '<span class="badge rounded-pill badge-light-success">Achieved</span>' :
+                        '<span class="badge rounded-pill badge-light-danger">Belum Achieve</span>'}
+                </td>
+            </tr>
+        `;
+                    tableBody.innerHTML += row;
+                });
+
+                var totalNominalTarget = calculateTotal(data.datasets[0].data);
+                var totalNominalRealisasi = calculateTotal(data.datasets[1].data);
+                var totalNominalOnProcess = calculateTotal(data.datasets[2].data);
+                var achievedCounts = calculateAchieved(data.datasets[0].data, data.datasets[1].data);
+                var jmlAchieved = achievedCounts.totalAchieved;
+                var jmlAo = achievedCounts.totalIterations;
+
+                var footerRow = `
+        <tr>
+            <td colspan="2" class="text-center"><strong>Total</strong></td>
+            <td class="text-end"><strong>Rp${numberFormat(totalNominalTarget)}</strong></td>
+            <td class="text-end"><strong>Rp${numberFormat(totalNominalRealisasi)}</strong></td>
+            <td class="text-end"><strong>Rp${numberFormat(totalNominalOnProcess)}</strong></td>
+            <td class="text-center"><strong>${jmlAchieved} / ${jmlAo} Achieved</strong></td>
+        </tr>
+    `;
+                tableFooter.innerHTML = footerRow;
+            }
+
+            function calculateTotal(array) {
+                return array.reduce((total, currentValue) => total + parseFloat(currentValue.replace(/[^\d.-]/g, '')), 0);
+            }
+
+            function calculateAchieved(targets, realisasi) {
+                var countAchieved = 0;
+                var countIterations = targets.length;
+
+                for (var i = 0; i < targets.length; i++) {
+                    if (+realisasi[i] >= +targets[i]) {
+                        countAchieved++;
+                    }
+                }
+                return {
+                    totalAchieved: countAchieved,
+                    totalIterations: countIterations
+                }
+            }
+
+            function numberFormat(number) {
+                if (typeof number === 'string') {
+                    number = parseFloat(number.replace(/\./g, '').replace(/,/g, '.'));
+                }
+
+                if (isNaN(number)) {
+                    return '';
+                }
+
+                return number.toLocaleString('id-ID', {
+                    minimumFractionDigits: 0
+                });
+            }
+        </script>
+        <!-- End Chart Pipeline -->
+    @endpush
+
+        </div>
+    </div>
+
+@endsection

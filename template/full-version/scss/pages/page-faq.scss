@@ -1,0 +1,36 @@
+/* FAQ
+******************************************************************************* */
+
+@import "../_bootstrap-extended/include";
+
+.faq-header {
+  .input-wrapper {
+    position: relative;
+    inline-size: 100%;
+    max-inline-size: calc(100% - 45%);
+    .input-group-text,
+    .form-control {
+      background-color: var(--#{$prefix}paper-bg);
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .input-wrapper {
+      max-inline-size: calc(100% - 30%);
+    }
+  }
+}
+
+.faq-banner-img {
+  position: absolute;
+  block-size: 100%;
+  inline-size: 100%;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  object-fit: cover;
+  object-position: left;
+}
+
+.bg-faq-section {
+  background-color: rgba(var(--#{$prefix}base-color-rgb), .06);
+}

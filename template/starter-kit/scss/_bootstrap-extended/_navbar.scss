@@ -1,0 +1,78 @@
+/* Navbar
+******************************************************************************* */
+.layout-navbar {
+  background-color: var(--#{$prefix}body-bg);
+}
+.layout-navbar-fixed {
+  .window-scrolled{
+    .layout-navbar {
+      background-color: var(--#{$prefix}navbar-bg);
+    }
+  }
+}
+
+/* Mega dropdown
+****************************************************************************** */
+
+.mega-dropdown {
+  .dropdown-toggle {
+    box-shadow: none;
+    outline: 0;
+  }
+
+  .dropdown-menu {
+    inline-size: 100%;
+  }
+}
+.navbar {
+  &.bg-body-tertiary {
+    --#{$prefix}navbar-color: var(--#{$prefix}body-color);
+    --#{$prefix}navbar-hover-color: var(--#{$prefix}heading-color);
+    --#{$prefix}navbar-disabled-color: color-mix(in sRGB, var(--#{$prefix}base-color) 40%, var(--#{$prefix}paper-bg));
+    --#{$prefix}navbar-active-color: var(--#{$prefix}heading-color);
+    --#{$prefix}navbar-brand-color: var(--#{$prefix}heading-color);
+    --#{$prefix}navbar-brand-hover-color: color-mix(in sRGB, var(--#{$prefix}base-color) 70%, var(--#{$prefix}paper-bg));
+    .form-control::placeholder {
+      color: var(--#{$prefix}body-color);
+    }
+    .input-group-text:not(:focus),
+    .form-control:not(:focus) {
+      border-color: color-mix(in sRGB, var(--#{$prefix}base-color) 30%, var(--#{$prefix}paper-bg));
+    }
+  }
+  &.bg-white {
+    --#{$prefix}navbar-color: color-mix(in sRGB, var(--#{$prefix}pure-black) #{$bg-label-tint-amount}, var(--#{$prefix}white));
+    --#{$prefix}navbar-hover-color: var(--#{$prefix}pure-black);
+    --#{$prefix}navbar-disabled-color: color-mix(in sRGB, var(--#{$prefix}pure-black) 40%, var(--#{$prefix}white));
+    --#{$prefix}navbar-active-color: var(--#{$prefix}pure-black);
+    --#{$prefix}navbar-brand-color: var(--#{$prefix}pure-black);
+    --#{$prefix}navbar-brand-hover-color: color-mix(in sRGB, var(--#{$prefix}pure-black) #{$bg-label-tint-amount}, var(--#{$prefix}white));
+  }
+  &[class*="bg-"]:not(.bg-body-tertiary, .bg-white) {
+    background-color: var(--#{$prefix}navbar-bg) !important;
+  }
+}
+
+/* Generate contextual modifier classes for colorizing the navbar */
+@each $state in map-keys($theme-colors) {
+  .navbar.bg-#{$state} {
+    @if $state == "light" {
+      --#{$prefix}navbar-bg: rgba(var(--#{$prefix}#{$state}-rgb), .88);
+      --#{$prefix}navbar-color: var(--#{$prefix}body-color);
+      --#{$prefix}navbar-hover-color: var(--#{$prefix}heading-color);
+      --#{$prefix}navbar-disabled-color: color-mix(in sRGB, var(--#{$prefix}base-color) 40%, var(--#{$prefix}paper-bg));
+      --#{$prefix}navbar-active-color: var(--#{$prefix}heading-color);
+      --#{$prefix}navbar-brand-color: var(--#{$prefix}heading-color);
+      --#{$prefix}navbar-brand-hover-color: color-mix(in sRGB, var(--#{$prefix}base-color) 70%, var(--#{$prefix}paper-bg));
+    }
+    @else {
+      --#{$prefix}navbar-bg: rgba(var(--#{$prefix}#{$state}-rgb), .88);
+      --#{$prefix}navbar-color: color-mix(in sRGB, var(--#{$prefix}#{$state}-contrast) #{$bg-label-tint-amount}, var(--#{$prefix}#{$state}));
+      --#{$prefix}navbar-hover-color: var(--#{$prefix}#{$state}-contrast);
+      --#{$prefix}navbar-disabled-color: color-mix(in sRGB, var(--#{$prefix}#{$state}-contrast) 60%, var(--#{$prefix}#{$state}));
+      --#{$prefix}navbar-active-color: var(--#{$prefix}#{$state}-contrast);
+      --#{$prefix}navbar-brand-color: var(--#{$prefix}#{$state}-contrast);
+      --#{$prefix}navbar-brand-hover-color: color-mix(in sRGB, var(--#{$prefix}paper-bg) #{$bg-label-tint-amount}, var(--#{$prefix}#{$state}));
+    }
+  }
+}

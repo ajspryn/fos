@@ -1,0 +1,16 @@
+// Front Pages : Common Styles for ex: Navbar, footer etc...
+// *******************************************************************************
+
+@import "../_bootstrap-extended/include";
+
+// Variables
+@import "./front/variables";
+
+// Common scss
+@import "front/common";
+
+// Navbar
+@import "front/navbar";
+
+// Footer
+@import "front/footer";

@@ -1,0 +1,33 @@
+/* Pickr */
+
+/* ******************************************************************************* */
+
+@import "../../scss/_bootstrap-extended/include";
+@import "pickr-classic";
+@import "pickr-monolith";
+@import "pickr-nano";
+
+/* Update as per the customizer settings */
+
+.pcr-app{
+  z-index: 999999999;
+  background: var(--#{$prefix}paper-bg);
+  .pcr-interaction input{
+    &.pcr-type.active,
+    &.pcr-save {
+      background: var(--#{$prefix}primary);
+    }
+    &.pcr-result{
+      border: 1px solid var(--#{$prefix}border-color);
+      background: var(--#{$prefix}body-bg);
+      color: var(--#{$prefix}base-color);
+    }
+    &:focus {
+      box-shadow: 0 0 0 1px rgba(var(--#{$prefix}paper-bg-rgb), .85), 0 0 0 3px rgba(var(--#{$prefix}primary-rgb), .75);
+    }
+  }
+  .pcr-type:not(.active) {
+    background: var(--#{$prefix}body-bg);
+    color: var(--#{$prefix}body-color);
+  }
+}

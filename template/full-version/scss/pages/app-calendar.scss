@@ -1,0 +1,117 @@
+/* App Calendar
+******************************************************************************* */
+
+@import "../_bootstrap-extended/include";
+
+$calender-sidebar-width: 18.75rem !default;
+
+/* App Calendar specific */
+.app-calendar-wrapper {
+  position: relative;
+  .app-calendar-sidebar {
+    position: absolute;
+    z-index: 4;
+    overflow: hidden;
+    flex-basis: $calender-sidebar-width;
+    flex-grow: 0;
+    background-color: var(--#{$prefix}paper-bg);
+    block-size: 100%;
+    inline-size: $calender-sidebar-width;
+    inset-inline-start: calc(-#{$calender-sidebar-width} - 1.2rem);
+    transition: all .2s;
+    &.show {
+      inset-inline-start: 0;
+    }
+
+    .flatpickr-calendar {
+      box-shadow: none;
+      .flatpickr-month,
+      .flatpickr-weekday,
+      .flatpickr-weekdays {
+        background: transparent;
+      }
+      .flatpickr-days {
+        border: 0;
+      }
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+  .app-calendar-content {
+    position: relative;
+  }
+  .fc-toolbar {
+    h2 {
+      font-size: $h4-font-size;
+      line-height: $h4-line-height;
+      @include media-breakpoint-down(md) {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .fc-toolbar-chunk {
+    overflow: auto;
+  }
+
+  /* Set border 0 to app calender page only */
+  table.fc-scrollgrid {
+    border-inline-end: 0;
+    border-inline-start: 0;
+    th,
+    td {
+      border-inline-end: 0;
+    }
+  }
+  .fc-timeGridDay-view,
+  .fc-timeGridWeek-view {
+    table.fc-scrollgrid {
+      tbody {
+        tr:not(.fc-scrollgrid-section:first-of-type) {
+          td {
+            border-block-end: 0;
+          }
+        }
+      }
+    }
+  }
+  .fc-dayGridMonth-view {
+    table.fc-scrollgrid {
+      td {
+        border-block-end: 0;
+      }
+    }
+  }
+  .fc-header-toolbar {
+    margin-block-end: 1.5rem !important;
+  }
+  .fc-view-container {
+    margin-block: 0;
+    margin-inline: -1.6rem;
+  }
+  .event-sidebar {
+    .ql-editor {
+      min-block-size: 5rem;
+    }
+    .select2 {
+      .select2-selection__choice {
+        .avatar {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .app-calendar-sidebar {
+      position: static;
+      background-color: transparent;
+      block-size: auto;
+
+      .flatpickr-days {
+        background-color: transparent;
+      }
+    }
+  }
+}

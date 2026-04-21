@@ -1,0 +1,9 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "datatables.net-rowgroup-bs5/css/rowGroup.bootstrap5";
+
+table.table.dataTable > tbody > tr {
+  &.group,
+  &.group:hover {
+    background-color: var(--#{$prefix}gray-100);
+  }
+}

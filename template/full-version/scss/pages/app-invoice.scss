@@ -1,0 +1,44 @@
+/* Invoice
+******************************************************************************* */
+@import "../_bootstrap-extended/include";
+
+/* Invoice Edit & Add */
+.invoice-edit,
+.invoice-add {
+  @include media-breakpoint-down(sm) {
+    .invoice-preview-card {
+      .invoice-calculations {
+        inline-size: 100%;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    .repeater-title {
+      position: absolute;
+      inset-block-start: -2.4rem;
+    }
+  }
+
+  .invoice-preview-card {
+    .repeater-wrapper {
+      &:not(:last-child) {
+        margin-block-end: 1.5rem;
+      }
+    }
+  }
+
+  @media print {
+    hr {
+      margin-block: 1rem !important;
+    }
+  }
+}
+
+.invoice-preview,
+.invoice-edit,
+.invoice-add {
+  & .invoice-preview-header {
+    background-color: var(--#{$prefix}gray-50);
+  }
+}

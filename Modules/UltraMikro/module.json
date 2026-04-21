@@ -1,0 +1,13 @@
+{
+    "name": "UltraMikro",
+    "alias": "ultramikro",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\UltraMikro\\Providers\\UltraMikroServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

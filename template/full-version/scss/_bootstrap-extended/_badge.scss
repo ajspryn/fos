@@ -1,0 +1,92 @@
+// Badges
+// ? Bootstrap use bg-label-variant and bg color for solid and label style, hence we have not created mixin for that.
+// *******************************************************************************
+
+.badge {
+  --#{$prefix}badge-border-width: #{$badge-border-width};
+  --#{$prefix}badge-border-color: var(--#{$prefix}primary);
+  --#{$prefix}badge-bg-color: #{$badge-bg-color};
+  border: var(--#{$prefix}badge-border-width) var(--#{$prefix}border-style) var(--#{$prefix}badge-border-color);
+  background-color: var(--#{$prefix}badge-bg-color);
+  --#{$prefix}badge-border-radius: #{$border-radius-sm};
+  --#{$prefix}badge-glow-shadow-color: var(--#{$prefix}primary-rgb);
+
+  // badge outline style
+  &[class*="badge-outline"] {
+    --#{$prefix}badge-border-width: 1px;
+    background-color: transparent;
+    --#{$prefix}badge-padding-x: #{calc($badge-padding-x - .0625rem)};
+    --#{$prefix}badge-padding-y: #{calc($badge-padding-y - .0625rem)};
+  }
+
+  // badge glow style
+  &.bg-glow[class*="bg-"] {
+    box-shadow: 0 .125rem .188rem  0 rgba(var(--#{$prefix}badge-glow-shadow-color), .3);
+  }
+}
+
+/* Badge Center Style */
+
+.badge-center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  block-size: #{$badge-height};
+  inline-size: #{$badge-width};
+  line-height: $line-height-base;
+  --#{$prefix}badge-font-size: #{$badge-center-font-size};
+  .icon-base {
+    @include icon-base(.875rem);
+  }
+}
+
+/* Dots Style */
+
+.badge.badge-dot {
+  display: inline-block;
+  padding: 0;
+  @include border-radius(50%);
+  margin: 0;
+  block-size: .5rem;
+  inline-size: .5rem;
+}
+
+/* Notifications */
+
+.badge.badge-notifications {
+  position: absolute;
+  margin: 0;
+  inset-block-start: auto;
+  transform: translate(-50%, -30%);
+
+  :dir(rtl) &{
+    transform: translate(50%, -30%);
+  }
+
+  &:not(.badge-center) {
+    font-size: .582rem;
+    line-height: .75rem;
+    padding-block: .05rem;
+    padding-inline: .2rem;
+  }
+  .btn[class*="btn-"] & {
+    transform: translate(-50%, -50%);
+
+    :dir(rtl) &{
+      transform: translate(50%, -50%);
+    }
+  }
+}
+
+
+@each $state in map-keys($theme-colors) {
+  .badge-outline-#{$state},
+  .btn[class*="-outline"] .badge-outline-#{$state} {
+    --#{$prefix}badge-color: var(--#{$prefix}#{$state});
+    --#{$prefix}badge-border-color: var(--#{$prefix}#{$state});
+  }
+  .bg-#{$state}.bg-glow {
+    --#{$prefix}badge-glow-shadow-color: var(--#{$prefix}#{$state}-rgb);
+  }
+}

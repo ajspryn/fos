@@ -1,0 +1,361 @@
+/* Modals
+******************************************************************************* */
+
+/* Modal Shadow */
+.modal-content {
+  box-shadow: var(--#{$prefix}modal-box-shadow);
+}
+
+.modal {
+  .btn-close {
+    padding: .614rem;
+    background-color: var(--#{$prefix}paper-bg);
+    background-image: none;
+    box-shadow: var(--#{$prefix}box-shadow-xs);
+    filter: none;
+    opacity: 1;
+    transform: translate(23px, -25px);
+    @include border-radius($border-radius-sm);
+    @include transition(all .23s ease .1s);
+
+    /* For hover effect of close btn */
+    &:hover,
+    &:focus,
+    &:active {
+      opacity: 1;
+      outline: 0;
+      transform: translate(20px, -20px);
+      :dir(rtl) & {
+        transform: translate(26px, -20px);
+      }
+    }
+    &::before{
+      display: block;
+      background-color: var(--#{$prefix}secondary-color);
+      block-size: .6875rem;
+      content: "";
+      inline-size: .6875rem;
+      mask-image: str-replace(str-replace($btn-close-bg, "#{$btn-close-color}", currentColor), "#", "%23");
+      mask-repeat: no-repeat;
+      mask-size: 100% 100%;
+    }
+  }
+  .modal-header {
+    position: relative;
+    .btn-close {
+      position: absolute;
+      inset-block-start: $modal-dialog-margin;
+      inset-inline-end: $modal-dialog-margin - .6875rem;
+    }
+  }
+
+  /* modal footer */
+  .modal-footer {
+    padding: $modal-footer-padding;
+    > * {
+      margin-block: 0;
+      &:last-child {
+        margin-inline-end: 0;
+      }
+      &:first-child {
+        margin-inline-start: 0;
+      }
+    }
+  }
+
+  /*
+  ! remove close button animation & shadow for .modal-dialog-scrollable, .modal-fullscreen, .modal-top modal */
+  .modal-dialog-scrollable,
+  .modal-fullscreen,
+  &.modal-top {
+    .btn-close {
+      box-shadow: none;
+      transform: translate(0, 0);
+      &:hover {
+        transform: translate(0, 0);
+      }
+    }
+  }
+}
+.carousel-control-prev,
+.carousel-control-next {
+  color: var(--#{$prefix}primary);
+
+  &:hover,
+  &:focus {
+    color: var(--#{$prefix}primary);
+  }
+}
+
+/* Onboarding Modals
+******************************************************************************* */
+
+.modal-onboarding {
+  .close-label {
+    position: absolute;
+    font-size: .8rem;
+    inset-block-start: .85rem;
+    opacity: $btn-close-opacity;
+
+    &:hover {
+      opacity: $btn-close-hover-opacity;
+    }
+  }
+  .onboarding-content {
+    margin: 2rem;
+  }
+
+  form {
+    margin-block-start: 2rem;
+    text-align: start;
+  }
+
+  // Carousel Inside Modal
+  .carousel .carousel-indicators {
+    inset-block-end: -10px;
+    [data-bs-target] {
+      background-color: var(--#{$prefix}primary);
+    }
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    inset-block: auto .75rem;
+    opacity: 1;
+    :dir(rtl) & {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .carousel-control-prev {
+    inset-inline-start: 1rem;
+    :dir(rtl) & {
+      inset-inline-end: 1rem;
+      inset-inline-start: auto;
+    }
+  }
+  .carousel-control-next {
+    inset-inline-end: 0;
+    :dir(rtl) & {
+      inset-inline-end: auto;
+      inset-inline-start: 0;
+    }
+  }
+
+  .onboarding-horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .onboarding-media {
+      margin: 2rem;
+      margin-block-start: 0;
+    }
+  }
+
+}
+
+/* Top modals
+******************************************************************************* */
+
+.modal-top {
+  .modal-dialog {
+    margin-block-start: 0;
+  }
+
+  .modal-content {
+    @include border-top-radius(0);
+  }
+}
+
+/* Transparent modals
+****************************************************************************** */
+
+.modal-transparent {
+  .modal-dialog {
+    display: flex;
+    margin-block: 0;
+    margin-inline: auto;
+    min-block-size: 100vh;
+  }
+
+  .modal-content {
+    border: 0;
+    margin: auto;
+    background: transparent;
+    box-shadow: none;
+    inline-size: 100%;
+  }
+
+  .btn-close {
+    position: absolute;
+    background-color: transparent;
+    background-image:
+      str-replace(
+        str-replace(str-replace($btn-close-bg, "#{$btn-close-color}", $white), "#", "%23"),
+        "fill-opacity='0.5'",
+        "fill-opacity='1'"
+      );
+    box-shadow: none;
+    inset-block-start: 0;
+    inset-inline-end: $modal-inner-padding;
+    :dir(rtl) & {
+      inset-inline-end: calc($modal-inner-padding * -2);
+    }
+    opacity: 1;
+    padding-block: $btn-close-padding-y;
+    padding-inline: $btn-close-padding-x;
+    &::before {
+      content: none;
+    }
+  }
+}
+
+/* Modal Simple (Modal Examples)
+****************************************************************************** */
+
+.modal-simple {
+  .modal-content {
+    padding: $modal-simple-padding;
+    @include media-breakpoint-down(md) {
+      padding: calc($modal-simple-padding * .5);
+    }
+  }
+
+  .btn-close {
+    position: absolute;
+    inset-block-start: -($modal-simple-padding - $modal-simple-close-position);
+    inset-inline-end: -($modal-simple-padding - $modal-simple-close-position);
+    :dir(rtl) & {
+      inset-inline-end: -($modal-simple-padding + $modal-simple-close-position * 2);
+    }
+
+    // For small screen set top, left/right 0 p-3,  p-md-5
+    @include media-breakpoint-down(md) {
+      inset-block-start: -.75rem;
+      inset-inline-end: -.75rem;
+      :dir(rtl) & {
+        inset-inline-end: -($modal-simple-padding + $modal-simple-close-position);
+      }
+    }
+  }
+}
+
+/* Refer & Earn Modal Example */
+.modal-refer-and-earn {
+  .modal-refer-and-earn-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include border-radius($card-border-radius);
+    block-size: 88px;
+    inline-size: 88px;
+
+    .icon-base {
+      @include icon-base(2.5rem);
+    }
+  }
+}
+
+/* Add new address modal */
+.modal-add-new-address {
+  .custom-option-icon:not(.checked) svg {
+    stroke: var(--#{$prefix}heading-color);
+  }
+  .custom-option-icon.checked svg {
+    stroke: var(--#{$prefix}primary);
+  }
+}
+
+/* Share project modal */
+.modal-share-project {
+  @include media-breakpoint-down(sm) {
+    .dropdown-toggle::after {
+      margin-inline: 0;
+    }
+  }
+}
+
+/* Modal Animations
+****************************************************************************** */
+
+/* Slide from Top */
+.modal-top.fade .modal-dialog,
+.modal-top .modal.fade .modal-dialog {
+  transform: translateY(-100%);
+}
+
+.modal-top.show .modal-dialog,
+.modal-top .modal.show .modal-dialog {
+  transform: translateY(0);
+}
+
+/* Transparent */
+.modal-transparent.fade .modal-dialog,
+.modal-transparent .modal.fade .modal-dialog {
+  transform: scale(.5, .5);
+}
+
+.modal-transparent.show .modal-dialog,
+.modal-transparent .modal.show .modal-dialog {
+  transform: scale(1, 1);
+}
+
+/* Responsive
+******************************************************************************* */
+
+@include media-breakpoint-down(lg) {
+  .modal-onboarding .onboarding-horizontal {
+    flex-direction: column;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .modal {
+    .modal-dialog:not(.modal-fullscreen) {
+      padding-block: 0;
+      padding-inline: .75rem;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      display: none;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .modal-content {
+    box-shadow: var(--#{$prefix}modal-box-shadow);
+  }
+
+  .modal-dialog.modal-sm {
+    max-inline-size: $modal-sm;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .modal-xl .modal-dialog {
+    max-inline-size: $modal-xl;
+  }
+}
+
+/* Dark theme
+******************************************************************************* */
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .modal-backdrop {
+      --#{$prefix}backdrop-bg: #{$modal-backdrop-bg-dark};
+      --#{$prefix}backdrop-opacity: #{$modal-backdrop-opacity-dark};
+    }
+  }
+}
+
+/* RTL mode
+******************************************************************************* */
+
+:dir(rtl) {
+  .modal:not(.modal-top) .modal-header .btn-close {
+    inset-inline-end: $modal-dialog-margin - 3.55rem;
+  }
+}

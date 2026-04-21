@@ -1,0 +1,77 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "swiper/swiper-bundle";
+
+.swiper {
+  --swiper-theme-color: var(--#{$prefix}primary);
+  inline-size: 100%;
+
+  .swiper-slide {
+    color: var(--#{$prefix}white);
+  }
+}
+.swiper#swiper-multiple-slides {
+  @include media-breakpoint-down(sm) {
+    block-size: 11rem;
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.swiper-button-white {
+    color: var(--#{$prefix}white);
+  }
+
+  :dir(rtl) & {
+    transform: scaleX(-1);
+  }
+
+  &.custom-icon {
+    background-image: none;
+    line-height: 1;
+
+    &::after {
+      font-size: 2rem;
+    }
+
+  }
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active,
+.swiper-pagination.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: var(--#{$prefix}primary);
+}
+
+.swiper-pagination-bullet {
+  background: rgba($pure-black, .7);
+}
+
+.swiper-pagination-progressbar,
+.swiper-scrollbar {
+  background: rgba($pure-black, .08);
+}
+
+.swiper-scrollbar-drag {
+  background: rgba($pure-black, .3);
+}
+
+
+:dir(rtl) {
+  .swiper-button-next {
+    inset-inline: 10px auto;
+  }
+
+  .swiper-button-prev {
+    inset-inline: auto 10px;
+  }
+
+  .swiper-vertical {
+    > .swiper-pagination-bullets {
+      inset-inline: 10px auto;
+    }
+
+  }
+}

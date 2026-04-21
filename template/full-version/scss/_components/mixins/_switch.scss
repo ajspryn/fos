@@ -1,0 +1,86 @@
+// Switches
+// *******************************************************************************
+
+@mixin template-switch-size-base(
+  $size,
+  $width,
+  $height,
+  $font-size,
+  $form-label-font-size,
+  $label-line-height,
+  $inner-spacer
+) {
+
+  font-size: $form-label-font-size;
+  line-height: $label-line-height;
+  min-block-size: $height;
+
+  $delta: 0;
+  $line-height-computed: $form-label-font-size * $label-line-height;
+  .switch-input ~ .switch-label {
+    padding-inline-start: $width + $switch-gutter;
+  }
+
+  .switch-toggle-slider {
+    block-size: $height - ($delta * 2);
+    inline-size: $width;
+    line-height: $height;
+
+    .icon-base {
+      position: relative;
+      @include icon-base($form-label-font-size);
+
+      @if $size == "lg" {
+        inset-block-start: -2px;
+      } @else if $size == "sm" {
+        inset-block-start: -2px;
+      } @else {
+        inset-block-start: -1.9px;
+      }
+    }
+  }
+
+  .switch-label {
+    @if ($line-height-computed < $height) {
+      inset-block-start: ($height - $line-height-computed) * .5;
+    } @else {
+      inset-block-start: 0;
+    }
+  }
+
+  .switch-toggle-slider::after {
+    block-size: ceil(rem-to-px($height - $inner-spacer * 2));
+    inline-size: ceil(rem-to-px($height - $inner-spacer * 2));
+  }
+
+  .switch-on {
+    padding-inline: calc($inner-spacer / 2) $height - $inner-spacer;
+  }
+
+  .switch-off {
+    padding-inline-start: $height - $inner-spacer;
+  }
+}
+
+// Switch size
+@mixin template-switch-size(
+  $size,
+  $width,
+  $height,
+  $font-size,
+  $form-label-font-size,
+  $label-line-height,
+  $inner-spacer: $switch-inner-spacer
+) {
+  .switch-#{$size} {
+    @include template-switch-size-base(
+      $size,
+      $width,
+      $height,
+      $font-size,
+      $form-label-font-size,
+      $label-line-height,
+      $inner-spacer
+    );
+  }
+}

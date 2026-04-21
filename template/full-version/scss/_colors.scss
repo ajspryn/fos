@@ -1,0 +1,48 @@
+/* Custom colors
+******************************************************************************* */
+
+$facebook: #3b5998 !default;
+$twitter: #1da1f2 !default;
+$google-plus: #dd4b39 !default;
+$instagram: #e1306c !default;
+$linkedin: #0077b5 !default;
+$github: #444050 !default;
+$dribbble: #ea4c89 !default;
+$pinterest: #cb2027 !default;
+$slack: #4a154b !default;
+$reddit: #ff4500 !default;
+$youtube: #f00 !default;
+$vimeo: #1ab7ea !default;
+$custom-colors: (
+  "facebook": $facebook,
+  "twitter": $twitter,
+  "google-plus": $google-plus,
+  "instagram": $instagram,
+  "linkedin": $linkedin,
+  "github": $github,
+  "dribbble": $dribbble,
+  "pinterest": $pinterest,
+  "slack": $slack,
+  "reddit": $reddit,
+  "youtube": $youtube,
+  "vimeo": $vimeo
+) !default;
+
+:root {
+  @each $color, $value in $custom-colors {
+    --#{$prefix}#{$color}: #{$value};
+    --#{$prefix}#{$color}-rgb: #{red($value)}, #{green($value)}, #{blue($value)};
+  }
+
+  @each $state in map-keys($theme-colors) {
+    .bg-gradient-#{$state} {
+      --#{$prefix}bg-gradient-color: var(--#{$prefix}#{$state});
+      --#{$prefix}bg-gradient-color-rgb: var(--#{$prefix}#{$state}-rgb);
+      background-image: linear-gradient(45deg, var(--#{$prefix}bg-gradient-color), rgba(var(--#{$prefix}bg-gradient-color-rgb), .5)) !important;
+    }
+  }
+}
+
+// A new variable $custom-theme-colors was created by merging the $theme-colors and $custom-colors arrays. This was necessary to enable the use of both theme and custom colors for buttons and background color configurations.
+
+$custom-theme-colors: map-merge($theme-colors, $custom-colors) !default;

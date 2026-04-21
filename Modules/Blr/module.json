@@ -1,0 +1,13 @@
+{
+    "name": "Blr",
+    "alias": "blr",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Blr\\Providers\\BlrServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

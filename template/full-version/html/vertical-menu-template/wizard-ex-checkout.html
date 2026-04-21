@@ -1,0 +1,2920 @@
+<!doctype html>
+
+<html
+  lang="en"
+  class=" layout-navbar-fixed layout-menu-fixed layout-compact "
+  dir="ltr"
+  data-skin="default"
+  data-bs-theme="light"
+  data-assets-path="../../assets/"
+  data-template="vertical-menu-template">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Demo: Checkout - Wizard Examples | Vuexy - Bootstrap Dashboard PRO</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="../../assets/vendor/fonts/iconify-icons.css" />
+
+    <script src="../../assets/vendor/libs/@algolia/autocomplete-js.js"></script>
+
+    <!-- Core CSS -->
+    <!-- build:css assets/vendor/css/theme.css  -->
+
+    <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
+
+    <link rel="stylesheet" href="../../assets/vendor/libs/pickr/pickr-themes.css" />
+
+    <link rel="stylesheet" href="../../assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="../../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+
+    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- endbuild -->
+
+    <link rel="stylesheet" href="../../assets/vendor/libs/select2/select2.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/bs-stepper/bs-stepper.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/raty-js/raty-js.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/@form-validation/form-validation.css" />
+
+    <!-- Page CSS -->
+
+    <link rel="stylesheet" href="../../assets/vendor/css/pages/wizard-ex-checkout.css" />
+
+    <!-- Helpers -->
+    <script src="../../assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="../../assets/vendor/js/template-customizer.js"></script>
+
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+
+    <script src="../../assets/js/config.js"></script>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar  ">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu">
+          <div class="app-brand demo ">
+            <a href="index.html" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                <span class="text-primary">
+                  <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
+                      fill="currentColor" />
+                    <path
+                      opacity="0.06"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
+                      fill="#161616" />
+                    <path
+                      opacity="0.06"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
+                      fill="#161616" />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
+                      fill="currentColor" />
+                  </svg>
+                </span>
+              </span>
+              <span class="app-brand-text demo menu-text fw-bold ms-3">Vuexy</span>
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+              <i class="icon-base ti menu-toggle-icon d-none d-xl-block"></i>
+              <i class="icon-base ti tabler-x d-block d-xl-none"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow"></div>
+
+          <ul class="menu-inner py-1">
+            <!-- Dashboards -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-smart-home"></i>
+                <div data-i18n="Dashboards">Dashboards</div>
+                <div class="badge text-bg-danger rounded-pill ms-auto">5</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="index.html" class="menu-link">
+                    <div data-i18n="Analytics">Analytics</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="dashboards-crm.html" class="menu-link">
+                    <div data-i18n="CRM">CRM</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-ecommerce-dashboard.html" class="menu-link">
+                    <div data-i18n="eCommerce">eCommerce</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-logistics-dashboard.html" class="menu-link">
+                    <div data-i18n="Logistics">Logistics</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-academy-dashboard.html" class="menu-link">
+                    <div data-i18n="Academy">Academy</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Layouts -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-layout-sidebar"></i>
+                <div data-i18n="Layouts">Layouts</div>
+              </a>
+
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="layouts-collapsed-menu.html" class="menu-link">
+                    <div data-i18n="Collapsed menu">Collapsed menu</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-content-navbar.html" class="menu-link">
+                    <div data-i18n="Content navbar">Content navbar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-content-navbar-with-sidebar.html" class="menu-link">
+                    <div data-i18n="Content nav + Sidebar">Content nav + Sidebar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../horizontal-menu-template/" class="menu-link" target="_blank">
+                    <div data-i18n="Horizontal">Horizontal</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-without-menu.html" class="menu-link">
+                    <div data-i18n="Without menu">Without menu</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-without-navbar.html" class="menu-link">
+                    <div data-i18n="Without navbar">Without navbar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-fluid.html" class="menu-link">
+                    <div data-i18n="Fluid">Fluid</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-container.html" class="menu-link">
+                    <div data-i18n="Container">Container</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-blank.html" class="menu-link">
+                    <div data-i18n="Blank">Blank</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Front Pages -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-files"></i>
+                <div data-i18n="Front Pages">Front Pages</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="../front-pages/landing-page.html" class="menu-link" target="_blank">
+                    <div data-i18n="Landing">Landing</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../front-pages/pricing-page.html" class="menu-link" target="_blank">
+                    <div data-i18n="Pricing">Pricing</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../front-pages/payment-page.html" class="menu-link" target="_blank">
+                    <div data-i18n="Payment">Payment</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../front-pages/checkout-page.html" class="menu-link" target="_blank">
+                    <div data-i18n="Checkout">Checkout</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../front-pages/help-center-landing.html" class="menu-link" target="_blank">
+                    <div data-i18n="Help Center">Help Center</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Apps & Pages -->
+            <li class="menu-header small">
+              <span class="menu-header-text" data-i18n="Apps & Pages">Apps &amp; Pages</span>
+            </li>
+            <li class="menu-item">
+              <a href="app-email.html" class="menu-link">
+                <i class="menu-icon icon-base ti tabler-mail"></i>
+                <div data-i18n="Email">Email</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="app-chat.html" class="menu-link">
+                <i class="menu-icon icon-base ti tabler-messages"></i>
+                <div data-i18n="Chat">Chat</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="app-calendar.html" class="menu-link">
+                <i class="menu-icon icon-base ti tabler-calendar"></i>
+                <div data-i18n="Calendar">Calendar</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="app-kanban.html" class="menu-link">
+                <i class="menu-icon icon-base ti tabler-layout-kanban"></i>
+                <div data-i18n="Kanban">Kanban</div>
+              </a>
+            </li>
+            <!-- e-commerce-app menu start -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-shopping-cart"></i>
+                <div data-i18n="eCommerce">eCommerce</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="app-ecommerce-dashboard.html" class="menu-link">
+                    <div data-i18n="Dashboard">Dashboard</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Products">Products</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="app-ecommerce-product-list.html" class="menu-link">
+                        <div data-i18n="Product List">Product List</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-product-add.html" class="menu-link">
+                        <div data-i18n="Add Product">Add Product</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-category-list.html" class="menu-link">
+                        <div data-i18n="Category List">Category List</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Order">Order</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="app-ecommerce-order-list.html" class="menu-link">
+                        <div data-i18n="Order List">Order List</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-order-details.html" class="menu-link">
+                        <div data-i18n="Order Details">Order Details</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Customer">Customer</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="app-ecommerce-customer-all.html" class="menu-link">
+                        <div data-i18n="All Customers">All Customers</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <div data-i18n="Customer Details">Customer Details</div>
+                      </a>
+                      <ul class="menu-sub">
+                        <li class="menu-item">
+                          <a href="app-ecommerce-customer-details-overview.html" class="menu-link">
+                            <div data-i18n="Overview">Overview</div>
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="app-ecommerce-customer-details-security.html" class="menu-link">
+                            <div data-i18n="Security">Security</div>
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="app-ecommerce-customer-details-billing.html" class="menu-link">
+                            <div data-i18n="Address & Billing">Address & Billing</div>
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="app-ecommerce-customer-details-notifications.html" class="menu-link">
+                            <div data-i18n="Notifications">Notifications</div>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="app-ecommerce-manage-reviews.html" class="menu-link">
+                    <div data-i18n="Manage Reviews">Manage Reviews</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-ecommerce-referral.html" class="menu-link">
+                    <div data-i18n="Referrals">Referrals</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Settings">Settings</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-detail.html" class="menu-link">
+                        <div data-i18n="Store Details">Store Details</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-payments.html" class="menu-link">
+                        <div data-i18n="Payments">Payments</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-checkout.html" class="menu-link">
+                        <div data-i18n="Checkout">Checkout</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-shipping.html" class="menu-link">
+                        <div data-i18n="Shipping & Delivery">Shipping & Delivery</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-locations.html" class="menu-link">
+                        <div data-i18n="Locations">Locations</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-notifications.html" class="menu-link">
+                        <div data-i18n="Notifications">Notifications</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <!-- e-commerce-app menu end -->
+            <!-- Academy menu start -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-book"></i>
+                <div data-i18n="Academy">Academy</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="app-academy-dashboard.html" class="menu-link">
+                    <div data-i18n="Dashboard">Dashboard</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-academy-course.html" class="menu-link">
+                    <div data-i18n="My Course">My Course</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-academy-course-details.html" class="menu-link">
+                    <div data-i18n="Course Details">Course Details</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- Academy menu end -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-truck"></i>
+                <div data-i18n="Logistics">Logistics</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="app-logistics-dashboard.html" class="menu-link">
+                    <div data-i18n="Dashboard">Dashboard</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-logistics-fleet.html" class="menu-link">
+                    <div data-i18n="Fleet">Fleet</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-file-dollar"></i>
+                <div data-i18n="Invoice">Invoice</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="app-invoice-list.html" class="menu-link">
+                    <div data-i18n="List">List</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-invoice-preview.html" class="menu-link">
+                    <div data-i18n="Preview">Preview</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-invoice-edit.html" class="menu-link">
+                    <div data-i18n="Edit">Edit</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-invoice-add.html" class="menu-link">
+                    <div data-i18n="Add">Add</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-users"></i>
+                <div data-i18n="Users">Users</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="app-user-list.html" class="menu-link">
+                    <div data-i18n="List">List</div>
+                  </a>
+                </li>
+
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="View">View</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="app-user-view-account.html" class="menu-link">
+                        <div data-i18n="Account">Account</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-user-view-security.html" class="menu-link">
+                        <div data-i18n="Security">Security</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-user-view-billing.html" class="menu-link">
+                        <div data-i18n="Billing & Plans">Billing & Plans</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-user-view-notifications.html" class="menu-link">
+                        <div data-i18n="Notifications">Notifications</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-user-view-connections.html" class="menu-link">
+                        <div data-i18n="Connections">Connections</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-settings"></i>
+                <div data-i18n="Roles & Permissions">Roles & Permissions</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="app-access-roles.html" class="menu-link">
+                    <div data-i18n="Roles">Roles</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-access-permission.html" class="menu-link">
+                    <div data-i18n="Permission">Permission</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-file"></i>
+                <div data-i18n="Pages">Pages</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="User Profile">User Profile</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="pages-profile-user.html" class="menu-link">
+                        <div data-i18n="Profile">Profile</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-profile-teams.html" class="menu-link">
+                        <div data-i18n="Teams">Teams</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-profile-projects.html" class="menu-link">
+                        <div data-i18n="Projects">Projects</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-profile-connections.html" class="menu-link">
+                        <div data-i18n="Connections">Connections</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Account Settings">Account Settings</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="pages-account-settings-account.html" class="menu-link">
+                        <div data-i18n="Account">Account</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-account-settings-security.html" class="menu-link">
+                        <div data-i18n="Security">Security</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-account-settings-billing.html" class="menu-link">
+                        <div data-i18n="Billing & Plans">Billing & Plans</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-account-settings-notifications.html" class="menu-link">
+                        <div data-i18n="Notifications">Notifications</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-account-settings-connections.html" class="menu-link">
+                        <div data-i18n="Connections">Connections</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-faq.html" class="menu-link">
+                    <div data-i18n="FAQ">FAQ</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-pricing.html" class="menu-link">
+                    <div data-i18n="Pricing">Pricing</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Misc">Misc</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="pages-misc-error.html" class="menu-link" target="_blank">
+                        <div data-i18n="Error">Error</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-misc-under-maintenance.html" class="menu-link" target="_blank">
+                        <div data-i18n="Under Maintenance">Under Maintenance</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-misc-comingsoon.html" class="menu-link" target="_blank">
+                        <div data-i18n="Coming Soon">Coming Soon</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-misc-not-authorized.html" class="menu-link" target="_blank">
+                        <div data-i18n="Not Authorized">Not Authorized</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-lock"></i>
+                <div data-i18n="Authentications">Authentications</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Login">Login</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-login-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Register">Register</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-register-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-register-multisteps.html" class="menu-link" target="_blank">
+                        <div data-i18n="Multi-steps">Multi-steps</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Verify Email">Verify Email</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-verify-email-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-verify-email-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Reset Password">Reset Password</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-reset-password-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-reset-password-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Forgot Password">Forgot Password</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-forgot-password-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Two Steps">Two Steps</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-two-steps-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-two-steps-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item active open">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-forms"></i>
+                <div data-i18n="Wizard Examples">Wizard Examples</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item active">
+                  <a href="wizard-ex-checkout.html" class="menu-link">
+                    <div data-i18n="Checkout">Checkout</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="wizard-ex-property-listing.html" class="menu-link">
+                    <div data-i18n="Property Listing">Property Listing</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="wizard-ex-create-deal.html" class="menu-link">
+                    <div data-i18n="Create Deal">Create Deal</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="modal-examples.html" class="menu-link">
+                <i class="menu-icon icon-base ti tabler-square"></i>
+                <div data-i18n="Modal Examples">Modal Examples</div>
+              </a>
+            </li>
+
+            <!-- Components -->
+            <li class="menu-header small">
+              <span class="menu-header-text" data-i18n="Components">Components</span>
+            </li>
+            <!-- Cards -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-id"></i>
+                <div data-i18n="Cards">Cards</div>
+                <div class="badge text-bg-primary rounded-pill ms-auto">5</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="cards-basic.html" class="menu-link">
+                    <div data-i18n="Basic">Basic</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="cards-advance.html" class="menu-link">
+                    <div data-i18n="Advance">Advance</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="cards-statistics.html" class="menu-link">
+                    <div data-i18n="Statistics">Statistics</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="cards-analytics.html" class="menu-link">
+                    <div data-i18n="Analytics">Analytics</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="cards-actions.html" class="menu-link">
+                    <div data-i18n="Actions">Actions</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- User interface -->
+            <li class="menu-item">
+              <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-color-swatch"></i>
+                <div data-i18n="User interface">User interface</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="ui-accordion.html" class="menu-link">
+                    <div data-i18n="Accordion">Accordion</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-alerts.html" class="menu-link">
+                    <div data-i18n="Alerts">Alerts</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-badges.html" class="menu-link">
+                    <div data-i18n="Badges">Badges</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-buttons.html" class="menu-link">
+                    <div data-i18n="Buttons">Buttons</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-carousel.html" class="menu-link">
+                    <div data-i18n="Carousel">Carousel</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-collapse.html" class="menu-link">
+                    <div data-i18n="Collapse">Collapse</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-dropdowns.html" class="menu-link">
+                    <div data-i18n="Dropdowns">Dropdowns</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-footer.html" class="menu-link">
+                    <div data-i18n="Footer">Footer</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-list-groups.html" class="menu-link">
+                    <div data-i18n="List Groups">List groups</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-modals.html" class="menu-link">
+                    <div data-i18n="Modals">Modals</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-navbar.html" class="menu-link">
+                    <div data-i18n="Navbar">Navbar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-offcanvas.html" class="menu-link">
+                    <div data-i18n="Offcanvas">Offcanvas</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-pagination-breadcrumbs.html" class="menu-link">
+                    <div data-i18n="Pagination & Breadcrumbs">Pagination &amp; Breadcrumbs</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-progress.html" class="menu-link">
+                    <div data-i18n="Progress">Progress</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-spinners.html" class="menu-link">
+                    <div data-i18n="Spinners">Spinners</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-tabs-pills.html" class="menu-link">
+                    <div data-i18n="Tabs & Pills">Tabs &amp; Pills</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-toasts.html" class="menu-link">
+                    <div data-i18n="Toasts">Toasts</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-tooltips-popovers.html" class="menu-link">
+                    <div data-i18n="Tooltips & Popovers">Tooltips &amp; Popovers</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-typography.html" class="menu-link">
+                    <div data-i18n="Typography">Typography</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Extended components -->
+            <li class="menu-item">
+              <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-components"></i>
+                <div data-i18n="Extended UI">Extended UI</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="extended-ui-avatar.html" class="menu-link">
+                    <div data-i18n="Avatar">Avatar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-blockui.html" class="menu-link">
+                    <div data-i18n="BlockUI">BlockUI</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-drag-and-drop.html" class="menu-link">
+                    <div data-i18n="Drag & Drop">Drag &amp; Drop</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-media-player.html" class="menu-link">
+                    <div data-i18n="Media Player">Media Player</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
+                    <div data-i18n="Perfect Scrollbar">Perfect Scrollbar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-star-ratings.html" class="menu-link">
+                    <div data-i18n="Star Ratings">Star Ratings</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-sweetalert2.html" class="menu-link">
+                    <div data-i18n="SweetAlert2">SweetAlert2</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-text-divider.html" class="menu-link">
+                    <div data-i18n="Text Divider">Text Divider</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Timeline">Timeline</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="extended-ui-timeline-basic.html" class="menu-link">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="extended-ui-timeline-fullscreen.html" class="menu-link">
+                        <div data-i18n="Fullscreen">Fullscreen</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-tour.html" class="menu-link">
+                    <div data-i18n="Tour">Tour</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-treeview.html" class="menu-link">
+                    <div data-i18n="Treeview">Treeview</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-misc.html" class="menu-link">
+                    <div data-i18n="Miscellaneous">Miscellaneous</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Icons -->
+            <li class="menu-item">
+              <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-brand-tabler"></i>
+                <div data-i18n="Icons">Icons</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="icons-tabler.html" class="menu-link">
+                    <div data-i18n="Tabler">Tabler</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="icons-font-awesome.html" class="menu-link">
+                    <div data-i18n="Font Awesome">Font Awesome</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Forms & Tables -->
+            <li class="menu-header small">
+              <span class="menu-header-text" data-i18n="Forms & Tables">Forms &amp; Tables</span>
+            </li>
+            <!-- Forms -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-toggle-left"></i>
+                <div data-i18n="Form Elements">Form Elements</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="forms-basic-inputs.html" class="menu-link">
+                    <div data-i18n="Basic Inputs">Basic Inputs</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-input-groups.html" class="menu-link">
+                    <div data-i18n="Input groups">Input groups</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-custom-options.html" class="menu-link">
+                    <div data-i18n="Custom Options">Custom Options</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-editors.html" class="menu-link">
+                    <div data-i18n="Editors">Editors</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-file-upload.html" class="menu-link">
+                    <div data-i18n="File Upload">File Upload</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-pickers.html" class="menu-link">
+                    <div data-i18n="Pickers">Pickers</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-selects.html" class="menu-link">
+                    <div data-i18n="Select & Tags">Select &amp; Tags</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-sliders.html" class="menu-link">
+                    <div data-i18n="Sliders">Sliders</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-switches.html" class="menu-link">
+                    <div data-i18n="Switches">Switches</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-extras.html" class="menu-link">
+                    <div data-i18n="Extras">Extras</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-layout-navbar"></i>
+                <div data-i18n="Form Layouts">Form Layouts</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="form-layouts-vertical.html" class="menu-link">
+                    <div data-i18n="Vertical Form">Vertical Form</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="form-layouts-horizontal.html" class="menu-link">
+                    <div data-i18n="Horizontal Form">Horizontal Form</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="form-layouts-sticky.html" class="menu-link">
+                    <div data-i18n="Sticky Actions">Sticky Actions</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-text-wrap-disabled"></i>
+                <div data-i18n="Form Wizard">Form Wizard</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="form-wizard-numbered.html" class="menu-link">
+                    <div data-i18n="Numbered">Numbered</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="form-wizard-icons.html" class="menu-link">
+                    <div data-i18n="Icons">Icons</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="form-validation.html" class="menu-link">
+                <i class="menu-icon icon-base ti tabler-checkbox"></i>
+                <div data-i18n="Form Validation">Form Validation</div>
+              </a>
+            </li>
+            <!-- Tables -->
+            <li class="menu-item">
+              <a href="tables-basic.html" class="menu-link">
+                <i class="menu-icon icon-base ti tabler-table"></i>
+                <div data-i18n="Tables">Tables</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-layout-grid"></i>
+                <div data-i18n="Datatables">Datatables</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="tables-datatables-basic.html" class="menu-link">
+                    <div data-i18n="Basic">Basic</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="tables-datatables-advanced.html" class="menu-link">
+                    <div data-i18n="Advanced">Advanced</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="tables-datatables-extensions.html" class="menu-link">
+                    <div data-i18n="Extensions">Extensions</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Charts & Maps -->
+            <li class="menu-header small">
+              <span class="menu-header-text" data-i18n="Charts & Maps">Charts &amp; Maps</span>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-chart-pie"></i>
+                <div data-i18n="Charts">Charts</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="charts-apex.html" class="menu-link">
+                    <div data-i18n="Apex Charts">Apex Charts</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="charts-chartjs.html" class="menu-link">
+                    <div data-i18n="ChartJS">ChartJS</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="maps-leaflet.html" class="menu-link">
+                <i class="menu-icon icon-base ti tabler-map"></i>
+                <div data-i18n="Leaflet Maps">Leaflet Maps</div>
+              </a>
+            </li>
+
+            <!-- Misc -->
+            <li class="menu-header small">
+              <span class="menu-header-text" data-i18n="Misc">Misc</span>
+            </li>
+
+            <!-- Multi Level Menu -->
+            <li class="menu-item">
+              <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon icon-base ti tabler-layout-board"></i>
+                <div data-i18n="Multi Level">Multi Level</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <div data-i18n="Level 2">Level 2</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="javascript:void(0)" class="menu-link">
+                        <div data-i18n="Level 3">Level 3</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="https://pixinvent.ticksy.com/" target="_blank" class="menu-link">
+                <i class="menu-icon icon-base ti tabler-lifebuoy"></i>
+                <div data-i18n="Support">Support</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a
+                href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/"
+                target="_blank"
+                class="menu-link">
+                <i class="menu-icon icon-base ti tabler-file-description"></i>
+                <div data-i18n="Documentation">Documentation</div>
+              </a>
+            </li>
+          </ul>
+        </aside>
+
+        <div class="menu-mobile-toggler d-xl-none rounded-1">
+          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large text-bg-secondary p-2 rounded-1">
+            <i class="ti tabler-menu icon-base"></i>
+            <i class="ti tabler-chevron-right icon-base"></i>
+          </a>
+        </div>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+          <nav
+            class="layout-navbar container-xxl navbar-detached navbar navbar-expand-xl align-items-center bg-navbar-theme"
+            id="layout-navbar">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
+              <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+                <i class="icon-base ti tabler-menu-2 icon-md"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
+              <!-- Search -->
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item navbar-search-wrapper px-md-0 px-2 mb-0">
+                  <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+                    <span class="d-inline-block text-body-secondary fw-normal" id="autocomplete"></span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- /Search -->
+
+              <ul class="navbar-nav flex-row align-items-center ms-md-auto">
+                <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <i class="icon-base ti tabler-language icon-22px text-heading"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-language="en" data-text-direction="ltr">
+                        <span>English</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-language="fr" data-text-direction="ltr">
+                        <span>French</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-language="ar" data-text-direction="rtl">
+                        <span>Arabic</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-language="de" data-text-direction="ltr">
+                        <span>German</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ Language -->
+
+                <!-- Style Switcher -->
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow btn btn-icon btn-text-secondary rounded-pill"
+                    id="nav-theme"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown">
+                    <i class="icon-base ti tabler-sun icon-22px theme-icon-active text-heading"></i>
+                    <span class="d-none ms-2" id="nav-theme-text">Toggle theme</span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-theme-text">
+                    <li>
+                      <button
+                        type="button"
+                        class="dropdown-item align-items-center active"
+                        data-bs-theme-value="light"
+                        aria-pressed="false">
+                        <span><i class="icon-base ti tabler-sun icon-22px me-3" data-icon="sun"></i>Light</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        type="button"
+                        class="dropdown-item align-items-center"
+                        data-bs-theme-value="dark"
+                        aria-pressed="true">
+                        <span
+                          ><i class="icon-base ti tabler-moon-stars icon-22px me-3" data-icon="moon-stars"></i
+                          >Dark</span
+                        >
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        type="button"
+                        class="dropdown-item align-items-center"
+                        data-bs-theme-value="system"
+                        aria-pressed="false">
+                        <span
+                          ><i
+                            class="icon-base ti tabler-device-desktop-analytics icon-22px me-3"
+                            data-icon="device-desktop-analytics"></i
+                          >System</span
+                        >
+                      </button>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / Style Switcher-->
+
+                <!-- Quick links  -->
+                <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow btn btn-icon btn-text-secondary rounded-pill"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside"
+                    aria-expanded="false">
+                    <i class="icon-base ti tabler-layout-grid-add icon-22px text-heading"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-end p-0">
+                    <div class="dropdown-menu-header border-bottom">
+                      <div class="dropdown-header d-flex align-items-center py-3">
+                        <h6 class="mb-0 me-auto">Shortcuts</h6>
+                        <a
+                          href="javascript:void(0)"
+                          class="dropdown-shortcuts-add py-2 btn btn-text-secondary rounded-pill btn-icon"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top"
+                          title="Add shortcuts"
+                          ><i class="icon-base ti tabler-plus icon-20px text-heading"></i
+                        ></a>
+                      </div>
+                    </div>
+                    <div class="dropdown-shortcuts-list scrollable-container">
+                      <div class="row row-bordered overflow-visible g-0">
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
+                            <i class="icon-base ti tabler-calendar icon-26px text-heading"></i>
+                          </span>
+                          <a href="app-calendar.html" class="stretched-link">Calendar</a>
+                          <small>Appointments</small>
+                        </div>
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
+                            <i class="icon-base ti tabler-file-dollar icon-26px text-heading"></i>
+                          </span>
+                          <a href="app-invoice-list.html" class="stretched-link">Invoice App</a>
+                          <small>Manage Accounts</small>
+                        </div>
+                      </div>
+                      <div class="row row-bordered overflow-visible g-0">
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
+                            <i class="icon-base ti tabler-user icon-26px text-heading"></i>
+                          </span>
+                          <a href="app-user-list.html" class="stretched-link">User App</a>
+                          <small>Manage Users</small>
+                        </div>
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
+                            <i class="icon-base ti tabler-users icon-26px text-heading"></i>
+                          </span>
+                          <a href="app-access-roles.html" class="stretched-link">Role Management</a>
+                          <small>Permission</small>
+                        </div>
+                      </div>
+                      <div class="row row-bordered overflow-visible g-0">
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
+                            <i class="icon-base ti tabler-device-desktop-analytics icon-26px text-heading"></i>
+                          </span>
+                          <a href="index.html" class="stretched-link">Dashboard</a>
+                          <small>User Dashboard</small>
+                        </div>
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
+                            <i class="icon-base ti tabler-settings icon-26px text-heading"></i>
+                          </span>
+                          <a href="pages-account-settings-account.html" class="stretched-link">Setting</a>
+                          <small>Account Settings</small>
+                        </div>
+                      </div>
+                      <div class="row row-bordered overflow-visible g-0">
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
+                            <i class="icon-base ti tabler-help-circle icon-26px text-heading"></i>
+                          </span>
+                          <a href="pages-faq.html" class="stretched-link">FAQs</a>
+                          <small>FAQs & Articles</small>
+                        </div>
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
+                            <i class="icon-base ti tabler-square icon-26px text-heading"></i>
+                          </span>
+                          <a href="modal-examples.html" class="stretched-link">Modals</a>
+                          <small>Useful Popups</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <!-- Quick links -->
+
+                <!-- Notification -->
+                <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow btn btn-icon btn-text-secondary rounded-pill"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside"
+                    aria-expanded="false">
+                    <span class="position-relative">
+                      <i class="icon-base ti tabler-bell icon-22px text-heading"></i>
+                      <span class="badge rounded-pill bg-danger badge-dot badge-notifications border"></span>
+                    </span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end p-0">
+                    <li class="dropdown-menu-header border-bottom">
+                      <div class="dropdown-header d-flex align-items-center py-3">
+                        <h6 class="mb-0 me-auto">Notification</h6>
+                        <div class="d-flex align-items-center h6 mb-0">
+                          <span class="badge bg-label-primary me-2">8 New</span>
+                          <a
+                            href="javascript:void(0)"
+                            class="dropdown-notifications-all p-2 btn btn-icon"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Mark all as read"
+                            ><i class="icon-base ti tabler-mail-opened text-heading"></i
+                          ></a>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="dropdown-notifications-list scrollable-container">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <img src="../../assets/img/avatars/1.png" alt class="rounded-circle" />
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="small mb-1">Congratulation Lettie 🎉</h6>
+                              <small class="mb-1 d-block text-body">Won the monthly best seller gold badge</small>
+                              <small class="text-body-secondary">1h ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="icon-base ti tabler-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <span class="avatar-initial rounded-circle bg-label-danger">CF</span>
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1 small">Charles Franklin</h6>
+                              <small class="mb-1 d-block text-body">Accepted your connection</small>
+                              <small class="text-body-secondary">12hr ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="icon-base ti tabler-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <img src="../../assets/img/avatars/2.png" alt class="rounded-circle" />
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1 small">New Message ✉️</h6>
+                              <small class="mb-1 d-block text-body">You have new message from Natalie</small>
+                              <small class="text-body-secondary">1h ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="icon-base ti tabler-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <span class="avatar-initial rounded-circle bg-label-success"
+                                  ><i class="icon-base ti tabler-shopping-cart"></i
+                                ></span>
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1 small">Whoo! You have new order 🛒</h6>
+                              <small class="mb-1 d-block text-body">ACME Inc. made new order $1,154</small>
+                              <small class="text-body-secondary">1 day ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="icon-base ti tabler-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <img src="../../assets/img/avatars/9.png" alt class="rounded-circle" />
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1 small">Application has been approved 🚀</h6>
+                              <small class="mb-1 d-block text-body"
+                                >Your ABC project application has been approved.</small
+                              >
+                              <small class="text-body-secondary">2 days ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="icon-base ti tabler-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <span class="avatar-initial rounded-circle bg-label-success"
+                                  ><i class="icon-base ti tabler-chart-pie"></i
+                                ></span>
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1 small">Monthly report is generated</h6>
+                              <small class="mb-1 d-block text-body">July monthly financial report is generated </small>
+                              <small class="text-body-secondary">3 days ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="icon-base ti tabler-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <img src="../../assets/img/avatars/5.png" alt class="rounded-circle" />
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1 small">Send connection request</h6>
+                              <small class="mb-1 d-block text-body">Peter sent you connection request</small>
+                              <small class="text-body-secondary">4 days ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="icon-base ti tabler-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <img src="../../assets/img/avatars/6.png" alt class="rounded-circle" />
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1 small">New message from Jane</h6>
+                              <small class="mb-1 d-block text-body">Your have new message from Jane</small>
+                              <small class="text-body-secondary">5 days ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="icon-base ti tabler-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <span class="avatar-initial rounded-circle bg-label-warning"
+                                  ><i class="icon-base ti tabler-alert-triangle"></i
+                                ></span>
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1 small">CPU is running high</h6>
+                              <small class="mb-1 d-block text-body"
+                                >CPU Utilization Percent is currently at 88.63%,</small
+                              >
+                              <small class="text-body-secondary">5 days ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="icon-base ti tabler-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="border-top">
+                      <div class="d-grid p-4">
+                        <a class="btn btn-primary btn-sm d-flex" href="javascript:void(0);">
+                          <small class="align-middle">View all notifications</small>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ Notification -->
+
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow p-0"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="../../assets/img/avatars/1.png" alt class="rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item mt-0" href="pages-account-settings-account.html">
+                        <div class="d-flex align-items-center">
+                          <div class="flex-shrink-0 me-2">
+                            <div class="avatar avatar-online">
+                              <img src="../../assets/img/avatars/1.png" alt class="rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <h6 class="mb-0">John Doe</h6>
+                            <small class="text-body-secondary">Admin</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider my-1 mx-n2"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-profile-user.html">
+                        <i class="icon-base ti tabler-user me-3 icon-md"></i
+                        ><span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-account-settings-account.html">
+                        <i class="icon-base ti tabler-settings me-3 icon-md"></i
+                        ><span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-account-settings-billing.html">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 icon-base ti tabler-file-dollar me-3 icon-md"></i
+                          ><span class="flex-grow-1 align-middle">Billing</span>
+                          <span class="flex-shrink-0 badge bg-danger d-flex align-items-center justify-content-center"
+                            >4</span
+                          >
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider my-1 mx-n2"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-pricing.html">
+                        <i class="icon-base ti tabler-currency-dollar me-3 icon-md"></i
+                        ><span class="align-middle">Pricing</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-faq.html">
+                        <i class="icon-base ti tabler-question-mark me-3 icon-md"></i
+                        ><span class="align-middle">FAQ</span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="d-grid px-2 pt-2 pb-1">
+                        <a class="btn btn-sm btn-danger d-flex" href="auth-login-cover.html" target="_blank">
+                          <small class="align-middle">Logout</small>
+                          <i class="icon-base ti tabler-logout ms-2 icon-14px"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+          </nav>
+
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <!-- Checkout Wizard -->
+              <div id="wizard-checkout" class="bs-stepper wizard-icons wizard-icons-example">
+                <div class="bs-stepper-header m-lg-auto border-0">
+                  <div class="step" data-target="#checkout-cart">
+                    <button type="button" class="step-trigger">
+                      <span class="bs-stepper-icon">
+                        <svg viewBox="0 0 60 60">
+                          <use xlink:href="../../assets/svg/icons/wizard-checkout-cart.svg#wizardCart"></use>
+                        </svg>
+                      </span>
+                      <span class="bs-stepper-label">Cart</span>
+                    </button>
+                  </div>
+                  <div class="line">
+                    <i class="icon-base ti tabler-chevron-right"></i>
+                  </div>
+                  <div class="step" data-target="#checkout-address">
+                    <button type="button" class="step-trigger">
+                      <span class="bs-stepper-icon">
+                        <svg viewBox="0 0 60 60">
+                          <use
+                            xlink:href="../../assets/svg/icons/wizard-checkout-address.svg#wizardCheckoutAddress"></use>
+                        </svg>
+                      </span>
+                      <span class="bs-stepper-label">Address</span>
+                    </button>
+                  </div>
+                  <div class="line">
+                    <i class="icon-base ti tabler-chevron-right"></i>
+                  </div>
+                  <div class="step" data-target="#checkout-payment">
+                    <button type="button" class="step-trigger">
+                      <span class="bs-stepper-icon">
+                        <svg viewBox="0 0 60 60">
+                          <use xlink:href="../../assets/svg/icons/wizard-checkout-payment.svg#wizardPayment"></use>
+                        </svg>
+                      </span>
+                      <span class="bs-stepper-label">Payment</span>
+                    </button>
+                  </div>
+                  <div class="line">
+                    <i class="icon-base ti tabler-chevron-right"></i>
+                  </div>
+                  <div class="step" data-target="#checkout-confirmation">
+                    <button type="button" class="step-trigger">
+                      <span class="bs-stepper-icon">
+                        <svg viewBox="0 0 60 60">
+                          <use xlink:href="../../assets/svg/icons/wizard-checkout-confirmation.svg#wizardConfirm"></use>
+                        </svg>
+                      </span>
+                      <span class="bs-stepper-label">Confirmation</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="bs-stepper-content border-top">
+                  <form id="wizard-checkout-form" onSubmit="return false">
+                    <!-- Cart -->
+                    <div id="checkout-cart" class="content">
+                      <div class="row">
+                        <!-- Cart left -->
+                        <div class="col-xl-8 mb-6 mb-xl-0">
+                          <!-- Offer alert -->
+                          <div class="alert alert-success alert-dismissible mb-4" role="alert">
+                            <div class="d-flex gap-4">
+                              <div class="alert-icon flex-shrink-0 rounded me-0">
+                                <i class="icon-base ti tabler-percentage"></i>
+                              </div>
+                              <div class="flex-grow-1">
+                                <h5 class="alert-heading mb-1">Available Offers</h5>
+                                <ul class="list-unstyled mb-0">
+                                  <li>- 10% Instant Discount on Bank of America Corp Bank Debit and Credit cards</li>
+                                  <li>- 25% Cashback Voucher of up to $60 on first ever PayPal transaction. TCA</li>
+                                </ul>
+                              </div>
+                            </div>
+                            <button
+                              type="button"
+                              class="btn-close btn-pinned"
+                              data-bs-dismiss="alert"
+                              aria-label="Close"></button>
+                          </div>
+
+                          <!-- Shopping bag -->
+                          <h5>My Shopping Bag (2 Items)</h5>
+                          <ul class="list-group mb-4">
+                            <li class="list-group-item p-6">
+                              <div class="d-flex gap-4">
+                                <div class="flex-shrink-0 d-flex align-items-center">
+                                  <img src="../../assets/img/products/1.png" alt="google home" class="w-px-100" />
+                                </div>
+                                <div class="flex-grow-1">
+                                  <div class="row">
+                                    <div class="col-md-8">
+                                      <p class="me-3 mb-2">
+                                        <a href="javascript:void(0)" class="fw-medium">
+                                          <span class="text-heading">Google - Google Home - White</span></a
+                                        >
+                                      </p>
+                                      <div class="text-body-secondary mb-2 d-flex flex-wrap">
+                                        <span class="me-1">Sold by:</span>
+                                        <a href="javascript:void(0)" class="me-4">Apple</a>
+                                        <span class="badge bg-label-success">In Stock</span>
+                                      </div>
+                                      <div
+                                        class="read-only-ratings raty mb-2"
+                                        data-read-only="true"
+                                        data-score="4"
+                                        data-number="5"></div>
+                                      <input
+                                        type="number"
+                                        class="form-control form-control-sm w-px-100"
+                                        value="1"
+                                        min="1"
+                                        max="5" />
+                                    </div>
+                                    <div class="col-md-4">
+                                      <div class="text-md-end">
+                                        <button type="button" class="btn-close btn-pinned" aria-label="Close"></button>
+                                        <div class="my-2 mt-md-6 mb-md-4">
+                                          <span class="text-primary">$299/</span><s class="text-body">$359</s>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-label-primary">
+                                          Move to wishlist
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="list-group-item p-6">
+                              <div class="d-flex gap-4">
+                                <div class="flex-shrink-0 d-flex align-items-center">
+                                  <img src="../../assets/img/products/2.png" alt="google home" class="w-px-100" />
+                                </div>
+                                <div class="flex-grow-1">
+                                  <div class="row">
+                                    <div class="col-md-8">
+                                      <p class="me-3 mb-2">
+                                        <a href="javascript:void(0)" class="fw-medium"
+                                          ><span class="text-heading">Apple iPhone 11 (64GB, Black)</span></a
+                                        >
+                                      </p>
+                                      <div class="text-body-secondary mb-2 d-flex flex-wrap">
+                                        <span class="me-1">Sold by:</span>
+                                        <a href="javascript:void(0)" class="me-4">Apple</a>
+                                        <span class="badge bg-label-success">In Stock</span>
+                                      </div>
+                                      <div
+                                        class="read-only-ratings raty mb-2"
+                                        data-read-only="true"
+                                        data-score="4"
+                                        data-number="5"></div>
+                                      <input
+                                        type="number"
+                                        class="form-control form-control-sm w-px-100"
+                                        value="1"
+                                        min="1"
+                                        max="5" />
+                                    </div>
+                                    <div class="col-md-4">
+                                      <div class="text-md-end">
+                                        <button type="button" class="btn-close btn-pinned" aria-label="Close"></button>
+                                        <div class="my-2 mt-md-6 mb-md-4">
+                                          <span class="text-primary">$299/</span><s class="text-body">$359</s>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-label-primary">
+                                          Move to wishlist
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+
+                          <!-- Wishlist -->
+                          <div class="list-group">
+                            <a
+                              href="javascript:void(0)"
+                              class="list-group-item text-primary border-primary d-flex justify-content-between">
+                              <span class="fw-medium">Add More Products From Wishlist</span>
+                              <i class="icon-base ti tabler-arrow-right icon-xs scaleX-n1-rtl mt-50"></i>
+                            </a>
+                          </div>
+                        </div>
+
+                        <!-- Cart right -->
+                        <div class="col-xl-4">
+                          <div class="border rounded p-6 mb-4">
+                            <!-- Offer -->
+                            <h6>Offer</h6>
+                            <div class="row g-4 mb-4">
+                              <div class="col-8 col-xxl-8 col-xl-12">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Enter Promo Code"
+                                  aria-label="Enter Promo Code" />
+                              </div>
+                              <div class="col-4 col-xxl-4 col-xl-12">
+                                <div class="d-grid">
+                                  <button type="button" class="btn btn-label-primary">Apply</button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Gift wrap -->
+                            <div class="bg-lighter rounded p-6">
+                              <h6 class="mb-2">Buying gift for a loved one?</h6>
+                              <p class="mb-2">Gift wrap and personalized message on card, Only for $2.</p>
+                              <a href="javascript:void(0)" class="fw-medium">Add a gift wrap</a>
+                            </div>
+                            <hr class="mx-n6 my-6" />
+
+                            <!-- Price Details -->
+                            <h6>Price Details</h6>
+                            <dl class="row mb-0 text-heading">
+                              <dt class="col-6 fw-normal">Bag Total</dt>
+                              <dd class="col-6 text-end">$1198.00</dd>
+
+                              <dt class="col-6 fw-normal">Coupon Discount</dt>
+                              <dd class="col-6 text-end"><a href="javascript:void(0)">Apply Coupon</a></dd>
+
+                              <dt class="col-6 fw-normal">Order Total</dt>
+                              <dd class="col-6 text-end">$1198.00</dd>
+
+                              <dt class="col-6 fw-normal">Delivery Charges</dt>
+                              <dd class="col-6 text-end">
+                                <s class="text-body-secondary">$5.00</s>
+                                <span class="badge bg-label-success ms-1">FREE</span>
+                              </dd>
+                            </dl>
+                            <hr class="mx-n6 my-6" />
+                            <dl class="row mb-0">
+                              <dt class="col-6 text-heading">Total</dt>
+                              <dd class="col-6 fw-medium text-end text-heading mb-0">$1198.00</dd>
+                            </dl>
+                          </div>
+                          <div class="d-grid">
+                            <button class="btn btn-primary btn-next">Place Order</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div id="checkout-address" class="content">
+                      <div class="row">
+                        <!-- Address left -->
+                        <div class="col-xl-8 mb-6 mb-xl-0">
+                          <!-- Select address -->
+                          <p class="fw-medium text-heading">Select your preferable address</p>
+                          <div class="row mb-6 g-6">
+                            <div class="col-md">
+                              <div class="form-check custom-option custom-option-basic checked">
+                                <label class="form-check-label custom-option-content" for="customRadioAddress1">
+                                  <input
+                                    name="customRadioTemp"
+                                    class="form-check-input"
+                                    type="radio"
+                                    value=""
+                                    id="customRadioAddress1"
+                                    checked="" />
+                                  <span class="custom-option-header mb-2">
+                                    <span class="fw-medium text-heading mb-0">John Doe (Default)</span>
+                                    <span class="badge bg-label-primary">Home</span>
+                                  </span>
+                                  <span class="custom-option-body">
+                                    <small
+                                      >4135 Parkway Street, Los Angeles, CA, 90017.<br />
+                                      Mobile : 1234567890 Card / Cash on delivery available</small
+                                    >
+                                    <span class="my-3 border-bottom d-block"></span>
+                                    <span class="d-flex">
+                                      <a class="me-4" href="javascript:void(0)">Edit</a>
+                                      <a href="javascript:void(0)">Remove</a>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-md">
+                              <div class="form-check custom-option custom-option-basic">
+                                <label class="form-check-label custom-option-content" for="customRadioAddress2">
+                                  <input
+                                    name="customRadioTemp"
+                                    class="form-check-input"
+                                    type="radio"
+                                    value=""
+                                    id="customRadioAddress2" />
+                                  <span class="custom-option-header mb-2">
+                                    <span class="fw-medium text-heading mb-0">ACME Inc.</span>
+                                    <span class="badge bg-label-success">Office</span>
+                                  </span>
+                                  <span class="custom-option-body">
+                                    <small
+                                      >87 Hoffman Avenue, New York, NY, 10016.<br />Mobile : 1234567890 Card / Cash on
+                                      delivery available</small
+                                    >
+                                    <span class="my-3 border-bottom d-block"></span>
+                                    <span class="d-flex">
+                                      <a class="me-4" href="javascript:void(0)">Edit</a>
+                                      <a href="javascript:void(0)">Remove</a>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn btn-label-primary mb-6"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addNewAddress">
+                            Add new address
+                          </button>
+
+                          <!-- Choose Delivery -->
+                          <p class="fw-medium text-heading">Choose Delivery Speed</p>
+                          <div class="row mt-2">
+                            <div class="col-md mb-md-0 mb-2">
+                              <div class="form-check custom-option custom-option-icon position-relative checked">
+                                <label class="form-check-label custom-option-content" for="customRadioDelivery1">
+                                  <span class="custom-option-body">
+                                    <i class="icon-base ti tabler-user icon-lg"></i>
+                                    <span class="custom-option-title mb-2">Standard</span>
+                                    <span class="badge bg-label-success btn-pinned">FREE</span>
+                                    <small>Get your product in 1 Week.</small>
+                                  </span>
+                                  <input
+                                    name="customRadioIcon"
+                                    class="form-check-input"
+                                    type="radio"
+                                    value=""
+                                    id="customRadioDelivery1"
+                                    checked="" />
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-md mb-md-0 mb-2">
+                              <div class="form-check custom-option custom-option-icon position-relative">
+                                <label class="form-check-label custom-option-content" for="customRadioDelivery2">
+                                  <span class="custom-option-body">
+                                    <i class="icon-base ti tabler-star icon-lg"></i>
+                                    <span class="custom-option-title mb-2">Express</span>
+                                    <span class="badge bg-label-secondary btn-pinned">$10</span>
+                                    <small>Get your product in 3-4 days.</small>
+                                  </span>
+                                  <input
+                                    name="customRadioIcon"
+                                    class="form-check-input"
+                                    type="radio"
+                                    value=""
+                                    id="customRadioDelivery2" />
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-md">
+                              <div class="form-check custom-option custom-option-icon position-relative">
+                                <label class="form-check-label custom-option-content" for="customRadioDelivery3">
+                                  <span class="custom-option-body">
+                                    <i class="icon-base ti tabler-crown icon-lg"></i>
+                                    <span class="custom-option-title mb-2">Overnight</span>
+                                    <span class="badge bg-label-secondary btn-pinned">$15</span>
+                                    <small>Get your product in 0-1 days.</small>
+                                  </span>
+                                  <input
+                                    name="customRadioIcon"
+                                    class="form-check-input"
+                                    type="radio"
+                                    value=""
+                                    id="customRadioDelivery3" />
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Address right -->
+                        <div class="col-xl-4">
+                          <div class="border rounded p-6 mb-4">
+                            <!-- Estimated Delivery -->
+                            <h6>Estimated Delivery Date</h6>
+                            <ul class="list-unstyled">
+                              <li class="d-flex gap-4 align-items-center py-2 mb-4">
+                                <div class="flex-shrink-0">
+                                  <img src="../../assets/img/products/1.png" alt="google home" class="w-px-50" />
+                                </div>
+                                <div class="flex-grow-1">
+                                  <p class="mb-0">
+                                    <a class="text-body" href="javascript:void(0)">Google - Google Home - White</a>
+                                  </p>
+                                  <p class="fw-medium mb-0">18th Nov 2021</p>
+                                </div>
+                              </li>
+                              <li class="d-flex gap-4 align-items-center py-2">
+                                <div class="flex-shrink-0">
+                                  <img src="../../assets/img/products/2.png" alt="google home" class="w-px-50" />
+                                </div>
+                                <div class="flex-grow-1">
+                                  <p class="mb-0">
+                                    <a class="text-body" href="javascript:void(0)">Apple iPhone 11 (64GB, Black)</a>
+                                  </p>
+                                  <p class="fw-medium mb-0">20th Nov 2021</p>
+                                </div>
+                              </li>
+                            </ul>
+
+                            <hr class="mx-n6 my-6" />
+
+                            <!-- Price Details -->
+                            <h6>Price Details</h6>
+                            <dl class="row mb-0 text-heading">
+                              <dt class="col-6 fw-normal">Order Total</dt>
+                              <dd class="col-6 text-end">$1198.00</dd>
+
+                              <dt class="col-6 fw-normal">Delivery Charges</dt>
+                              <dd class="col-6 text-end">
+                                <s class="text-body-secondary">$5.00</s>
+                                <span class="badge bg-label-success ms-2">FREE</span>
+                              </dd>
+                            </dl>
+                            <hr class="mx-n6 my-6" />
+                            <dl class="row mb-0">
+                              <dt class="col-6 text-heading">Total</dt>
+                              <dd class="col-6 fw-medium text-end text-heading mb-0">$1198.00</dd>
+                            </dl>
+                          </div>
+                          <div class="d-grid">
+                            <button class="btn btn-primary btn-next">Place Order</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Payment -->
+                    <div id="checkout-payment" class="content">
+                      <div class="row">
+                        <!-- Payment left -->
+                        <div class="col-xl-8 mb-6 mb-xl-0">
+                          <!-- Offer alert -->
+                          <div class="alert alert-success alert-dismissible mb-6" role="alert">
+                            <div class="d-flex gap-4">
+                              <div class="alert-icon flex-shrink-0 rounded me-0">
+                                <i class="icon-base ti tabler-percentage"></i>
+                              </div>
+                              <div class="flex-grow-1">
+                                <h5 class="alert-heading mb-1">Available Offers</h5>
+                                <ul class="list-unstyled mb-0">
+                                  <li>- 10% Instant Discount on Bank of America Corp Bank Debit and Credit cards</li>
+                                  <li>- 25% Cashback Voucher of up to $60 on first ever PayPal transaction. TCA</li>
+                                </ul>
+                              </div>
+                            </div>
+                            <button
+                              type="button"
+                              class="btn-close btn-pinned"
+                              data-bs-dismiss="alert"
+                              aria-label="Close"></button>
+                          </div>
+
+                          <!-- Payment Tabs -->
+                          <div class="col-xxl-6 col-lg-8">
+                            <div class="nav-align-top">
+                              <ul
+                                class="nav nav-pills card-header-pills row-gap-2 flex-wrap"
+                                id="paymentTabs"
+                                role="tablist">
+                                <li class="nav-item" role="presentation">
+                                  <button
+                                    class="nav-link active"
+                                    id="pills-cc-tab"
+                                    data-bs-toggle="pill"
+                                    data-bs-target="#pills-cc"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="pills-cc"
+                                    aria-selected="true">
+                                    Card
+                                  </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                  <button
+                                    class="nav-link"
+                                    id="pills-cod-tab"
+                                    data-bs-toggle="pill"
+                                    data-bs-target="#pills-cod"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="pills-cod"
+                                    aria-selected="false">
+                                    Cash On Delivery
+                                  </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                  <button
+                                    class="nav-link"
+                                    id="pills-gift-card-tab"
+                                    data-bs-toggle="pill"
+                                    data-bs-target="#pills-gift-card"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="pills-gift-card"
+                                    aria-selected="false">
+                                    Gift Card
+                                  </button>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="tab-content px-0 pb-0" id="paymentTabsContent">
+                              <!-- Credit card -->
+                              <div
+                                class="tab-pane fade show active"
+                                id="pills-cc"
+                                role="tabpanel"
+                                aria-labelledby="pills-cc-tab">
+                                <div class="row g-6">
+                                  <div class="col-12">
+                                    <label class="form-label w-100" for="paymentCard">Card Number</label>
+                                    <div class="input-group input-group-merge">
+                                      <input
+                                        id="paymentCard"
+                                        name="paymentCard"
+                                        class="form-control credit-card-mask"
+                                        type="text"
+                                        placeholder="1356 3215 6548 7898"
+                                        aria-describedby="paymentCard2" />
+                                      <span class="input-group-text cursor-pointer p-1" id="paymentCard2"
+                                        ><span class="card-type"></span
+                                      ></span>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-4">
+                                    <label class="form-label" for="paymentCardName">Name</label>
+                                    <input
+                                      type="text"
+                                      id="paymentCardName"
+                                      class="form-control"
+                                      placeholder="John Doe" />
+                                  </div>
+                                  <div class="col-6 col-md-4">
+                                    <label class="form-label" for="paymentCardExpiryDate">Exp. Date</label>
+                                    <input
+                                      type="text"
+                                      id="paymentCardExpiryDate"
+                                      class="form-control expiry-date-mask"
+                                      placeholder="MM/YY" />
+                                  </div>
+                                  <div class="col-6 col-md-4">
+                                    <label class="form-label" for="paymentCardCvv">CVV Code</label>
+                                    <div class="input-group input-group-merge">
+                                      <input
+                                        type="text"
+                                        id="paymentCardCvv"
+                                        class="form-control cvv-code-mask"
+                                        maxlength="3"
+                                        placeholder="654" />
+                                      <span class="input-group-text cursor-pointer" id="paymentCardCvv2"
+                                        ><i
+                                          class="icon-base ti tabler-help text-body-secondary"
+                                          data-bs-toggle="tooltip"
+                                          data-bs-placement="top"
+                                          title="Card Verification Value"></i
+                                      ></span>
+                                    </div>
+                                  </div>
+                                  <div class="col-12">
+                                    <div class="form-check form-switch mt-2">
+                                      <input type="checkbox" class="form-check-input" id="cardFutureBilling" />
+                                      <label for="cardFutureBilling" class="form-check-label"
+                                        >Save card for future billing?</label
+                                      >
+                                    </div>
+                                  </div>
+                                  <div class="col-12">
+                                    <button type="button" class="btn btn-primary btn-next me-3">Save Changes</button>
+                                    <button type="reset" class="btn btn-label-secondary">Reset</button>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- COD -->
+                              <div class="tab-pane fade" id="pills-cod" role="tabpanel" aria-labelledby="pills-cod-tab">
+                                <p>
+                                  Cash on Delivery is a type of payment method where the recipient make payment for the
+                                  order at the time of delivery rather than in advance.
+                                </p>
+                                <button type="button" class="btn btn-primary btn-next">Pay On Delivery</button>
+                              </div>
+
+                              <!-- Gift card -->
+                              <div
+                                class="tab-pane fade"
+                                id="pills-gift-card"
+                                role="tabpanel"
+                                aria-labelledby="pills-gift-card-tab">
+                                <h6>Enter Gift Card Details</h6>
+                                <div class="row g-5">
+                                  <div class="col-12">
+                                    <label for="giftCardNumber" class="form-label">Gift card number</label>
+                                    <input
+                                      type="number"
+                                      class="form-control"
+                                      id="giftCardNumber"
+                                      placeholder="Gift card number" />
+                                  </div>
+                                  <div class="col-12">
+                                    <label for="giftCardPin" class="form-label">Gift card pin</label>
+                                    <input
+                                      type="number"
+                                      class="form-control"
+                                      id="giftCardPin"
+                                      placeholder="Gift card pin" />
+                                  </div>
+                                  <div class="col-12">
+                                    <button type="button" class="btn btn-primary btn-next">Redeem Gift Card</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Address right -->
+                        <div class="col-xl-4">
+                          <div class="border rounded p-6">
+                            <!-- Price Details -->
+                            <h6>Price Details</h6>
+                            <dl class="row text-heading">
+                              <dt class="col-6 fw-normal">Order Total</dt>
+                              <dd class="col-6 text-end">$1198.00</dd>
+
+                              <dt class="col-6 fw-normal">Delivery Charges</dt>
+                              <dd class="col-6 text-end">
+                                <s class="text-body-secondary">$5.00</s>
+                                <span class="badge bg-label-success ms-1">FREE</span>
+                              </dd>
+                            </dl>
+                            <hr class="mx-n6 my-6" />
+                            <dl class="row">
+                              <dt class="col-6 text-heading mb-3">Total</dt>
+                              <dd class="col-6 fw-medium text-end text-heading mb-0">$1198.00</dd>
+
+                              <dt class="col-6 fw-medium text-heading">Deliver to:</dt>
+                              <dd class="col-6 fw-medium text-end mb-0">
+                                <span class="badge bg-label-primary">Home</span>
+                              </dd>
+                            </dl>
+                            <!-- Address Details -->
+                            <address>
+                              <span class="text-heading fw-medium"> John Doe (Default),</span><br />
+                              4135 Parkway Street, <br />
+                              Los Angeles, CA, 90017. <br />
+                              Mobile : +1 906 568 2332
+                            </address>
+                            <a href="javascript:void(0)" class="fw-medium">Change address</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Confirmation -->
+                    <div id="checkout-confirmation" class="content">
+                      <div class="row mb-6">
+                        <div class="col-12 col-lg-8 mx-auto text-center mb-2">
+                          <h4>Thank You! 😇</h4>
+                          <p>
+                            Your order <a href="javascript:void(0)" class="text-heading fw-medium">#1536548131</a> has
+                            been placed!
+                          </p>
+                          <p>
+                            We sent an email to
+                            <a href="mailto:john.doe@example.com" class="text-heading fw-medium"
+                              >john.doe@example.com</a
+                            >
+                            with your order confirmation and receipt. If the email hasn't arrived within two minutes,
+                            please check your spam folder to see if the email was routed there.
+                          </p>
+                          <p>
+                            <span><i class="icon-base ti tabler-clock me-1 text-heading"></i> Time placed:&nbsp;</span>
+                            25/05/2020 13:35pm
+                          </p>
+                        </div>
+                        <!-- Confirmation details -->
+                        <div class="col-12">
+                          <ul class="list-group list-group-horizontal-md">
+                            <li class="list-group-item flex-fill p-6 text-body">
+                              <h6 class="d-flex align-items-center gap-2">
+                                <i class="icon-base ti tabler-map-pin"></i> Shipping
+                              </h6>
+                              <address class="mb-0">
+                                John Doe <br />
+                                4135 Parkway Street,<br />
+                                Los Angeles, CA 90017,<br />
+                                USA
+                              </address>
+                              <p class="mb-0 mt-4">+123456789</p>
+                            </li>
+                            <li class="list-group-item flex-fill p-6 text-body">
+                              <h6 class="d-flex align-items-center gap-2">
+                                <i class="icon-base ti tabler-credit-card"></i> Billing Address
+                              </h6>
+                              <address class="mb-0">
+                                John Doe <br />
+                                4135 Parkway Street,<br />
+                                Los Angeles, CA 90017,<br />
+                                USA
+                              </address>
+                              <p class="mb-0 mt-4">+123456789</p>
+                            </li>
+                            <li class="list-group-item flex-fill p-6 text-body">
+                              <h6 class="d-flex align-items-center gap-2">
+                                <i class="icon-base ti tabler-ship"></i> Shipping Method
+                              </h6>
+                              <p class="fw-medium mb-4">Preferred Method:</p>
+                              Standard Delivery<br />
+                              (Normally 3-4 business days)
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <!-- Confirmation items -->
+                        <div class="col-xl-9 mb-6 mb-xl-0">
+                          <ul class="list-group">
+                            <li class="list-group-item p-6">
+                              <div class="d-flex gap-4">
+                                <div class="flex-shrink-0">
+                                  <img src="../../assets/img/products/1.png" alt="google home" class="w-px-80" />
+                                </div>
+                                <div class="flex-grow-1">
+                                  <div class="row">
+                                    <div class="col-md-8">
+                                      <a href="javascript:void(0)">
+                                        <h6 class="mb-2">Google - Google Home - White</h6>
+                                      </a>
+                                      <div class="text-body mb-2 d-flex flex-wrap">
+                                        <span class="me-1">Sold by:</span>
+                                        <a href="javascript:void(0)" class="me-3">Google</a>
+                                        <span class="badge bg-label-success">In Stock</span>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                      <div class="text-md-end">
+                                        <div class="my-2 my-lg-6">
+                                          <span class="text-primary">$299/</span><s class="text-body-secondary">$359</s>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="list-group-item p-6">
+                              <div class="d-flex gap-4">
+                                <div class="flex-shrink-0">
+                                  <img src="../../assets/img/products/2.png" alt="google home" class="w-px-80" />
+                                </div>
+                                <div class="flex-grow-1">
+                                  <div class="row">
+                                    <div class="col-md-8">
+                                      <a href="javascript:void(0)">
+                                        <h6 class="mb-2">Apple iPhone 11 (64GB, Black)</h6>
+                                      </a>
+                                      <div class="text-body mb-2 d-flex flex-wrap">
+                                        <span class="me-1">Sold by:</span> <a href="javascript:void(0)">Apple</a>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                      <div class="text-md-end">
+                                        <div class="my-2 my-lg-6">
+                                          <span class="text-primary">$299/</span><s class="text-body-secondary">$359</s>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <!-- Confirmation total -->
+                        <div class="col-xl-3">
+                          <div class="border rounded p-6">
+                            <!-- Price Details -->
+                            <h6>Price Details</h6>
+                            <dl class="row mb-0 text-heading">
+                              <dt class="col-6 fw-normal">Order Total</dt>
+                              <dd class="col-6 text-end">$1198.00</dd>
+
+                              <dt class="col-sm-6 text-heading fw-normal">Charges</dt>
+                              <dd class="col-sm-6 text-end text-body-secondary">
+                                $5.00<span class="badge bg-label-success ms-2">FREE</span>
+                              </dd>
+                            </dl>
+                            <hr class="mx-n6 mb-6" />
+                            <dl class="row mb-0">
+                              <dt class="col-6 text-heading">Total</dt>
+                              <dd class="col-6 fw-medium text-end text-heading mb-0">$1198.00</dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!--/ Checkout Wizard -->
+
+              <!-- Add new address modal -->
+              <!-- Add New Address Modal -->
+              <div class="modal fade" id="addNewAddress" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-simple modal-add-new-address">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <div class="text-center mb-6">
+                        <h4 class="address-title mb-2">Add New Address</h4>
+                        <p class="address-subtitle">Add new address for express delivery</p>
+                      </div>
+                      <form id="addNewAddressForm" class="row g-6" onsubmit="return false">
+                        <div class="col-12 form-control-validation">
+                          <div class="row">
+                            <div class="col-md mb-md-0 mb-4">
+                              <div class="form-check custom-option custom-option-icon">
+                                <label class="form-check-label custom-option-content" for="customRadioHome">
+                                  <span class="custom-option-body">
+                                    <svg
+                                      width="28"
+                                      height="28"
+                                      viewBox="0 0 28 28"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <path
+                                        opacity="0.2"
+                                        d="M16.625 23.625V16.625H11.375V23.625H4.37501V12.6328C4.37437 12.5113 4.39937 12.391 4.44837 12.2798C4.49737 12.1686 4.56928 12.069 4.65939 11.9875L13.4094 4.03592C13.5689 3.88911 13.7778 3.80762 13.9945 3.80762C14.2113 3.80762 14.4202 3.88911 14.5797 4.03592L23.3406 11.9875C23.4287 12.0706 23.4992 12.1706 23.548 12.2814C23.5969 12.3922 23.6231 12.5117 23.625 12.6328V23.625H16.625Z" />
+                                      <path
+                                        d="M23.625 23.625V12.6328C23.623 12.5117 23.5969 12.3922 23.548 12.2814C23.4992 12.1706 23.4287 12.0706 23.3406 11.9875L14.5797 4.03592C14.4202 3.88911 14.2113 3.80762 13.9945 3.80762C13.7777 3.80762 13.5689 3.88911 13.4094 4.03592L4.65937 11.9875C4.56926 12.069 4.49736 12.1686 4.44836 12.2798C4.39936 12.391 4.37436 12.5113 4.375 12.6328V23.625M1.75 23.625H26.25M16.625 23.625V17.5C16.625 17.2679 16.5328 17.0454 16.3687 16.8813C16.2046 16.7172 15.9821 16.625 15.75 16.625H12.25C12.0179 16.625 11.7954 16.7172 11.6313 16.8813C11.4672 17.0454 11.375 17.2679 11.375 17.5V23.625"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="custom-option-title">Home</span>
+                                    <small> Delivery time (9am – 9pm) </small>
+                                  </span>
+                                  <input
+                                    name="customRadioIcon"
+                                    class="form-check-input"
+                                    type="radio"
+                                    value=""
+                                    id="customRadioHome"
+                                    checked />
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-md mb-md-0 mb-4">
+                              <div class="form-check custom-option custom-option-icon">
+                                <label class="form-check-label custom-option-content" for="customRadioOffice">
+                                  <span class="custom-option-body">
+                                    <svg
+                                      width="28"
+                                      height="28"
+                                      viewBox="0 0 28 28"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <path
+                                        opacity="0.2"
+                                        d="M15.75 23.625V4.375C15.75 4.14294 15.6578 3.92038 15.4937 3.75628C15.3296 3.59219 15.1071 3.5 14.875 3.5H4.375C4.14294 3.5 3.92038 3.59219 3.75628 3.75628C3.59219 3.92038 3.5 4.14294 3.5 4.375V23.625" />
+                                      <path
+                                        d="M1.75 23.625H26.25M15.75 23.625V4.375C15.75 4.14294 15.6578 3.92038 15.4937 3.75628C15.3296 3.59219 15.1071 3.5 14.875 3.5H4.375C4.14294 3.5 3.92038 3.59219 3.75628 3.75628C3.59219 3.92038 3.5 4.14294 3.5 4.375V23.625M24.5 23.625V11.375C24.5 11.1429 24.4078 10.9204 24.2437 10.7563C24.0796 10.5922 23.8571 10.5 23.625 10.5H15.75M7 7.875H10.5M8.75 14.875H12.25M7 19.25H10.5M19.25 19.25H21M19.25 14.875H21"
+                                        stroke-opacity="0.9"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="custom-option-title"> Office </span>
+                                    <small> Delivery time (9am – 5pm) </small>
+                                  </span>
+                                  <input
+                                    name="customRadioIcon"
+                                    class="form-check-input"
+                                    type="radio"
+                                    value=""
+                                    id="customRadioOffice" />
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 form-control-validation col-md-6">
+                          <label class="form-label" for="modalAddressFirstName">First Name</label>
+                          <input
+                            type="text"
+                            id="modalAddressFirstName"
+                            name="modalAddressFirstName"
+                            class="form-control"
+                            placeholder="John" />
+                        </div>
+                        <div class="col-12 form-control-validation col-md-6">
+                          <label class="form-label" for="modalAddressLastName">Last Name</label>
+                          <input
+                            type="text"
+                            id="modalAddressLastName"
+                            name="modalAddressLastName"
+                            class="form-control"
+                            placeholder="Doe" />
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label" for="modalAddressCountry">Country</label>
+                          <select
+                            id="modalAddressCountry"
+                            name="modalAddressCountry"
+                            class="select2 form-select"
+                            data-allow-clear="true">
+                            <option value="">Select</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Belarus">Belarus</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="Canada">Canada</option>
+                            <option value="China">China</option>
+                            <option value="France">France</option>
+                            <option value="Germany">Germany</option>
+                            <option value="India">India</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Israel">Israel</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Korea">Korea, Republic of</option>
+                            <option value="Mexico">Mexico</option>
+                            <option value="Philippines">Philippines</option>
+                            <option value="Russia">Russian Federation</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="Thailand">Thailand</option>
+                            <option value="Turkey">Turkey</option>
+                            <option value="Ukraine">Ukraine</option>
+                            <option value="United Arab Emirates">United Arab Emirates</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="United States">United States</option>
+                          </select>
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label" for="modalAddressAddress1">Address Line 1</label>
+                          <input
+                            type="text"
+                            id="modalAddressAddress1"
+                            name="modalAddressAddress1"
+                            class="form-control"
+                            placeholder="12, Business Park" />
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label" for="modalAddressAddress2">Address Line 2</label>
+                          <input
+                            type="text"
+                            id="modalAddressAddress2"
+                            name="modalAddressAddress2"
+                            class="form-control"
+                            placeholder="Mall Road" />
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label" for="modalAddressLandmark">Landmark</label>
+                          <input
+                            type="text"
+                            id="modalAddressLandmark"
+                            name="modalAddressLandmark"
+                            class="form-control"
+                            placeholder="Nr. Hard Rock Cafe" />
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label" for="modalAddressCity">City</label>
+                          <input
+                            type="text"
+                            id="modalAddressCity"
+                            name="modalAddressCity"
+                            class="form-control"
+                            placeholder="Los Angeles" />
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label" for="modalAddressLandmark">State</label>
+                          <input
+                            type="text"
+                            id="modalAddressState"
+                            name="modalAddressState"
+                            class="form-control"
+                            placeholder="California" />
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label" for="modalAddressZipCode">Zip Code</label>
+                          <input
+                            type="text"
+                            id="modalAddressZipCode"
+                            name="modalAddressZipCode"
+                            class="form-control"
+                            placeholder="99950" />
+                        </div>
+                        <div class="col-12">
+                          <div class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" id="billingAddress" />
+                            <label for="billingAddress" class="form-switch-label">Use as a billing address?</label>
+                          </div>
+                        </div>
+                        <div class="col-12 text-center">
+                          <button type="submit" class="btn btn-primary me-3">Submit</button>
+                          <button
+                            type="reset"
+                            class="btn btn-label-secondary"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
+                            Cancel
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/ Add New Address Modal -->
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl">
+                <div
+                  class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                  <div class="text-body">
+                    &#169;
+                    <script>
+                      document.write(new Date().getFullYear());
+                    </script>
+                    , made with ❤️ by <a href="https://pixinvent.com" target="_blank" class="footer-link">Pixinvent</a>
+                  </div>
+                  <div class="d-none d-lg-inline-block">
+                    <a href="https://themeforest.net/licenses/standard" class="footer-link me-4" target="_blank"
+                      >License</a
+                    >
+                    <a href="https://themeforest.net/user/pixinvent/portfolio" target="_blank" class="footer-link me-4"
+                      >More Themes</a
+                    >
+
+                    <a
+                      href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/"
+                      target="_blank"
+                      class="footer-link me-4"
+                      >Documentation</a
+                    >
+
+                    <a href="https://pixinvent.ticksy.com/" target="_blank" class="footer-link d-none d-sm-inline-block"
+                      >Support</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/theme.js  -->
+
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
+
+    <script src="../../assets/vendor/libs/pickr/pickr.js"></script>
+
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+
+    <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+
+    <script src="../../assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/select2/select2.js"></script>
+    <script src="../../assets/vendor/libs/bs-stepper/bs-stepper.js"></script>
+    <script src="../../assets/vendor/libs/raty-js/raty-js.js"></script>
+    <script src="../../assets/vendor/libs/cleave-zen/cleave-zen.js"></script>
+    <script src="../../assets/vendor/libs/@form-validation/popular.js"></script>
+    <script src="../../assets/vendor/libs/@form-validation/bootstrap5.js"></script>
+    <script src="../../assets/vendor/libs/@form-validation/auto-focus.js"></script>
+
+    <!-- Main JS -->
+
+    <script src="../../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+
+    <script src="../../assets/js/modal-add-new-address.js"></script>
+    <script src="../../assets/js/wizard-ex-checkout.js"></script>
+  </body>
+</html>

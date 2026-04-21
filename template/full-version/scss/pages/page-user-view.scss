@@ -1,0 +1,5 @@
+@import "../_bootstrap-extended/include";
+
+.card.primary-shadow {
+  box-shadow: 0 .125rem .375rem 0 rgba(var(--#{$prefix}primary-rgb), .3) !important;
+}

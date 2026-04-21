@@ -1,0 +1,13 @@
+{
+    "name": "Dirut",
+    "alias": "dirut",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Dirut\\Providers\\DirutServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

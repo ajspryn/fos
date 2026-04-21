@@ -1,0 +1,41 @@
+/* Help center
+******************************************************************************* */
+
+@import "../_bootstrap-extended/include";
+
+$user-profile-banner-size: 250px !default;
+$user-profile-banner-sm-size: 150px !default;
+$user-image-size: 120px !default;
+$user-image-sm-size: 100px !default;
+
+.user-profile-header-banner {
+  img {
+    block-size: $user-profile-banner-size;
+    inline-size: 100%;
+    object-fit: cover;
+  }
+}
+
+.user-profile-header {
+  margin-block-start: -2rem;
+  .user-profile-img {
+    border: 5px solid;
+    border-color: var(--#{$prefix}paper-bg);
+    inline-size: $user-image-size;
+  }
+}
+
+/* Responsive style */
+@include media-breakpoint-down(md) {
+  .user-profile-header-banner {
+    img {
+      block-size: $user-profile-banner-sm-size;
+    }
+  }
+
+  .user-profile-header {
+    .user-profile-img {
+      inline-size: $user-image-sm-size;
+    }
+  }
+}

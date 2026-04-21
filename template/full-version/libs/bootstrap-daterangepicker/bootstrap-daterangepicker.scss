@@ -1,0 +1,352 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "../../scss/_components/include";
+
+
+.daterangepicker {
+  position: absolute;
+  z-index: $picker-zindex;
+  display: none;
+  background-color: $picker-bg;
+  box-shadow: $picker-box-shadow;
+  margin-block-start: $picker-spacer;
+  @include border-radius($picker-border-radius);
+
+  .calendar-table{
+    /* prev & next arrow wrapper styles */
+    .next,
+    .prev {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $picker-arrow-bg;
+      block-size: $picker-arrow-wrapper-size;
+      inline-size: $picker-arrow-wrapper-size;
+      inset-block-start: .65rem;
+      min-inline-size: unset;
+      @include border-radius($picker-cell-border-radius);
+    }
+
+    /* prev & next arrow default styles with border */
+    .next span,
+    .prev span {
+      display: inline-block;
+      border-width: 0 1.9px 1.9px 0;
+      border-style: solid;
+      border-color: $picker-arrow-color;
+      block-size: $picker-arrow-size;
+      inline-size: $picker-arrow-size;
+      @include border-radius(0);
+    }
+
+    .prev span {
+      margin-inline-end: -$picker-arrow-size * .5;
+      transform: rotate(135deg);
+
+      :dir(rtl) & {
+        transform: rotate(-45deg);
+      }
+    }
+
+    .next span {
+      margin-inline-start: -$picker-arrow-size * .5;
+      transform: rotate(-45deg);
+
+      :dir(rtl) & {
+        margin-inline: 0;
+        transform: rotate(135deg);
+      }
+    }
+
+    /* picker table styles */
+    table {
+      border: 0;
+      margin: 0;
+      border-collapse: collapse;
+      border-spacing: 0;
+      inline-size: 100%;
+      thead {
+        tr:first-child {
+          position: relative;
+          block-size: $picker-header-size;
+        }
+        tr:last-child th {
+          color: $picker-header-color;
+          font-size: $font-size-sm;
+          font-weight: $font-weight-medium;
+          @include border-radius(0);
+        }
+        th select{
+          background-color: transparent;
+        }
+      }
+      th.month {
+        inline-size: auto;
+      }
+      td {
+        inline-size: $picker-cell-size;
+        @include border-radius($picker-cell-border-radius);
+        &.start-date:not(.end-date) {
+          @include border-end-radius(0);
+        }
+
+        &.end-date:not(.start-date) {
+          @include border-start-radius(0);
+        }
+
+        &.start-date:not(.end-date, .off),
+        &.end-date:not(.start-date, .off) {
+          border: 0;
+          background-color: $picker-cell-active-bg;
+          color: $picker-cell-active-color;
+
+          &:hover {
+            background-color: $picker-cell-active-bg;
+          }
+        }
+        &.off{
+          color: $picker-disabled-color;
+        }
+
+        /* week header styles */
+        &.week{
+          color: $picker-header-color;
+          font-weight: $font-weight-normal;
+        }
+
+        /* active date styles */
+        &.active.today.start-date:not(.off),
+        &.active.today.end-date:not(.off),
+        &.active:not(.off){
+          background: $picker-cell-active-bg;
+          box-shadow: $picker-cell-active-shadow;
+          color: $picker-cell-active-color;
+        }
+
+        /* today date styles */
+        &.today,
+        &.today.active,
+        &.today:hover {
+          background: $picker-cell-today-bg;
+          color: $picker-cell-today-color;
+        }
+
+        &.in-range:not(.start-date, .end-date) {
+          @include border-radius(0);
+          box-shadow: none;
+        }
+
+        /* hover & not in range date styles */
+        &.in-range:not(.start-date, .end-date, .off) {
+          &,
+          &:hover {
+            background-color: $picker-range-active-bg;
+            color: $picker-range-active-color;
+          }
+        }
+      }
+      th {
+        block-size: $picker-cell-size + .5rem;
+      }
+      th,
+      td {
+        block-size: $picker-cell-size;
+        cursor: pointer;
+        line-height: calc(#{$picker-cell-size} - 2px);
+        min-inline-size: $picker-cell-size;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+      td.available:not(.active, .in-range):hover {
+        background-color: $picker-cell-hover-bg;
+      }
+
+      td.disabled,
+      option.disabled {
+        color: $picker-disabled-color;
+        cursor: not-allowed;
+        text-decoration: line-through;
+      }
+    }
+  }
+  .input-mini.active {
+    border-color: $picker-cell-active-bg;
+  }
+
+  /*  dual date range picker styles */
+  .drp-calendar:not(.single){
+    &.left{
+      .prev{
+        inset-inline-start: .625rem;
+      }
+    }
+    &.right{
+      .next{
+        inset-inline-end: .625rem;
+      }
+    }
+  }
+  .drp-calendar.single{
+    .prev{
+      inset-inline-start: .4rem;
+    }
+  }
+  &:not(.single) {
+    /* responsive above md */
+    @include media-breakpoint-up(md) {
+      .drp-calendar {
+        float: inline-start;
+      }
+    }
+    .drp-selected {
+      display: inline-block;
+      padding: 0;
+      inline-size: auto;
+    }
+  }
+
+  /* selected date range styles */
+  .drp-selected{
+    display: block;
+    font-size: $font-size-sm;
+    inline-size: 100%;
+    padding-block-end: $picker-padding;
+  }
+
+
+  &.auto-apply .drp-buttons {
+    display: none;
+  }
+
+  &.show-calendar .drp-calendar,
+  &.show-calendar .drp-buttons {
+    display: block;
+  }
+
+  .drp-calendar {
+    display: none;
+    padding: $picker-padding;
+
+    &.single .calendar-table {
+      border: 0;
+    }
+  }
+
+  &.single {
+    .drp-selected {
+      display: none;
+    }
+
+    .daterangepicker .ranges,
+    .drp-calendar {
+      float: none;
+    }
+  }
+
+  /* select dropdown styles */
+  select {
+    &.monthselect,
+    &.yearselect {
+      padding: 1px;
+      border: 0;
+      margin: 0;
+      block-size: auto;
+      cursor: default;
+    }
+
+    &:focus-visible {
+      outline: 0;
+    }
+
+    &.hourselect,
+    &.minuteselect,
+    &.secondselect,
+    &.ampmselect {
+      padding: 2px;
+      border: 1px solid transparent;
+      background: $picker-select-bg;
+      color: $picker-color;
+      font-size: $font-size-sm;
+      inline-size: $picker-select-width;
+      margin-block: 0;
+      margin-inline: auto;
+      outline: 0;
+      @include border-radius($picker-select-timer-radius);
+      option {
+        background: $picker-bg;
+      }
+    }
+
+    &.monthselect {
+      margin-inline-end: 4%;
+    }
+
+    &.yearselect {
+      inline-size: 40%;
+    }
+  }
+
+  /* time picker styles */
+  .calendar-time {
+    position: relative;
+    line-height: 30px;
+    margin-block: 0;
+    margin-inline: auto;
+    text-align: center;
+
+    select.disabled {
+      color: $picker-disabled-color;
+      cursor: not-allowed;
+    }
+  }
+
+  .drp-buttons {
+    display: none;
+    padding: $picker-padding;
+    clear: both;
+    text-align: end;
+    vertical-align: middle;
+
+    .btn {
+      margin-inline-start: $picker-padding * 1.2;
+    }
+  }
+
+  /* ranges styles */
+  .ranges {
+    margin: 0;
+    float: inline-start;
+    text-align: start;
+
+    ul {
+      padding: .5rem;
+      inline-size: 100%;
+      list-style: none;
+      margin-block: 0;
+      margin-inline: auto;
+      li{
+        @include border-radius($picker-border-radius);
+        cursor: pointer;
+        padding-block: $dropdown-item-padding-y;
+        padding-inline: $dropdown-item-padding-x;
+        &:not(:first-child) {
+          margin-block-start: .125rem;
+        }
+        &:hover {
+          background-color: $picker-cell-hover-bg;
+        }
+        &.active {
+          background-color: $picker-cell-active-bg;
+          color: $picker-cell-active-color;
+        }
+      }
+    }
+  }
+
+  &.show-calendar .ranges {
+    &:empty {
+      display: none;
+    }
+  }
+}

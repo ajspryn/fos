@@ -1,0 +1,346 @@
+<?php
+
+namespace Modules\P3k\Http\Controllers;
+
+use App\Models\Role;
+use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Modules\Admin\Entities\P3kScoreDsr;
+use Modules\Admin\Entities\P3kScoreSlik;
+use Modules\Admin\Entities\P3kScoreTenor;
+use Modules\Admin\Entities\P3kScoreUsia;
+use Modules\P3k\Entities\P3kDeviasi;
+use Modules\P3k\Entities\P3kFoto;
+use Modules\P3k\Entities\P3kPembiayaan;
+use Modules\P3k\Entities\P3kPembiayaanHistory;
+use Modules\P3k\Entities\P3kSlik;
+use Modules\P3k\Entities\P3kSlikPasangan;
+
+//Locale Indonesia
+setlocale(LC_ALL, 'id_ID.UTF8', 'id_ID', 'id_ID.UTF-8', 'id_ID.8859-1', 'IND.UTF8');
+
+class P3kKomiteController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     * @return Renderable
+     */
+    public function index()
+    {
+        return view('p3k::komite.index', [
+            'title' => 'Proposal Calon Nasabah',
+            'proposals' => P3kPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull('dokumen_ideb')->orderBy('id', 'desc')->get(),
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Renderable
+     */
+    public function create()
+    {
+        return view('p3k::create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return Renderable
+     */
+    public function store(Request $request)
+    {
+        $role = role::select()->where('user_id', Auth::user()->id)->get()->first();
+
+        P3kPembiayaanHistory::create([
+            'p3k_pembiayaan_id' => $request->p3k_pembiayaan_id,
+            'status_id' => $request->status_id,
+            'catatan' => $request->catatan,
+            'jabatan_id' => $role->jabatan_id,
+            'divisi_id' => $role->divisi_id,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        if ($request->file('dokumen_deviasi')) {
+
+            //Store file dengan nama asli
+            $dokumenDeviasi = $request->file('dokumen_deviasi');
+            $dokumenDeviasiName = time() . '_' . $dokumenDeviasi->getClientOriginalName();
+            $request->file('dokumen_deviasi')->storeAs('p3k-dokumen-deviasi', $dokumenDeviasiName);
+            $filePathDokumenDeviasi = 'p3k-dokumen-deviasi/' . $dokumenDeviasiName;
+
+            P3kDeviasi::create([
+                'p3k_pembiayaan_id' => $request->p3k_pembiayaan_id,
+                'kategori_deviasi' => $request->kategori_deviasi,
+                'dokumen_deviasi' => $filePathDokumenDeviasi,
+            ]);
+            return redirect('p3k/komite/' . $request->p3k_pembiayaan_id)->with('success', 'Dokumen Deviasi Berhasil Diupload!');
+        }
+
+        if ($request->status_id == 3) {
+            return redirect('p3k/komite')->with('success', 'Proposal Berhasil Diajukan!');
+        } elseif ($request->status_id == 7) {
+            return redirect('p3k/komite')->with('success', 'Proposal Diajukan Untuk Revisi!');
+        } else {
+        }
+    }
+
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function show($id)
+    {
+        // $cek = P3kPembiayaanHistory::select()
+        //     ->where('p3k_pembiayaan_id', $id)
+        //     ->where('user_id', Auth::user()->id)
+        //     ->get()
+        //     ->count();
+
+        // if ($cek == 0) {
+        //     P3kPembiayaanHistory::create([
+        //         'p3k_pembiayaan_id' => $id,
+        //         'status_id' => 2,
+        //         'jabatan_id' => 1,
+        //         'divisi_id' => 0,
+        //         'user_id' => Auth::user()->id,
+        //     ]);
+        // }
+
+        $data = P3kPembiayaan::select()->where('id', $id)->get()->first();
+
+        //Angsuran
+        $nominalPembiayaan = $data->nominal_pembiayaan;
+        $tenor = $data->tenor;
+        $rate = $data->rate / 100;
+
+        $hargaJual = ($nominalPembiayaan * $rate * $tenor) + $nominalPembiayaan;
+        $angsuran = $hargaJual / $tenor;
+        $totalAngsuranBtbFasAktif = $data->total_angsuran_btb_fas_aktif;
+
+        //Biaya Administrasi
+        $byAdm = 1.5 / 100 * $nominalPembiayaan;
+
+        //Pendapatan
+        $gajiPokok = $data->gaji_pokok;
+        $gajiTpp = $data->gaji_tpp;
+        $gajiPasangan = $data->gaji_pasangan;
+        $totalPendapatan = $gajiPokok + $gajiTpp;
+        $totalPendapatanJoinIncome = $gajiPokok + $gajiTpp + $gajiPasangan;
+
+        //Pengeluaran
+        $pengeluaranLainnya = $data->pengeluaran_lainnya;
+
+        //Pendapatan bersih
+        $pendapatanBersih = $totalPendapatan - $totalAngsuranBtbFasAktif - $pengeluaranLainnya;
+        $pendapatanBersihJoinIncome = $totalPendapatanJoinIncome - $totalAngsuranBtbFasAktif - $pengeluaranLainnya;
+
+        //Proses Scoring
+        //DSR
+        $dsr = number_format((($angsuran + $totalAngsuranBtbFasAktif) / $totalPendapatan) * 100);
+        //DSR Join Income
+        $dsrJoinIncome = number_format((($angsuran + $totalAngsuranBtbFasAktif) / $totalPendapatanJoinIncome) * 100);
+
+
+        if ($dsr >= 80 && $dsr <= 90) {
+            $prosesDsr = P3kScoreDsr::select()->where('id', 1)->get()->first();
+        } else if ($dsr >= 70 && $dsr <= 79) {
+            $prosesDsr = P3kScoreDsr::select()->where('id', 2)->get()->first();
+        } else if ($dsr >= 60 && $dsr <= 69) {
+            $prosesDsr = P3kScoreDsr::select()->where('id', 3)->get()->first();
+        } else if ($dsr >= 0 && $dsr <= 59) {
+            $prosesDsr = P3kScoreDsr::select()->where('id', 4)->get()->first();
+        }
+        //DSR > 90%
+        else {
+            $prosesDsr = P3kScoreDsr::select()->where('id', 5)->get()->first();
+        }
+
+        $ratingDsr = $prosesDsr->rating;
+        $bobotDsr = $prosesDsr->bobot;
+        $scoreDsr = $ratingDsr * $bobotDsr;
+
+        // //IDEB
+        // $cekIdeb = P3kSlik::select()->where('p3k_pembiayaan_id', $id)->orderBy('kol_tertinggi', 'DESC')->get()->first();
+        // if ($cekIdeb) {
+        //     $kolTertinggi = $cekIdeb->kol_tertinggi;
+        //     if ($kolTertinggi == 5) {
+        //         $prosesIdeb = P3kScoreSlik::select()->where('id', 1)->get()->first();
+        //     } else if ($kolTertinggi == 4) {
+        //         $prosesIdeb = P3kScoreSlik::select()->where('id', 2)->get()->first();
+        //     } else if ($kolTertinggi == 3) {
+        //         $prosesIdeb = P3kScoreSlik::select()->where('id', 3)->get()->first();
+        //     } else if ($kolTertinggi == 2) {
+        //         $prosesIdeb = P3kScoreSlik::select()->where('id', 4)->get()->first();
+        //     } else if ($kolTertinggi == 1) {
+        //         $prosesIdeb = P3kScoreSlik::select()->where('id', 5)->get()->first();
+        //     } else {
+        //     }
+        // }
+        // //Jika tidak ada IDEB
+        // else {
+        //     $prosesIdeb = P3kScoreSlik::select()->where('id', 6)->get()->first();
+        // }
+
+        // $ratingIdeb = $prosesIdeb->rating;
+        // $bobotIdeb = $prosesIdeb->bobot;
+        // $scoreIdeb = $ratingIdeb * $bobotIdeb;
+
+        //Usia
+        $usia = Carbon::parse($data->nasabah->tgl_lahir)->age;
+
+        if ($usia >= 50 && $usia <= 55) {
+            $prosesUsia = P3kScoreUsia::select()->where('id', 1)->get()->first();
+        } else if ($usia >= 40 && $usia <= 49) {
+            $prosesUsia = P3kScoreUsia::select()->where('id', 2)->get()->first();
+        } else if ($usia >= 30 && $usia <= 39) {
+            $prosesUsia = P3kScoreUsia::select()->where('id', 3)->get()->first();
+        } else if ($usia >= 20 && $usia <= 29) {
+            $prosesUsia = P3kScoreUsia::select()->where('id', 4)->get()->first();
+        }
+        //Usia >= 56 Tahun
+        else {
+            $prosesUsia = P3kScoreUsia::select()->where('id', 5)->get()->first();
+        }
+
+        $ratingUsia = $prosesUsia->rating;
+        $bobotUsia = $prosesUsia->bobot;
+        $scoreUsia = $ratingUsia * $bobotUsia;
+
+        //Tenor
+        if ($tenor >= 120 && $tenor <= 240) {
+            $prosesTenor = P3kScoreTenor::select()->where('id', 1)->get()->first();
+        } else if ($tenor >= 96 && $tenor <= 108) {
+            $prosesTenor = P3kScoreTenor::select()->where('id', 2)->get()->first();
+        } else if ($tenor >= 72 && $tenor <= 84) {
+            $prosesTenor = P3kScoreTenor::select()->where('id', 3)->get()->first();
+        }
+        //Tenor <= 5 tahun
+        else {
+            $prosesTenor = P3kScoreTenor::select()->where('id', 4)->get()->first();
+        }
+
+        $ratingTenor = $prosesTenor->rating;
+        $bobotTenor = $prosesTenor->bobot;
+        $scoreTenor = $ratingTenor * $bobotTenor;
+
+        //Timeline
+        $waktuAwal = P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();
+        $waktuAkhir = P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first();
+
+        $waktuMulai = Carbon::parse($waktuAwal->created_at);
+        $waktuBerakhir = Carbon::parse($waktuAkhir->created_at);
+
+        $totalWaktu = $waktuMulai->diffAsCarbonInterval($waktuBerakhir);
+
+        return view('p3k::komite.lihat', [
+            'title' => 'Detail Proposal',
+            'arr' => -2,
+            'banyakHistory' => P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->count(),
+            'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
+            'pembiayaan' => P3kPembiayaan::select()->where('id', $id)->get()->first(),
+            'timelines' => P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->get(),
+
+            'fotos' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->get(),
+            'bonMurabahah' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Bon Murabahah')->get()->first(),
+            'fotoKtp' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotoKartuKeluarga' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'fotoNpwp' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto NPWP')->get()->first(),
+            'fotoKtpPasangan' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto KTP Pasangan')->get()->first(),
+            'fotoStatusPernikahan' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Akta Status Pernikahan/Perceraian')->get()->first(),
+            'dokumenIdebPasangan' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'IDEB Pasangan')->get()->first(),
+            'deviasi' => P3kDeviasi::select()->where('p3k_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
+
+            // 'idebs' => P3kSlik::select()->where('p3k_pembiayaan_id', $id)->get(),
+            // 'idebPasangans' => P3kSlikPasangan::select()->where('p3k_pembiayaan_id', $id)->get(),
+
+            'hargaJual' => $hargaJual,
+            'tenor' => $tenor,
+            'rate' => $rate,
+            'angsuran' => $angsuran,
+            'pendapatanBersih' => $pendapatanBersih,
+            'pendapatanBersihJoinIncome' => $pendapatanBersihJoinIncome,
+            'byAdm' => $byAdm,
+
+            //DSR
+            'dsr' => $dsr,
+            'dsrJoinIncome' => $dsrJoinIncome,
+
+            //Scoring
+            'prosesDsr' => $prosesDsr,
+            // 'prosesIdeb' => $prosesIdeb,
+            'prosesUsia' => $prosesUsia,
+            'prosesTenor' => $prosesTenor,
+
+            'ratingDsr' => $ratingDsr,
+            // 'ratingIdeb' => $ratingIdeb,
+            'ratingUsia' => $ratingUsia,
+            'ratingTenor' => $ratingTenor,
+
+            'bobotDsr' => $bobotDsr,
+            // 'bobotIdeb' => $bobotIdeb,
+            'bobotUsia' => $bobotUsia,
+            'bobotTenor' => $bobotTenor,
+
+            'scoreDsr' => $scoreDsr,
+            // 'scoreIdeb' => $scoreIdeb,
+            'scoreUsia' => $scoreUsia,
+            'scoreTenor' => $scoreTenor,
+
+            //History
+            'history' => P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
+
+            //SLA
+            'totalWaktu' => $totalWaktu,
+        ]);
+    }
+
+    public function uploadBonMurabahah(Request $request)
+    {
+        if ($request->file('bon_murabahah')) {
+            $bonMurabahah = $request->file('bon_murabahah')->store('foto-p3k-pembiayaan');
+            P3kFoto::create([
+                'p3k_pembiayaan_id' => $request->p3k_pembiayaan_id,
+                'kategori' => 'Bon Murabahah',
+                'foto' => $bonMurabahah,
+            ]);
+        }
+
+
+        return redirect('/skpd/komite')->with('success', 'Bon Murabahah Berhasil diupload!');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function edit($id)
+    {
+        return view('p3k::edit');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param int $id
+     * @return Renderable
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return Renderable
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

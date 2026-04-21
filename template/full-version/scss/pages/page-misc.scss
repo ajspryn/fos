@@ -1,0 +1,40 @@
+/* Miscellaneous
+******************************************************************************* */
+
+@import "../_bootstrap-extended/include";
+
+.misc-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-block-size:
+    calc(
+      100vh - calc(#{$container-padding-y} * 2)
+    ); /* ?we have added container-p-y class to add padding on top & bottom */
+
+  text-align: center;
+}
+// Misc Image Wrapper
+.misc-bg-wrapper {
+  position: relative;
+  img {
+    position: absolute;
+    z-index: -1;
+    inline-size: 100%;
+    inset-block-end: 0;
+    inset-inline: 0;
+  }
+}
+
+// media query for width
+@media (max-width: 1499.98px) {
+  // All Misc Pages
+  .misc-bg-wrapper img {
+    block-size: 250px;
+  }
+  // Under Maintenance
+  .misc-under-maintenance-bg-wrapper img {
+    block-size: 270px !important;
+  }
+}

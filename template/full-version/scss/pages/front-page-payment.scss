@@ -1,0 +1,13 @@
+@import "../_bootstrap-extended/include";
+
+/* To remove border end in small screen */
+@include media-breakpoint-down(lg) {
+  .section-py {
+    .card-body {
+      &.border-end {
+        border-block-end: 1px solid $border-color;
+        border-inline-end: 0 !important;
+      }
+    }
+  }
+}

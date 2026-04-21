@@ -1,0 +1,64 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "datatables.net-responsive-bs5/css/responsive.bootstrap5";
+
+/* Responsive table area '+' icon position */
+table.dataTable {
+  &.dtr-column > tbody > tr {
+    &,
+    &.dtr-expanded {
+      & > td.control,
+      & > th.control {
+        position: relative;
+
+        &::before {
+          position: absolute;
+          box-sizing: content-box;
+          border: 2px solid var(--#{$prefix}paper-bg);
+          @include border-radius(1rem);
+          background-color: var(--#{$prefix}primary);
+          block-size: .85rem;
+          box-shadow: 0 0 3px var(--#{$prefix}gray-800);
+          color: var(--#{$prefix}white);
+          content: "+";
+          font-family: "Courier New", Courier, monospace;
+          font-weight: $font-weight-medium;
+          inline-size: .85rem;
+          inset-block-start: 50%;
+          inset-inline-start: 50%;
+          line-height: 1em;
+          text-align: center;
+          transform: translate(-50%, -51%);
+        }
+      }
+    }
+  }
+  &.table-responsive {
+    /* To scroll within datatable area */
+    @media screen and (width <= 1399.98px) {
+      display: block;
+    }
+  }
+}
+
+/* Modal table style */
+.modal.dtr-bs-modal {
+  .modal-body {
+    padding: 0;
+  }
+
+  .table {
+    margin-block-end: 0;
+    tr:last-child > td {
+      border-block-end: 0;
+    }
+    .btn {
+      box-shadow: none !important;
+    }
+    .emp_name {
+      font-weight: $font-weight-medium;
+    }
+  }
+  .dropdown-item.text-danger:active {
+    color: var(--#{$prefix}primary) !important;
+  }
+}

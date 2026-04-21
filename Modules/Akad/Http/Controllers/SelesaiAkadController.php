@@ -1,0 +1,1203 @@
+<?php
+
+namespace Modules\Akad\Http\Controllers;
+
+use App\Models\Role;
+use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Modules\Admin\Entities\PasarAkad;
+use Modules\Admin\Entities\PasarBendahara;
+use Modules\Admin\Entities\PasarCashPick;
+use Modules\Admin\Entities\PasarJaminanRumahh;
+use Modules\Admin\Entities\PasarJenisDagang;
+use Modules\Admin\Entities\PasarJenisJaminan;
+use Modules\Admin\Entities\PasarJenisNasabah;
+use Modules\Admin\Entities\PasarJenisPasar;
+use Modules\Admin\Entities\PasarLamaBerdagang;
+use Modules\Admin\Entities\PasarScoreIdir;
+use Modules\Admin\Entities\PasarScoreSlik;
+use Modules\Admin\Entities\PasarSektorEkonomi;
+use Modules\Admin\Entities\PasarSukuBangsa;
+use Modules\Akad\Entities\Pembiayaan;
+use Modules\Form\Entities\FormPprPembiayaan;
+use Modules\Pasar\Entities\PasarDeviasi;
+use Modules\Pasar\Entities\PasarFoto;
+use Modules\Pasar\Entities\PasarJaminan;
+use Modules\Pasar\Entities\PasarJaminanLain;
+use Modules\Pasar\Entities\PasarKeteranganUsaha;
+use Modules\Pasar\Entities\PasarLegalitasRumah;
+use Modules\Pasar\Entities\PasarNasabahh;
+use Modules\Pasar\Entities\PasarPembiayaan;
+use Modules\Pasar\Entities\PasarPembiayaanHistory;
+use Modules\Pasar\Entities\PasarSlik;
+use Modules\Pasar\Entities\PasarSlikPasangan;
+use Modules\Ppr\Entities\PprPembiayaanHistory;
+use Modules\Skpd\Entities\SkpdFoto;
+use Modules\Skpd\Entities\SkpdJaminan;
+use Modules\Skpd\Entities\SkpdJaminanLainnya;
+use Modules\Skpd\Entities\SkpdPembiayaan;
+use Modules\Skpd\Entities\SkpdPembiayaanHistory;
+use Modules\Umkm\Entities\UmkmFoto;
+use Modules\Admin\Entities\P3kScoreDsr;
+use Modules\Admin\Entities\P3kScoreSlik;
+use Modules\Admin\Entities\P3kScoreTenor;
+use Modules\Admin\Entities\P3kScoreUsia;
+use Modules\P3k\Entities\P3kDeviasi;
+use Modules\P3k\Entities\P3kFoto;
+use Modules\P3k\Entities\P3kPembiayaan;
+use Modules\P3k\Entities\P3kPembiayaanHistory;
+use Modules\P3k\Entities\P3kSlik;
+use Modules\P3k\Entities\P3kSlikPasangan;
+use Modules\Umkm\Entities\UmkmJaminan;
+use Modules\Umkm\Entities\UmkmJaminanLain;
+use Modules\Umkm\Entities\UmkmPembiayaan;
+use Modules\Umkm\Entities\UmkmPembiayaanHistory;
+use Modules\Admin\Entities\UmkmScoreIdir;
+use Modules\Umkm\Entities\UmkmDeviasi;
+use Modules\Umkm\Entities\UmkmKeteranganUsaha;
+use Modules\Umkm\Entities\UmkmLegalitasRumah;
+use Modules\Umkm\Entities\UmkmNasabah;
+use Modules\Umkm\Entities\UmkmSlik;
+use Modules\Umkm\Entities\UmkmSlikPasangan;
+use Modules\Admin\Entities\SkpdBendahara;
+use Modules\Admin\Entities\SkpdInstansi;
+use Modules\Admin\Entities\SkpdJenisJaminan;
+use Modules\Admin\Entities\SkpdScoreDsr;
+use Modules\Admin\Entities\SkpdScoreSlik;
+use Modules\Skpd\Entities\SkpdDeviasi;
+use Modules\Skpd\Entities\SkpdNasabah;
+use Modules\Skpd\Entities\SkpdSlik;
+use Modules\Skpd\Entities\SkpdSlikPasangan;
+use Modules\Form\Entities\FormPprDataAgunan;
+use Modules\Form\Entities\FormPprDataKekayaanKendaraan;
+use Modules\Form\Entities\FormPprDataKekayaanLainnya;
+use Modules\Form\Entities\FormPprDataKekayaanSaham;
+use Modules\Form\Entities\FormPprDataKekayaanSimpanan;
+use Modules\Form\Entities\FormPprDataKekayaanTanahBangunan;
+use Modules\Form\Entities\FormPprDataPekerjaan;
+use Modules\Form\Entities\FormPprDataPinjaman;
+use Modules\Form\Entities\FormPprDataPinjamanKartuKredit;
+use Modules\Form\Entities\FormPprDataPinjamanLainnya;
+use Modules\Form\Entities\FormPprDataPribadi;
+use Modules\Ppr\Entities\PprLampiran;
+use Modules\Ppr\Entities\PprScoring;
+use Modules\Skpd\Entities\SkpdJenisNasabah;
+use App\Http\Traits\Terbilang;
+
+//Locale Indonesia
+setlocale(LC_ALL, 'id_ID.UTF8', 'id_ID', 'id_ID.UTF-8', 'id_ID.8859-1', 'IND.UTF8');
+
+class SelesaiAkadController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     * @return Renderable
+     */
+
+    use Terbilang;
+
+    public function index()
+    {
+        $staffAkadStatusFilter = function ($query) {
+            $query->where('status_id', '>', 8)
+                ->where('jabatan_id', 1)
+                ->where(function ($q) {
+                    $q->where('cek_staff_akad', 'Sudah')
+                        ->orWhere('cek_staff_akad', 'Dicetak');
+                });
+        };
+
+        $proposalpasarIds = PasarPembiayaanHistory::query()
+            ->selectRaw('MAX(id) as id')
+            ->where($staffAkadStatusFilter)
+            ->groupBy('pasar_pembiayaan_id')
+            ->pluck('id');
+
+        $proposalpasar = PasarPembiayaanHistory::query()
+            ->whereIn('id', $proposalpasarIds)
+            ->latest('id')
+            ->get();
+
+        $proposalpprIds = PprPembiayaanHistory::query()
+            ->selectRaw('MAX(id) as id')
+            ->where($staffAkadStatusFilter)
+            ->groupBy('form_ppr_pembiayaan_id')
+            ->pluck('id');
+
+        $proposalppr = PprPembiayaanHistory::query()
+            ->whereIn('id', $proposalpprIds)
+            ->latest('id')
+            ->get();
+
+        $proposalskpdIds = SkpdPembiayaanHistory::query()
+            ->selectRaw('MAX(id) as id')
+            ->where($staffAkadStatusFilter)
+            ->groupBy('skpd_pembiayaan_id')
+            ->pluck('id');
+
+        $proposalskpd = SkpdPembiayaanHistory::query()
+            ->with(['statusHistory', 'jabatan'])
+            ->whereIn('id', $proposalskpdIds)
+            ->latest('id')
+            ->get();
+
+        $proposalumkmIds = UmkmPembiayaanHistory::query()
+            ->selectRaw('MAX(id) as id')
+            ->where($staffAkadStatusFilter)
+            ->groupBy('umkm_pembiayaan_id')
+            ->pluck('id');
+
+        $proposalumkm = UmkmPembiayaanHistory::query()
+            ->whereIn('id', $proposalumkmIds)
+            ->latest('id')
+            ->get();
+
+        $proposalP3kIds = P3kPembiayaanHistory::query()
+            ->selectRaw('MAX(id) as id')
+            ->where($staffAkadStatusFilter)
+            ->groupBy('p3k_pembiayaan_id')
+            ->pluck('id');
+
+        $proposalP3k = P3kPembiayaanHistory::query()
+            ->with(['statusHistory', 'jabatan'])
+            ->whereIn('id', $proposalP3kIds)
+            ->latest('id')
+            ->get();
+
+        $pasarPembiayaanIds = $proposalpasar->pluck('pasar_pembiayaan_id')->filter()->unique()->values();
+        $umkmPembiayaanIds = $proposalumkm->pluck('umkm_pembiayaan_id')->filter()->unique()->values();
+        $skpdPembiayaanIds = $proposalskpd->pluck('skpd_pembiayaan_id')->filter()->unique()->values();
+        $p3kPembiayaanIds = $proposalP3k->pluck('p3k_pembiayaan_id')->filter()->unique()->values();
+        $pprPembiayaanIds = $proposalppr->pluck('form_ppr_pembiayaan_id')->filter()->unique()->values();
+
+        $pasarPembiayaansById = PasarPembiayaan::query()
+            ->with(['nasabahh'])
+            ->whereIn('id', $pasarPembiayaanIds)
+            ->get()
+            ->keyBy('id');
+
+        $umkmPembiayaansById = UmkmPembiayaan::query()
+            ->with(['nasabahh'])
+            ->whereIn('id', $umkmPembiayaanIds)
+            ->get()
+            ->keyBy('id');
+
+        $pprPembiayaansById = FormPprPembiayaan::query()
+            ->with(['pemohon'])
+            ->whereIn('id', $pprPembiayaanIds)
+            ->get()
+            ->keyBy('id');
+
+        $skpdPembiayaansById = SkpdPembiayaan::query()
+            ->with(['nasabah', 'instansi', 'user'])
+            ->whereIn('id', $skpdPembiayaanIds)
+            ->get()
+            ->keyBy('id');
+
+        $p3kPembiayaansById = P3kPembiayaan::query()
+            ->with(['nasabah', 'nasabah.pekerjaan', 'user'])
+            ->whereIn('id', $p3kPembiayaanIds)
+            ->get()
+            ->keyBy('id');
+
+        $skpdBonMurabahahByPembiayaanId = SkpdFoto::query()
+            ->whereIn('skpd_pembiayaan_id', $skpdPembiayaanIds)
+            ->where('kategori', 'Bon Murabahah')
+            ->latest('id')
+            ->get()
+            ->unique('skpd_pembiayaan_id')
+            ->keyBy('skpd_pembiayaan_id');
+
+        $p3kBonMurabahahByPembiayaanId = P3kFoto::query()
+            ->whereIn('p3k_pembiayaan_id', $p3kPembiayaanIds)
+            ->where('kategori', 'Bon Murabahah')
+            ->latest('id')
+            ->get()
+            ->unique('p3k_pembiayaan_id')
+            ->keyBy('p3k_pembiayaan_id');
+
+        return view('akad::selesai.index', [
+            'title' => 'Dashboard Akad Selesai',
+            'proposalpasars' => $proposalpasar,
+            'proposalskpds' => $proposalskpd,
+            'proposalumkms' => $proposalumkm,
+            'proposalpprs' => $proposalppr,
+            'proposalP3ks' => $proposalP3k,
+
+            'pasarPembiayaansById' => $pasarPembiayaansById,
+            'umkmPembiayaansById' => $umkmPembiayaansById,
+            'pprPembiayaansById' => $pprPembiayaansById,
+            'skpdPembiayaansById' => $skpdPembiayaansById,
+            'p3kPembiayaansById' => $p3kPembiayaansById,
+            'skpdBonMurabahahByPembiayaanId' => $skpdBonMurabahahByPembiayaanId,
+            'p3kBonMurabahahByPembiayaanId' => $p3kBonMurabahahByPembiayaanId,
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Renderable
+     */
+    public function create()
+    {
+        return view('akad::create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return Renderable
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function show($id)
+    {
+        return view('akad::show');
+    }
+
+    public function showPpr($id)
+    {
+        $pembiayaan = FormPprPembiayaan::select()->where('id', $id)->first();
+
+        //Timeline
+        $waktuawal = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'asc')->first();
+        $waktuakhir = PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->first();
+
+        $waktumulai = Carbon::parse($waktuawal->created_at);
+        $waktuberakhir = Carbon::parse($waktuakhir->created_at);
+
+        $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
+
+        //Plafond
+        $plafond = $pembiayaan->form_permohonan_nilai_ppr_dimohon;
+
+        //Tenor
+        $tenorTahun = $pembiayaan->form_permohonan_jangka_waktu_ppr;
+        $tenorBulan = $pembiayaan->form_permohonan_jml_bulan;
+
+        //Perhitungan Margin, Harga Jual & Angsuran
+        $hpp = $pembiayaan->form_permohonan_nilai_hpp;
+        $persenMargin = ($pembiayaan->form_permohonan_jml_margin / $plafond) / $tenorBulan * 100;
+        $marginRp = $plafond * $persenMargin / 100 * $tenorBulan;
+        $hargaJual = $plafond + $marginRp;
+        $angsuran = $hargaJual / $tenorBulan;
+        $plafondMaks = $hpp * 0.9; //Maks pembiayaan 90% dari HPP
+        $kemampuanMengangsur = $pembiayaan->form_penghasilan_pengeluaran_kemampuan_mengangsur;
+
+        //Idir
+        $penghasilanBersih = $pembiayaan->form_penghasilan_pengeluaran_sisa_penghasilan;
+        $kewajibanAngsuran = $pembiayaan->form_penghasilan_pengeluaran_kewajiban_angsuran;
+        $idir = (($kewajibanAngsuran + $kemampuanMengangsur) / $penghasilanBersih) * 100;
+
+        //FTV
+        $hargaJualAgunan = $pembiayaan->agunan->form_agunan_1_nilai_harga_jual;
+        $hargaTaksasiKjpp = $pembiayaan->agunan->form_agunan_1_nilai_harga_taksasi_kjpp;
+        if ($hargaJualAgunan > $hargaTaksasiKjpp) {
+            $ftv = ($plafond / $hargaTaksasiKjpp) * 100;
+            $pembagi = "Taksasi KJPP";
+        } else {
+            $ftv = ($plafond / $hargaJualAgunan) * 100;
+            $pembagi = "Harga Jual Agunan";
+        }
+
+        //DP
+        $persenDp = 100 - $ftv;
+        $dp = $hpp - $plafond;
+
+        //Usia Nasabah
+        $usiaNasabah = Carbon::parse($pembiayaan->pemohon->form_pribadi_pemohon_tanggal_lahir)->age;
+
+        return view('akad::selesai.lihat', [
+            'segmen' => 'PPR',
+            'title' => 'Detail Proposal',
+            'jabatan' => Role::select()->where('user_id', Auth::user()->id)->first(),
+            'pembiayaan' => FormPprPembiayaan::select()->where('id', $id)->first(),
+            'nasabah' => FormPprDataPribadi::select()->where('id', $id)->first(),
+            'usiaNasabah' => $usiaNasabah,
+            'scoring' => PprScoring::select()->where('form_ppr_pembiayaan_id', $id)->first(),
+            'hpp' => $hpp,
+            'tenorTahun' => $tenorTahun,
+            'tenorBulan' => $tenorBulan,
+            'persenMargin' => $persenMargin,
+            'marginRp' => $marginRp,
+            'hargaJual' => $hargaJual,
+            'angsuran' => $angsuran,
+            'plafond' => $plafond,
+            'plafondMaks' => $plafondMaks,
+            'idir' => $idir,
+            'idebs' => FormPprDataPinjaman::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'idebKartuKredits' => FormPprDataPinjamanKartuKredit::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'idebLains' => FormPprDataPinjamanLainnya::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+            'lampiran' => PprLampiran::select()->where('form_ppr_pembiayaan_id', $id)->first(),
+            'ftv' => $ftv,
+            'pembagi' => $pembagi,
+            'persenDp' => $persenDp,
+            'dp' => $dp,
+
+            'aos' => Role::select()->where('jabatan_id', 1)->get(),
+            'pekerjaans' => FormPprDataPekerjaan::all(),
+            'agunans' => FormPprDataAgunan::all(),
+            'kekayaan_simpanans' => FormPprDataKekayaanSimpanan::all(),
+            'kekayaan_tanah_bangunans' => FormPprDataKekayaanTanahBangunan::all(),
+            'kekayaan_kendaraans' => FormPprDataKekayaanKendaraan::all(),
+            'kekayaan_sahams' => FormPprDataKekayaanSaham::all(),
+            'kekayaan_lains' => FormPprDataKekayaanLainnya::all(),
+            'pinjamans' => FormPprDataPinjaman::all(),
+            'pinjaman_kartu_kredits' => FormPprDataPinjamanKartuKredit::all(),
+            'pinjaman_lains' => FormPprDataPinjamanLainnya::all(),
+
+            //History
+            'history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->orderby('created_at', 'desc')->first(),
+            'timelines' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->get(),
+
+            //perhitunganSLA
+            'totalwaktu' => $totalwaktu,
+            'arr' => -2,
+            'banyak_history' => PprPembiayaanHistory::select()->where('form_ppr_pembiayaan_id', $id)->count(),
+        ]);
+    }
+
+    public function showPasar($id)
+    {
+        $data = PasarPembiayaan::select()->where('id', $id)->first();
+        $nasabah = PasarNasabahh::select()->where('id', $data->nasabah_id)->first();
+        $usaha = PasarKeteranganUsaha::select()->where('pasar_pembiayaan_id', $id)->first();
+        $pasar = PasarJenisPasar::select()->where('kode_pasar', $usaha->jenispasar_id)->first();
+        $jaminanrumah = PasarLegalitasRumah::select()->where('pasar_pembiayaan_id', $id)->first();
+        $jaminanlain = PasarJaminan::select()->where('pasar_pembiayaan_id', $id)->first();
+        $tenor = $data->tenor;
+        $harga = $data->harga;
+        $rate = $data->rate;
+        $margin = ($rate * $tenor) / 100;
+        $cash = PasarCashPick::select()->first();
+
+        //idir
+        $harga1 = $harga * $margin;
+        $harga_jual = $harga1 + $harga;
+
+        $angsuran1 = (int)($harga_jual / $tenor);
+
+
+        //pemasukan
+
+        $omset = $data->omset;
+        $hpp = $data->hpp;
+        $listrik = $data->listrik;
+        $transport = $data->trasport;
+        $sewa = $data->sewa;
+        $karyawan = $data->karyawan;
+        $telpon = $data->telpon;
+        $laba_bersih = ($omset - ($hpp + $listrik + $sewa + $karyawan + $telpon + $transport));
+
+        //pengeluaran
+
+        $cicilan = PasarSlik::select()->where('pasar_pembiayaan_id', $id)->sum('angsuran');
+        $biaya_anak = $nasabah->tanggungan->biaya;
+        $biaya_istri = $nasabah->status->biaya;
+        $kebutuhan_keluarga = PasarPembiayaan::select()->where('id', $id)->sum('keb_keluarga');
+        $pengeluaranlain = $biaya_anak + $biaya_istri + $kebutuhan_keluarga;
+        $cekcicilanpasangan = PasarSlikPasangan::select()->where('pasar_pembiayaan_id', $id)->count();
+        $total_pengeluaran = ($pengeluaranlain + $cicilan + $angsuran1);
+
+        if ($cekcicilanpasangan > 0) {
+            $cicilanpasangan =   $cekcicilanpasangan = PasarSlikPasangan::select()->where('pasar_pembiayaan_id', $id)->sum('angsuran');
+
+            $total_pengeluaran = $pengeluaranlain + $cicilan + $angsuran1 + $cicilanpasangan;
+            $cicilan =  $cicilan + $cicilanpasangan;
+        }
+
+        $di = ($laba_bersih - $total_pengeluaran);
+
+        //rating
+
+        $proses_kepalapasar = PasarBendahara::select()->where('jenis_pasar_id', $pasar->kode_pasar)->first();
+        $proses_jenispasar = PasarJenisPasar::select()->where('kode_pasar', $usaha->jenispasar_id)->first();
+        $proses_jenisdagang = PasarJenisDagang::select()->where('kode_jenisdagang', $usaha->jenisdagang_id)->first();
+        $proses_sukubangsa = PasarSukuBangsa::select()->where('kode_suku', $usaha->suku_bangsa_id)->first();
+        $proses_lamadagang = PasarLamaBerdagang::select()->where('kode_lamaberdagang', $usaha->lama_usaha)->first();
+        $proses_jaminanrumah = PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah->legalitas_kepemilikan_rumah)->first();
+        $proses_cashpickup = PasarCashPick::select()->where('kode_jeniscash', $data->cashpickup)->first();
+        $proses_jenisnasabah = PasarJenisNasabah::select()->where('kode_jenisnasabah', $data->nasabah)->first();
+
+
+        $proses_jaminanlain = PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->first();
+
+        // if(!isset($proses_jaminanlain)){
+        //     $prosesjaminanlain=PasarJenisJaminan::select()->where('kol',null)->first();
+        // }
+        // else{
+        //     $prosesslik=PasarScoreSlik::select()->where('kol',$data_slik->kol)->first();
+        // }
+        //score
+
+        $score_kepalapasar = $proses_kepalapasar->rating;
+        $score_jenispasar = $proses_jenispasar->rating;
+        $score_jenisdagang = $proses_jenisdagang->rating;
+        $score_sukubangsa = $proses_sukubangsa->rating;
+        $score_lamadagang = $proses_lamadagang->rating;
+        $score_jaminanrumahr = $proses_jaminanrumah->rating;
+        $score_cashpick = $proses_cashpickup->rating;
+        $score_jenisnasabah = $proses_jenisnasabah->rating;
+        $score_jaminanlain = $proses_jaminanlain->rating;
+
+        $idir = number_format(($cicilan + $angsuran1) / ($di) * 100);
+
+        if ($idir <= 50) {
+            $proses_idir = PasarScoreIdir::select()->where('rating', 4)->first();
+        } else if ($idir >= 50 && $idir <= 60) {
+            $proses_idir = PasarScoreIdir::select()->where('rating', 3)->first();
+        } else if ($idir >= 60 && $idir <= 69) {
+            $proses_idir = PasarScoreIdir::select()->where('rating', 2)->first();
+        } else {
+            $proses_idir = PasarScoreIdir::select()->where('rating', 1)->first();
+        }
+
+
+
+        $score_idir = $proses_idir->rating;
+        //slik
+
+        $data_slik = PasarSlik::select()->where('pasar_pembiayaan_id', $id)->orderBy('kol', 'desc')->first();
+
+        if (!isset($data_slik)) {
+            $prosesslik = PasarScoreSlik::select()->where('kol', null)->first();
+        } else {
+            $prosesslik = PasarScoreSlik::select()->where('kol', $data_slik->kol)->first();
+        }
+        $score_slik = $prosesslik->rating;
+
+        $waktuawal = PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'asc')->first();
+        $waktuakhir = PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'desc')->first();
+
+        $waktumulai = Carbon::parse($waktuawal->created_at);
+        $waktuberakhir = Carbon::parse($waktuakhir->created_at);
+
+
+        $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
+
+        // $no = Pembiayaan::select()->where('status','Selesai Akad')->count();
+
+        // $no_surat = (2298 - 12) + ($no+1);
+
+
+        // return $no_surat;
+        //    return $harga1;
+        return view('akad::selesai.lihat', [
+            'segmen' => 'Pasar',
+            'title' => 'Detail Calon Nasabah',
+            // 'jabatan'=>Role::select()->where('user_id',Auth::user()->id)->first(),
+            'deviasi' => PasarDeviasi::select()->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'desc')->first(),
+            'timelines' => PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'history' => PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'desc')->first(),
+            'waktuawal' => PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->last(),
+            'waktuakhir' => PasarPembiayaanHistory::select('created_at')->where('pasar_pembiayaan_id', $id)->orderby('created_at', 'desc')->first(),
+            'pembiayaan' => PasarPembiayaan::select()->where('id', $id)->first(),
+            'nasabah' => PasarNasabahh::select()->where('id', $id)->first(),
+            'fotos' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'fototoko' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto toko')->first(),
+            'fotodiri' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Diri')->first(),
+            'fotoktp' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->first(),
+            'fotodiribersamaktp' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Diri Bersama KTP')->first(),
+            'fotokk' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->first(),
+            'jaminanusahas' => PasarJaminan::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'jaminanlainusahas' => PasarJaminanLain::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'usahas' => PasarKeteranganUsaha::all(), //udah
+            'akads' => PasarAkad::all(),
+            'sektors' => PasarSektorEkonomi::all(),
+            'konfirmasi' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Konfirmasi Kepala Pasar')->first(),
+            'nota' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Nota Pembelanjaan')->first(),
+            'pasars' => PasarJenisPasar::select()->where('kode_pasar', $usaha->jenispasar_id)->first(),
+            'lamas' => PasarLamaBerdagang::select()->where('kode_lamaberdagang', $usaha->lama_usaha)->first(),
+            'rumahs' => PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah->legalitas_kepemilikan_rumah)->first(),
+            'dagangs' => PasarJenisDagang::select()->where('kode_jenisdagang', $usaha->jenisdagang_id)->first(),
+            'cashs' => PasarCashPick::select()->where('kode_jeniscash', $data->cashpickup)->first(),
+            'nasabahs' => PasarJenisNasabah::select()->where('kode_jenisnasabah', $data->nasabah)->first(),
+            'sukus' => PasarSukuBangsa::select()->where('kode_suku', $usaha->suku_bangsa_id)->first(),
+            'jaminans' => PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->first(),
+            'slik' => $prosesslik,
+            'idebs' => PasarSlik::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'cicilanpasangans' => PasarSlikPasangan::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'ideb' => PasarPembiayaan::select()->where('id', $id)->get(),
+            'kepalapasar' => $proses_kepalapasar,
+            'idir' => $proses_idir,
+            'laba_bersih' => $laba_bersih,
+            'cicilan' => $cicilan,
+            'cekcicilanpasangan' => $cekcicilanpasangan,
+            'pengeluaran_lain' => $pengeluaranlain,
+            'total_pengeluaran' => $total_pengeluaran,
+            'angsuran' => $angsuran1,
+            'nilai_idir' => $idir,
+            'harga_jual' => $harga_jual,
+
+
+            //rating
+            'rating_kepalapasar' => $score_kepalapasar,
+            'rating_jenispasar' => $score_jenispasar,
+            'rating_jenisdagang' => $score_jenisdagang,
+            'rating_sukubangsa' => $score_sukubangsa,
+            'rating_lamadagang' => $score_lamadagang,
+            'rating_jaminanrumah' => $score_jaminanrumahr,
+            'rating_cashpick' => $score_cashpick,
+            'rating_jenisnasabah' => $score_jenisnasabah,
+            'rating_slik' => $score_slik,
+            'rating_idir' => $score_idir,
+            'rating_jaminanlain' => $score_jaminanlain,
+
+            'score_kepalapasar' => $score_kepalapasar * $proses_kepalapasar->bobot,
+            'score_jenispasar' => $score_jenispasar * $proses_jenispasar->bobot,
+            'score_jenisdagang' => $score_jenisdagang *  $proses_jenisdagang->bobot,
+            'score_sukubangsa' => $score_sukubangsa * $proses_sukubangsa->bobot,
+            'score_lamadagang' => $score_lamadagang * $proses_lamadagang->bobot,
+            'score_jaminanrumah' => $score_jaminanrumahr * $proses_jaminanrumah->bobot,
+            'score_cashpick' => $score_cashpick * $proses_cashpickup->bobot,
+            'score_jenisnasabah' => $score_jenisnasabah * $proses_jenisnasabah->bobot,
+            'score_slik' => $score_slik * $prosesslik->bobot,
+            'score_idir' => $score_idir * $proses_idir->bobot,
+            'score_jaminanlain' => $score_jaminanlain * $proses_jaminanlain->bobot,
+
+
+            //perhitunganSLA
+            'totalwaktu' => $totalwaktu,
+            'arr' => -2,
+            'banyak_history' => PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id', $id)->count(),
+        ]);
+    }
+    public function showSkpd($id)
+    {
+        $data = SkpdPembiayaan::select()->where('id', $id)->first();
+        $nasabah = SkpdNasabah::select()->where('id', $data->skpd_nasabah_id)->first();
+        $jaminan = SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->first();
+        $nominal_pembiayaan = $data->nominal_pembiayaan;
+        $tenor = $data->tenor;
+        $rate = $data->rate / 100;
+
+        //angsuran
+        $harga_jual = $nominal_pembiayaan * $rate * $tenor + $nominal_pembiayaan;
+        $angsuran = $harga_jual / $tenor;
+
+        //pengeluaran
+        $biaya_anak = $nasabah->tanggungan->biaya;
+        $biaya_istri = $nasabah->status_perkawinan->biaya;
+        $cicilan = SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->sum('angsuran');
+        $pengeluaran_lainnya = SkpdPembiayaan::select()->where('id', $id)->sum('pengeluaran_lainnya');
+        $cekcicilanpasangan = SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->count();
+        $total_pengeluaran = $biaya_anak + $biaya_istri + $cicilan + $pengeluaran_lainnya;
+
+        // if($cekcicilanpasangan>0){
+        //     $cicilanpasangan =   $cekcicilanpasangan=SkpdSlikPasangan::select()->where('skpd_pembiayaan_id',$id)->sum('angsuran');
+
+        //     $total_pengeluaran=$biaya_anak+$biaya_istri+$cicilan+$pengeluaran_lainnya+$cicilanpasangan;
+        //     $cicilan =  $cicilan+$cicilanpasangan;
+        // }
+
+        //pemasukan
+        $gaji_pokok = $data->gaji_pokok;
+        $pendapatan_lainnya = $data->pendapatan_lainnya;
+        $gaji_tpp = $data->gaji_tpp;
+        $total_pemasukan = $gaji_pokok + $gaji_tpp + $pendapatan_lainnya;
+
+        //pendapatan Bersih
+        $pendapatan_bersih = $total_pemasukan - $total_pengeluaran;
+
+        //DSR(rasio total angsuran terhadap pendapatan bersih)
+        if ($data->skpd_golongan_id == 18) {
+            $dsr = number_format($angsuran / $total_pemasukan * 100);
+        } else {
+            $dsr = number_format($angsuran / $gaji_tpp * 100);
+        }
+
+        //mencari slik dengan kol tertinggi
+        $data_slik = SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->orderBy('kol_tertinggi', 'desc')->first();
+        if ($data_slik) {
+            $slik = $data_slik->kol_tertinggi;
+        }
+        $dsrDev = SkpdDeviasi::select()->where('skpd_pembiayaan_id', $id)->where('kategori_deviasi', 'DSR')->orderby('created_at', 'desc')->first();
+        //proses menentukan rating
+        $proses_bendahara = SkpdBendahara::select()->where('skpd_instansi_id', $data->skpd_instansi_id)->first();
+        // Jika ada Deviasi
+        if (($dsr > 40 && $dsr <= 41) || $dsrDev) {
+            $proses_dsr = SkpdScoreDsr::select()->where('id', 5)->first();
+        } else if ($dsr >= 36 && $dsr <= 40) {
+            $proses_dsr = SkpdScoreDsr::select()->where('id', 1)->first();
+        } else if ($dsr >= 31 && $dsr <= 35) {
+            $proses_dsr = SkpdScoreDsr::select()->where('id', 2)->first();
+        } else if ($dsr >= 21 && $dsr <= 30) {
+            $proses_dsr = SkpdScoreDsr::select()->where('id', 3)->first();
+        } else if ($dsr >= 0 && $dsr <= 20) {
+            $proses_dsr = SkpdScoreDsr::select()->where('id', 4)->first();
+        }
+        //DSR < 0
+        else if ($dsr < 0) {
+            $proses_dsr = SkpdScoreDsr::select()->where('id', 6)->first();
+        }
+        //DSR > 41
+        else {
+            $proses_dsr = SkpdScoreDsr::select()->where('id', 7)->first();
+        }
+
+        // return $proses_dsr;
+        $proses_slik = 0;
+        if ($data_slik) {
+            $proses_slik = SkpdScoreSlik::select()->where('kol', $slik)->first();
+        }
+        // $proses_slik=SkpdScoreSlik::select()->where('kol',$slik)->first();
+        $proses_jaminan = SkpdJenisJaminan::select()->where('id', $jaminan->skpd_jenis_jaminan_id)->first();
+        $proses_nasabah = SkpdJenisNasabah::select()->where('id', $data->skpd_jenis_nasabah_id)->first();
+        $proses_instansi = SkpdInstansi::select()->where('id', $data->skpd_instansi_id)->first();
+
+        // return $dsr;
+        //mengambil rating
+        $rating_dsr = $proses_dsr->rating;
+        $rating_slik = 0;
+        if ($data_slik) {
+            $rating_slik = $proses_slik->rating;
+        }
+        // $rating_slik=$proses_slik->rating;
+        $rating_bendahara = $proses_bendahara->rating;
+        $rating_jaminan = $proses_jaminan->rating;
+        $rating_nasabah = $proses_nasabah->rating;
+        $rating_instansi = $proses_instansi->rating;
+
+        // $angsuran1=$angsuran;
+        // $dsr1=$angsuran1/$total_pemasukan*100;
+        // $dsr1=$angsuran1/$pendapatan_bersih*100;
+
+        $nilai_slik = 0;
+        if ($rating_slik) {
+            $nilai_slik = $rating_slik * $proses_slik->bobot;
+        }
+
+        $waktuawal = SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $id)->orderby('created_at', 'asc')->first();
+        $waktuakhir = SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $id)->orderby('created_at', 'desc')->first();
+        // $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
+
+        $waktumulai = Carbon::parse($waktuawal->created_at);
+        $waktuberakhir = Carbon::parse($waktuakhir->created_at);
+        // $selanjutnya=Carbon::parse($next->created_at);
+
+
+        $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
+        // return $proses_dsr;
+        $no = Pembiayaan::select()->where('status', 'Selesai Akad')->count();
+
+        $no_surat = (2298 - $no) + ($no + 1);
+
+
+        // return $no_surat;
+        return view('akad::selesai.lihat', [
+            'segmen' => 'SKPD',
+            'title' => 'Detail Proposal',
+            'jabatan' => Role::select()->where('user_id', Auth::user()->id)->first(),
+            'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->first(),
+            'timelines' => SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $id)->get(),
+            'cicilan' => $cicilan,
+            'biayakeluarga' => $biaya_anak + $biaya_istri,
+            'pendapatan_bersih' => $pendapatan_bersih,
+            'ideps' => SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->get(),
+            'harga_jual' => $harga_jual,
+            'tenor' => $tenor,
+            'angsuran1' => $angsuran,
+            'nilai_dsr' => $dsr,
+            'nilai_dsr1' => $dsr,
+            'total_pendapatan' => $data->pendapatan_lainnya + $data->gaji_pokok + $data->pendapatan_lainnya,
+            'cekcicilanpasangan' => $cekcicilanpasangan,
+            'ideppasangans' => SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->get(),
+            // 'bonMurabahah' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Bon Murabahah')->first(),
+
+            'bendahara' => $proses_bendahara,
+            'dsr' => $proses_dsr,
+            'slik' => $proses_slik,
+            'jaminan' => $proses_jaminan,
+            'jenis_nasabah' => $proses_nasabah->keterangan,
+            'instansi' => $proses_instansi,
+            'rating_bendahara' => $rating_bendahara,
+            'rating_dsr' => $rating_dsr,
+            'rating_slik' => $rating_slik,
+            'rating_jaminan' => $rating_jaminan,
+            'rating_nasabah' => $rating_nasabah,
+            'rating_instansi' => $rating_instansi,
+            'nilai_bendahara' => $rating_bendahara * $proses_bendahara->bobot,
+            'nilai_dsr' => $rating_dsr * $proses_dsr->bobot,
+            'nilai_slik' => $nilai_slik,
+            'nilaiSlikDeviasi' => 3 * 0.20, //Ada deviasi rating slik menjadi 3
+            'nilai_jaminan' => $rating_jaminan * $proses_jaminan->bobot,
+            'nilai_nasabah' => $rating_nasabah * 0.10,
+            'nilai_instansi' => $rating_instansi * $proses_instansi->bobot,
+
+            //identitas pribadi
+            'fotos' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->get(),
+            'jaminans' => SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->get(),
+            'jaminanlainnyas' => SkpdJaminanLainnya::select()->where('skpd_pembiayaan_id', $id)->get(),
+            'skpengangkatans' => SkpdPembiayaan::select()->where('id', $id)->get(),
+            'ideb' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'IDEB')->first(),
+            'idebPasangan' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'IDEB Pasangan')->first(),
+            'konfirmasi' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Konfirmasi Bendahara')->first(),
+            'deviasi' => SkpdDeviasi::select()->where('skpd_pembiayaan_id', $id)->orderby('created_at', 'desc')->get(),
+            'ifDeviasi' => SkpdDeviasi::select()->where('skpd_pembiayaan_id', $id)->orderby('created_at', 'desc')->first(),
+            'deviasiSlik' => SkpdDeviasi::select()->where('skpd_pembiayaan_id', $id)->where('kategori_deviasi', 'Slik')->orderby('created_at', 'desc')->first(),
+            'deviasiDSR' => SkpdDeviasi::select()->where('skpd_pembiayaan_id', $id)->where('kategori_deviasi', 'DSR')->orderby('created_at', 'desc')->first(),
+            'deviasiAgunan' => SkpdDeviasi::select()->where('skpd_pembiayaan_id', $id)->where('kategori_deviasi', 'Agunan')->orderby('created_at', 'desc')->first(),
+
+            //history
+            'history' => SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $id)->orderby('created_at', 'desc')->first(),
+
+            //SLA
+            'totalwaktu' => $totalwaktu,
+            'arr' => -2,
+            'banyak_history' => SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $id)->count(),
+        ]);
+    }
+    public function showUmkm($id)
+    {
+        $data = UmkmPembiayaan::select()->where('id', $id)->first();
+        $nasabah = UmkmNasabah::select()->where('id', $data->nasabah_id)->first();
+        $usaha = UmkmKeteranganUsaha::select()->where('umkm_pembiayaan_id', $id)->first();
+        $jaminanrumah = UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id', $id)->first();
+        $jaminanlain = UmkmJaminan::select()->where('umkm_pembiayaan_id', $id)->first();
+        $tenor = $data->tenor;
+        $harga = $data->nominal_pembiayaan;
+        $rate = $data->rate;
+        $margin = ($rate * $tenor) / 100;
+        $cash = PasarCashPick::select()->first();
+
+        //idir
+        $harga1 = $harga * $margin;
+        $harga_jual = $harga1 + $harga;
+
+        $angsuran1 = (int)($harga_jual / $tenor);
+
+
+        //pemasukan
+
+        $omset = $data->omset;
+        $hpp = $data->hpp;
+        $listrik = $data->listrik;
+        $transport = $data->trasport;
+        $sewa = $data->sewa;
+        $karyawan = $data->karyawan;
+        $telpon = $data->telpon;
+        $laba_bersih = ($omset - ($hpp + $listrik + $sewa + $karyawan + $telpon + $transport));
+        $total_pendapatan_bersih = $laba_bersih + $data->pendapatan_lain;
+
+        //pengeluaran
+
+        //pengeluaran
+
+        $cicilan = UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->sum('angsuran');
+        $biaya_anak = $nasabah->tanggungan->biaya;
+        $biaya_istri = $nasabah->status->biaya;
+        $kebutuhan_keluarga = UmkmPembiayaan::select()->where('id', $id)->sum('keb_keluarga');
+        $pengeluaranlain = $biaya_anak + $biaya_istri + $kebutuhan_keluarga;
+        $total_pengeluaran = ($pengeluaranlain + $cicilan);
+        $cekcicilanpasangan = UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->count();
+
+
+        if ($cekcicilanpasangan > 0) {
+            $cicilanpasangan =   $cekcicilanpasangan = UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->sum('angsuran');
+
+            $total_pengeluaran = $pengeluaranlain + $cicilan + $cicilanpasangan;
+            $cicilan =  $cicilan + $cicilanpasangan;
+        }
+
+        $di = ($total_pendapatan_bersih - $total_pengeluaran);
+
+        //rating
+
+        $proses_jenisdagang = PasarJenisDagang::select()->where('kode_jenisdagang', $usaha->jenisdagang_id)->first();
+        $proses_sukubangsa = PasarSukuBangsa::select()->where('kode_suku', $usaha->suku_bangsa_id)->first();
+        $proses_lamadagang = PasarLamaBerdagang::select()->where('kode_lamaberdagang', $usaha->lama_usaha)->first();
+        $proses_jaminanrumah = PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah->legalitas_kepemilikan_rumah)->first();
+        $proses_cashpickup = PasarCashPick::select()->where('kode_jeniscash', $data->cashpickup)->first();
+        $proses_jenisnasabah = PasarJenisNasabah::select()->where('kode_jenisnasabah', $data->nasabah)->first();
+
+
+        $proses_jaminanlain = PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->first();
+
+        // if(!isset($proses_jaminanlain)){
+        //     $prosesjaminanlain=PasarJenisJaminan::select()->where('kol',null)->first();
+        // }
+        // else{
+        //     $prosesslik=PasarScoreSlik::select()->where('kol',$data_slik->kol)->first();
+        // }
+        //score
+
+        $score_jenisdagang = $proses_jenisdagang->rating;
+        $score_sukubangsa = $proses_sukubangsa->rating;
+        $score_lamadagang = $proses_lamadagang->rating;
+        $score_jaminanrumahr = $proses_jaminanrumah->rating;
+        $score_cashpick = $proses_cashpickup->rating;
+        $score_jenisnasabah = $proses_jenisnasabah->rating;
+        $score_jaminanlain = $proses_jaminanlain->rating;
+
+        $idir = number_format(($angsuran1) / ($di) * 100);
+
+        if ($idir <= 50) {
+            $proses_idir = UmkmScoreIdir::select()->where('rating', 4)->first();
+        }
+
+        if ($idir >= 50 && $idir <= 60) {
+            $proses_idir = UmkmScoreIdir::select()->where('rating', 3)->first();
+        }
+
+        if ($idir >= 60 && $idir <= 69) {
+            $proses_idir = UmkmScoreIdir::select()->where('rating', 2)->first();
+        }
+
+        if ($idir >= 70) {
+            $proses_idir = UmkmScoreIdir::select()->where('rating', 1)->first();
+        }
+
+
+
+        $score_idir = $proses_idir->rating;
+        //slik
+
+        $data_slik = UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->orderBy('kol', 'desc')->first();
+
+        if (!isset($data_slik)) {
+            $prosesslik = PasarScoreSlik::select()->where('kol', null)->first();
+        } else {
+            $prosesslik = PasarScoreSlik::select()->where('kol', $data_slik->kol)->first();
+        }
+        $score_slik = $prosesslik->rating;
+
+
+        $waktuawal = UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->orderby('created_at', 'asc')->first();
+        $waktuakhir = UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->orderby('created_at', 'desc')->first();
+        // $next=PasarPembiayaanHistory::select()->where('pasar_pembiayaan_id',$id)->where('id' ,'>',$waktuawal->id)->orderby('id')->first();
+
+        $waktumulai = Carbon::parse($waktuawal->created_at);
+        $waktuberakhir = Carbon::parse($waktuakhir->created_at);
+        // $selanjutnya=Carbon::parse($next->created_at);
+
+
+        $totalwaktu = $waktumulai->diffAsCarbonInterval($waktuberakhir);
+
+
+
+        //    return $harga1;
+        return view('akad::selesai.lihat', [
+            'segmen' => 'UMKM',
+            'title' => 'Detail Calon Nasabah',
+            'jabatan' => Role::select()->where('user_id', Auth::user()->id)->first(),
+            'timelines' => UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'history' => UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->orderby('created_at', 'desc')->first(),
+            'pembiayaan' => UmkmPembiayaan::select()->where('id', $id)->first(),
+            'nasabah' => UmkmNasabah::select()->where('id', $id)->first(),
+            'fotos' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'fototoko' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto toko')->first(),
+            'fotodiri' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Diri')->first(),
+            'fotoktp' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->first(),
+            'fotodiribersamaktp' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Diri Bersama KTP')->first(),
+            'fotokk' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->first(),
+            'jaminanusahas' => UmkmJaminan::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'jaminanlainusahas' => UmkmJaminanLain::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'usahas' => UmkmKeteranganUsaha::all(), //udah
+            'akads' => PasarAkad::all(),
+            'nota' => UmkmFoto::select()->where('umkm_pembiayaan_id', $id)->where('kategori', 'Foto Nota Pembelanjaan')->first(),
+            'sektors' => PasarSektorEkonomi::all(),
+            'lamas' => PasarLamaBerdagang::select()->where('kode_lamaberdagang', $usaha->lama_usaha)->first(),
+            'rumahs' => PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah->legalitas_kepemilikan_rumah)->first(),
+            'dagangs' => PasarJenisDagang::select()->where('kode_jenisdagang', $usaha->jenisdagang_id)->first(),
+            'cashs' => PasarCashPick::select()->where('kode_jeniscash', $data->cashpickup)->first(),
+            'nasabahs' => PasarJenisNasabah::select()->where('kode_jenisnasabah', $data->nasabah)->first(),
+            'sukus' => PasarSukuBangsa::select()->where('kode_suku', $usaha->suku_bangsa_id)->first(),
+            'jaminans' => PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->first(),
+            // 'slik'=>$prosesslik,
+            'idebs' => UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'ideppasangans' => UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'ideb' => UmkmPembiayaan::select()->where('id', $id)->get(),
+            'laba_bersih' => $laba_bersih,
+            'cicilan' => $cicilan,
+            'cekcicilanpasangan' => $cekcicilanpasangan,
+            'pengeluaran_lain' => $pengeluaranlain,
+            'total_pengeluaran' => $total_pengeluaran,
+            'angsuran' => $angsuran1,
+            'harga_jual' => $harga_jual,
+            'idir' => $proses_idir,
+            'nilai_idir' => $idir,
+            'slik' => $prosesslik,
+
+            //rating
+            'rating_jenisdagang' => $score_jenisdagang,
+            'rating_sukubangsa' => $score_sukubangsa,
+            'rating_lamadagang' => $score_lamadagang,
+            'rating_jaminanrumah' => $score_jaminanrumahr,
+            'rating_cashpick' => $score_cashpick,
+            'rating_jenisnasabah' => $score_jenisnasabah,
+            'rating_slik' => $score_slik,
+            'rating_idir' => $score_idir,
+            'rating_jaminanlain' => $score_jaminanlain,
+
+            'score_jenisdagang' => $score_jenisdagang *  $proses_jenisdagang->bobot,
+            'score_sukubangsa' => $score_sukubangsa * $proses_sukubangsa->bobot,
+            'score_lamadagang' => $score_lamadagang * $proses_lamadagang->bobot,
+            'score_jaminanrumah' => $score_jaminanrumahr * $proses_jaminanrumah->bobot,
+            'score_cashpick' => $score_cashpick * $proses_cashpickup->bobot,
+            'score_jenisnasabah' => $score_jenisnasabah * $proses_jenisnasabah->bobot,
+            'score_slik' => $score_slik * $prosesslik->bobot,
+            'score_idir' => $score_idir * $proses_idir->bobot,
+            'score_jaminanlain' => $score_jaminanlain * $proses_jaminanlain->bobot,
+
+            'deviasi' => UmkmDeviasi::select()->where('umkm_pembiayaan_id', $id)->orderby('created_at', 'desc')->first(),
+
+            //SLA
+            'totalwaktu' => $totalwaktu,
+            'arr' => -2,
+            'banyak_history' => UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->count(),
+
+
+        ]);
+    }
+
+    public function showP3k($id)
+    {
+        $cek = P3kPembiayaanHistory::select()
+            ->where('p3k_pembiayaan_id', $id)
+            ->orderby('created_at', 'desc')
+            ->first();
+
+        if ($cek->status_id == 5 && $cek->jabatan_id == 2) {
+            P3kPembiayaanHistory::create([
+                'p3k_pembiayaan_id' => $id,
+                'status_id' => 4,
+                'jabatan_id' => 3,
+                'divisi_id' => 0,
+                'user_id' => Auth::user()->id,
+            ]);
+        }
+
+        $data = P3kPembiayaan::select()->where('id', $id)->first();
+
+        //Angsuran
+        $nominalPembiayaan = $data->nominal_pembiayaan;
+        $tenor = $data->tenor;
+        $rate = $data->rate / 100;
+        $margin = $nominalPembiayaan * $rate * $tenor;
+
+        $hargaJual = $margin + $nominalPembiayaan;
+        $hargaJualBulat = round($hargaJual);
+        $hargaJualTerbilang = ucwords($this->pembilang($hargaJualBulat) . ' rupiah');
+        $angsuran = $hargaJual / $tenor;
+        $totalAngsuranBtbFasAktif = $data->total_angsuran_btb_fas_aktif;
+
+        //Biaya Administrasi
+        $byAdm = 1.5 / 100 * $nominalPembiayaan;
+
+        //Pendapatan
+        $gajiPokok = $data->gaji_pokok;
+        $gajiTpp = $data->gaji_tpp;
+        $gajiPasangan = $data->gaji_pasangan;
+        $totalPendapatan = $gajiPokok + $gajiTpp;
+        $totalPendapatanJoinIncome = $gajiPokok + $gajiTpp + $gajiPasangan;
+
+        //Pengeluaran
+        $pengeluaranLainnya = $data->pengeluaran_lainnya;
+
+        //Pendapatan bersih
+        $pendapatanBersih = $totalPendapatan - $totalAngsuranBtbFasAktif - $pengeluaranLainnya;
+        $pendapatanBersihJoinIncome = $totalPendapatanJoinIncome - $totalAngsuranBtbFasAktif - $pengeluaranLainnya;
+
+        //Proses Scoring
+        //DSR
+        $dsr = number_format((($angsuran + $totalAngsuranBtbFasAktif) / $totalPendapatan) * 100);
+        //DSR Join Income
+        $dsrJoinIncome = number_format((($angsuran + $totalAngsuranBtbFasAktif) / $totalPendapatanJoinIncome) * 100);
+
+        if ($dsr >= 80 && $dsr <= 90) {
+            $prosesDsr = P3kScoreDsr::select()->where('id', 1)->first();
+        } else if ($dsr >= 70 && $dsr <= 79) {
+            $prosesDsr = P3kScoreDsr::select()->where('id', 2)->first();
+        } else if ($dsr >= 60 && $dsr <= 69) {
+            $prosesDsr = P3kScoreDsr::select()->where('id', 3)->first();
+        } else if ($dsr >= 0 && $dsr <= 59) {
+            $prosesDsr = P3kScoreDsr::select()->where('id', 4)->first();
+        }
+        //DSR > 90%
+        else {
+            $prosesDsr = P3kScoreDsr::select()->where('id', 5)->first();
+        }
+
+        $ratingDsr = $prosesDsr->rating;
+        $bobotDsr = $prosesDsr->bobot;
+        $scoreDsr = $ratingDsr * $bobotDsr;
+
+        // //IDEB
+        // $cekIdeb = P3kSlik::select()->where('p3k_pembiayaan_id', $id)->orderBy('kol_tertinggi', 'DESC')->first();
+        // if ($cekIdeb) {
+        //     $kolTertinggi = $cekIdeb->kol_tertinggi;
+        //     if ($kolTertinggi == 5) {
+        //         $prosesIdeb = P3kScoreSlik::select()->where('id', 1)->first();
+        //     } else if ($kolTertinggi == 4) {
+        //         $prosesIdeb = P3kScoreSlik::select()->where('id', 2)->first();
+        //     } else if ($kolTertinggi == 3) {
+        //         $prosesIdeb = P3kScoreSlik::select()->where('id', 3)->first();
+        //     } else if ($kolTertinggi == 2) {
+        //         $prosesIdeb = P3kScoreSlik::select()->where('id', 4)->first();
+        //     } else if ($kolTertinggi == 1) {
+        //         $prosesIdeb = P3kScoreSlik::select()->where('id', 5)->first();
+        //     } else {
+        //     }
+        // }
+        // //Jika tidak ada IDEB
+        // else {
+        //     $prosesIdeb = P3kScoreSlik::select()->where('id', 6)->first();
+        // }
+
+        // $ratingIdeb = $prosesIdeb->rating;
+        // $bobotIdeb = $prosesIdeb->bobot;
+        // $scoreIdeb = $ratingIdeb * $bobotIdeb;
+
+        //Usia
+        $usia = Carbon::parse($data->nasabah->tgl_lahir)->age;
+
+        if ($usia >= 50 && $usia <= 55) {
+            $prosesUsia = P3kScoreUsia::select()->where('id', 1)->first();
+        } else if ($usia >= 40 && $usia <= 49) {
+            $prosesUsia = P3kScoreUsia::select()->where('id', 2)->first();
+        } else if ($usia >= 30 && $usia <= 39) {
+            $prosesUsia = P3kScoreUsia::select()->where('id', 3)->first();
+        } else if ($usia >= 20 && $usia <= 29) {
+            $prosesUsia = P3kScoreUsia::select()->where('id', 4)->first();
+        }
+        //Usia >= 56 Tahun
+        else {
+            $prosesUsia = P3kScoreUsia::select()->where('id', 5)->first();
+        }
+
+        $ratingUsia = $prosesUsia->rating;
+        $bobotUsia = $prosesUsia->bobot;
+        $scoreUsia = $ratingUsia * $bobotUsia;
+
+        //Tenor
+        if ($tenor >= 120 && $tenor <= 240) {
+            $prosesTenor = P3kScoreTenor::select()->where('id', 1)->first();
+        } else if ($tenor >= 96 && $tenor <= 108) {
+            $prosesTenor = P3kScoreTenor::select()->where('id', 2)->first();
+        } else if ($tenor >= 72 && $tenor <= 84) {
+            $prosesTenor = P3kScoreTenor::select()->where('id', 3)->first();
+        }
+        //Tenor <= 5 tahun
+        else {
+            $prosesTenor = P3kScoreTenor::select()->where('id', 4)->first();
+        }
+
+        $ratingTenor = $prosesTenor->rating;
+        $bobotTenor = $prosesTenor->bobot;
+        $scoreTenor = $ratingTenor * $bobotTenor;
+
+
+        //Timeline
+        $waktuAwal = P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->orderby('created_at', 'asc')->first();
+        $waktuAkhir = P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->orderby('created_at', 'desc')->first();
+
+        $waktuMulai = Carbon::parse($waktuAwal->created_at);
+        $waktuBerakhir = Carbon::parse($waktuAkhir->created_at);
+
+        $totalWaktu = $waktuMulai->diffAsCarbonInterval($waktuBerakhir);
+
+        return view('akad::selesai.lihat', [
+            'segmen' => 'P3K',
+            'title' => 'Detail Proposal',
+            'arr' => -2,
+            'banyakHistory' => P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->count(),
+            'jabatan' => Role::select()->where('user_id', Auth::user()->id)->first(),
+            'pembiayaan' => P3kPembiayaan::select()->where('id', $id)->first(),
+            'timelines' => P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->get(),
+
+            'fotos' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->get(),
+            'bonMurabahah' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Bon Murabahah')->first(),
+            'fotoKtp' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->first(),
+            'fotoKartuKeluarga' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->first(),
+            'fotoNpwp' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto NPWP')->first(),
+            'fotoKtpPasangan' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto KTP Pasangan')->first(),
+            'fotoStatusPernikahan' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Akta Status Pernikahan/Perceraian')->first(),
+            'dokumenIdebPasangan' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'IDEB Pasangan')->first(),
+            'deviasi' => P3kDeviasi::select()->where('p3k_pembiayaan_id', $id)->orderby('created_at', 'desc')->first(),
+
+            // 'idebs' => P3kSlik::select()->where('p3k_pembiayaan_id', $id)->get(),
+            // 'idebPasangans' => P3kSlikPasangan::select()->where('p3k_pembiayaan_id', $id)->get(),
+
+            'hargaJual' => $hargaJual,
+            'tenor' => $tenor,
+            'rate' => $rate,
+            'angsuran' => $angsuran,
+            'pendapatanBersih' => $pendapatanBersih,
+            'pendapatanBersihJoinIncome' => $pendapatanBersihJoinIncome,
+            'byAdm' => $byAdm,
+
+            //DSR
+            'dsr' => $dsr,
+            'dsrJoinIncome' => $dsrJoinIncome,
+
+            //Scoring
+            'prosesDsr' => $prosesDsr,
+            // 'prosesIdeb' => $prosesIdeb,
+            'prosesUsia' => $prosesUsia,
+            'prosesTenor' => $prosesTenor,
+
+            'ratingDsr' => $ratingDsr,
+            // 'ratingIdeb' => $ratingIdeb,
+            'ratingUsia' => $ratingUsia,
+            'ratingTenor' => $ratingTenor,
+
+            'bobotDsr' => $bobotDsr,
+            // 'bobotIdeb' => $bobotIdeb,
+            'bobotUsia' => $bobotUsia,
+            'bobotTenor' => $bobotTenor,
+
+            'scoreDsr' => $scoreDsr,
+            // 'scoreIdeb' => $scoreIdeb,
+            'scoreUsia' => $scoreUsia,
+            'scoreTenor' => $scoreTenor,
+
+            //History
+            'history' => P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->orderby('created_at', 'desc')->first(),
+
+            //SLA
+            'totalWaktu' => $totalWaktu,
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function edit($id)
+    {
+        return view('akad::edit');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param int $id
+     * @return Renderable
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return Renderable
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

@@ -1,0 +1,87 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "mixins";
+
+.ql-editor {
+  $quill-indent: 2rem;
+
+  @include quill-generate-lists($quill-indent);
+
+  .ql-video {
+    display: block;
+    max-inline-size: 100%;
+  }
+
+  .ql-direction-rtl {
+    direction: rtl;
+    text-align: inherit;
+
+    :dir(rtl) & {
+      direction: ltr;
+      text-align: inherit;
+    }
+  }
+
+  .ql-align-center {
+    text-align: center;
+  }
+
+  .ql-align-justify {
+    text-align: justify;
+  }
+
+  .ql-align-right:not(.ql-direction-rtl) {
+    text-align: end;
+  }
+
+  img {
+    max-inline-size: 100%;
+  }
+  blockquote {
+    font-size: $blockquote-font-size;
+  }
+
+  .ql-font-serif {
+    font-family: $font-family-serif;
+  }
+
+  .ql-font-monospace {
+    font-family: $font-family-monospace;
+  }
+
+  .ql-size-large {
+    font-size: $font-size-lg;
+  }
+
+  .ql-size-huge {
+    font-size: $font-size-xl;
+  }
+
+  .ql-size-small {
+    font-size: $font-size-sm;
+  }
+}
+
+.ql-content,
+.ql-editor {
+  $quill-indent: 2rem;
+  ul,
+  ol {
+    li[data-list="bullet"] {
+      position: relative;
+      list-style: none;
+      padding-inline-start: 1em;
+    }
+  }
+  ul > li[data-list="bullet"]::before,
+  ol > li[data-list="bullet"]::before {
+    position: absolute;
+    content: "\2022";
+    font-size: 1em;
+    inset-inline-start: 0;
+  }
+  li::before {
+    display: inline-block;
+    inline-size: calc(#{$quill-indent} - .3em);
+    white-space: nowrap;
+  }
+}

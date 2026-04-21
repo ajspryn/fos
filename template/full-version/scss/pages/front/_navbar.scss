@@ -1,0 +1,154 @@
+nav.layout-navbar {
+  backdrop-filter: unset;
+  background-color: transparent;
+  block-size: auto;
+  &::before {
+    position: absolute;
+    display: block;
+    block-size: 100%;
+    content: "";
+    inline-size: 100%;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+  }
+
+  .navbar {
+    &.landing-navbar {
+      --#{$prefix}front-navbar-bg: rgba(var(--#{$prefix}paper-bg-rgb), .38);
+      --#{$prefix}front-navbar-border-color: rgba(var(--#{$prefix}paper-bg-rgb), .68);
+      border: 2px solid var(--#{$prefix}front-navbar-border-color);
+      background-color: var(--#{$prefix}front-navbar-bg);
+      margin-block-start: 1rem;
+      padding-block: .614rem;
+      transform: unset;
+      transition: $btn-transition;
+      @include border-radius($border-radius);
+
+      .navbar-nav {
+        .nav-link {
+          color: var(--#{$prefix}heading-color);
+          margin-inline-end: .625rem;
+          padding-block: .5rem;
+          padding-inline: .625rem;
+          @include media-breakpoint-down(xl) {
+            margin-inline-end: 0;
+            padding-inline: .5rem;
+          }
+        }
+
+        .nav-item {
+          &:last-child {
+            .nav-link {
+              margin-inline-end: 0;
+            }
+          }
+          &.mega-dropdown {
+            > .dropdown-menu {
+              @include media-breakpoint-up(lg) {
+                inset-block-start: 100%;
+                inset-inline-start: 50%;
+                max-inline-size: 1300px;
+                transform: translateX(-50%);
+                :dir(rtl) & {
+                  transform: translateX(50%);
+                }
+              }
+
+              @include media-breakpoint-down(lg) {
+                border: none;
+                background: transparent;
+                box-shadow: none;
+              }
+
+              .mega-dropdown-link {
+                margin: 0;
+                font-weight: $font-weight-normal;
+                padding-inline: 0;
+                .icon-base {
+                  block-size: 1rem;
+                  color: var(--#{$prefix}body-color);
+                  font-size: 1rem;
+                  inline-size: 1rem;
+                  margin-block-start: -.125rem;
+                }
+                &:hover {
+                  color: var(--#{$prefix}primary);
+                }
+              }
+            }
+          }
+
+          .nav-img-col {
+            &,
+            img {
+              @include border-radius(.625rem);
+            }
+          }
+        }
+
+        .show > .nav-link,
+        .active > .nav-link,
+        .nav-link.show,
+        .nav-link.active,
+        .nav-link:hover {
+          color: var(--#{$prefix}primary);
+        }
+      }
+
+      @include media-breakpoint-down(lg) {
+        .landing-nav-menu {
+          background-color: var(--#{$prefix}paper-bg);
+        }
+      }
+
+      @include media-breakpoint-down(lg) {
+        .landing-menu-overlay {
+          position: fixed;
+          z-index: 9998;
+          display: none;
+          background-color: rgba(var(--#{$prefix}black-rgb), .78);
+          block-size: 100%;
+          inline-size: 100%;
+          inset-block-start: 0;
+          inset-inline-start: 0;
+          transition: $btn-transition;
+        }
+
+        .landing-nav-menu {
+          position: fixed;
+          z-index: 9999;
+          display: block;
+          padding: 1rem;
+          block-size: 100%;
+          inline-size: 80%;
+          inset-block-start: 0;
+          inset-inline-start: -100%;
+          max-inline-size: 300px;
+          overflow-y: auto;
+          transition: all .3s ease-in-out;
+
+          &.show {
+            inset-inline-start: 0;
+
+            ~ .landing-menu-overlay {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.navbar-active {
+    &::before {
+      backdrop-filter: saturate(100%) blur(6px);
+    }
+    .landing-navbar{
+      background-color: var(--#{$prefix}paper-bg);
+      box-shadow: var(--#{$prefix}box-shadow-sm);
+    }
+  }
+  .menu-text {
+    color: var(--#{$prefix}heading-color);
+  }
+}

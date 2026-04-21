@@ -1,0 +1,13 @@
+{
+    "name": "Skpd",
+    "alias": "skpd",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Skpd\\Providers\\SkpdServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

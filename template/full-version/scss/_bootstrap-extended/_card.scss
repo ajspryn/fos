@@ -1,0 +1,296 @@
+// Cards
+// *******************************************************************************
+
+.card {
+  --#{$prefix}card-hover-box-shadow: #{$box-shadow-lg};
+  --#{$prefix}card-border-bottom-color: #{$card-border-color};
+  --#{$prefix}card-hover-border-color: #{$card-border-color};
+  --#{$prefix}card-hover-border-bottom-color: #{$card-border-color};
+  box-shadow: var(--#{$prefix}card-box-shadow);
+
+  .card-header + .card-body,
+  .card-header + .card-content > .card-body:first-of-type,
+  .card-header + .card-footer,
+  .card-body + .card-footer {
+    padding-block-start: 0;
+  }
+
+  .card-header,
+  .card-footer {
+    --#{$prefix}card-border-width: #{$card-border-width};
+  }
+
+  .featured-date {
+    background-color: var(--#{$prefix}card-bg);
+  }
+
+  .card-link {
+    + .card-link {
+      margin-inline: $card-spacer-x 0;
+    }
+  }
+
+  hr {
+    color: var(--#{$prefix}card-border-color);
+  }
+
+  /* Card Statistics specific separator */
+  .card-separator {
+    border-inline-end: var(--#{$prefix}border-width) solid var(--#{$prefix}card-border-color);
+    @include media-breakpoint-down(md) {
+      border-block-end: var(--#{$prefix}card-border-width) solid var(--#{$prefix}card-border-color);
+      border-inline-end-width: 0 !important;
+      padding-block-end: $card-spacer-y;
+    }
+  }
+
+  /* List groups */
+  > .list-group {
+    border-block-end-width: $border-width;
+    border-block-start-width: $border-width;
+    .list-group-item {
+      padding-inline: $card-spacer-x;
+    }
+  }
+
+  /* Card Widget Separator */
+
+  .card-widget-separator-wrapper {
+    @include media-breakpoint-down(lg) {
+      .card-widget-separator {
+        .card-widget-2.border-end {
+          border-inline-end: none !important;
+          border-inline-start: none !important;
+        }
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      .card-widget-separator {
+        .card-widget-1.border-end,
+        .card-widget-2.border-end,
+        .card-widget-3.border-end {
+          border-block-end: 1px solid var(--#{$prefix}card-border-color);
+          border-inline-end: none !important;
+          border-inline-start: none !important;
+        }
+      }
+    }
+  }
+
+  /* color border bottom and shadow in card */
+  &[class*="card-border-shadow-"] {
+    border-block-end: none;
+    @include transition($card-transition);
+    &::after {
+      position: absolute;
+      @include border-radius($card-border-radius);
+      block-size: $card-spacer-y;
+      border-block-end: .125rem solid var(--#{$prefix}card-border-bottom-color);
+      content: "";
+      inline-size: 100%;
+      inset-block-end: 0;
+      inset-inline-start: 0;
+      @include transition($card-transition);
+    }
+    &:hover {
+      box-shadow: var(--#{$prefix}card-hover-box-shadow);
+      &::after {
+        border-color: var(--#{$prefix}card-hover-border-bottom-color);
+        border-block-end-width: .1875rem;
+      }
+    }
+  }
+
+  /* card hover border color */
+  &[class*="card-hover-border-"],
+  [class*="card-hover-border-"] {
+    border-width: $border-width;
+    @include transition($card-transition);
+    &:hover {
+      border-color: var(--#{$prefix}card-hover-border-color);
+    }
+  }
+
+  .collapse > .card-body,
+  .collapsing > .card-body {
+    padding-block-start: 0;
+  }
+}
+
+/* adding class with card background color */
+.bg-card {
+  background-color: var(--#{$prefix}card-bg);
+}
+
+/* Card header elements
+******************************************************** */
+.card-header.header-elements,
+.card-title.header-elements {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  inline-size: 100%;
+}
+
+.card-header-elements,
+.card-title-elements {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  & + &,
+  > * + * {
+    margin-inline-start: .25rem;
+  }
+}
+
+.card-title {
+  &:not(:is(h1, h2, h3, h4, h5, h6)) {
+    color: var(--#{$prefix}body-color);
+  }
+}
+
+/* Horizontal card radius issue fix
+******************************************************** */
+.card-img-left,
+.card-img-right {
+  block-size: 100%;
+  object-fit: cover;
+}
+.card-img-left {
+  @include border-start-radius($card-inner-border-radius);
+  @include border-end-radius(0);
+
+  @include media-breakpoint-down(md) {
+    @include border-top-radius($card-inner-border-radius);
+    @include border-bottom-radius(0);
+  }
+}
+
+.card-img-right {
+  @include border-end-radius($card-inner-border-radius);
+  @include border-start-radius(0);
+  @include media-breakpoint-down(md) {
+    @include border-bottom-radius($card-inner-border-radius);
+    @include border-top-radius(0);
+  }
+}
+
+// Card group
+// ********************************************************
+.card-group {
+  --#{$prefix}card-box-shadow: #{$card-box-shadow};
+  --#{$prefix}card-bg: #{$card-bg};
+  @include media-breakpoint-up(sm) {
+    @include border-radius($card-border-radius);
+    background-color: var(--#{$prefix}card-bg);
+    box-shadow: var(--#{$prefix}card-box-shadow);
+    .card {
+      box-shadow: none;
+      + .card {
+        border: var(--#{$prefix}card-border-width) solid var(--#{$prefix}card-border-color);
+        border-inline-start: 0;
+        margin-inline: 0;
+      }
+      .card-img-top,
+      .card-header,
+      .card-img-bottom,
+      .card-footer {
+        @include border-radius(0);
+      }
+      &:is(:last-child) {
+        .card-img-top,
+        .card-header {
+          @include border-top-end-radius($card-border-radius);
+        }
+        .card-img-bottom,
+        .card-footer {
+          @include border-bottom-end-radius($card-border-radius);
+        }
+      }
+      &:is(:first-child) {
+        .card-img-top,
+        .card-header {
+          @include border-top-start-radius($card-border-radius);
+        }
+        .card-img-bottom,
+        .card-footer {
+          @include border-bottom-start-radius($card-border-radius);
+        }
+      }
+    }
+  }
+}
+
+/* Card action */
+.card-action {
+  /* Expand card(fullscreen) */
+  &.card-fullscreen {
+    position: fixed;
+    z-index: 9999;
+    display: block;
+    overflow: auto;
+    border: 0;
+    @include border-radius(0);
+    block-size: 100%;
+    inline-size: 100%;
+    inset: 0;
+  }
+
+  /* Alert */
+  .card-alert {
+    position: absolute;
+    z-index: 999;
+    inline-size: 100%;
+
+    .alert {
+      border-end-end-radius: 0;
+      border-end-start-radius: 0;
+    }
+  }
+
+  /* Card header */
+  .card-header {
+    &.collapsed {
+      border-block-end: 0;
+    }
+
+    display: flex;
+    .card-action-title {
+      flex-grow: 1;
+      margin-inline-end: .5rem;
+    }
+    .card-action-element {
+      a {
+        color: var(--#{$prefix}heading-color);
+      }
+    }
+  }
+
+  /* Block UI loader */
+  .notiflix-block {
+
+    h5 {
+      color: var(--#{$prefix}body-color);
+      margin-block: 1rem 0;
+    }
+  }
+
+  .collapse > .card-body,
+  .collapsing > .card-body {
+    padding-block-start: 0;
+  }
+}
+
+/* Generate contextual modifier classes for colorizing the border bottom and shadow in the card */
+
+@each $state in map-keys($theme-colors) {
+  .card-border-shadow-#{$state} {
+    --#{$prefix}card-border-bottom-color: color-mix(in sRGB, var(--#{$prefix}card-bg) var(--#{$prefix}border-subtle-amount), var(--#{$prefix}#{$state}));
+    --#{$prefix}card-hover-border-bottom-color: var(--#{$prefix}#{$state});
+  }
+  .card-hover-border-#{$state} {
+    --#{$prefix}card-hover-border-color: color-mix(in sRGB, var(--#{$prefix}card-bg) #{$card-hover-border-scale}, var(--#{$prefix}#{$state}));
+  }
+}

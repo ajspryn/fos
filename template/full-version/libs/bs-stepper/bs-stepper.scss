@@ -1,0 +1,374 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "bs-stepper/dist/css/bs-stepper";
+
+$bs-stepper-header-padding-y: 1.5rem !default;
+$bs-stepper-header-padding-x: $bs-stepper-header-padding-y !default;
+$bs-stepper-content-padding-x: 1.5rem !default;
+$bs-stepper-content-padding-y: $bs-stepper-content-padding-x !default;
+$bd-stepper-circle-size: 2.375rem !default;
+$bs-stepper-trigger-padding: 1.25rem !default;
+$bs-stepper-trigger-padding-vertical: .6rem !default;
+$bs-stepper-label-max-width: 224px !default;
+$bs-stepper-svg-icon-height: 3.75rem !default;
+$bs-stepper-svg-icon-width: 3.75rem !default;
+$bs-stepper-icon-font-size: 1.6rem !default;
+$bs-stepper-vertical-header-min-width: 18rem !default;
+$bs-stepper-crossed-bg: var(--#{$prefix}primary-bg-subtle) !default;
+$bs-stepper-active-bg: var(--#{$prefix}primary) !default;
+$bs-stepper-active-color: var(--#{$prefix}primary-contrast) !default;
+$bs-stepper-active-shadow: 0 .125rem .375rem 0 rgba(var(--#{$prefix}primary-rgb), .3) !default;
+
+/* Default Styles */
+.bs-stepper {
+  @include border-radius($border-radius);
+  background-color: var(--#{$prefix}paper-bg);
+  .line {
+    flex: 0;
+    margin: 0;
+    background-color: transparent;
+    min-block-size: auto;
+    min-inline-size: auto;
+  }
+
+  .bs-stepper-header {
+    border-block-end: 1px solid var(--#{$prefix}border-color);
+    padding-block: $bs-stepper-header-padding-y;
+    padding-inline: $bs-stepper-header-padding-x;
+
+    .line {
+      .icon-base {
+        :dir(rtl) &{
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .step {
+      .step-trigger {
+        flex-wrap: nowrap;
+        padding: 0;
+        font-weight: $font-weight-medium;
+        gap: .5rem;
+        .bs-stepper-label {
+          display: inline-grid;
+          overflow: hidden;
+          margin: 0;
+          color: var(--#{$prefix}heading-color);
+          font-size: $font-size-base;
+          font-weight: $font-weight-medium;
+          line-height: $h6-line-height;
+          max-inline-size: $bs-stepper-label-max-width;
+          text-align: start;
+          text-overflow: ellipsis;
+
+          .bs-stepper-title {
+            color: var(--#{$prefix}heading-color);
+            font-weight: $font-weight-medium;
+          }
+
+          .bs-stepper-subtitle {
+            color: var(--#{$prefix}body-color);
+            font-size: $small-font-size;
+            font-weight: $font-weight-base;
+          }
+        }
+        &:hover {
+          background-color: transparent;
+        }
+        &:focus{
+          color: var(--#{$prefix}heading-color);
+        }
+        @include media-breakpoint-down(lg) {
+          padding-block: calc($bs-stepper-trigger-padding * .5);
+          padding-inline: 0;
+        }
+      }
+      &.active{
+        .bs-stepper-circle{
+          background-color: $bs-stepper-active-bg;
+          box-shadow: $bs-stepper-active-shadow;
+          color: $bs-stepper-active-color;
+        }
+        .bs-stepper-icon svg{
+          fill: $bs-stepper-active-bg;
+        }
+        .bs-stepper-icon i{
+          color: $bs-stepper-active-bg;
+        }
+      }
+      &:not(.active) {
+        .bs-stepper-circle {
+          background-color: rgba(var(--#{$prefix}base-color-rgb), .06);
+          color: var(--#{$prefix}heading-color);
+        }
+      }
+      &.crossed {
+        .step-trigger {
+          .bs-stepper-label .bs-stepper-subtitle,
+          .bs-stepper-title {
+            color: var(--#{$prefix}secondary-color);
+          }
+          .bs-stepper-circle {
+            background-color: $bs-stepper-crossed-bg;
+            color: $bs-stepper-active-bg;
+          }
+
+          /* stepper icons color */
+          .bs-stepper-icon svg {
+            fill: $bs-stepper-active-bg;
+          }
+          .bs-stepper-icon .icon-base {
+            color: $bs-stepper-active-bg;
+          }
+        }
+        + .line {
+          .icon-base {
+            color: var(--#{$prefix}body-color);
+          }
+        }
+      }
+
+      /* stepper circle / pill styles */
+      .bs-stepper-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include border-radius($border-radius);
+        block-size: $bd-stepper-circle-size;
+        font-size: $h5-font-size;
+        font-weight: $font-weight-medium;
+        inline-size: $bd-stepper-circle-size;
+        .icon-base {
+          font-size: $bd-stepper-circle-size - 1rem;
+        }
+      }
+    }
+  }
+
+  /* stepper content padding */
+  .bs-stepper-content {
+    padding-block: $bs-stepper-content-padding-y;
+    padding-inline: $bs-stepper-content-padding-x;
+    .btn-next,
+    .btn-prev {
+      .icon-base:not(.tabler-check) {
+        :dir(rtl) & {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  &.vertical {
+    .bs-stepper-header {
+      border-block-end: none;
+      min-inline-size: $bs-stepper-vertical-header-min-width;
+      @include media-breakpoint-down(lg) {
+        border-block-end: 1px solid var(--#{$prefix}border-color);
+      }
+
+      .step {
+        .step-trigger {
+          padding-block: $bs-stepper-trigger-padding-vertical;
+          padding-inline: 0;
+        }
+
+        &:first-child {
+          .step-trigger {
+            padding-block-start: 0;
+          }
+        }
+
+        &:last-child {
+          .step-trigger {
+            padding-block-end: 0;
+          }
+        }
+      }
+
+      .line {
+        position: relative;
+        min-block-size: 1px;
+      }
+    }
+
+    .bs-stepper-content {
+      inline-size: 100%;
+
+      .content {
+        &:not(.active) {
+          display: none;
+        }
+      }
+    }
+
+    &.wizard-icons {
+      .step {
+        padding-block: .75rem;
+        padding-inline: 0;
+        text-align: center;
+      }
+    }
+  }
+
+  &.wizard-icons {
+    .bs-stepper-header {
+      justify-content: center;
+      .step {
+        .step-trigger {
+          flex-direction: column;
+          padding: $bs-stepper-trigger-padding;
+          gap: .5rem;
+          .bs-stepper-icon {
+            svg {
+              block-size: $bs-stepper-svg-icon-height;
+              fill: var(--#{$prefix}heading-color);
+              inline-size: $bs-stepper-svg-icon-width;
+            }
+            .icon-base {
+              fill: var(--#{$prefix}heading-color);
+              font-size: $bs-stepper-icon-font-size;
+            }
+          }
+        }
+        &.active{
+          .step-trigger{
+            .bs-stepper-icon svg{
+              fill: $bs-stepper-active-bg;
+            }
+            .bs-stepper-label,
+            .bs-stepper-icon .icon-base {
+              color: $bs-stepper-active-bg;
+            }
+          }
+        }
+      }
+      @include media-breakpoint-up(lg) {
+        justify-content: space-around;
+        gap: 1rem;
+      }
+    }
+    .step.crossed {
+      .step-trigger{
+        .bs-stepper-label {
+          color: $bs-stepper-active-bg;
+        }
+        .bs-stepper-icon svg {
+          fill: $bs-stepper-active-bg;
+        }
+        .bs-stepper-icon .icon-base {
+          color: $bs-stepper-active-bg;
+        }
+      }
+      & + {
+        .line {
+          .icon-base {
+            color: $bs-stepper-active-bg;
+          }
+        }
+      }
+    }
+  }
+
+  /* Remove borders from wizard modern */
+  &.wizard-modern {
+    background-color: transparent;
+    .bs-stepper-header {
+      border-block-end: none;
+    }
+
+    .bs-stepper-content {
+      @include border-radius($border-radius);
+      background-color: var(--#{$prefix}paper-bg);
+      box-shadow: $card-box-shadow;
+    }
+  }
+
+  &:not(.wizard-modern) {
+    box-shadow: $card-box-shadow;
+  }
+
+  &:not(.vertical):not(.wizard-icons) .bs-stepper-header {
+    @include media-breakpoint-up(lg) {
+      gap: 1.25rem;
+    }
+  }
+}
+
+
+/* Media Queries */
+@include media-breakpoint-down(lg) {
+  .bs-stepper {
+    .bs-stepper-header {
+      flex-direction: column;
+      align-items: flex-start;
+      .step {
+        .step-trigger {
+          flex-direction: row;
+          .bs-stepper-label {
+            margin-inline-start: .35rem;
+          }
+        }
+        &:first-child {
+          .step-trigger {
+            padding-block-start: 0;
+          }
+        }
+        &:last-child {
+          .step-trigger {
+            padding-block-end: 0;
+          }
+        }
+      }
+    }
+    &.vertical {
+      flex-direction: column;
+      .bs-stepper-header {
+        align-items: flex-start;
+      }
+
+      &.wizard-icons {
+        .bs-stepper-header {
+          .line::before {
+            inset-inline-start: .75rem;
+            margin-inline-start: 0;
+          }
+        }
+      }
+    }
+    &.wizard-icons {
+      .bs-stepper-header {
+        .step .step-trigger {
+          flex-direction: row;
+          padding-inline-start: 0;
+        }
+      }
+    }
+    &:not(.vertical) {
+      .bs-stepper-header {
+        .line {
+          .icon-base {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Styles for Modal example Create App wizard */
+#wizard-create-app {
+  &.vertical {
+    .bs-stepper-header {
+      min-inline-size: $bs-stepper-vertical-header-min-width - 3;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  /* To set minus margin in mobile screen
+  as that affects border */
+  .bs-stepper-header {
+    margin: 0;
+  }
+}

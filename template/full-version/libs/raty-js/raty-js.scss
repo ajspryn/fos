@@ -1,0 +1,10 @@
+/* raty-js */
+
+/* ******************************************************************************* */
+
+@import "../../scss/_bootstrap-extended/include";
+@import "raty-js/src/raty";
+
+.raty img {
+  @include icon-base(2rem);
+}

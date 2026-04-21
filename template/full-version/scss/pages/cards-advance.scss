@@ -1,0 +1,70 @@
+// * Cards Advance
+// *******************************************************************************
+
+@import "../_bootstrap-extended/include";
+
+// Card Advance carousel styles
+.swiper-container {
+  // card bg color
+  &.swiper-card-advance-bg {
+    @include border-radius($border-radius);
+    background-color: var(--#{$prefix}primary);
+    box-shadow: var(--#{$prefix}card-box-shadow);
+  }
+  .swiper-wrapper {
+    .swiper-slide {
+      padding: 1.5rem;
+      white-space: nowrap;
+      .website-analytics-text-bg {
+        @include border-radius($border-radius);
+        background-color: color-mix(in sRGB, var(--#{$prefix}primary) 85%, var(--#{$prefix}pure-black));
+        min-inline-size: 48px;
+        padding-block: .293rem;
+        padding-inline: .5rem;
+        text-align: center;
+      }
+      .card-website-analytics-img {
+        filter: drop-shadow(rgba(var(--#{$prefix}pure-black-rgb), .5) 0 4px 60px);
+      }
+    }
+  }
+  &.swiper-container-horizontal > .swiper-pagination-bullets {
+    inset-block: 1rem auto;
+    inset-inline: auto 1rem;
+    text-align: end;
+
+    .swiper-pagination-bullet {
+      background: rgba(var(--#{$prefix}white-rgb), .4) !important;
+      opacity: unset;
+
+      &.swiper-pagination-bullet-active {
+        background: var(--#{$prefix}white) !important;
+      }
+    }
+  }
+}
+
+// For responsive carousel
+@include media-breakpoint-up(md) {
+  .swiper-container {
+    .swiper-wrapper {
+      .swiper-slide {
+        .card-website-analytics-img {
+          position: absolute;
+          inset-inline-end: 3%;
+        }
+      }
+    }
+  }
+}
+@include media-breakpoint-up(xxl) {
+  .swiper-container {
+    .swiper-wrapper {
+      .swiper-slide {
+        .card-website-analytics-img {
+          inset-inline-end: 8%;
+        }
+      }
+    }
+  }
+}

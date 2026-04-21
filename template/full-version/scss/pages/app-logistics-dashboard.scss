@@ -1,0 +1,53 @@
+/* Logistics Overview
+******************************************************************************* */
+
+@import "../_bootstrap-extended/include";
+
+/* Vehicles overview progress labels */
+.vehicles-progress-labels {
+  .vehicles-progress-label {
+    position: relative;
+    padding-block-end: 15px;
+
+    &::after {
+      position: absolute;
+      display: inline-block;
+      background-color: var(--#{$prefix}border-color);
+      block-size: 10px;
+      content: "";
+      inline-size: 2px;
+      inset-block-end: 0;
+      inset-inline-start: 0;
+    }
+  }
+}
+
+/* Vehicles overview progress */
+.vehicles-overview-progress {
+  --#{$prefix}snackbar-bg: #22303e;
+  .snackbar {
+    background-color: var(--#{$prefix}snackbar-bg);
+  }
+}
+
+/* Shipment statistics chart legend */
+#shipmentStatisticsChart,
+#carrierPerformance {
+  .apexcharts-legend-series {
+    border: 1px solid var(--#{$prefix}border-color);
+    @include border-radius(var(--#{$prefix}border-radius));
+    block-size: 70%;
+    padding-block: 4px;
+    padding-inline: 12px;
+    padding-inline-start: 17px;
+  }
+}
+
+/* Dark theme */
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .vehicles-overview-progress {
+      --#{$prefix}snackbar-bg: #e6e6f1;
+    }
+  }
+}

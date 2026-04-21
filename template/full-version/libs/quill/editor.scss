@@ -1,0 +1,666 @@
+/* Editor */
+
+/* ******************************************************************************* */
+@import "../../scss/_bootstrap-extended/include";
+
+/* common styles */
+.ql-container {
+  position: relative;
+  display: block;
+  margin: 0;
+
+  .ql-editor {
+    display: block;
+    outline: none;
+    overflow-y: auto;
+    tab-size: 4;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    &.ql-blank::before {
+      position: absolute;
+      color: var(--#{$prefix}secondary-color);
+      content: attr(data-placeholder);
+      font-size: $font-size-root;
+      font-style: italic;
+      pointer-events: none;
+    }
+  }
+}
+
+/* Themes */
+.ql-snow,
+.ql-bubble {
+  box-sizing: border-box;
+  .ql-hidden {
+    display: none !important;
+  }
+  .ql-transparent {
+    opacity: .4;
+  }
+
+  .ql-thin,
+  .ql-stroke.ql-thin {
+    stroke-width: 1;
+  }
+
+  .ql-direction.ql-active {
+    svg:last-child {
+      display: inline;
+    }
+
+    svg:first-child {
+      display: none;
+    }
+  }
+
+  .ql-direction svg:last-child {
+    display: none;
+  }
+
+  &.ql-toolbar,
+  & .ql-toolbar {
+    padding: .5rem;
+    @include border-top-radius($border-radius);
+
+    &::after {
+      display: table;
+      clear: both;
+      content: "";
+    }
+
+    button {
+      display: inline-block;
+      border: none;
+      background: none;
+      block-size: 1.5rem;
+      cursor: pointer;
+      float: inline-start;
+      inline-size: 1.75rem;
+      padding-block: .1875rem;
+      padding-inline: .3125rem;
+      svg {
+        block-size: 100%;
+        float: inline-start;
+      }
+    }
+    .ql-picker-options {
+      box-shadow: $dropdown-box-shadow;
+    }
+    input.ql-image[type="file"] {
+      display: none;
+    }
+  }
+
+  .ql-tooltip {
+    position: absolute;
+    &:not(.ql-flip) {
+      transform: translateY(.625rem);
+    }
+    a {
+      cursor: pointer;
+    }
+  }
+
+  .ql-formats {
+    display: inline-block;
+    margin-inline-end: .9375rem;
+    vertical-align: middle;
+
+    &::after {
+      display: table;
+      clear: both;
+      content: "";
+    }
+  }
+
+  .ql-picker {
+    position: relative;
+    display: inline-block;
+    block-size: 1.5rem;
+    float: inline-start;
+    vertical-align: middle;
+
+    &.ql-expanded .ql-picker-options {
+      z-index: 1;
+      display: block;
+      inset-block-start: 100%;
+      margin-block-start: -.0625rem;
+    }
+
+    &.ql-header,
+    &.ql-font,
+    &.ql-size {
+      .ql-picker-label[data-label]:not([data-label=""])::before,
+      .ql-picker-item[data-label]:not([data-label=""])::before {
+        content: attr(data-label);
+      }
+    }
+
+    &.ql-header {
+      inline-size: 6.125rem;
+
+      .ql-picker-label,
+      .ql-picker-item {
+        &::before {
+          content: "Normal";
+        }
+
+        &[data-value="1"]::before {
+          content: "Heading 1";
+        }
+
+        &[data-value="2"]::before {
+          content: "Heading 2";
+        }
+
+        &[data-value="3"]::before {
+          content: "Heading 3";
+        }
+
+        &[data-value="4"]::before {
+          content: "Heading 4";
+        }
+
+        &[data-value="5"]::before {
+          content: "Heading 5";
+        }
+
+        &[data-value="6"]::before {
+          content: "Heading 6";
+        }
+      }
+      .ql-picker-item {
+        &[data-value="1"]::before {
+          font-size: $h1-font-size;
+        }
+
+        &[data-value="2"]::before {
+          font-size: $h2-font-size;
+        }
+
+        &[data-value="3"]::before {
+          font-size: $h3-font-size;
+        }
+
+        &[data-value="4"]::before {
+          font-size: $h4-font-size;
+        }
+
+        &[data-value="5"]::before {
+          font-size: $h5-font-size;
+        }
+
+        &[data-value="6"]::before {
+          font-size: $h6-font-size;
+        }
+      }
+    }
+
+    &.ql-font {
+      inline-size: 6.75rem;
+
+      .ql-picker-label,
+      .ql-picker-item {
+        &::before {
+          content: "Sans Serif";
+        }
+
+        &[data-value="serif"]::before {
+          content: "Serif";
+        }
+
+        &[data-value="monospace"]::before {
+          content: "Monospace";
+        }
+      }
+    }
+
+    &.ql-size {
+      inline-size: 6.125rem;
+
+      .ql-picker-label,
+      .ql-picker-item {
+        &::before {
+          content: "Normal";
+        }
+
+        &[data-value="small"]::before {
+          content: "Small";
+        }
+
+        &[data-value="large"]::before {
+          content: "Large";
+        }
+
+        &[data-value="huge"]::before {
+          content: "Huge";
+        }
+      }
+    }
+
+    &:not(.ql-color-picker, .ql-icon-picker) svg {
+      position: absolute;
+      inline-size: 1.125rem;
+      inset-block-start: 50%;
+      inset-inline-end: 0;
+      margin-block-start: -.5625rem;
+    }
+  }
+
+  .ql-picker-label {
+    position: relative;
+    display: inline-block;
+    border: .0625rem solid transparent;
+    block-size: 100%;
+    cursor: pointer;
+    inline-size: 100%;
+    padding-inline: .5rem .125rem;
+
+    &::before {
+      display: inline-block;
+      line-height: 1.375rem;
+    }
+  }
+
+  .ql-picker-options {
+    position: absolute;
+    display: none;
+    min-inline-size: 100%;
+    padding-block: .25rem;
+    padding-inline: .5rem;
+    white-space: nowrap;
+
+    .ql-picker-item {
+      display: block;
+      cursor: pointer;
+      padding-block: .3125rem;
+    }
+  }
+
+  .ql-color-picker,
+  .ql-icon-picker {
+    inline-size: 1.75rem;
+
+    .ql-picker-label {
+      padding-block: .125rem;
+      padding-inline: .25rem;
+    }
+  }
+
+  .ql-icon-picker {
+    .ql-picker-options {
+      padding-block: .25rem;
+      padding-inline: 0;
+    }
+
+    .ql-picker-item {
+      block-size: 1.5rem;
+      inline-size: 1.5rem;
+      padding-block: .125rem;
+      padding-inline: .25rem;
+    }
+  }
+
+  .ql-color-picker {
+    .ql-picker-options {
+      inline-size: 9.5rem;
+      padding-block: .1875rem;
+      padding-inline: .3125rem;
+    }
+
+    .ql-picker-item {
+      padding: 0;
+      border: .0625rem solid transparent;
+      margin: .125rem;
+      block-size: 1rem;
+      float: inline-start;
+      inline-size: 1rem;
+    }
+
+    &.ql-background .ql-picker-item {
+      background-color: var(--#{$prefix}paper-bg);
+    }
+
+    &.ql-color .ql-picker-item {
+      background-color: var(--#{$prefix}pure-black);
+    }
+  }
+
+  .ql-fill,
+  .ql-stroke.ql-fill {
+    fill: var(--#{$prefix}body-color);
+  }
+
+  .ql-italic svg,
+  .ql-list svg,
+  .ql-indent svg,
+  .ql-direction svg,
+  .ql-align svg,
+  .ql-link svg,
+  .ql-image svg,
+  .ql-clean svg {
+    :dir(rtl) & {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.ql-snow {
+  &.ql-toolbar,
+  .ql-toolbar {
+    border: .0625rem solid $input-border-color;
+    background: var(--#{$prefix}paper-bg);
+    background-clip: padding-box;
+    button:hover,
+    button:focus,
+    button.ql-active,
+    .ql-picker-label:hover,
+    .ql-picker-label.ql-active,
+    .ql-picker-item:hover,
+    .ql-picker-item.ql-selected {
+      color: var(--#{$prefix}primary);
+      .ql-fill,
+      .ql-stroke.ql-fill{
+        fill: var(--#{$prefix}primary);
+      }
+      .ql-stroke,
+      .ql-stroke-miter{
+        stroke: var(--#{$prefix}primary);
+      }
+    }
+  }
+
+  &.ql-toolbar + .ql-container.ql-snow {
+    border-block-start: 0;
+    & .ql-editor,
+    & {
+      @include border-bottom-radius(var(--#{$prefix}border-radius));
+    }
+  }
+  .ql-editor {
+    background: var(--#{$prefix}paper-bg);
+    min-block-size: 15rem;
+    padding-block: calc(#{$card-spacer-x-sm} * .5);
+    padding-inline: $input-padding-x;
+    &.ql-blank::before {
+      padding-block: 0;
+      padding-inline: 0 $input-padding-x;
+    }
+    .ql-code-block-container {
+      position: relative;
+      overflow: visible;
+      @include border-radius(.188rem);
+      background-color: var(--#{$prefix}dark);
+      color: var(--#{$prefix}white);
+      margin-block: .3125rem;
+      padding-block: .4375rem;
+      padding-inline: .625rem;
+      .ql-ui {
+        position: absolute;
+        inset-block-start: .3125rem;
+        inset-inline-end: .3125rem;
+      }
+    }
+  }
+  .ql-picker {
+    color: var(--#{$prefix}body-color);
+    &.ql-expanded {
+      .ql-picker-label {
+        z-index: 2;
+        border-color: $input-border-color;
+        color: var(--#{$prefix}secondary-color);
+
+        .ql-fill {
+          fill: var(--#{$prefix}secondary-color);
+        }
+
+        .ql-stroke {
+          stroke: var(--#{$prefix}secondary-color);
+        }
+      }
+    }
+  }
+
+  .ql-stroke {
+    fill: none;
+    stroke: var(--#{$prefix}body-color);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+  }
+
+  .ql-stroke-miter {
+    fill: none;
+    stroke: var(--#{$prefix}body-color);
+    stroke-miterlimit: 10;
+    stroke-width: 2;
+  }
+
+  .ql-picker-label {
+    border: .0625rem solid transparent;
+  }
+
+  .ql-picker-options {
+    border: .0625rem solid var(--#{$prefix}border-color);
+    background-clip: padding-box;
+    background-color: var(--#{$prefix}paper-bg);
+  }
+
+  .ql-color-picker .ql-picker-item.ql-selected,
+  .ql-color-picker .ql-picker-item:hover {
+    border-color: var(--#{$prefix}pure-black);
+  }
+
+  .ql-tooltip {
+    display: flex;
+    border: $dropdown-border-width solid $dropdown-border-color;
+    @include border-radius($border-radius);
+    background-clip: padding-box;
+    background-color: var(--#{$prefix}paper-bg);
+    box-shadow: $dropdown-box-shadow;
+    color: var(--#{$prefix}body-color);
+    padding-block: .3125rem;
+    padding-inline: .75rem;
+    white-space: nowrap;
+
+    &::before {
+      content: "Visit URL:";
+      line-height: 1.625rem;
+      margin-inline-end: .5rem;
+    }
+
+    input[type="text"] {
+      display: none;
+      border: .0625rem solid $input-border-color;
+      margin: 0;
+      background-color: var(--#{$prefix}paper-bg);
+      font-size: .8125rem;
+      inline-size: 10.625rem;
+      padding-block: .1875rem;
+      padding-inline: .3125rem;
+    }
+
+    a.ql-action::after {
+      border-inline-end: .0625rem solid var(--#{$prefix}secondary-color);
+      content: "Edit";
+      margin-inline-start: 1rem;
+      padding-inline-end: .5rem;
+    }
+
+    a.ql-remove::before {
+      content: "Remove";
+      margin-inline-start: .5rem;
+    }
+
+    a {
+      line-height: 1.625rem;
+    }
+
+    &.ql-editing a.ql-preview,
+    &.ql-editing a.ql-remove {
+      display: none;
+    }
+
+    &.ql-editing input[type="text"] {
+      display: inline-block;
+    }
+
+    &.ql-editing a.ql-action::after {
+      border-inline-end: 0;
+      content: "Save";
+      padding-inline-end: 0;
+    }
+
+    &[data-mode="link"]::before {
+      content: "Enter link:";
+    }
+
+    &[data-mode="formula"]::before {
+      content: "Enter formula:";
+    }
+
+    &[data-mode="video"]::before {
+      content: "Enter video:";
+    }
+  }
+
+  &.ql-container {
+    border: .0625rem solid $input-border-color;
+  }
+}
+
+.ql-bubble {
+  --#{$prefix}bubble-tooltip-bg: #444;
+  --#{$prefix}bubble-tooltip-color: #ccc;
+  &.ql-toolbar,
+  .ql-toolbar {
+    button:hover,
+    button:focus,
+    button.ql-active,
+    .ql-picker-label:hover,
+    .ql-picker-label.ql-active,
+    .ql-picker-item:hover,
+    .ql-picker-item.ql-selected {
+      color: var(--#{$prefix}white);
+      .ql-stroke,
+      .ql-stroke-miter {
+        stroke: var(--#{$prefix}white);
+      }
+      .ql-fill,
+      .ql-stroke.ql-fill {
+        fill: var(--#{$prefix}white);
+      }
+    }
+
+    @media (pointer: coarse) {
+      button:hover:not(.ql-active) {
+        color: var(--#{$prefix}bubble-tooltip-color);
+      }
+
+      button:hover:not(.ql-active) .ql-fill,
+      button:hover:not(.ql-active) .ql-stroke.ql-fill {
+        fill: var(--#{$prefix}bubble-tooltip-color);
+      }
+
+      button:hover:not(.ql-active) .ql-stroke,
+      button:hover:not(.ql-active) .ql-stroke-miter {
+        stroke: var(--#{$prefix}bubble-tooltip-color);
+      }
+    }
+  }
+
+  .ql-stroke {
+    fill: none;
+    stroke: var(--#{$prefix}bubble-tooltip-color);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+  }
+
+  .ql-stroke-miter {
+    fill: none;
+    stroke: var(--#{$prefix}bubble-tooltip-color);
+    stroke-miterlimit: 10;
+    stroke-width: 2;
+  }
+
+  .ql-fill,
+  .ql-stroke.ql-fill {
+    fill: var(--#{$prefix}bubble-tooltip-color);
+  }
+
+  .ql-picker {
+    color: var(--#{$prefix}bubble-tooltip-color);
+  }
+
+  .ql-picker-options {
+    background-color: var(--#{$prefix}bubble-tooltip-bg);
+  }
+
+  .ql-toolbar .ql-formats {
+    margin-block: .5rem;
+    margin-inline: 0 .75rem;
+    &:first-child {
+      margin-inline-start: .75rem;
+    }
+  }
+
+  .ql-tooltip-arrow {
+    position: absolute;
+    display: block;
+    border-inline-end: .375rem solid transparent;
+    border-inline-start: .375rem solid transparent;
+    content: " ";
+    inset-inline-start: 50%;
+    margin-inline-start: -.375rem;
+  }
+
+  .ql-tooltip {
+    z-index: $zindex-menu-fixed + 10;
+    @include border-radius($border-radius);
+    background-color: var(--#{$prefix}bubble-tooltip-bg);
+    color: var(--#{$prefix}white);
+
+    &:not(.ql-flip) .ql-tooltip-arrow {
+      border-block-end: .375rem solid var(--#{$prefix}bubble-tooltip-bg);
+      inset-block-start: -.375rem;
+    }
+
+    &.ql-flip .ql-tooltip-arrow {
+      border-block-start: .375rem solid var(--#{$prefix}bubble-tooltip-bg);
+      inset-block-end: -.375rem;
+    }
+  }
+
+  .ql-tooltip-editor {
+    display: none;
+
+    input[type="text"] {
+      border: none;
+      background: transparent;
+      color: var(--#{$prefix}white);
+      font-size: .8125rem;
+      inline-size: 100%;
+      padding-block: .625rem;
+      padding-inline: 1.25rem;
+    }
+
+    a {
+      position: absolute;
+      inset-block-start: .625rem;
+      inset-inline-end: 1.25rem;
+    }
+  }
+  .ql-editing .ql-tooltip-editor {
+    display: block;
+  }
+}
+
+/* dark styles */
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .ql-bubble {
+      --#{$prefix}bubble-tooltip-bg: var(--#{$prefix}body-bg);
+    }
+  }
+}

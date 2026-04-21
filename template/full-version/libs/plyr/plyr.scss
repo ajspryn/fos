@@ -1,0 +1,148 @@
+@import "../../scss/_bootstrap-extended/include";
+
+/* Variables */
+@import "plyr/src/sass/settings/breakpoints";
+@import "plyr/src/sass/settings/colors";
+@import "plyr/src/sass/settings/cosmetics";
+@import "plyr/src/sass/settings/type";
+@import "plyr/src/sass/settings/badges";
+@import "plyr/src/sass/settings/captions";
+@import "plyr/src/sass/settings/controls";
+@import "plyr/src/sass/settings/helpers";
+@import "plyr/src/sass/settings/menus";
+@import "plyr/src/sass/settings/progress";
+@import "plyr/src/sass/settings/sliders";
+@import "plyr/src/sass/settings/tooltips";
+@import "plyr/src/sass/lib/animation";
+@import "plyr/src/sass/lib/functions";
+@import "plyr/src/sass/lib/mixins";
+
+/* Components */
+@import "plyr/src/sass/base";
+@import "plyr/src/sass/components/badges";
+@import "plyr/src/sass/components/captions";
+@import "plyr/src/sass/components/control";
+@import "plyr/src/sass/components/controls";
+@import "plyr/src/sass/components/menus";
+@import "plyr/src/sass/components/sliders";
+@import "plyr/src/sass/components/poster";
+@import "plyr/src/sass/components/times";
+@import "plyr/src/sass/components/tooltips";
+@import "plyr/src/sass/components/progress";
+@import "plyr/src/sass/components/volume";
+@import "plyr/src/sass/types/audio";
+@import "plyr/src/sass/types/video";
+@import "plyr/src/sass/states/fullscreen";
+@import "plyr/src/sass/plugins/ads";
+@import "plyr/src/sass/plugins/preview-thumbnails";
+@import "plyr/src/sass/utils/animation";
+@import "plyr/src/sass/utils/hidden";
+
+.plyr {
+  --plyr-color-main: var(--#{$prefix}primary);
+  --plyr-focus-visible-color: var(--#{$prefix}primary);
+  --plyr-menu-background: var(--#{$prefix}white);
+  --plyr-video-control-color-hover: var(--#{$prefix}primary-contrast);
+  --plyr-audio-control-color-hover: var(--plyr-video-control-color-hover);
+  .plyr--audio .plyr__controls {
+    padding: 0;
+  }
+  &.plyr--video,
+  &.plyr--audio {
+    .plyr__control:focus-visible {
+      outline: none;
+    }
+  }
+  &.plyr--audio {
+    .plyr__progress__buffer {
+      color: var(--#{$prefix}gray-200);
+    }
+    .plyr__controls {
+      background-color: var(--#{$prefix}paper-bg);
+      color: var(--#{$prefix}body-color);
+    }
+  }
+  &.plyr--full-ui.plyr--audio input[type="range"] {
+    &::-webkit-slider-runnable-track,
+    &::-moz-range-track,
+    &::-ms-track {
+      background-color: var(--#{$prefix}gray-100);
+    }
+  }
+  .plyr__menu__container .plyr__control[role="menuitemradio"] {
+    &:hover,
+    &:focus-visible {
+      &::before {
+        background: $plyr-color-gray-100;
+      }
+    }
+    &[aria-checked="true"] {
+      &:hover,
+      &:focus-visible {
+        &::before {
+          background: var(--#{$prefix}white);
+        }
+        &::after {
+          background: var(--#{$prefix}primary);
+        }
+      }
+    }
+  }
+  input[type="range"] {
+    &::-ms-fill-lower {
+      background: var(--#{$prefix}primary);
+    }
+    &:active {
+      &::-webkit-slider-thumb {
+        background: var(--#{$prefix}primary);
+      }
+      &::-moz-range-thumb {
+        background: var(--#{$prefix}primary);
+      }
+      &::-ms-thumb {
+        background: var(--#{$prefix}primary);
+      }
+    }
+  }
+  .plyr__tooltip,
+  .plyr__menu__container {
+    box-shadow: none;
+    filter: drop-shadow(0 .0625rem .125rem rgba($pure-black, .15));
+  }
+  .plyr__controls {
+    flex-wrap: wrap;
+    .plyr__progress__container {
+      min-inline-size: 3.75rem;
+    }
+  }
+}
+
+//? Library does not provide RTL support
+:dir(rtl) {
+  .plyr__menu__container {
+    direction: rtl;
+
+    .plyr__control--forward {
+      &::after {
+        border-inline-end-color: transparent;
+        border-inline-start-color: rgba($plyr-menu-color, .8);
+        inset-inline: auto 5px;
+      }
+    }
+
+    .plyr__menu__value {
+      padding-inline: calc(calc(var(--plyr-control-spacing, 10px) * .7) * 1.5) 1rem;
+    }
+
+    .plyr__control[role="menuitemradio"] {
+
+      &::before {
+        margin-inline: 0 $plyr-control-spacing;
+      }
+
+      &::after {
+        inset-inline: .9375rem auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+// Alerts
+// *******************************************************************************
+
+/* Alert icon styles */
+.alert {
+  --#{$prefix}alert-link-hover-color: var(--#{$prefix}primary);
+  --#{$prefix}alert-hr: var(--#{$prefix}black);
+  --#{$prefix}alert-icon-color: var(--#{$prefix}white);
+  --#{$prefix}alert-icon-bg: var(--#{$prefix}black);
+  --#{$prefix}alert-close-icon: var(--#{$prefix}black);
+  line-height: 1.375rem;
+  &[class*="alert-"] {
+    hr {
+      background-color: var(--#{$prefix}alert-hr);
+      color: var(--#{$prefix}alert-hr);
+    }
+  }
+  .alert-link {
+    &:hover {
+      color: var(--#{$prefix}alert-link-hover-color);
+    }
+  }
+  .alert-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--#{$prefix}alert-icon-bg);
+    block-size: $alert-icon-size;
+    color: var(--#{$prefix}alert-icon-color);
+    inline-size: $alert-icon-size;
+    margin-inline-end: $spacer;
+  }
+
+  &[class*="alert-solid-"] {
+    --#{$prefix}alert-link-color: var(--#{$prefix}white);
+    --#{$prefix}alert-link-hover-color: var(--#{$prefix}white);
+    --#{$prefix}alert-hr: var(--#{$prefix}white);
+    --#{$prefix}alert-icon-bg: var(--#{$prefix}white);
+    --#{$prefix}alert-close-icon: var(--#{$prefix}white);
+    .alert-icon {
+      box-shadow: $box-shadow-xs;
+    }
+  }
+}
+
+/* Adjust close link position */
+.alert-dismissible {
+  padding-inline-end: $alert-dismissible-padding-r;
+  padding-inline-start: $alert-padding-x;
+  .btn-close {
+    padding: 0;
+    background: var(--#{$prefix}alert-close-icon);
+    block-size: .8125rem;
+    filter: none;
+    inline-size: .8125rem;
+    inset-inline: auto 0;
+    margin-block: calc(#{$alert-padding-y} * 1.35);
+    margin-inline: calc(#{$alert-padding-x} * 1.15);
+    mask-image: str-replace($btn-close-bg, "#{$btn-close-color}", currentColor);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+  }
+}
+
+// scss-docs-start alert-modifiers
+
+// Generate contextual modifier classes for colorizing the alert
+@each $state in map-keys($theme-colors) {
+  .alert-#{$state} {
+    --#{$prefix}alert-color: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-close-icon: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-link-color: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-link-hover-color: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-hr: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-icon-bg: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-bg-subtle);
+  }
+  .alert-solid-#{$state} {
+    --#{$prefix}alert-color: var(--#{$prefix}#{$state}-contrast);
+    --#{$prefix}alert-bg: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-border-color: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-icon-color: var(--#{$prefix}#{$state});
+  }
+  .alert-outline-#{$state} {
+    --#{$prefix}alert-color: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-close-icon: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-link-color: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-link-hover-color: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-border-color: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-hr: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-icon-color: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-icon-bg: var(--#{$prefix}#{$state}-bg-subtle);
+  }
+}
+
+// scss-docs-end alert-modifiers

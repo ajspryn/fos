@@ -1,0 +1,25 @@
+.tags-inline {
+  .tagify__dropdown__wrapper {
+    padding-block: 0 var(--tagify-item-padding);
+    padding-inline: var(--tagify-item-padding);
+  }
+
+  .tagify__dropdown__item {
+    display: inline-block;
+    border: 1px solid var(--#{$prefix}border-color);
+    @include border-radius(3px);
+    color: var(--#{$prefix}body-color);
+    font-size: .85em;
+    margin-block: var(--tagify-item-margin) 0;
+    margin-inline: 0 var(--tagify-item-margin);
+    padding-block: .3em;
+    padding-inline: .5em;
+    transition: 0s;
+    vertical-align: middle;
+    &--active {
+      border-color: var(--tagify-item-active-border-color);
+      background: var(--tagify-item-active-bg);
+      color: var(--tagify-item-active-color);
+    }
+  }
+}

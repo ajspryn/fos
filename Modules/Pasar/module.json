@@ -1,0 +1,13 @@
+{
+    "name": "Pasar",
+    "alias": "pasar",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Pasar\\Providers\\PasarServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -1,0 +1,34 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "notyf/notyf.min";
+
+
+.notyf__toast {
+  &.notyf__toast--dismissible .notyf__wrapper {
+    padding-inline-end: 1.625rem;
+  }
+  .notyf__wrapper {
+    @include border-radius($border-radius);
+  }
+  .notyf__icon {
+    margin-inline: 0 1rem;
+  }
+  &.notyf__info {
+    box-shadow: 0 .25rem 1rem rgba(var(--#{$prefix}info-rgb), .4);
+    color: color-contrast(map-get($theme-colors, info));
+  }
+
+  &.notyf__error {
+    box-shadow: 0 .25rem 1rem rgba(var(--#{$prefix}danger-rgb), .4);
+    color: color-contrast(map-get($theme-colors, danger));
+  }
+
+  &.notyf__success {
+    box-shadow: 0 .25rem 1rem rgba(var(--#{$prefix}success-rgb), .4);
+    color: color-contrast(map-get($theme-colors, success));
+  }
+
+  &.notyf__warning {
+    box-shadow: 0 .25rem 1rem rgba(var(--#{$prefix}warning-rgb), .4);
+    color: color-contrast(map-get($theme-colors, warning));
+  }
+}

@@ -1,0 +1,9 @@
+@import "@simonwep/pickr/dist/themes/classic.min";
+
+.pcr-app[data-theme="classic"] .pcr-selection .pcr-color-preview{
+  margin-inline-end: .75em;
+}
+.pcr-app[data-theme="classic"] .pcr-selection .pcr-color-chooser,
+.pcr-app[data-theme="classic"] .pcr-selection .pcr-color-opacity {
+  margin-inline: .45em;
+}

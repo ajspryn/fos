@@ -1,0 +1,23 @@
+/**
+* chartjs Charts
+*/
+@import "../../scss/_bootstrap-extended/include";
+
+.custom-legend {
+  .custom-legend-ul {
+    display: flex;
+    cursor: pointer;
+    .custom-legend-li {
+      display: flex;
+      align-items: center;
+      font-size: $font-size-xs;
+      margin-inline-end: 1.25rem;
+    }
+    .legend-box {
+      @include border-radius($border-radius-pill);
+      block-size: .5rem;
+      inline-size: .5rem;
+      margin-inline-end: 5px;
+    }
+  }
+}

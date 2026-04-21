@@ -1,0 +1,211 @@
+/* Validation states
+******************************************************************************* */
+
+/* Currently supported for form-validation and jq-validation */
+form {
+  --#{$prefix}form-validation-shadow: none;
+  --#{$prefix}form-validation-border-color: var(--#{$prefix}form-invalid-border-color);
+  .error:not(li):not(input) {
+    color: $form-feedback-invalid-color;
+    font-size: 85%;
+    margin-block-start: .25rem;
+  }
+  .form-label {
+    &.invalid,
+    &.is-invalid {
+      border-width: $input-focus-border-width;
+      border-color: $form-feedback-invalid-color;
+      box-shadow: 0 0 0 2px rgba($form-feedback-invalid-color, .4);
+    }
+  }
+
+  &.was-validated :invalid,
+  .is-invalid,
+  &.was-validated select:invalid,
+  &.was-validated select:invalid + .dropdown-toggle,
+  &.was-validated select:invalid ~ .select2-container,
+  select.is-invalid,
+  select.is-invalid + .dropdown-toggle,
+  select.is-invalid ~ .select2-container,
+  &.was-validated .input-group:has(:invalid),
+  .input-group:has(.is-invalid),
+  .input-group .is-invalid,
+  &.was-validated .tagify:has(+ :invalid),
+  .tagify:has(+ .is-invalid) {
+    --#{$prefix}form-validation-border-color: var(--#{$prefix}form-invalid-border-color);
+  }
+
+  &.was-validated :valid,
+  .is-valid,
+  &.was-validated select:valid,
+  &.was-validated select:valid + .dropdown-toggle,
+  &.was-validated select:valid ~ .select2-container,
+  select.is-valid,
+  select.is-valid + .dropdown-toggle,
+  select.is-valid ~ .select2-container,
+  .input-group:has(.is-valid),
+  &.was-validated .input-group:has(:valid),
+  .input-group .is-valid,
+  &.was-validated .tagify:has(+ :valid),
+  .tagify:has(+ .is-valid) {
+    --#{$prefix}form-validation-border-color: var(--#{$prefix}form-valid-border-color);
+  }
+
+  &.was-validated .form-control:not(.input-group .form-control):invalid,
+  &.was-validated .form-control:not(.input-group .form-control):valid,
+  .form-control:not(.input-group .form-control).is-invalid,
+  .form-control:not(.input-group .form-control).is-valid,
+  &.was-validated .form-select:not(.input-group .form-select):invalid,
+  &.was-validated .form-select:not(.input-group .form-select):valid,
+  .form-select:not(.input-group .form-select).is-invalid,
+  .form-select:not(.input-group .form-select).is-valid {
+    border-width: $input-focus-border-width;
+    &,
+    &:hover,
+    &:focus {
+      border-color: var(--#{$prefix}form-validation-border-color);
+      box-shadow: var(--#{$prefix}form-validation-shadow);
+      &::file-selector-button {
+        box-shadow: $input-border-width 0 0 var(--#{$prefix}form-validation-border-color);
+      }
+    }
+  }
+  &.was-validated .form-check-input:invalid,
+  &.was-validated .form-check-input:valid,
+  .form-check-input.is-invalid,
+  .form-check-input.is-valid {
+    &,
+    &:checked,
+    &:focus {
+      box-shadow: var(--#{$prefix}form-validation-shadow);
+    }
+  }
+  &.was-validated .form-switch .form-check-input:invalid,
+  &.was-validated .form-switch .form-check-input:valid,
+  .form-switch .form-check-input.is-invalid,
+  .form-switch .form-check-input.is-valid {
+    &:invalid,
+    &.is-invalid,
+    &:valid,
+    &.is-valid {
+      &,
+      &:checked,
+      &:focus {
+        background-color: var(--#{$prefix}form-validation-border-color);
+      }
+    }
+  }
+
+  // input group
+  &.was-validated .input-group:has(:invalid),
+  .input-group:has(.is-invalid),
+  &.was-validated .input-group:has(:valid),
+  .input-group:has(.is-valid) {
+    box-shadow: 0 0 0 $input-border-width var(--#{$prefix}form-validation-border-color);
+    .input-group-text,
+    .form-control ~ .input-group-text,
+    .form-control,
+    .form-control:hover,
+    .form-select {
+      &,
+      &:focus,
+      &:focus-within,
+      &.is-invalid,
+      &.is-valid {
+        border-width: $input-border-width;
+        border-color: var(--#{$prefix}form-validation-border-color);
+      }
+    }
+    &::before {
+      box-shadow: var(--#{$prefix}form-validation-shadow);
+    }
+    .flatpickr-wrapper {
+      .flatpickr-input {
+        &,
+        &:focus,
+        &:focus-within,
+        &.is-invalid,
+        &.is-valid {
+          border-width: $input-border-width;
+          border-color: var(--#{$prefix}form-validation-border-color);
+        }
+      }
+    }
+  }
+  &.was-validated .input-group:has(:invalid),
+  .input-group:has(.is-invalid) {
+    ~ .invalid-feedback,
+    ~ .invalid-tooltip {
+      display: block;
+    }
+  }
+
+  &.was-validated .input-group:has(:valid),
+  .input-group:has(.is-valid) {
+    ~ .valid-feedback,
+    ~ .valid-tooltip {
+      display: block;
+    }
+  }
+
+  // tagify
+  &.was-validated .tagify:has(+ input:invalid),
+  &.was-validated .tagify:has(+ input:valid),
+  .tagify:has(+ input.is-invalid),
+  .tagify:has(+ input.valid) {
+    padding: 0;
+    border-width: $input-focus-border-width;
+    box-shadow: var(--#{$prefix}form-validation-shadow);
+    &,
+    &:hover,
+    &:focus {
+      border-color: var(--#{$prefix}form-validation-border-color) !important;
+    }
+  }
+
+  // Bootstrap select
+  .bootstrap-select .selectpicker.is-invalid + .dropdown-toggle,
+  &.was-validated .bootstrap-select .selectpicker:invalid + .dropdown-toggle,
+  .bootstrap-select .selectpicker.is-valid + .dropdown-toggle,
+  &.was-validated .bootstrap-select .selectpicker:valid + .dropdown-toggle {
+    border-width: $input-focus-border-width;
+    border-color: var(--#{$prefix}form-validation-border-color);
+    box-shadow: var(--#{$prefix}form-validation-shadow);
+    padding-block: calc($input-padding-y - $input-focus-border-width);
+    padding-inline: calc($input-padding-x - $input-border-width);
+    &::after {
+      inset-inline-end: calc(var(--#{$prefix}bootstrap-select-arrow-position) - $input-border-width);
+    }
+  }
+
+  // Select2
+  .form-select.is-invalid ~ .select2-container,
+  &.was-validated .form-select:invalid ~ .select2-container,
+  .form-select.is-valid ~ .select2-container,
+  &.was-validated .form-select:valid ~ .select2-container {
+    &.select2-container--default {
+      &,
+      &.select2-container--focus,
+      &.select2-container--open {
+        .select2-selection {
+          border-width: $input-focus-border-width;
+          border-color: var(--#{$prefix}form-validation-border-color);
+          box-shadow: var(--#{$prefix}form-validation-shadow);
+        }
+        .select2-selection--single {
+          .select2-selection__rendered {
+            line-height: calc(var(--#{$prefix}select-height) - $input-focus-border-width * 2);
+            padding-inline-end: calc($form-select-indicator-padding - var(--#{$prefix}select-border-width));
+            padding-inline-start: calc($form-select-padding-x - var(--#{$prefix}select-border-width));
+          }
+        }
+        .select2-selection--multiple {
+          .select2-selection__rendered {
+            padding-block: calc(var(--#{$prefix}select-multiple-padding-y) - var(--#{$prefix}select-border-width));
+            padding-inline-start: calc(var(--#{$prefix}select-multiple-padding-x) - var(--#{$prefix}select-border-width));
+          }
+        }
+      }
+    }
+  }
+}

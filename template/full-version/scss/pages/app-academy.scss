@@ -1,0 +1,37 @@
+/* App Academy
+******************************************************************************* */
+
+@import "../_bootstrap-extended/include";
+
+.app-academy {
+  .app-academy-img-height {
+    block-size: 130px;
+  }
+  @include media-breakpoint-up(md) {
+    .app-academy-md-25 {
+      inline-size: 25%;
+    }
+
+    .app-academy-md-50 {
+      inline-size: 50%;
+    }
+
+    .app-academy-md-80 {
+      inline-size: 80%;
+    }
+  }
+  @include media-breakpoint-up(sm) {
+    .app-academy-sm-40 {
+      inline-size: 40% !important;
+    }
+
+    .app-academy-sm-60 {
+      inline-size: 60% !important;
+    }
+  }
+  @include media-breakpoint-up(xl) {
+    .app-academy-xl-100 {
+      inline-size: 100% !important;
+    }
+  }
+}

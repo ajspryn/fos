@@ -1,0 +1,149 @@
+/* Custom Options
+******************************************************************************* */
+
+/* Custom option */
+.custom-option {
+  --#{$prefix}custom-option-border-color: #{$custom-option-border-color};
+  border: $custom-option-border-width solid var(--#{$prefix}custom-option-border-color);
+  @include border-radius($border-radius);
+  padding-inline-start: 0;
+  &:hover:not(.checked) {
+    border-color: $custom-option-border-hover-color;
+  }
+  &:not(.custom-option-image) {
+    margin: subtract($input-focus-border-width, $custom-option-border-width);
+  }
+
+  &.checked {
+    --#{$prefix}custom-option-border-color: var(--#{$prefix}primary);
+    border-width: $input-focus-border-width;
+    margin: 0;
+    .custom-option-header .icon-base {
+      color: var(--#{$prefix}primary);
+    }
+  }
+
+  &.custom-option-image {
+    overflow: hidden;
+    border-width: $custom-option-image-border-width;
+    margin-block-end: 0;
+    .custom-option-body {
+      img {
+        block-size: 100%;
+        inline-size: 100%;
+      }
+    }
+
+    // radio
+    &.custom-option-image-radio {
+      .form-check-input {
+        display: none;
+      }
+    }
+
+    // checkbox
+    &.custom-option-image-check {
+      .form-check-input {
+        position: absolute;
+        border: 1px solid transparent;
+        margin: 0;
+        inset-block-start: 1rem;
+        inset-inline-end: 1rem;
+      }
+
+      &:hover {
+        .form-check-input {
+          border-width: 1px;
+          border-color: $form-check-input-focus-border;
+          &:checked {
+            border-color: var(--#{$prefix}primary);
+          }
+        }
+      }
+    }
+  }
+
+  .custom-option-content {
+    inline-size: 100%;
+  }
+  .form-check-input {
+    margin-inline-start: $form-check-padding-start * -1.12;
+  }
+
+  // Custom option basic
+  &.custom-option-basic {
+    .custom-option-content {
+      padding: $custom-option-padding;
+      padding-inline-start: $custom-option-padding + $form-check-padding-start + .65em;
+    }
+
+    .custom-option-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block-end: .4375rem;
+    }
+  }
+  .custom-option-body {
+    color: var(--#{$prefix}body-color);
+  }
+
+  // Custom option with icon
+  &.custom-option-icon {
+    overflow: hidden;
+    &.checked {
+      .icon-base,
+      svg {
+        color: $component-active-bg;
+      }
+    }
+    .icon-base,
+    svg {
+      color: var(--#{$prefix}heading-color);
+    }
+    .custom-option-content {
+      padding: $custom-option-padding;
+      text-align: center;
+    }
+
+    .custom-option-body {
+      display: block;
+      margin-block-end: .5rem;
+      .icon-base {
+        @include icon-base(1.75rem);
+        display: block;
+        margin-block-end: .5rem;
+        margin-inline: auto;
+      }
+
+      svg {
+        block-size: 1.75rem;
+        inline-size: 1.75rem;
+        margin-block-end: .5rem;
+      }
+
+      .custom-option-title {
+        display: block;
+        color: var(--#{$prefix}heading-color);
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        margin-block-end: .5rem;
+      }
+    }
+
+    .form-check-input {
+      margin: 0;
+      float: none;
+    }
+  }
+
+  // Custom option label
+  &.custom-option-label.checked {
+    background-color: rgba(var(--#{$prefix}primary-rgb), .12);
+    color: var(--#{$prefix}primary);
+    .custom-option-header span,
+    .custom-option-title {
+      color: var(--#{$prefix}primary);
+    }
+  }
+}

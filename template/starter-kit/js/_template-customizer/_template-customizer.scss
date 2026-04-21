@@ -1,0 +1,219 @@
+/*
+* Template Customizer Style
+**/
+
+$customizer-width: 400px;
+$customizer-hide-width: 1200px;
+$customizer-spacer: 20px;
+$customizer-font-size: inherit;
+$open-btn-size: 38px;
+$open-btn-spacer: 0;
+$open-btn-font-size: 18px;
+$open-btn-top: 180px;
+$open-btn-color: #fff;
+$open-btn-border-radius: .375rem;
+
+#template-customizer {
+  position: fixed;
+  z-index: 99999999;
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  box-shadow: 0 .3125rem 1.375rem 0 rgba(34, 48, 62, .18);
+  font-family: "Public Sans", -apple-system, blinkmacsystemfont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: $customizer-font-size;
+  inline-size: $customizer-width;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  transform: translateX($customizer-width + $customizer-spacer);
+  transition: transform .2s ease-in;
+
+  [data-bs-theme="dark"] & {
+    box-shadow: 0 .3125rem 1.375rem 0 rgba(20, 20, 29, .26);
+  }
+
+  h5 {
+    position: relative;
+    font-size: 11px;
+  }
+
+  .form-label {
+    font-size: .9375rem;
+    font-weight: 500;
+  }
+
+  /* Color option styles */
+  .template-customizer-colors-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0;
+    gap: .3rem;
+    .custom-option{
+      inline-size: 50px;
+      .custom-option-content{
+        padding: 0;
+        min-block-size: 46px;
+        .pcr-button{
+          padding: .625rem;
+          block-size: 30px;
+          inline-size: 30px;
+          &::before,
+          &::after{
+            border-radius: .5rem;
+          }
+          &:focus{
+            box-shadow: none;
+          }
+        }
+      }
+    }
+    .custom-option-body{
+      border-radius: .5rem;
+      block-size: 30px;
+      inline-size: 30px;
+    }
+  }
+
+  /* Font Icons sizing and alignments */
+  .custom-option-icon{
+    padding: 0;
+    .custom-option-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-block-size: 50px;
+    }
+  }
+
+  /* border-color for hr */
+  hr{
+    border-color: var(--bs-border-color);
+  }
+
+  /* To update svg image's color */
+  .custom-option{
+    border-width: 2px;
+    margin: 0;
+    &.custom-option-image .custom-option-content .custom-option-body svg {
+      inline-size: 100%;
+    }
+  }
+  &.template-customizer-open {
+    transform: none;
+    transition-delay: .1s;
+    .template-customizer-theme .custom-option.checked{
+      background-color: rgba(var(--bs-primary-rgb), .08);
+
+      *,
+      *::before,
+      *::after{
+        color: var(--bs-primary);
+      }
+    }
+
+    .custom-option.checked {
+      border-width: 2px;
+      color: var(--bs-primary);
+
+      .custom-option-content {
+        border: none;
+      }
+    }
+  }
+
+  .template-customizer-header {
+    a:hover {
+      &,
+      .icon-base {
+        color: inherit !important;
+      }
+    }
+  }
+
+  /* Customizer button */
+
+  .template-customizer-open-btn {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    background: var(--bs-primary);
+    block-size: $open-btn-size;
+    border-end-start-radius: $open-btn-border-radius;
+    border-start-start-radius: $open-btn-border-radius;
+    box-shadow: 0 .125rem .25rem 0 rgba(var(--bs-primary-rgb), .4);
+    color: $open-btn-color;
+    font-size: $open-btn-font-size;
+    inline-size: $open-btn-size;
+    inset-block-start: $open-btn-top;
+    inset-inline-start: 0;
+    line-height: $open-btn-size;
+    opacity: 1;
+    text-align: center;
+    transform: translateX(-($open-btn-size + $customizer-spacer + $open-btn-spacer));
+    transition: all .1s linear .2s;
+
+    &::before {
+      position: absolute;
+      display: block;
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAABClJREFUaEPtmY1RFEEQhbsjUCIQIhAiUCNQIxAiECIQIxAiECIAIpAMhAiECIQI2vquZqnZvp6fhb3SK5mqq6Ju92b69bzXf6is+dI1t1+eAfztG5z1BsxsU0S+ici2iPB3vm5E5EpEDlSVv2dZswFIxv8UkZcNy+5EZGcuEHMCOBeR951uvVDVD53vVl+bE8DvDu8Pxtyo6ta/BsByg1R15Bwzqz5/LJgn34CZwfnPInI4BUB6/1hV0cSjVxcAM4PbcBZjL0XklIPN7Is3fLCkdQPpPYw/VNXj5IhPIvJWRIhSl6p60ULWBGBm30Vk123EwRxCuIzWkkjNrCZywith10ewE1Xdq4GoAjCz/RTXW44Ynt+LyBEfT43kYfbj86J3w5Q32DNcRQDpwF+dkQXDMey8xem0L3TEqB4g3PZWad8agBMRgZPeu96D1/C2Zbh3X0p80Op1xxloztN48bMQQNoc7+eLEuAoPSPiIDY4Ooo+E6ixeNXM+D3GERz2U3CIqMstLJUgJQDe+7eq6mub0NYEkLAKwEHkiBQDCZtddZCZ8d6r7JDwFkoARklHRPZUFVDVZWbwGuNrC4EfdOzFrRABh3Wnqhv+d70AEBLGFROPmeHlnM81G69UdSd6IUuM0GgUVn1uqWmg5EmMfBeEyB7Pe3txBkY+rGT8j0J+WXq/BgDkUCaqLgEAnwcRog0veMIqFAAwCy2wnw+bI2GaGboBgF9k5N0o0rUSGUb4eO0BeO9j/GYhkSHMHMTIqwGARX6p6a+nlPBl8kZuXMD9j6pKfF9aZuaFOdJCEL5D4eYb9wCYVCanrBmGyii/tIq+SLj/HQBCaM5bLzwfPqdQ6FpVHyra4IbuVbXaY7dETC2ESPNNWiIOi69CcdgSMXsh4tNSUiklMgwmC0aNd08Y5WAES6HHehM4gu97wyhBgWpgqXsrASglprDy7CwhehMZOSbK6JMSma+Fio1KltCmlBIj7gfZOGx8ppQSXrhzFnOhJ/31BDkjFHRvOd09x0mRBA9SFgxUgHpQg0q0t5ymPMlL+EnldFTfDA0NAmf+OTQ0X0sRouf7NNkYGhrOYNrxtIaGg83MNzVDSe3LXLhP7O/yrCsCz1zlWTpjWkuZAOBpX3yVnLqI1yLCOKU6qMrmP7SSrUEw54XF4WBIK5FxCMOr3lVsfGqNSmPzBXUnJTIX1jyVBq9wO6UObOpgC5GjO98vFKnTdQMZXxEsWZlDiCZMIxAbNxQOqlpVZtobejBaZNoBnRDzMFpkxvTQOD36BlrcySZuI6p1ACB6LU3wWuf5581+oHfD1vi89bz3nFUC8Nm7ZlP3nKkFbM4bWPt/MSFwklprYItwt6cmvpWJ2IVcQBCz6bLysSCv3SaANCiTsnaNRrNRqMXVVT1/BrAqz/buu/Y38Ad3KC5PARej0QAAAABJRU5ErkJggg==");
+      background-size: 100% 100%;
+      block-size: 22px;
+      content: "";
+      inline-size: 22px;
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      transform: translate(-50%, -50%);
+      :dir(rtl) & {
+        margin-inline-start: 2px;
+        transform: translate(50%, -50%);
+      }
+    }
+
+    /* Customizer Hidden */
+    .customizer-hide & {
+      display: none;
+    }
+
+    :dir(rtl) & {
+      transform: translateX($open-btn-size + $customizer-spacer + $open-btn-spacer);
+    }
+  }
+
+  &.template-customizer-open .template-customizer-open-btn {
+    opacity: 0;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  /* Customizer inner */
+  .template-customizer-inner {
+    position: relative;
+    overflow: auto;
+    flex: 0 1 auto;
+    -webkit-box-flex: 0;
+    opacity: 1;
+    transition: opacity .2s;
+  }
+}
+
+@media (max-width: $customizer-hide-width) {
+  #template-customizer {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.layout-menu-100vh #template-customizer {
+  block-size: 100dvh;
+}
+
+/* RTL */
+
+:dir(rtl) {
+  #template-customizer:not(.template-customizer-open){
+    transform: translateX(-($customizer-width + $customizer-spacer));
+  }
+}

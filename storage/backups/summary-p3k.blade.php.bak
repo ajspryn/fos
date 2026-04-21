@@ -1,0 +1,25 @@
+<!-- Summary Identitas Nasabah -->
+<div class="card-body invoice-padding pt-0">
+    <div class="row invoice-spacing">
+        <div class="col-xl-8 p-0">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="pe-1">Tanggal Pengajuan</td>
+                        <td>:
+                            {{ strtoupper(strftime('%d %B %Y', strtotime($pembiayaan->tanggal_pengajuan))) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pe-1">Pengajuan Fas. Aktif Ke-</td>
+                        <td>:
+                            {{ $pembiayaan->pengajuan_fas_aktif_ke }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pe-1">Nama AO</td>
+                        <td>:
+                            {{ strtoupper($pembiayaan->user->name) }}
+                        </td>
+                    </tr>
+... (truncated for brevity)

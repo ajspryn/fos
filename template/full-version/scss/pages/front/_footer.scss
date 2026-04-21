@@ -1,0 +1,73 @@
+// variables
+@import "./variables";
+
+.landing-footer {
+  --#{$prefix}footer-text: var(--#{$prefix}white);
+  --#{$prefix}footer-bottom-text: #d3d4dc;
+  --#{$prefix}footer-bottom-bg: #282c3e;
+  --#{$prefix}footer-top-bg: #241d31;
+  .footer-link,
+  .footer-text {
+    color: var(--#{$prefix}footer-text);
+    opacity: .78;
+  }
+  .footer-title {
+    color: var(--#{$prefix}footer-text);
+    opacity: .92;
+  }
+  .footer-bottom-text {
+    color: var(--#{$prefix}footer-bottom-text);
+  }
+  .footer-bottom {
+    background-color: var(--#{$prefix}footer-bottom-bg);
+  }
+  .footer-link {
+    transition: $btn-transition;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .footer-top {
+    padding-block: 3.6875rem 2.4375rem;
+    @include border-top-radius($section-radius);
+    @include media-breakpoint-down(md) {
+      padding-block: 3rem;
+      padding-inline: 0;
+    }
+
+    .footer-bg {
+      object-position: center;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .footer-logo-description {
+      max-inline-size: 385px;
+    }
+  }
+
+  /* use dark variables as front footer having dark background */
+  .footer-form {
+    max-inline-size: 22.25rem;
+    input {
+      background-color: transparent;
+      color: var(--#{$prefix}footer-text);
+      &,
+      &:hover:not(:focus):not(:disabled) {
+        border-color: $border-color-dark;
+      }
+      &:focus {
+        border-color: var(--#{$prefix}primary);
+        box-shadow: 0 .125rem .25rem color-mix(in srgb, var(--#{$prefix}primary) $input-btn-focus-color-opacity, $paper-bg-dark);
+      }
+      &::placeholder {
+        color: rgba(var(--#{$prefix}white-rgb), .5);
+      }
+    }
+    label {
+      color: $headings-color-dark;
+    }
+  }
+}

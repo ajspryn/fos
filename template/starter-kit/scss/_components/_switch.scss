@@ -1,0 +1,296 @@
+// Switches
+// *******************************************************************************
+
+.switch {
+  --#{$prefix}switch-bg: #{$switch-off-bg};
+  --#{$prefix}switch-color: #{$switch-off-color};
+  --#{$prefix}switch-border-color: #{$switch-off-border};
+  --#{$prefix}switch-box-shadow: #{$form-switch-box-shadow};
+  --#{$prefix}switch-holder-bg: #{$switch-holder-bg};
+  --#{$prefix}switch-holder-shadow: #{$switch-holder-shadow};
+  --#{$prefix}switch-box-shadow-color: #{$switch-box-shadow-color};
+
+  /* Checked state */
+  .switch-input:checked ~ .switch-toggle-slider {
+    --#{$prefix}switch-bg: var(--#{$prefix}primary);
+    --#{$prefix}switch-color: var(--#{$prefix}primary-contrast);
+    --#{$prefix}switch-border-color: var(--#{$prefix}primary);
+    --#{$prefix}switch-box-shadow: 0 .125rem .375rem 0 rgba(var(--#{$prefix}switch-box-shadow-color), .3);
+  }
+
+  &[class*="switch-outline-"],
+  &.switch-outline {
+    --#{$prefix}switch-bg: transparent;
+    --#{$prefix}switch-box-shadow: none;
+    --#{$prefix}switch-holder-bg: #{$switch-off-bg};
+    --#{$prefix}switch-holder-shadow: none;
+
+    // Checked state
+    .switch-input:checked ~ .switch-toggle-slider {
+      --#{$prefix}switch-bg: transparent;
+      --#{$prefix}switch-box-shadow: none;
+    }
+  }
+  &.switch-outline {
+    // Checked state
+    .switch-input:checked ~ .switch-toggle-slider {
+      --#{$prefix}switch-color: var(--#{$prefix}primary);
+      --#{$prefix}switch-border-color: var(--#{$prefix}primary);
+      --#{$prefix}switch-holder-bg: var(--#{$prefix}primary);
+    }
+  }
+  position: relative;
+  display: inline-block;
+  @include border-radius($switch-border-radius);
+  cursor: pointer;
+  margin-inline-end: $switch-spacer-x;
+  vertical-align: middle;
+
+  &:has(.switch-input:disabled) {
+    cursor: not-allowed;
+  }
+
+  @include template-switch-size-base(
+    "",
+    $switch-width,
+    $switch-height,
+    $switch-font-size,
+    $switch-label-font-size,
+    $switch-label-line-height,
+    $switch-inner-spacer
+  );
+
+  .switch-input {
+    &.is-invalid ~ .switch-label,
+    .was-validated &:invalid ~ .switch-label {
+      color: var(--#{$prefix}form-invalid-border-color);
+    }
+    &.is-valid ~ .switch-label,
+    .was-validated &:valid ~ .switch-label {
+      color: var(--#{$prefix}form-valid-border-color);
+    }
+    &.is-invalid ~ .switch-toggle-slider,
+    .was-validated &:invalid ~ .switch-toggle-slider {
+      --#{$prefix}switch-border-color: var(--#{$prefix}form-invalid-border-color);
+    }
+    &.is-valid ~ .switch-toggle-slider,
+    .was-validated &:valid ~ .switch-toggle-slider {
+      --#{$prefix}switch-border-color: var(--#{$prefix}form-valid-border-color);
+    }
+    &.is-invalid:checked ~ .switch-toggle-slider,
+    .was-validated &:invalid:checked ~ .switch-toggle-slider {
+      --#{$prefix}switch-bg: var(--#{$prefix}form-invalid-color);
+      --#{$prefix}switch-box-shadow: none;
+    }
+    &.is-valid:checked ~ .switch-toggle-slider,
+    .was-validated &:valid:checked ~ .switch-toggle-slider {
+      --#{$prefix}switch-bg: var(--#{$prefix}form-valid-color);
+      --#{$prefix}switch-box-shadow: none;
+    }
+  }
+}
+
+/* Input
+******************************************************************************* */
+
+.switch-input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+
+  .was-validated &:invalid ~ .valid-feedback,
+  .was-validated &:invalid ~ .valid-tooltip,
+  &.is-invalid ~ .valid-feedback,
+  &.is-invalid ~ .valid-tooltip,
+  .was-validated &:valid ~ .valid-feedback,
+  .was-validated &:valid ~ .valid-tooltip,
+  &.is-valid ~ .valid-feedback,
+  &.is-valid ~ .valid-tooltip {
+    display: block;
+  }
+}
+
+/* Toggle slider
+******************************************************************************* */
+
+.switch-toggle-slider {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid var(--#{$prefix}switch-border-color);
+  @include border-radius($switch-border-radius);
+  background: var(--#{$prefix}switch-bg);
+  box-shadow: var(--#{$prefix}switch-box-shadow);
+  color: var(--#{$prefix}switch-color);
+  font-size: $switch-font-size;
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  transition-duration: .2s;
+  transition-property: inset-inline-start, inset-inline-end, background, box-shadow;
+  user-select: none;
+  &::after {
+    position: absolute;
+    display: block;
+    @include border-radius(50%);
+    background: var(--#{$prefix}switch-holder-bg);
+    box-shadow: var(--#{$prefix}switch-holder-shadow);
+    content: "";
+    inset-block-start: 50%;
+    inset-inline: 8% auto;
+    transform: translateY(-50%);
+    transition-duration: .2s;
+    transition-property: inset-inline-start, inset-inline-end, background;
+  }
+}
+
+/* Label switch
+******************************************************************************* */
+
+.switch-label {
+  position: relative;
+  display: inline-block;
+  color: $switch-label-color;
+  font-weight: 400;
+  &:first-child {
+    padding-inline-end: $switch-gutter;
+  }
+}
+
+/* Checked / Unchecked states */
+.switch-off,
+.switch-on {
+  position: absolute;
+  block-size: 100%;
+  inline-size: 100%;
+  inset-block-start: 0;
+  text-align: center;
+  transition-duration: .2s;
+  transition-property: inset-inline-start, inset-inline-end;
+}
+
+.switch-on {
+  inset-inline-start: -100%;
+
+  .switch-input:not(:checked) ~ .switch-toggle-slider & {
+    color: transparent;
+  }
+}
+
+.switch-off {
+  inset-inline-start: 0;
+}
+
+/* Checked state */
+.switch-input:checked ~ .switch-toggle-slider {
+  &::after {
+    inset-inline: 95% auto;
+    transform: translate(-100%, -50%);
+    :dir(rtl) & {
+      inset-inline: 94% auto;
+      transform: translate(100%, -50%);
+    }
+  }
+  .switch-on {
+    inset-inline-start: 0;
+  }
+
+  .switch-off {
+    color: transparent;
+    inset-inline-start: 100%;
+  }
+}
+
+/* Stacked switches
+******************************************************************************* */
+
+.switches-stacked {
+  @include clearfix ();
+
+  .switch {
+    display: block;
+    margin-inline: 0;
+    &:not(:last-child) {
+      margin-block-end: $switch-spacer-y;
+    }
+  }
+}
+
+/* Square
+******************************************************************************* */
+
+.switch-square,
+.switch-square .switch-toggle-slider {
+  @if $enable-rounded {
+    @include border-radius($switch-square-border-radius);
+  } @else {
+    @include border-radius(0);
+  }
+}
+
+.switch-square .switch-toggle-slider::after {
+  @if $enable-rounded {
+    @include border-radius(calc(#{$switch-square-border-radius} - 2px));
+  } @else {
+    @include border-radius(0);
+  }
+}
+
+/* Disabled
+******************************************************************************* */
+
+.switch-input:disabled {
+  ~ .switch-toggle-slider {
+    opacity: $switch-disabled-opacity;
+  }
+
+  ~ .switch-label {
+    color: $switch-label-disabled-color;
+  }
+}
+
+/* Switch Sizes
+******************************************************************************* */
+
+@include template-switch-size(
+  "sm",
+  $switch-width-sm,
+  $switch-height-sm,
+  $switch-font-size,
+  $switch-label-font-size-sm,
+  $switch-label-line-height-sm,
+  $switch-inner-spacer-sm
+);
+@include template-switch-size(
+  "lg",
+  $switch-width-lg,
+  $switch-height-lg,
+  $switch-font-size,
+  $switch-label-font-size-lg,
+  $switch-label-line-height-lg
+);
+
+/* Validation states
+******************************************************************************* */
+
+.switch .valid-feedback,
+.switch .invalid-feedback {
+  padding-inline-start: $switch-gutter;
+}
+
+/* Generate contextual modifier classes for colorizing the alert */
+@each $state in map-keys($theme-colors) {
+  .switch-#{$state} {
+    .switch-input:checked ~ .switch-toggle-slider {
+      --#{$prefix}switch-bg: var(--#{$prefix}#{$state});
+      --#{$prefix}switch-border-color: var(--#{$prefix}#{$state});
+      --#{$prefix}switch-color: var(--#{$prefix}#{$state}-contrast);
+      --#{$prefix}switch-box-shadow-color: var(--#{$prefix}#{$state}-rgb);
+    }
+  }
+  .switch-outline-#{$state} {
+    .switch-input:checked ~ .switch-toggle-slider {
+      --#{$prefix}switch-color: var(--#{$prefix}#{$state});
+      --#{$prefix}switch-border-color: var(--#{$prefix}#{$state});
+      --#{$prefix}switch-holder-bg: var(--#{$prefix}#{$state});
+    }
+  }
+}

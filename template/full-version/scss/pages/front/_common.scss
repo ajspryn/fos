@@ -1,0 +1,49 @@
+// scss
+body {
+  background-color: var(--#{$prefix}paper-bg);
+}
+.section-py {
+  padding-block: 6.25rem;
+  padding-inline: 0;
+
+  @include media-breakpoint-down(xl) {
+    padding-block: 4rem;
+    padding-inline: 0;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-block: 3rem;
+    padding-inline: 0;
+  }
+}
+
+.first-section-pt {
+  padding-block-start: 11.28rem;
+  @include media-breakpoint-down(xl) {
+    padding-block-start: 7.5rem;
+  }
+}
+
+.card {
+  /* card hover border color */
+  &[class*="card-hover-border-"] {
+    transition: $card-transition;
+  }
+}
+
+.banner-bg-img {
+  position: absolute;
+  block-size: 100%;
+  inline-size: 100%;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  object-fit: cover;
+  object-position: left;
+}
+
+.section-title-img {
+  block-size: 100%;
+  inline-size: 120%;
+  inset-block-start: 10px;
+  inset-inline-start: -12%;
+}

@@ -1,0 +1,11 @@
+/* notiflix
+ ******************************************************************************* */
+@import "../../scss/_bootstrap-extended/include";
+@import "notiflix/src/notiflix";
+
+.notiflix-block,
+.notiflix-loading {
+  .sk-wave {
+    --sk-color: var(--#{$prefix}white);
+  }
+}

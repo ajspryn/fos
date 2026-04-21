@@ -1,0 +1,193 @@
+/* The color-scheme CSS property https://web.dev/color-scheme/ */
+
+:root,
+[data-bs-theme="light"] {
+  @if ($bordered-style == true){
+    /* Bordered Skin Variables */
+    &[data-skin="bordered"]{
+      --#{$prefix}body-bg: var(--#{$prefix}paper-bg);
+      --#{$prefix}navbar-bg: var(--#{$prefix}paper-bg);
+      --#{$prefix}navbar-box-shadow: none;
+      --#{$prefix}navbar-border-color: var(--#{$prefix}border-color);
+      --#{$prefix}menu-box-shadow: 0 0 0 1px var(--#{$prefix}border-color);
+      --#{$prefix}menu-horizontal-menu-box-shadow: 0 0 0 1px #{$border-color};
+      --#{$prefix}menu-horizontal-menu-sub-box-shadow: 0 0 0 1px #{$border-color};
+
+      --tagify-dropdown-box-shadow: none;
+      --tagify-dropdown-border-width: #{$border-width};
+
+      .layout-navbar.navbar-detached {
+        box-shadow: 0 0 0 1px var(--#{$prefix}border-color);
+      }
+
+      .footer{
+        --#{$prefix}footer-border-width: 1px;
+        --#{$prefix}footer-box-shadow: none;
+      }
+
+      // Accordion
+      .accordion {
+        --#{$prefix}accordion-box-shadow: none;
+        --#{$prefix}accordion-active-box-shadow: none;
+        --#{$prefix}accordion-border-color: #{$border-color};
+      }
+
+      // Button
+      .btn {
+        --#{$prefix}btn-box-shadow: none;
+        --#{$prefix}btn-focus-box-shadow: none;
+        --#{$prefix}btn-active-shadow: none;
+      }
+
+      // Dropdown
+      .dropdown-menu {
+        --#{$prefix}dropdown-box-shadow: none;
+        --#{$prefix}dropdown-border-width: #{$border-width};
+      }
+
+      // modal
+      .modal:not(.modal-transparent) .modal-content{
+        --#{$prefix}modal-box-shadow: none;
+        --#{$prefix}modal-border-width: #{$border-width};
+      }
+
+      // offcanvas
+      .offcanvas {
+        --#{$prefix}offcanvas-box-shadow: none;
+        --#{$prefix}offcanvas-border-width: #{$border-width};
+      }
+      :dir(rtl) {
+        .offcanvas-start {
+          border-inline-end: #{$border-width} #{$border-style} var(--#{$prefix}offcanvas-border-color);
+          border-inline-start: 0;
+        }
+        .offcanvas-end {
+          border-inline-end: 0;
+          border-inline-start: #{$border-width} #{$border-style} var(--#{$prefix}offcanvas-border-color);
+        }
+      }
+      .toast,
+      .bs-toast.toast {
+        --#{$prefix}toast-box-shadow: none;
+        --#{$prefix}toast-border-width: #{$border-width};
+      }
+      .notyf__toast {
+        &.notyf__success,
+        &.notyf__error,
+        &.notyf__info,
+        &.notyf__warning {
+          box-shadow: none;
+        }
+      }
+
+      // Tabs & Pills
+      --#{$prefix}nav-box-shadow: none;
+      --#{$prefix}nav-border-color: var(--#{$prefix}border-color);
+
+      // Pagination
+      .pagination {
+        --#{$prefix}pagination-box-shadow-color: transparent;
+      }
+
+      // Card
+      .card {
+        --#{$prefix}card-box-shadow: 0px 0px 0px var(--#{$prefix}border-width) var(--#{$prefix}card-border-color);
+        --#{$prefix}card-hover-box-shadow: 0px 0px 0px var(--#{$prefix}border-width) var(--#{$prefix}card-border-color);
+      }
+      .card-group {
+        --#{$prefix}card-box-shadow: none;
+        .card {
+          --#{$prefix}card-border-width: #{$border-width};
+        }
+      }
+
+      // popover
+      .popover:not(.custom-popover) {
+        --#{$prefix}popover-box-shadow: none;
+        --#{$prefix}popover-border-color: var(--#{$prefix}border-color);
+      }
+
+      // avatar
+      .avatar {
+        --#{$prefix}box-shadow: none;
+      }
+
+      // shepherd
+      .shepherd-element {
+        box-shadow: none;
+      }
+
+      // sweetalert2
+      .swal2-container .swal2-popup {
+        box-shadow: none;
+      }
+
+      // apexcharts
+      .apexcharts-canvas .apexcharts-tooltip {
+        box-shadow: none;
+      }
+
+      // sliders
+      .noUi-target .noUi-tooltip {
+        box-shadow: none;
+      }
+
+      // third-party libraries
+      .ql-toolbar .ql-picker-options,
+      .ql-snow .ql-tooltip,
+      .flatpickr-calendar,
+      .daterangepicker,
+      .ui-timepicker-wrapper,
+      .pcr-app,
+      .bs-stepper:not(.wizard-modern),
+      .bs-stepper.wizard-modern .bs-stepper-content {
+        border-width: var(--#{$prefix}border-width);
+        border-style: var(--#{$prefix}border-style);
+        border-color: var(--#{$prefix}border-color);
+        box-shadow: none;
+      }
+
+      // dropzone
+      .dz-preview {
+        border-width: var(--#{$prefix}border-width);
+        box-shadow: none;
+      }
+
+      // Kanban
+      .app-kanban .kanban-wrapper .kanban-board .kanban-item {
+        border: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color);
+        box-shadow: none;
+        &:hover {
+          box-shadow: none;
+        }
+      }
+
+      // select & tags
+      .select2-container {
+        --#{$prefix}select-dropdown-border-width: #{$border-width};
+        --#{$prefix}select-dropdown-box-shadow: none;
+      }
+
+      // authentication
+      .authentication-wrapper .authentication-bg {
+        border-inline-start: 1px solid var(--#{$prefix}border-color);
+      }
+
+      .twitter-typeahead .tt-menu {
+        border-width: #{$border-width};
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+
+@if ($bordered-style == true) {
+  /* Bordered Skin Variables */
+  [data-skin="bordered"] {
+    [data-bs-theme="dark"] {
+      --#{$prefix}menu-horizontal-menu-box-shadow: 0 0 0 1px #{$border-color-dark};
+      --#{$prefix}menu-horizontal-menu-sub-box-shadow: 0 0 0 1px #{$border-color-dark};
+    }
+  }
+}

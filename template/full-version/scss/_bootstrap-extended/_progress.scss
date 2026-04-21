@@ -1,0 +1,41 @@
+/* Progress
+******************************************************************************* */
+
+.progress {
+  --#{$prefix}progress-bar-shadow-color: #{$progress-bar-shadow-color};
+  .progress-bar {
+    background-color: var(--#{$prefix}primary);
+    box-shadow: 0 2px 4px 0 var(--#{$prefix}progress-bar-shadow-color);
+    color: var(--#{$prefix}white);
+  }
+
+  &:has(:only-child) {
+    overflow: visible;
+  }
+
+  .progress-bar:first-child {
+    @include border-start-radius($progress-border-radius);
+  }
+  .progress-bar:last-child {
+    @include border-end-radius($progress-border-radius);
+  }
+}
+
+/* RTL
+******************************************************************************* */
+
+:dir(rtl) {
+  .progress-bar-striped {
+    @include gradient-striped(rgba(var(--#{$prefix}white-rgb), .15), -45deg);
+  }
+
+  .progress-bar-animated {
+    animation-direction: reverse;
+  }
+}
+
+@each $state in map-keys($theme-colors) {
+  .progress-bar.bg-#{$state} {
+    --#{$prefix}progress-bar-shadow-color: rgba(var(--#{$prefix}#{$state}-rgb), .3);
+  }
+}

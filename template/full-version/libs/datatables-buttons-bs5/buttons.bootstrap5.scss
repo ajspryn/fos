@@ -1,0 +1,27 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "datatables.net-buttons-bs5/css/buttons.bootstrap5";
+
+div.dt-container {
+  .dt-button-collection {
+    min-inline-size: 3.5rem;
+  }
+
+  div.dropdown-menu.dt-button-collection,
+  div.dt-button-collection .dt-button:not(.dt-btn-split-drop) {
+    min-inline-size: 8rem;
+  }
+  div.dropdown-menu.dt-button-collection .dt-button {
+    border-radius: $border-radius;
+  }
+  .dt-buttons {
+    &.btn-group {
+      .btn {
+        border-color: transparent;
+      }
+      &:not(.btn-group-vertical) > .btn-group:not(:last-child) > .btn,
+      &:not(.btn-group-vertical) > :not(.btn-check) + .btn {
+        @include border-radius($border-radius !important);
+      }
+    }
+  }
+}

@@ -1,0 +1,201 @@
+<?php
+
+namespace Modules\P3k\Http\Controllers;
+
+use App\Models\Role;
+use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Modules\P3k\Entities\P3kFoto;
+use Modules\P3k\Entities\P3kPembiayaan;
+use Modules\P3k\Entities\P3kPembiayaanHistory;
+
+class P3kCetakProposalController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     * @return Renderable
+     */
+    public function index()
+    {
+        $id = Request('id');
+        $cek = P3kPembiayaanHistory::select()
+            ->where('p3k_pembiayaan_id', $id)
+            ->where('user_id', Auth::user()->id)
+            ->get()
+            ->count();
+
+        if ($cek == 0) {
+            P3kPembiayaanHistory::create([
+                'p3k_pembiayaan_id' => $id,
+                'status_id' => 2,
+                'jabatan_id' => 1,
+                'divisi_id' => 0,
+                'user_id' => Auth::user()->$id,
+            ]);
+        }
+
+        $data = P3kPembiayaan::select()->where('id', $id)->get()->first();
+
+        //Angsuran
+        $nominalPembiayaan = $data->nominal_pembiayaan;
+        $tenor = $data->tenor;
+        $rate = $data->rate / 100;
+
+        $hargaJual = ($nominalPembiayaan * $rate * $tenor) + $nominalPembiayaan;
+        $angsuran = $hargaJual / $tenor;
+        $totalAngsuranBtbFasAktif = $data->total_angsuran_btb_fas_aktif;
+
+        //Biaya Administrasi
+        $byAdm = 1.5 / 100 * $nominalPembiayaan;
+
+        //Pendapatan
+        $gajiPokok = $data->gaji_pokok;
+        $gajiTpp = $data->gaji_tpp;
+        $gajiPasangan = $data->gaji_pasangan;
+        $totalPendapatan = $gajiPokok + $gajiTpp;
+        $totalPendapatanJoinIncome = $gajiPokok + $gajiTpp + $gajiPasangan;
+
+        //Pengeluaran
+        $pengeluaranLainnya = $data->pengeluaran_lainnya;
+
+        //Pendapatan bersih
+        $pendapatanBersih = $totalPendapatan - $totalAngsuranBtbFasAktif - $pengeluaranLainnya;
+        $pendapatanBersihJoinIncome = $totalPendapatanJoinIncome - $totalAngsuranBtbFasAktif - $pengeluaranLainnya;
+
+        //Proses Scoring
+        //DSR
+        $dsr = number_format((($angsuran + $totalAngsuranBtbFasAktif) / $totalPendapatan) * 100);
+        //DSR Join Income
+        $dsrJoinIncome = number_format((($angsuran + $totalAngsuranBtbFasAktif) / $totalPendapatanJoinIncome) * 100);
+
+
+        //Timeline
+        $waktuAwal = P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->orderby('created_at', 'asc')->get()->first();
+        $waktuAkhir = P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first();
+
+        $waktuMulai = Carbon::parse($waktuAwal->created_at);
+        $waktuBerakhir = Carbon::parse($waktuAkhir->created_at);
+
+        $totalWaktu = $waktuMulai->diffAsCarbonInterval($waktuBerakhir);
+
+        $catatanApprovals = P3kPembiayaanHistory::select('p3k_pembiayaan_histories.*')
+            ->where('p3k_pembiayaan_id', $id)
+            ->whereIn('jabatan_id', [2, 3])
+            ->where(function ($query) {
+                $query->where('jabatan_id', 3)
+                    ->where('status_id', 11)
+                    ->orWhere(function ($query) {
+                        $query->where('jabatan_id', 2)
+                            ->where('status_id', 5);
+                    });
+            })
+            ->orderBy('created_at', 'ASC')
+            ->groupBy('jabatan_id')
+            ->get();
+
+
+
+        return view('p3k::cetak', [
+            'title' => 'Cetak Proposal P3K',
+            'arr' => -2,
+            'banyakHistory' => P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->count(),
+            'jabatan' => Role::select()->where('user_id', Auth::user()->id)->get()->first(),
+            'pembiayaan' => P3kPembiayaan::select()->where('id', $id)->get()->first(),
+            'timelines' => P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->get(),
+
+            'fotos' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->get(),
+            'bonMurabahah' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Bon Murabahah')->get()->first(),
+            'fotoKtp' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->get()->first(),
+            'fotoKartuKeluarga' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->get()->first(),
+            'fotoNpwp' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto NPWP')->get()->first(),
+            'fotoKtpPasangan' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Foto KTP Pasangan')->get()->first(),
+            'fotoStatusPernikahan' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'Akta Status Pernikahan/Perceraian')->get()->first(),
+
+            'idebPasangan' => P3kFoto::select()->where('p3k_pembiayaan_id', $id)->where('kategori', 'IDEB Pasangan')->get()->first(),
+
+            'hargaJual' => $hargaJual,
+            'tenor' => $tenor,
+            'rate' => $rate,
+            'angsuran' => $angsuran,
+            'pendapatanBersih' => $pendapatanBersih,
+            'pendapatanBersihJoinIncome' => $pendapatanBersihJoinIncome,
+            'byAdm' => $byAdm,
+
+            //DSR
+            'dsr' => $dsr,
+            'dsrJoinIncome' => $dsrJoinIncome,
+
+            //History
+            'history' => P3kPembiayaanHistory::select()->where('p3k_pembiayaan_id', $id)->orderby('created_at', 'desc')->get()->first(),
+
+            //SLA
+            'totalWaktu' => $totalWaktu,
+
+            //Catatan Approval
+            'catatanApprovals' => $catatanApprovals,
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Renderable
+     */
+    public function create()
+    {
+        return view('p3k::create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return Renderable
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function show($id)
+    {
+        return view('p3k::show');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function edit($id)
+    {
+        return view('p3k::edit');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param int $id
+     * @return Renderable
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return Renderable
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

@@ -1,0 +1,44 @@
+:root,
+[data-bs-theme="light"]{
+  --#{$prefix}navbar-search-shadow: #{$navbar-search-shadow};
+
+  /* Menu */
+  --#{$prefix}menu-bg: #{$menu-bg};
+  --#{$prefix}menu-bg-rgb: #{$menu-bg-rgb};
+  --#{$prefix}menu-color: #{$menu-color};
+  --#{$prefix}menu-color-rgb: #{$menu-color-rgb};
+  --#{$prefix}menu-hover-bg: color-mix(in sRGB, var(--#{$prefix}base-color) 6%, var(--#{$prefix}menu-bg));
+  --#{$prefix}menu-hover-color: #{$menu-hover-color};
+  --#{$prefix}menu-sub-active-bg: color-mix(in sRGB, var(--#{$prefix}base-color) 8%, var(--#{$prefix}menu-bg));
+  --#{$prefix}menu-sub-active-color: #{$menu-hover-color};
+  --#{$prefix}menu-active-color: #{$menu-active-color};
+  --#{$prefix}menu-active-bg: #{$menu-active-bg};
+  --#{$prefix}menu-horizontal-active-bg: #{var(--#{$prefix}primary-bg-subtle)};
+  --#{$prefix}menu-box-shadow: #{$menu-box-shadow};
+  --#{$prefix}menu-divider-color: #{var(--#{$prefix}white)};
+  --#{$prefix}menu-width: #{$menu-width};
+  --#{$prefix}menu-collapsed-width: #{$menu-collapsed-width};
+  --#{$prefix}menu-item-spacer: #{$menu-item-spacer};
+  --#{$prefix}menu-vertical-link-padding-y: #{$menu-vertical-link-padding-y};
+  --#{$prefix}menu-vertical-link-padding-x: #{$menu-vertical-link-padding-x};
+  --#{$prefix}menu-vertical-menu-link-padding-y: #{$menu-vertical-menu-link-padding-y};
+  --#{$prefix}menu-vertical-menu-level-spacer: #{$menu-vertical-menu-level-spacer};
+  --#{$prefix}menu-horizontal-menu-box-shadow: #{$menu-horizontal-menu-box-shadow};
+  --#{$prefix}menu-horizontal-menu-sub-box-shadow: #{$menu-horizontal-menu-sub-box-shadow};
+}
+//! FIX: Added data-semidark-menu attribute to avoid semi dark menu flicker effect on page load
+[data-semidark-menu="true"],
+[data-bs-theme="dark"]{
+  --#{$prefix}menu-bg: #{$menu-bg-dark};
+  --#{$prefix}menu-bg-rgb: #{$menu-bg-rgb};
+  --#{$prefix}menu-active-bg: #{$menu-active-bg};
+  --#{$prefix}menu-horizontal-active-bg: #{$primary-bg-subtle-dark};
+  --#{$prefix}menu-color: #{$menu-color-dark};
+  --#{$prefix}menu-color-rgb: #{$menu-color-rgb-dark};
+  --#{$prefix}menu-hover-bg: color-mix(in sRGB, var(--#{$prefix}base-color) 6%, var(--#{$prefix}menu-bg));
+  --#{$prefix}menu-hover-color: #{$menu-color-dark};
+  --#{$prefix}menu-sub-active-bg: color-mix(in sRGB, var(--#{$prefix}base-color) 8%, var(--#{$prefix}menu-bg));
+  --#{$prefix}menu-sub-active-color: #{$menu-color-dark};
+  --#{$prefix}menu-box-shadow: #{$menu-box-shadow-dark};
+  --#{$prefix}menu-divider-color: #{$menu-divider-color};
+}

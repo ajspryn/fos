@@ -1,0 +1,642 @@
+<?php
+
+namespace Modules\Dirbis\Http\Controllers;
+
+use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Modules\Akad\Entities\Pembiayaan;
+use Modules\Form\Entities\FormPprPembiayaan;
+use Modules\Form\Entities\SkpdPembiayaan;
+use Modules\P3k\Entities\P3kPembiayaan;
+use Modules\P3k\Entities\P3kPembiayaanHistory;
+use Modules\Pasar\Entities\PasarPembiayaan;
+use Modules\Pasar\Entities\PasarPembiayaanHistory;
+use Modules\Skpd\Entities\SkpdPembiayaanHistory;
+use Modules\Umkm\Entities\UmkmPembiayaanHistory;
+use Modules\Ppr\Entities\PprPembiayaanHistory;
+use Modules\Umkm\Entities\UmkmPembiayaan;
+
+class DirbisController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     * @return Renderable
+     */
+    public function index()
+    {
+        //Proposal
+        // $pasarproposal = PasarPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->count();
+        // $skpdproposal = SkpdPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->count();
+        // $umkmproposal = UmkmPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->count();
+        // $pprproposal = PprPembiayaanHistory::select()->where('status_id', 3)->orderby('created_at', 'desc')->count();
+
+        //Diterima (Selesai Akad)
+        $pasarSelesaiAkad = Pembiayaan::select()->where('segmen', 'Pasar')->whereYear('created_at', date('Y'))->where('status', 'Selesai Akad')->count();
+        $skpdSelesaiAkad = Pembiayaan::select()->where('segmen', 'SKPD')->whereYear('created_at', date('Y'))->where('status', 'Selesai Akad')->count();
+        $umkmSelesaiAkad = Pembiayaan::select()->where('segmen', 'UMKM')->whereYear('created_at', date('Y'))->where('status', 'Selesai Akad')->count();
+        $pprSelesaiAkad = Pembiayaan::select()->where('segmen', 'PPR')->whereYear('created_at', date('Y'))->where('status', 'Selesai Akad')->count();
+        $p3kSelesaiAkad = Pembiayaan::select()->where('segmen', 'P3K')->whereYear('created_at', date('Y'))->where('status', 'Selesai Akad')->count();
+
+        //Ditolak
+        $pasarDitolak = PasarPembiayaanHistory::select()->whereYear('created_at', date('Y'))->latest()->where('status_id', 6)->count();
+        $skpdDitolak = SkpdPembiayaanHistory::select()->whereYear('created_at', date('Y'))->latest()->where('status_id', 6)->count();
+        $umkmDitolak = UmkmPembiayaanHistory::select()->whereYear('created_at', date('Y'))->latest()->where('status_id', 6)->count();
+        $pprDitolak = PprPembiayaanHistory::select()->whereYear('created_at', date('Y'))->latest()->where('status_id', 6)->count();
+        $p3kDitolak = PprPembiayaanHistory::select()->whereYear('created_at', date('Y'))->latest()->where('status_id', 6)->count();
+
+        //Batal Akad
+        $pasarBatal = Pembiayaan::select()->where('segmen', 'Pasar')->whereYear('created_at', date('Y'))->where('status', 'Akad Batal')->count();
+        $skpdBatal = Pembiayaan::select()->where('segmen', 'SKPD')->whereYear('created_at', date('Y'))->where('status', 'Akad Batal')->count();
+        $umkmBatal = Pembiayaan::select()->where('segmen', 'UMKM')->whereYear('created_at', date('Y'))->where('status', 'Akad Batal')->count();
+        $pprBatal = Pembiayaan::select()->where('segmen', 'PPR')->whereYear('created_at', date('Y'))->where('status', 'Akad Batal')->count();
+        $p3kBatal = Pembiayaan::select()->where('segmen', 'P3K')->whereYear('created_at', date('Y'))->where('status', 'Akad Batal')->count();
+
+
+        //Proposal Pengajuan
+        //P3K
+        $p3ks = P3kPembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->get();
+
+        $proposalP3k = 0;
+        foreach ($p3ks as $p3k) {
+            $history = P3kPembiayaanHistory::select()
+                ->where('p3k_pembiayaan_id', $p3k->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+                $proposalP3k++;
+            }
+        }
+
+        //SKPD
+        $skpds = SkpdPembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->get();
+
+        $proposalSkpd = 0;
+        foreach ($skpds as $skpd) {
+            $history = SkpdPembiayaanHistory::select()
+                ->where('skpd_pembiayaan_id', $skpd->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+                $proposalSkpd++;
+            }
+        }
+
+        //PPR
+        $pprs = FormPprPembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->get();
+
+        $proposalPpr = 0;
+        foreach ($pprs as $ppr) {
+            $history = PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $ppr->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+                $proposalPpr++;
+            }
+        }
+
+        //UMKM
+        $umkms = UmkmPembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->get();
+
+        $proposalUmkm = 0;
+        foreach ($umkms as $umkm) {
+            $history = UmkmPembiayaanHistory::select()
+                ->where('umkm_pembiayaan_id', $umkm->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+                $proposalUmkm++;
+            }
+        }
+
+        //Pasar
+        $pasars = PasarPembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->get();
+
+        $proposalPasar = 0;
+        foreach ($pasars as $pasar) {
+            $history = PasarPembiayaanHistory::select()
+                ->where('pasar_pembiayaan_id', $pasar->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if (($history->jabatan_id == 3 && $history->status_id == 5) || ($history->jabatan_id == 4 && $history->status_id == 4)) {
+                $proposalPasar++;
+            }
+        }
+
+        //Review
+        $komites = UmkmPembiayaan::select()
+            ->whereNotNull('sektor_id')
+            ->orderby('updated_at', 'desc')
+            ->get();
+
+        $umkmreview = 0;
+        foreach ($komites as $komite) {
+            $history = UmkmPembiayaanHistory::select()
+                ->where('umkm_pembiayaan_id', $komite->id)
+                ->orderby('created_at', 'desc')
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+            if ($history->status_id == 7) {
+                $umkmreview++;
+            }
+        }
+
+        $pasars = PasarPembiayaan::select()
+            ->whereNotNull('sektor_id')
+            ->orderby('updated_at', 'desc')
+            ->get();
+
+        $pasarreview = 0;
+        foreach ($pasars as $pasar) {
+            $history = PasarPembiayaanHistory::select()
+                ->where('pasar_pembiayaan_id', $pasar->id)
+                ->orderby('created_at', 'desc')
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+            if ($history->status_id == 7) {
+                $pasarreview++;
+            }
+        }
+
+        $skpds = SkpdPembiayaan::select()
+            ->whereNotNull('skpd_sektor_ekonomi_id')
+            ->orderby('updated_at', 'desc')
+            ->get();
+
+        $skpdreview = 0;
+        foreach ($skpds as $skpd) {
+            $history = SkpdPembiayaanHistory::select()
+                ->where('skpd_pembiayaan_id', $skpd->id)
+                ->orderby('created_at', 'desc')
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+            if ($history->status_id == 7) {
+                $skpdreview++;
+            }
+        }
+
+        $pprs = FormPprPembiayaan::select()
+            ->get();
+
+        $pprreview = 0;
+        foreach ($pprs as $ppr) {
+            $history = PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $ppr->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            $proposal_ppr = FormPprPembiayaan::select()
+                ->where('id', $history->form_ppr_pembiayaan_id)
+                ->first();
+
+            if ($history->status_id == 7) {
+                $pprreview++;
+            }
+        }
+
+        $p3kReview = 0;
+        foreach ($komites as $komite) {
+            $history = P3kPembiayaanHistory::select()
+                ->where('p3k_pembiayaan_id', $komite->id)
+                ->orderby('created_at', 'desc')
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+            if ($history->status_id == 7) {
+                $p3kReview++;
+            }
+        }
+
+        //Pipelines
+        //Pipeline P3K
+        $p3kPipelines = P3kPembiayaan::select()->whereYear('created_at', date('Y'))->get();
+
+        $pipelineP3k = 0;
+        foreach ($p3kPipelines as $p3kPipeline) {
+            $history = P3kPembiayaanHistory::select()
+                ->where('p3k_pembiayaan_id', $p3kPipeline->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                if ($history->status_id < 9) {
+                    $pipelineP3k++;
+                }
+            }
+        }
+
+        //Pipeline SKPD
+        $skpdPipelines = SkpdPembiayaan::select()->whereYear('created_at', date('Y'))->get();
+
+        $pipelineSkpd = 0;
+        foreach ($skpdPipelines as $skpdPipeline) {
+            $history = SkpdPembiayaanHistory::select()
+                ->where('skpd_pembiayaan_id', $skpdPipeline->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                if ($history->status_id < 9) {
+                    $pipelineSkpd++;
+                }
+            }
+        }
+
+        //Pipeline PPR
+        $pprPipelines = FormPprPembiayaan::select()->whereYear('created_at', date('Y'))->get();
+
+        $pipelinePpr = 0;
+        foreach ($pprPipelines as $pprPipeline) {
+            $history = PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $pprPipeline->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                if ($history->status_id < 9) {
+                    $pipelinePpr++;
+                }
+            }
+        }
+
+        //Pipeline UMKM
+        $umkmPipelines = UmkmPembiayaan::select()->whereYear('created_at', date('Y'))->get();
+
+        $pipelineUmkm = 0;
+        foreach ($umkmPipelines as $umkmPipeline) {
+            $history = UmkmPembiayaanHistory::select()
+                ->where('umkm_pembiayaan_id', $umkmPipeline->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                if ($history->status_id < 9) {
+                    $pipelineUmkm++;
+                }
+            }
+        }
+
+        //Pipeline Pasar
+        $pasarPipelines = PasarPembiayaan::select()->whereYear('created_at', date('Y'))->get();
+
+        $pipelinePasar = 0;
+        foreach ($pasarPipelines as $pasarPipeline) {
+            $history = PasarPembiayaanHistory::select()
+                ->where('pasar_pembiayaan_id', $pasarPipeline->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if ($history->status_id != 5 || $history->jabatan_id != 4) {
+                if ($history->status_id < 9) {
+                    $pipelinePasar++;
+                }
+            }
+        }
+
+
+        //Approved by Dirbis
+        //P3K
+        $p3kApprovedsDirbis = P3kPembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->get();
+
+        $approvedDirbisP3k = 0;
+        foreach ($p3kApprovedsDirbis as $p3kApprovedDirbis) {
+            $history = P3kPembiayaanHistory::select()
+                ->where('p3k_pembiayaan_id', $p3kApprovedDirbis->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if ($history->status_id == 5 && $history->jabatan_id == 4) {
+                if ($history->status_id < 9) {
+                    $approvedDirbisP3k++;
+                }
+            }
+        }
+
+        //SKPD
+        $skpdApprovedsDirbis = SkpdPembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->get();
+
+        $approvedDirbisSkpd = 0;
+        foreach ($skpdApprovedsDirbis as $skpdApprovedDirbis) {
+            $history = SkpdPembiayaanHistory::select()
+                ->where('skpd_pembiayaan_id', $skpdApprovedDirbis->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if ($history->status_id == 5 && $history->jabatan_id == 4) {
+                if ($history->status_id < 9) {
+                    $approvedDirbisSkpd++;
+                }
+            }
+        }
+
+        //PPR
+        $pprApprovedsDirbis = FormPprPembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->get();
+
+        $approvedDirbisPpr = 0;
+        foreach ($pprApprovedsDirbis as $pprApprovedDirbis) {
+            $history = PprPembiayaanHistory::select()
+                ->where('form_ppr_pembiayaan_id', $pprApprovedDirbis->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if ($history->status_id == 5 && $history->jabatan_id == 4) {
+                if ($history->status_id < 9) {
+                    $approvedDirbisPpr++;
+                }
+            }
+        }
+
+        //UMKM
+        $umkmApprovedsDirbis = UmkmPembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->get();
+
+        $approvedDirbisUmkm = 0;
+        foreach ($umkmApprovedsDirbis as $umkmApprovedDirbis) {
+            $history = UmkmPembiayaanHistory::select()
+                ->where('umkm_pembiayaan_id', $umkmApprovedDirbis->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if ($history->status_id == 5 && $history->jabatan_id == 4) {
+                if ($history->status_id < 9) {
+                    $approvedDirbisUmkm++;
+                }
+            }
+        }
+
+        //Pasar
+        $pasarApprovedsDirbis = PasarPembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->get();
+
+        $approvedDirbisPasar = 0;
+        foreach ($pasarApprovedsDirbis as $pasarApprovedDirbis) {
+            $history = PasarPembiayaanHistory::select()
+                ->where('pasar_pembiayaan_id', $pasarApprovedDirbis->id)
+                ->latest()
+                ->first();
+
+            if (!$history) {
+                continue;
+            }
+
+            if ($history->status_id == 5 && $history->jabatan_id == 4) {
+                if ($history->status_id < 9) {
+                    $approvedDirbisPasar++;
+                }
+            }
+        }
+
+        // $cairpasar = PasarPembiayaan::join('pasar_pembiayaan_histories', 'pasar_pembiayaans.id', '=', 'pasar_pembiayaan_histories.pasar_pembiayaan_id')
+        //     ->select()
+        //     ->where('pasar_pembiayaan_histories.status_id', 9)
+        //     ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
+        //     ->get();
+
+
+        // $cairumkm = UmkmPembiayaan::join('umkm_pembiayaan_histories', 'umkm_pembiayaans.id', '=', 'umkm_pembiayaan_histories.umkm_pembiayaan_id')
+        //     ->select()
+        //     ->where('umkm_pembiayaan_histories.status_id', 9)
+        //     ->whereYear('umkm_pembiayaans.tgl_pembiayaan', date('Y'))
+        //     ->get();
+
+
+        // $cairskpd = SkpdPembiayaan::join('skpd_pembiayaan_histories', 'skpd_pembiayaans.id', '=', 'skpd_pembiayaan_histories.skpd_pembiayaan_id')
+        //     ->select()
+        //     ->where('skpd_pembiayaan_histories.status_id', 9)
+        //     ->whereYear('skpd_pembiayaans.tanggal_pengajuan', date('Y'))
+        //     ->get();
+
+        // $cairppr = FormPprPembiayaan::join('ppr_pembiayaan_histories', 'form_ppr_pembiayaans.id', '=', 'ppr_pembiayaan_histories.form_ppr_pembiayaan_id')
+        //     ->select()
+        //     ->where('ppr_pembiayaan_histories.status_id', 9)
+        //     ->whereYear('form_ppr_pembiayaans.created_at', date('Y'))
+        //     ->get();
+
+
+        //Query Chart Proposal Per Bulan
+        $proposalPerBulan = Pembiayaan::where('status', 'Selesai Akad')
+            ->select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as nama_bulan, MONTH(created_at) as bulan"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("MONTH(created_at)"))  // Menggunakan MONTH(created_at) untuk grouping
+            ->orderBy('bulan', 'ASC')  // Menggunakan 'bulan' yang merupakan MONTH(created_at)
+            ->pluck('count', 'nama_bulan');
+
+        $bulans = $proposalPerBulan->keys();
+        $hitungPerBulan = $proposalPerBulan->values();
+
+        //Query Chart Proposal Per Segmen
+        $proposalPerSegmen = Pembiayaan::where('status', 'Selesai Akad')
+            ->select('segmen', DB::raw("COUNT('id') as count"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('segmen')
+            ->pluck('count', 'segmen');
+
+        $labelSegmen = $proposalPerSegmen->keys();
+        $dataSegmen = $proposalPerSegmen->values();
+
+        //Query Chart Disburse Per Bulan
+        $disbursePerBulan = Pembiayaan::where('status', 'Selesai Akad')
+            ->select(DB::raw("MONTHNAME(created_at) as nama_bulan, MONTH(created_at) as bulan, sum(plafond) as jml_disburse"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("MONTH(created_at)"))  // Menggunakan MONTH(created_at) untuk grouping
+            ->orderBy('bulan', 'ASC')  // Menggunakan 'bulan' yang merupakan MONTH(created_at)
+            ->pluck('jml_disburse', 'nama_bulan');
+
+        $labelDisburse = $disbursePerBulan->keys();
+        $dataDisburse = $disbursePerBulan->values();
+
+        //Proposal berhasil akad per tahun
+        $proposalSelesais = Pembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->where('status', 'Selesai Akad')
+            ->get();
+
+        //Proposal batal akad per tahun
+        $proposalBatal = Pembiayaan::select()
+            ->whereYear('created_at', date('Y'))
+            ->where('status', 'Akad Batal')
+            ->count();
+
+        return view('dirbis::index', [
+            'title' => 'Dashboard Direksi',
+            // 'proposal' => $pasarproposal + $skpdproposal + $umkmproposal + $pprproposal,
+            'proposalPengajuan' => $proposalPasar + $proposalSkpd + $proposalUmkm + $proposalPpr + $proposalP3k,
+            'approvedDirbis' => $approvedDirbisPasar + $approvedDirbisSkpd + $approvedDirbisUmkm + $approvedDirbisPpr + $approvedDirbisP3k,
+            'selesaiAkad' => $pasarSelesaiAkad + $skpdSelesaiAkad + $umkmSelesaiAkad + $pprSelesaiAkad + $p3kSelesaiAkad,
+            'ditolak' => $pasarDitolak + $skpdDitolak + $umkmDitolak + $pprDitolak + $p3kDitolak,
+            // 'batalAkad' => $pasarBatal + $skpdBatal + $umkmBatal + $pprBatal + $p3kBatal,
+            'review' => $pasarreview + $skpdreview + $umkmreview + $pprreview + $p3kReview,
+            // 'cairpasars' => $cairpasar,
+            // 'cairumkms' => $cairumkm,
+            // 'cairskpds' => $cairskpd,
+            // 'cairpprs' => $cairppr,
+            'jmlPipeline' => $pipelinePasar + $pipelineSkpd + $pipelineUmkm + $pipelinePpr + $pipelineP3k,
+            'proposalSelesais' => $proposalSelesais,
+            'proposalBatal' => $proposalBatal,
+        ], compact(
+            'bulans',
+            'hitungPerBulan',
+            'labelSegmen',
+            'dataSegmen',
+            'labelDisburse',
+            'dataDisburse'
+        ));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Renderable
+     */
+    public function create()
+    {
+        return view('dirbis::create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return Renderable
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function show($id)
+    {
+        return view('dirbis::show');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function edit($id)
+    {
+        return view('dirbis::edit');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param int $id
+     * @return Renderable
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return Renderable
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

@@ -1,0 +1,67 @@
+/* Toasts
+******************************************************************************* */
+
+.bs-toast[class^="bg-"],
+.bs-toast[class*=" bg-"] {
+  --#{$prefix}toast-header-color: var(--#{$prefix}white);
+  --#{$prefix}toast-color: var(--#{$prefix}white);
+}
+
+.toast {
+  --#{$prefix}toast-font-size: #{$font-size-base};
+}
+
+.toast-body {
+  font-size: $font-size-sm;
+}
+
+.toast.bs-toast {
+  z-index: $zindex-toast;
+  background-color: var(--#{$prefix}toast-bg) !important;
+}
+
+.toast-container {
+  --#{$prefix}toast-zindex: 8;
+}
+
+.toast-header {
+  --#{$prefix}toast-border-width: 1px;
+  .btn-close {
+    margin-inline: $toast-padding-x $toast-padding-x * -.5;
+  }
+}
+
+/* Bootstrap Toasts Example */
+.toast-ex {
+  position: fixed;
+  inset-block-start: 4.1rem;
+  inset-inline: auto .5rem;
+}
+
+/* Placement Toast example */
+.toast-placement-ex {
+  position: fixed;
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark, true) {
+    color-scheme: dark;
+    .toast {
+      &:not([class*="bg-"]){
+        .btn-close{
+          --#{$prefix}btn-close-white-filter: grayscale(1);
+        }
+      }
+    }
+  }
+}
+
+/* Generate contextual modifier classes for colorizing the alert */
+@each $state in map-keys($theme-colors) {
+  .bs-toast{
+    &.bg-#{$state} {
+      --#{$prefix}toast-bg: rgba(var(--#{$prefix}#{$state}-rgb), .85);
+      --#{$prefix}toast-box-shadow: 0 .25rem 1rem rgba(var(--#{$prefix}#{$state}-rgb), .4);
+    }
+  }
+}

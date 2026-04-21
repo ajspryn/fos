@@ -1,0 +1,31 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "leaflet/dist/leaflet";
+
+.leaflet-map {
+  z-index: 1;
+  block-size: 400px;
+
+  /* Map tooltip border radius */
+  .leaflet-popup {
+    .leaflet-popup-content-wrapper {
+      @include border-radius($border-radius);
+    }
+  }
+  .leaflet-control-container {
+    .leaflet-left {
+      inset-inline: 0 auto;
+      .leaflet-control-zoom,
+      .leaflet-control-layers {
+        margin-inline: .625rem 0;
+      }
+    }
+
+    .leaflet-right {
+      inset-inline: auto 0;
+      .leaflet-control-zoom,
+      .leaflet-control-layers {
+        margin-inline: 0 .625rem;
+      }
+    }
+  }
+}

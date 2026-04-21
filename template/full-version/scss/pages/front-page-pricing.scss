@@ -1,0 +1,47 @@
+/* Pricing
+******************************************************************************* */
+
+@import "../_bootstrap-extended/include";
+
+.circle-bullets {
+  list-style-type: none;
+}
+
+.pricing-plans-comparison {
+  .table {
+    tr {
+      > th:first-child,
+      > td:first-child {
+        text-align: start;
+        white-space: nowrap;
+      }
+    }
+
+    tbody {
+      tr:last-child {
+        td {
+          border-block-end: 0;
+        }
+      }
+    }
+  }
+}
+
+.price-yearly-toggle {
+  position: absolute;
+  margin: auto;
+  inset-inline: 0;
+}
+
+/* To position illustration */
+@include media-breakpoint-up(lg) {
+  .pricing-free-trial {
+    img {
+      position: absolute;
+      block-size: 115%;
+      inline-size: auto;
+      inset-block-end: 0;
+      inset-inline-end: 0;
+    }
+  }
+}

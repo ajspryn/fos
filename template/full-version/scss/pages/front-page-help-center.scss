@@ -1,0 +1,21 @@
+/* Help center
+******************************************************************************* */
+
+@import "../_bootstrap-extended/include";
+
+.help-center-header {
+  .input-wrapper {
+    max-inline-size: 29rem;
+    @include media-breakpoint-down(sm) {
+      max-inline-size: 80%;
+    }
+    .input-group-text,
+    .form-control {
+      background-color: var(--#{$prefix}paper-bg);
+    }
+  }
+}
+
+.knowledge-base ul.list-unstyled li a span {
+  inline-size: 93%;
+}

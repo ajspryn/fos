@@ -1,0 +1,46 @@
+@mixin quill-generate-lists($indent) {
+  $quill-list-types: (
+    1: lower-alpha,
+    2: lower-roman,
+    3: decimal,
+    4: lower-alpha,
+    5: lower-roman,
+    6: decimal,
+    7: lower-alpha,
+    8: lower-roman,
+    9: decimal
+  );
+
+  @for $i from 1 through 9 {
+    ol li.ql-indent-#{$i} {
+      counter-increment: list-#{$i};
+
+      @if $i < 9 {
+        $lists: "";
+
+        @for $l from $i + 1 through 9 {
+          $lists: "#{$lists} list-#{$l}";
+        }
+
+        counter-reset: #{$lists};
+      }
+
+      &::before {
+        content: counter(list-#{$i}, map-get($quill-list-types, $i)) ". ";
+      }
+    }
+
+    .ql-indent-#{$i}:not(.ql-direction-rtl) {
+      padding-inline-start: $indent * $i;
+    }
+    li.ql-indent-#{$i}:not(.ql-direction-rtl) {
+      padding-inline-start: $indent * ($i + 1);
+    }
+    .ql-indent-#{$i}.ql-direction-rtl.ql-align-right {
+      padding-inline-end: $indent * $i;
+    }
+    li.ql-indent-#{$i}.ql-direction-rtl.ql-align-right {
+      padding-inline-end: $indent * ($i + 1);
+    }
+  }
+}

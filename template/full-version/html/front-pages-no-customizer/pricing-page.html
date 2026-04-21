@@ -1,0 +1,1058 @@
+<!doctype html>
+
+<html
+  lang="en"
+  class=" layout-navbar-fixed layout-wide "
+  dir="ltr"
+  data-skin="default"
+  data-bs-theme="light"
+  data-assets-path="../../assets/"
+  data-template="front-pages-no-customizer">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Demo: Pricing - Front Pages | Vuexy - Bootstrap Dashboard PRO</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="../../assets/vendor/fonts/iconify-icons.css" />
+
+    <script src="../../assets/vendor/libs/@algolia/autocomplete-js.js"></script>
+
+    <!-- Core CSS -->
+    <!-- build:css assets/vendor/css/theme.css  -->
+
+    <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
+
+    <link rel="stylesheet" href="../../assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="../../assets/css/demo.css" />
+
+    <link rel="stylesheet" href="../../assets/vendor/css/pages/front-page.css" />
+
+    <!-- Vendors CSS -->
+
+    <!-- endbuild -->
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/css/pages/front-page-pricing.css" />
+
+    <!-- Helpers -->
+    <script src="../../assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+
+    <script src="../../assets/js/front-config.js"></script>
+  </head>
+
+  <body>
+    <script src="../../assets/vendor/js/dropdown-hover.js"></script>
+    <script src="../../assets/vendor/js/mega-dropdown.js"></script>
+    <!-- Navbar: Start -->
+    <nav class="layout-navbar shadow-none py-0">
+      <div class="container">
+        <div class="navbar navbar-expand-lg landing-navbar px-3 px-md-8">
+          <!-- Menu logo wrapper: Start -->
+          <div class="navbar-brand app-brand demo d-flex py-0 me-4 me-xl-8 ms-0">
+            <!-- Mobile menu toggle: Start-->
+            <button
+              class="navbar-toggler border-0 px-0 me-4"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <i class="icon-base ti tabler-menu-2 icon-lg align-middle text-heading fw-medium"></i>
+            </button>
+            <!-- Mobile menu toggle: End-->
+            <a href="landing-page.html" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                <span class="text-primary">
+                  <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
+                      fill="currentColor" />
+                    <path
+                      opacity="0.06"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
+                      fill="#161616" />
+                    <path
+                      opacity="0.06"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
+                      fill="#161616" />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
+                      fill="currentColor" />
+                  </svg>
+                </span>
+              </span>
+              <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">Vuexy</span>
+            </a>
+          </div>
+          <!-- Menu logo wrapper: End -->
+          <!-- Menu wrapper: Start -->
+          <div class="collapse navbar-collapse landing-nav-menu" id="navbarSupportedContent">
+            <button
+              class="navbar-toggler border-0 text-heading position-absolute end-0 top-0 scaleX-n1-rtl p-2"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <i class="icon-base ti tabler-x icon-lg"></i>
+            </button>
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link fw-medium" aria-current="page" href="landing-page.html#landingHero">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-medium" href="landing-page.html#landingFeatures">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-medium" href="landing-page.html#landingTeam">Team</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-medium" href="landing-page.html#landingFAQ">FAQ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-medium" href="landing-page.html#landingContact">Contact us</a>
+              </li>
+              <li
+                class="nav-item mega-dropdown
+   active">
+                <a
+                  href="javascript:void(0);"
+                  class="nav-link dropdown-toggle navbar-ex-14-mega-dropdown mega-dropdown fw-medium"
+                  aria-expanded="false"
+                  data-bs-toggle="mega-dropdown"
+                  data-trigger="hover">
+                  <span data-i18n="Pages">Pages</span>
+                </a>
+                <div class="dropdown-menu p-4 p-xl-8">
+                  <div class="row gy-4">
+                    <div class="col-12 col-lg">
+                      <div class="h6 d-flex align-items-center mb-3 mb-lg-5">
+                        <div class="avatar flex-shrink-0 me-3">
+                          <span class="avatar-initial rounded bg-label-primary"
+                            ><i class="icon-base ti tabler-layout-grid icon-lg"></i
+                          ></span>
+                        </div>
+                        <span class="ps-1">Other</span>
+                      </div>
+                      <ul class="nav flex-column">
+                        <li class="nav-item active">
+                          <a class="nav-link mega-dropdown-link" href="pricing-page.html">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            <span data-i18n="Pricing">Pricing</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link mega-dropdown-link" href="payment-page.html">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            <span data-i18n="Payment">Payment</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link mega-dropdown-link" href="checkout-page.html">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            <span data-i18n="Checkout">Checkout</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link mega-dropdown-link" href="help-center-landing.html">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            <span data-i18n="Help Center">Help Center</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-12 col-lg">
+                      <div class="h6 d-flex align-items-center mb-3 mb-lg-5">
+                        <div class="avatar flex-shrink-0 me-3">
+                          <span class="avatar-initial rounded bg-label-primary"
+                            ><i class="icon-base ti tabler-lock-open icon-lg"></i
+                          ></span>
+                        </div>
+                        <span class="ps-1">Auth Demo</span>
+                      </div>
+                      <ul class="nav flex-column">
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-login-basic.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Login (Basic)
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-login-cover.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Login (Cover)
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-register-basic.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Register (Basic)
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-register-cover.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Register (Cover)
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-register-multisteps.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Register (Multi-steps)
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-forgot-password-basic.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Forgot Password (Basic)
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-forgot-password-cover.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Forgot Password (Cover)
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-reset-password-basic.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Reset Password (Basic)
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-reset-password-cover.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Reset Password (Cover)
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-12 col-lg">
+                      <div class="h6 d-flex align-items-center mb-3 mb-lg-5">
+                        <div class="avatar flex-shrink-0 me-3">
+                          <span class="avatar-initial rounded bg-label-primary"
+                            ><i class="icon-base ti tabler-file-analytics icon-lg"></i
+                          ></span>
+                        </div>
+                        <span class="ps-1">Other</span>
+                      </div>
+                      <ul class="nav flex-column">
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/pages-misc-error.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Error
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/pages-misc-under-maintenance.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Under Maintenance
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/pages-misc-comingsoon.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Coming Soon
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/pages-misc-not-authorized.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Not Authorized
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-verify-email-basic.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Verify Email (Basic)
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-verify-email-cover.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Verify Email (Cover)
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-two-steps-basic.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Two Steps (Basic)
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link mega-dropdown-link"
+                            href="../vertical-menu-template/auth-two-steps-cover.html"
+                            target="_blank">
+                            <i class="icon-base ti tabler-circle me-1 icon-12px"></i>
+                            Two Steps (Cover)
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block">
+                      <div class="bg-body nav-img-col p-2">
+                        <img
+                          src="../../assets/img/front-pages/misc/nav-item-col-img.png"
+                          alt="nav item col image"
+                          class="w-100" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-medium" href="../vertical-menu-template/index.html" target="_blank">Admin</a>
+              </li>
+            </ul>
+          </div>
+          <div class="landing-menu-overlay d-lg-none"></div>
+          <!-- Menu wrapper: End -->
+          <!-- Toolbar: Start -->
+          <ul class="navbar-nav flex-row align-items-center ms-auto">
+            <!-- navbar button: Start -->
+            <li>
+              <a href="../vertical-menu-template/auth-login-cover.html" class="btn btn-primary" target="_blank"
+                ><span class="tf-icons icon-base ti tabler-login scaleX-n1-rtl me-md-1"></span
+                ><span class="d-none d-md-block">Login/Register</span></a
+              >
+            </li>
+            <!-- navbar button: End -->
+          </ul>
+          <!-- Toolbar: End -->
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar: End -->
+
+    <!-- Sections:Start -->
+
+    <!-- Pricing Plans -->
+    <section class="section-py first-section-pt">
+      <div class="container">
+        <h2 class="text-center mb-2">Pricing Plans</h2>
+        <p class="text-center mb-0">
+          All plans include 40+ advanced tools and features to boost your product.<br />Choose the best plan to fit your
+          needs.
+        </p>
+        <div class="d-flex align-items-center justify-content-center flex-wrap gap-2 pt-9 pb-3 mb-50">
+          <label class="switch switch-sm ms-sm-12 ps-sm-12 me-0">
+            <span class="switch-label text-body fs-6 fw-medium">Monthly</span>
+            <input type="checkbox" class="switch-input price-duration-toggler" checked />
+            <span class="switch-toggle-slider">
+              <span class="switch-on"></span>
+              <span class="switch-off"></span>
+            </span>
+            <span class="switch-label text-body fs-6 fw-medium">Annually</span>
+          </label>
+          <div class="mt-n5 ms-n10 ml-2 mb-12 d-none d-sm-flex align-items-center gap-1">
+            <i class="icon-base icon-base ti tabler-corner-left-down icon-lg text-body-secondary scaleX-n1-rtl"></i>
+            <span class="badge badge-sm bg-label-primary rounded-1 mb-3 ">Save up to 10%</span>
+          </div>
+        </div>
+
+        <div class="row g-6">
+          <!-- Basic -->
+          <div class="col-lg">
+            <div class="card border rounded shadow-none">
+              <div class="card-body pt-12 px-5">
+                <div class="mt-3 mb-5 text-center">
+                  <img src="../../assets/img/illustrations/page-pricing-basic.png" alt="Basic Image" height="120" />
+                </div>
+                <h4 class="card-title text-center text-capitalize mb-1">Basic</h4>
+                <p class="text-center mb-5">A simple start for everyone</p>
+                <div class="text-center h-px-50">
+                  <div class="d-flex justify-content-center">
+                    <sup class="h6 text-body pricing-currency mt-2 mb-0 me-1">$</sup>
+                    <h1 class="mb-0 text-primary">0</h1>
+                    <sub class="h6 text-body pricing-duration mt-auto mb-1 ms-1">/month</sub>
+                  </div>
+                </div>
+
+                <ul class="list-group ps-6 my-5 pt-9">
+                  <li class="mb-4">100 responses a month</li>
+                  <li class="mb-4">Unlimited forms and surveys</li>
+                  <li class="mb-4">Unlimited fields</li>
+                  <li class="mb-4">Basic form creation tools</li>
+                  <li class="mb-0">Up to 2 subdomains</li>
+                </ul>
+                <a href="payment-page.html" class="btn btn-label-success d-grid w-100">Your Current Plan</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pro -->
+          <div class="col-lg">
+            <div class="card border-primary border shadow-none">
+              <div class="card-body position-relative pt-4 px-5">
+                <div class="position-absolute end-0 me-5 top-0 mt-4">
+                  <span class="badge bg-label-primary rounded-1">Popular</span>
+                </div>
+                <div class="my-5 pt-6 text-center">
+                  <img
+                    src="../../assets/img/illustrations/page-pricing-standard.png"
+                    alt="Standard Image"
+                    height="120" />
+                </div>
+                <h4 class="card-title text-center text-capitalize mb-1">Standard</h4>
+                <p class="text-center mb-5">For small to medium businesses</p>
+                <div class="text-center h-px-50">
+                  <div class="d-flex justify-content-center">
+                    <sup class="h6 text-body pricing-currency mt-2 mb-0 me-1">$</sup>
+                    <h1 class="price-toggle price-yearly text-primary mb-0">7</h1>
+                    <h1 class="price-toggle price-monthly text-primary mb-0 d-none">9</h1>
+                    <sub class="h6 text-body pricing-duration mt-auto mb-1 ms-1">/month</sub>
+                  </div>
+                  <small class="price-yearly price-yearly-toggle text-body-secondary">USD 480 / year</small>
+                </div>
+
+                <ul class="list-group ps-6 my-5 pt-9">
+                  <li class="mb-4">Unlimited responses</li>
+                  <li class="mb-4">Unlimited forms and surveys</li>
+                  <li class="mb-4">Instagram profile page</li>
+                  <li class="mb-4">Google Docs integration</li>
+                  <li class="mb-0">Custom "Thank you" page</li>
+                </ul>
+                <a href="payment-page.html" class="btn btn-primary d-grid w-100">Upgrade</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="col-lg">
+            <div class="card border rounded shadow-none">
+              <div class="card-body pt-12 px-5">
+                <div class="mt-3 mb-5 text-center">
+                  <img
+                    src="../../assets/img/illustrations/page-pricing-enterprise.png"
+                    alt="Enterprise Image"
+                    height="120" />
+                </div>
+                <h4 class="card-title text-center text-capitalize mb-1">Enterprise</h4>
+                <p class="text-center mb-5">Solution for big organizations</p>
+
+                <div class="text-center h-px-50">
+                  <div class="d-flex justify-content-center">
+                    <sup class="h6 text-body pricing-currency mt-2 mb-0 me-1">$</sup>
+                    <h1 class="price-toggle price-yearly text-primary mb-0">16</h1>
+                    <h1 class="price-toggle price-monthly text-primary mb-0 d-none">19</h1>
+                    <sub class="h6 text-body pricing-duration mt-auto mb-1 ms-1">/month</sub>
+                  </div>
+                  <small class="price-yearly price-yearly-toggle text-body-secondary">USD 960 / year</small>
+                </div>
+                <ul class="list-group ps-6 my-5 pt-9">
+                  <li class="mb-4">PayPal payments</li>
+                  <li class="mb-4">Logic Jumps</li>
+                  <li class="mb-4">File upload with 5GB storage</li>
+                  <li class="mb-4">Custom domain support</li>
+                  <li class="mb-0">Stripe integration</li>
+                </ul>
+                <a href="payment-page.html" class="btn btn-label-primary d-grid w-100">Upgrade</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Pricing Plans -->
+    <!-- Pricing Free Trial -->
+    <section class="pricing-free-trial bg-label-primary">
+      <div class="container">
+        <div class="position-relative">
+          <div class="d-flex justify-content-between flex-column-reverse flex-lg-row align-items-center pt-12 pb-10">
+            <div class="text-center text-lg-start">
+              <h4 class="text-primary mb-2">Still not convinced? Start with a 14-day FREE trial!</h4>
+              <p class="text-body mb-6 mb-md-11">You will get full access to with all the features for 14 days.</p>
+              <a href="payment-page.html" class="btn btn-primary">Start 14-day free trial</a>
+            </div>
+            <!-- image -->
+            <div class="text-center">
+              <img
+                src="../../assets/img/illustrations/girl-with-laptop-light.png"
+                class="img-fluid me-lg-5 pe-lg-1 mb-3 mb-lg-0"
+                alt="Api Key Image"
+                width="202"
+                data-app-light-img="illustrations/girl-with-laptop.png"
+                data-app-dark-img="illustrations/girl-with-laptop.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Pricing Free Trial -->
+    <!-- Plans Comparison -->
+    <section class="section-py pricing-plans-comparison">
+      <div class="container">
+        <div class="col-12 text-center mb-6">
+          <h3 class="mb-2">Pick a plan that works best for you</h3>
+          <p>Stay cool, we have a 48-hour money back guarantee!</p>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive border border-top-0 rounded">
+              <table class="table table-striped text-center mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      <p class="mb-0">Features</p>
+                      <small class="text-body fw-normal text-capitalize">Native front features</small>
+                    </th>
+                    <th scope="col">
+                      <p class="mb-0">Starter</p>
+                      <small class="text-body fw-normal text-capitalize">Free</small>
+                    </th>
+                    <th scope="col">
+                      <p class="mb-0 position-relative">
+                        Pro
+                        <span class="badge badge-center rounded-pill bg-primary position-absolute mt-n2 ms-1"
+                          ><i class="icon-base ti tabler-star"></i
+                        ></span>
+                      </p>
+                      <small class="text-body fw-normal text-capitalize">$7.5/month</small>
+                    </th>
+                    <th scope="col">
+                      <p class="mb-0">Enterprise</p>
+                      <small class="text-body fw-normal text-capitalize">$16/month</small>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-heading">14-days free trial</td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-heading">No user limit</td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-secondary p-0 ">
+                        <i class="icon-base ti tabler-x"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-secondary p-0 ">
+                        <i class="icon-base ti tabler-x"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0 ">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-heading">Product Support</td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-secondary p-0 ">
+                        <i class="icon-base ti tabler-x"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0 ">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0 ">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-heading">Email Support</td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-secondary p-0 ">
+                        <i class="icon-base ti tabler-x"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge bg-label-primary badge-sm">Add-On-Available</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0 ">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-heading">Integrations</td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-secondary p-0 ">
+                        <i class="icon-base ti tabler-x"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0 ">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0 ">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-heading">Removal of Front branding</td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-secondary p-0 ">
+                        <i class="icon-base ti tabler-x"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge bg-label-primary badge-sm">Add-On-Available</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0 ">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-heading">Active maintenance & support</td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-secondary p-0 ">
+                        <i class="icon-base ti tabler-x"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-secondary p-0 ">
+                        <i class="icon-base ti tabler-x"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0 ">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-heading">Data storage for 365 days</td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-secondary p-0 ">
+                        <i class="icon-base ti tabler-x"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-secondary p-0 ">
+                        <i class="icon-base ti tabler-x"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-center rounded-pill w-px-20 h-px-20 bg-label-primary p-0 ">
+                        <i class="icon-base ti tabler-check"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                      <a href="payment-page.html" class="btn text-nowrap btn-label-primary">Choose Plan</a>
+                    </td>
+                    <td>
+                      <a href="payment-page.html" class="btn text-nowrap btn-primary">Choose Plan</a>
+                    </td>
+                    <td>
+                      <a href="payment-page.html" class="btn text-nowrap btn-label-primary">Choose Plan</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Plans Comparison -->
+    <!-- FAQS -->
+    <section class="section-py pricing-faqs rounded-bottom bg-body">
+      <div class="container">
+        <div class="text-center mb-6">
+          <h4 class="mb-2">FAQs</h4>
+          <p>Let us help answer the most common questions you might have.</p>
+        </div>
+        <div class="accordion" id="pricingFaq">
+          <div class="card accordion-item">
+            <h2 class="accordion-header" id="headingone">
+              <button
+                type="button"
+                class="accordion-button collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq-1"
+                aria-expanded="false"
+                aria-controls="faq-1">
+                What counts towards the 100 responses limit?
+              </button>
+            </h2>
+            <div
+              id="faq-1"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingone"
+              data-bs-parent="#pricingFaq">
+              <div class="accordion-body">
+                We accept Visa®, MasterCard®, American Express®, and PayPal®. So you can be confident that your
+                credit card information will be kept safe and secure.
+              </div>
+            </div>
+          </div>
+          <div class="card accordion-item active">
+            <h2 class="accordion-header" id="headingTwo">
+              <button
+                type="button"
+                class="accordion-button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq-2"
+                aria-expanded="false"
+                aria-controls="faq-2">
+                How do you process payments?
+              </button>
+            </h2>
+            <div
+              id="faq-2"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingTwo"
+              data-bs-parent="#pricingFaq">
+              <div class="accordion-body">
+                Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar diam eros in
+                elit. Pellentesque convallis laoreet laoreet.Donec placerat, lectus sed mattis semper, neque lectus
+                feugiat lectus, varius pulvinar diam eros in elit. Pellentesque convallis laoreet laoreet.
+              </div>
+            </div>
+          </div>
+          <div class="card accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button
+                type="button"
+                class="accordion-button collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq-3"
+                aria-expanded="false"
+                aria-controls="faq-3">
+                Do you have a money-back guarantee?
+              </button>
+            </h2>
+            <div
+              id="faq-3"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingThree"
+              data-bs-parent="#pricingFaq">
+              <div class="accordion-body">
+                We count all responses submitted through all your forms in a month. If you already received 100
+                responses this month, you won’t be able to receive any more of them until next month when the counter
+                resets.
+              </div>
+            </div>
+          </div>
+          <div class="card accordion-item">
+            <h6 class="accordion-header" id="headingFour">
+              <button
+                type="button"
+                class="accordion-button collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq-4"
+                aria-expanded="false"
+                aria-controls="faq-4">
+                I have more questions. Where can I get help?
+              </button>
+            </h6>
+            <div
+              id="faq-4"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingFour"
+              data-bs-parent="#pricingFaq">
+              <div class="accordion-body">2Checkout accepts all types of credit and debit cards.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ FAQS -->
+
+    <!-- / Sections:End -->
+
+    <!-- Footer: Start -->
+    <footer class="landing-footer bg-body footer-text">
+      <div class="footer-top position-relative overflow-hidden z-1">
+        <img
+          src="../../assets/img/front-pages/backgrounds/footer-bg.png"
+          alt="footer bg"
+          class="footer-bg banner-bg-img z-n1" />
+        <div class="container">
+          <div class="row gx-0 gy-6 g-lg-10">
+            <div class="col-lg-5">
+              <a href="landing-page.html" class="app-brand-link mb-6">
+                <span class="app-brand-logo demo">
+                  <span class="text-primary">
+                    <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
+                        fill="currentColor" />
+                      <path
+                        opacity="0.06"
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
+                        fill="#161616" />
+                      <path
+                        opacity="0.06"
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
+                        fill="#161616" />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
+                        fill="currentColor" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="app-brand-text demo footer-link fw-bold ms-2 ps-1">Vuexy</span>
+              </a>
+              <p class="footer-text footer-logo-description mb-6">
+                Most developer friendly & highly customisable Admin Dashboard Template.
+              </p>
+              <form class="footer-form">
+                <label for="footer-email" class="small">Subscribe to newsletter</label>
+                <div class="d-flex mt-1">
+                  <input
+                    type="email"
+                    class="form-control rounded-0 rounded-start-bottom rounded-start-top"
+                    id="footer-email"
+                    placeholder="Your email" />
+                  <button
+                    type="submit"
+                    class="btn btn-primary shadow-none rounded-0 rounded-end-bottom rounded-end-top">
+                    Subscribe
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+              <h6 class="footer-title mb-6">Demos</h6>
+              <ul class="list-unstyled">
+                <li class="mb-4">
+                  <a href="../vertical-menu-template/" target="_blank" class="footer-link">Vertical Layout</a>
+                </li>
+                <li class="mb-4">
+                  <a href="../horizontal-menu-template/" target="_blank" class="footer-link">Horizontal Layout</a>
+                </li>
+                <li class="mb-4">
+                  <a href="../vertical-menu-template-bordered/" target="_blank" class="footer-link">Bordered Layout</a>
+                </li>
+                <li class="mb-4">
+                  <a href="../vertical-menu-template-semi-dark/" target="_blank" class="footer-link"
+                    >Semi Dark Layout</a
+                  >
+                </li>
+                <li class="mb-4">
+                  <a href="../vertical-menu-template-dark/" target="_blank" class="footer-link">Dark Layout</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+              <h6 class="footer-title mb-6">Pages</h6>
+              <ul class="list-unstyled">
+                <li class="mb-4">
+                  <a href="pricing-page.html" class="footer-link">Pricing</a>
+                </li>
+                <li class="mb-4">
+                  <a href="payment-page.html" class="footer-link"
+                    >Payment<span class="badge bg-primary ms-2">New</span></a
+                  >
+                </li>
+                <li class="mb-4">
+                  <a href="checkout-page.html" class="footer-link">Checkout</a>
+                </li>
+                <li class="mb-4">
+                  <a href="help-center-landing.html" class="footer-link">Help Center</a>
+                </li>
+                <li class="mb-4">
+                  <a href="../vertical-menu-template/auth-login-cover.html" target="_blank" class="footer-link"
+                    >Login/Register</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-3 col-md-4">
+              <h6 class="footer-title mb-6">Download our app</h6>
+              <a href="javascript:void(0);" class="d-block mb-4"
+                ><img src="../../assets/img/front-pages/landing-page/apple-icon.png" alt="apple icon"
+              /></a>
+              <a href="javascript:void(0);" class="d-block"
+                ><img src="../../assets/img/front-pages/landing-page/google-play-icon.png" alt="google play icon"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom py-3 py-md-5">
+        <div
+          class="container d-flex flex-wrap justify-content-between flex-md-row flex-column text-center text-md-start">
+          <div class="mb-2 mb-md-0">
+            <span class="footer-bottom-text"
+              >©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+            </span>
+            <a href="https://pixinvent.com" target="_blank" class="fw-medium text-white">Pixinvent,</a>
+            <span class="footer-bottom-text"> Made with ❤️ for a better web.</span>
+          </div>
+          <div>
+            <a href="https://github.com/pixinvent" class="me-1 text-white" target="_blank">
+              <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M10.7184 2.19556C6.12757 2.19556 2.40674 5.91639 2.40674 10.5072C2.40674 14.1789 4.78757 17.2947 8.0909 18.3947C8.50674 18.4697 8.65674 18.2139 8.65674 17.9939C8.65674 17.7964 8.65007 17.2731 8.64757 16.5806C6.33507 17.0822 5.84674 15.4656 5.84674 15.4656C5.47007 14.5056 4.92424 14.2497 4.92424 14.2497C4.17007 13.7339 4.98174 13.7456 4.98174 13.7456C5.81674 13.8039 6.25424 14.6022 6.25424 14.6022C6.9959 15.8722 8.2009 15.5056 8.67257 15.2931C8.7484 14.7556 8.96507 14.3889 9.20174 14.1814C7.35674 13.9722 5.41674 13.2589 5.41674 10.0731C5.41674 9.16722 5.74091 8.42389 6.27007 7.84389C6.1859 7.63306 5.89841 6.78722 6.35257 5.64389C6.35257 5.64389 7.05007 5.41972 8.63757 6.49472C9.31557 6.31028 10.0149 6.21614 10.7176 6.21472C11.4202 6.21586 12.1196 6.31001 12.7976 6.49472C14.3859 5.41889 15.0826 5.64389 15.0826 5.64389C15.5367 6.78722 15.2517 7.63306 15.1651 7.84389C15.6984 8.42389 16.0184 9.16639 16.0184 10.0731C16.0184 13.2672 14.0767 13.9689 12.2251 14.1747C12.5209 14.4314 12.7876 14.9381 12.7876 15.7131C12.7876 16.8247 12.7776 17.7214 12.7776 17.9939C12.7776 18.2164 12.9259 18.4747 13.3501 18.3931C16.6517 17.2914 19.0301 14.1781 19.0301 10.5072C19.0301 5.91639 15.3092 2.19556 10.7184 2.19556Z"
+                  fill="currentColor" />
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/pixinvents/" class="me-1 text-white" target="_blank">
+              <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M11.8609 18.0262V11.1962H14.1651L14.5076 8.52204H11.8609V6.81871C11.8609 6.04704 12.0759 5.51871 13.1834 5.51871H14.5868V3.13454C13.904 3.06136 13.2176 3.02603 12.5309 3.02871C10.4943 3.02871 9.09593 4.27204 9.09593 6.55454V8.51704H6.80676V11.1912H9.10093V18.0262H11.8609Z"
+                  fill="currentColor" />
+              </svg>
+            </a>
+            <a href="https://x.com/pixinvents" class="me-1 text-white" target="_blank">
+              <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.0576 7.19293C17.0684 7.33876 17.0684 7.48376 17.0684 7.62876C17.0684 12.0663 13.6909 17.1796 7.5184 17.1796C5.61674 17.1796 3.85007 16.6288 2.3634 15.6721C2.6334 15.7029 2.8934 15.7138 3.17424 15.7138C4.68506 15.7174 6.15311 15.2122 7.34174 14.2796C6.64125 14.2669 5.96222 14.0358 5.39943 13.6185C4.83665 13.2013 4.41822 12.6187 4.20257 11.9521C4.41007 11.9829 4.6184 12.0038 4.83674 12.0038C5.13757 12.0038 5.44007 11.9621 5.7209 11.8896C4.9607 11.7361 4.27713 11.3241 3.78642 10.7235C3.29571 10.1229 3.02815 9.37097 3.02924 8.59543V8.55376C3.47674 8.80293 3.9959 8.95876 4.5459 8.9796C4.08514 8.67342 3.70734 8.25795 3.44619 7.77026C3.18504 7.28256 3.04866 6.73781 3.04924 6.1846C3.04924 5.56126 3.21507 4.9896 3.5059 4.49126C4.34935 5.52878 5.40132 6.37756 6.59368 6.98265C7.78604 7.58773 9.0922 7.93561 10.4276 8.00376C10.3759 7.75376 10.3442 7.4946 10.3442 7.2346C10.344 6.79373 10.4307 6.35715 10.5993 5.9498C10.7679 5.54245 11.0152 5.17233 11.3269 4.86059C11.6386 4.54885 12.0088 4.30161 12.4161 4.133C12.8235 3.96438 13.26 3.87771 13.7009 3.87793C14.6676 3.87793 15.5401 4.28293 16.1534 4.93793C16.9049 4.79261 17.6255 4.51828 18.2834 4.1271C18.0329 4.90278 17.5082 5.56052 16.8076 5.9771C17.4741 5.90108 18.1254 5.72581 18.7401 5.4571C18.281 6.12635 17.7122 6.71322 17.0576 7.19293Z"
+                  fill="currentColor" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/pixinvents/" class="text-white" target="_blank">
+              <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1833_185630)">
+                  <path
+                    d="M17.5869 6.33973C17.5774 5.62706 17.444 4.9215 17.1926 4.25456C16.9747 3.69202 16.6418 3.18112 16.2152 2.75453C15.7886 2.32793 15.2776 1.995 14.7151 1.77703C14.0568 1.5299 13.3613 1.39627 12.6582 1.38183C11.753 1.34137 11.466 1.33008 9.16819 1.33008C6.87039 1.33008 6.57586 1.33008 5.67725 1.38183C4.97451 1.39637 4.27932 1.53 3.62127 1.77703C3.05863 1.99485 2.54765 2.32772 2.12103 2.75434C1.69442 3.18096 1.36155 3.69193 1.14373 4.25456C0.896101 4.91242 0.76276 5.60776 0.749471 6.31056C0.70901 7.2167 0.696777 7.50368 0.696777 9.8015C0.696777 12.0993 0.696777 12.3928 0.749471 13.2924C0.763585 13.9963 0.89626 14.6907 1.14373 15.3503C1.36192 15.9128 1.69503 16.4236 2.1218 16.85C2.54855 17.2765 3.05957 17.6091 3.6222 17.8269C4.27846 18.084 4.97377 18.2272 5.67819 18.2504C6.58433 18.2908 6.87133 18.303 9.16913 18.303C11.4669 18.303 11.7615 18.303 12.6601 18.2504C13.3632 18.2365 14.0587 18.1032 14.717 17.8561C15.2794 17.6378 15.7902 17.3048 16.2167 16.8782C16.6433 16.4517 16.9763 15.941 17.1945 15.3785C17.442 14.7198 17.5746 14.0254 17.5888 13.3207C17.6293 12.4155 17.6414 12.1285 17.6414 9.82973C17.6396 7.53191 17.6396 7.24021 17.5869 6.33973ZM9.16255 14.1468C6.75935 14.1468 4.81251 12.2 4.81251 9.79679C4.81251 7.39359 6.75935 5.44676 9.16255 5.44676C10.3163 5.44676 11.4227 5.90506 12.2385 6.72085C13.0543 7.53664 13.5126 8.64309 13.5126 9.79679C13.5126 10.9505 13.0543 12.057 12.2385 12.8727C11.4227 13.6885 10.3163 14.1468 9.16255 14.1468ZM13.6857 6.3002C13.5525 6.30033 13.4206 6.27417 13.2974 6.22325C13.1743 6.17231 13.0624 6.09759 12.9682 6.00338C12.874 5.90917 12.7992 5.79729 12.7483 5.67417C12.6974 5.55105 12.6712 5.41909 12.6713 5.28585C12.6713 5.15271 12.6976 5.02087 12.7485 4.89786C12.7994 4.77485 12.8742 4.66308 12.9683 4.56893C13.0625 4.47479 13.1743 4.4001 13.2973 4.34915C13.4202 4.2982 13.5521 4.27197 13.6853 4.27197C13.8184 4.27197 13.9503 4.2982 14.0732 4.34915C14.1962 4.4001 14.3081 4.47479 14.4022 4.56893C14.4963 4.66308 14.571 4.77485 14.622 4.89786C14.6729 5.02087 14.6991 5.15271 14.6991 5.28585C14.6991 5.84666 14.2456 6.3002 13.6857 6.3002Z"
+                    fill="currentColor" />
+                  <path
+                    d="M9.16296 12.6226C10.7236 12.6226 11.9887 11.3575 11.9887 9.79688C11.9887 8.23629 10.7236 6.97119 9.16296 6.97119C7.60238 6.97119 6.33728 8.23629 6.33728 9.79688C6.33728 11.3575 7.60238 12.6226 9.16296 12.6226Z"
+                    fill="currentColor" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_1833_185630">
+                    <rect width="16.9412" height="18" fill="currentColor" transform="translate(0.696777 0.528809)" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer: End -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/theme.js  -->
+
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+
+    <script src="../../assets/js/front-main.js"></script>
+
+    <!-- Page JS -->
+    <script src="../../assets/js/front-page-pricing.js"></script>
+  </body>
+</html>

@@ -1,0 +1,239 @@
+// Variables
+
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+
+// (C) Custom variables for extended components of bootstrap only
+
+// ! _variable-dark.scss file overrides _variable.scss file.
+
+// Colors
+// *******************************************************************************
+
+// scss-docs-start gray-color-variables
+$white-dark: #fff !default;
+$black-dark: #2f3349 !default;
+$base-dark: #e1def5 !default;
+
+// Instead of using a card bg, use a paper bg.
+$paper-bg-dark: #2f3349 !default; // (C)
+$paper-bg-rgb-dark: #{to-rgb($paper-bg-dark)} !default; // (C)
+$base-rgb-dark: #{to-rgb($base-dark)} !default; // (C)
+
+$gray-25-dark: #33374d !default; // (C)
+$gray-50-dark: #3a3d53 !default; // (C)
+$gray-75-dark: #3d4157 !default; // (C)
+$gray-100-dark: #535876 !default;
+$gray-200-dark: #44485e !default;
+$gray-300-dark: #64667d !default;
+$gray-400-dark: #76778e !default;
+$gray-500-dark: #9293ae !default;
+$gray-600-dark: #9a9ab0 !default;
+$gray-700-dark: #acabc1 !default;
+$gray-800-dark: #bdbcd3 !default;
+$gray-900-dark: #cfcde4 !default;
+
+// scss-docs-end gray-color-variables
+
+// scss-docs-start gray-colors-map
+$grays-dark: (
+  "25": $gray-25-dark,
+  "50": $gray-50-dark,
+  "75": $gray-75-dark,
+  "100": $gray-100-dark,
+  "200": $gray-200-dark,
+  "300": $gray-300-dark,
+  "400": $gray-400-dark,
+  "500": $gray-500-dark,
+  "600": $gray-600-dark,
+  "700": $gray-700-dark,
+  "800": $gray-800-dark,
+  "900": $gray-900-dark
+) !default;
+
+// scss-docs-end gray-colors-map
+
+// scss-docs-start color-variables
+$blue-dark: #007bff !default;
+$indigo-dark: #6610f2 !default;
+$purple-dark: #7367f0 !default;
+$pink-dark: #e83e8c !default;
+$red-dark: #ff4c51 !default;
+$orange-dark: #fd7e14 !default;
+$yellow-dark: #ff9f43 !default;
+$green-dark: #28c76f !default;
+$teal-dark: #20c997 !default;
+$cyan-dark: #00bad1 !default;
+
+// scss-docs-end color-variables
+
+// scss-docs-start theme-color-variables
+$primary-dark: $purple-dark !default;
+$secondary-dark: #808390 !default;
+$success-dark: $green-dark !default;
+$info-dark: $cyan-dark !default;
+$warning-dark: $yellow-dark !default;
+$danger-dark: $red-dark !default;
+$light-dark: #494a5d !default;
+$dark-dark: #6b6c9d !default;
+$gray-dark: $gray-500-dark !default; // (C)
+
+// scss-docs-end theme-color-variables
+
+// scss-docs-start theme-colors-map
+$theme-colors-dark: (
+  "primary": $primary-dark,
+  "secondary": $secondary-dark,
+  "success": $success-dark,
+  "info": $info-dark,
+  "warning": $warning-dark,
+  "danger": $danger-dark,
+  "light": $light-dark,
+  "dark": $dark-dark,
+  "gray": $gray-dark
+) !default;
+
+// scss-docs-end theme-colors-map
+
+$theme-colors-rgb-dark: map-loop($theme-colors-dark, to-rgb, "$value") !default;
+
+// Typography
+// *******************************************************************************
+$blockquote-footer-color-dark: $gray-600-dark !default;
+
+// TODO: Remove this variable not used in dark theme
+$body-bg-dark: #25293c !default;
+
+// scss-docs-start theme-text-dark-variables
+$light-text-emphasis-dark: $gray-700-dark !default;
+$dark-text-emphasis-dark: $base-dark !default;
+
+// scss-docs-end theme-text-dark-variables
+
+$bg-label-tint-amount-dark: 84% !default; // (C)
+$border-subtle-amount-dark: 61% !default; // (C)
+
+// scss-docs-start theme-bg-subtle-dark-variables
+$primary-bg-subtle-dark: shade-color($primary-dark, $bg-label-tint-amount-dark, $paper-bg-dark) !default;
+$secondary-bg-subtle-dark: shade-color($secondary-dark, $bg-label-tint-amount-dark, $paper-bg-dark) !default;
+$success-bg-subtle-dark: shade-color($success-dark, $bg-label-tint-amount-dark, $paper-bg-dark) !default;
+$info-bg-subtle-dark: shade-color($info-dark, $bg-label-tint-amount-dark, $paper-bg-dark) !default;
+$warning-bg-subtle-dark: shade-color($warning-dark, $bg-label-tint-amount-dark, $paper-bg-dark) !default;
+$danger-bg-subtle-dark: shade-color($danger-dark, $bg-label-tint-amount-dark, $paper-bg-dark) !default;
+$light-bg-subtle-dark: shade-color($light-dark, $bg-label-tint-amount-dark, $paper-bg-dark) !default;
+$dark-bg-subtle-dark: shade-color($dark-dark, $bg-label-tint-amount-dark, $paper-bg-dark) !default;
+
+// scss-docs-end theme-bg-subtle-dark-variables
+
+// scss-docs-start theme-border-subtle-dark-variables
+$primary-border-subtle-dark: shift-color($primary-dark, $border-subtle-amount-dark, $paper-bg-dark) !default;
+$secondary-border-subtle-dark: shift-color($secondary-dark, $border-subtle-amount-dark, $paper-bg-dark) !default;
+$success-border-subtle-dark: shift-color($success-dark, $border-subtle-amount-dark, $paper-bg-dark) !default;
+$info-border-subtle-dark: shift-color($info-dark, $border-subtle-amount-dark, $paper-bg-dark) !default;
+$warning-border-subtle-dark: shift-color($warning-dark, $border-subtle-amount-dark, $paper-bg-dark) !default;
+$danger-border-subtle-dark: shift-color($danger-dark, $border-subtle-amount-dark, $paper-bg-dark) !default;
+$light-border-subtle-dark: shift-color($light-dark, $border-subtle-amount-dark, $paper-bg-dark) !default;
+$dark-border-subtle-dark: shift-color($dark-dark, $border-subtle-amount-dark, $paper-bg-dark) !default;
+
+// scss-docs-end theme-border-subtle-dark-variables
+
+// Body
+// *******************************************************************************
+
+$body-color-dark: $gray-700-dark !default;
+
+$body-secondary-color-dark: $gray-400-dark !default;
+$body-secondary-bg-dark: $gray-400-dark !default;
+$body-tertiary-color-dark: rgba($body-color-dark, .5) !default;
+$body-tertiary-bg-dark: mix($gray-100-dark, $body-bg-dark, 90%) !default;
+
+
+// Components
+// *******************************************************************************
+
+$alert-border-scale-dark: -84% !default;
+$alert-color-scale-dark: 0% !default;
+
+$border-color-dark: $gray-200-dark !default;
+
+// scss-docs-start box-shadow-variables
+$shadow-bg-dark: #131120 !default; // (C)
+$box-shadow-dark: 0 .1875rem .75rem 0 rgba($shadow-bg-dark, .2) !default;
+$box-shadow-xs-dark: 0 .0625rem .375rem 0 rgba($shadow-bg-dark, .16) !default;
+$box-shadow-sm-dark: 0 .125rem .5rem 0 rgba($shadow-bg-dark, .18) !default;
+$box-shadow-lg-dark: 0 .25rem 1.125rem 0 rgba($shadow-bg-dark, .22) !default;
+$box-shadow-xl-dark: 0 .3125rem 1.875rem 0 rgba($shadow-bg-dark, .24) !default;
+
+// scss-docs-end box-shadow-variables
+
+$floating-component-border-color-dark: rgba($white-dark, .05) !default; // (C)
+$floating-component-shadow-dark: 0 .31rem 1.25rem 0 rgba($black-dark, .4) !default; // (C)
+
+// * Typography
+// *******************************************************************************
+
+$headings-color-dark: $gray-900-dark !default;
+
+$table-hover-bg-factor-dark: .75 !default;
+$table-active-bg-factor-dark: .75 !default;
+
+// Accordion
+// *******************************************************************************
+
+$accordion-button-color-dark: $headings-color-dark !default;
+$accordion-button-active-color-dark: $headings-color-dark !default;
+
+$accordion-icon-color-dark: $headings-color-dark !default;
+$accordion-icon-active-color-dark: $headings-color-dark !default;
+
+$accordion-button-icon-dark: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg id='bx-chevron-down'%3e%3cpath id='Vector' d='M13.5775 7.74417L9.99997 11.3217L6.42247 7.74417L5.24414 8.9225L9.99997 13.6783L14.7558 8.9225L13.5775 7.74417Z' fill='#{$accordion-icon-active-color-dark}' fill-opacity='0.9'/%3e%3c/g%3e%3c/svg%3e") !default;
+$accordion-button-active-icon-dark: $accordion-button-icon-dark !default;
+
+$accordion-custom-button-icon-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$accordion-icon-active-color-dark}' viewBox='0 0 24 24'%3E%3Cpath d='M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z'%3E%3C/path%3E%3C/svg%3E") !default; // (C)
+$accordion-custom-button-active-icon-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$accordion-icon-active-color-dark}' viewBox='0 0 24 24'%3E%3Cpath d='M5 11h14v2H5z'%3E%3C/path%3E%3C/svg%3E") !default; // (C)
+
+// Forms
+// *******************************************************************************
+
+$input-border-color-dark: color-mix(in srgb, $base-dark 22%, $black-dark) !default;
+$input-disabled-border-color-dark: rgba($base-dark, .23) !default;
+$input-group-addon-border-color-dark: $input-border-color-dark !default;
+$form-switch-bg-image-dark: url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg filter='url(%23a)'%3e%3ccircle cx='12' cy='11' r='8.5' fill='#{$white-dark}'/%3e%3c/g%3e%3cdefs%3e%3cfilter id='a' x='0' y='0' width='22' height='22' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3e%3cfeFlood flood-opacity='0' result='BackgroundImageFix'/%3e%3cfeColorMatrix in='SourceAlpha' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3e%3cfeOffset dy='2'/%3e%3cfeGaussianBlur stdDeviation='2'/%3e%3cfeColorMatrix values='0 0 0 0 0.180392 0 0 0 0 0.14902 0 0 0 0 0.239216 0 0 0 0.16 0'/%3e%3cfeBlend in2='BackgroundImageFix' result='effect1_dropShadow_6488_3264'/%3e%3cfeBlend in='SourceGraphic' in2='effect1_dropShadow_6488_3264' result='shape'/%3e%3c/filter%3e%3c/defs%3e%3c/svg%3e") !default;
+
+$form-select-indicator-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 22" fill="none"><path d="M10.9999 12.0743L15.5374 7.53676L16.8336 8.83292L10.9999 14.6666L5.16626 8.83292L6.46243 7.53676L10.9999 12.0743Z" fill="#{$white-dark}" fill-opacity="0.9"/></svg>') !default;
+$form-select-disabled-indicator-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 22" fill="none"><path d="M10.9999 12.0743L15.5374 7.53676L16.8336 8.83292L10.9999 14.6666L5.16626 8.83292L6.46243 7.53676L10.9999 12.0743Z" fill="#{$body-secondary-color-dark}" fill-opacity="0.9"/></svg>') !default; // (C)
+
+// scss-docs-start form-validation-colors-dark
+$form-valid-color-dark: $success-dark !default;
+$form-valid-border-color-dark: $success-dark !default;
+$form-invalid-color-dark: $danger-dark !default;
+$form-invalid-border-color-dark: $danger-dark !default;
+
+// scss-docs-end form-validation-colors-dark
+
+// Modals
+// *******************************************************************************
+
+$modal-backdrop-bg-dark: #171925 !default;
+$modal-backdrop-opacity-dark: .6 !default;
+
+// Offcanvas
+// *******************************************************************************
+
+$offcanvas-backdrop-bg-dark: $modal-backdrop-bg-dark !default;
+$offcanvas-backdrop-opacity-dark: $modal-backdrop-opacity-dark !default;
+
+// List group
+// *******************************************************************************
+
+$list-group-item-bg-scale-dark: -70% !default;
+$list-group-item-bg-hover-scale-dark: 10% !default; // (C)
+
+// Tooltips
+// *******************************************************************************
+$tooltip-bg-dark: #f7f4ff !default;
+
+// Close
+// *******************************************************************************
+$btn-close-color-dark: $base-dark !default;
+$kbd-color-dark: $dark-dark !default;

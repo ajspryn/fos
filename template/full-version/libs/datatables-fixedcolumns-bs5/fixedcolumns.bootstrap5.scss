@@ -1,0 +1,31 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5";
+
+
+div.dt-container {
+  div.dt-scroll-body thead tr {
+    border-block-end-width: 0;
+    border-block-start-width: 0;
+  }
+  table.dataTable {
+    thead,
+    tbody {
+      tr > .dtfc-fixed-left,
+      tr > .dtfc-fixed-right {
+        background-color: var(--#{$prefix}paper-bg);
+      }
+    }
+    thead th {
+      text-align: center;
+    }
+    &.dtfc-scrolling-left tr > .dtfc-fixed-left,
+    &.dtfc-scrolling-right tr > .dtfc-fixed-right {
+      &::after {
+        box-shadow: none;
+      }
+    }
+  }
+  div.dt-scroll div.dtfc-top-blocker {
+    background-color: var(--#{$prefix}paper-bg);
+  }
+}

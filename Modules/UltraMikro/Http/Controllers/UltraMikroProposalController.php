@@ -1,0 +1,176 @@
+<?php
+
+namespace Modules\UltraMikro\Http\Controllers;
+
+use App\Models\Role;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Modules\UltraMikro\Entities\UltraMikroFoto;
+use Modules\UltraMikro\Entities\UltraMikroNasabah;
+use Modules\UltraMikro\Entities\UltraMikroPembiayaan;
+use Modules\UltraMikro\Entities\UltraMikroPembiayaanHistory;
+use Modules\UltraMikro\Entities\UltraMikroPetugasLapangan;
+use Modules\UltraMikro\Entities\UltraMikroScoreKelompok;
+use Modules\UltraMikro\Entities\UltraMikroScoreRepayment;
+use Modules\UltraMikro\Entities\UltraMikroScoreTempatTinggal;
+use Modules\UltraMikro\Entities\UltraMikroSlik;
+
+//Locale Indonesia
+setlocale(LC_ALL, 'id_ID.UTF8', 'id_ID', 'id_ID.UTF-8', 'id_ID.8859-1', 'IND.UTF8');
+
+class UltraMikroProposalController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     * @return Renderable
+     */
+    public function index()
+    {
+        return view('UltraMikro::proposal.index', [
+            'title' => 'Proposal UltraMikro',
+            'proposals' => UltraMikroPembiayaan::select()->where('user_id', Auth::user()->id)->whereNull('dokumen_ideb')->orderBy('id', 'desc')->get(),
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Renderable
+     */
+    public function create()
+    {
+        return view('UltraMikro::create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return Renderable
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function show($id)
+    {
+        $dataFoto = UltraMikroFoto::select()->where('ultra_mikro_pembiayaan_id', $id)->get();
+        $foto = $dataFoto;
+        return view('UltraMikro::proposal.lihat', [
+            'title' => 'Detail Proposal',
+            'pembiayaan' => UltraMikroPembiayaan::select()->where('id', $id)->first(),
+            'nasabah' => UltraMikroNasabah::select()->where('id', $id)->first(),
+            'aos' => Role::select()->where('jabatan_id', 1)->where('divisi_id', 7)->get(),
+            'petugasLapangans' => UltraMikroPetugasLapangan::select()->get(),
+            'statusTempatTinggals' => UltraMikroScoreTempatTinggal::select()->get(),
+            'statusKelompoks' => UltraMikroScoreKelompok::select()->get(),
+            'repayments' => UltraMikroScoreRepayment::select()->get(),
+            'fotoKtp' => UltraMikroFoto::select()->where('ultra_mikro_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->first(),
+            'fotoKartuKeluarga' => UltraMikroFoto::select()->where('ultra_mikro_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->first(),
+            'fotoKtpPasangan' => UltraMikroFoto::select()->where('ultra_mikro_pembiayaan_id', $id)->where('kategori', 'Foto KTP Pasangan')->first(),
+            'fotoRumah' => UltraMikroFoto::select()->where('ultra_mikro_pembiayaan_id', $id)->where('kategori', 'Foto Rumah/Tempat Tinggal')->first(),
+            'fotoPekerjaan' => UltraMikroFoto::select()->where('ultra_mikro_pembiayaan_id', $id)->where('kategori', 'Foto Pekerjaan/Usaha')->first(),
+            // 'idebPasangan' => UltraMikroFoto::select()->where('ultra_mikro_pembiayaan_id', $id)->where('kategori', 'IDEB Pasangan')->first(),
+            'fotoStatusPernikahan' => UltraMikroFoto::select()->where('ultra_mikro_pembiayaan_id', $id)->where('kategori', 'Akta Status Pernikahan/Perceraian')->first(),
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function edit($id)
+    {
+        return view('UltraMikro::edit');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param int $id
+     * @return Renderable
+     */
+    public function update(Request $request, $id)
+    {
+        $pembiayaan = UltraMikroPembiayaan::where('id', $id)->first();
+
+        //Store file IDEB dengan nama asli
+        $dokumenIdeb = $request->file('dokumen_ideb');
+        $dokumenIdebName = time() . '_' . $dokumenIdeb->getClientOriginalName();
+        $request->file('dokumen_ideb')->storeAs('ultra-mikro-dokumen-ideb', $dokumenIdebName);
+        $filePathDokumenIdeb = 'ultra-mikro-dokumen-ideb/' . $dokumenIdebName;
+
+        //If Menikah
+        if ($pembiayaan->nasabah->status_pernikahan == "Menikah") {
+            //Upload IDEB pasangan
+            //Store array foto
+            foreach ($request->foto as $key => $value) {
+                if ($value['foto']) {
+                    $fileName = time() . '_' . $value['foto']->getClientOriginalName();
+
+                    $foto = $value['foto']->storeAs('foto-ultra-mikro-pembiayaan', $fileName);
+                }
+
+                UltraMikroFoto::create([
+                    'ultra_mikro_pembiayaan_id' => $id,
+                    'kategori' => $value['kategori'],
+                    'foto' => $foto,
+                ]);
+            }
+        }
+
+        if ($request->slik[0]['nama_bank']) {
+
+            // return $request->slik[0]['nama_bank'];
+            foreach ($request->slik as $key => $value) {
+
+                // return $value;
+                UltraMikroSlik::create([
+                    'ultra_mikro_pembiayaan_id' => $id,
+                    'nama_bank' => $value['nama_bank'],
+                    'plafond' => $value['plafond'],
+                    'outstanding' => $value['outstanding'],
+                    'tenor' => $value['tenor'],
+                    'margin' => $value['margin'],
+                    'angsuran' => $value['angsuran'],
+                    'agunan' => $value['agunan'],
+                    'kol_tertinggi' => $value['kol_tertinggi'],
+                ]);
+            }
+        }
+
+        UltraMikroPembiayaan::where('id', $id)
+            ->update([
+                'dokumen_ideb' => $filePathDokumenIdeb,
+                'kol_id' => $request->kol_id,
+            ]);
+
+        $role = role::select()->where('user_id', Auth::user()->id)->first();
+        UltraMikroPembiayaanHistory::create([
+            'ultra_mikro_pembiayaan_id' => $id,
+            'status_id' => 2,
+            'jabatan_id' => $role->jabatan_id,
+            'divisi_id' => $role->divisi_id,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return redirect('/ultra_mikro/komite/' . $id)->with('success', 'Proposal Berhasil Diajukan ke Komite!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return Renderable
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

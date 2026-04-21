@@ -1,0 +1,6 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "mapbox-gl/dist/mapbox-gl";
+
+.marker-focus {
+  filter: drop-shadow(0 0 7px var(--#{$prefix}primary));
+}

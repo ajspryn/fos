@@ -1,0 +1,26 @@
+/* Invoice Print
+******************************************************************************* */
+
+@import "../_bootstrap-extended/include";
+
+html,
+body {
+  background: var(--#{$prefix}white);
+}
+
+body > :not(.invoice-print) {
+  display: none !important;
+}
+
+.invoice-print {
+  font-size: 15px;
+  min-inline-size: 768px !important;
+}
+
+.invoice-print * {
+  color: $body-color !important;
+}
+
+.invoice-print .text-primary * {
+  color: var(--#{$prefix}primary) !important;
+}

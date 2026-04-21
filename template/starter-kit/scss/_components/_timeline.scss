@@ -1,0 +1,224 @@
+/* Timeline
+******************************************************************************* */
+
+.timeline {
+  --#{$prefix}timeline-point-indicator-color: #{$timeline-point-indicator-color};
+  --#{$prefix}timeline-point-indicator-bg: #{$timeline-point-indicator-bg};
+  --#{$prefix}timeline-event-time-color: #{$timeline-event-time-color};
+  position: relative;
+  padding: 0;
+  block-size: 100%;
+  inline-size: 100%;
+  list-style: none;
+
+  &:not(.timeline-center) {
+    padding-inline-start: .5rem;
+  }
+  .timeline-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    > *:first-child {
+      margin-inline-end: .5rem;
+    }
+  }
+
+
+  // Timeline Item
+  .timeline-item {
+    position: relative;
+    border: 0;
+    border-inline-start: 1px solid var(--#{$prefix}border-color);
+    padding-inline-start: 1.4rem;
+
+    .timeline-event {
+      position: relative;
+      @include border-radius($timeline-item-border-radius);
+      background-color: var(--#{$prefix}paper-bg);
+      inline-size: 100%;
+      min-block-size: $timeline-item-min-height;
+      padding-block: $timeline-item-padding-y $timeline-item-padding-y - .1625;
+      padding-inline: $timeline-item-padding-x;
+
+      .timeline-event-time {
+        position: absolute;
+        color: var(--#{$prefix}timeline-event-time-color);
+        font-size: $timeline-event-time-size;
+        inset-block-start: 1.1rem;
+      }
+    }
+
+    // Timeline Point Indicator
+
+    .timeline-indicator,
+    .timeline-indicator-advanced {
+      position: absolute;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      @include border-radius(50%);
+      background-color: var(--#{$prefix}timeline-point-indicator-bg);
+      block-size: $timeline-indicator-size;
+      box-shadow: 0 0 0 10px var(--#{$prefix}body-bg);
+      inline-size: $timeline-indicator-size;
+      inset-block-start: 0;
+      inset-inline-start: -1rem;
+
+      // Icons
+      .icon-base {
+        color: var(--#{$prefix}timeline-point-indicator-color);
+      }
+    }
+
+    // Timeline Indicator
+    & [class*="timeline-indicator-"] {
+      border-color: var(--#{$prefix}timeline-point-indicator-color);
+    }
+
+    // For advanced Timeline Indicator Background
+    .timeline-indicator-advanced {
+      background-color: var(--#{$prefix}paper-bg);
+      box-shadow: 0 0 0 4px var(--#{$prefix}paper-bg);
+    }
+
+    .timeline-point {
+      position: absolute;
+      z-index: 2;
+      display: block;
+      background-color: var(--#{$prefix}timeline-point-indicator-color);
+      block-size: $timeline-point-size;
+      box-shadow: 0 0 0 10px var(--#{$prefix}paper-bg);
+      inline-size: $timeline-point-size;
+      inset-block-start: 0;
+      inset-inline-start: -.38rem;
+      outline: 3px solid var(--#{$prefix}timeline-point-indicator-bg);
+      @include border-radius(50%);
+    }
+
+    // Transparent Timeline Item
+    &.timeline-item-transparent {
+      .timeline-event {
+        background-color: transparent;
+        inset-block-start: -.9rem;
+        padding-inline: 0;
+      }
+    }
+  }
+
+  // Timeline outline
+  &.timeline-outline {
+    .timeline-item {
+      .timeline-point {
+        border: 2px solid var(--#{$prefix}timeline-point-indicator-color);
+        background-color: var(--#{$prefix}paper-bg);
+        outline: unset;
+      }
+    }
+  }
+
+  // Timeline Center
+  &.timeline-center {
+    .timeline-item {
+      clear: both;
+      inline-size: 50%;
+
+      &.timeline-item-left,
+      &:nth-of-type(odd):not(.timeline-item-left, .timeline-item-right) {
+        border-inline-end: 1px solid $timeline-border-color;
+        border-inline-start: 0;
+        float: inline-start;
+        padding-block-end: 2.5rem;
+        padding-block-start: 0;
+        padding-inline: 0 2.25rem;
+
+        .timeline-event {
+          .timeline-event-time {
+            inset-inline-end: -10.2rem;
+          }
+        }
+
+        .timeline-point {
+          inset-inline-start: 100%;
+          margin-inline-start: -.3rem;
+        }
+      }
+
+      &.timeline-item-right,
+      &:nth-of-type(even):not(.timeline-item-left, .timeline-item-right) {
+        border-inline-start: 1px solid $timeline-border-color;
+        float: inline-end;
+        inset-inline-end: 2px;
+        padding-block-end: 2.5rem;
+        padding-inline-start: 2.25rem;
+
+        .timeline-event-time {
+          inset-inline-start: -10.2rem;
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .timeline.timeline-center .timeline-item {
+    &.timeline-item-left,
+    &:nth-of-type(odd):not(.timeline-item-left, .timeline-item-right) {
+      .timeline-indicator {
+        inset-inline-start: calc(100% - calc(#{$timeline-indicator-size}/ 2));
+      }
+    }
+  }
+}
+
+/* To Change Timeline Center's Alignment om small Screen */
+
+@include media-breakpoint-down(md) {
+  .timeline {
+    &.timeline-center {
+      .timeline-end-indicator {
+        inset-inline-start: -2px;
+      }
+
+      .timeline-item {
+        border-inline-end: 0 !important;
+        float: inline-start !important;
+        inline-size: 100%;
+        inset-inline-start: 1rem;
+        padding-inline: 3.5rem 1.5rem !important;
+
+        &:not(:last-child) {
+          border-inline-start: 1px solid $timeline-border-color !important;
+        }
+
+        .timeline-event {
+          .timeline-event-time {
+            inset-block-start: -1.4rem;
+            inset-inline: 0 auto !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .timeline {
+    .timeline-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
+@each $state in map-keys($theme-colors) {
+  .timeline {
+    .timeline-point-#{$state}, .timeline-indicator-#{$state} {
+      --#{$prefix}timeline-point-indicator-color: var(--#{$prefix}#{$state});
+      --#{$prefix}timeline-point-indicator-bg: var(--#{$prefix}#{$state}-bg-subtle);
+    }
+  }
+}

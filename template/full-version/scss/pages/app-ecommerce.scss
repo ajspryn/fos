@@ -1,0 +1,34 @@
+/* App eCommerce
+******************************************************************************* */
+
+@import "../_bootstrap-extended/include";
+
+// Variables
+$dz-box-padding: 0 !default;
+
+/* App eCommerce quill editor settings */
+
+.app-ecommerce-category,
+.app-ecommerce {
+  .comment-editor {
+    .ql-editor {
+      border-start-end-radius: $border-radius;
+      border-start-start-radius: $border-radius;
+      min-block-size: 7rem;
+    }
+  }
+}
+
+/* star-rating */
+.raty img {
+  @include icon-base(1.5rem);
+}
+
+@include media-breakpoint-down(sm) {
+  .widget-separator {
+    .border-shift.border-end {
+      border-inline-end: none !important;
+      border-inline-start: none !important;
+    }
+  }
+}

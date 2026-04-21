@@ -1,0 +1,12 @@
+@import "../../scss/_bootstrap-extended/include";
+@import "spinkit/spinkit";
+
+:root {
+  --sk-size: 30px;
+  --sk-color: var(--#{$prefix}primary);
+}
+
+.sk-wave {
+  inline-size: 40px;
+  white-space: nowrap;
+}
