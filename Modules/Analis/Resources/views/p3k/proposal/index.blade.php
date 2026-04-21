@@ -57,6 +57,7 @@
                                         <th class="midCenter" style="vertical-align: middle;">Nilai yang Dimohon
                                         </th>
                                         <th class="midCenter" style="vertical-align: middle;">Jangka Waktu</th>
+                                        <th class="midCenter" style="vertical-align: middle;">Status</th>
                                         <th class="midCenter" style="vertical-align: middle;">Action</th>
                                     </tr>
                                 </thead>
@@ -67,7 +68,7 @@
                                             $history = $proposal; // Since it's already a P3kPembiayaanHistory record
                                         @endphp
 
-                                        @if (($history->status_id == 11 && $history->jabatan_id == 1) || ($history->status_id == 4 && $history->jabatan_id == 3))
+                                        @if (($history->status_id == 3 && $history->jabatan_id == 1) || ($history->status_id == 4 && $history->jabatan_id == 3))
                                             <tr>
                                                 <td></td>
                                                 <td style="text-align: center">{{ $loop->iteration }}</td>
@@ -80,9 +81,16 @@
                                                 <td style="text-align: center">
                                                     {{ $proposal_p3k->nasabah->pekerjaan->nama_unit_kerja }}</td>
                                                 <td style="text-align: center">
-                                                    Rp{{ number_format($proposal_p3k->nominal_pembiayaan, 0, ',', '.') }}
+                                                    Rp{{ number_format((float)($proposal_p3k->nominal_pembiayaan ?? 0), 0, ',', '.') }}
                                                 </td>
                                                 <td style="text-align: center">{{ $proposal_p3k->tenor }} Bulan</td>
+                                                <td style="text-align: center">
+                                                    @if ($history->status_id == 3)
+                                                        <span class="badge rounded-pill badge-light-primary">Diajukan AO</span>
+                                                    @else
+                                                        <span class="badge rounded-pill badge-light-warning">Ditinjau Analis</span>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <a href="/analis/p3k/komite/{{ $proposal_p3k->id }}"
                                                         class="btn btn-outline-info round">Detail</a>
