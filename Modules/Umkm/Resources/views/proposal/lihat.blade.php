@@ -1048,6 +1048,23 @@
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script>
+                // Initialize jquery.repeater for SLIK / IDEP sections
+                $(function () {
+                    $('.repeater-default').repeater({
+                        show: function () {
+                            $(this).slideDown();
+                            if (window.feather) {
+                                feather.replace({ width: 14, height: 14 });
+                            }
+                        },
+                        hide: function (deleteElement) {
+                            if (confirm('Hapus baris ini?')) {
+                                $(this).slideUp(deleteElement);
+                            }
+                        }
+                    });
+                });
+
                 //Form Validation (Bootstrap)
                 var bootstrapForm = $('.needs-validation');
 
