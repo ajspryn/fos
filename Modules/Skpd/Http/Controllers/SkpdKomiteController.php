@@ -288,9 +288,8 @@ class SkpdKomiteController extends Controller
             'harga_jual' => $harga_jual,
             'tenor' => $tenor,
             'angsuran1' => $angsuran,
-            'nilai_dsr' => $dsr,
             'nilai_dsr1' => $dsr,
-            'total_pendapatan' => $data->pendapatan_lainnya + $data->gaji_pokok + $data->pendapatan_lainnya,
+            'total_pendapatan' => (float)$data->gaji_pokok + (float)$data->gaji_tpp + (float)$data->pendapatan_lainnya,
             'total_pengeluaran' => $total_pengeluaran,
             'cekcicilanpasangan' => $cekcicilanpasangan,
 

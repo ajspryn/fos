@@ -122,7 +122,7 @@ class SkpdRevisiController extends Controller
             'fotoStatus' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Akta Status Perkawinan')->orWhere('kategori', 'Akta Status Pekawinan')->first(),
             'fotoJaminan' => SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->first(),
             'fotoJaminanLainnya' => SkpdJaminanLainnya::select()->where('skpd_pembiayaan_id', $id)->first(),
-            'lastIdJaminanLainnya' => SkpdJaminanLainnya::select('id')->latest()->first()->id,
+            'lastIdJaminanLainnya' => SkpdJaminanLainnya::select('id')->latest()->first()?->id ?? 0,
             'ideb' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'IDEB')->first(),
             'idebPasangan' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'IDEB Pasangan')->first(),
             'aos' => Role::select()->where('jabatan_id', 1)->where('divisi_id', 1)->get(),
@@ -467,7 +467,7 @@ class SkpdRevisiController extends Controller
         // }
 
         //Slik
-        if ($request->repeater_slik[0]['nama_bank']) {
+        if (!empty($request->repeater_slik) && !empty($request->repeater_slik[0]['nama_bank'])) {
 
             foreach ($request->repeater_slik as $key => $value) {
                 SkpdSlik::updateOrCreate(
@@ -492,7 +492,7 @@ class SkpdRevisiController extends Controller
 
         //Slik Pasangan
         if ($request->skpd_status_perkawinan_id == 2) {
-            if ($request->repeater_slik_pasangan[0]['nama_bank']) {
+            if (!empty($request->repeater_slik_pasangan) && !empty($request->repeater_slik_pasangan[0]['nama_bank'])) {
 
                 foreach ($request->repeater_slik_pasangan as $key => $value) {
                     SkpdSlikPasangan::updateOrCreate(

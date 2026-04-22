@@ -158,7 +158,7 @@ class SkpdController extends Controller
     public function store(Request $request)
     {
         $hitung = SkpdPembiayaan::select()->orderBy('id', 'desc')->first();
-        $id = $hitung->id + 1;
+        $id = ($hitung?->id ?? 0) + 1;
 
         //Konversi tgl untuk diinput ke db
         $tglPengajuan = Carbon::createFromFormat('d-m-Y', $request->tanggal_pengajuan)->format('Y-m-d');

@@ -59,7 +59,7 @@
                                             aria-labelledby="home-tab-justified">
                                             <!-- proposal -->
                                             <div class="col-xl-12 col-md-8 col-12">
-                                                <div class="card invoice-preview-card">
+                                                <div class="invoice-preview-card">
 
                                                     @include('skpd::komite.summary-skpd')
 

@@ -63,15 +63,15 @@ class SkpdNasabahController extends Controller
 
         $nasabah = SkpdNasabah::select()->where('id', $id)->first();
 
-        $tenor = $data->tenor;
-        $harga = $data->nominal_pembiayaan;
-        $rate = $data->rate;
+        $tenor = (float) $data->tenor;
+        $harga = (float) $data->nominal_pembiayaan;
+        $rate = (float) $data->rate;
         $margin = ($rate * $tenor) / 100;
 
         $harga1 = $harga * $margin;
         $harga_jual = $harga1 + $harga;
 
-        $angsuran1 = (int)($harga_jual / $tenor);
+        $angsuran1 = $tenor > 0 ? (int)($harga_jual / $tenor) : 0;
         $jaminanlain = SkpdJaminan::select()->where('skpd_pembiayaan_id', $data->id)->first();
         return view('skpd::nasabah.lihat', [
             'title' => 'Nasabah',
@@ -81,7 +81,7 @@ class SkpdNasabahController extends Controller
             'historys' => SkpdPembiayaan::select()->where('skpd_nasabah_id', $id)->get(),
             'fotodiri' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Foto Diri')->first(),
             'angsuran' => $angsuran1,
-            'jaminans' => SkpdJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->first(),
+            'jaminans' => $jaminanlain ? $jaminanlain->jenis_jaminan : null,
         ]);
     }
 

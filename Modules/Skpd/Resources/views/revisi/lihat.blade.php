@@ -1779,7 +1779,7 @@
                                     </label>
                                     <input type="file" name="foto_pemohon" id="fotoPemohon"
                                         class="form-control" />
-                                    @if ($fotoPemohon->foto)
+                                    @if ($fotoPemohon?->foto)
                                         <input type="hidden" name="foto_pemohon_lama"
                                             value="{{ $fotoPemohon->foto }}">
                                     @endif
@@ -1818,7 +1818,7 @@
                                         </label>
                                         <input type="file" name="foto_pasangan" id="fotoPasangan"
                                             class="form-control" />
-                                        @if ($fotoPasangan->foto)
+                                        @if ($fotoPasangan?->foto)
                                             <input type="hidden" name="foto_pasangan_lama"
                                                 value="{{ $fotoPasangan->foto }}">
                                         @endif
@@ -1856,7 +1856,7 @@
                                         </small>Upload Lampiran
                                     </label>
                                     <input type="file" name="foto_ktp" id="fotoKtp" class="form-control" />
-                                    @if ($fotoKtp->foto)
+                                    @if ($fotoKtp?->foto)
                                         <input type="hidden" name="foto_ktp_lama" value="{{ $fotoKtp->foto }}">
                                     @endif
                                 </div>
@@ -1893,7 +1893,7 @@
                                     </label>
                                     <input type="file" name="foto_diri_ktp" id="fotoDiriKtp"
                                         class="form-control" />
-                                    @if ($fotoDiriBersamaKtp->foto)
+                                    @if ($fotoDiriBersamaKtp?->foto)
                                         <input type="hidden" name="foto_diri_ktp_lama"
                                             value="{{ $fotoDiriBersamaKtp->foto }}">
                                     @endif
@@ -1930,7 +1930,7 @@
                                         </small>Upload Lampiran
                                     </label>
                                     <input type="file" name="foto_kk" id="fotoKk" class="form-control" />
-                                    @if ($fotoKk->foto)
+                                    @if ($fotoKk?->foto)
                                         <input type="hidden" name="foto_kk_lama" value="{{ $fotoKk->foto }}">
                                     @endif
                                 </div>
@@ -1969,7 +1969,7 @@
                                         </label>
                                         <input type="file" name="foto_akta_nikah_cerai" id="fotoAktaNikahCerai"
                                             class="form-control" />
-                                        @if ($fotoStatus->foto)
+                                        @if ($fotoStatus?->foto)
                                             <input type="hidden" name="foto_akta_nikah_cerai_lama"
                                                 value="{{ $fotoStatus->foto }}">
                                         @endif
@@ -2045,7 +2045,7 @@
                                     </label>
                                     <input type="file" name="foto_jaminan" id="fotoJaminan"
                                         class="form-control" />
-                                    @if ($fotoJaminan->dokumen_jaminan)
+                                    @if ($fotoJaminan?->dokumen_jaminan)
                                         <input type="hidden" name="foto_jaminan_lama"
                                             value="{{ $fotoJaminan->dokumen_jaminan }}">
                                     @endif
@@ -2200,7 +2200,7 @@
                                         </small>Upload Lampiran
                                     </label>
                                     <input type="file" name="ideb" id="ideb" class="form-control" />
-                                    @if ($ideb->foto)
+                                    @if ($ideb?->foto)
                                         <input type="hidden" name="ideb_lama" value="{{ $ideb->foto }}">
                                     @endif
                                 </div>
@@ -2352,7 +2352,7 @@
                     <h4 class="text-center mb-1" style="margin-top:-40px;">
                         <strong>Foto Pemohon</strong>
                     </h4>
-                    <iframe src="{{ asset('storage/' . $fotoPemohon->foto) }}" class="d-block w-100"
+                    <iframe src="{{ asset('storage/' . ($fotoPemohon?->foto ?? '')) }}" class="d-block w-100"
                         height="600"></iframe>
                 </div>
             </div>
@@ -2374,7 +2374,7 @@
                         <h4 class="text-center mb-1" style="margin-top:-40px;">
                             <strong>Foto Pasangan</strong>
                         </h4>
-                        <iframe src="{{ asset('storage/' . $fotoPasangan->foto) }}" class="d-block w-100"
+                        <iframe src="{{ asset('storage/' . ($fotoPasangan?->foto ?? '')) }}" class="d-block w-100"
                             height="600"></iframe>
                     </div>
                 </div>
@@ -2394,7 +2394,7 @@
                     <h4 class="text-center mb-1" style="margin-top:-40px;">
                         <strong>Foto KTP</strong>
                     </h4>
-                    <iframe src="{{ asset('storage/' . $fotoKtp->foto) }}" class="d-block w-100"
+                    <iframe src="{{ asset('storage/' . ($fotoKtp?->foto ?? '')) }}" class="d-block w-100"
                         height="600"></iframe>
                 </div>
             </div>
@@ -2414,7 +2414,7 @@
                     <h4 class="text-center mb-1" style="margin-top:-40px;">
                         <strong>Foto Diri bersama KTP</strong>
                     </h4>
-                    <iframe src="{{ asset('storage/' . $fotoDiriBersamaKtp->foto) }}" class="d-block w-100"
+                    <iframe src="{{ asset('storage/' . ($fotoDiriBersamaKtp?->foto ?? '')) }}" class="d-block w-100"
                         height="600"></iframe>
                 </div>
             </div>
@@ -2433,7 +2433,7 @@
                     <h4 class="text-center mb-1" style="margin-top:-40px;">
                         <strong>Foto KK</strong>
                     </h4>
-                    <iframe src="{{ asset('storage/' . $fotoKk->foto) }}" class="d-block w-100"
+                    <iframe src="{{ asset('storage/' . ($fotoKk?->foto ?? '')) }}" class="d-block w-100"
                         height="600"></iframe>
                 </div>
             </div>
@@ -2455,7 +2455,7 @@
                         <h4 class="text-center mb-1" style="margin-top:-40px;">
                             <strong>Foto Akta Nikah/Cerai</strong>
                         </h4>
-                        <iframe src="{{ asset('storage/' . $fotoStatus->foto) }}" class="d-block w-100"
+                        <iframe src="{{ asset('storage/' . ($fotoStatus?->foto ?? '')) }}" class="d-block w-100"
                             height="600"></iframe>
                     </div>
                 </div>
@@ -2495,7 +2495,7 @@
                     <h4 class="text-center mb-1" style="margin-top:-40px;">
                         <strong>Foto Jaminan</strong>
                     </h4>
-                    <iframe src="{{ asset('storage/' . $fotoJaminan->dokumen_jaminan) }}" class="d-block w-100"
+                    <iframe src="{{ asset('storage/' . ($fotoJaminan?->dokumen_jaminan ?? '')) }}" class="d-block w-100"
                         height="600"></iframe>
                 </div>
             </div>
@@ -2582,7 +2582,7 @@
                     <h4 class="text-center mb-1" style="margin-top:-40px;">
                         <strong>IDEB</strong>
                     </h4>
-                    <iframe src="{{ asset('storage/' . $ideb->foto) }}" class="d-block w-100"
+                    <iframe src="{{ asset('storage/' . ($ideb?->foto ?? '')) }}" class="d-block w-100"
                         height="600"></iframe>
                 </div>
             </div>

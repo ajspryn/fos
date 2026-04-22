@@ -161,26 +161,26 @@ class P3kKomiteController extends Controller
         }
 
         //Angsuran
-        $nominalPembiayaan = (float)str_replace('.', '', $data->nominal_pembiayaan ?? '0');
-        $tenor = (float)str_replace('.', '', $data->tenor ?? '0');
-        $rate = (float)str_replace('.', '', $data->rate ?? '0') / 100;
+        $nominalPembiayaan = (float)($data->nominal_pembiayaan ?? 0);
+        $tenor = (float)($data->tenor ?? 0);
+        $rate = (float)($data->rate ?? 0) / 100;
 
-        $hargaJual = ($nominalPembiayaan * $rate * $tenor) + $nominalPembiayaan;
+        $hargaJual = $tenor > 0 ? ($nominalPembiayaan * $rate * $tenor) + $nominalPembiayaan : 0;
         $angsuran = $tenor > 0 ? $hargaJual / $tenor : 0;
-        $totalAngsuranBtbFasAktif = (float)str_replace('.', '', $data->total_angsuran_btb_fas_aktif ?? '0');
+        $totalAngsuranBtbFasAktif = (float)($data->total_angsuran_btb_fas_aktif ?? 0);
 
         //Biaya Administrasi
         $byAdm = 1.5 / 100 * $nominalPembiayaan;
 
         //Pendapatan
-        $gajiPokok = (float)str_replace('.', '', $data->gaji_pokok ?? '0');
-        $gajiTpp = (float)str_replace('.', '', $data->gaji_tpp ?? '0');
-        $gajiPasangan = (float)str_replace('.', '', $data->gaji_pasangan ?? '0');
+        $gajiPokok = (float)($data->gaji_pokok ?? 0);
+        $gajiTpp = (float)($data->gaji_tpp ?? 0);
+        $gajiPasangan = (float)($data->gaji_pasangan ?? 0);
         $totalPendapatan = $gajiPokok + $gajiTpp;
         $totalPendapatanJoinIncome = $gajiPokok + $gajiTpp + $gajiPasangan;
 
         //Pengeluaran
-        $pengeluaranLainnya = (float)str_replace('.', '', $data->pengeluaran_lainnya ?? '0');
+        $pengeluaranLainnya = (float)($data->pengeluaran_lainnya ?? 0);
 
         //Pendapatan bersih
         $pendapatanBersih = $totalPendapatan - $totalAngsuranBtbFasAktif - $pengeluaranLainnya;
@@ -188,9 +188,13 @@ class P3kKomiteController extends Controller
 
         //Proses Scoring
         //DSR
-        $dsr = number_format((($angsuran + $totalAngsuranBtbFasAktif) / $totalPendapatan) * 100);
+        $dsr = $totalPendapatan > 0
+            ? (int)number_format((($angsuran + $totalAngsuranBtbFasAktif) / $totalPendapatan) * 100)
+            : 0;
         //DSR Join Income
-        $dsrJoinIncome = number_format((($angsuran + $totalAngsuranBtbFasAktif) / $totalPendapatanJoinIncome) * 100);
+        $dsrJoinIncome = $totalPendapatanJoinIncome > 0
+            ? (int)number_format((($angsuran + $totalAngsuranBtbFasAktif) / $totalPendapatanJoinIncome) * 100)
+            : 0;
 
         //Usia
         $usia = $data->nasabah && $data->nasabah->tgl_lahir

@@ -21,7 +21,6 @@ use Illuminate\Contracts\Support\Renderable;
 use Modules\Admin\Entities\SkpdJenisJaminan;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
 use Modules\Skpd\Entities\SkpdPembiayaanHistory;
-use Modules\Pasar\Entities\PasarPembiayaanHistory;
 use Modules\Skpd\Entities\SkpdDeviasi;
 
 class SkpdCetakProposalController extends Controller
@@ -53,18 +52,18 @@ class SkpdCetakProposalController extends Controller
         $nasabah = SkpdNasabah::select()->where('id', $data->skpd_nasabah_id)->first();
         $jaminan = SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->first();
         $nominal_pembiayaan = (float)str_replace('.', '', $data->nominal_pembiayaan ?? '0');
-        $tenor = $data->tenor;
-        $rate = $data->rate / 100;
+        $tenor = (float) $data->tenor;
+        $rate = (float) $data->rate / 100;
 
         //angsuran
         $harga_jual = $nominal_pembiayaan * $rate * $tenor + $nominal_pembiayaan;
-        $angsuran = $harga_jual / $tenor;
+        $angsuran = $tenor > 0 ? $harga_jual / $tenor : 0;
 
         //pengeluaran
-        $biaya_anak = $nasabah->tanggungan->biaya;
-        $biaya_istri = $nasabah->status_perkawinan->biaya;
-        $cicilan = SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->sum('angsuran');
-        $pengeluaran_lainnya = SkpdPembiayaan::select()->where('id', $id)->sum('pengeluaran_lainnya');
+        $biaya_anak = (float) ($nasabah->tanggungan->biaya ?? 0);
+        $biaya_istri = (float) ($nasabah->status_perkawinan->biaya ?? 0);
+        $cicilan = (float) SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->sum('angsuran');
+        $pengeluaran_lainnya = (float) SkpdPembiayaan::select()->where('id', $id)->sum('pengeluaran_lainnya');
         $cekcicilanpasangan = SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->count();
         $total_pengeluaran = $biaya_anak + $biaya_istri + $cicilan + $pengeluaran_lainnya;
 
@@ -85,8 +84,8 @@ class SkpdCetakProposalController extends Controller
         $pendapatan_bersih = $total_pemasukan - $total_pengeluaran;
 
         //DSR(rasio total angsuran terhadap pendapatan bersih)
-        if ($data->skpd_golongan_id == 18) {
-            $dsr = number_format($angsuran / $total_pemasukan * 100);
+        if ($data->skpd_golongan_id == 18 || $gaji_tpp == 0) {
+            $dsr = number_format($angsuran / ($total_pemasukan ?: 1) * 100);
         } else {
             $dsr = number_format($angsuran / $gaji_tpp * 100);
         }
