@@ -71,6 +71,7 @@ class SkpdController extends Controller
                 ->where('skpd_pembiayaan_histories.status_id', 5)
                 ->whereYear('skpd_pembiayaans.tanggal_pengajuan', $year)
                 ->sum('nominal_pembiayaan');
+            $cair = (float) $cair;
 
             return compact('diterima', 'proposal', 'ditolak', 'review', 'pipeline1', 'cair');
         });

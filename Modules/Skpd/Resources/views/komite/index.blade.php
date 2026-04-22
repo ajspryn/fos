@@ -87,7 +87,7 @@
                                             <td style="text-align: center">{{ $proposal->instansi->nama_instansi }}</td>
                                             {{-- <td style="text-align: center">{{ $proposal->golongan->nama_golongan }}</td> --}}
                                             <td style="text-align: center">
-                                                Rp.{{ number_format($proposal->nominal_pembiayaan, 0, ',', '.') }}</td>
+                                                Rp.{{ number_format((float) $proposal->nominal_pembiayaan, 0, ',', '.') }}</td>
                                             <td style="text-align: center"
                                                 value="{{ $history?->statushistory?->id ?? '' }}, {{ $history?->jabatan?->jabatan_id ?? '' }}">
                                                 @if ($history?->statusHistory?->id ?? '' == 5)

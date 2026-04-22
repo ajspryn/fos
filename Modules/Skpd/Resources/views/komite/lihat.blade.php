@@ -1119,7 +1119,7 @@
                                                 <tr>
                                                     <td class="pe-1">Harga Beli</td>
                                                     <td><span class="fw-bold">: Rp.
-                                                            {{ number_format($pembiayaan->nominal_pembiayaan, 0, ',', '.') }}</span>
+                                                            {{ number_format((float) $pembiayaan->nominal_pembiayaan, 0, ',', '.') }}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>

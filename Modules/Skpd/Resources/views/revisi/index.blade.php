@@ -67,7 +67,7 @@
                                             <td>{{ $proposal->nasabah->nama_nasabah }}</td>
                                             <td>{{ $proposal->nasabah->alamat }}</td>
                                             <td style="text-align: center">{{ $proposal->instansi->nama_instansi }}</td>
-                                            <td style="text-align: center">Rp.{{ number_format($proposal->nominal_pembiayaan, 0, ',', '.') }}</td>
+                                            <td style="text-align: center">Rp.{{ number_format((float) $proposal->nominal_pembiayaan, 0, ',', '.') }}</td>
                                             <td style="text-align: center">
                                                 <span class="badge rounded-pill badge-light-warning">{{ $statusLabel }} {{ $jabatanLabel }}</span>
                                             </td>

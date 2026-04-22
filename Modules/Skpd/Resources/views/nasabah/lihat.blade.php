@@ -160,7 +160,7 @@
                                     <td style="text-align: center">{{ date('d-m-Y', strtotime($data->tanggal_pengajuan)) }}
                                     </td>
                                     <td style="text-align: center">Rp.
-                                        {{ number_format($data->nominal_pembiayaan, 0, ',', '.') }}
+                                        {{ number_format((float) $data->nominal_pembiayaan, 0, ',', '.') }}
                                     </td>
                                     <td style="text-align: center">{{ $data->tenor }} Bulan
                                     </td>

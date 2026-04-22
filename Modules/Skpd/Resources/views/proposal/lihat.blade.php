@@ -1311,8 +1311,9 @@
         </div>
     </div>
     <!-- END: Content-->
+@endsection
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+@push('page-js')
     <script>
         // Initialize jquery.repeater for SLIK / IDEP sections
         $(function () {
@@ -1338,51 +1339,18 @@
         Array.prototype.filter.call(bootstrapForm, function(form) {
             form.addEventListener('submit', function(event) {
                 if (form.checkValidity() === false) {
-                    form.classList.add('invalid');
-                    // form.bootstrapValidator('defaultSubmit');
-
+                    event.preventDefault();
+                    event.stopPropagation();
                 } else {
-                    form.classList.add('was-validated');
                     modalLoading.style.display = 'block'; //Show modal ketika proses submit
-                    form.bootstrapValidator('defaultSubmit');
-
                 }
                 form.classList.add('was-validated');
-                event.preventDefault();
             });
         });
 
         //Hide modal setelah loading selesai
         window.addEventListener('load', () => {
             modalLoading.style.display = 'none';
-        })
-
-
-
-        // function changeStatusPernikahan() {
-        //     var status = document.getElementById("statusPernikahan");
-        //     if (status.value == 1) { //Belum Menikah
-        //         document.getElementById("fotoPasanganPemohon").setAttribute("disabled", "disabled"),
-        //             document.getElementById("fotoPasanganPemohon").removeAttribute("required"),
-        //             document.getElementById("kategoriPasanganPemohon").setAttribute("disabled", "disabled"),
-        //             document.getElementById("fotoAktaNikahCerai").setAttribute("disabled", "disabled"),
-        //             document.getElementById("fotoAktaNikahCerai").removeAttribute("required"),
-        //             document.getElementById("kategoriAktaNikahCerai").setAttribute("disabled", "disabled");
-        //     } else if (status.value == 2) { //Sudah Menikah
-        //         document.getElementById("fotoPasanganPemohon").setAttribute("required", "required"),
-        //             document.getElementById("fotoPasanganPemohon").removeAttribute("disabled"),
-        //             document.getElementById("kategoriPasanganPemohon").removeAttribute("disabled"),
-        //             document.getElementById("fotoAktaNikahCerai").setAttribute("required", "required"),
-        //             document.getElementById("fotoAktaNikahCerai").removeAttribute("disabled"),
-        //             document.getElementById("kategoriAktaNikahCerai").removeAttribute("disabled");
-        //     } else { //Cerai
-        //         document.getElementById("fotoPasanganPemohon").setAttribute("disabled", "disabled"),
-        //             document.getElementById("fotoPasanganPemohon").removeAttribute("required"),
-        //             document.getElementById("kategoriPasanganPemohon").setAttribute("disabled", "disabled"),
-        //             document.getElementById("fotoAktaNikahCerai").setAttribute("required", "required"),
-        //             document.getElementById("fotoAktaNikahCerai").removeAttribute("disabled"),
-        //             document.getElementById("kategoriAktaNikahCerai").removeAttribute("disabled");
-        //     }
-        // }
+        });
     </script>
-@endsection
+@endpush
