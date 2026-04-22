@@ -26,11 +26,17 @@ class UltraMikroProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
         return view('UltraMikro::proposal.index', [
             'title' => 'Proposal UltraMikro',
-            'proposals' => UltraMikroPembiayaan::select()->where('user_id', Auth::user()->id)->whereNull('dokumen_ideb')->orderBy('id', 'desc')->get(),
+            'proposals' => UltraMikroPembiayaan::query()
+                ->where('user_id', Auth::user()->id)
+                ->whereNull('dokumen_ideb')
+                ->orderBy('id', 'desc')
+                ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+                ->paginate(10)->withQueryString(),
         ]);
     }
 

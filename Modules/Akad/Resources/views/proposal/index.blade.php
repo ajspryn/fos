@@ -48,8 +48,8 @@
                         <div class="row" id="divP3kTable">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-datatable table-responsive pt-0">
-                                    <table class="datatables-basic table">
+                                    <div class="table-responsive">
+                                    <table class="table">
                                         <thead>
                                             <tr>
                                                 <th style="text-align: center">No</th>
@@ -107,8 +107,8 @@
                         <div class="row" id="divSkpdTable">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-datatable table-responsive pt-0">
-                                    <table class="datatables-basic table">
+                                    <div class="table-responsive">
+                                    <table class="table">
                                         <thead>
                                             <tr>
                                                 <th style="text-align: center">No</th>
@@ -166,8 +166,8 @@
                         <div class="row" id="divPasarTable">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-datatable table-responsive pt-0">
-                                    <table class="datatables-basic table">
+                                    <div class="table-responsive">
+                                    <table class="table">
                                         <thead>
                                             <tr>
                                                 <th style="text-align: center">No</th>
@@ -225,8 +225,8 @@
                         <div class="row" id="divUmkmTable">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-datatable table-responsive pt-0">
-                                    <table class="datatables-basic table">
+                                    <div class="table-responsive">
+                                    <table class="table">
                                         <thead>
                                             <tr>
                                                 <th style="text-align: center">No</th>
@@ -283,8 +283,8 @@
                         <div class="row" id="divPprTable">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-datatable table-responsive pt-0">
-                                    <table class="datatables-basic table">
+                                    <div class="table-responsive">
+                                    <table class="table">
                                         <thead>
                                             <tr>
                                                 <th style="text-align: center">No</th>

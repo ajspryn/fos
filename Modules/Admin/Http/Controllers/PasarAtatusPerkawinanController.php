@@ -77,7 +77,14 @@ class PasarAtatusPerkawinanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = PasarStatusPerkawinan::findOrFail($id);
+        $data = $request->validate([
+            'kode_status_perkawinan' => ['required'],
+            'nama_status_perkawinan' => ['required'],
+            'biaya' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -87,6 +94,7 @@ class PasarAtatusPerkawinanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        PasarStatusPerkawinan::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

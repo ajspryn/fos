@@ -15,8 +15,9 @@ setlocale(LC_ALL, 'id_ID.UTF8', 'id_ID', 'id_ID.UTF-8', 'id_ID.8859-1', 'IND.UTF
 
 class P3kKomiteController extends Controller
 {
-     public function index()
+     public function index(Request $request)
      {
+          $search = $request->search;
           $komite = P3kPembiayaanHistory::select()
                ->latest()
                ->groupBy('p3k_pembiayaan_id')
@@ -27,7 +28,8 @@ class P3kKomiteController extends Controller
                     $query->where('status_id', '>=', 9)
                          ->where('user_id', Auth::user()->id);
                })
-               ->get();
+               ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+               ->paginate(10)->withQueryString();
 
           return view('dirut::p3k.komite.index', [
                'title' => 'Data Komite',

@@ -77,7 +77,14 @@ class PasarTanggunganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = PasarTanggungan::findOrFail($id);
+        $data = $request->validate([
+            'kode_tanggungan' => ['required'],
+            'bannyak_tanggungan' => ['required'],
+            'biaya' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -87,7 +94,8 @@ class PasarTanggunganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        PasarTanggungan::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }
 

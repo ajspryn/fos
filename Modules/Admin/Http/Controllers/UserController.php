@@ -14,14 +14,48 @@ class UserController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = Role::Rightjoin('users', 'roles.user_id', '=', 'users.id')->select()->get();
-        // return $user;
-        return view('admin::user.index', [
-            'title' => 'Data User',
-            'users' => $user,
-        ]);
+        $search = $request->search;
+        $users = Role::rightJoin('users', 'roles.user_id', '=', 'users.id')
+            ->select('users.id', 'users.name', 'users.email', 'roles.role_id', 'roles.divisi_id', 'roles.jabatan_id')
+            ->when($search, fn($q) => $q->where(
+                fn($q2) => $q2
+                    ->where('users.name', 'like', "%{$search}%")
+                    ->orWhere('users.email', 'like', "%{$search}%")
+            ))
+            ->orderBy('users.id')
+            ->paginate(15)
+            ->withQueryString();
+
+        $roleLabels = [
+            0 => 'Nasabah',
+            1 => 'Admin',
+            2 => 'User',
+        ];
+        $divisiLabels = [
+            0 => 'Admin',
+            1 => 'SKPD',
+            2 => 'Pasar',
+            3 => 'UMKM',
+            4 => 'PPR',
+            5 => 'Custodian',
+            6 => 'PPPK',
+            7 => 'Ultra Mikro',
+        ];
+        $jabatanLabels = [
+            0 => 'Admin',
+            1 => 'Staff/AO',
+            2 => 'Kabag',
+            3 => 'Analis',
+            4 => 'Direktur Bisnis',
+            5 => 'Direktur Utama',
+        ];
+
+        // All users for the "assign role" form dropdown (not paginated)
+        $allUsers = User::orderBy('name')->get();
+
+        return view('admin::user.index', compact('users', 'allUsers', 'roleLabels', 'divisiLabels', 'jabatanLabels'));
     }
 
     /**
@@ -58,8 +92,32 @@ class UserController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show($id) {}
+
+    /**
+     * Update user profile data (name, email, password).
+     */
+    public function updateProfile(Request $request, $id)
     {
+        $rules = [
+            'name'  => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+        ];
+        if ($request->filled('password')) {
+            $rules['password']         = 'min:8|confirmed';
+            $rules['password_confirmation'] = 'required';
+        }
+        $request->validate($rules);
+
+        $user = User::findOrFail($id);
+        $user->name  = $request->name;
+        $user->email = $request->email;
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+
+        return redirect()->back()->with('success', 'Data karyawan berhasil diperbarui!');
     }
 
     /**

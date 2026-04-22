@@ -75,9 +75,15 @@ class PasarPenggunaanController extends Controller
       * @return Renderable
       */
      public function update(Request $request, $id)
-     {
-          //
-     }
+    {
+        $record = PasarPenggunaan::findOrFail($id);
+        $data = $request->validate([
+            'kode_penggunaan' => ['required'],
+            'jenis_penggunaan' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
+    }
 
      /**
       * Remove the specified resource from storage.
@@ -85,7 +91,8 @@ class PasarPenggunaanController extends Controller
       * @return Renderable
       */
      public function destroy($id)
-     {
-          //
-     }
+    {
+        PasarPenggunaan::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
+    }
 }

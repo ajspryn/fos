@@ -79,7 +79,16 @@ class SkpdInstansiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = SkpdInstansi::findOrFail($id);
+        $data = $request->validate([
+            'kode_instansi' => ['required'],
+            'nama_instansi' => ['required'],
+            'alamat_instansi' => ['required'],
+            'rating' => ['required'],
+            'bobot' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -89,6 +98,7 @@ class SkpdInstansiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SkpdInstansi::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

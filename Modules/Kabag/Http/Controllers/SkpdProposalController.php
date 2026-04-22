@@ -19,8 +19,10 @@ class SkpdProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+
         $latestSub = SkpdPembiayaanHistory::selectRaw('skpd_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('skpd_pembiayaan_id');
 
@@ -37,8 +39,9 @@ class SkpdProposalController extends Controller
 
         $proposal = SkpdPembiayaan::with(['nasabah', 'instansi', 'golongan'])
             ->whereIn('id', $proposalIds)
+            ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
             ->orderBy('tanggal_pengajuan', 'desc')
-            ->get();
+            ->paginate(10)->withQueryString();
 
         $histories = $latestHistories->keyBy('skpd_pembiayaan_id');
 

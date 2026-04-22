@@ -40,17 +40,20 @@ class UmkmKomiteController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $komite = UmkmPembiayaan::select()->where('AO_id', Auth::user()->id)->whereNotNull('sektor_id')->orderby('created_at', 'desc')->get();
-
+        $search = $request->search;
+        $komite = UmkmPembiayaan::query()
+            ->where('AO_id', Auth::user()->id)
+            ->whereNotNull('sektor_id')
+            ->orderby('created_at', 'desc')
+            ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
 
         return view('umkm::komite.index', [
             'title' => 'Data Nasabah',
             'komites' => $komite,
         ]);
-
-        return redirect('/umkm/komite/')->with('success', 'Pengajuan Anda Di Teruskan Ke Komite');
     }
 
     /**

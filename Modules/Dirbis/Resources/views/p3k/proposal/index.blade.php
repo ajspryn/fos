@@ -43,7 +43,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <table class="datatables-basic table">
+                            <div class="card-header">
+                                <form method="GET" action="" class="d-flex gap-2">
+                                    <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari nama nasabah...">
+                                    <button class="btn btn-primary" type="submit">Cari</button>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                            <table class="table">
                                 <thead>
                                     <tr>
                                         <th class="midCenter" style="vertical-align: middle;">No.</th>
@@ -83,6 +90,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            </div>
+                            <div class="card-body">
+                                {{ $proposals->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

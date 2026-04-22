@@ -34,11 +34,11 @@
                                 <h5 class="card-header">Form Tanggungan</h5>
                                 <div class="card-body">
                                     @if (session('success'))
-                                        <div class="alert alert-success">{{ session('success') }}</div>
+                                        <div class="alert alert-success alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert"></button>{{ session('success') }}</div>
                                     @endif
 
                                     @if ($errors->any())
-                                        <div class="alert alert-danger">
+                                        <div class="alert alert-danger alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                             <ul class="mb-0">
                                                 @foreach ($errors->all() as $error)
                                                     <li>{{ $error }}</li>
@@ -84,7 +84,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-datatable table-responsive pt-0">
+                                <div class="table-responsive">
 
                                     <table class="table">
                                         <thead>
@@ -93,6 +93,7 @@
                                                 <th style="text-align: center">Kode Tanggungan</th>
                                                 <th style="text-align: center">Banyak Tanggungan</th>
                                                 <th style="text-align: center">Biaya</th>
+                                                <th style="text-align: center">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -102,10 +103,23 @@
                                                     <td style="text-align: center">{{ $tanggungan->kode_tanggungan }}</td>
                                                     <td style="text-align: center">{{ $tanggungan->banyak_tanggungan }}</td>
                                                     <td style="text-align: center">{{ $tanggungan->biaya }}</td>
-                                                </tr>
+                                                
+                                                    <td style="text-align: center">
+                                                        <button type="button" class="btn btn-sm btn-warning" 
+                                                            data-bs-toggle="modal" data-bs-target="#editModal-{{ $tanggungan->id }}">
+                                                            Edit
+                                                        </button>
+                                                        <form action="/admin/skpd/tanggungan/{{ $tanggungan->id }}" method="POST" class="d-inline" 
+                                                              onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                        </form>
+                                                    </td>
+</tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" style="text-align: center">Belum ada data</td>
+                                                    <td colspan="5" style="text-align: center">Belum ada data</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -120,4 +134,40 @@
             </div>
         </div>
     </div>
+{{-- Edit Modals --}}
+@foreach ($tanggungans as $tanggungan)
+<div class="modal fade" id="editModal-{{ $tanggungan->id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="/admin/skpd/tanggungan/{{ $tanggungan->id }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Kode Tanggungan</label>
+                        <input type="text" name="kode_tanggungan" class="form-control" value="{{ $tanggungan->kode_tanggungan }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Banyak Tanggungan</label>
+                        <input type="number" name="banyak_tanggungan" class="form-control" value="{{ $tanggungan->banyak_tanggungan }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Biaya</label>
+                        <input type="number" name="biaya" class="form-control" value="{{ $tanggungan->biaya }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+
 @endsection

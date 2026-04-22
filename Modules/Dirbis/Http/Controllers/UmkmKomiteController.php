@@ -42,7 +42,11 @@ class UmkmKomiteController extends Controller
      */
     public function index()
     {
-        $komite = UmkmPembiayaan::select()->orderby('created_at', 'desc')->get();
+        $search = request('search');
+        $komite = UmkmPembiayaan::select()
+            ->orderby('created_at', 'desc')
+            ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
         return view('dirbis::umkm.komite.index', [
             'title' => 'Data Nasabah',
             'komites' => $komite,

@@ -30,7 +30,15 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <table class="datatables-basic table">
+                            <div class="card-header">
+                                <form method="GET" action="/skpd/komite" class="d-flex gap-2">
+                                    <input type="text" name="search" class="form-control" placeholder="Cari nama nasabah..." value="{{ request('search') }}">
+                                    <button type="submit" class="btn btn-primary">Cari</button>
+                                    <a href="/skpd/komite" class="btn btn-secondary">Reset</a>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                            <table class="table">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center"></th>
@@ -47,7 +55,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($proposals as $proposal)
+                                    @forelse ($proposals as $proposal)
                                         @php
                                             $proposal_skpd = Modules\Skpd\Entities\SkpdPembiayaan::select()
                                                 ->where('id', $proposal->skpd_pembiayaan_id)
@@ -201,9 +209,15 @@
                                             </div>
                                         </div>
                                         <!-- /Modal Catatan Akad Batal -->
-                                    @endforeach
+                                    @empty
+                                        <tr><td colspan="9" class="text-center">Tidak ada data komite.</td></tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+                            </div>
+                            <div class="card-body">
+                                {{ $proposals->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,7 @@
 @extends('admin::layouts.main')
 
 @section('content')
-    <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="container-xxl flex-grow-1 container-p-y">
@@ -13,12 +12,8 @@
                             <h2 class="content-header-title float-start mb-0">Pengaturan Role User</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">User
-                                    </li>
-                                    {{-- <li class="breadcrumb-item active">Data User
-                                    </li> --}}
-                                    <li class="breadcrumb-item active"><a href="#">Role User</a>
-                                    </li>
+                                    <li class="breadcrumb-item">User</li>
+                                    <li class="breadcrumb-item active"><a href="#">Role User</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -26,166 +21,100 @@
                 </div>
             </div>
             <div class="content-body">
-                <!-- Basic multiple Column Form section start -->
+
+                {{-- Flash Messages --}}
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i data-feather="check-circle" class="me-50"></i>
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i data-feather="alert-circle" class="me-50"></i>
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                {{-- Form Tambah Role User --}}
                 <section id="multiple-column-form">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <h5 class="card-header">Form Role User</h5>
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Tambah / Assign Role User</h5>
+                                </div>
                                 <div class="card-body">
                                     <form class="form" method="POST" action="/admin/user">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">User ID</label>
-                                                    <input type="number" id="first-name-column" class="form-control"
-                                                        placeholder="Isikan User ID" name="user_id" />
+                                                    <label class="form-label" for="user_id">User</label>
+                                                    <select class="form-select" id="user_id" name="user_id" required>
+                                                        <option value="">-- Pilih User --</option>
+                                                        @foreach ($allUsers as $u)
+                                                            <option value="{{ $u->id }}" {{ old('user_id') == $u->id ? 'selected' : '' }}>
+                                                                [{{ $u->id }}] {{ $u->name }} ({{ $u->email }})
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Role ID</label>
-                                                    <input type="text" id="first-name-column" class="form-control"
-                                                        placeholder="Isikan Role" name="role_id" />
+                                                    <label class="form-label" for="role_id">Role</label>
+                                                    <select class="form-select" id="role_id" name="role_id" required>
+                                                        <option value="">-- Pilih Role --</option>
+                                                        @foreach ($roleLabels as $id => $label)
+                                                            <option value="{{ $id }}" {{ old('role_id') == $id ? 'selected' : '' }}>
+                                                                {{ $label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Divisi ID</label>
-                                                    <input type="text" id="first-name-column" class="form-control"
-                                                        placeholder="Isikan Divisi" name="divisi_id" />
+                                                    <label class="form-label" for="divisi_id">Divisi</label>
+                                                    <select class="form-select" id="divisi_id" name="divisi_id" required>
+                                                        <option value="">-- Pilih Divisi --</option>
+                                                        @foreach ($divisiLabels as $id => $label)
+                                                            <option value="{{ $id }}" {{ old('divisi_id') == $id ? 'selected' : '' }}>
+                                                                {{ $label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Jabatan ID</label>
-                                                    <input type="text" id="first-name-column" class="form-control"
-                                                        placeholder="Isikan Jabatan" name="jabatan_id" />
+                                                    <label class="form-label" for="jabatan_id">Jabatan</label>
+                                                    <select class="form-select" id="jabatan_id" name="jabatan_id" required>
+                                                        <option value="">-- Pilih Jabatan --</option>
+                                                        @foreach ($jabatanLabels as $id => $label)
+                                                            <option value="{{ $id }}" {{ old('jabatan_id') == $id ? 'selected' : '' }}>
+                                                                {{ $label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2 col-12">
-                                                <button type="button" class="btn btn-primary" onclick="toggleDetail()">
-                                                    <i data-feather="info" class="font-md-1"></i>
-                                                    Keterangan</button>
-                                                <br />
-                                            </div>
-                                            <div class="row hidden" id="divDetail">
-                                                <div class="col-md-4 col-12">
-                                                    <div class="card-datatable table-responsive pt-0">
-
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th style="text-align: center;"><strong>Role ID</strong></th>
-                                                                <th style="text-align: center;"><strong>Nama Role</strong></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody class="table-border-bottom-0">
-                                                            <tr>
-                                                                <td style="text-align: center;">1</td>
-                                                                <td>Admin</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">2</td>
-                                                                <td>User</td>
-                                                            </tr>
-                                    </tbody>
-                                                    </table>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 col-12">
-                                                    <div class="card-datatable table-responsive pt-0">
-
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <td style="text-align: center;"><strong>Divisi ID</strong>
-                                                                </td>
-                                                                <td style="text-align: center;"><strong>Nama Divisi</strong>
-                                                                </td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody class="table-border-bottom-0">
-                                                            <tr>
-                                                                <td style="text-align: center;">0</td>
-                                                                <td>Admin</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">1</td>
-                                                                <td>SKPD</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">2</td>
-                                                                <td>Pasar</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">3</td>
-                                                                <td>UMKM</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">4</td>
-                                                                <td>PPR</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">5</td>
-                                                                <td>Custodian</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">6</td>
-                                                                <td>PPPK</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="col-md-4 col-12">
-                                                    <div class="card-datatable table-responsive pt-0">
-
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <td style="text-align: center;"><strong>Jabatan ID</strong>
-                                                                </td>
-                                                                <td style="text-align: center;"><strong>Nama
-                                                                        Jabatan</strong>
-                                                                </td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody class="table-border-bottom-0">
-                                                            <tr>
-                                                                <td style="text-align: center;">0</td>
-                                                                <td>Admin</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">1</td>
-                                                                <td>Staff/AO</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">2</td>
-                                                                <td>Kabag</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">3</td>
-                                                                <td>Analis</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">4</td>
-                                                                <td>Direktur Bisnis</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="text-align: center;">5</td>
-                                                                <td>Direktur Utama</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <br />
-                                            <div class="col-12"
-                                                style="text-align: right; margin-top:10px; padding-right:30px;">
-                                                <button type="reset" class="btn btn-outline-secondary">Reset</button>
-                                                <button type="submit" class="btn btn-primary me-1">Submit</button>
+                                            <div class="col-12 d-flex justify-content-end mt-1">
+                                                <button type="reset" class="btn btn-outline-secondary me-1">Reset</button>
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
                                             </div>
                                         </div>
                                     </form>
@@ -194,198 +123,241 @@
                         </div>
                     </div>
                 </section>
+
+                {{-- Tabel Data User --}}
                 <section>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align: center"></th>
-                                            <th class="d-none d-md-table-cell" style="text-align: center">No.</th>
-                                            <th style="text-align: center">Nama</th>
-                                            <th style="text-align: center">Email</th>
-                                            <th style="text-align: center">Role</th>
-                                            <th style="text-align: center">Divisi</th>
-                                            <th style="text-align: center">Jabatan</th>
-                                            <th style="text-align: center"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-border-bottom-0">
-                                        @foreach ($users as $user)
+                                <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-1">
+                                    <h5 class="mb-0">Daftar User</h5>
+                                    <form method="GET" action="/admin/user" class="d-flex gap-1">
+                                        <input type="text" name="search" class="form-control"
+                                            placeholder="Cari nama / email..." value="{{ request('search') }}" style="min-width:220px;">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i data-feather="search" class="font-small-4"></i>
+                                        </button>
+                                        @if(request('search'))
+                                            <a href="/admin/user" class="btn btn-outline-secondary">Reset</a>
+                                        @endif
+                                    </form>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
                                             <tr>
-                                                <td style="text-align: center"></td>
-                                                <td style="text-align: center">{{ $user->id }}</td>
-                                                <td style="text-align: center">{{ $user->name }}</td>
-                                                <td style="text-align: center">{{ $user->email }}</td>
-                                                <td style="text-align: center">{{ $user->role_id }}</td>
-                                                <td style="text-align: center">{{ $user->divisi_id }}</td>
-                                                <td style="text-align: center">{{ $user->jabatan_id }}
-                                                </td>
-                                                <td style="text-align: center">
-                                                    <div class="dropdown">
-                                                        <button type="button"
-                                                            class="btn btn-sm dropdown-toggle hide-arrow py-0"
-                                                            data-bs-toggle="dropdown">
-                                                            <i data-feather="more-vertical"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item"data-bs-toggle="modal"
-                                                                data-bs-target="#modalEditUser-{{ $user->id }}">
-                                                                <i data-feather="edit-2" class="me-50"></i>
-                                                                <span>Edit</span>
-                                                            </a>
-
-                                                            <a class="dropdown-item"data-bs-toggle="modal"
-                                                                data-bs-target="#modalDeleteRole-{{ $user->id }}">
-                                                                <i data-feather="trash" class="me-50"></i>
-                                                                <span>Delete</span>
-                                                            </a>
-
-
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                                <th class="text-center" style="width:50px">No.</th>
+                                                <th>Nama</th>
+                                                <th>Email</th>
+                                                <th class="text-center">Role</th>
+                                                <th class="text-center">Divisi</th>
+                                                <th class="text-center">Jabatan</th>
+                                                <th class="text-center" style="width:60px">Aksi</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-
-                                @foreach ($users as $userForModal)
-                                    <!-- Modal Edit User -->
-                                    <div class="modal fade" id="modalEditUser-{{ $userForModal->id }}" tabindex="-1"
-                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-transparent">
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body px-sm-5 mx-50 pb-5">
-                                                    <h3 class="text-center">Edit Role User</h3>
-                                                    <br />
-                                                    {{-- <textarea class="form-control" name="catatan" rows="3" placeholder="Catatan">{{ $historyCatatan->catatan }}</textarea> --}}
-                                                    <form class="form" method="POST"
-                                                        action="/admin/user/{{ $userForModal->id }}">
-                                                        @method('PUT')
-                                                        @csrf
-                                                        <div class="row">
-                                                            <div class="col-md-6 col-12">
-                                                                <div class="mb-1">
-                                                                    <label class="form-label" for="first-name-column">User
-                                                                        ID</label>
-                                                                    <input type="number" id="first-name-column"
-                                                                        class="form-control" placeholder="Isikan User ID"
-                                                                        name="user_id" value="{{ $userForModal->id }}"
-                                                                        disabled />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6 col-12">
-                                                                <div class="mb-1">
-                                                                    <label class="form-label" for="roleId">Role
-                                                                        ID</label>
-                                                                    <input type="text" id="roleId"
-                                                                        class="form-control" placeholder="Isikan Role"
-                                                                        name="role_id"
-                                                                        value="{{ $userForModal->role_id }}" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6 col-12">
-                                                                <div class="mb-1">
-                                                                    <label class="form-label" for="divisiId">Divisi
-                                                                        ID</label>
-                                                                    <input type="text" id="divisiId"
-                                                                        class="form-control" placeholder="Isikan Divisi"
-                                                                        name="divisi_id"
-                                                                        value="{{ $userForModal->divisi_id }}" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6 col-12">
-                                                                <div class="mb-1">
-                                                                    <label class="form-label" for="jabatanId">Jabatan
-                                                                        ID</label>
-                                                                    <input type="text" id="jabatanId"
-                                                                        class="form-control" placeholder="Isikan Jabatan"
-                                                                        name="jabatan_id"
-                                                                        value="{{ $userForModal->jabatan_id }}" />
-                                                                </div>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                            @forelse ($users as $user)
+                                                <tr>
+                                                    <td class="text-center">{{ $users->firstItem() + $loop->index }}</td>
+                                                    <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->email }}</td>
+                                                    <td class="text-center">
+                                                        @if(is_null($user->role_id))
+                                                            <span class="badge bg-secondary">Belum diset</span>
+                                                        @else
+                                                            <span class="badge bg-{{ $user->role_id == 1 ? 'primary' : 'info' }}">
+                                                                {{ $roleLabels[$user->role_id] ?? $user->role_id }}
+                                                            </span>
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $divisiLabels[$user->divisi_id] ?? ($user->divisi_id === null ? '-' : $user->divisi_id) }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $jabatanLabels[$user->jabatan_id] ?? ($user->jabatan_id === null ? '-' : $user->jabatan_id) }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="dropdown">
+                                                            <button type="button"
+                                                                class="btn btn-sm dropdown-toggle hide-arrow py-0"
+                                                                data-bs-toggle="dropdown">
+                                                                <i data-feather="more-vertical"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" data-bs-toggle="modal"
+                                                                    data-bs-target="#modalEditProfile-{{ $user->id }}">
+                                                                    <i data-feather="user" class="me-50"></i>
+                                                                    <span>Edit Data</span>
+                                                                </a>
+                                                                @if(!is_null($user->role_id))
+                                                                <a class="dropdown-item" data-bs-toggle="modal"
+                                                                    data-bs-target="#modalEditUser-{{ $user->id }}">
+                                                                    <i data-feather="edit-2" class="me-50"></i>
+                                                                    <span>Edit Role</span>
+                                                                </a>
+                                                                <a class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                                    data-bs-target="#modalDeleteRole-{{ $user->id }}">
+                                                                    <i data-feather="trash" class="me-50"></i>
+                                                                    <span>Hapus Role</span>
+                                                                </a>
+                                                                @endif
                                                             </div>
                                                         </div>
-                                                        <br />
-                                                        <div class="row">
-                                                            <div class="col-md-6" style="width:150px; margin:0 auto;">
-                                                                <button type="reset"
-                                                                    class="btn btn-outline-secondary w-100">Reset</button>
-                                                            </div>
-                                                            <div class="col-md-6" style="width:150px; margin:0 auto;">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary me-1 w-100">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Modal Edit User -->
-
-                                    <!-- Modal Delete Role -->
-                                    <div class="modal fade" id="modalDeleteRole-{{ $userForModal->id }}" tabindex="-1"
-                                        aria-labelledby="addNewCardTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-transparent">
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body px-sm-5 mx-50 pb-5">
-                                                    <h3 class="text-center">Apakah Anda yakin untuk menghapus Role dari
-                                                        User ini?</h3>
-                                                    <br />
-                                                    <form class="form" method="POST"
-                                                        action="/admin/user/{{ $userForModal->id }}">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <div>
-                                                            <br />
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <button class="btn btn-primary form-control"
-                                                                        type="submit">Ya
-                                                                        <input type="hidden" name="delete_repeater"
-                                                                            value="Hapus Kekayaan Simpanan">
-                                                                    </button>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <button type="button"
-                                                                        class="btn btn-outline-danger form-control"
-                                                                        data-bs-dismiss="modal">Tidak</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Modal Delete Role -->
-                                @endforeach
-
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="7" class="text-center py-3 text-muted">
+                                                        Tidak ada data user ditemukan.
+                                                    </td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-body">
+                                    {{ $users->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <!--/ Basic table -->
+
+                {{-- Modals --}}
+                @foreach ($users as $userForModal)
+                    <!-- Modal Edit Profile (Nama / Email / Password) -->
+                    <div class="modal fade" id="modalEditProfile-{{ $userForModal->id }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Edit Data Karyawan</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body px-sm-5 pb-4">
+                                    <form method="POST" action="/admin/user/{{ $userForModal->id }}/profile">
+                                        @method('PUT')
+                                        @csrf
+                                        <div class="mb-1">
+                                            <label class="form-label">Nama Lengkap</label>
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ $userForModal->name }}" required maxlength="255">
+                                        </div>
+                                        <div class="mb-1">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" name="email"
+                                                value="{{ $userForModal->email }}" required maxlength="255">
+                                        </div>
+                                        <hr>
+                                        <p class="text-muted small mb-1">Kosongkan password jika tidak ingin mengubah.</p>
+                                        <div class="mb-1">
+                                            <label class="form-label">Password Baru</label>
+                                            <input type="password" class="form-control" name="password"
+                                                placeholder="Minimal 8 karakter" autocomplete="new-password">
+                                        </div>
+                                        <div class="mb-1">
+                                            <label class="form-label">Konfirmasi Password</label>
+                                            <input type="password" class="form-control" name="password_confirmation"
+                                                placeholder="Ulangi password baru" autocomplete="new-password">
+                                        </div>
+                                        <div class="d-flex justify-content-end gap-1 mt-2">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Modal Edit Profile -->
+
+                    @if(!is_null($userForModal->role_id))
+                        <!-- Modal Edit User -->
+                        <div class="modal fade" id="modalEditUser-{{ $userForModal->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Role User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body px-sm-5 pb-4">
+                                        <p class="text-muted mb-3">
+                                            <strong>{{ $userForModal->name }}</strong> &mdash; {{ $userForModal->email }}
+                                        </p>
+                                        <form class="form" method="POST" action="/admin/user/{{ $userForModal->id }}">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-12 mb-1">
+                                                    <label class="form-label">Role</label>
+                                                    <select class="form-select" name="role_id" required>
+                                                        @foreach ($roleLabels as $id => $label)
+                                                            <option value="{{ $id }}" {{ $userForModal->role_id == $id ? 'selected' : '' }}>
+                                                                {{ $label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-12 mb-1">
+                                                    <label class="form-label">Divisi</label>
+                                                    <select class="form-select" name="divisi_id" required>
+                                                        @foreach ($divisiLabels as $id => $label)
+                                                            <option value="{{ $id }}" {{ $userForModal->divisi_id == $id ? 'selected' : '' }}>
+                                                                {{ $label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-12 mb-1">
+                                                    <label class="form-label">Jabatan</label>
+                                                    <select class="form-select" name="jabatan_id" required>
+                                                        @foreach ($jabatanLabels as $id => $label)
+                                                            <option value="{{ $id }}" {{ $userForModal->jabatan_id == $id ? 'selected' : '' }}>
+                                                                {{ $label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-end gap-1 mt-2">
+                                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Modal Edit User -->
+
+                        <!-- Modal Hapus Role -->
+                        <div class="modal fade" id="modalDeleteRole-{{ $userForModal->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-danger">Hapus Role</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center px-sm-4 pb-4">
+                                        <i data-feather="alert-triangle" class="text-warning mb-1" style="width:48px;height:48px;"></i>
+                                        <p>Hapus role dari user <strong>{{ $userForModal->name }}</strong>?</p>
+                                        <form method="POST" action="/admin/user/{{ $userForModal->id }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <div class="d-flex justify-content-center gap-1">
+                                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tidak</button>
+                                                <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Modal Hapus Role -->
+                    @endif
+                @endforeach
+
             </div>
         </div>
     </div>
 @endsection
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    function toggleDetail() {
-        var divDetail = document.getElementById("divDetail");
-        divDetail.classList.toggle("hidden");
-    }
-</script>

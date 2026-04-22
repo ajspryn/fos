@@ -21,9 +21,12 @@ class UltraMikroRevisiController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $proposal = UltraMikroPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull('dokumen_ideb')->orderBy('id', 'desc')->get();
+        $search = $request->search;
+        $proposal = UltraMikroPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull('dokumen_ideb')
+            ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->orderBy('id', 'desc')->paginate(10)->withQueryString();
         return view('UltraMikro::revisi.index', [
             'title' => 'Revisi Proposal',
             'proposals' => $proposal,

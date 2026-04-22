@@ -26,8 +26,10 @@ class UltraMikroKomiteController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+
         $latestSub = UltraMikroPembiayaanHistory::selectRaw('ultra_mikro_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('ultra_mikro_pembiayaan_id');
 
@@ -47,8 +49,9 @@ class UltraMikroKomiteController extends Controller
 
         $komite = UltraMikroPembiayaan::with(['nasabah', 'user'])
             ->whereIn('id', $komiteIds)
+            ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
             ->orderBy('tanggal_pengajuan', 'desc')
-            ->get();
+            ->paginate(10)->withQueryString();
 
         $histories = $latestHistories->whereIn('ultra_mikro_pembiayaan_id', $komiteIds)->keyBy('ultra_mikro_pembiayaan_id');
 

@@ -46,7 +46,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <table class="table table-striped table-hover">
+                            <div class="card-header">
+                                <form method="GET" action="" class="d-flex gap-2">
+                                    <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari nama nasabah...">
+                                    <button class="btn btn-primary" type="submit">Cari</button>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                            <table class="table">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center"></th>
@@ -65,7 +72,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    @foreach($proposals as $proposal)
+                                    @forelse($proposals as $proposal)
                                         @php $history = $histories[$proposal->id] ?? null; @endphp
                                         <tr>
                                             <td style="text-align: center">
@@ -121,9 +128,15 @@
                                                     @endif
                                                 </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr><td colspan="10" class="text-center">Tidak ada data revisi.</td></tr>
+                                    @endforelse
                                     </tbody>
                             </table>
+                            </div>
+                            <div class="card-body">
+                                {{ $proposals->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

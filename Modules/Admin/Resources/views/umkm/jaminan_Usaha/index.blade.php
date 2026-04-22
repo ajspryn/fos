@@ -76,7 +76,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-datatable table-responsive pt-0">
+                                <div class="table-responsive">
 
                                 <table class="table">
                                     <thead>

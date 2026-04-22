@@ -19,6 +19,7 @@ class PprProposalController extends Controller
      */
     public function index()
     {
+        $search = request('search');
         $proposal = PprPembiayaanHistory::select()
             ->latest()
             ->groupBy('form_ppr_pembiayaan_id')
@@ -27,7 +28,8 @@ class PprProposalController extends Controller
                     ->where('status_id', '<', 5)
                     ->where('jabatan_id', '<', 4);
             })
-            ->get();
+            ->when($search, fn($q) => $q->whereHas('pemohon', fn($q2) => $q2->where('form_pribadi_pemohon_nama_lengkap', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
         return view('dirbis::ppr.proposal.index', [
             'title' => 'Proposal PPR',
             'proposals' => $proposal,

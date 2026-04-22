@@ -78,7 +78,15 @@ class PasarJenisPasarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = PasarJenisPasar::findOrFail($id);
+        $data = $request->validate([
+            'kode_pasar' => ['required'],
+            'nama_pasar' => ['required'],
+            'rating' => ['required'],
+            'bobot' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -88,6 +96,7 @@ class PasarJenisPasarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        PasarJenisPasar::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

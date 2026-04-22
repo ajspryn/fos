@@ -41,10 +41,15 @@ class PasarKomiteController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $komite = PasarPembiayaan::select()->where('AO_id', Auth::user()->id)->whereNotNull('sektor_id')->orderby('updated_at', 'desc')->get();
-
+        $search = $request->search;
+        $komite = PasarPembiayaan::query()
+            ->where('AO_id', Auth::user()->id)
+            ->whereNotNull('sektor_id')
+            ->orderby('updated_at', 'desc')
+            ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
 
         return view('pasar::komite.index', [
             'title' => 'Data Nasabah',

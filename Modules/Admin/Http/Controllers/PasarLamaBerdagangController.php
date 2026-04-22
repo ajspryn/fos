@@ -79,7 +79,15 @@ class PasarLamaBerdagangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = PasarLamaBerdagang::findOrFail($id);
+        $data = $request->validate([
+            'kode_lamaberdagang' => ['required'],
+            'nama_lamaberdagang' => ['required'],
+            'rating' => ['required'],
+            'bobot' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -89,6 +97,7 @@ class PasarLamaBerdagangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        PasarLamaBerdagang::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

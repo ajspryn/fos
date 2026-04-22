@@ -27,7 +27,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <h5 class="card-header">SKPD - Score Terbobot</h5>
-                                <div class="card-datatable table-responsive pt-0">
+                                <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -61,7 +61,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <h5 class="card-header">Pasar / UMKM - Score Bobot</h5>
-                                <div class="card-datatable table-responsive pt-0">
+                                <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>

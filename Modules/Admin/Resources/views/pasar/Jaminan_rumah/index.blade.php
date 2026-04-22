@@ -33,11 +33,11 @@
                                 <h5 class="card-header">Form Jaminan Rumah</h5>
                                 <div class="card-body">
                                     @if (session('success'))
-                                        <div class="alert alert-success">{{ session('success') }}</div>
+                                        <div class="alert alert-success alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert"></button>{{ session('success') }}</div>
                                     @endif
 
                                     @if ($errors->any())
-                                        <div class="alert alert-danger">
+                                        <div class="alert alert-danger alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                             <ul class="mb-0">
                                                 @foreach ($errors->all() as $error)
                                                     <li>{{ $error }}</li>
@@ -89,7 +89,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-datatable table-responsive pt-0">
+                                <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -98,6 +98,7 @@
                                                 <th style="text-align: center">Jaminan</th>
                                                 <th style="text-align: center">Rating</th>
                                                 <th style="text-align: center">Bobot</th>
+                                                <th style="text-align: center">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -108,10 +109,23 @@
                                                     <td>{{ $rumah->nama_jaminan }}</td>
                                                     <td style="text-align: center">{{ $rumah->rating }}</td>
                                                     <td style="text-align: center">{{ $rumah->bobot }}</td>
-                                                </tr>
+                                                
+                                                    <td style="text-align: center">
+                                                        <button type="button" class="btn btn-sm btn-warning" 
+                                                            data-bs-toggle="modal" data-bs-target="#editModal-{{ $rumah->id }}">
+                                                            Edit
+                                                        </button>
+                                                        <form action="/admin/pasar/jaminanrumah/{{ $rumah->id }}" method="POST" class="d-inline" 
+                                                              onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                        </form>
+                                                    </td>
+</tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="5" style="text-align: center">Belum ada data</td>
+                                                    <td colspan="6" style="text-align: center">Belum ada data</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -126,4 +140,44 @@
             </div>
         </div>
     </div>
+{{-- Edit Modals --}}
+@foreach ($rumahs as $rumah)
+<div class="modal fade" id="editModal-{{ $rumah->id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="/admin/pasar/jaminanrumah/{{ $rumah->id }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Kode Jaminan</label>
+                        <input type="text" name="kode_jaminan" class="form-control" value="{{ $rumah->kode_jaminan }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Nama Jaminan</label>
+                        <input type="text" name="nama_jaminan" class="form-control" value="{{ $rumah->nama_jaminan }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Rating</label>
+                        <input type="number" name="rating" class="form-control" value="{{ $rumah->rating }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Bobot</label>
+                        <input type="number" name="bobot" class="form-control" value="{{ $rumah->bobot }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+
 @endsection

@@ -44,9 +44,16 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-datatable table-responsive pt-0">
+                            <div class="card-header">
+                <form method="GET" action="/kabag/ultra_mikro/proposal" class="d-flex gap-2">
+                    <input type="text" name="search" class="form-control" placeholder="Cari nama nasabah..." value="{{ request('search') }}">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                    <a href="/kabag/ultra_mikro/proposal" class="btn btn-secondary">Reset</a>
+                </form>
+            </div>
+            <div class="table-responsive">
 
-                            <table class="datatables-basic table">
+                            <table class="table">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center"></th>
@@ -87,6 +94,9 @@
                             </table>
 
                             </div>
+            <div class="card-body">
+                {{ $proposals->links() }}
+            </div>
                         </div>
                     </div>
                 </div>

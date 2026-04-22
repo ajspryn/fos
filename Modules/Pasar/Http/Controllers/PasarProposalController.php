@@ -35,11 +35,17 @@ class PasarProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+        $proposals = PasarPembiayaan::with(['nasabahh'])
+            ->where('AO_id', Auth::user()->id)
+            ->where('sektor_id', null)
+            ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
         return view('pasar::proposal.index', [
             'title' => 'Data Nasabah',
-            'proposals' => PasarPembiayaan::select()->where('AO_id', Auth::user()->id)->where('sektor_id', null)->get(),
+            'proposals' => $proposals,
         ]);
     }
 
@@ -57,9 +63,7 @@ class PasarProposalController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
-    {
-    }
+    public function store(Request $request) {}
 
     /**
      * Show the specified resource.

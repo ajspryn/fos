@@ -20,11 +20,14 @@ class SkpdNasabahController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
         return view('kabag::skpd.nasabah.index', [
             'title' => 'Data Nasabah',
-            'proposals' => SkpdNasabah::select()->get(),
+            'proposals' => SkpdNasabah::select()
+                ->when($search, fn($q) => $q->where('nama_nasabah', 'like', "%{$search}%"))
+                ->paginate(10)->withQueryString(),
             // 'nasabah'=>SkpdNasabah::select()->where('skpd_pembiayaan_id',$proposal->id)
         ]);
     }

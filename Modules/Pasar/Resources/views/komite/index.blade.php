@@ -31,7 +31,15 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <table class="datatables-basic table">
+                                <div class="card-header">
+                                    <form method="GET" action="/pasar/komite" class="d-flex gap-2">
+                                        <input type="text" name="search" class="form-control" placeholder="Cari nama nasabah..." value="{{ request('search') }}">
+                                        <button type="submit" class="btn btn-primary">Cari</button>
+                                        <a href="/pasar/komite" class="btn btn-secondary">Reset</a>
+                                    </form>
+                                </div>
+                                <div class="table-responsive">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th style="text-align: center"></th>
@@ -47,7 +55,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($komites as $komite)
+                                        @forelse ($komites as $komite)
                                             @php
                                                 $history = Modules\Pasar\Entities\PasarPembiayaanHistory::select()
                                                     ->where('pasar_pembiayaan_id', $komite->id)
@@ -94,9 +102,15 @@
                                                         class="btn btn-outline-info round">Detail</a>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr><td colspan="9" class="text-center">Tidak ada data komite.</td></tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
+                                </div>
+                                <div class="card-body">
+                                    {{ $komites->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -136,7 +150,15 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <table class="datatables-basic table">
+                                <div class="card-header">
+                                    <form method="GET" action="/pasar/komite" class="d-flex gap-2">
+                                        <input type="text" name="search" class="form-control" placeholder="Cari nama nasabah..." value="{{ request('search') }}">
+                                        <button type="submit" class="btn btn-primary">Cari</button>
+                                        <a href="/pasar/komite" class="btn btn-secondary">Reset</a>
+                                    </form>
+                                </div>
+                                <div class="table-responsive">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th style="text-align: center"></th>
@@ -153,7 +175,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($komites as $komite)
+                                        @forelse ($komites as $komite)
                                             @php
                                                 $proposal_pasar = Modules\Pasar\Entities\PasarPembiayaan::select()
                                                     ->where('id', $komite->pasar_pembiayaan_id)
@@ -195,9 +217,15 @@
                                                         class="btn btn-outline-info round">Detail</a>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr><td colspan="11" class="text-center">Tidak ada data komite.</td></tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
+                                </div>
+                                <div class="card-body">
+                                    {{ $komites->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>

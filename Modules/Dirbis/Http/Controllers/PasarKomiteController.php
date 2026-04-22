@@ -40,7 +40,11 @@ class PasarKomiteController extends Controller
      */
     public function index()
     {
-        $komite = PasarPembiayaan::select()->orderby('updated_at', 'desc')->get();
+        $search = request('search');
+        $komite = PasarPembiayaan::select()
+            ->orderby('updated_at', 'desc')
+            ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
         return view('dirbis::pasar.komite.index', [
             'title' => 'Data Nasabah',
             'komites' => $komite,

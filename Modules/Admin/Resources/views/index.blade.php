@@ -205,7 +205,7 @@
                         <div class="col-lg-8 col-12">
                             <div class="card card-company-table">
                                 <div class="card-body p-0">
-                                    <div class="card-datatable table-responsive pt-0">
+                                    <div class="table-responsive">
                                         <table class="table">
                                             <thead>
                                                 <tr>

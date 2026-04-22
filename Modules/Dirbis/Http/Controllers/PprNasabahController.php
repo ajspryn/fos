@@ -15,11 +15,12 @@ class PprNasabahController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
         return view('dirbis::ppr.nasabah.index', [
             'title' => 'Data Nasabah PPR',
-            'proposals' => FormPprDataPribadi::select()->get(),
+            'proposals' => FormPprDataPribadi::select()->when($search, fn($q) => $q->where('form_pribadi_pemohon_nama_lengkap', 'like', "%{$search}%"))->paginate(10)->withQueryString(),
         ]);
     }
 

@@ -77,7 +77,13 @@ class SkpdJenisPenggunaanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = SkpdJenisPenggunaan::findOrFail($id);
+        $data = $request->validate([
+            'kode_penggunaan' => ['required'],
+            'jenis_penggunaan' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -87,6 +93,7 @@ class SkpdJenisPenggunaanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SkpdJenisPenggunaan::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

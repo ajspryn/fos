@@ -27,6 +27,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
+                            <div class="card-header">
+                                <form method="GET" action="" class="d-flex gap-2">
+                                    <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari nama nasabah...">
+                                    <button class="btn btn-primary" type="submit">Cari</button>
+                                </form>
+                            </div>
                             <div class="table-responsive text-nowrap">
 
                             <table class="table">
@@ -41,7 +47,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                        @foreach ($proposals as $proposal)
+                                        @forelse ($proposals as $proposal)
                                         <tr>
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
                                             <td>{{ $proposal->no_ktp }}</td>
@@ -54,10 +60,15 @@
                                                     class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr><td colspan="6" class="text-center">Tidak ada data nasabah.</td></tr>
+                                        @endforelse
                                     </tbody>
                             </table>
 
+                            </div>
+                            <div class="card-body">
+                                {{ $proposals->links() }}
                             </div>
                         </div>
                     </div>

@@ -20,9 +20,12 @@ class UmkmProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $komite = UmkmPembiayaanHistory::select()->get();
+        $search = $request->search;
+        $komite = UmkmPembiayaanHistory::select()
+            ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
         return view('dirbis::umkm.proposal.index', [
             'title' => 'Data Proposal UMKM',
             'proposals' => $komite,

@@ -106,6 +106,7 @@ use Modules\Admin\Http\Controllers\ParameterBobotController;
 
 Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:1', 'divisi:0', 'jabatan:0'])->group(function () {
     Route::get('/', 'AdminController@index');
+    Route::put('/user/{id}/profile', [UserController::class, 'updateProfile'])->name('admin.user.updateProfile');
     Route::resource('/user', UserController::class);
     Route::get('/parameterbobot', [ParameterBobotController::class, 'index'])->name('admin.parameterbobot.index');
     Route::resource('/skpd/akad', SkpdAkadController::class)->names('admin.skpd.akad');

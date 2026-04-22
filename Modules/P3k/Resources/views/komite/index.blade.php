@@ -36,7 +36,7 @@
                                     @if($search ?? null)<a href="/p3k/komite" class="btn btn-outline-secondary btn-sm">Reset</a>@endif
                                 </form>
                             </div>
-                            <div class="card-datatable table-responsive pt-0">
+                            <div class="table-responsive">
                                 <table class="table">
                                 <thead>
                                     <tr>
@@ -51,7 +51,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($proposals as $proposal)
+                                    @forelse ($proposals as $proposal)
                                         @php
                                             $history = $histories[$proposal->id] ?? null;
                                             $bonMurabahahFile = $bonMurabahah[$proposal->id] ?? null;
@@ -103,7 +103,9 @@
                                                 <a href="/p3k/komite/{{ $proposal->id }}" class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr><td colspan="8" class="text-center">Tidak ada data komite.</td></tr>
+                                    @endforelse
                                     @foreach ($proposals as $forBon)
                                         @php
                                             $histForBon = $histories[$forBon->id] ?? null;
@@ -172,7 +174,7 @@
                                 </tbody>
                                     </table>
                                 </div>
-                                <div class="px-2 pb-2">
+                                <div class="card-body">
                                     {{ $proposals->links() }}
                                 </div>
                             </div>

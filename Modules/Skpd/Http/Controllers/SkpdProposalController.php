@@ -32,11 +32,18 @@ class SkpdProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+        $proposals = SkpdPembiayaan::query()
+            ->where('user_id', Auth::user()->id)
+            ->where('skpd_sektor_ekonomi_id', null)
+            ->orderBy('id', 'desc')
+            ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
         return view('skpd::proposal.index', [
             'title' => 'Proposal Calon Debitur',
-            'proposals' => SkpdPembiayaan::select()->where('user_id', Auth::user()->id)->where('skpd_sektor_ekonomi_id', null)->orderBy('id', 'desc')->get(),
+            'proposals' => $proposals,
         ]);
     }
 

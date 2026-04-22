@@ -78,7 +78,15 @@ class PasarSukuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = PasarSukuBangsa::findOrFail($id);
+        $data = $request->validate([
+            'kode_suku' => ['required'],
+            'nama_suku' => ['required'],
+            'rating' => ['required'],
+            'bobot' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -88,6 +96,7 @@ class PasarSukuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        PasarSukuBangsa::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

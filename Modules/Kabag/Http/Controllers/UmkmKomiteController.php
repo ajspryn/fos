@@ -41,8 +41,10 @@ class UmkmKomiteController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+
         $latestSub = UmkmPembiayaanHistory::selectRaw('umkm_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('umkm_pembiayaan_id');
 
@@ -64,8 +66,9 @@ class UmkmKomiteController extends Controller
 
         $komite = UmkmPembiayaan::with(['nasabahh', 'keteranganusaha', 'user'])
             ->whereIn('id', $komiteIds)
+            ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
             ->orderBy('tgl_pembiayaan', 'desc')
-            ->get();
+            ->paginate(10)->withQueryString();
 
         $bonmurabahah = UmkmFoto::whereIn('umkm_pembiayaan_id', $komiteIds)
             ->where('kategori', 'Foto Bon Murabahah')

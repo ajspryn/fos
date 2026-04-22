@@ -76,7 +76,13 @@ class PasarAkadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = PasarAkad::findOrFail($id);
+        $data = $request->validate([
+            'kode_akad' => ['required'],
+            'nama_akad' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -86,6 +92,7 @@ class PasarAkadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        PasarAkad::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

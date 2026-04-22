@@ -293,9 +293,7 @@
                     <td class="label">Angsuran</td>
                     <td class="value">Rp{{ number_format($angsuran ?? 0, 0, ',', '.') }}/Bulan</td>
                     <td class="label">Jaminan</td>
-                    <td class="value">
-                        @forelse($jaminans as $j){{ $j->nama_jaminan }}@if(!$loop->last), @endif@empty-@endforelse
-                    </td>
+                    <td class="value">{{ $jaminans?->nama_jaminan ?? '-' }}</td>
                 </tr>
                 <tr>
                     <td class="label">Rasio IDIR</td>

@@ -78,7 +78,15 @@ class PasarJenisNasabahController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = PasarJenisNasabah::findOrFail($id);
+        $data = $request->validate([
+            'kode_jenisnasabah' => ['required'],
+            'nama_jenisnasabah' => ['required'],
+            'rating' => ['required'],
+            'bobot' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -88,6 +96,7 @@ class PasarJenisNasabahController extends Controller
      */
     public function destroy($id)
     {
-        //
+        PasarJenisNasabah::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

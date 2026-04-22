@@ -29,8 +29,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-datatable table-responsive pt-0">
-                                <table class="datatables-basic table">
+                            <div class="card-header">
+                                <form method="GET" action="" class="d-flex gap-2">
+                                    <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari nama nasabah...">
+                                    <button class="btn btn-primary" type="submit">Cari</button>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center"></th>
@@ -46,7 +52,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($komites as $komite)
+                                    @forelse($komites as $komite)
                                         @php
                                             $history = $histories[$komite->id] ?? null;
                                             $statusLabels = [1=>'Diajukan',2=>'Dilengkapi',3=>'Diajukan ke Komite',4=>'Sedang Ditinjau',5=>'Disetujui',6=>'Ditolak',7=>'Rekomendasi Revisi',8=>'Akad Dicetak',9=>'Akad Selesai',10=>'Akad Batal',11=>'Rekomendasi'];
@@ -70,9 +76,14 @@
                                                 <a href="/umkm/revisi/{{ $komite->id }}/edit" class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr><td colspan="8" class="text-center">Tidak ada data revisi.</td></tr>
+                                    @endforelse
                                     </tbody>
                             </table>
+                            </div>
+                            <div class="card-body">
+                                {{ $komites->links() }}
                             </div>
                         </div>
                     </div>

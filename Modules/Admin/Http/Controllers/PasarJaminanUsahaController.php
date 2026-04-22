@@ -78,7 +78,15 @@ class PasarJaminanUsahaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = PasarJenisJaminan::findOrFail($id);
+        $data = $request->validate([
+            'kode_jaminan' => ['required'],
+            'nama_jaminan' => ['required'],
+            'rating' => ['required'],
+            'bobot' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -88,6 +96,7 @@ class PasarJaminanUsahaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        PasarJenisJaminan::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

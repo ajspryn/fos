@@ -92,8 +92,8 @@ class UmkmCetakController extends Controller
         //pengeluaran
 
         $cicilan = UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->sum('angsuran');
-        $biaya_anak = $nasabah->tanggungan->biaya;
-        $biaya_istri = $nasabah->status->biaya;
+        $biaya_anak = $nasabah?->tanggungan?->biaya ?? 0;
+        $biaya_istri = $nasabah?->status?->biaya ?? 0;
         $kebutuhan_keluarga = UmkmPembiayaan::select()->where('id', $id)->sum('keb_keluarga');
         $pengeluaranlain = $biaya_anak + $biaya_istri + $kebutuhan_keluarga;
         $total_pengeluaran = ($pengeluaranlain + $cicilan + $angsuran1);
@@ -114,12 +114,12 @@ class UmkmCetakController extends Controller
         $proses_jenisdagang = PasarJenisDagang::select()->where('kode_jenisdagang', $usaha->jenisdagang_id)->first();
         $proses_sukubangsa = PasarSukuBangsa::select()->where('kode_suku', $usaha->suku_bangsa_id)->first();
         $proses_lamadagang = PasarLamaBerdagang::select()->where('kode_lamaberdagang', $usaha->lama_usaha)->first();
-        $proses_jaminanrumah = PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah->legalitas_kepemilikan_rumah)->first();
+        $proses_jaminanrumah = PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah?->legalitas_kepemilikan_rumah)->first();
         $proses_cashpickup = PasarCashPick::select()->where('kode_jeniscash', $data->cashpickup)->first();
         $proses_jenisnasabah = PasarJenisNasabah::select()->where('kode_jenisnasabah', $data->nasabah)->first();
 
 
-        $proses_jaminanlain = PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->first();
+        $proses_jaminanlain = PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain?->jaminanlain)->first();
 
         // if(!isset($proses_jaminanlain)){
         //     $prosesjaminanlain=PasarJenisJaminan::select()->where('kol',null)->first();
@@ -129,13 +129,13 @@ class UmkmCetakController extends Controller
         // }
         //score
 
-        $score_jenisdagang = $proses_jenisdagang->rating;
-        $score_sukubangsa = $proses_sukubangsa->rating;
-        $score_lamadagang = $proses_lamadagang->rating;
-        $score_jaminanrumahr = $proses_jaminanrumah->rating;
-        $score_cashpick = $proses_cashpickup->rating;
-        $score_jenisnasabah = $proses_jenisnasabah->rating;
-        $score_jaminanlain = $proses_jaminanlain->rating;
+        $score_jenisdagang = $proses_jenisdagang?->rating ?? 0;
+        $score_sukubangsa = $proses_sukubangsa?->rating ?? 0;
+        $score_lamadagang = $proses_lamadagang?->rating ?? 0;
+        $score_jaminanrumahr = $proses_jaminanrumah?->rating ?? 0;
+        $score_cashpick = $proses_cashpickup?->rating ?? 0;
+        $score_jenisnasabah = $proses_jenisnasabah?->rating ?? 0;
+        $score_jaminanlain = $proses_jaminanlain?->rating ?? 0;
 
         $idir = number_format(($cicilan + $angsuran1) / ($di) * 100);
 
@@ -167,7 +167,7 @@ class UmkmCetakController extends Controller
         } else {
             $prosesslik = PasarScoreSlik::select()->where('kol', $data_slik->kol)->first();
         }
-        $score_slik = $prosesslik->rating;
+        $score_slik = $prosesslik?->rating ?? 0;
 
         $waktuawal = UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->orderby('created_at', 'asc')->first();
         $waktuakhir = UmkmPembiayaanHistory::select()->where('umkm_pembiayaan_id', $id)->orderby('created_at', 'desc')->first();
@@ -219,12 +219,12 @@ class UmkmCetakController extends Controller
             'akads' => PasarAkad::all(),
             'sektors' => PasarSektorEkonomi::all(),
             'lamas' => PasarLamaBerdagang::select()->where('kode_lamaberdagang', $usaha->lama_usaha)->first(),
-            'rumahs' => PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah->legalitas_kepemilikan_rumah)->first(),
+            'rumahs' => PasarJaminanRumahh::select()->where('kode_jaminan', $jaminanrumah?->legalitas_kepemilikan_rumah)->first(),
             'dagangs' => PasarJenisDagang::select()->where('kode_jenisdagang', $usaha->jenisdagang_id)->first(),
             'cashs' => PasarCashPick::select()->where('kode_jeniscash', $data->cashpickup)->first(),
             'nasabahs' => PasarJenisNasabah::select()->where('kode_jenisnasabah', $data->nasabah)->first(),
             'sukus' => PasarSukuBangsa::select()->where('kode_suku', $usaha->suku_bangsa_id)->first(),
-            'jaminans' => PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->first(),
+            'jaminans' => PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain?->jaminanlain)->first() ?? (object)['nama_jaminan' => '-', 'bobot' => 0],
             // 'slik'=>$prosesslik,
             'idebs' => UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->get(),
             'ideppasangans' => UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->get(),
@@ -252,15 +252,15 @@ class UmkmCetakController extends Controller
             'rating_idir' => $score_idir,
             'rating_jaminanlain' => $score_jaminanlain,
 
-            'score_jenisdagang' => $score_jenisdagang *  $proses_jenisdagang->bobot,
-            'score_sukubangsa' => $score_sukubangsa * $proses_sukubangsa->bobot,
-            'score_lamadagang' => $score_lamadagang * $proses_lamadagang->bobot,
-            'score_jaminanrumah' => $score_jaminanrumahr * $proses_jaminanrumah->bobot,
-            'score_cashpick' => $score_cashpick * $proses_cashpickup->bobot,
-            'score_jenisnasabah' => $score_jenisnasabah * $proses_jenisnasabah->bobot,
-            'score_slik' => $score_slik * $prosesslik->bobot,
-            'score_idir' => $score_idir * $proses_idir->bobot,
-            'score_jaminanlain' => $score_jaminanlain * $proses_jaminanlain->bobot,
+            'score_jenisdagang' => $score_jenisdagang * ($proses_jenisdagang?->bobot ?? 0),
+            'score_sukubangsa' => $score_sukubangsa * ($proses_sukubangsa?->bobot ?? 0),
+            'score_lamadagang' => $score_lamadagang * ($proses_lamadagang?->bobot ?? 0),
+            'score_jaminanrumah' => $score_jaminanrumahr * ($proses_jaminanrumah?->bobot ?? 0),
+            'score_cashpick' => $score_cashpick * ($proses_cashpickup?->bobot ?? 0),
+            'score_jenisnasabah' => $score_jenisnasabah * ($proses_jenisnasabah?->bobot ?? 0),
+            'score_slik' => $score_slik * ($prosesslik?->bobot ?? 0),
+            'score_idir' => $score_idir * ($proses_idir?->bobot ?? 0),
+            'score_jaminanlain' => $score_jaminanlain * ($proses_jaminanlain?->bobot ?? 0),
 
 
             'arr' => -2,

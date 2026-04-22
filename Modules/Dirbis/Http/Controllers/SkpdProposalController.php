@@ -19,20 +19,12 @@ class SkpdProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        // $proposal = SkpdPembiayaanHistory::select()
-        //     ->latest()
-        //     ->groupBy('skpd_pembiayaan_id')
-        //     ->where(function ($query) {
-        //         $query
-        //             ->where('status_id', '<', 5)
-        //             ->where('jabatan_id', '<', 4);
-        //     })
-        //     ->get();
-        // // return $proposal[0];
-        $proposal = SkpdPembiayaan::select()->get();
+        $search = $request->search;
+        $proposal = SkpdPembiayaan::select()
+            ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
 
         return view('dirbis::skpd.proposal.index', [
             'title' => 'Proposal SKPD',

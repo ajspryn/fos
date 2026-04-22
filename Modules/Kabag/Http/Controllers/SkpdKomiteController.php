@@ -33,8 +33,10 @@ class SkpdKomiteController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+
         $latestSub = SkpdPembiayaanHistory::selectRaw('skpd_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('skpd_pembiayaan_id');
 
@@ -53,8 +55,9 @@ class SkpdKomiteController extends Controller
 
         $proposals = SkpdPembiayaan::with(['nasabah', 'instansi', 'user'])
             ->whereIn('id', $komiteIds)
+            ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
             ->orderBy('tanggal_pengajuan', 'desc')
-            ->get();
+            ->paginate(10)->withQueryString();
 
         $bonmurabahahByPembiayaan = SkpdFoto::whereIn('skpd_pembiayaan_id', $komiteIds)
             ->where('kategori', 'Foto Bon Murabahah')

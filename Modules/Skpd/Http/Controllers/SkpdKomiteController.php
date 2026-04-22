@@ -34,16 +34,20 @@ class SkpdKomiteController extends Controller
      * @return Renderable
      */
 
-    public function index()
+    public function index(Request $request)
     {
         // $history=SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $proposal->id)->orderby('created_at', 'desc')->get();
-        $proposal = SkpdPembiayaan::select()->where('user_id', Auth::user()->id)->whereNotNull('skpd_sektor_ekonomi_id')->orderBy('id', 'desc')->get();
+        $search = $request->search;
+        $proposal = SkpdPembiayaan::query()
+            ->where('user_id', Auth::user()->id)
+            ->whereNotNull('skpd_sektor_ekonomi_id')
+            ->orderBy('id', 'desc')
+            ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
         return view('skpd::komite.index', [
             'title' => 'Komite',
             'proposals' => $proposal,
         ]);
-
-        return redirect('/skpd/komite/')->with('success', 'Pengajuan Anda Di Teruskan Ke Komite');
     }
 
     /**

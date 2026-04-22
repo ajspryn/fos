@@ -36,7 +36,7 @@
                                     @if($search ?? null)<a href="/p3k/nasabah" class="btn btn-outline-secondary btn-sm">Reset</a>@endif
                                 </form>
                             </div>
-                            <div class="card-datatable table-responsive pt-0">
+                            <div class="table-responsive">
                                     <table class="table">
                                 <thead>
                                     <tr>
@@ -50,7 +50,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($proposals as $proposal)
+                                    @forelse ($proposals as $proposal)
                                         <tr>
                                             <td></td>
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
@@ -64,11 +64,13 @@
                                                     class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr><td colspan="6" class="text-center">Tidak ada data nasabah.</td></tr>
+                                    @endforelse
                                 </tbody>
                                     </table>
                                 </div>
-                                <div class="px-2 pb-2">
+                                <div class="card-body">
                                     {{ $proposals->links() }}
                                 </div>
                             </div>

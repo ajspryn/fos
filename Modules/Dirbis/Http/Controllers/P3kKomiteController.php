@@ -30,6 +30,7 @@ class P3kKomiteController extends Controller
      */
     public function index()
     {
+        $search = request('search');
         $komite = P3kPembiayaanHistory::select()
             ->latest()
             ->groupBy('p3k_pembiayaan_id')
@@ -53,7 +54,8 @@ class P3kKomiteController extends Controller
                     ->where('status_id', 4)
                     ->where('jabatan_id', 4);
             })
-            ->get();
+            ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
 
         return view('dirbis::p3k.komite.index', [
             'title' => 'Data Komite',

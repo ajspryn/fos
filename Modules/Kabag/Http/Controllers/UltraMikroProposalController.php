@@ -17,8 +17,10 @@ class UltraMikroProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+
         $latestSub = UltraMikroPembiayaanHistory::selectRaw('ultra_mikro_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('ultra_mikro_pembiayaan_id');
 
@@ -33,8 +35,9 @@ class UltraMikroProposalController extends Controller
 
         $proposal = UltraMikroPembiayaan::with(['nasabah', 'user'])
             ->whereIn('id', $proposalIds)
+            ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
             ->orderBy('tanggal_pengajuan', 'desc')
-            ->get();
+            ->paginate(10)->withQueryString();
 
         $histories = $latestHistories->keyBy('ultra_mikro_pembiayaan_id');
 

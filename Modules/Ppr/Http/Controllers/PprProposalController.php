@@ -110,21 +110,21 @@ class PprProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
         return view('ppr::proposal.index', [
             'title' => 'Proposal PPR',
             'proposals' => FormPprPembiayaan::with(['pemohon'])
-                //Mengambil sesuai AO
                 ->where('user_id', Auth::user()->id)
-                //Query agar pengambilan sesuai AO berfungsi
                 ->where(function ($query) {
                     $query
                         ->whereNull('dilengkapi_ao')
                         ->orWhereNull('form_cl')
                         ->orWhereNull('form_score');
                 })
-                ->get(),
+                ->when($search, fn($q) => $q->whereHas('pemohon', fn($q2) => $q2->where('form_pribadi_pemohon_nama_lengkap', 'like', "%{$search}%")))
+                ->paginate(10)->withQueryString(),
         ]);
     }
 

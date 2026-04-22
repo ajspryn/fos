@@ -37,7 +37,7 @@
                                     @if($search ?? null)<a href="/p3k/revisi" class="btn btn-outline-secondary btn-sm">Reset</a>@endif
                                 </form>
                             </div>
-                            <div class="card-datatable table-responsive pt-0">
+                            <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -52,7 +52,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($proposals as $proposal)
+                                    @forelse ($proposals as $proposal)
                                         <tr>
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
                                             <td>{{ strftime('%d %B %Y', strtotime($proposal->tanggal_pengajuan)) }}
@@ -72,11 +72,13 @@
                                                     class="btn btn-outline-info round">Lengkapi</a>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr><td colspan="8" class="text-center">Tidak ada data revisi.</td></tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                             </div>
-                            <div class="px-2 pb-2">
+                            <div class="card-body">
                                 {{ $proposals->links() }}
                             </div>
                         </div>

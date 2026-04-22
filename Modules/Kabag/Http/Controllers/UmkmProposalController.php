@@ -19,8 +19,10 @@ class UmkmProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+
         $latestSub = UmkmPembiayaanHistory::selectRaw('umkm_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('umkm_pembiayaan_id');
 
@@ -37,8 +39,9 @@ class UmkmProposalController extends Controller
 
         $proposal = UmkmPembiayaan::with(['nasabahh', 'keteranganusaha', 'user'])
             ->whereIn('id', $proposalIds)
+            ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
             ->orderBy('tgl_pembiayaan', 'desc')
-            ->get();
+            ->paginate(10)->withQueryString();
 
         $histories = $latestHistories->keyBy('umkm_pembiayaan_id');
         return view('kabag::umkm.proposal.index', [

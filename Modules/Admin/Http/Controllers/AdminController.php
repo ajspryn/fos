@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Support\Renderable;
+use Modules\Pasar\Entities\PasarPembiayaan;
+use Modules\Skpd\Entities\SkpdPembiayaan;
+use Modules\Umkm\Entities\UmkmPembiayaan;
+use Modules\Form\Entities\FormPprPembiayaan;
+use Modules\P3k\Entities\P3kPembiayaan;
 
 class AdminController extends Controller
 {
@@ -17,17 +22,21 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $role=Role::select()->where('user_id',Auth::user()->id)->first();
-        $user=Role::Rightjoin('users','roles.user_id','=','users.id')->select()->whereNull('role_id')->count();
-        $userlengkap=Role::Rightjoin('users','roles.user_id','=','users.id')->select()->count();
-        // dd($role->role_id);
-        return view('admin::lihat',[
-            // 'header'=>"Dashboard Admin",
-            'title'=>"Dashboard Admin",
-            'role'=>$role->role_id,
-            'user'=>User::select()->where('id', Auth::user()->id)->first(),
-            'usertidakadarole'=>$user,
-            'userlengkap'=>$userlengkap,
+        $roleRecord = Role::where('user_id', Auth::user()->id)->first();
+        $userTidakAdaRole = Role::rightJoin('users', 'roles.user_id', '=', 'users.id')->whereNull('role_id')->count();
+        $userLengkap = User::count();
+
+        return view('admin::lihat', [
+            'title'             => 'Dashboard Admin',
+            'role'              => optional($roleRecord)->role_id,
+            'user'              => Auth::user(),
+            'usertidakadarole'  => $userTidakAdaRole,
+            'userlengkap'       => $userLengkap,
+            'totalPasar'        => PasarPembiayaan::count(),
+            'totalSkpd'         => SkpdPembiayaan::count(),
+            'totalUmkm'         => UmkmPembiayaan::count(),
+            'totalPpr'          => FormPprPembiayaan::count(),
+            'totalP3k'          => P3kPembiayaan::count(),
         ]);
     }
 
@@ -45,10 +54,7 @@ class AdminController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
-    {
-
-    }
+    public function store(Request $request) {}
 
     /**
      * Show the specified resource.

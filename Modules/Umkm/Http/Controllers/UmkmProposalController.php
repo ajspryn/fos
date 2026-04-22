@@ -38,11 +38,16 @@ class UmkmProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
         return view('umkm::proposal.index', [
             'title' => 'Data Proposal UMKM',
-            'proposals' => UmkmPembiayaan::select()->where('AO_id', Auth::user()->id)->where('sektor_id', null)->get(),
+            'proposals' => UmkmPembiayaan::query()
+                ->where('AO_id', Auth::user()->id)
+                ->where('sektor_id', null)
+                ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+                ->paginate(10)->withQueryString(),
         ]);
     }
 

@@ -34,11 +34,11 @@
                                 <h5 class="card-header">Form Golongan</h5>
                                 <div class="card-body">
                                     @if (session('success'))
-                                        <div class="alert alert-success">{{ session('success') }}</div>
+                                        <div class="alert alert-success alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert"></button>{{ session('success') }}</div>
                                     @endif
 
                                     @if ($errors->any())
-                                        <div class="alert alert-danger">
+                                        <div class="alert alert-danger alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                             <ul class="mb-0">
                                                 @foreach ($errors->all() as $error)
                                                     <li>{{ $error }}</li>
@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-datatable table-responsive pt-0">
+                                <div class="table-responsive">
 
                                     <table class="table">
                                         <thead>
@@ -86,6 +86,7 @@
                                                 <th style="text-align: center">No</th>
                                                 <th style="text-align: center">Kode</th>
                                                 <th style="text-align: center">Golongan</th>
+                                                <th style="text-align: center">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -94,10 +95,23 @@
                                                     <td style="text-align: center">{{ $loop->iteration }}</td>
                                                     <td style="text-align: center">{{ $golongan->kode_golongan }}</td>
                                                     <td style="text-align: center">{{ $golongan->nama_golongan }}</td>
-                                                </tr>
+                                                
+                                                    <td style="text-align: center">
+                                                        <button type="button" class="btn btn-sm btn-warning" 
+                                                            data-bs-toggle="modal" data-bs-target="#editModal-{{ $golongan->id }}">
+                                                            Edit
+                                                        </button>
+                                                        <form action="/admin/skpd/golongan/{{ $golongan->id }}" method="POST" class="d-inline" 
+                                                              onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                        </form>
+                                                    </td>
+</tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="3" style="text-align: center">Belum ada data</td>
+                                                    <td colspan="4" style="text-align: center">Belum ada data</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -112,4 +126,36 @@
             </div>
         </div>
     </div>
+{{-- Edit Modals --}}
+@foreach ($golongans as $golongan)
+<div class="modal fade" id="editModal-{{ $golongan->id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="/admin/skpd/golongan/{{ $golongan->id }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Kode Golongan</label>
+                        <input type="number" name="kode_golongan" class="form-control" value="{{ $golongan->kode_golongan }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Golongan</label>
+                        <input type="text" name="nama_golongan" class="form-control" value="{{ $golongan->nama_golongan }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+
 @endsection

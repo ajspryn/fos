@@ -19,11 +19,16 @@ class PasarNasabahController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('pasar::nasabah.index',[
-            'title'=>'Nasabah',
-            'proposals'=>PasarNasabahh::select()->get(),]);
+        $search = $request->search;
+        $proposals = PasarNasabahh::query()
+            ->when($search, fn($q) => $q->where('nama_nasabah', 'like', "%{$search}%"))
+            ->paginate(10)->withQueryString();
+        return view('pasar::nasabah.index', [
+            'title' => 'Nasabah',
+            'proposals' => $proposals,
+        ]);
     }
 
     /**
@@ -51,30 +56,30 @@ class PasarNasabahController extends Controller
      * @return Renderable
      */
     public function show($id)
-    {    
-        $data=PasarPembiayaan::select()->where('nasabah_id',$id)->first();
-        $nasabah=PasarNasabahh::select()->where('id', $id)->first();
-       
-        $jaminanlain=PasarJaminan::select()->where('pasar_pembiayaan_id',$id)->first();
-        $tenor=$data->tenor;
-        $harga=$data->harga;
-        $rate=$data->rate;
-        $margin=($rate*$tenor)/100;
+    {
+        $data = PasarPembiayaan::select()->where('nasabah_id', $id)->first();
+        $nasabah = PasarNasabahh::select()->where('id', $id)->first();
 
-        $harga1=$harga*$margin;
-        $harga_jual=$harga1+$harga;
+        $jaminanlain = PasarJaminan::select()->where('pasar_pembiayaan_id', $id)->first();
+        $tenor = $data->tenor;
+        $harga = $data->harga;
+        $rate = $data->rate;
+        $margin = ($rate * $tenor) / 100;
 
-        $angsuran1=(int)($harga_jual/$tenor);
+        $harga1 = $harga * $margin;
+        $harga_jual = $harga1 + $harga;
 
-        return view('pasar::nasabah.lihat',[
-            'title'=>'Nasabah',
-            'pembiayaan'=>PasarPembiayaan::select()->where('nasabah_id',$id)->first(),
-            'nasabah'=>$nasabah,
-            'datas'=>PasarPembiayaan::select()->where('nasabah_id',$id)->get(),
+        $angsuran1 = (int)($harga_jual / $tenor);
+
+        return view('pasar::nasabah.lihat', [
+            'title' => 'Nasabah',
+            'pembiayaan' => PasarPembiayaan::select()->where('nasabah_id', $id)->first(),
+            'nasabah' => $nasabah,
+            'datas' => PasarPembiayaan::select()->where('nasabah_id', $id)->get(),
             // 'history'=PasarNasabahh::select()->where('no_ktp'),
-            'idebs'=>PasarSlik::select()->where('pasar_pembiayaan_id',$id)->get(),
-            'fotodiri'=>PasarFoto::select()->where('pasar_pembiayaan_id',$id)->where('kategori', 'Foto Diri')->first(),
-            'angsuran'=>$angsuran1,
+            'idebs' => PasarSlik::select()->where('pasar_pembiayaan_id', $id)->get(),
+            'fotodiri' => PasarFoto::select()->where('pasar_pembiayaan_id', $id)->where('kategori', 'Foto Diri')->first(),
+            'angsuran' => $angsuran1,
             // 'jaminans'=>PasarJenisJaminan::select()->where('kode_jaminan',$jaminanlain->jaminanlain)->first(),
         ]);
     }

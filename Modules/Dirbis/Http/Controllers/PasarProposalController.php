@@ -18,10 +18,13 @@ class PasarProposalController extends Controller
      */
     public function index()
     {
-        $proposal=PasarPembiayaan::select()->get();
-        return view('dirbis::pasar.proposal.index',[
-            'title'=>'Data Nasabah',
-            'proposals'=>$proposal,
+        $search = request('search');
+        $proposal = PasarPembiayaan::select()
+            ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
+        return view('dirbis::pasar.proposal.index', [
+            'title' => 'Data Nasabah',
+            'proposals' => $proposal,
         ]);
     }
 
@@ -66,27 +69,27 @@ class PasarProposalController extends Controller
             $plabel[] = $rttotal->nama_pasar;
             $pdatapasar[] = $rttotal->total_noa;
         }
-        $plafonds = PasarPembiayaan::join('pasar_pembiayaan_histories','pasar_pembiayaans.id','=','pasar_pembiayaan_histories.pasar_pembiayaan_id')
-        ->select(DB::raw("MONTHNAME(pasar_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(harga) as jml_plafond"))
-        ->where('pasar_pembiayaan_histories.status_id', 9)
-        ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
-        ->groupBy(DB::raw("nama_bulan"))
-        ->orderBy('pasar_pembiayaans.id', 'ASC')
-        ->pluck('jml_plafond', 'nama_bulan');
+        $plafonds = PasarPembiayaan::join('pasar_pembiayaan_histories', 'pasar_pembiayaans.id', '=', 'pasar_pembiayaan_histories.pasar_pembiayaan_id')
+            ->select(DB::raw("MONTHNAME(pasar_pembiayaans.tgl_pembiayaan) as nama_bulan, sum(harga) as jml_plafond"))
+            ->where('pasar_pembiayaan_histories.status_id', 9)
+            ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
+            ->groupBy(DB::raw("nama_bulan"))
+            ->orderBy('pasar_pembiayaans.id', 'ASC')
+            ->pluck('jml_plafond', 'nama_bulan');
 
-   
+
         $bulanplafonds = $plafonds->keys();
         $hitungPerBulan = $plafonds->values();
 
-        $target1 = PasarPembiayaan::join('pasar_pembiayaan_histories','pasar_pembiayaans.id','=','pasar_pembiayaan_histories.pasar_pembiayaan_id')
-        ->select()
-        ->where('pasar_pembiayaan_histories.status_id', 9)
-        ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
-        ->get();
+        $target1 = PasarPembiayaan::join('pasar_pembiayaan_histories', 'pasar_pembiayaans.id', '=', 'pasar_pembiayaan_histories.pasar_pembiayaan_id')
+            ->select()
+            ->where('pasar_pembiayaan_histories.status_id', 9)
+            ->whereYear('pasar_pembiayaans.tgl_pembiayaan', date('Y'))
+            ->get();
 
         $pipeline = PasarPembiayaan::select()
-        ->whereYear('tgl_pembiayaan', date('Y'))
-        ->count();
+            ->whereYear('tgl_pembiayaan', date('Y'))
+            ->count();
 
 
         // return (  $plafonds);
@@ -99,10 +102,10 @@ class PasarProposalController extends Controller
             'datapasar' => $datapasar,
             'plabels' => $plabel,
             'pdatapasars' => $pdatapasar,
-            'labelplafonds'=>$bulanplafonds,
-            'dataplafonds'=>$hitungPerBulan,
-            'pipeline'=>$pipeline,
-            'target1'=>$target1,
+            'labelplafonds' => $bulanplafonds,
+            'dataplafonds' => $hitungPerBulan,
+            'pipeline' => $pipeline,
+            'target1' => $target1,
 
         ]);
     }

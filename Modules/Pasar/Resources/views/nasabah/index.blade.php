@@ -30,7 +30,15 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <table class="datatables-basic table">
+                            <div class="card-header">
+                                <form method="GET" action="/pasar/nasabah" class="d-flex gap-2">
+                                    <input type="text" name="search" class="form-control" placeholder="Cari nama nasabah..." value="{{ request('search') }}">
+                                    <button type="submit" class="btn btn-primary">Cari</button>
+                                    <a href="/pasar/nasabah" class="btn btn-secondary">Reset</a>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                            <table class="table">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center"></th>
@@ -45,7 +53,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($proposals as $proposal)
+                                    @forelse ($proposals as $proposal)
                                         <tr>
                                             <td style="text-align: center">
                                                 <button type="button"
@@ -64,9 +72,15 @@
                                                     class="btn btn-outline-info round">Detail</a>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr><td colspan="7" class="text-center">Tidak ada data nasabah.</td></tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+                            </div>
+                            <div class="card-body">
+                                {{ $proposals->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

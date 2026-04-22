@@ -43,9 +43,10 @@ class UmkmRevisiController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $userId = Auth::id();
+        $search = $request->search;
 
         $latestSub = DB::table('umkm_pembiayaan_histories')
             ->select('umkm_pembiayaan_id', DB::raw('MAX(id) as latest_id'))
@@ -65,8 +66,9 @@ class UmkmRevisiController extends Controller
 
         $komite = UmkmPembiayaan::with(['nasabahh', 'keteranganusaha', 'user'])
             ->whereIn('id', $komiteIds)
+            ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
             ->orderBy('updated_at', 'desc')
-            ->get();
+            ->paginate(10)->withQueryString();
 
         return view('umkm::revisi.index', [
             'title' => 'Data  Revisi Proposal Nasabah',

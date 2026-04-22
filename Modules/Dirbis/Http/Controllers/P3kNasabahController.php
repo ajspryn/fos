@@ -20,11 +20,12 @@ class P3kNasabahController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
         return view('dirbis::p3k.nasabah.index', [
             'title' => 'Data Nasabah P3K',
-            'proposals' => P3kNasabah::select()->orderBy('nama_nasabah', 'ASC')->get(),
+            'proposals' => P3kNasabah::select()->when($search, fn($q) => $q->where('nama_nasabah', 'like', "%{$search}%"))->orderBy('nama_nasabah', 'ASC')->paginate(10)->withQueryString(),
         ]);
     }
 

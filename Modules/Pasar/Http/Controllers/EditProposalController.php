@@ -41,9 +41,10 @@ class EditProposalController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $userId = Auth::id();
+        $search = $request->search;
 
         $latestSub = DB::table('pasar_pembiayaan_histories')
             ->select('pasar_pembiayaan_id', DB::raw('MAX(id) as latest_id'))
@@ -63,8 +64,9 @@ class EditProposalController extends Controller
 
         $komite = PasarPembiayaan::with(['nasabahh', 'keteranganusaha.jenispasar', 'user'])
             ->whereIn('id', $komiteIds)
+            ->when($search, fn($q) => $q->whereHas('nasabahh', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
             ->orderBy('updated_at', 'desc')
-            ->get();
+            ->paginate(10)->withQueryString();
 
         return view('pasar::revisi.index', [
             'title' => 'Data  Revisi Proposal Nasabah',

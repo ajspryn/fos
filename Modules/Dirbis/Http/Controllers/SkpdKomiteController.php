@@ -35,6 +35,7 @@ class SkpdKomiteController extends Controller
      */
     public function index()
     {
+        $search = request('search');
         $komite = SkpdPembiayaanHistory::select()
             ->latest()
             ->groupBy('skpd_pembiayaan_id')
@@ -63,7 +64,7 @@ class SkpdKomiteController extends Controller
                     ->where('status_id', 4)
                     ->where('jabatan_id', 4);
             })
-            ->get();
+            ->paginate(10)->withQueryString();
         return view('dirbis::skpd.komite.index', [
             'title' => 'Data Komite',
             'proposals' => $komite,

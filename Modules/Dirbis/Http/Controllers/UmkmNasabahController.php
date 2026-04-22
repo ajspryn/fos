@@ -20,11 +20,12 @@ class UmkmNasabahController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
         return view('dirbis::umkm.nasabah.index', [
             'title' => 'Nasabah',
-            'proposals' => UmkmNasabah::select()->get(),
+            'proposals' => UmkmNasabah::select()->when($search, fn($q) => $q->where('nama_nasabah', 'like', "%{$search}%"))->paginate(10)->withQueryString(),
         ]);
     }
 

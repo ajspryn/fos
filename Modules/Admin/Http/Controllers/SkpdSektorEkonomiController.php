@@ -76,7 +76,13 @@ class SkpdSektorEkonomiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = SkpdSektorEkonomi::findOrFail($id);
+        $data = $request->validate([
+            'kode_sektor_ekonomi' => ['required'],
+            'nama_sektor_ekonomi' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -86,6 +92,7 @@ class SkpdSektorEkonomiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SkpdSektorEkonomi::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

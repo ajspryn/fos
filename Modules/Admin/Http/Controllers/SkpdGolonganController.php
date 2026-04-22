@@ -76,7 +76,13 @@ class SkpdGolonganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = SkpdGolongan::findOrFail($id);
+        $data = $request->validate([
+            'kode_golongan' => ['required'],
+            'nama_golongan' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -86,6 +92,7 @@ class SkpdGolonganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SkpdGolongan::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

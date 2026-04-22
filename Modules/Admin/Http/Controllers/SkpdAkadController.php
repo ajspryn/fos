@@ -77,7 +77,13 @@ class SkpdAkadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = SkpdAkad::findOrFail($id);
+        $data = $request->validate([
+            'kode_akad' => ['required'],
+            'nama_akad' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -87,6 +93,7 @@ class SkpdAkadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SkpdAkad::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

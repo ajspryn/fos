@@ -31,8 +31,10 @@ class PprKomiteController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+
         $latestSub = PprPembiayaanHistory::selectRaw('form_ppr_pembiayaan_id, MAX(id) as latest_id')
             ->groupBy('form_ppr_pembiayaan_id');
 
@@ -46,8 +48,9 @@ class PprKomiteController extends Controller
 
         $proposals = FormPprPembiayaan::with(['pemohon', 'user'])
             ->whereIn('id', $proposalIds)
+            ->when($search, fn($q) => $q->whereHas('pemohon', fn($q2) => $q2->where('nama_pemohon', 'like', "%{$search}%")))
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10)->withQueryString();
 
         $histories = $latestHistories->keyBy('form_ppr_pembiayaan_id');
 

@@ -30,7 +30,10 @@ class P3kProposalController extends Controller
         //     })
         //     ->get();
 
-        $proposal = P3KPembiayaan::select()->get();
+        $search = request('search');
+        $proposal = P3KPembiayaan::select()
+            ->when($search, fn($q) => $q->whereHas('nasabah', fn($q2) => $q2->where('nama_nasabah', 'like', "%{$search}%")))
+            ->paginate(10)->withQueryString();
         return view('dirbis::p3k.proposal.index', [
             'title' => 'Proposal P3K',
             'proposals' => $proposal,
@@ -368,10 +371,18 @@ class P3kProposalController extends Controller
 
         // Initialize month labels and data with zeros for counts and disburse values
         $monthNames = [
-            '01' => 'January', '02' => 'February', '03' => 'March',
-            '04' => 'April', '05' => 'May', '06' => 'June',
-            '07' => 'July', '08' => 'August', '09' => 'September',
-            '10' => 'October', '11' => 'November', '12' => 'December'
+            '01' => 'January',
+            '02' => 'February',
+            '03' => 'March',
+            '04' => 'April',
+            '05' => 'May',
+            '06' => 'June',
+            '07' => 'July',
+            '08' => 'August',
+            '09' => 'September',
+            '10' => 'October',
+            '11' => 'November',
+            '12' => 'December'
         ];
         $counts = array_fill_keys(array_keys($monthNames), 0);
         $disbursements = array_fill_keys(array_keys($monthNames), 0);

@@ -68,8 +68,10 @@ class P3kProposalController extends Controller
     //     ]);
     // }
 
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+
         // Fetch the latest history per `p3k_pembiayaan_id`
         $latestHistories = P3kPembiayaanHistory::select('id', 'p3k_pembiayaan_id')
             ->whereIn('id', function ($query) {
@@ -92,8 +94,9 @@ class P3kProposalController extends Controller
                     ->where('jabatan_id', 2);
             })
             ->where('p3k_pembiayaan_histories.created_at', '>=', Carbon::now()->subMonths(3)) // Date filtering
+            ->when($search, fn($q) => $q->whereHas('p3kPembiayaan', fn($q2) => $q2->whereHas('nasabah', fn($q3) => $q3->where('nama_nasabah', 'like', "%{$search}%"))))
             ->latest('p3k_pembiayaan_histories.updated_at')
-            ->get();
+            ->paginate(10)->withQueryString();
 
         return view('kabag::p3k.proposal.index', [
             'title' => 'Proposal P3K',

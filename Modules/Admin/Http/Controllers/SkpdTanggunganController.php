@@ -77,7 +77,14 @@ class SkpdTanggunganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = SkpdTanggungan::findOrFail($id);
+        $data = $request->validate([
+            'kode_tanggungan' => ['required'],
+            'banyak_tanggungan' => ['required'],
+            'biaya' => ['required'],
+        ]);
+        $record->update($data);
+        return back()->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -87,6 +94,7 @@ class SkpdTanggunganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SkpdTanggungan::findOrFail($id)->delete();
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }
