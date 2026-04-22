@@ -165,7 +165,7 @@ class SkpdProposalController extends Controller
             ]);
         }
 
-        if ($request->slik[0]['nama_bank']) {
+        if (!empty($request->slik) && !empty($request->slik[0]['nama_bank'])) {
 
             // return $request->slik[0]['nama_bank'];
             foreach ($request->slik as $key => $value) {
@@ -190,7 +190,7 @@ class SkpdProposalController extends Controller
             }
         }
 
-        if ($request->slikpasangan[0]['nama_bank']) {
+        if (!empty($request->slikpasangan) && !empty($request->slikpasangan[0]['nama_bank'])) {
 
             // return $request->slik[0]['nama_bank'];
             foreach ($request->slikpasangan as $key => $value) {

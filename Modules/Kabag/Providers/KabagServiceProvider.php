@@ -62,7 +62,7 @@ class KabagServiceProvider extends ServiceProvider
                 $komiteSkpd = DB::query()
                     ->fromSub($skpdLatest, 'sl')
                     ->join('skpd_pembiayaan_histories as sh', 'sh.id', '=', 'sl.latest_id')
-                    ->where('sh.status_id', 5)
+                    ->where('sh.status_id', 11)
                     ->where('sh.jabatan_id', 2)
                     ->count();
 
@@ -71,7 +71,7 @@ class KabagServiceProvider extends ServiceProvider
                     ->join('skpd_pembiayaan_histories as sh2', 'sh2.id', '=', 'sl2.latest_id')
                     ->where(function ($q) {
                         $q->where(function ($q2) {
-                            $q2->where('sh2.status_id', 11)->where('sh2.jabatan_id', 3);
+                            $q2->where('sh2.status_id', 11)->where('sh2.jabatan_id', 1);
                         })->orWhere(function ($q2) {
                             $q2->where('sh2.status_id', 4)->where('sh2.jabatan_id', 2);
                         });
@@ -81,7 +81,7 @@ class KabagServiceProvider extends ServiceProvider
                 $komite = DB::query()
                     ->fromSub($pasarLatest, 'pl')
                     ->join('pasar_pembiayaan_histories as ph', 'ph.id', '=', 'pl.latest_id')
-                    ->where('ph.status_id', 5)
+                    ->where('ph.status_id', 11)
                     ->where('ph.jabatan_id', 2)
                     ->count();
 
@@ -90,7 +90,7 @@ class KabagServiceProvider extends ServiceProvider
                     ->join('pasar_pembiayaan_histories as ph2', 'ph2.id', '=', 'pl2.latest_id')
                     ->where(function ($q) {
                         $q->where(function ($q2) {
-                            $q2->where('ph2.status_id', 11)->where('ph2.jabatan_id', 3);
+                            $q2->where('ph2.status_id', 11)->where('ph2.jabatan_id', 1);
                         })->orWhere(function ($q2) {
                             $q2->where('ph2.status_id', 4)->where('ph2.jabatan_id', 2);
                         });
@@ -100,7 +100,7 @@ class KabagServiceProvider extends ServiceProvider
                 $b = DB::query()
                     ->fromSub($umkmLatest, 'ul')
                     ->join('umkm_pembiayaan_histories as uh', 'uh.id', '=', 'ul.latest_id')
-                    ->where('uh.status_id', 5)
+                    ->where('uh.status_id', 11)
                     ->where('uh.jabatan_id', 2)
                     ->count();
 
@@ -109,7 +109,7 @@ class KabagServiceProvider extends ServiceProvider
                     ->join('umkm_pembiayaan_histories as uh2', 'uh2.id', '=', 'ul2.latest_id')
                     ->where(function ($q) {
                         $q->where(function ($q2) {
-                            $q2->where('uh2.status_id', 11)->where('uh2.jabatan_id', 3);
+                            $q2->where('uh2.status_id', 11)->where('uh2.jabatan_id', 1);
                         })->orWhere(function ($q2) {
                             $q2->where('uh2.status_id', 4)->where('uh2.jabatan_id', 2);
                         });
@@ -119,7 +119,7 @@ class KabagServiceProvider extends ServiceProvider
                 $komiteppr = DB::query()
                     ->fromSub($pprLatest, 'prl')
                     ->join('ppr_pembiayaan_histories as prh', 'prh.id', '=', 'prl.latest_id')
-                    ->where('prh.status_id', 5)
+                    ->where('prh.status_id', 11)
                     ->where('prh.jabatan_id', 2)
                     ->count();
 
@@ -128,7 +128,7 @@ class KabagServiceProvider extends ServiceProvider
                     ->join('ppr_pembiayaan_histories as prh2', 'prh2.id', '=', 'prl2.latest_id')
                     ->where(function ($q) {
                         $q->where(function ($q2) {
-                            $q2->where('prh2.status_id', 11)->where('prh2.jabatan_id', 3);
+                            $q2->where('prh2.status_id', 11)->where('prh2.jabatan_id', 1);
                         })->orWhere(function ($q2) {
                             $q2->where('prh2.status_id', 4)->where('prh2.jabatan_id', 2);
                         });
@@ -138,7 +138,7 @@ class KabagServiceProvider extends ServiceProvider
                 $komiteP3k = DB::query()
                     ->fromSub($p3kLatest, 'p3l')
                     ->join('p3k_pembiayaan_histories as p3h', 'p3h.id', '=', 'p3l.latest_id')
-                    ->where('p3h.status_id', 5)
+                    ->where('p3h.status_id', 11)
                     ->where('p3h.jabatan_id', 2)
                     ->count();
 
@@ -147,7 +147,7 @@ class KabagServiceProvider extends ServiceProvider
                     ->join('p3k_pembiayaan_histories as p3h2', 'p3h2.id', '=', 'p3l2.latest_id')
                     ->where(function ($q) {
                         $q->where(function ($q2) {
-                            $q2->where('p3h2.status_id', 11)->where('p3h2.jabatan_id', 3);
+                            $q2->where('p3h2.status_id', 11)->where('p3h2.jabatan_id', 1);
                         })->orWhere(function ($q2) {
                             $q2->where('p3h2.status_id', 4)->where('p3h2.jabatan_id', 2);
                         });
@@ -157,7 +157,7 @@ class KabagServiceProvider extends ServiceProvider
                 $komiteUltraMikro = DB::query()
                     ->fromSub($ultraLatest, 'ultra')
                     ->join('ultra_mikro_pembiayaan_histories as uh', 'uh.id', '=', 'ultra.latest_id')
-                    ->where('uh.status_id', 5)
+                    ->where('uh.status_id', 11)
                     ->where('uh.jabatan_id', 2)
                     ->count();
 
@@ -166,7 +166,7 @@ class KabagServiceProvider extends ServiceProvider
                     ->join('ultra_mikro_pembiayaan_histories as uh2', 'uh2.id', '=', 'ultra2.latest_id')
                     ->where(function ($q) {
                         $q->where(function ($q2) {
-                            $q2->where('uh2.status_id', 11)->where('uh2.jabatan_id', 3);
+                            $q2->where('uh2.status_id', 11)->where('uh2.jabatan_id', 1);
                         })->orWhere(function ($q2) {
                             $q2->where('uh2.status_id', 4)->where('uh2.jabatan_id', 2);
                         });

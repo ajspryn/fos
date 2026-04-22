@@ -106,7 +106,7 @@
                                             <td style="text-align: center">{{ $proposal->instansi->nama_instansi }}</td>
                                             <td style="text-align: center">{{ $proposal->golongan->nama_golongan }}</td>
                                             <td style="text-align: center">Rp.
-                                                {{ number_format($proposal->nominal_pembiayaan, 0, ',', '.') }}</td>
+                                                {{ number_format((float) $proposal->nominal_pembiayaan, 0, ',', '.') }}</td>
                                             <td style="text-align: center">
                                                 <a href="/skpd/proposal/{{ $proposal->id }}"
                                                     class="btn btn-outline-info round">Lengkapi</a>
