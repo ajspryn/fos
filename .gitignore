@@ -2,7 +2,9 @@
 /public/hot
 /public/storage
 /storage/*.key
-/storage/app/public/*
+/storage/app/*
+!/storage/app/.gitignore
+!/storage/app/public/.gitignore
 /storage/logs/*
 /storage/framework/cache/*
 /storage/framework/sessions/*
@@ -11,7 +13,10 @@
 /vendor
 .env
 .env.backup
+.env.*
+!.env.example
 .phpunit.result.cache
+.phpunit.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
@@ -20,3 +25,10 @@ yarn-error.log
 *.log
 /bootstrap/cache/*.php
 /public/build
+/public/assets_backup_*/
+/template/
+/tmp_uploads/*
+!/tmp_uploads/.gitignore
+output.txt
+.DS_Store
+**/.DS_Store
