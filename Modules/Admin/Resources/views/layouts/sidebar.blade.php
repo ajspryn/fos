@@ -20,6 +20,13 @@
             </a>
         </li>
 
+        <li class="menu-item {{ Request::is('admin/monitoring*') ? 'active' : '' }}">
+            <a href="/admin/monitoring" class="menu-link">
+                <i data-feather="activity" class="menu-icon tf-icons"></i>
+                <div data-i18n="Monitoring Pengajuan">Monitoring Pengajuan</div>
+            </a>
+        </li>
+
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">User & Bobot</span>
         </li>

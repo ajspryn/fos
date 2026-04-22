@@ -92,6 +92,7 @@ use Modules\Admin\Http\Controllers\PprConditionShariaKeamananBisnisPekerjaanCont
 use Modules\Admin\Http\Controllers\PprConditionShariaPotensiPertumbuhanHasilController;
 use Modules\Admin\Http\Controllers\StatusController;
 use Modules\Admin\Http\Controllers\ParameterBobotController;
+use Modules\Admin\Http\Controllers\MonitoringController;
 
 /*
 |--------------------------------------------------------------------------
@@ -198,4 +199,9 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:1', 'divis
     Route::resource('ppr/non_fixed_income/collateral/jangka_waktu_likuidasi', PprCollateralNfJangkaWaktuLikuidasiController::class)->names('admin.ppr.non_fixed_income.collateral.jangka_waktu_likuidasi');
 
     Route::resource('status', StatusController::class);
+
+    // Monitoring Pengajuan
+    Route::get('/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
+    Route::get('/monitoring/{type}/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
+    Route::delete('/monitoring/{type}/{id}', [MonitoringController::class, 'destroy'])->name('admin.monitoring.destroy');
 });
