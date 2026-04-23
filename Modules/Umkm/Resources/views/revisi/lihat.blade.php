@@ -612,7 +612,7 @@
                                                     <option value=""></option>
                                                     @foreach ($sukus as $suku)
                                                         <option value="{{ $suku->kode_suku }}"
-                                                            {{ $pembiayaan->keteranganusaha->suku->kode_suku == $suku->kode_suku ? 'selected' : '' }}>
+                                                            {{ optional($pembiayaan->keteranganusaha?->suku)->kode_suku == $suku->kode_suku ? 'selected' : '' }}>
                                                             {{ $suku->nama_suku }}
                                                         </option>
                                                     @endforeach
