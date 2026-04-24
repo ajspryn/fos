@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\AdminActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Contracts\Support\Renderable;
@@ -162,5 +163,42 @@ class UserController extends Controller
         Role::select()->where('user_id', $id)->delete();
 
         return redirect('/admin/user')->with('success', 'Role User Berhasil Dihapus!');
+    }
+
+    /**
+     * Reset password user oleh admin.
+     */
+    public function resetPassword(Request $request, $id)
+    {
+        $request->validate([
+            'new_password'              => 'required|min:8|confirmed',
+            'new_password_confirmation' => 'required',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+        AdminActivityLog::log('reset_password', 'User', "Reset password untuk {$user->name} (ID={$user->id})");
+
+        return redirect()->back()->with('success', 'Password ' . $user->name . ' berhasil direset!');
+    }
+
+    /**
+     * Toggle aktif/nonaktif user (via email_verified_at).
+     */
+    public function toggleAktif($id)
+    {
+        $user = User::findOrFail($id);
+        if ($user->email_verified_at) {
+            $user->email_verified_at = null;
+            $msg = $user->name . ' berhasil dinonaktifkan.';
+        } else {
+            $user->email_verified_at = now();
+            $msg = $user->name . ' berhasil diaktifkan.';
+        }
+        $user->save();
+        AdminActivityLog::log('toggle_aktif', 'User', $msg);
+
+        return redirect()->back()->with('success', $msg);
     }
 }

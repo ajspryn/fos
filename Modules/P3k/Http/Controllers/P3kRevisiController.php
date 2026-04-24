@@ -355,10 +355,18 @@ class P3kRevisiController extends Controller
 
         //Perbarui IDEB
         if (request('perbarui_ideb') == 'Ya') {
+            if (!$request->hasFile('ideb')) {
+                return back()
+                    ->withInput()
+                    ->withErrors(['ideb' => 'File IDEB wajib diupload jika memilih Perbarui Lampiran = Ya.']);
+            }
+
+            $ideb = $request->file('ideb')->store('p3k-dokumen-ideb', 'public');
+
             if (request('ideb_lama')) {
                 Storage::disk('public')->delete(request('ideb_lama'));
             }
-            $ideb = $request->file('ideb')->store('p3k-dokumen-ideb', 'public');
+
             P3kPembiayaan::where('id', $id)->update([
                 'dokumen_ideb'  => $ideb,
             ]);
@@ -367,10 +375,18 @@ class P3kRevisiController extends Controller
         //Perbarui IDEB Pasangan
         if ($request->status_pernikahan == "Menikah") {
             if (request('perbarui_ideb_pasangan') == 'Ya') {
+                if (!$request->hasFile('ideb_pasangan')) {
+                    return back()
+                        ->withInput()
+                        ->withErrors(['ideb_pasangan' => 'File IDEB Pasangan wajib diupload jika memilih Perbarui Lampiran = Ya.']);
+                }
+
+                $ideb_pasangan = $request->file('ideb_pasangan')->store('foto-p3k-pembiayaan', 'public');
+
                 if (request('ideb_pasangan_lama')) {
                     Storage::disk('public')->delete(request('ideb_pasangan_lama'));
                 }
-                $ideb_pasangan = $request->file('ideb_pasangan')->store('foto-p3k-pembiayaan', 'public');
+
                 P3kFoto::where('p3k_pembiayaan_id', $id)->where('kategori', 'IDEB Pasangan')->update([
                     'foto'  => $ideb_pasangan,
                 ]);

@@ -86,6 +86,9 @@
                             <a href="/admin/monitoring?type={{ $type }}" class="btn btn-sm btn-outline-secondary">Reset</a>
                         @endif
                     </form>
+                    <a href="/admin/monitoring/export?type={{ $type }}&search={{ $search }}" class="btn btn-sm btn-outline-success">
+                        <i data-feather="download" style="width:13px;height:13px"></i> Export CSV
+                    </a>
                 </div>
 
                 <div class="table-responsive">
@@ -99,6 +102,7 @@
                                 <th>Tanggal</th>
                                 <th>Status</th>
                                 <th>AO</th>
+                                <th>Aging</th>
                                 <th style="width:140px">Aksi</th>
                             </tr>
                         </thead>
@@ -146,6 +150,16 @@
                                         </span>
                                     </td>
                                     <td>{{ $p->ao_name }}</td>
+                                    <td>
+                                        @php $aging = (int)($p->aging_days ?? 0); @endphp
+                                        @if ($aging > 7)
+                                            <span class="badge bg-danger">{{ $aging }}h</span>
+                                        @elseif ($aging > 3)
+                                            <span class="badge bg-warning text-dark">{{ $aging }}h</span>
+                                        @else
+                                            <span class="badge bg-light text-muted">{{ $aging }}h</span>
+                                        @endif
+                                    </td>
                                     <td class="d-flex gap-1">
                                         <a href="/admin/monitoring/{{ $p->type }}/{{ $p->id }}"
                                            class="btn btn-sm btn-outline-primary">

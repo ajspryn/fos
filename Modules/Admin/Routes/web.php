@@ -93,6 +93,8 @@ use Modules\Admin\Http\Controllers\PprConditionShariaPotensiPertumbuhanHasilCont
 use Modules\Admin\Http\Controllers\StatusController;
 use Modules\Admin\Http\Controllers\ParameterBobotController;
 use Modules\Admin\Http\Controllers\MonitoringController;
+use Modules\Admin\Http\Controllers\ActivityLogController;
+use Modules\Admin\Http\Controllers\AoPerformanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -200,8 +202,17 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:1', 'divis
 
     Route::resource('status', StatusController::class);
 
-    // Monitoring Pengajuan
+    // Monitoring Pengajuan — export MUST be before /{type}/{id} to avoid route conflict
+    Route::get('/monitoring/export', [MonitoringController::class, 'export'])->name('admin.monitoring.export');
     Route::get('/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
     Route::get('/monitoring/{type}/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
     Route::delete('/monitoring/{type}/{id}', [MonitoringController::class, 'destroy'])->name('admin.monitoring.destroy');
+
+    // User management extras
+    Route::post('/user/{id}/reset-password', [UserController::class, 'resetPassword'])->name('admin.user.resetPassword');
+    Route::post('/user/{id}/toggle-aktif', [UserController::class, 'toggleAktif'])->name('admin.user.toggleAktif');
+
+    // Analitik
+    Route::get('/ao-performance', [AoPerformanceController::class, 'index'])->name('admin.ao-performance.index');
+    Route::get('/activity-log', [ActivityLogController::class, 'index'])->name('admin.activity-log.index');
 });

@@ -1764,7 +1764,7 @@
         function changePerbaruiIdeb() {
             var perbaruiIdeb = document.getElementById("perbaruiIdeb");
             if (perbaruiIdeb.value == "Ya") {
-                document.getElementById("ifPerbaruiIdeb").classList.toggle("hide"),
+                document.getElementById("ifPerbaruiIdeb").classList.remove("hide"),
                     document.getElementById("ideb").setAttribute("required", "required");
             } else {
                 document.getElementById("ifPerbaruiIdeb").classList = "hide",
@@ -1775,7 +1775,7 @@
         function changePerbaruiIdebPasangan() {
             var perbaruiIdebPasangan = document.getElementById("perbaruiIdebPasangan");
             if (perbaruiIdebPasangan.value == "Ya") {
-                document.getElementById("ifPerbaruiIdebPasangan").classList.toggle("hide"),
+                document.getElementById("ifPerbaruiIdebPasangan").classList.remove("hide"),
                     document.getElementById("idebPasangan").setAttribute("required", "required");
             } else {
                 document.getElementById("ifPerbaruiIdebPasangan").classList = "hide",

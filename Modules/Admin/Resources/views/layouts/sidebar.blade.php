@@ -28,6 +28,24 @@
         </li>
 
         <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Analitik</span>
+        </li>
+
+        <li class="menu-item {{ Request::is('admin/ao-performance*') ? 'active' : '' }}">
+            <a href="/admin/ao-performance" class="menu-link">
+                <i data-feather="trending-up" class="menu-icon tf-icons"></i>
+                <div>Performa AO</div>
+            </a>
+        </li>
+
+        <li class="menu-item {{ Request::is('admin/activity-log*') ? 'active' : '' }}">
+            <a href="/admin/activity-log" class="menu-link">
+                <i data-feather="list" class="menu-icon tf-icons"></i>
+                <div>Log Aktivitas</div>
+            </a>
+        </li>
+
+        <li class="menu-header small text-uppercase">
             <span class="menu-header-text">User & Bobot</span>
         </li>
 

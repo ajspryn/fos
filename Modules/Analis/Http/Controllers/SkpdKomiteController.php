@@ -160,7 +160,7 @@ class SkpdKomiteController extends Controller
         $jaminan = SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->first();
         $nominal_pembiayaan = (float)str_replace('.', '', $data->nominal_pembiayaan ?? '0');
         $tenor = (float)str_replace('.', '', $data->tenor ?? '0');
-        $rate = (float)str_replace('.', '', $data->rate ?? '0') / 100;
+        $rate = (float)($data->rate ?? 0) / 100;
 
         //angsuran
         $harga_jual = $nominal_pembiayaan * $rate * $tenor + $nominal_pembiayaan;

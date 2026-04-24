@@ -149,6 +149,7 @@
                                                 <th class="text-center" style="width:50px">No.</th>
                                                 <th>Nama</th>
                                                 <th>Email</th>
+                                                <th class="text-center">Aktif</th>
                                                 <th class="text-center">Role</th>
                                                 <th class="text-center">Divisi</th>
                                                 <th class="text-center">Jabatan</th>
@@ -161,6 +162,14 @@
                                                     <td class="text-center">{{ $users->firstItem() + $loop->index }}</td>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
+                                                    <td class="text-center">
+                                                        <form method="POST" action="/admin/user/{{ $user->id }}/toggle-aktif">
+                                                            @csrf
+                                                            <button type="submit" class="badge border-0 {{ $user->email_verified_at ? 'bg-success' : 'bg-danger' }}" style="cursor:pointer" title="Klik untuk toggle aktif">
+                                                                {{ $user->email_verified_at ? 'Aktif' : 'Nonaktif' }}
+                                                            </button>
+                                                        </form>
+                                                    </td>
                                                     <td class="text-center">
                                                         @if(is_null($user->role_id))
                                                             <span class="badge bg-secondary">Belum diset</span>
@@ -188,6 +197,11 @@
                                                                     data-bs-target="#modalEditProfile-{{ $user->id }}">
                                                                     <i data-feather="user" class="me-50"></i>
                                                                     <span>Edit Data</span>
+                                                                </a>
+                                                                <a class="dropdown-item" data-bs-toggle="modal"
+                                                                    data-bs-target="#modalResetPw-{{ $user->id }}">
+                                                                    <i data-feather="key" class="me-50"></i>
+                                                                    <span>Reset Password</span>
                                                                 </a>
                                                                 @if(!is_null($user->role_id))
                                                                 <a class="dropdown-item" data-bs-toggle="modal"
@@ -269,6 +283,39 @@
                         </div>
                     </div>
                     <!-- /Modal Edit Profile -->
+
+                    <!-- Modal Reset Password -->
+                    <div class="modal fade" id="modalResetPw-{{ $userForModal->id }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title"><i data-feather="key" class="me-50"></i> Reset Password</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body px-sm-5 pb-4">
+                                    <p class="text-muted mb-2">Reset password untuk <strong>{{ $userForModal->name }}</strong></p>
+                                    <form method="POST" action="/admin/user/{{ $userForModal->id }}/reset-password">
+                                        @csrf
+                                        <div class="mb-1">
+                                            <label class="form-label">Password Baru</label>
+                                            <input type="password" class="form-control" name="new_password"
+                                                placeholder="Minimal 8 karakter" required autocomplete="new-password">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Konfirmasi Password</label>
+                                            <input type="password" class="form-control" name="new_password_confirmation"
+                                                placeholder="Ulangi password baru" required autocomplete="new-password">
+                                        </div>
+                                        <div class="d-flex justify-content-end gap-1">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                                            <button type="submit" class="btn btn-warning">Reset Password</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Modal Reset Password -->
 
                     @if(!is_null($userForModal->role_id))
                         <!-- Modal Edit User -->

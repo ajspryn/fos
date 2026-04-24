@@ -175,7 +175,7 @@ class PasarKomiteController extends Controller
         $jaminanlain = PasarJaminan::select()->where('pasar_pembiayaan_id', $id)->first();
         $tenor = (float)str_replace('.', '', $data->tenor ?? '0');
         $harga = (float)str_replace('.', '', $data->harga ?? '0');
-        $rate = (float)str_replace('.', '', $data->rate ?? '0');
+        $rate = (float)($data->rate ?? 0);
         $margin = $tenor > 0 ? ($rate * $tenor) / 100 : 0;
         $cash = PasarCashPick::select()->first();
 
