@@ -56,6 +56,7 @@
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
                                                 <th style="text-align: center">NIK</th>
                                                 <th style="text-align: center">Nama Nasabah</th>
+                                                <th style="text-align: center">Segmen</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
                                         </thead>
@@ -82,6 +83,7 @@
                                                         {{ $proposal_p3k->nasabah->no_ktp }}</td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_p3k->nasabah->nama_nasabah }}</td>
+                                                    <td style="text-align: center">PPPK</td>
                                                     <td style="text-align: center">
                                                         <a href="/staff/proposal/p3k/{{ $proposal_p3k->id }}"
                                                             class="btn btn-outline-info round">Detail</a>
@@ -115,6 +117,7 @@
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
                                                 <th style="text-align: center">NIK</th>
                                                 <th style="text-align: center">Nama Nasabah</th>
+                                                <th style="text-align: center">Segmen</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
                                         </thead>
@@ -141,6 +144,7 @@
                                                         {{ $proposal_skpd->nasabah->no_ktp }}</td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_skpd->nasabah->nama_nasabah }}</td>
+                                                    <td style="text-align: center">SKPD</td>
                                                     <td style="text-align: center">
                                                         <a href="/staff/proposal/skpd/{{ $proposal_skpd->id }}"
                                                             class="btn btn-outline-info round">Detail</a>
@@ -174,6 +178,7 @@
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
                                                 <th style="text-align: center">NIK</th>
                                                 <th style="text-align: center">Nama Nasabah</th>
+                                                <th style="text-align: center">Segmen</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
                                         </thead>
@@ -200,6 +205,7 @@
                                                         {{ $proposal_pasar->nasabahh->no_ktp }}</td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_pasar->nasabahh->nama_nasabah }}</td>
+                                                    <td style="text-align: center">PASAR</td>
                                                     <td style="text-align: center">
                                                         <a href="/staff/proposal/pasar/{{ $proposal_pasar->id }}"
                                                             class="btn btn-outline-info round">Detail</a>
@@ -233,6 +239,7 @@
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
                                                 <th style="text-align: center">NIK</th>
                                                 <th style="text-align: center">Nama Nasabah</th>
+                                                <th style="text-align: center">Segmen</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
                                         </thead>
@@ -258,6 +265,7 @@
                                                         {{ $proposal_umkm->nasabahh->no_ktp }}</td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_umkm->nasabahh->nama_nasabah }}</td>
+                                                    <td style="text-align: center">UMKM</td>
                                                     <td style="text-align: center">
                                                         <a href="/staff/proposal/umkm/{{ $proposal_umkm->id }}"
                                                             class="btn btn-outline-info round">Detail</a>
@@ -291,6 +299,7 @@
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
                                                 <th style="text-align: center">NIK</th>
                                                 <th style="text-align: center">Nama Nasabah</th>
+                                                <th style="text-align: center">Segmen</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
                                         </thead>
@@ -318,6 +327,7 @@
                                                     <td style="text-align: center">
                                                         {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}
                                                     </td>
+                                                    <td style="text-align: center">PPR</td>
                                                     <td style="text-align: center">
                                                         <a href="/staff/proposal/ppr/{{ $proposal_ppr->id }}"
                                                             class="btn btn-outline-info round">Detail</a>

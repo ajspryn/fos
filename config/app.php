@@ -145,6 +145,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | UI Maintenance Mode
+    |--------------------------------------------------------------------------
+    |
+    | This is a custom maintenance page switch for web UI only. Set
+    | APP_UI_MAINTENANCE=true in .env to show a maintenance page to users.
+    |
+    */
+
+    'ui_maintenance' => [
+        'enabled' => (bool) env('APP_UI_MAINTENANCE', false),
+        'title' => env('APP_UI_MAINTENANCE_TITLE', 'Sedang Maintenance'),
+        'message' => env('APP_UI_MAINTENANCE_MESSAGE', 'Aplikasi sedang dalam proses maintenance. Silakan coba kembali beberapa saat lagi.'),
+        'eta' => env('APP_UI_MAINTENANCE_ETA', ''),
+        'bypass_token' => env('APP_UI_MAINTENANCE_BYPASS_TOKEN', ''),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     |

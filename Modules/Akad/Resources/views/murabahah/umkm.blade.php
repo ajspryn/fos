@@ -347,10 +347,10 @@ ul
      <tr>
       <td width=385 valign=top style='width:288.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal;text-autospace:none'><b><span style='font-family:"Ottawa",sans-serif'>{{Str::title($pembiayaan->nasabahh->alamat)}}, RT {{$pembiayaan->nasabahh->rw}}/RW {{$pembiayaan->nasabahh->rw}},</span></b> </p>
+      normal;text-autospace:none'><b><span style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->alamat) }}, RT {{ $pembiayaan->nasabahh->rt }}/RW {{ $pembiayaan->nasabahh->rw }},</span></b> </p>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal;text-autospace:none'><b><span lang=IN style='font-family:"Ottawa",sans-serif'>Kel.{{Str::title($pembiayaan->nasabahh->desa_kelurahan)}}
-      </span></b><b><span style='font-family:"Ottawa",sans-serif'>, Kec. {{Str::title($pembiayaan->nasabahh->kecamatan)}}</span></b></p>
+      normal;text-autospace:none'><b><span lang=IN style='font-family:"Ottawa",sans-serif'>Kel. {{ Str::title($pembiayaan->nasabahh->desa_kelurahan) }}
+      </span></b><b><span style='font-family:"Ottawa",sans-serif'>, Kec. {{ Str::title($pembiayaan->nasabahh->kecamatan) }}, {{ Str::title($pembiayaan->nasabahh->kabkota ?? 'Kab. Bogor') }}, {{ Str::title($pembiayaan->nasabahh->provinsi ?? 'Jawa Barat') }}</span></b></p>
       </td>
      </tr>
     </table>
@@ -1233,7 +1233,7 @@ ul
     style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->nama_nasabah) }}</span></b><span
     style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> Pemegang Kartu
     Penduduk nomor {{ $pembiayaan->nasabahh->no_ktp }} beralamatkan di {{ Str::title($pembiayaan->nasabahh->alamat) }},
-    RT {{ $pembiayaan->nasabahh->rt }} Rw {{ $pembiayaan->nasabahh->rw }} Kelurahan {{ Str::title($pembiayaan->nasabahh->desa_kelurahan) }} , Kecamatan {{ Str::title($pembiayaan->nasabahh->kecamatan) }}, Kab. Bogor.Bertindak untuk dan
+    RT {{ $pembiayaan->nasabahh->rt }}/RW {{ $pembiayaan->nasabahh->rw }}, Kelurahan {{ Str::title($pembiayaan->nasabahh->desa_kelurahan) }}, Kecamatan {{ Str::title($pembiayaan->nasabahh->kecamatan) }}, {{ Str::title($pembiayaan->nasabahh->kabkota ?? 'Kab. Bogor') }}, {{ Str::title($pembiayaan->nasabahh->provinsi ?? 'Jawa Barat') }}. Bertindak untuk dan
     atas nama sendiri, Untuk selanjutnya disebut <b>PIHAK KEDUA </b>atau <b>NASABAH</b>.</span><span
     style='font-size:11.0pt;font-family:"Ottawa",sans-serif'> <span lang=SV>Dalam
     Pengajuan </span></span><span style='font-size:11.0pt;font-family:"Ottawa",sans-serif'>pembiayaan

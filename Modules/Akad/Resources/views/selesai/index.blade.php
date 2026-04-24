@@ -57,6 +57,7 @@
                                                 <th style="text-align: center">No</th>
                                                 <th class="d-none d-md-table-cell" style="text-align: center">Nama Nasabah</th>
                                                 <th style="text-align: center">Unit Kerja</th>
+                                                <th style="text-align: center">Segmen</th>
                                                 <th style="text-align: center">Plafond</th>
                                                 <th style="text-align: center">Jangka Waktu</th>
                                                 <th style="text-align: center">AO</th>
@@ -88,6 +89,7 @@
                                                     <td style="text-align: center">
                                                         {{ $proposal_p3k->nasabah->pekerjaan->nama_unit_kerja }}
                                                     </td>
+                                                    <td style="text-align: center">PPPK</td>
                                                     <td style="text-align: center">
                                                         Rp {{ number_format($proposal_p3k->nominal_pembiayaan) }}</td>
                                                     <td style="text-align: center">{{ $proposal_p3k->tenor }} Bulan</td>
@@ -240,6 +242,7 @@
                                                 <th style="text-align: center">No</th>
                                                 <th class="d-none d-md-table-cell" style="text-align: center">Nama Nasabah</th>
                                                 <th style="text-align: center">Instansi</th>
+                                                <th style="text-align: center">Segmen</th>
                                                 <th style="text-align: center">Plafond</th>
                                                 <th style="text-align: center">Jangka Waktu</th>
                                                 <th style="text-align: center">AO</th>
@@ -271,6 +274,7 @@
                                                     <td style="text-align: center">
                                                         {{ $proposal_skpd->instansi->nama_instansi }}
                                                     </td>
+                                                    <td style="text-align: center">SKPD</td>
                                                     <td style="text-align: center">
                                                         Rp.{{ number_format($proposal_skpd->nominal_pembiayaan) }}</td>
                                                     <td style="text-align: center">{{ $proposal_skpd->tenor }} Bulan</td>
@@ -423,6 +427,7 @@
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
                                                 <th style="text-align: center">NIK</th>
                                                 <th class="d-none d-md-table-cell" style="text-align: center">Nama Nasabah</th>
+                                                <th style="text-align: center">Segmen</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
                                         </thead>
@@ -444,6 +449,7 @@
                                                         {{ $proposal_pasar->nasabahh->no_ktp }}</td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_pasar->nasabahh->nama_nasabah }}</td>
+                                                    <td style="text-align: center">PASAR</td>
                                                     <td style="text-align: center">
                                                         <a href="/staff/selesai/pasar/{{ $proposal_pasar->id }}"
                                                             class="btn btn-outline-info round">Detail</a>
@@ -477,6 +483,7 @@
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
                                                 <th style="text-align: center">NIK</th>
                                                 <th class="d-none d-md-table-cell" style="text-align: center">Nama Nasabah</th>
+                                                <th style="text-align: center">Segmen</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
                                         </thead>
@@ -496,6 +503,7 @@
                                                         {{ $proposal_umkm->nasabahh->no_ktp }}</td>
                                                     <td style="text-align: center">
                                                         {{ $proposal_umkm->nasabahh->nama_nasabah }}</td>
+                                                    <td style="text-align: center">UMKM</td>
                                                     <td style="text-align: center">
                                                         <a href="/staff/selesai/umkm/{{ $proposal_umkm->id }}"
                                                             class="btn btn-outline-info round">Detail</a>
@@ -529,6 +537,7 @@
                                                 <th style="text-align: center">Tanggal Pengajuan</th>
                                                 <th style="text-align: center">NIK</th>
                                                 <th class="d-none d-md-table-cell" style="text-align: center">Nama Nasabah</th>
+                                                <th style="text-align: center">Segmen</th>
                                                 <th style="text-align: center">Action</th>
                                             </tr>
                                         </thead>
@@ -551,6 +560,7 @@
                                                     <td style="text-align: center">
                                                         {{ $proposal_ppr->pemohon->form_pribadi_pemohon_nama_lengkap }}
                                                     </td>
+                                                    <td style="text-align: center">PPR</td>
                                                     <td style="text-align: center">
                                                         {{-- <button class="btn btn-outline-info round" type="button"
                                                         data-bs-toggle="modal"data-bs-target="#modalAkadPpr">Detail</button> --}}

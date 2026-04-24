@@ -39,6 +39,37 @@
 </head>
 <body>
     <main class="print-sheet">
+        @php
+            $formatAddress = function ($source, $streetField = 'alamat') {
+                $parts = [];
+
+                $street = trim((string) data_get($source, $streetField, ''));
+                if ($street !== '') {
+                    $parts[] = $street;
+                }
+
+                $rt = trim((string) data_get($source, 'rt', ''));
+                $rw = trim((string) data_get($source, 'rw', ''));
+                if ($rt !== '' || $rw !== '') {
+                    $parts[] = 'RT ' . ($rt !== '' ? $rt : '-') . '/RW ' . ($rw !== '' ? $rw : '-');
+                }
+
+                foreach (['desa_kelurahan', 'kelurahan', 'desa', 'kecamatan', 'kabkota', 'kabupaten', 'kota', 'provinsi'] as $field) {
+                    $value = trim((string) data_get($source, $field, ''));
+                    if ($value !== '' && !in_array($value, $parts, true)) {
+                        $parts[] = $value;
+                    }
+                }
+
+                $postalCode = trim((string) (data_get($source, 'kode_pos') ?? data_get($source, 'kodepos') ?? ''));
+                if ($postalCode !== '') {
+                    $parts[] = 'Kode Pos ' . $postalCode;
+                }
+
+                return !empty($parts) ? implode(', ', $parts) : '-';
+            };
+        @endphp
+
         <header class="header">
             <div><img src="{{ asset('logo.png') }}" alt="logo-left"></div>
             <div style="text-align:right"><img src="{{ asset('logoib.png') }}" alt="logo-right"></div>
@@ -53,11 +84,15 @@
                 </tr>
                 <tr>
                     <td class="label">Pekerjaan</td>
-                    <td class="value">{{ optional($pembiayaan->nasabah->pekerjaan)->nama_pekerjaan ?? '-' }}</td>
+                    <td class="value">{{ optional($pembiayaan->nasabah->pekerjaan)->jabatan ?? optional($pembiayaan->nasabah->pekerjaan)->dinas ?? '-' }}</td>
                 </tr>
                 <tr>
                     <td class="label">Unit Kerja</td>
-                    <td class="value">{{ optional($pembiayaan->nasabah->pekerjaan)->nama_unit_kerja ?? '-' }}</td>
+                    <td class="value">{{ optional($pembiayaan->nasabah->pekerjaan)->nama_unit_kerja ?? optional($pembiayaan->nasabah->pekerjaan)->dinas ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Segmen</td>
+                    <td class="value">PPPK</td>
                 </tr>
                 <tr>
                     <td class="label">Produk</td>
@@ -167,7 +202,7 @@
                         </tr>
                         <tr>
                             <td class="label">Alamat</td>
-                            <td class="value">{{ $pembiayaan->nasabah->alamat ?? '-' }}</td>
+                            <td class="value">{{ $formatAddress($pembiayaan->nasabah) }}</td>
                         </tr>
                         <tr>
                             <td class="label">No. KTP</td>
@@ -191,7 +226,7 @@
                         </tr>
                         <tr>
                             <td class="label">Unit Kerja</td>
-                            <td class="value">{{ optional($pembiayaan->nasabah->pekerjaan)->nama_unit_kerja ?? '-' }}</td>
+                            <td class="value">{{ optional($pembiayaan->nasabah->pekerjaan)->nama_unit_kerja ?? optional($pembiayaan->nasabah->pekerjaan)->dinas ?? '-' }}</td>
                         </tr>
                     </table>
                 </section>

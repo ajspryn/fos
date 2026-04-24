@@ -26,6 +26,39 @@
 </head>
 <body>
 <main class="print-sheet">
+    @php
+        $formatAddress = function ($source, $streetField = 'alamat') {
+            $parts = [];
+
+            $streetFields = is_array($streetField) ? $streetField : [$streetField];
+            foreach ($streetFields as $field) {
+                $street = trim((string) data_get($source, $field, ''));
+                if ($street !== '' && !in_array($street, $parts, true)) {
+                    $parts[] = $street;
+                }
+            }
+
+            $rt = trim((string) data_get($source, 'rt', ''));
+            $rw = trim((string) data_get($source, 'rw', ''));
+            if ($rt !== '' || $rw !== '') {
+                $parts[] = 'RT ' . ($rt !== '' ? $rt : '-') . '/RW ' . ($rw !== '' ? $rw : '-');
+            }
+
+            foreach (['desa_kelurahan', 'kelurahan', 'desa', 'kecamatan', 'kabkota', 'kabupaten', 'kota', 'provinsi'] as $field) {
+                $value = trim((string) data_get($source, $field, ''));
+                if ($value !== '' && !in_array($value, $parts, true)) {
+                    $parts[] = $value;
+                }
+            }
+
+            $postalCode = trim((string) (data_get($source, 'kode_pos') ?? data_get($source, 'kodepos') ?? ''));
+            if ($postalCode !== '') {
+                $parts[] = 'Kode Pos ' . $postalCode;
+            }
+
+            return !empty($parts) ? implode(', ', $parts) : '-';
+        };
+    @endphp
 
     <header class="header">
         <div><img src="{{ asset('logo.png') }}" alt="logo-left"></div>
@@ -42,6 +75,10 @@
             <tr>
                 <td class="label">Pekerjaan</td>
                 <td class="value">{{ $pembiayaan->nasabah->nama_pekerjaan ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td class="label">Segmen</td>
+                <td class="value">ULTRA MIKRO</td>
             </tr>
             <tr>
                 <td class="label">Produk</td>
@@ -137,7 +174,7 @@
                 </tr>
                 <tr>
                     <td class="label">Alamat</td>
-                    <td class="value">{{ $pembiayaan->nasabah->alamat ?? '-' }}</td>
+                    <td class="value">{{ $formatAddress($pembiayaan->nasabah, ['alamat', 'alamat_ktp', 'alamat_domisili']) }}</td>
                 </tr>
             </table>
         </section>

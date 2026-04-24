@@ -347,10 +347,10 @@ ul
      <tr>
       <td width=385 valign=top style='width:288.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal;text-autospace:none'><b><span style='font-family:"Ottawa",sans-serif'>{{Str::title($pembiayaan->nasabahh->alamat)}}, Rt {{$pembiayaan->nasabahh->rw}}/Rw {{$pembiayaan->nasabahh->rw}},</span></b> </p>
+      normal;text-autospace:none'><b><span style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->alamat) }}, RT {{ $pembiayaan->nasabahh->rt }}/RW {{ $pembiayaan->nasabahh->rw }},</span></b> </p>
       <p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-      normal;text-autospace:none'><b><span lang=IN style='font-family:"Ottawa",sans-serif'>Kel.{{Str::title($pembiayaan->nasabahh->desa_kelurahan)}}
-      </span></b><b><span style='font-family:"Ottawa",sans-serif'>, Kec. {{Str::title($pembiaykan->nasabahh->kecamatan)}}</span></b></p>
+      normal;text-autospace:none'><b><span lang=IN style='font-family:"Ottawa",sans-serif'>Kel. {{ Str::title($pembiayaan->nasabahh->desa_kelurahan) }}
+      </span></b><b><span style='font-family:"Ottawa",sans-serif'>, Kec. {{ Str::title($pembiayaan->nasabahh->kecamatan) }}, {{ Str::title($pembiayaan->nasabahh->kabkota ?? 'Kab. Bogor') }}, {{ Str::title($pembiayaan->nasabahh->provinsi ?? 'Jawa Barat') }}</span></b></p>
       </td>
      </tr>
     </table>
@@ -1250,11 +1250,15 @@ ul
         style='font-family:"Ottawa",sans-serif'>&nbsp;&nbsp;&nbsp;{{ Str::title($pembiayaan->nasabahh->nama_pasangan) }}</span></b><b><span
         style='font-family:"Ottawa",sans-serif;text-transform:uppercase'>, </span></b><span
         style='font-family:"Ottawa",sans-serif'>yang saat ini bertempat tinggal di </span><span style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->alamat) }}</span><span
-        style='font-family:"Ottawa",sans-serif'>, Rt </span><span
+        style='font-family:"Ottawa",sans-serif'>, RT </span><span
         style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->rt }}</span><span style='font-family:
-        "Ottawa",sans-serif'>/Rw </span><span
+        "Ottawa",sans-serif'>/RW </span><span
         style='font-family:"Ottawa",sans-serif'>{{ $pembiayaan->nasabahh->rw }}</span><span style='font-family:
-        "Ottawa",sans-serif'>,Kelurahan </span><span
+        "Ottawa",sans-serif'>, Kelurahan </span><span
+        style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->desa_kelurahan) }}</span><span style='font-family:
+        "Ottawa",sans-serif'>, Kecamatan </span><span
+        style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->kecamatan) }}</span><span style='font-family:
+        "Ottawa",sans-serif'>, {{ Str::title($pembiayaan->nasabahh->kabkota ?? 'Kab. Bogor') }}, {{ Str::title($pembiayaan->nasabahh->provinsi ?? 'Jawa Barat') }}</span><span
         style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->desa_kelurahan) }}</span><span style='font-family:
         "Ottawa",sans-serif'>, Kecamatan </span><span
         style='font-family:"Ottawa",sans-serif'>{{ Str::title($pembiayaan->nasabahh->kecamatan) }}</span><span

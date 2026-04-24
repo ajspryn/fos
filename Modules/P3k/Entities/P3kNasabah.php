@@ -25,7 +25,7 @@ class P3kNasabah extends Model
 
     public function pekerjaan()
     {
-        return $this->belongsTo(P3kPekerjaan::class, 'id', 'p3k_nasabah_id');
+        return $this->hasOne(P3kPekerjaan::class, 'p3k_nasabah_id', 'id');
     }
 
     protected static function newFactory()

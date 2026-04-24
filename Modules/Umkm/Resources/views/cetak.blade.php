@@ -26,6 +26,36 @@
 </head>
 <body>
 <main class="print-sheet">
+    @php
+        $formatAddress = function ($source, $streetField = 'alamat') {
+            $parts = [];
+
+            $street = trim((string) data_get($source, $streetField, ''));
+            if ($street !== '') {
+                $parts[] = $street;
+            }
+
+            $rt = trim((string) data_get($source, 'rt', ''));
+            $rw = trim((string) data_get($source, 'rw', ''));
+            if ($rt !== '' || $rw !== '') {
+                $parts[] = 'RT ' . ($rt !== '' ? $rt : '-') . '/RW ' . ($rw !== '' ? $rw : '-');
+            }
+
+            foreach (['desa_kelurahan', 'kelurahan', 'desa', 'kecamatan', 'kabkota', 'kabupaten', 'kota', 'provinsi'] as $field) {
+                $value = trim((string) data_get($source, $field, ''));
+                if ($value !== '' && !in_array($value, $parts, true)) {
+                    $parts[] = $value;
+                }
+            }
+
+            $postalCode = trim((string) (data_get($source, 'kode_pos') ?? data_get($source, 'kodepos') ?? ''));
+            if ($postalCode !== '') {
+                $parts[] = 'Kode Pos ' . $postalCode;
+            }
+
+            return !empty($parts) ? implode(', ', $parts) : '-';
+        };
+    @endphp
 
     <header class="header">
         <div><img src="{{ asset('logo.png') }}" alt="logo-left"></div>
@@ -45,7 +75,11 @@
             </tr>
             <tr>
                 <td class="label">Alamat Usaha</td>
-                <td class="value">{{ optional($pembiayaan->keteranganusaha)->alamatusaha ?? '-' }}</td>
+                <td class="value">{{ $formatAddress(optional($pembiayaan->keteranganusaha), 'alamatusaha') }}</td>
+            </tr>
+            <tr>
+                <td class="label">Segmen</td>
+                <td class="value">UMKM</td>
             </tr>
             <tr>
                 <td class="label">Produk</td>
@@ -145,11 +179,11 @@
                 </tr>
                 <tr>
                     <td class="label">Alamat</td>
-                    <td class="value">{{ $pembiayaan->nasabahh->alamat ?? '-' }}, RT {{ $pembiayaan->nasabahh->rt ?? '-' }}/RW {{ $pembiayaan->nasabahh->rw ?? '-' }}</td>
+                    <td class="value">{{ $formatAddress($pembiayaan->nasabahh) }}</td>
                 </tr>
                 <tr>
-                    <td class="label">Desa/Kel, Kecamatan</td>
-                    <td class="value">{{ $pembiayaan->nasabahh->desa_kelurahan ?? '-' }}, {{ $pembiayaan->nasabahh->kecamatan ?? '-' }}</td>
+                    <td class="label">Wilayah</td>
+                    <td class="value">{{ implode(', ', array_filter([$pembiayaan->nasabahh->desa_kelurahan ?? null, $pembiayaan->nasabahh->kecamatan ?? null, $pembiayaan->nasabahh->kabkota ?? null, $pembiayaan->nasabahh->provinsi ?? null])) ?: '-' }}</td>
                 </tr>
                 <tr>
                     <td class="label">No. KTP</td>
@@ -180,7 +214,7 @@
                 </tr>
                 <tr>
                     <td class="label">Alamat Usaha</td>
-                    <td class="value">{{ optional($pembiayaan->keteranganusaha)->alamatusaha ?? '-' }}</td>
+                    <td class="value">{{ $formatAddress(optional($pembiayaan->keteranganusaha), 'alamatusaha') }}</td>
                 </tr>
                 <tr>
                     <td class="label">Sektor Ekonomi</td>
