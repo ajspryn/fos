@@ -112,8 +112,13 @@ class UmkmKomiteController extends Controller
         $usaha = UmkmKeteranganUsaha::select()->where('umkm_pembiayaan_id', $id)->first();
         $jaminanrumah = UmkmLegalitasRumah::select()->where('umkm_pembiayaan_id', $id)->first();
         $jaminanlain = UmkmJaminan::select()->where('umkm_pembiayaan_id', $id)->first();
-        $tenor = $data->tenor;
-        $harga = $data->nominal_pembiayaan;
+        $toNumber = static function ($value): float {
+            $str = str_replace('.', '', (string) ($value ?? '0'));
+            $str = str_replace(',', '.', $str);
+            return (float) $str;
+        };
+        $tenor = (float) ($data->tenor ?? 0);
+        $harga = $toNumber($data->nominal_pembiayaan);
         $rate = $data->rate;
         $margin = ($rate * $tenor) / 100;
         $cash = PasarCashPick::select()->first();
@@ -141,7 +146,7 @@ class UmkmKomiteController extends Controller
 
         //pengeluaran
 
-        $cicilan = UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->sum('angsuran');
+        $cicilan = UmkmSlik::where('umkm_pembiayaan_id', $id)->get()->sum(fn($s) => $toNumber($s->angsuran));
         $biaya_anak = $nasabah->tanggungan->biaya;
         $biaya_istri = $nasabah->status->biaya;
         $kebutuhan_keluarga = UmkmPembiayaan::select()->where('id', $id)->sum('keb_keluarga');
@@ -151,7 +156,7 @@ class UmkmKomiteController extends Controller
 
 
         if ($cekcicilanpasangan > 0) {
-            $cicilanpasangan =   $cekcicilanpasangan = UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->sum('angsuran');
+            $cicilanpasangan =   $cekcicilanpasangan = UmkmSlikPasangan::where('umkm_pembiayaan_id', $id)->get()->sum(fn($s) => $toNumber($s->angsuran));
 
             $total_pengeluaran = $pengeluaranlain + $cicilan + $cicilanpasangan;
             $cicilan =  $cicilan + $cicilanpasangan;
@@ -169,7 +174,7 @@ class UmkmKomiteController extends Controller
         $proses_jenisnasabah = PasarJenisNasabah::select()->where('kode_jenisnasabah', $data->nasabah)->first();
 
 
-        $proses_jaminanlain = PasarJenisJaminan::select()->where('kode_jaminan', $jaminanlain->jaminanlain)->first();
+        $proses_jaminanlain = PasarJenisJaminan::select()->where('kode_jaminan', optional($jaminanlain)->jaminanlain)->first();
 
         // if(!isset($proses_jaminanlain)){
         //     $prosesjaminanlain=PasarJenisJaminan::select()->where('kol',null)->first();

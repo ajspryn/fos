@@ -16,20 +16,67 @@ import math
 # ─── Referensi Data Master ────────────────────────────────────────────────────
 
 INSTANSI = [
-    {"id": 1, "nama": "Kecamatan Sukaraja", "rating": 1, "bobot": 0.10},
-    {"id": 2, "nama": "Disbudpar",           "rating": 2, "bobot": 0.10},
-    {"id": 3, "nama": "Damkar",              "rating": 3, "bobot": 0.10},
-    {"id": 4, "nama": "DPMD",               "rating": 3, "bobot": 0.10},
-    {"id": 5, "nama": "Bappenda",           "rating": 4, "bobot": 0.10},
-    {"id": 6, "nama": "Dishub",             "rating": 4, "bobot": 0.10},
-    {"id": 7, "nama": "Setda",              "rating": 4, "bobot": 0.10},
+    {"id": 1,  "nama": "BAPPENDA",                     "rating": 4, "bobot": 0.05},
+    {"id": 2,  "nama": "BPKSDM",                       "rating": 4, "bobot": 0.05},
+    {"id": 3,  "nama": "BPBD",                         "rating": 3, "bobot": 0.05},
+    {"id": 4,  "nama": "BPKAD",                        "rating": 3, "bobot": 0.05},
+    {"id": 5,  "nama": "DPMPTSP",                      "rating": 3, "bobot": 0.05},
+    {"id": 6,  "nama": "DAMKAR",                       "rating": 4, "bobot": 0.05},
+    {"id": 7,  "nama": "DINAS ARSIP DAN PERPUSDA",     "rating": 3, "bobot": 0.05},
+    {"id": 8,  "nama": "DISKOPUKM",                    "rating": 2, "bobot": 0.05},
+    {"id": 9,  "nama": "DP3AP2KB",                     "rating": 4, "bobot": 0.05},
+    {"id": 10, "nama": "DPMD",                         "rating": 3, "bobot": 0.05},
+    {"id": 11, "nama": "DINAS SOSIAL",                 "rating": 2, "bobot": 0.05},
+    {"id": 12, "nama": "DISBUDPAR",                    "rating": 3, "bobot": 0.05},
+    {"id": 13, "nama": "DISDUKCAPIL",                  "rating": 3, "bobot": 0.05},
+    {"id": 14, "nama": "DISHUB",                       "rating": 4, "bobot": 0.05},
+    {"id": 15, "nama": "DISHUB PROVINSI",              "rating": 1, "bobot": 0.05},
+    {"id": 16, "nama": "DISKOMINFO",                   "rating": 3, "bobot": 0.05},
+    {"id": 17, "nama": "DISNAKER",                     "rating": 3, "bobot": 0.05},
+    {"id": 18, "nama": "DISDAGIN",                     "rating": 3, "bobot": 0.05},
+    {"id": 19, "nama": "DISPORA",                      "rating": 1, "bobot": 0.05},
+    {"id": 20, "nama": "DKDP",                         "rating": 2, "bobot": 0.05},
+    {"id": 21, "nama": "DPKPP",                        "rating": 2, "bobot": 0.05},
+    {"id": 22, "nama": "DPRD",                         "rating": 2, "bobot": 0.05},
+    {"id": 23, "nama": "INSPEKTORAT DAERAH",           "rating": 4, "bobot": 0.05},
+    {"id": 24, "nama": "KECAMATAN BABAKAN MADANG",     "rating": 3, "bobot": 0.05},
+    {"id": 25, "nama": "KECAMATAN BOJONG GEDE",        "rating": 3, "bobot": 0.05},
+    {"id": 26, "nama": "KECAMATAN CARINGIN",           "rating": 2, "bobot": 0.05},
+    {"id": 27, "nama": "KECAMATAN CARIU",              "rating": 1, "bobot": 0.05},
+    {"id": 28, "nama": "KECAMATAN CIAMPEA",            "rating": 2, "bobot": 0.05},
+    {"id": 29, "nama": "KECAMATAN CIAWI",              "rating": 1, "bobot": 0.05},
+    {"id": 30, "nama": "KECAMATAN CIBINONG",           "rating": 3, "bobot": 0.05},
+    {"id": 31, "nama": "KECAMATAN CIBUNGBULANG",       "rating": 2, "bobot": 0.05},
+    {"id": 32, "nama": "KECAMATAN CIGOMBONG",          "rating": 2, "bobot": 0.05},
+    {"id": 33, "nama": "KECAMATAN CIOMAS",             "rating": 2, "bobot": 0.05},
+    {"id": 34, "nama": "KECAMATAN CISARUA",            "rating": 1, "bobot": 0.05},
+    {"id": 35, "nama": "KECAMATAN CISEENG",            "rating": 1, "bobot": 0.05},
+    {"id": 36, "nama": "KECAMATAN JONGGOL",            "rating": 1, "bobot": 0.05},
+    {"id": 37, "nama": "KECAMATAN KEMANG",             "rating": 1, "bobot": 0.05},
+    {"id": 38, "nama": "KECAMATAN LEUWILIANG",         "rating": 3, "bobot": 0.05},
+    {"id": 39, "nama": "KECAMATAN MEGAMENDUNG",        "rating": 2, "bobot": 0.05},
+    {"id": 40, "nama": "KECAMATAN NANGGUNG",           "rating": 2, "bobot": 0.05},
+    {"id": 41, "nama": "KECAMATAN RANCABANGUR",        "rating": 2, "bobot": 0.05},
+    {"id": 42, "nama": "KECAMATAN SUKARAJA",           "rating": 1, "bobot": 0.05},
+    {"id": 43, "nama": "KECAMATAN TAJURHALANG",        "rating": 2, "bobot": 0.05},
+    {"id": 44, "nama": "KECAMATAN TAMAN SARI",         "rating": 1, "bobot": 0.05},
+    {"id": 45, "nama": "KECAMATAN TANJUNG SARI",       "rating": 1, "bobot": 0.05},
+    {"id": 46, "nama": "KECAMATAN TENJO",              "rating": 1, "bobot": 0.05},
+    {"id": 47, "nama": "KECAMATAN CITEUREUP",          "rating": 2, "bobot": 0.05},
+    {"id": 48, "nama": "BAKESBANGPOL",                 "rating": 2, "bobot": 0.05},
+    {"id": 49, "nama": "SETDA",                        "rating": 4, "bobot": 0.05},
+    {"id": 50, "nama": "DINAS PENDIDIKAN",             "rating": 4, "bobot": 0.05},
+    {"id": 51, "nama": "DINAS KESEHATAN",              "rating": 4, "bobot": 0.05},
+    {"id": 52, "nama": "POL PP",                       "rating": 1, "bobot": 0.05},
+    {"id": 53, "nama": "DINAS LINGKUNGAN HIDUP",       "rating": 3, "bobot": 0.05},
+    {"id": 54, "nama": "KPU",                          "rating": 2, "bobot": 0.05},
 ]
 
 BENDAHARA = [
-    {"id": 1, "nama": "Tidak Baik dan Tidak Tertib", "rating": 1, "bobot": 0.15},
-    {"id": 2, "nama": "Baik dan Tidak Tertib",        "rating": 2, "bobot": 0.15},
-    {"id": 3, "nama": "Tidak Baik dan Tertib",        "rating": 3, "bobot": 0.15},
-    {"id": 4, "nama": "Baik dan Tertib",              "rating": 4, "bobot": 0.15},
+    {"id": 1, "nama": "Tidak Baik dan Tidak Tertib", "rating": 1, "bobot": 0.30},
+    {"id": 2, "nama": "Baik dan Tidak Tertib",        "rating": 2, "bobot": 0.30},
+    {"id": 3, "nama": "Tidak Baik dan Tertib",        "rating": 3, "bobot": 0.30},
+    {"id": 4, "nama": "Baik dan Tertib",              "rating": 4, "bobot": 0.30},
 ]
 
 GOLONGAN = [
@@ -75,17 +122,17 @@ TANGGUNGAN = [
 ]
 
 JENIS_NASABAH = [
-    {"id": 1, "nama": "Nasabah Baru",              "rating": 1, "bobot": 0.10},
+    {"id": 1, "nama": "Nasabah Baru",              "rating": 2, "bobot": 0.10},
     {"id": 2, "nama": "RO Tidak Lancar",           "rating": 2, "bobot": 0.10},
     {"id": 3, "nama": "RO Lancar",                 "rating": 3, "bobot": 0.10},
     {"id": 4, "nama": "RO Lancar dan Rekomendasi", "rating": 4, "bobot": 0.10},
 ]
 
 JENIS_JAMINAN = [
-    {"id": 1, "nama": "Tidak Ada Jaminan",               "rating": 1, "bobot": 0.15},
-    {"id": 2, "nama": "Ada Jaminan, Hanya Soft File",    "rating": 2, "bobot": 0.15},
-    {"id": 3, "nama": "Ada Jaminan, Bkn Ijazah Terakhir","rating": 3, "bobot": 0.15},
-    {"id": 4, "nama": "Ada Jaminan, Ijazah Terakhir",    "rating": 4, "bobot": 0.15},
+    {"id": 1, "nama": "Ijazah Asli Pendidikan Terakhir",       "rating": 4, "bobot": 0.10},
+    {"id": 2, "nama": "Ijazah Asli Bukan Pendidikan Terakhir", "rating": 3, "bobot": 0.10},
+    {"id": 3, "nama": "Ijazah Legalisir Pendidikan Terakhir",  "rating": 2, "bobot": 0.10},
+    {"id": 4, "nama": "Ijazah Legalisir Bukan Pend. Terakhir", "rating": 1, "bobot": 0.10},
 ]
 
 AKAD = ["Murabahah", "Ijarah", "Musyarakah Mutanaqisah"]
@@ -99,22 +146,25 @@ SLIK_KOL = [
     {"kol": 5, "keterangan": "Macet",                          "rating": 1, "bobot": 0.20},
 ]
 
-# Score DSR: id → {range_label, rating, bobot}
+# Score DSR: id → {range_label, rating, bobot} — sesuai database skpd_score_dsrs
 DSR_SCORE = [
-    {"id": 1, "range": "> 40% / Deviasi / < 0%", "rating": 1, "bobot": 0.25},
-    {"id": 2, "range": "30% – 40%",               "rating": 1, "bobot": 0.25},
-    {"id": 3, "range": "20% – 29%",               "rating": 2, "bobot": 0.25},
-    {"id": 4, "range": "11% – 19%",               "rating": 3, "bobot": 0.25},
-    {"id": 5, "range": "≤ 10%",                   "rating": 4, "bobot": 0.25},
+    {"id": 1, "range": "36% – 40%",     "rating": 1, "bobot": 0.25},
+    {"id": 2, "range": "31% – 35%",     "rating": 2, "bobot": 0.25},
+    {"id": 3, "range": "21% – 30%",     "rating": 3, "bobot": 0.25},
+    {"id": 4, "range": "0% – 20%",      "rating": 4, "bobot": 0.25},
+    {"id": 5, "range": "40.01% – 41%",  "rating": 2, "bobot": 0.25},  # range deviasi
+    {"id": 6, "range": "< 0% (Negatif)","rating": 1, "bobot": 0.25},
+    {"id": 7, "range": "Deviasi DSR",    "rating": 1, "bobot": 0.25},
+    {"id": 8, "range": "> 41%",          "rating": 1, "bobot": 0.25},
 ]
 
-# Kriteria berdasarkan total score terbobot (skala 4, maks = 4×0.95 = 3.80)
+# Kriteria berdasarkan total score terbobot (skala 4, total bobot = 1.00, maks = 4.00)
 SCORE_CRITERIA = [
-    {"min": 3.24, "max": 3.80, "label": "Sangat Baik",  "status": "DITERIMA"},
-    {"min": 2.67, "max": 3.23, "label": "Baik",         "status": "DITERIMA"},
-    {"min": 2.10, "max": 2.66, "label": "Cukup",        "status": "DITERIMA"},
-    {"min": 1.52, "max": 2.09, "label": "Kurang",       "status": "DITOLAK"},
-    {"min": 0.95, "max": 1.51, "label": "Sangat Kurang","status": "DITOLAK"},
+    {"min": 3.25, "max": 4.00, "label": "Sangat Baik",  "status": "DITERIMA"},
+    {"min": 2.50, "max": 3.24, "label": "Baik",         "status": "DITERIMA"},
+    {"min": 1.75, "max": 2.49, "label": "Cukup",        "status": "DITERIMA"},
+    {"min": 1.00, "max": 1.74, "label": "Kurang",       "status": "DITOLAK"},
+    {"min": 0.00, "max": 0.99, "label": "Sangat Kurang","status": "DITOLAK"},
 ]
 
 _NAMA_DEPAN = [
@@ -188,16 +238,22 @@ def calculate_dsr(angsuran, golongan_id, gaji_tpp, total_pemasukan):
         return angsuran / gaji_tpp * 100
 
 def get_dsr_score(dsr, has_deviasi):
-    if has_deviasi or dsr > 40 or dsr < 0:
-        return DSR_SCORE[0]  # > 40% / deviasi / negatif → rating 1
-    elif 30 <= dsr <= 40:
-        return DSR_SCORE[1]  # 30-40% → rating 1
-    elif 20 <= dsr <= 29:
-        return DSR_SCORE[2]  # 20-29% → rating 2
-    elif 11 <= dsr <= 19:
-        return DSR_SCORE[3]  # 11-19% → rating 3
-    else:                    # 0-10%
-        return DSR_SCORE[4]  # ≤10%   → rating 4
+    if has_deviasi:
+        return DSR_SCORE[6]  # id=7 deviasi → rating 1
+    elif 36 <= dsr <= 40:
+        return DSR_SCORE[0]  # id=1 → rating 1
+    elif 31 <= dsr <= 35:
+        return DSR_SCORE[1]  # id=2 → rating 2
+    elif 21 <= dsr <= 30:
+        return DSR_SCORE[2]  # id=3 → rating 3
+    elif 0 <= dsr <= 20:
+        return DSR_SCORE[3]  # id=4 → rating 4
+    elif dsr < 0:
+        return DSR_SCORE[5]  # id=6 → rating 1
+    elif 40 < dsr <= 41:
+        return DSR_SCORE[4]  # id=5 → rating 2
+    else:
+        return DSR_SCORE[7]  # id=8 >41% → rating 1
 
 def get_kriteria(total_score):
     for c in SCORE_CRITERIA:
@@ -296,7 +352,7 @@ for i, nama in enumerate(NAMA_NASABAH[:300]):
     n_slik       = r_slik * b_slik
 
     # 5. Jaminan
-    jaminan_obj  = random.choice(JENIS_JAMINAN)
+    jaminan_obj  = random.choices(JENIS_JAMINAN, weights=[40, 30, 20, 10])[0]
     r_jaminan    = jaminan_obj["rating"]
     b_jaminan    = jaminan_obj["bobot"]
     n_jaminan    = r_jaminan * b_jaminan
@@ -789,11 +845,14 @@ next_row = write_ref_table(
     "SCORING DSR (Debt Service Ratio) – Bobot 25%",
     ["ID", "Rentang DSR", "Rating", "Bobot", "Nilai Maks", "Keterangan"],
     [
-        [1, "> 40% / Deviasi / < 0%", 1, 0.25, 1*0.25, "Tidak Layak / Ditolak"],
-        [2, "30% – 40%",              1, 0.25, 1*0.25, "Kurang"],
-        [3, "20% – 29%",              2, 0.25, 2*0.25, "Cukup"],
-        [4, "11% – 19%",              3, 0.25, 3*0.25, "Baik"],
-        [5, "≤ 10%",                  4, 0.25, 4*0.25, "Sangat Baik"],
+        [1, "36% – 40%",      1, 0.25, 1*0.25, "Kurang"],
+        [2, "31% – 35%",      2, 0.25, 2*0.25, "Cukup"],
+        [3, "21% – 30%",      3, 0.25, 3*0.25, "Baik"],
+        [4, "0% – 20%",       4, 0.25, 4*0.25, "Sangat Baik"],
+        [5, "40.01% – 41%",   2, 0.25, 2*0.25, "Range Pengajuan Deviasi"],
+        [6, "< 0% (Negatif)", 1, 0.25, 1*0.25, "Tidak Layak"],
+        [7, "Deviasi DSR",    1, 0.25, 1*0.25, "Dengan Persetujuan Deviasi"],
+        [8, "> 41%",          1, 0.25, 1*0.25, "Tidak Layak / Tolak"],
     ],
     title_color="7B2D8B"
 )
@@ -804,7 +863,7 @@ next_row = write_ref_table(
     "SCORING SLIK / iDEB (Kualitas Kredit) – Bobot 20%",
     ["KOL", "Keterangan", "Rating", "Bobot", "Nilai Maks", "Keterangan Umum"],
     [
-        [0, "Tidak Ada Fasilitas",           4, 0.20, 4*0.20, "Lancar (Tidak Ada Pinjaman)"],
+        [0, "Tidak Ada Fasilitas",           4, 0.20, 4*0.20, "Sangat Baik"],
         [1, "Lancar",                          4, 0.20, 4*0.20, "Sangat Baik"],
         [2, "Dalam Pengawasan Khusus (DPK)",  3, 0.20, 3*0.20, "Baik"],
         [3, "Kurang Lancar",                  2, 0.20, 2*0.20, "Cukup / Perlu Perhatian"],
@@ -826,13 +885,13 @@ next_row = write_ref_table(
 # ── Tabel Scoring Bendahara ──
 next_row = write_ref_table(
     ws3, next_row, 1,
-    "SCORING BENDAHARA – Bobot 15%",
+    "SCORING BENDAHARA – Bobot 30%",
     ["Rating", "Bobot", "Nilai Maks", "Keterangan Bendahara"],
     [
-        [4, 0.15, 4*0.15, "Baik dan Tertib"],
-        [3, 0.15, 3*0.15, "Tidak Baik dan Tertib"],
-        [2, 0.15, 2*0.15, "Baik dan Tidak Tertib"],
-        [1, 0.15, 1*0.15, "Tidak Baik dan Tidak Tertib"],
+        [4, 0.30, 4*0.30, "Baik dan Tertib"],
+        [3, 0.30, 3*0.30, "Tidak Baik dan Tertib"],
+        [2, 0.30, 2*0.30, "Baik dan Tidak Tertib"],
+        [1, 0.30, 1*0.30, "Tidak Baik dan Tidak Tertib"],
     ],
     title_color="1F5888"
 )
@@ -840,7 +899,7 @@ next_row = write_ref_table(
 # ── Tabel Scoring Jaminan ──
 next_row = write_ref_table(
     ws3, next_row, 1,
-    "SCORING JENIS JAMINAN – Bobot 15%",
+    "SCORING JENIS JAMINAN – Bobot 10%",
     ["Jenis Jaminan", "Rating", "Bobot", "Nilai Maks"],
     [[j["nama"], j["rating"], j["bobot"], j["rating"]*j["bobot"]] for j in JENIS_JAMINAN],
     title_color="8B4513"
@@ -858,14 +917,14 @@ next_row = write_ref_table(
 # ── Tabel Kriteria Keputusan ──
 next_row = write_ref_table(
     ws3, next_row, 1,
-    "KRITERIA KEPUTUSAN BERDASARKAN TOTAL SCORE TERBOBOT (Skala 4, Maks = 3.80)",
+    "KRITERIA KEPUTUSAN BERDASARKAN TOTAL SCORE TERBOBOT (Skala 4, Total Bobot = 1.00, Maks = 4.00)",
     ["Score Min", "Score Max", "Predikat", "Status", "Keterangan"],
     [
-        [3.24, 3.80, "Sangat Baik",  "DITERIMA", "Disetujui tanpa syarat"],
-        [2.67, 3.23, "Baik",         "DITERIMA", "Disetujui"],
-        [2.10, 2.66, "Cukup",        "DITERIMA", "Disetujui dengan syarat/pertimbangan"],
-        [1.52, 2.09, "Kurang",       "DITOLAK",  "Perlu analisa ulang atau tolak"],
-        [0.95, 1.51, "Sangat Kurang","DITOLAK",  "Ditolak"],
+        [3.25, 4.00, "Sangat Baik",  "DITERIMA", "Disetujui tanpa syarat"],
+        [2.50, 3.24, "Baik",         "DITERIMA", "Disetujui"],
+        [1.75, 2.49, "Cukup",        "DITERIMA", "Disetujui dengan syarat/pertimbangan"],
+        [1.00, 1.74, "Kurang",       "DITOLAK",  "Perlu analisa ulang atau tolak"],
+        [0.00, 0.99, "Sangat Kurang","DITOLAK",  "Ditolak"],
     ],
     title_color=COLOR_HEADER_DARK
 )

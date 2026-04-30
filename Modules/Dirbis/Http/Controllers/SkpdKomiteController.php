@@ -128,19 +128,26 @@ class SkpdKomiteController extends Controller
         }
         $nasabah = SkpdNasabah::select()->where('id', $data->skpd_nasabah_id)->first();
         $jaminan = SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->first();
-        $nominal_pembiayaan = $data->nominal_pembiayaan;
-        $tenor = $data->tenor;
-        $rate = $data->rate / 100;
+
+        $toNumber = static function ($value): float {
+            $str = str_replace('.', '', (string) ($value ?? '0'));
+            $str = str_replace(',', '.', $str);
+            return (float) $str;
+        };
+
+        $nominal_pembiayaan = $toNumber($data->nominal_pembiayaan);
+        $tenor = (float) ($data->tenor ?? 0);
+        $rate = (float) ($data->rate ?? 0) / 100;
 
         //angsuran
         $harga_jual = $nominal_pembiayaan * $rate * $tenor + $nominal_pembiayaan;
-        $angsuran = $harga_jual / $tenor;
+        $angsuran = $tenor > 0 ? $harga_jual / $tenor : 0;
 
         //pengeluaran
         $biaya_anak = $nasabah->tanggungan->biaya;
         $biaya_istri = $nasabah->status_perkawinan->biaya;
-        $cicilan = SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->sum('angsuran');
-        $pengeluaran_lainnya = SkpdPembiayaan::select()->where('id', $id)->sum('pengeluaran_lainnya');
+        $cicilan = SkpdSlik::where('skpd_pembiayaan_id', $id)->get()->sum(fn($s) => $toNumber($s->angsuran));
+        $pengeluaran_lainnya = $toNumber($data->pengeluaran_lainnya);
         $cekcicilanpasangan = SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->count();
         $total_pengeluaran = $biaya_anak + $biaya_istri + $cicilan + $pengeluaran_lainnya;
 
@@ -152,9 +159,9 @@ class SkpdKomiteController extends Controller
         // }
 
         //pemasukan
-        $gaji_pokok = $data->gaji_pokok;
-        $pendapatan_lainnya = $data->pendapatan_lainnya;
-        $gaji_tpp = $data->gaji_tpp;
+        $gaji_pokok = $toNumber($data->gaji_pokok);
+        $pendapatan_lainnya = $toNumber($data->pendapatan_lainnya);
+        $gaji_tpp = $toNumber($data->gaji_tpp);
         $total_pemasukan = $gaji_pokok + $gaji_tpp + $pendapatan_lainnya;
 
         //pendapatan Bersih

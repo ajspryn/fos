@@ -137,8 +137,13 @@ class PasarKomiteController extends Controller
         $pasar = PasarJenisPasar::select()->where('kode_pasar', $usaha->jenispasar_id)->first();
         $jaminanrumah = PasarLegalitasRumah::select()->where('pasar_pembiayaan_id', $id)->first();
         $jaminanlain = PasarJaminan::select()->where('pasar_pembiayaan_id', $id)->first();
-        $tenor = $data->tenor;
-        $harga = $data->harga;
+        $toNumber = static function ($value): float {
+            $str = str_replace('.', '', (string) ($value ?? '0'));
+            $str = str_replace(',', '.', $str);
+            return (float) $str;
+        };
+        $tenor = (float) ($data->tenor ?? 0);
+        $harga = $toNumber($data->harga);
         $rate = $data->rate;
         $margin = ($rate * $tenor) / 100;
         $cash = PasarCashPick::select()->first();
@@ -163,7 +168,7 @@ class PasarKomiteController extends Controller
 
         //pengeluaran
 
-        $cicilan = PasarSlik::select()->where('pasar_pembiayaan_id', $id)->sum('angsuran');
+        $cicilan = PasarSlik::where('pasar_pembiayaan_id', $id)->get()->sum(fn($s) => $toNumber($s->angsuran));
         $biaya_anak = $nasabah->tanggungan->biaya;
         $biaya_istri = $nasabah->status->biaya;
         $kebutuhan_keluarga = PasarPembiayaan::select()->where('id', $id)->sum('keb_keluarga');
@@ -172,7 +177,7 @@ class PasarKomiteController extends Controller
         $total_pengeluaran = ($pengeluaranlain + $cicilan + $angsuran1);
 
         if ($cekcicilanpasangan > 0) {
-            $cicilanpasangan =   $cekcicilanpasangan = PasarSlikPasangan::select()->where('pasar_pembiayaan_id', $id)->sum('angsuran');
+            $cicilanpasangan =   $cekcicilanpasangan = PasarSlikPasangan::where('pasar_pembiayaan_id', $id)->get()->sum(fn($s) => $toNumber($s->angsuran));
 
             $total_pengeluaran = $pengeluaranlain + $cicilan + $angsuran1 + $cicilanpasangan;
             $cicilan =  $cicilan + $cicilanpasangan;

@@ -5,7 +5,6 @@ namespace Modules\Skpd\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Admin\Entities\SkpdJenisJaminan;
 use Modules\Skpd\Entities\SkpdFoto;
 use Modules\Skpd\Entities\SkpdJaminan;
 use Modules\Skpd\Entities\SkpdNasabah;
@@ -61,11 +60,49 @@ class SkpdNasabahController extends Controller
     {
         $data = SkpdPembiayaan::select()->where('skpd_nasabah_id', $id)->first();
 
+        $toNumber = static function ($value): float {
+            if ($value === null || $value === '') {
+                return 0.0;
+            }
+
+            if (is_numeric($value)) {
+                return (float) $value;
+            }
+
+            $normalized = str_replace('.', '', (string) $value);
+            $normalized = str_replace(',', '.', $normalized);
+
+            return (float) $normalized;
+        };
+
+        $toTenor = static function ($value) use ($toNumber): float {
+            if ($value === null || $value === '') {
+                return 0.0;
+            }
+
+            if (is_numeric($value)) {
+                return (float) $value;
+            }
+
+            $digitsOnly = preg_replace('/[^0-9]/', '', (string) $value);
+            if ($digitsOnly !== null && $digitsOnly !== '') {
+                return (float) $digitsOnly;
+            }
+
+            return $toNumber($value);
+        };
+
+        if (!$data) {
+            abort(404, 'Data pembiayaan tidak ditemukan.');
+        }
+
+        $data->nominal_pembiayaan = $toNumber($data->nominal_pembiayaan);
+
         $nasabah = SkpdNasabah::select()->where('id', $id)->first();
 
-        $tenor = (float) $data->tenor;
-        $harga = (float) $data->nominal_pembiayaan;
-        $rate = (float) $data->rate;
+        $tenor = $toTenor($data->tenor);
+        $harga = $data->nominal_pembiayaan;
+        $rate = $toNumber($data->rate);
         $margin = ($rate * $tenor) / 100;
 
         $harga1 = $harga * $margin;
@@ -75,7 +112,7 @@ class SkpdNasabahController extends Controller
         $jaminanlain = SkpdJaminan::select()->where('skpd_pembiayaan_id', $data->id)->first();
         return view('skpd::nasabah.lihat', [
             'title' => 'Nasabah',
-            'pembiayaan' => SkpdPembiayaan::select()->where('skpd_nasabah_id', $id)->first(),
+            'pembiayaan' => $data,
             'nasabah' => $nasabah,
             'datas' => SkpdPembiayaan::select()->where('skpd_nasabah_id', $id)->get(),
             'historys' => SkpdPembiayaan::select()->where('skpd_nasabah_id', $id)->get(),

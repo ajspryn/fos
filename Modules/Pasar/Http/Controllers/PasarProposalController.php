@@ -128,7 +128,7 @@ class PasarProposalController extends Controller
                     'akad_id' => $request->akad_id,
                     'pesanan_blok' => $request->pesanan_blok,
                     'tenor' => $request->tenor,
-                    'harga' => str_replace(".", "", $request->harga),
+                    'harga' => preg_replace('/[^0-9]/', '', $request->harga),
                     'luas' => $request->luas,
                     'cashpickup' => $request->cashpickup,
                     'nasabah' => $request->nasabah,

@@ -20,8 +20,13 @@ class UiMaintenanceMode
                return $next($request);
           }
 
+          if ((bool) $request->session()->get('ui_maintenance_bypass', false)) {
+               return $next($request);
+          }
+
           $bypassToken = (string) config('app.ui_maintenance.bypass_token', '');
           if ($bypassToken !== '' && hash_equals($bypassToken, (string) $request->query('bypass'))) {
+               $request->session()->put('ui_maintenance_bypass', true);
                return $next($request);
           }
 

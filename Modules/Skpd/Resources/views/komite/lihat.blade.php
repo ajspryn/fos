@@ -464,6 +464,18 @@
                                                             <div class="col-xl-9 p-0 mt-xl-0 mt-2">
                                                                 <div class="d-flex flex-wrap gap-2 align-items-center">
                                                                 @if ($history->status_id == 2)
+                                                                    @php
+                                                                        $canAjukanKomite = false;
+
+                                                                        if ($total_score > 3) {
+                                                                            if ($deviasiDSR) {
+                                                                                $canAjukanKomite = true;
+                                                                            } else {
+                                                                                $canAjukanKomite = ($nilai_dsr1 > 0 && $nilai_dsr1 <= 40) &&
+                                                                                    ($pendapatan_bersih - $angsuran1 >= 0);
+                                                                            }
+                                                                        }
+                                                                    @endphp
                                                                     @if ($total_score <= 3)
                                                                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ditolak">Ditolak</button>
                                                                         @if (($nilai_dsr1 > 40 && $nilai_dsr1 <= 41) || $nilai_dsr1 < 0)
@@ -475,14 +487,11 @@
                                                                             @endif
                                                                         @endif
                                                                     @else
-                                                                        @if ($deviasiDSR)
-                                                                            @if ($total_score > 3)
-                                                                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#lanjut_komite"><i data-feather="check-square"></i> Lanjut Komite</button>
-                                                                            @endif
+                                                                        @if ($canAjukanKomite)
+                                                                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#lanjut_komite"><i data-feather="check-square"></i> Ajukan ke Komite</button>
                                                                         @else
-                                                                            @if ($total_score > 3 && ($nilai_dsr1 > 0 && $nilai_dsr1 <= 40) && $pendapatan_bersih - $angsuran1 >= 0)
-                                                                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#lanjut_komite"><i data-feather="check-square"></i> Lanjut Komite</button>
-                                                                            @endif
+                                                                            <button class="btn btn-secondary" type="button" disabled>Ajukan ke Komite</button>
+                                                                            <span class="text-muted small">Cek DSR, sisa pendapatan bersih, atau dokumen deviasi sebelum pengajuan.</span>
                                                                         @endif
                                                                         @if (($nilai_dsr1 > 40 && $nilai_dsr1 <= 41) || $nilai_dsr1 < 0)
                                                                             <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalUploadDeviasi"><i data-feather="file"></i> Upload Dokumen Deviasi DSR</button>

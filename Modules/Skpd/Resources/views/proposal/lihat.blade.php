@@ -208,6 +208,7 @@
                                                 <option value="{{ $pembiayaan->tenor }}">{{ $pembiayaan->tenor }} Bulan
                                                 </option>
                                             </select>
+                                            <input type="hidden" name="tenor" value="{{ $pembiayaan->tenor }}" />
                                         </div>
                                         <div class="mb-1 col-md-2">
                                             <label class="form-label" for="rate"><small class="text-danger">*
@@ -1189,7 +1190,7 @@
                                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                             <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                         </button>
-                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <button type="submit" class="btn btn-success">Ajukan ke Komite</button>
                                     </div>
                                 </div>
                             </form>

@@ -92,22 +92,23 @@ class PasarCetakController extends Controller
 
             //pengeluaran
 
-            $cicilan = PasarSlik::select()->where('pasar_pembiayaan_id', $id)->sum('angsuran');
+
+            // Pengeluaran
+            $cicilan = PasarSlik::where('pasar_pembiayaan_id', $id)->get()->sum(fn($s) => (int)preg_replace('/\D/', '', $s->angsuran));
             $biaya_anak = $nasabah->tanggungan->biaya;
             $biaya_istri = $nasabah->status->biaya;
             $kebutuhan_keluarga = PasarPembiayaan::select()->where('id', $id)->sum('keb_keluarga');
             $pengeluaranlain = $biaya_anak + $biaya_istri + $kebutuhan_keluarga;
             $cekcicilanpasangan = PasarSlikPasangan::select()->where('pasar_pembiayaan_id', $id)->count();
-            $total_pengeluaran = ($pengeluaranlain + $cicilan + $angsuran1);
+            $total_pengeluaran = $pengeluaranlain + $cicilan + $angsuran1;
 
             if ($cekcicilanpasangan > 0) {
-                $cicilanpasangan =   $cekcicilanpasangan = PasarSlikPasangan::select()->where('pasar_pembiayaan_id', $id)->sum('angsuran');
-
-                $total_pengeluaran = $pengeluaranlain + $cicilan + $angsuran1 + $cicilanpasangan;
-                $cicilan =  $cicilan + $cicilanpasangan;
+                $cicilanpasangan = PasarSlikPasangan::where('pasar_pembiayaan_id', $id)->get()->sum(fn($s) => (int)preg_replace('/\D/', '', $s->angsuran));
+                $total_pengeluaran += $cicilanpasangan;
+                $cicilan += $cicilanpasangan;
             }
 
-            $di = ($laba_bersih - $total_pengeluaran);
+            $di = $laba_bersih - $total_pengeluaran;
 
             //rating
 
@@ -141,7 +142,7 @@ class PasarCetakController extends Controller
             $score_jenisnasabah = $proses_jenisnasabah->rating;
             $score_jaminanlain = $proses_jaminanlain->rating;
 
-            $idir = number_format(($cicilan + $angsuran1) / ($di) * 100);
+            $idir = $di != 0 ? number_format((($cicilan + $angsuran1) / $di) * 100) : 0;
 
             if ($idir <= 50) {
                 $proses_idir = PasarScoreIdir::select()->where('rating', 4)->first();

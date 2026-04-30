@@ -387,7 +387,7 @@
                                                     class="text-danger">* </small>Nominal Pembiayaan</label>
                                             <input type="text" name="nominal_pembiayaan"
                                                 class="form-control numeral-mask"
-                                                value=" {{ $pembiayaan->nominal_pembiayaan }}" id="nominal_pembiayaan"
+                                                value="{{ old('nominal_pembiayaan', $pembiayaan->nominal_pembiayaan) }}" id="nominal_pembiayaan"
                                                 required />
                                         </div>
                                         <div class="mb-1 col-md-4">
@@ -1084,7 +1084,7 @@
                                             <label class="form-label" for="gaji_pokok"><small class="text-danger">*
                                                 </small>Gaji Pokok (Per Bulan)</label>
                                             <input type="text" name="gaji_pokok" class="form-control numeral-mask"
-                                                value="{{ $pembiayaan->gaji_pokok }}" id="gaji_pokok" required />
+                                                value="{{ old('gaji_pokok', $pembiayaan->gaji_pokok) }}" id="gaji_pokok" required />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="pendapatan_lainnya"><small
@@ -1092,14 +1092,14 @@
                                                 Bulan)</label>
                                             <input type="text" name="pendapatan_lainnya"
                                                 class="form-control numeral-mask"
-                                                value="{{ $pembiayaan->pendapatan_lainnya }}" id="pendapatan_lainnya"
+                                                value="{{ old('pendapatan_lainnya', $pembiayaan->pendapatan_lainnya) }}" id="pendapatan_lainnya"
                                                 required />
                                         </div>
                                         <div class="mb-1 col-md-6">
                                             <label class="form-label" for="pendapatan_tpp"><small class="text-danger">*
                                                 </small>Pendapatan TPP (Per Bulan)</label>
                                             <input type="text" name="gaji_tpp" class="form-control numeral-mask"
-                                                value="{{ $pembiayaan->gaji_tpp }}" id="pendapatan_tpp" required />
+                                                value="{{ old('gaji_tpp', $pembiayaan->gaji_tpp) }}" id="pendapatan_tpp" required />
                                         </div>
 
                                     </div>
@@ -1721,14 +1721,15 @@
                         <label class="form-label" for="pengeluaranLainnya">Pengeluaran Lainnya (Per
                             Bulan)</label>
                         <input type="text" name="pengeluaran_lainnya" class="form-control numeral-mask"
-                            placeholder="Rp." value="0" id="pengeluaranLainnya" />
+                            placeholder="Rp." value="{{ old('pengeluaran_lainnya', $pembiayaan->pengeluaran_lainnya ?? 0) }}" id="pengeluaranLainnya" />
                     </div>
                     <div class="mb-1 col-md-6">
                         <label class="form-label" for="keteranganPengeluaranLainnya">Keterangan Pengeluaran
                             Lainnya
                             (Per Bulan)</label>
                         <input type="text" name="keterangan_pengeluaran_lainnya" class="form-control"
-                            id="keteranganPengeluaranLainnya" placeholder="Isikan Keterangan Pengeluaran Lainnya" />
+                            id="keteranganPengeluaranLainnya" placeholder="Isikan Keterangan Pengeluaran Lainnya"
+                            value="{{ old('keterangan_pengeluaran_lainnya', $pembiayaan->keterangan_pengeluaran_lainnya) }}" />
                     </div>
                 </div>
                 <br />
@@ -2224,7 +2225,7 @@
                                     <label class="form-label" for="perbaruiIdebPasangan">
                                         Perbarui Lampiran
                                     </label>
-                                    <select class="select2 w-100" name="perbarui_ideb" id="perbaruiIdebPasangan"
+                                    <select class="select2 w-100" name="perbarui_ideb_pasangan" id="perbaruiIdebPasangan"
                                         onChange="changePerbaruiIdebPasangan()">
                                         <option value="Ya">Ya</option>
                                         <option value="Tidak" selected>Tidak
@@ -2259,7 +2260,7 @@
                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                             <span class="align-middle d-sm-inline-block d-none">Previous</span>
                         </button>
-                        <button type="submit" id="btnSubmitForm" class="btn btn-success">Submit</button>
+                        <button type="submit" id="btnSubmitForm" class="btn btn-success">Simpan Revisi dan Buka Komite</button>
                     </div>
                 </div>
             </div>
@@ -2515,7 +2516,7 @@
                     <h4 class="text-center mb-1" style="margin-top:-40px;">
                         <strong>Foto Jaminan Lainnya</strong>
                     </h4>
-                    @if ($pembiayaan->jaminan_lainnya)
+                    @if ($fotoJaminanLainnya?->dokumen_jaminan_lainnya)
                         <iframe src="{{ asset('storage/' . $fotoJaminanLainnya->dokumen_jaminan_lainnya) }}"
                             class="d-block w-100" height="600"></iframe>
                     @else

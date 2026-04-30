@@ -307,6 +307,7 @@ class UmkmKomiteController extends Controller
             // 'slik'=>$prosesslik,
             'idebs' => UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->get(),
             'ideppasangans' => UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->get(),
+            'cicilanpasangans' => UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->get(),
             'ideb' => UmkmPembiayaan::select()->where('id', $id)->get(),
             'laba_bersih' => $laba_bersih,
             'total_pendapatan_bersih' => $total_pendapatan_bersih,

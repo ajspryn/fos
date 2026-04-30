@@ -88,7 +88,31 @@ class SkpdRevisiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Simpan data pembiayaan (contoh, sesuaikan dengan field yang diperlukan)
+        $pembiayaan = SkpdPembiayaan::create($request->all());
+
+        // Upload IDEB jika ada
+        if ($request->hasFile('ideb')) {
+            $ideb = $request->file('ideb')->store('foto-skpd-pembiayaan', 'public');
+            SkpdFoto::create([
+                'skpd_pembiayaan_id' => $pembiayaan->id,
+                'kategori' => 'IDEB',
+                'foto' => $ideb,
+            ]);
+        }
+
+        // Upload IDEB Pasangan jika ada dan status perkawinan = 2
+        if ($request->skpd_status_perkawinan_id == 2 && $request->hasFile('ideb_pasangan')) {
+            $idebPasangan = $request->file('ideb_pasangan')->store('foto-skpd-pembiayaan', 'public');
+            SkpdFoto::create([
+                'skpd_pembiayaan_id' => $pembiayaan->id,
+                'kategori' => 'IDEB Pasangan',
+                'foto' => $idebPasangan,
+            ]);
+        }
+
+        // ...tambahkan logika lain sesuai kebutuhan (redirect, validasi, dsb)
+        return redirect()->back()->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -119,7 +143,12 @@ class SkpdRevisiController extends Controller
             'fotoKtp' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Foto KTP')->first(),
             'fotoDiriBersamaKtp' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Foto Diri Bersama KTP')->first(),
             'fotoKk' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Foto Kartu Keluarga')->first(),
-            'fotoStatus' => SkpdFoto::select()->where('skpd_pembiayaan_id', $id)->where('kategori', 'Akta Status Perkawinan')->orWhere('kategori', 'Akta Status Pekawinan')->first(),
+            'fotoStatus' => SkpdFoto::select()
+                ->where('skpd_pembiayaan_id', $id)
+                ->where(function ($query) {
+                    $query->where('kategori', 'Akta Status Perkawinan')
+                        ->orWhere('kategori', 'Akta Status Pekawinan');
+                })->first(),
             'fotoJaminan' => SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->first(),
             'fotoJaminanLainnya' => SkpdJaminanLainnya::select()->where('skpd_pembiayaan_id', $id)->first(),
             'lastIdJaminanLainnya' => SkpdJaminanLainnya::select('id')->latest()->first()?->id ?? 0,
@@ -153,23 +182,46 @@ class SkpdRevisiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $toIntegerMoney = static function ($value): int {
+            $clean = preg_replace('/[^0-9]/', '', (string) $value);
+            return (int) ($clean === '' ? 0 : $clean);
+        };
+
+        $toTenor = static function ($value): int {
+            $clean = preg_replace('/[^0-9]/', '', (string) $value);
+            return (int) ($clean === '' ? 0 : $clean);
+        };
+
+        $tenor = $toTenor($request->tenor);
+        if ($tenor <= 0) {
+            return back()->withErrors(['tenor' => 'Tenor wajib dipilih.'])->withInput();
+        }
 
         //Konversi tgl untuk diinput ke db
         $tglPengajuan = Carbon::createFromFormat('d-m-Y', $request->tanggal_pengajuan)->format('Y-m-d');
         $tglLahir = Carbon::createFromFormat('d-m-Y', $request->tgl_lahir)->format('Y-m-d');
 
         // return($request);
-        // $sk_pengangkatan = $request->file('sk_pengangkatan')->store('skpd-sk_pengangkatan', 'public');
-        // $dokumen_jaminan = $request->file('dokumen_jaminan')->store('skpd-dokumen_jaminan', 'public');
-        // $dokumen_keuangan = $request->file('dokumen_keuangan')->store('skpd-dokumen_keuangan', 'public');
-        // $dokumen_slip_gaji = $request->file('dokumen_slip_gaji')->store('skpd-dokumen_slip_gaji', 'public');
+        // Tidak ada validasi pembatasan ukuran/jumlah file upload
+        // Pastikan file upload langsung disimpan tanpa validasi size/max/mimes
+        // Jika ingin menambah validasi, tambahkan di sini
+
+        // Contoh upload tanpa batasan:
+        // if ($request->hasFile('dokumen_keuangan')) {
+        //     $dokumen_keuangan = $request->file('dokumen_keuangan')->store('skpd-dokumen_keuangan', 'public');
+        //     SkpdPembiayaan::where('id', $id)->update([
+        //         'dokumen_keuangan' => $dokumen_keuangan,
+        //     ]);
+        // }
+
+        // Lakukan hal yang sama untuk dokumen lain jika diperlukan
 
         SkpdPembiayaan::where('id', $id)->update([
             'id' => $id,
             'user_id' => $request->user_id,
             'tanggal_pengajuan' => $tglPengajuan,
-            'nominal_pembiayaan' => str_replace(".", "", $request->nominal_pembiayaan),
-            'tenor' => $request->tenor,
+            'nominal_pembiayaan' => $toIntegerMoney($request->nominal_pembiayaan),
+            'tenor' => $tenor,
             'rate' => str_replace(",", ".", $request->rate),
             'skpd_jenis_penggunaan_id' => $request->skpd_jenis_penggunaan_id,
             'skpd_sektor_ekonomi_id' => $request->skpd_sektor_ekonomi_id,
@@ -179,10 +231,10 @@ class SkpdRevisiController extends Controller
             'skpd_instansi_id' => $request->skpd_instansi_id,
             'skpd_golongan_id' => $request->skpd_golongan_id,
             'jabatan' => $request->jabatan,
-            'gaji_pokok' => str_replace(".", "", $request->gaji_pokok),
-            'pendapatan_lainnya' => str_replace(".", "", $request->pendapatan_lainnya),
-            'gaji_tpp' => str_replace(".", "", $request->gaji_tpp),
-            'pengeluaran_lainnya' => str_replace(".", "", $request->pengeluaran_lainnya),
+            'gaji_pokok' => $toIntegerMoney($request->gaji_pokok),
+            'pendapatan_lainnya' => $toIntegerMoney($request->pendapatan_lainnya),
+            'gaji_tpp' => $toIntegerMoney($request->gaji_tpp),
+            'pengeluaran_lainnya' => $toIntegerMoney($request->pengeluaran_lainnya),
             'keterangan_pengeluaran_lainnya' => $request->keterangan_pengeluaran_lainnya,
         ]);
 
@@ -301,9 +353,13 @@ class SkpdRevisiController extends Controller
                 Storage::disk('public')->delete(request('foto_akta_nikah_cerai_lama'));
             }
             $foto_akta_nikah_cerai = $request->file('foto_akta_nikah_cerai')->store('foto-skpd-pembiayaan', 'public');
-            SkpdFoto::where('skpd_pembiayaan_id', $id)->where('kategori', 'Akta Status Perkawinan')->orWhere('kategori', 'Akta Status Pekawinan')->update([
-                'foto'  => $foto_akta_nikah_cerai,
-            ]);
+            SkpdFoto::where('skpd_pembiayaan_id', $id)
+                ->where(function ($query) {
+                    $query->where('kategori', 'Akta Status Perkawinan')
+                        ->orWhere('kategori', 'Akta Status Pekawinan');
+                })->update([
+                    'foto'  => $foto_akta_nikah_cerai,
+                ]);
         }
 
         //Perbarui Foto SK
@@ -375,9 +431,10 @@ class SkpdRevisiController extends Controller
                 Storage::disk('public')->delete(request('ideb_lama'));
             }
             $ideb = $request->file('ideb')->store('foto-skpd-pembiayaan', 'public');
-            SkpdFoto::where('skpd_pembiayaan_id', $id)->where('kategori', 'IDEB')->update([
-                'foto'  => $ideb,
-            ]);
+            // Pastikan semua variasi kategori IDEB diupdate ke 'IDEB'
+            SkpdFoto::where('skpd_pembiayaan_id', $id)
+                ->whereIn('kategori', ['IDEB', 'ideb', 'ideb pemohon', 'IDEB PEMOHON', 'ideb_pemohon'])
+                ->update(['kategori' => 'IDEB', 'foto' => $ideb]);
         }
 
         //Perbarui Foto IDEB Pasangan
@@ -477,11 +534,11 @@ class SkpdRevisiController extends Controller
                     [
                         'skpd_pembiayaan_id' => $id,
                         'nama_bank' => $value['nama_bank'],
-                        'plafond' => str_replace(".", "", $value['plafond']),
-                        'outstanding' => str_replace(".", "", $value['outstanding']),
+                        'plafond' => $toIntegerMoney($value['plafond'] ?? null),
+                        'outstanding' => $toIntegerMoney($value['outstanding'] ?? null),
                         'tenor' => $value['tenor'],
                         'margin' => $value['margin'],
-                        'angsuran' => str_replace(".", "", $value['angsuran']),
+                        'angsuran' => $toIntegerMoney($value['angsuran'] ?? null),
                         'agunan' => $value['agunan'],
                         'kol_tertinggi' => $value['kol_tertinggi'],
                     ]
@@ -502,11 +559,11 @@ class SkpdRevisiController extends Controller
                         [
                             'skpd_pembiayaan_id' => $id,
                             'nama_bank' => $value['nama_bank'],
-                            'plafond' => str_replace(".", "", $value['plafond']),
-                            'outstanding' => str_replace(".", "", $value['outstanding']),
+                            'plafond' => $toIntegerMoney($value['plafond'] ?? null),
+                            'outstanding' => $toIntegerMoney($value['outstanding'] ?? null),
                             'tenor' => $value['tenor'],
                             'margin' => $value['margin'],
-                            'angsuran' => str_replace(".", "", $value['angsuran']),
+                            'angsuran' => $toIntegerMoney($value['angsuran'] ?? null),
                             'agunan' => $value['agunan'],
                             'kol_tertinggi' => $value['kol_tertinggi'],
                         ]
@@ -517,7 +574,7 @@ class SkpdRevisiController extends Controller
         }
 
 
-        return redirect('/skpd/komite')->with('success', 'Proposal Berhasil Diperbarui!');
+        return redirect('/skpd/komite/' . $id)->with('success', 'Proposal berhasil diperbarui. Lanjutkan ke tahap Ajukan ke Komite.');
     }
 
     /**

@@ -150,27 +150,33 @@ class P3kKomiteController extends Controller
             abort(404, 'Data pembiayaan tidak ditemukan.');
         }
 
+        $toNumber = static function ($value): float {
+            $str = str_replace('.', '', (string) ($value ?? '0'));
+            $str = str_replace(',', '.', $str);
+            return (float) $str;
+        };
+
         //Angsuran
-        $nominalPembiayaan = (float) ($data->nominal_pembiayaan ?? 0);
+        $nominalPembiayaan = $toNumber($data->nominal_pembiayaan);
         $tenor = (float) ($data->tenor ?? 0);
         $rate = (float) ($data->rate ?? 0) / 100;
 
         $hargaJual = $tenor > 0 ? ($nominalPembiayaan * $rate * $tenor) + $nominalPembiayaan : 0;
         $angsuran = $tenor > 0 ? $hargaJual / $tenor : 0;
-        $totalAngsuranBtbFasAktif = (float) ($data->total_angsuran_btb_fas_aktif ?? 0);
+        $totalAngsuranBtbFasAktif = $toNumber($data->total_angsuran_btb_fas_aktif);
 
         //Biaya Administrasi
         $byAdm = 1.5 / 100 * $nominalPembiayaan;
 
         //Pendapatan
-        $gajiPokok = (float) ($data->gaji_pokok ?? 0);
-        $gajiTpp = (float) ($data->gaji_tpp ?? 0);
-        $gajiPasangan = (float) ($data->gaji_pasangan ?? 0);
+        $gajiPokok = $toNumber($data->gaji_pokok);
+        $gajiTpp = $toNumber($data->gaji_tpp);
+        $gajiPasangan = $toNumber($data->gaji_pasangan);
         $totalPendapatan = $gajiPokok + $gajiTpp;
         $totalPendapatanJoinIncome = $gajiPokok + $gajiTpp + $gajiPasangan;
 
         //Pengeluaran
-        $pengeluaranLainnya = (float) ($data->pengeluaran_lainnya ?? 0);
+        $pengeluaranLainnya = $toNumber($data->pengeluaran_lainnya);
 
         //Pendapatan bersih
         $pendapatanBersih = $totalPendapatan - $totalAngsuranBtbFasAktif - $pengeluaranLainnya;

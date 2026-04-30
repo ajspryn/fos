@@ -31,6 +31,38 @@ class SkpdCetakProposalController extends Controller
      */
     public function index()
     {
+        $toNumber = static function ($value): float {
+            if ($value === null || $value === '') {
+                return 0.0;
+            }
+
+            if (is_numeric($value)) {
+                return (float) $value;
+            }
+
+            $normalized = str_replace('.', '', (string) $value);
+            $normalized = str_replace(',', '.', $normalized);
+
+            return (float) $normalized;
+        };
+
+        $toTenor = static function ($value) use ($toNumber): float {
+            if ($value === null || $value === '') {
+                return 0.0;
+            }
+
+            if (is_numeric($value)) {
+                return (float) $value;
+            }
+
+            $digitsOnly = preg_replace('/[^0-9]/', '', (string) $value);
+            if ($digitsOnly !== null && $digitsOnly !== '') {
+                return (float) $digitsOnly;
+            }
+
+            return $toNumber($value);
+        };
+
         $id = Request('id');
         if (!$id) abort(404);
         $cek = SkpdPembiayaanHistory::select()
@@ -49,11 +81,20 @@ class SkpdCetakProposalController extends Controller
         }
 
         $data = SkpdPembiayaan::select()->where('id', $id)->first();
+        if (!$data) {
+            abort(404, 'Data pembiayaan tidak ditemukan.');
+        }
+
+        $data->nominal_pembiayaan = $toNumber($data->nominal_pembiayaan);
+        $data->gaji_pokok = $toNumber($data->gaji_pokok);
+        $data->pendapatan_lainnya = $toNumber($data->pendapatan_lainnya);
+        $data->gaji_tpp = $toNumber($data->gaji_tpp);
+        $data->pengeluaran_lainnya = $toNumber($data->pengeluaran_lainnya);
         $nasabah = SkpdNasabah::select()->where('id', $data->skpd_nasabah_id)->first();
         $jaminan = SkpdJaminan::select()->where('skpd_pembiayaan_id', $id)->first();
-        $nominal_pembiayaan = (float)str_replace('.', '', $data->nominal_pembiayaan ?? '0');
-        $tenor = (float) $data->tenor;
-        $rate = (float) $data->rate / 100;
+        $nominal_pembiayaan = $data->nominal_pembiayaan;
+        $tenor = $toTenor($data->tenor);
+        $rate = $toNumber($data->rate) / 100;
 
         //angsuran
         $harga_jual = $nominal_pembiayaan * $rate * $tenor + $nominal_pembiayaan;
@@ -62,8 +103,8 @@ class SkpdCetakProposalController extends Controller
         //pengeluaran
         $biaya_anak = (float) ($nasabah->tanggungan->biaya ?? 0);
         $biaya_istri = (float) ($nasabah->status_perkawinan->biaya ?? 0);
-        $cicilan = (float) SkpdSlik::select()->where('skpd_pembiayaan_id', $id)->sum('angsuran');
-        $pengeluaran_lainnya = (float) SkpdPembiayaan::select()->where('id', $id)->sum('pengeluaran_lainnya');
+        $cicilan = SkpdSlik::where('skpd_pembiayaan_id', $id)->get()->sum(fn($slik) => $toNumber($slik->angsuran));
+        $pengeluaran_lainnya = $data->pengeluaran_lainnya;
         $cekcicilanpasangan = SkpdSlikPasangan::select()->where('skpd_pembiayaan_id', $id)->count();
         $total_pengeluaran = $biaya_anak + $biaya_istri + $cicilan + $pengeluaran_lainnya;
 
@@ -75,9 +116,9 @@ class SkpdCetakProposalController extends Controller
         // }
 
         //pemasukan
-        $gaji_pokok = (float)str_replace('.', '', $data->gaji_pokok ?? '0');
-        $pendapatan_lainnya = (float)str_replace('.', '', $data->pendapatan_lainnya ?? '0');
-        $gaji_tpp = (float)str_replace('.', '', $data->gaji_tpp ?? '0');
+        $gaji_pokok = $data->gaji_pokok;
+        $pendapatan_lainnya = $data->pendapatan_lainnya;
+        $gaji_tpp = $data->gaji_tpp;
         $total_pemasukan = $gaji_pokok + $gaji_tpp + $pendapatan_lainnya;
 
         //pendapatan Bersih
@@ -180,7 +221,7 @@ class SkpdCetakProposalController extends Controller
             'arr' => -2,
             'banyak_history' => SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $id)->count(),
             'jabatan' => Role::select()->where('user_id', Auth::user()->id)->first(),
-            'pembiayaan' => SkpdPembiayaan::select()->where('id', $id)->first(),
+            'pembiayaan' => $data,
             'timelines' => SkpdPembiayaanHistory::select()->where('skpd_pembiayaan_id', $id)->get(),
             'cicilan' => $cicilan,
             'biayakeluarga' => $biaya_anak + $biaya_istri,

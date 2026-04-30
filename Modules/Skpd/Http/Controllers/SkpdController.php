@@ -2,7 +2,6 @@
 
 namespace Modules\Skpd\Http\Controllers;
 
-use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -157,6 +156,21 @@ class SkpdController extends Controller
      */
     public function store(Request $request)
     {
+        $toIntegerMoney = static function ($value): int {
+            $clean = preg_replace('/[^0-9]/', '', (string) $value);
+            return (int) ($clean === '' ? 0 : $clean);
+        };
+
+        $toTenor = static function ($value): int {
+            $clean = preg_replace('/[^0-9]/', '', (string) $value);
+            return (int) ($clean === '' ? 0 : $clean);
+        };
+
+        $tenor = $toTenor($request->tenor);
+        if ($tenor <= 0) {
+            return back()->withErrors(['tenor' => 'Tenor wajib dipilih.'])->withInput();
+        }
+
         $hitung = SkpdPembiayaan::select()->orderBy('id', 'desc')->first();
         $id = ($hitung?->id ?? 0) + 1;
 
@@ -173,8 +187,8 @@ class SkpdController extends Controller
             'id' => $id,
             'user_id' => $request->user_id,
             'tanggal_pengajuan' => $tglPengajuan,
-            'nominal_pembiayaan' => str_replace(".", "", $request->nominal_pembiayaan),
-            'tenor' => $request->tenor,
+            'nominal_pembiayaan' => $toIntegerMoney($request->nominal_pembiayaan),
+            'tenor' => $tenor,
             'rate' => str_replace(",", ".", $request->rate),
             'skpd_jenis_penggunaan_id' => $request->skpd_jenis_penggunaan_id,
             // 'skpd_sektor_ekonomi_id' => $request->skpd_sektor_ekonomi_id,
@@ -186,10 +200,10 @@ class SkpdController extends Controller
             'sk_pengangkatan' => $sk_pengangkatan,
             'dokumen_keuangan' => $dokumen_keuangan,
             'dokumen_slip_gaji' => $dokumen_slip_gaji,
-            'gaji_pokok' => str_replace(".", "", $request->gaji_pokok),
-            'pendapatan_lainnya' => str_replace(".", "", $request->pendapatan_lainnya),
-            'gaji_tpp' => str_replace(".", "", $request->gaji_tpp),
-            'pengeluaran_lainnya' => str_replace(".", "", $request->pengeluaran_lainnya),
+            'gaji_pokok' => $toIntegerMoney($request->gaji_pokok),
+            'pendapatan_lainnya' => $toIntegerMoney($request->pendapatan_lainnya),
+            'gaji_tpp' => $toIntegerMoney($request->gaji_tpp),
+            'pengeluaran_lainnya' => $toIntegerMoney($request->pengeluaran_lainnya),
             'keterangan_pengeluaran_lainnya' => $request->keterangan_pengeluaran_lainnya,
         ]);
 

@@ -91,23 +91,22 @@ class UmkmCetakController extends Controller
 
         //pengeluaran
 
-        $cicilan = UmkmSlik::select()->where('umkm_pembiayaan_id', $id)->sum('angsuran');
+        // Pengeluaran (disamakan dengan Pasar)
+        $cicilan = UmkmSlik::where('umkm_pembiayaan_id', $id)->get()->sum(fn($s) => (int)preg_replace('/\D/', '', $s->angsuran));
         $biaya_anak = $nasabah?->tanggungan?->biaya ?? 0;
         $biaya_istri = $nasabah?->status?->biaya ?? 0;
         $kebutuhan_keluarga = UmkmPembiayaan::select()->where('id', $id)->sum('keb_keluarga');
         $pengeluaranlain = $biaya_anak + $biaya_istri + $kebutuhan_keluarga;
-        $total_pengeluaran = ($pengeluaranlain + $cicilan + $angsuran1);
         $cekcicilanpasangan = UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->count();
-
+        $total_pengeluaran = $pengeluaranlain + $cicilan;
 
         if ($cekcicilanpasangan > 0) {
-            $cicilanpasangan =   $cekcicilanpasangan = UmkmSlikPasangan::select()->where('umkm_pembiayaan_id', $id)->sum('angsuran');
-
-            $total_pengeluaran = $pengeluaranlain + $cicilan + $angsuran1 + $cicilanpasangan;
-            $cicilan =  $cicilan + $cicilanpasangan;
+            $cicilanpasangan = UmkmSlikPasangan::where('umkm_pembiayaan_id', $id)->get()->sum(fn($s) => (int)preg_replace('/\D/', '', $s->angsuran));
+            $total_pengeluaran += $cicilanpasangan;
+            $cicilan += $cicilanpasangan;
         }
 
-        $di = ($total_pendapatan_bersih - $total_pengeluaran);
+        $di = $total_pendapatan_bersih - $total_pengeluaran;
 
         //rating
 
@@ -137,7 +136,7 @@ class UmkmCetakController extends Controller
         $score_jenisnasabah = $proses_jenisnasabah?->rating ?? 0;
         $score_jaminanlain = $proses_jaminanlain?->rating ?? 0;
 
-        $idir = number_format(($cicilan + $angsuran1) / ($di) * 100);
+        $idir = $di != 0 ? number_format(($angsuran1 / $di) * 100) : 0;
 
         if ($idir <= 50) {
             $proses_idir = UmkmScoreIdir::select()->where('rating', 4)->first();

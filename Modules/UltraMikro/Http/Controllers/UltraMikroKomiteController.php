@@ -88,9 +88,15 @@ class UltraMikroKomiteController extends Controller
             abort(404, 'Data pembiayaan tidak ditemukan.');
         }
 
+        $toNumber = static function ($value): float {
+            $str = str_replace('.', '', (string) ($value ?? '0'));
+            $str = str_replace(',', '.', $str);
+            return (float) $str;
+        };
+
         //Angsuran
-        $nominalPembiayaan = $data->nominal_pembiayaan;
-        $tenor = $data->tenor;
+        $nominalPembiayaan = $toNumber($data->nominal_pembiayaan);
+        $tenor = (float) ($data->tenor ?? 0);
         // $rate = $data->rate / 100;
 
         if ($data->frekuensi_pembayaran == "Setiap 1 Minggu") {
@@ -106,8 +112,8 @@ class UltraMikroKomiteController extends Controller
 
 
         // $hargaJual = ($nominalPembiayaan * $rate * $tenor) + $nominalPembiayaan;
-        $angsuran = $nominalPembiayaan / $tenor;
-        $angsuranPerKunjungan = $angsuran /  $frekuensiPembayaran;
+        $angsuran = $tenor > 0 ? $nominalPembiayaan / $tenor : 0;
+        $angsuranPerKunjungan = $frekuensiPembayaran > 0 ? $angsuran / $frekuensiPembayaran : 0;
 
         //Biaya Administrasi
         // $byAdm = 1.5 / 100 * $nominalPembiayaan;

@@ -178,7 +178,7 @@ class EditProposalController extends Controller
             'pesanan_blok' => $request->pesanan_blok,
             'tenor' => $request->tenor,
             'luas' => $request->luas,
-            'harga' => str_replace(".", "", $request->harga),
+            'harga' => preg_replace('/[^0-9]/', '', $request->harga),
             'jaminan_id' => $id,
             'jaminanlain_id' => $id,
             'pasar_legalitas_rumah_id' => $id,
@@ -192,7 +192,7 @@ class EditProposalController extends Controller
             'sewa' => str_replace(".", "", $request->sewa),
             'slik_id' => $id,
             'keb_keluarga' => str_replace(".", "", $request->keb_keluarga),
-            'kesanggupan_angsuran' => str_replace(".", "", $request->kesanggupan_angsuran),
+            'kesanggupan_angsuran' => preg_replace('/[^0-9]/', '', $request->kesanggupan_angsuran),
             'keterangan_keb_keluarga' => $request->keterangan_keb_keluarga,
             'aset' => $request->aset,
         ]);

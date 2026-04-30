@@ -6,7 +6,6 @@ use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Form\Entities\FormSkpd;
 use Modules\Admin\Entities\SkpdAkad;
 use Modules\Skpd\Entities\SkpdJaminan;
 use Modules\Skpd\Entities\SkpdNasabah;
@@ -19,8 +18,6 @@ use Modules\Admin\Entities\SkpdJenisJaminan;
 use Modules\Admin\Entities\SkpdSektorEkonomi;
 use Modules\Admin\Entities\SkpdJenisPenggunaan;
 use Modules\Admin\Entities\SkpdStatusPerkawinan;
-use Modules\Admin\Http\Controllers\SkpdAkadController;
-use Modules\Admin\Http\Controllers\SkpdGolonganController;
 use Modules\Skpd\Entities\SkpdFoto;
 use Modules\Skpd\Entities\SkpdJaminanLainnya;
 use Modules\Skpd\Entities\SkpdOrangTerdekat;
@@ -129,9 +126,7 @@ class FormSkpdController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
-    {
-    }
+    public function show($id) {}
 
     /**
      * Show the form for editing the specified resource.
@@ -166,6 +161,16 @@ class FormSkpdController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $toTenor = static function ($value): int {
+            $clean = preg_replace('/[^0-9]/', '', (string) $value);
+            return (int) ($clean === '' ? 0 : $clean);
+        };
+
+        $tenor = $toTenor($request->tenor);
+        if ($tenor <= 0) {
+            return back()->withErrors(['tenor' => 'Tenor wajib dipilih.'])->withInput();
+        }
+
         $hitung = SkpdPembiayaan::select()->orderBy('id', 'desc')->first();
         $number = $hitung->id + 1;
 
@@ -184,7 +189,7 @@ class FormSkpdController extends Controller
             'user_id' => $request->user_id,
             'tanggal_pengajuan' => $tglPengajuan,
             'nominal_pembiayaan' => str_replace(".", "", $request->nominal_pembiayaan),
-            'tenor' => $request->tenor,
+            'tenor' => $tenor,
             'rate' => $request->rate,
             'skpd_jenis_penggunaan_id' => $request->skpd_jenis_penggunaan_id,
             // 'skpd_sektor_ekonomi_id' => $request->skpd_sektor_ekonomi_id,
